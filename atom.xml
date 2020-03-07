@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenhuiyu.github.io/"/>
-  <updated>2020-03-06T21:11:42.030Z</updated>
+  <updated>2020-03-07T16:56:34.492Z</updated>
   <id>https://chenhuiyu.github.io/</id>
   
   <author>
@@ -17,9 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>DLHLP——1.课程简介</title>
+    <link href="https://chenhuiyu.github.io/2020/ck7huosoe0000n4vse5x5hkqz/"/>
+    <id>https://chenhuiyu.github.io/2020/ck7huosoe0000n4vse5x5hkqz/</id>
+    <published>2020-03-07T17:41:40.000Z</published>
+    <updated>2020-03-07T16:56:34.492Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="DLHLP——1-课程简介"><a href="#DLHLP——1-课程简介" class="headerlink" title="DLHLP——1.课程简介"></a>DLHLP——1.课程简介</h1><hr><p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p><hr><p>台大李宏毅老师2020年开的深度学习与人类语言处理课程，文档记录课程笔记。</p><p>课程YouTube链接：<a href="https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG" target="_blank" rel="noopener">https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG</a> </p><p>课程网站Home：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html" target="_blank" rel="noopener">http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html</a></p><a id="more"></a><p>[toc]</p><h2 id="1-本课程和其他NLP课程的不同之处"><a href="#1-本课程和其他NLP课程的不同之处" class="headerlink" title="1 本课程和其他NLP课程的不同之处"></a>1 本课程和其他NLP课程的不同之处</h2><p>常见NLP课程内容——文字：语音=9：1</p><p>本课程内容——文字：语音=5：5</p><p>1.1 为什么语音非常重要？</p><p>语音处理不仅仅包含语音辨识</p><p>有些语言是没有文字的，语言处理非常重要</p><p>1.2 人类语音非常复杂</p><ul><li>语音：</li></ul><p><em>常用多少K赫兹便是多少信息量</em></p><p>一秒钟的声音讯号需要一万六千个real number来表示</p><p>即使是同一个人说的同一句话，声音讯号也不会一样</p><ul><li>文字：</li></ul><p>句子可以含有巨多的词汇，非常复杂</p><h2 id="2-六种语言处理模型："><a href="#2-六种语言处理模型：" class="headerlink" title="2 六种语言处理模型："></a>2 六种语言处理模型：</h2><p><img src="https://i.loli.net/2020/03/08/iot8lyqIZvFQ5Tb.png" alt="TIM截图20200308003659.png"></p><h3 id="2-1-输入语音，输出文字"><a href="#2-1-输入语音，输出文字" class="headerlink" title="2.1 输入语音，输出文字"></a>2.1 输入语音，输出文字</h3><p>语音识别（speech recognition）</p><p>ASR：END-to-END——80MB</p><p>​           不是一般的seq2seq的model</p><p>传统语音辨识：有很多模组，整个模型会非常大——2GB</p><h3 id="2-2-输入文字，输出语音"><a href="#2-2-输入文字，输出语音" class="headerlink" title="2.2 输入文字，输出语音"></a>2.2 输入文字，输出语音</h3><p>语音合成——TTS (text-to-speech）</p><h3 id="2-3-输入语音，输出语音"><a href="#2-3-输入语音，输出语音" class="headerlink" title="2.3 输入语音，输出语音"></a>2.3 输入语音，输出语音</h3><p>语音分离（Speech Separation）——鸡尾酒会效应</p><p>Voice Conversion——使用one-shot learning</p><h3 id="2-4-输入语音，输出语音的类别"><a href="#2-4-输入语音，输出语音的类别" class="headerlink" title="2.4 输入语音，输出语音的类别"></a>2.4 输入语音，输出语音的类别</h3><p>Speaker Recognition</p><p>Keyword Spotting：模型要够小（低功耗）</p><h3 id="2-5-输入文字，输出文字"><a href="#2-5-输入文字，输出文字" class="headerlink" title="2.5 输入文字，输出文字"></a>2.5 输入文字，输出文字</h3><p>机器翻译</p><p>自动摘要</p><p>聊天机器人</p><p>问答系统</p><h3 id="2-6-输入文字，输出文字的类别"><a href="#2-6-输入文字，输出文字的类别" class="headerlink" title="2.6 输入文字，输出文字的类别"></a>2.6 输入文字，输出文字的类别</h3><h2 id="3-其他课程内容"><a href="#3-其他课程内容" class="headerlink" title="3. 其他课程内容"></a>3. 其他课程内容</h2><h3 id="3-1-Meta-Learning"><a href="#3-1-Meta-Learning" class="headerlink" title="3.1 Meta Learning"></a>3.1 Meta Learning</h3><p><img src="https://i.loli.net/2020/03/08/7f9D8LXeOh5vTRz.png" alt="TIM截图20200308004504.png"></p><h3 id="3-2-Adversarial-Attack"><a href="#3-2-Adversarial-Attack" class="headerlink" title="3.2 Adversarial Attack"></a>3.2 Adversarial Attack</h3><h3 id="3-3-可解释AI"><a href="#3-3-可解释AI" class="headerlink" title="3.3 可解释AI"></a>3.3 可解释AI</h3><h2 id="结语-有关硬train一发"><a href="#结语-有关硬train一发" class="headerlink" title="结语 有关硬train一发"></a>结语 有关<strong>硬train一发</strong></h2><p>Model=Deep Network</p><p>遇到问题用deep learning<strong>硬train一发</strong>就对了</p><p>什么是<strong>硬train一发</strong>：</p><p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;DLHLP——1-课程简介&quot;&gt;&lt;a href=&quot;#DLHLP——1-课程简介&quot; class=&quot;headerlink&quot; title=&quot;DLHLP——1.课程简介&quot;&gt;&lt;/a&gt;DLHLP——1.课程简介&lt;/h1&gt;&lt;hr&gt;
+&lt;p&gt;硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;台大李宏毅老师2020年开的深度学习与人类语言处理课程，文档记录课程笔记。&lt;/p&gt;
+&lt;p&gt;课程YouTube链接：&lt;a href=&quot;https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;课程网站Home：&lt;a href=&quot;http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="DLHLP" scheme="https://chenhuiyu.github.io/categories/DLHLP/"/>
+    
+    
+      <category term="DLHLP" scheme="https://chenhuiyu.github.io/tags/DLHLP/"/>
+    
+      <category term="语音处理" scheme="https://chenhuiyu.github.io/tags/%E8%AF%AD%E9%9F%B3%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>NLP01-绪论</title>
-    <link href="https://chenhuiyu.github.io/2020/ck7god9la0007jovsgh05hp1l/"/>
-    <id>https://chenhuiyu.github.io/2020/ck7god9la0007jovsgh05hp1l/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck7huosp80006n4vs5vm2ercj/"/>
+    <id>https://chenhuiyu.github.io/2020/ck7huosp80006n4vs5vm2ercj/</id>
     <published>2020-03-06T20:54:38.000Z</published>
     <updated>2020-03-06T21:11:42.030Z</updated>
     
@@ -43,8 +73,8 @@
   
   <entry>
     <title>4.Session和Cookies</title>
-    <link href="https://chenhuiyu.github.io/2020/ck7god9l60006jovs5txdhe7l/"/>
-    <id>https://chenhuiyu.github.io/2020/ck7god9l60006jovs5txdhe7l/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck7huospp0008n4vs4i03aui9/"/>
+    <id>https://chenhuiyu.github.io/2020/ck7huospp0008n4vs4i03aui9/</id>
     <published>2020-03-06T20:42:51.000Z</published>
     <updated>2020-03-06T21:11:27.733Z</updated>
     
@@ -73,8 +103,8 @@
   
   <entry>
     <title>3.爬虫基本原理</title>
-    <link href="https://chenhuiyu.github.io/2020/ck7god9l60005jovse2hxc80w/"/>
-    <id>https://chenhuiyu.github.io/2020/ck7god9l60005jovse2hxc80w/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck7huospv000fn4vs0zke4orq/"/>
+    <id>https://chenhuiyu.github.io/2020/ck7huospv000fn4vs0zke4orq/</id>
     <published>2020-03-06T20:42:29.000Z</published>
     <updated>2020-03-06T21:11:10.130Z</updated>
     
@@ -101,8 +131,8 @@
   
   <entry>
     <title>2.Web网页基础</title>
-    <link href="https://chenhuiyu.github.io/2020/ck7god9ky0002jovs99963l3m/"/>
-    <id>https://chenhuiyu.github.io/2020/ck7god9ky0002jovs99963l3m/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck7huospt000cn4vs15skfaty/"/>
+    <id>https://chenhuiyu.github.io/2020/ck7huospt000cn4vs15skfaty/</id>
     <published>2020-03-06T20:42:15.000Z</published>
     <updated>2020-03-06T21:10:55.360Z</updated>
     
@@ -131,8 +161,8 @@
   
   <entry>
     <title>1.HTTP基本原理</title>
-    <link href="https://chenhuiyu.github.io/2020/ck7god9km0000jovs5es8b1eu/"/>
-    <id>https://chenhuiyu.github.io/2020/ck7god9km0000jovs5es8b1eu/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck7huosp60004n4vsg2os043r/"/>
+    <id>https://chenhuiyu.github.io/2020/ck7huosp60004n4vsg2os043r/</id>
     <published>2020-03-06T20:41:40.000Z</published>
     <updated>2020-03-06T21:10:31.286Z</updated>
     
@@ -161,8 +191,8 @@
   
   <entry>
     <title>机器学习入门</title>
-    <link href="https://chenhuiyu.github.io/2020/ck7god9le000bjovs9f658nm5/"/>
-    <id>https://chenhuiyu.github.io/2020/ck7god9le000bjovs9f658nm5/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck7huosor0001n4vs9sky5pf1/"/>
+    <id>https://chenhuiyu.github.io/2020/ck7huosor0001n4vs9sky5pf1/</id>
     <published>2020-03-06T20:35:06.000Z</published>
     <updated>2020-03-06T21:12:04.753Z</updated>
     

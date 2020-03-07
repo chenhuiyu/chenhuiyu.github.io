@@ -1,8 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>DLHLP——1.课程简介</title>
+    <url>/2020/ck7huosoe0000n4vse5x5hkqz/</url>
+    <content><![CDATA[<h1 id="DLHLP——1-课程简介"><a href="#DLHLP——1-课程简介" class="headerlink" title="DLHLP——1.课程简介"></a>DLHLP——1.课程简介</h1><hr>
+<p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
+<hr>
+<p>台大李宏毅老师2020年开的深度学习与人类语言处理课程，文档记录课程笔记。</p>
+<p>课程YouTube链接：<a href="https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG" target="_blank" rel="noopener">https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG</a> </p>
+<p>课程网站Home：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html" target="_blank" rel="noopener">http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html</a></p>
+<a id="more"></a>
+
+<p>[toc]</p>
+<h2 id="1-本课程和其他NLP课程的不同之处"><a href="#1-本课程和其他NLP课程的不同之处" class="headerlink" title="1 本课程和其他NLP课程的不同之处"></a>1 本课程和其他NLP课程的不同之处</h2><p>常见NLP课程内容——文字：语音=9：1</p>
+<p>本课程内容——文字：语音=5：5</p>
+<p>1.1 为什么语音非常重要？</p>
+<p>语音处理不仅仅包含语音辨识</p>
+<p>有些语言是没有文字的，语言处理非常重要</p>
+<p>1.2 人类语音非常复杂</p>
+<ul>
+<li>语音：</li>
+</ul>
+<p><em>常用多少K赫兹便是多少信息量</em></p>
+<p>一秒钟的声音讯号需要一万六千个real number来表示</p>
+<p>即使是同一个人说的同一句话，声音讯号也不会一样</p>
+<ul>
+<li>文字：</li>
+</ul>
+<p>句子可以含有巨多的词汇，非常复杂</p>
+<h2 id="2-六种语言处理模型："><a href="#2-六种语言处理模型：" class="headerlink" title="2 六种语言处理模型："></a>2 六种语言处理模型：</h2><p><img src="https://i.loli.net/2020/03/08/iot8lyqIZvFQ5Tb.png" alt="TIM截图20200308003659.png"></p>
+<h3 id="2-1-输入语音，输出文字"><a href="#2-1-输入语音，输出文字" class="headerlink" title="2.1 输入语音，输出文字"></a>2.1 输入语音，输出文字</h3><p>语音识别（speech recognition）</p>
+<p>ASR：END-to-END——80MB</p>
+<p>​           不是一般的seq2seq的model</p>
+<p>传统语音辨识：有很多模组，整个模型会非常大——2GB</p>
+<h3 id="2-2-输入文字，输出语音"><a href="#2-2-输入文字，输出语音" class="headerlink" title="2.2 输入文字，输出语音"></a>2.2 输入文字，输出语音</h3><p>语音合成——TTS (text-to-speech）</p>
+<h3 id="2-3-输入语音，输出语音"><a href="#2-3-输入语音，输出语音" class="headerlink" title="2.3 输入语音，输出语音"></a>2.3 输入语音，输出语音</h3><p>语音分离（Speech Separation）——鸡尾酒会效应</p>
+<p>Voice Conversion——使用one-shot learning</p>
+<h3 id="2-4-输入语音，输出语音的类别"><a href="#2-4-输入语音，输出语音的类别" class="headerlink" title="2.4 输入语音，输出语音的类别"></a>2.4 输入语音，输出语音的类别</h3><p>Speaker Recognition</p>
+<p>Keyword Spotting：模型要够小（低功耗）</p>
+<h3 id="2-5-输入文字，输出文字"><a href="#2-5-输入文字，输出文字" class="headerlink" title="2.5 输入文字，输出文字"></a>2.5 输入文字，输出文字</h3><p>机器翻译</p>
+<p>自动摘要</p>
+<p>聊天机器人</p>
+<p>问答系统</p>
+<h3 id="2-6-输入文字，输出文字的类别"><a href="#2-6-输入文字，输出文字的类别" class="headerlink" title="2.6 输入文字，输出文字的类别"></a>2.6 输入文字，输出文字的类别</h3><h2 id="3-其他课程内容"><a href="#3-其他课程内容" class="headerlink" title="3. 其他课程内容"></a>3. 其他课程内容</h2><h3 id="3-1-Meta-Learning"><a href="#3-1-Meta-Learning" class="headerlink" title="3.1 Meta Learning"></a>3.1 Meta Learning</h3><p><img src="https://i.loli.net/2020/03/08/7f9D8LXeOh5vTRz.png" alt="TIM截图20200308004504.png"></p>
+<h3 id="3-2-Adversarial-Attack"><a href="#3-2-Adversarial-Attack" class="headerlink" title="3.2 Adversarial Attack"></a>3.2 Adversarial Attack</h3><h3 id="3-3-可解释AI"><a href="#3-3-可解释AI" class="headerlink" title="3.3 可解释AI"></a>3.3 可解释AI</h3><h2 id="结语-有关硬train一发"><a href="#结语-有关硬train一发" class="headerlink" title="结语 有关硬train一发"></a>结语 有关<strong>硬train一发</strong></h2><p>Model=Deep Network</p>
+<p>遇到问题用deep learning<strong>硬train一发</strong>就对了</p>
+<p>什么是<strong>硬train一发</strong>：</p>
+<p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
+]]></content>
+      <categories>
+        <category>DLHLP</category>
+      </categories>
+      <tags>
+        <tag>DLHLP</tag>
+        <tag>语音处理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NLP01-绪论</title>
-    <url>/2020/ck7god9la0007jovsgh05hp1l/</url>
+    <url>/2020/ck7huosp80006n4vs5vm2ercj/</url>
     <content><![CDATA[<h1 id="自然语言处理-第一章——绪论"><a href="#自然语言处理-第一章——绪论" class="headerlink" title="自然语言处理 第一章——绪论"></a>自然语言处理 第一章——绪论</h1><p><img src="https://i.loli.net/2020/03/07/mQyYtiSbqzxnJwR.jpg" alt="0001.jpg"></p>
 <a id="more"></a>
 
@@ -18,7 +74,7 @@
   </entry>
   <entry>
     <title>4.Session和Cookies</title>
-    <url>/2020/ck7god9l60006jovs5txdhe7l/</url>
+    <url>/2020/ck7huospp0008n4vs4i03aui9/</url>
     <content><![CDATA[<h1 id="第4讲：Session与Cookies"><a href="#第4讲：Session与Cookies" class="headerlink" title="第4讲：Session与Cookies"></a>第4讲：Session与Cookies</h1><p>[toc]</p>
 <p>崔庆才《52轻松搞定网络爬虫》第4讲，版权归拉勾网所有。</p>
 <h2 id="4-1-静态网页和动态网页"><a href="#4-1-静态网页和动态网页" class="headerlink" title="4.1 静态网页和动态网页"></a>4.1 静态网页和动态网页</h2><p>​        最基本的HTML代码，我们将其保存为一个.html文件，然后把它放在某台具有固定公网IP的主机上，主机上装上Apache或Nginx等服务器，这样这台主机就可以作为服务器了，其他人可以通过访问服务器看到这个页面，这样就搭建了一个最简单的网站。</p>
@@ -55,7 +111,7 @@
   </entry>
   <entry>
     <title>3.爬虫基本原理</title>
-    <url>/2020/ck7god9l60005jovse2hxc80w/</url>
+    <url>/2020/ck7huospv000fn4vs0zke4orq/</url>
     <content><![CDATA[<h1 id="3-爬虫的基本原理"><a href="#3-爬虫的基本原理" class="headerlink" title="3. 爬虫的基本原理"></a>3. 爬虫的基本原理</h1><p>[toc]</p>
 <h2 id="3-1-爬虫概述"><a href="#3-1-爬虫概述" class="headerlink" title="3.1 爬虫概述"></a>3.1 爬虫概述</h2><p>​    简单地说，爬虫就是获取网页并提取保存信息的自动化程序</p>
 <h2 id="3-2-获取网页"><a href="#3-2-获取网页" class="headerlink" title="3.2 获取网页"></a>3.2 获取网页</h2><p>​    获取网页的源代码，向网站的服务器发送一个请求，返回的响应体便是网页源代码</p>
@@ -90,7 +146,7 @@
   </entry>
   <entry>
     <title>2.Web网页基础</title>
-    <url>/2020/ck7god9ky0002jovs99963l3m/</url>
+    <url>/2020/ck7huospt000cn4vs15skfaty/</url>
     <content><![CDATA[<h1 id="2-Web网页基础"><a href="#2-Web网页基础" class="headerlink" title="2. Web网页基础"></a>2. Web网页基础</h1><p>[toc]</p>
 <h2 id="2-1-网页的基本组成"><a href="#2-1-网页的基本组成" class="headerlink" title="2.1 网页的基本组成"></a>2.1 网页的基本组成</h2><p>网页可以分为三大部分：HTML、CSS 和 JavaScript。</p>
 <p>如果把网页比作一个人的话，HTML 相当于骨架，JavaScript 相当于肌肉，CSS 相当于皮肤，三者结合起来才能形成一个完整的网页。下面我们来分别介绍一下这三部分的功能。</p>
@@ -394,7 +450,7 @@
   </entry>
   <entry>
     <title>1.HTTP基本原理</title>
-    <url>/2020/ck7god9km0000jovs5es8b1eu/</url>
+    <url>/2020/ck7huosp60004n4vsg2os043r/</url>
     <content><![CDATA[<h1 id="1-HTTP基本原理"><a href="#1-HTTP基本原理" class="headerlink" title="1.HTTP基本原理"></a>1.HTTP基本原理</h1><p>// 记录崔庆才老师的《52讲轻松搞定网络爬虫》学习笔记。</p>
 <p>[toc]</p>
 <h2 id="URI-和-URL"><a href="#URI-和-URL" class="headerlink" title="URI 和 URL"></a>URI 和 URL</h2><p><strong>URI</strong>的全称为 Uniform Resource Identifier，即<strong>统一资源标志符</strong></p>
@@ -507,7 +563,7 @@
   </entry>
   <entry>
     <title>机器学习入门</title>
-    <url>/2020/ck7god9le000bjovs9f658nm5/</url>
+    <url>/2020/ck7huosor0001n4vs9sky5pf1/</url>
     <content><![CDATA[<h2 id="Kaggle官方教程之机器学习入门"><a href="#Kaggle官方教程之机器学习入门" class="headerlink" title="Kaggle官方教程之机器学习入门"></a>Kaggle官方教程之机器学习入门</h2><p>[toc]</p>
 <hr>
 <h3 id="1-模型如何工作？——机器学习入门介绍"><a href="#1-模型如何工作？——机器学习入门介绍" class="headerlink" title="1.模型如何工作？——机器学习入门介绍"></a>1.模型如何工作？——机器学习入门介绍</h3><h4 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h4><p>首先，我们将简述机器学习模型如何工作以及如何使用模型。 如果您之前已经进行过统计建模或机器学习，您可能会觉得很基础。 不用担心，我们在后面的课程建立更加强大的模型。学习此微课程，您可以在以下场景构建模型：</p>
