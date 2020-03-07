@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>DLHLP——1.课程简介</title>
-    <url>/2020/ck7huosoe0000n4vse5x5hkqz/</url>
+    <url>/2020/ck7hvxcff0000ggvs3xcoglhw/</url>
     <content><![CDATA[<h1 id="DLHLP——1-课程简介"><a href="#DLHLP——1-课程简介" class="headerlink" title="DLHLP——1.课程简介"></a>DLHLP——1.课程简介</h1><hr>
 <p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
 <hr>
@@ -57,8 +57,18 @@
       </tags>
   </entry>
   <entry>
+    <title>About Me</title>
+    <url>/2020/about/</url>
+    <content><![CDATA[<h1 id="一只巨型菜鸟"><a href="#一只巨型菜鸟" class="headerlink" title="一只巨型菜鸟"></a>一只巨型菜鸟</h1><p>姓名：黑头呆鱼</p>
+<p>研究方向：无😭</p>
+<a id="more"></a>
+
+<p><img src="https://i.loli.net/2020/03/08/t4R9hnpPqMXfS5m.jpg" alt="烦死了.jpg"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>NLP01-绪论</title>
-    <url>/2020/ck7huosp80006n4vs5vm2ercj/</url>
+    <url>/2020/ck7hvxcgz0007ggvshvua7kuv/</url>
     <content><![CDATA[<h1 id="自然语言处理-第一章——绪论"><a href="#自然语言处理-第一章——绪论" class="headerlink" title="自然语言处理 第一章——绪论"></a>自然语言处理 第一章——绪论</h1><p><img src="https://i.loli.net/2020/03/07/mQyYtiSbqzxnJwR.jpg" alt="0001.jpg"></p>
 <a id="more"></a>
 
@@ -74,7 +84,7 @@
   </entry>
   <entry>
     <title>4.Session和Cookies</title>
-    <url>/2020/ck7huospp0008n4vs4i03aui9/</url>
+    <url>/2020/ck7hvxchx000nggvs6ltyc11v/</url>
     <content><![CDATA[<h1 id="第4讲：Session与Cookies"><a href="#第4讲：Session与Cookies" class="headerlink" title="第4讲：Session与Cookies"></a>第4讲：Session与Cookies</h1><p>[toc]</p>
 <p>崔庆才《52轻松搞定网络爬虫》第4讲，版权归拉勾网所有。</p>
 <h2 id="4-1-静态网页和动态网页"><a href="#4-1-静态网页和动态网页" class="headerlink" title="4.1 静态网页和动态网页"></a>4.1 静态网页和动态网页</h2><p>​        最基本的HTML代码，我们将其保存为一个.html文件，然后把它放在某台具有固定公网IP的主机上，主机上装上Apache或Nginx等服务器，这样这台主机就可以作为服务器了，其他人可以通过访问服务器看到这个页面，这样就搭建了一个最简单的网站。</p>
@@ -105,13 +115,13 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>tutorial</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
     <title>3.爬虫基本原理</title>
-    <url>/2020/ck7huospv000fn4vs0zke4orq/</url>
+    <url>/2020/ck7hvxchu000jggvsdmcf98pa/</url>
     <content><![CDATA[<h1 id="3-爬虫的基本原理"><a href="#3-爬虫的基本原理" class="headerlink" title="3. 爬虫的基本原理"></a>3. 爬虫的基本原理</h1><p>[toc]</p>
 <h2 id="3-1-爬虫概述"><a href="#3-1-爬虫概述" class="headerlink" title="3.1 爬虫概述"></a>3.1 爬虫概述</h2><p>​    简单地说，爬虫就是获取网页并提取保存信息的自动化程序</p>
 <h2 id="3-2-获取网页"><a href="#3-2-获取网页" class="headerlink" title="3.2 获取网页"></a>3.2 获取网页</h2><p>​    获取网页的源代码，向网站的服务器发送一个请求，返回的响应体便是网页源代码</p>
@@ -140,13 +150,13 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>tutorial</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
     <title>2.Web网页基础</title>
-    <url>/2020/ck7huospt000cn4vs15skfaty/</url>
+    <url>/2020/ck7hvxchp000fggvs7q0mck87/</url>
     <content><![CDATA[<h1 id="2-Web网页基础"><a href="#2-Web网页基础" class="headerlink" title="2. Web网页基础"></a>2. Web网页基础</h1><p>[toc]</p>
 <h2 id="2-1-网页的基本组成"><a href="#2-1-网页的基本组成" class="headerlink" title="2.1 网页的基本组成"></a>2.1 网页的基本组成</h2><p>网页可以分为三大部分：HTML、CSS 和 JavaScript。</p>
 <p>如果把网页比作一个人的话，HTML 相当于骨架，JavaScript 相当于肌肉，CSS 相当于皮肤，三者结合起来才能形成一个完整的网页。下面我们来分别介绍一下这三部分的功能。</p>
@@ -444,13 +454,13 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>tutorial</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
     <title>1.HTTP基本原理</title>
-    <url>/2020/ck7huosp60004n4vsg2os043r/</url>
+    <url>/2020/ck7hvxchr000iggvs7fvx68sf/</url>
     <content><![CDATA[<h1 id="1-HTTP基本原理"><a href="#1-HTTP基本原理" class="headerlink" title="1.HTTP基本原理"></a>1.HTTP基本原理</h1><p>// 记录崔庆才老师的《52讲轻松搞定网络爬虫》学习笔记。</p>
 <p>[toc]</p>
 <h2 id="URI-和-URL"><a href="#URI-和-URL" class="headerlink" title="URI 和 URL"></a>URI 和 URL</h2><p><strong>URI</strong>的全称为 Uniform Resource Identifier，即<strong>统一资源标志符</strong></p>
@@ -557,13 +567,13 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>tutorial</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
     <title>机器学习入门</title>
-    <url>/2020/ck7huosor0001n4vs9sky5pf1/</url>
+    <url>/2020/ck7hvxch60009ggvsfh0w3g13/</url>
     <content><![CDATA[<h2 id="Kaggle官方教程之机器学习入门"><a href="#Kaggle官方教程之机器学习入门" class="headerlink" title="Kaggle官方教程之机器学习入门"></a>Kaggle官方教程之机器学习入门</h2><p>[toc]</p>
 <hr>
 <h3 id="1-模型如何工作？——机器学习入门介绍"><a href="#1-模型如何工作？——机器学习入门介绍" class="headerlink" title="1.模型如何工作？——机器学习入门介绍"></a>1.模型如何工作？——机器学习入门介绍</h3><h4 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h4><p>首先，我们将简述机器学习模型如何工作以及如何使用模型。 如果您之前已经进行过统计建模或机器学习，您可能会觉得很基础。 不用担心，我们在后面的课程建立更加强大的模型。学习此微课程，您可以在以下场景构建模型：</p>
@@ -925,14 +935,14 @@
         <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>tutorial</tag>
         <tag>ML</tag>
         <tag>Kaggle</tag>
+        <tag>tutorial</tag>
       </tags>
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2020/ck7god9le000ajovsg5f58u5a/</url>
+    <url>/2020/ck7hvxchn000eggvsbfvrfbjp/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
