@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    About Me |  黑头呆鱼进化之旅
+    DLHLP——1.课程简介 |  黑头呆鱼进化之旅
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-about" class="article article-type-post" itemscope
+  <article id="post-DLHLP——1.课程简介" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +43,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  About Me
+  DLHLP——1.课程简介
 </h1>
   
 
@@ -52,10 +52,35 @@
 
     
     <div class="article-meta">
-      <a href="/2020/about/" class="article-date">
-  <time datetime="2020-03-07T17:36:04.000Z" itemprop="datePublished">2020-03-08</time>
+      <a href="/2020/ck7hwg0e70000m4vs02h93llf/" class="article-date">
+  <time datetime="2020-03-07T17:41:40.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/DLHLP/">DLHLP</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">522字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">2分钟</span>
+        </span>
+    </span>
+</div>
+
       
     </div>
     
@@ -78,11 +103,50 @@
       
 
       
-      <h1 id="一只巨型菜鸟"><a href="#一只巨型菜鸟" class="headerlink" title="一只巨型菜鸟"></a>一只巨型菜鸟</h1><p>姓名：黑头呆鱼</p>
-<p>研究方向：无😭</p>
+      <h1 id="DLHLP——1-课程简介"><a href="#DLHLP——1-课程简介" class="headerlink" title="DLHLP——1.课程简介"></a>DLHLP——1.课程简介</h1><hr>
+<p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
+<hr>
+<p>台大李宏毅老师2020年开的深度学习与人类语言处理课程，文档记录课程笔记。</p>
+<p>课程YouTube链接：<a href="https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG" target="_blank" rel="noopener">https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG</a> </p>
+<p>课程网站Home：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html" target="_blank" rel="noopener">http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html</a></p>
 <a id="more"></a>
 
-<p><img src="https://i.loli.net/2020/03/08/t4R9hnpPqMXfS5m.jpg" alt="烦死了.jpg"></p>
+<p>[toc]</p>
+<h2 id="1-本课程和其他NLP课程的不同之处"><a href="#1-本课程和其他NLP课程的不同之处" class="headerlink" title="1 本课程和其他NLP课程的不同之处"></a>1 本课程和其他NLP课程的不同之处</h2><p>常见NLP课程内容——文字：语音=9：1</p>
+<p>本课程内容——文字：语音=5：5</p>
+<p>1.1 为什么语音非常重要？</p>
+<p>语音处理不仅仅包含语音辨识</p>
+<p>有些语言是没有文字的，语言处理非常重要</p>
+<p>1.2 人类语音非常复杂</p>
+<ul>
+<li>语音：</li>
+</ul>
+<p><em>常用多少K赫兹便是多少信息量</em></p>
+<p>一秒钟的声音讯号需要一万六千个real number来表示</p>
+<p>即使是同一个人说的同一句话，声音讯号也不会一样</p>
+<ul>
+<li>文字：</li>
+</ul>
+<p>句子可以含有巨多的词汇，非常复杂</p>
+<h2 id="2-六种语言处理模型："><a href="#2-六种语言处理模型：" class="headerlink" title="2 六种语言处理模型："></a>2 六种语言处理模型：</h2><p><img src="https://i.loli.net/2020/03/08/iot8lyqIZvFQ5Tb.png" alt="TIM截图20200308003659.png"></p>
+<h3 id="2-1-输入语音，输出文字"><a href="#2-1-输入语音，输出文字" class="headerlink" title="2.1 输入语音，输出文字"></a>2.1 输入语音，输出文字</h3><p>语音识别（speech recognition）</p>
+<p>ASR：END-to-END——80MB</p>
+<p>​           不是一般的seq2seq的model</p>
+<p>传统语音辨识：有很多模组，整个模型会非常大——2GB</p>
+<h3 id="2-2-输入文字，输出语音"><a href="#2-2-输入文字，输出语音" class="headerlink" title="2.2 输入文字，输出语音"></a>2.2 输入文字，输出语音</h3><p>语音合成——TTS (text-to-speech）</p>
+<h3 id="2-3-输入语音，输出语音"><a href="#2-3-输入语音，输出语音" class="headerlink" title="2.3 输入语音，输出语音"></a>2.3 输入语音，输出语音</h3><p>语音分离（Speech Separation）——鸡尾酒会效应</p>
+<p>Voice Conversion——使用one-shot learning</p>
+<h3 id="2-4-输入语音，输出语音的类别"><a href="#2-4-输入语音，输出语音的类别" class="headerlink" title="2.4 输入语音，输出语音的类别"></a>2.4 输入语音，输出语音的类别</h3><p>Speaker Recognition</p>
+<p>Keyword Spotting：模型要够小（低功耗）</p>
+<h3 id="2-5-输入文字，输出文字"><a href="#2-5-输入文字，输出文字" class="headerlink" title="2.5 输入文字，输出文字"></a>2.5 输入文字，输出文字</h3><p>机器翻译</p>
+<p>自动摘要</p>
+<p>聊天机器人</p>
+<p>问答系统</p>
+<h3 id="2-6-输入文字，输出文字的类别"><a href="#2-6-输入文字，输出文字的类别" class="headerlink" title="2.6 输入文字，输出文字的类别"></a>2.6 输入文字，输出文字的类别</h3><h2 id="3-其他课程内容"><a href="#3-其他课程内容" class="headerlink" title="3. 其他课程内容"></a>3. 其他课程内容</h2><h3 id="3-1-Meta-Learning"><a href="#3-1-Meta-Learning" class="headerlink" title="3.1 Meta Learning"></a>3.1 Meta Learning</h3><p><img src="https://i.loli.net/2020/03/08/7f9D8LXeOh5vTRz.png" alt="TIM截图20200308004504.png"></p>
+<h3 id="3-2-Adversarial-Attack"><a href="#3-2-Adversarial-Attack" class="headerlink" title="3.2 Adversarial Attack"></a>3.2 Adversarial Attack</h3><h3 id="3-3-可解释AI"><a href="#3-3-可解释AI" class="headerlink" title="3.3 可解释AI"></a>3.3 可解释AI</h3><h2 id="结语-有关硬train一发"><a href="#结语-有关硬train一发" class="headerlink" title="结语 有关硬train一发"></a>结语 有关<strong>硬train一发</strong></h2><p>Model=Deep Network</p>
+<p>遇到问题用deep learning<strong>硬train一发</strong>就对了</p>
+<p>什么是<strong>硬train一发</strong>：</p>
+<p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
 
       
       <!-- reward -->
@@ -148,13 +212,15 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/about/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7hwg0e70000m4vs02h93llf/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DLHLP/" rel="tag">DLHLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%A4%84%E7%90%86/" rel="tag">语音处理</a></li></ul>
+
 
     </footer>
 
@@ -164,19 +230,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck7hwg0e70000m4vs02h93llf/" class="article-nav-link">
+      <a href="/2020/ck7hwg0ep0004m4vs1lqe4gyb/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            DLHLP——1.课程简介
+            NLP03-形式语言与自动机.md
           
         </div>
       </a>
     
     
-      <a href="/2020/ck7hwg0ei0001m4vsgo862fr5/" class="article-nav-link">
+      <a href="/2020/about/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">NLP01-绪论</div>
+        <div class="article-nav-title">About Me</div>
       </a>
     
   </nav>
