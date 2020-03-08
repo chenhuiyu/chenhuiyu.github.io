@@ -10,7 +10,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    3.爬虫基本原理 |  黑头呆鱼进化之旅
+    Archives: 2020/3 |  黑头呆鱼进化之旅
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -35,259 +35,56 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-爬虫-03-爬虫基本原理" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
+  <article class="articles">
     
-    <header class="article-header">
+    
+    <h1 class="page-type-title">2020/3</h1>
+    
+    
+  
+  
+  
+  
+  
+  
+  <div class="archives-wrap">
+    <div class="archive-year-wrap">
+      <a href="/archives/2020" class="archive-year">2020</a>
+    </div>
+    <div class="archives">
+      
+      <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2020/ck7itkpl70009akvs9xk3c8yz/" class="archive-article-date">
+  <time datetime="2020-03-06T19:36:30.886Z" itemprop="datePublished">03/07</time>
+</a>
        
-<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  3.爬虫基本原理
-</h1>
+<h2 itemprop="name">
+  <a class="archive-article-title" href="/2020/ck7itkpl70009akvs9xk3c8yz/"
+    >Hello World</a
+  >
+</h2>
   
 
     </header>
     
-
     
-    <div class="article-meta">
-      <a href="/2020/ck7hwg0gp001am4vsdbc22dlt/" class="article-date">
-  <time datetime="2020-03-06T20:42:29.000Z" itemprop="datePublished">2020-03-07</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
   </div>
-
-      
-      
-<div class="word_count">
-    <span class="post-time">
-        <span class="post-meta-item-icon">
-            <i class="ri-quill-pen-line"></i>
-            <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">352字</span>
-        </span>
-    </span>
-
-    <span class="post-time">
-        &nbsp; | &nbsp;
-        <span class="post-meta-item-icon">
-            <i class="ri-book-open-line"></i>
-            <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
-        </span>
-    </span>
-</div>
-
-      
-    </div>
-    
-
-    
-    
-    <div class="tocbot"></div>
-
-
-
-
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="3-爬虫的基本原理"><a href="#3-爬虫的基本原理" class="headerlink" title="3. 爬虫的基本原理"></a>3. 爬虫的基本原理</h1><p>[toc]</p>
-<h2 id="3-1-爬虫概述"><a href="#3-1-爬虫概述" class="headerlink" title="3.1 爬虫概述"></a>3.1 爬虫概述</h2><p>​    简单地说，爬虫就是获取网页并提取保存信息的自动化程序</p>
-<h2 id="3-2-获取网页"><a href="#3-2-获取网页" class="headerlink" title="3.2 获取网页"></a>3.2 获取网页</h2><p>​    获取网页的源代码，向网站的服务器发送一个请求，返回的响应体便是网页源代码</p>
-<p>​    借助urllib、requests库可以实现HTTP请求操作，请求和响应都可以用库提供的数据结构表示，得到相应之后只需解析数据结构中的Body部分</p>
-<a id="more"></a>
-
-<h2 id="3-3-提取信息"><a href="#3-3-提取信息" class="headerlink" title="3.3 提取信息"></a>3.3 提取信息</h2><p>​    如何在网页源代码中提取想要的数据，使杂乱的数据变得条理清晰</p>
-<ol>
-<li>正则表达式</li>
-<li>根据节点属性、CSS选择器、XPath来提取网页信息的库，如Beatutiful Soup、pyquery、lxml等</li>
-</ol>
-<h2 id="3-4-保存数据"><a href="#3-4-保存数据" class="headerlink" title="3.4 保存数据"></a>3.4 保存数据</h2><ol>
-<li>简单保存为TXT文本或JSON数据</li>
-<li>保存到MySQL或者MongoDB等数据库</li>
-<li>借助SFTP保存到远程服务</li>
-</ol>
-<h2 id="3-5-抓取什么样的数据"><a href="#3-5-抓取什么样的数据" class="headerlink" title="3.5 抓取什么样的数据"></a>3.5 抓取什么样的数据</h2><ol>
-<li>最常见：HTML源代码</li>
-<li>JSON字符串（API接口常用）</li>
-<li>二进制数据——图片、视频、音频</li>
-</ol>
-<h2 id="3-6-JavaScript渲染页面"><a href="#3-6-JavaScript渲染页面" class="headerlink" title="3. 6 JavaScript渲染页面"></a>3. 6 JavaScript渲染页面</h2><p>​    有时使用urlib和requests抓取网页时，得到的源代码和浏览器中的不同。因为网页使用Ajax、前端模块化工具构建，整个网页可能是由JavaScript渲染出来的，原始HTML是一个空壳</p>
-<p>​    可使用Selenium、Splash的库来模拟JavaScript渲染</p>
-
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-        <div class="declare">
-          <ul class="post-copyright">
-            <li>
-              <i class="ri-copyright-line"></i>
-              <strong>版权声明： </strong s>
-              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
-                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
-            </li>
-          </ul>
-        </div>
-        
-    <footer class="article-footer">
-      
-          
-<div class="share-btn">
-      <span class="share-sns share-outer">
-        <i class="ri-share-forward-line"></i>
-        分享
-      </span>
-      <div class="share-wrap">
-        <i class="arrow"></i>
-        <div class="share-icons">
-          
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="ri-weibo-fill"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="ri-wechat-fill"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="ri-qq-fill"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="ri-douban-line"></i>
-          </a>
-          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a> -->
-          
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="ri-facebook-circle-fill"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="ri-twitter-fill"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="ri-google-fill"></i>
-          </a>
-        </div>
-      </div>
-</div>
-
-<div class="wx-share-modal">
-    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7hwg0gp001am4vsdbc22dlt/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div id="share-mask"></div>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
-
-
-    </footer>
-
-  </div>
-
-  
-  
-  <nav class="article-nav">
-    
-      <a href="/2020/ck7hwg0gs001cm4vsf23z09er/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            4.Session和Cookies
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2020/ck7hwg0f4000em4vsdqam6jlz/" class="article-nav-link">
-        <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">2.Web网页基础</div>
-      </a>
-    
-  </nav>
-
-
-  
-
-  
-  
-<!-- valine评论 -->
-<div id="vcomments-box">
-    <div id="vcomments">
-    </div>
-</div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
-<script>
-    new Valine({
-        el: '#vcomments',
-        app_id: '',
-        app_key: '',
-        path: window.location.pathname,
-        notify: 'false',
-        verify: 'false',
-        avatar: 'mp',
-        placeholder: '给我的文章加点评论吧~',
-        recordIP: true
-    });
-    const infoEle = document.querySelector('#vcomments .info');
-    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
-        infoEle.childNodes.forEach(function (item) {
-            item.parentNode.removeChild(item);
-        });
-    }
-</script>
-<style>
-    #vcomments-box {
-        padding: 5px 30px;
-    }
-
-    @media screen and (max-width: 800px) {
-        #vcomments-box {
-            padding: 5px 0px;
-        }
-    }
-
-    #vcomments-box #vcomments {
-        background-color: #fff;
-    }
-
-    .v .vlist .vcard .vh {
-        padding-right: 20px;
-    }
-
-    .v .vlist .vcard {
-        padding-left: 10px;
-    }
-</style>
-
-  
-
-  
-  
-  
-
 </article>
+      
+      
+    </div>
+  </div>
+  
+  
+
+  
+  <nav class="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/archives/2020/03/">上一页</a><a class="page-number" href="/archives/2020/03/">1</a><span class="page-number current">2</span>
+  </nav>
+  
 </section>
       <footer class="footer">
   <div class="outer">
@@ -424,7 +221,7 @@
       strings: ['热情、友好且一问三不知', '永远年迈，永远老泪纵横', '我的每一行代码都是诗，即使无法运行也很美'],
       startDelay: 0,
       typeSpeed: 200,
-      loop: true,
+      loop: false,
       backSpeed: 100,
       showCursor: true
     });
@@ -434,30 +231,6 @@
 </script>
 
 
-
-
-<script src="/js/tocbot.min.js"></script>
-
-<script>
-  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
-  tocbot.init({
-    tocSelector: '.tocbot',
-    contentSelector: '.article-entry',
-    headingSelector: 'h1, h2, h3, h4, h5, h6',
-    hasInnerContainers: true,
-    scrollSmooth: true,
-    scrollContainer: 'main',
-    positionFixedSelector: '.tocbot',
-    positionFixedClass: 'is-position-fixed',
-    fixedSidebarOffset: 'auto',
-    onClick: (e) => {
-      $('.toc-link').removeClass('is-active-link');
-      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
-      $(e.target.hash).scrollIntoView();
-      return false;
-    }
-  });
-</script>
 
 
 
