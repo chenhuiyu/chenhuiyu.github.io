@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>生成式对抗网络综述</title>
-    <url>/2020/ck7j134lp000s98vsc8mu0iqu/</url>
+    <url>/2020/ck7j1bhy7000s1svs07gc3nlt/</url>
     <content><![CDATA[<h1 id="生成式对抗网络综述"><a href="#生成式对抗网络综述" class="headerlink" title="生成式对抗网络综述"></a>生成式对抗网络综述</h1><p>[toc]</p>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>​        GAN包含两个模型：生成器和判别器。这两个模型通常由神经网络来实现，生成器尝试捕获真实示例的分布，以生成新的数据示例。判别器通常是二分类器，它尽可能准确地将生成器产生的的数据与真实的样本区分开。  GAN的优化是一个最小最大(minimax)优化问题。该优化终止于一个鞍点，该鞍点对于生成器而言是最小值，而对于鉴别器而言是最大值。也就是说，优化目标是达到Nash平衡[1]。然后，可以认为生成器已经捕获了真实样本的概率分布。</p>
 <p>​        先前的一些工作采用了使两个神经网络相互竞争的概念。GAN属于生成算法。生成算法和判别算法是两类机器学习算法。如果机器学习算法是基于观测数据的完全概率模型，则该算法是生成性的。生成算法由于其广泛的实际应用而变得越来越流行和重要。</p>
@@ -45,7 +45,7 @@
   </entry>
   <entry>
     <title>爬虫-05-多线程的基本原理</title>
-    <url>/2020/ck7j134lm000o98vs9gky0zry/</url>
+    <url>/2020/ck7j1bhy5000o1svs63jogd93/</url>
     <content><![CDATA[<h1 id="5-多线程基本原理"><a href="#5-多线程基本原理" class="headerlink" title="5.多线程基本原理"></a>5.多线程基本原理</h1><p>在编写爬虫程序时，为了提高效率，想同时运行多个爬虫任务，这里需要设计多进程和多线程的知识。</p>
 <p>[toc]</p>
 <h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p><strong>进程：</strong>进程是一个可以独立运行的程序单位，是线程的集合。比如打开一个浏览器，这就开启了一个浏览器进程。一个进程中是可以同时处理很多事情的，比如一个浏览器中可以打开多个选项卡页面，这就是线程，</p>
@@ -108,7 +108,7 @@
   </entry>
   <entry>
     <title>NLP03-形式语言与自动机.md</title>
-    <url>/2020/ck7j134km000698vsayr47hbr/</url>
+    <url>/2020/ck7j1bhxg00061svsetlv4pm6/</url>
     <content><![CDATA[<h1 id="第三章-形式语言与自动机"><a href="#第三章-形式语言与自动机" class="headerlink" title="第三章 形式语言与自动机"></a>第三章 形式语言与自动机</h1><p><img src="https://i.loli.net/2020/03/08/oat5uhJSM3Y8qPj.png" alt="第三周 形式语言与自动机-01.png"></p>
 <a id="more"></a>
 
@@ -125,7 +125,7 @@
   </entry>
   <entry>
     <title>DLHLP——1.课程简介</title>
-    <url>/2020/ck7j134kc000298vs98rsdnuy/</url>
+    <url>/2020/ck7j1bhwl00001svscyer9qqx/</url>
     <content><![CDATA[<h1 id="DLHLP——1-课程简介"><a href="#DLHLP——1-课程简介" class="headerlink" title="DLHLP——1.课程简介"></a>DLHLP——1.课程简介</h1><hr>
 <p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
 <hr>
@@ -180,18 +180,8 @@
       </tags>
   </entry>
   <entry>
-    <title>About Me</title>
-    <url>/2020/about/</url>
-    <content><![CDATA[<h1 id="一只巨型菜鸟"><a href="#一只巨型菜鸟" class="headerlink" title="一只巨型菜鸟"></a>一只巨型菜鸟</h1><p>姓名：黑头呆鱼</p>
-<p>研究方向：无😭</p>
-<a id="more"></a>
-
-<p><img src="https://i.loli.net/2020/03/08/t4R9hnpPqMXfS5m.jpg" alt="烦死了.jpg"></p>
-]]></content>
-  </entry>
-  <entry>
     <title>NLP01-绪论</title>
-    <url>/2020/ck7j134jy000098vshfx2d076/</url>
+    <url>/2020/ck7j1bhwy00021svsfy5h35wn/</url>
     <content><![CDATA[<h1 id="自然语言处理-第一章——绪论"><a href="#自然语言处理-第一章——绪论" class="headerlink" title="自然语言处理 第一章——绪论"></a>自然语言处理 第一章——绪论</h1><p><img src="https://i.loli.net/2020/03/07/mQyYtiSbqzxnJwR.jpg" alt="0001.jpg"></p>
 <a id="more"></a>
 
@@ -207,7 +197,7 @@
   </entry>
   <entry>
     <title>4.Session和Cookies</title>
-    <url>/2020/ck7j134lk000n98vs5xebdum1/</url>
+    <url>/2020/ck7j1bhy4000n1svs53btbb0l/</url>
     <content><![CDATA[<h1 id="第4讲：Session与Cookies"><a href="#第4讲：Session与Cookies" class="headerlink" title="第4讲：Session与Cookies"></a>第4讲：Session与Cookies</h1><p>[toc]</p>
 <p>崔庆才《52轻松搞定网络爬虫》第4讲，版权归拉勾网所有。</p>
 <h2 id="4-1-静态网页和动态网页"><a href="#4-1-静态网页和动态网页" class="headerlink" title="4.1 静态网页和动态网页"></a>4.1 静态网页和动态网页</h2><p>​        最基本的HTML代码，我们将其保存为一个.html文件，然后把它放在某台具有固定公网IP的主机上，主机上装上Apache或Nginx等服务器，这样这台主机就可以作为服务器了，其他人可以通过访问服务器看到这个页面，这样就搭建了一个最简单的网站。</p>
@@ -244,7 +234,7 @@
   </entry>
   <entry>
     <title>3.爬虫基本原理</title>
-    <url>/2020/ck7j134lh000i98vs3scbfzlc/</url>
+    <url>/2020/ck7j1bhy1000i1svsekkz4w32/</url>
     <content><![CDATA[<h1 id="3-爬虫的基本原理"><a href="#3-爬虫的基本原理" class="headerlink" title="3. 爬虫的基本原理"></a>3. 爬虫的基本原理</h1><p>[toc]</p>
 <h2 id="3-1-爬虫概述"><a href="#3-1-爬虫概述" class="headerlink" title="3.1 爬虫概述"></a>3.1 爬虫概述</h2><p>​    简单地说，爬虫就是获取网页并提取保存信息的自动化程序</p>
 <h2 id="3-2-获取网页"><a href="#3-2-获取网页" class="headerlink" title="3.2 获取网页"></a>3.2 获取网页</h2><p>​    获取网页的源代码，向网站的服务器发送一个请求，返回的响应体便是网页源代码</p>
@@ -279,7 +269,7 @@
   </entry>
   <entry>
     <title>2.Web网页基础</title>
-    <url>/2020/ck7j134le000g98vs4p426367/</url>
+    <url>/2020/ck7j1bhxy000g1svs2hej0uer/</url>
     <content><![CDATA[<h1 id="2-Web网页基础"><a href="#2-Web网页基础" class="headerlink" title="2. Web网页基础"></a>2. Web网页基础</h1><p>[toc]</p>
 <h2 id="2-1-网页的基本组成"><a href="#2-1-网页的基本组成" class="headerlink" title="2.1 网页的基本组成"></a>2.1 网页的基本组成</h2><p>网页可以分为三大部分：HTML、CSS 和 JavaScript。</p>
 <p>如果把网页比作一个人的话，HTML 相当于骨架，JavaScript 相当于肌肉，CSS 相当于皮肤，三者结合起来才能形成一个完整的网页。下面我们来分别介绍一下这三部分的功能。</p>
@@ -583,7 +573,7 @@
   </entry>
   <entry>
     <title>1.HTTP基本原理</title>
-    <url>/2020/ck7j134l7000c98vscf0ubdlw/</url>
+    <url>/2020/ck7j1bhxq000c1svsbppz9xte/</url>
     <content><![CDATA[<h1 id="1-HTTP基本原理"><a href="#1-HTTP基本原理" class="headerlink" title="1.HTTP基本原理"></a>1.HTTP基本原理</h1><p>// 记录崔庆才老师的《52讲轻松搞定网络爬虫》学习笔记。</p>
 <p>[toc]</p>
 <h2 id="URI-和-URL"><a href="#URI-和-URL" class="headerlink" title="URI 和 URL"></a>URI 和 URL</h2><p><strong>URI</strong>的全称为 Uniform Resource Identifier，即<strong>统一资源标志符</strong></p>
@@ -696,7 +686,7 @@
   </entry>
   <entry>
     <title>机器学习入门</title>
-    <url>/2020/ck7j134l5000b98vs5rslcpqh/</url>
+    <url>/2020/ck7j1bhxo000b1svsdn8pc8ct/</url>
     <content><![CDATA[<h2 id="Kaggle官方教程之机器学习入门"><a href="#Kaggle官方教程之机器学习入门" class="headerlink" title="Kaggle官方教程之机器学习入门"></a>Kaggle官方教程之机器学习入门</h2><p>[toc]</p>
 <hr>
 <h3 id="1-模型如何工作？——机器学习入门介绍"><a href="#1-模型如何工作？——机器学习入门介绍" class="headerlink" title="1.模型如何工作？——机器学习入门介绍"></a>1.模型如何工作？——机器学习入门介绍</h3><h4 id="1-1-简介"><a href="#1-1-简介" class="headerlink" title="1.1 简介"></a>1.1 简介</h4><p>首先，我们将简述机器学习模型如何工作以及如何使用模型。 如果您之前已经进行过统计建模或机器学习，您可能会觉得很基础。 不用担心，我们在后面的课程建立更加强大的模型。学习此微课程，您可以在以下场景构建模型：</p>
@@ -1065,7 +1055,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2020/ck7j134l0000898vs4ynt640w/</url>
+    <url>/2020/ck7j1bhxk00081svscpn7bc79/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
@@ -1079,6 +1069,18 @@
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>About Me</title>
+    <url>/2020/about/</url>
+    <content><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>姓名：黑头呆鱼</p>
+<p>微信：yvette-chen-</p>
+<p>GitHub：<a href="https://github.com/chenhuiyu" target="_blank" rel="noopener">没有任何干货的GitHub</a></p>
+<p>研究方向：:shit:</p>
+<a id="more"></a>
+
+<p><img src="https://i.loli.net/2020/03/08/t4R9hnpPqMXfS5m.jpg" alt="烦死了.jpg"></p>
 ]]></content>
   </entry>
 </search>
