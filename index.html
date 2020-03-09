@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
    
   <meta name="keywords" content="ML,NLP,GAN,爬虫" />
    
@@ -26,13 +26,13 @@
 
   
 
-<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 </html>
 
 <body>
-  <div id="app">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
     <main class="content">
       
 <section class="cover">
@@ -82,7 +82,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7k35ew8000a04vsh3e02c2z/"
+  <a class="article-title" href="/2020/ck7ka1zf4000awkvs5yx9haks/"
     >基于SRGAN的超分辨率重建</a
   >
 </h2>
@@ -97,7 +97,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7k35ew8000a04vsh3e02c2z/" class="article-date">
+      <a href="/2020/ck7ka1zf4000awkvs5yx9haks/" class="article-date">
   <time datetime="2020-03-09T06:06:32.000Z" itemprop="datePublished">2020-03-09</time>
 </a>
       
@@ -121,43 +121,37 @@
       
 
       
-      <h1>基于SRGAN的超分辨率重建</h1>
+      <h1 id="基于srgan的超分辨率重建">基于SRGAN的超分辨率重建</h1>
 <p>[toc]</p>
-<h2 id="1-简介">1. 简介</h2>
-<h3 id="1-1-超分辨率重建问题">1.1 超分辨率重建问题</h3>
-<p>​		超分辨率重建是指将低分辨率图像(LR)恢复成高分辨率图像(HR)的过程，一张被重建的高分辨率图像被称为超分辨率图像或SR图像。超分辨率重建仍旧是计算机视觉领域一个富有挑战性的问题。首先，超分辨率重建问题是一个不适定问题，对于同一个低分辨率图像，存在多个解决方案，而不是一个唯一的解决方案。 为了限制解决方案空间，通常需要可靠的先验信息。此外，超分辨率重建问题的复杂性随着放大倍数的增加而增加。 在较高的放大系数下，丢失场景细节的恢复变得更加复杂。如何用一大较大的放大系数的情况下仍能恢复画质细节成为研究的难点。目前的大部分研究都聚焦于最小化重建均方误差。以此作为优化的结果会带来很高的PSNR(峰值信噪比)，但是通常的结果是缺乏高频细节以及在感知上不与原图匹配。</p>
+<h2 id="简介">1. 简介</h2>
+<h3 id="超分辨率重建问题">1.1 超分辨率重建问题</h3>
+<p>​ 超分辨率重建是指将低分辨率图像(LR)恢复成高分辨率图像(HR)的过程，一张被重建的高分辨率图像被称为超分辨率图像或SR图像。超分辨率重建仍旧是计算机视觉领域一个富有挑战性的问题。首先，超分辨率重建问题是一个不适定问题，对于同一个低分辨率图像，存在多个解决方案，而不是一个唯一的解决方案。 为了限制解决方案空间，通常需要可靠的先验信息。此外，超分辨率重建问题的复杂性随着放大倍数的增加而增加。 在较高的放大系数下，丢失场景细节的恢复变得更加复杂。如何用一大较大的放大系数的情况下仍能恢复画质细节成为研究的难点。目前的大部分研究都聚焦于最小化重建均方误差。以此作为优化的结果会带来很高的PSNR(峰值信噪比)，但是通常的结果是缺乏高频细节以及在感知上不与原图匹配。</p>
 <p>定量指标</p>
 <ul>
-<li>
-<p>PSNR = 峰值信噪比<br>
-PSNR是信号最大可能功率和影响它的表示精度的破坏性噪声功率的比值</p>
-</li>
-<li>
-<p>SSIM = 结构相似性指数<br>
-SSIM测量两个相似图像之间的感知差异</p>
-</li>
+<li><p>PSNR = 峰值信噪比 PSNR是信号最大可能功率和影响它的表示精度的破坏性噪声功率的比值</p></li>
+<li><p>SSIM = 结构相似性指数 SSIM测量两个相似图像之间的感知差异</p></li>
 </ul>
-<h3 id="1-2-生成对抗网络">1.2 生成对抗网络</h3>
-<p>​		生成对抗网络（GAN）是一种基于博弈论方法的深度神经网络体系结构，其中模型的两个组成部分，即生成器和判别器。生成器尝试捕获真实示例的分布，以生成新的数据示例。判别器通常是二分类器，它尽可能准确地将生成器产生的的数据与真实的样本区分开。  GAN的优化是一个最小最大(minimax)优化问题。该优化终止于一个鞍点，该鞍点对于生成器而言是最小值，而对于鉴别器而言是最大值。也就是说，优化目标是达到Nash均衡。然后，可以认为生成器已经捕获了真实样本的概率分布。 通过这种方式，生成器学习生成更好，更逼真的图像。</p>
-<p>​		GAN适用于超分辨率问题：生成器创建SR图像，使鉴别器无法将其识别为真实HR图像或人为的超分辨输出。 以这种方式，产生具有更好的感知质量的HR图像。</p>
-<h2 id="2-损失函数">2. 损失函数</h2>
+<h3 id="生成对抗网络">1.2 生成对抗网络</h3>
+<p>​ 生成对抗网络（GAN）是一种基于博弈论方法的深度神经网络体系结构，其中模型的两个组成部分，即生成器和判别器。生成器尝试捕获真实示例的分布，以生成新的数据示例。判别器通常是二分类器，它尽可能准确地将生成器产生的的数据与真实的样本区分开。 GAN的优化是一个最小最大(minimax)优化问题。该优化终止于一个鞍点，该鞍点对于生成器而言是最小值，而对于鉴别器而言是最大值。也就是说，优化目标是达到Nash均衡。然后，可以认为生成器已经捕获了真实样本的概率分布。 通过这种方式，生成器学习生成更好，更逼真的图像。</p>
+<p>​ GAN适用于超分辨率问题：生成器创建SR图像，使鉴别器无法将其识别为真实HR图像或人为的超分辨输出。 以这种方式，产生具有更好的感知质量的HR图像。</p>
+<h2 id="损失函数">2. 损失函数</h2>
 <p>SRGAN将损失函数由MSE改为感知损失函数。感知损失是内容损失和对抗性损失的加权总和。</p>
-<p>$l<sup>{SR}=l</sup>{SR}<em>X+10<sup>{-3}l</sup>{SR}</em>{Gen}$</p>
-<p>其中$l<sup>{SR}$叫做感知损失，$l</sup>{SR}<em>X$是内容损失，$10<sup>{-3}l</sup>{SR}</em>{Gen}$是对抗损失</p>
-<h3 id="2-1-内容损失">2.1 内容损失</h3>
+<p><span class="math inline">\(l^{SR}=l^{SR}_X+10^{-3}l^{SR}\_{Gen}\)</span></p>
+<p>其中<span class="math inline">\(l^{SR}\)</span>叫做感知损失，<span class="math inline">\(l^{SR}_X\)</span>是内容损失，<span class="math inline">\(10^{-3}l^{SR}_{Gen}\)</span>是对抗损失</p>
+<h3 id="内容损失">2.1 内容损失</h3>
 <p>内容损失有两种类型：</p>
-<h4 id="2-1-1-Pixel-wise-MSE损失">2.1.1 Pixel-wise MSE损失</h4>
-<p>​		逐个像素的MSE损失（Pixel-wise MSE）是真实图像中每个像素与生成图像中一个像素之间的平方误差。Pixel-wise MSE强调的是两幅图像之间每个对应像素的匹配，这与人眼的感知结果有所区别。通过pixel-wise loss训练的图片通常会较为平滑，缺少高频信息。即使输出图片具有较高的PSNR，视觉效果也并没有很突出。</p>
-<p>$l<sup>{SR}_{MSE}=\frac{1}{r</sup>2WH}\sum\limits<sup>{rW}_{x=1}\sum\limits</sup>{rH}<em>{y=1}(I<sup>{HR}_{x,y}-G_{\theta_{G}}(I</sup>{LR})</em>{x,y})^2$</p>
+<h4 id="pixel-wise-mse损失">2.1.1 Pixel-wise MSE损失</h4>
+<p>​ 逐个像素的MSE损失（Pixel-wise MSE）是真实图像中每个像素与生成图像中一个像素之间的平方误差。Pixel-wise MSE强调的是两幅图像之间每个对应像素的匹配，这与人眼的感知结果有所区别。通过pixel-wise loss训练的图片通常会较为平滑，缺少高频信息。即使输出图片具有较高的PSNR，视觉效果也并没有很突出。</p>
+<p><span class="math display">\[l^{SR}_{MSE}=\frac{1}{r^2WH}\sum\limits^{rW}_{x=1}\sum\limits^{rH}_{y=1}(I^{HR}_{x,y}-G_{\theta_{G}}(I^{LR})_{x,y})^2\]</span></p>
 <ul>
-<li>$W,H$：图像的宽度和高度</li>
-<li>$r$：下采样因子</li>
-<li>$G_{\theta_{G}}$：生成器，一个前馈CNN网络</li>
-<li>$\theta_{G}={W_{1:L;b{1:L}}}$:L层神经网络的参数，包括Weight和bias</li>
-<li>$G_{\theta_{G}}(I^{LR})$：由生成器生成的高分辨率图像，</li>
+<li><span class="math inline">\(W,H\)</span>：图像的宽度和高度</li>
+<li><span class="math inline">\(r\)</span>：下采样因子</li>
+<li><span class="math inline">\(G_{\theta_{G}}\)</span>：生成器，一个前馈CNN网络</li>
+<li><span class="math inline">\(\theta_{G}={W_{1:L;b{1:L}}}\)</span>:L层神经网络的参数，包括Weight和bias</li>
+<li><span class="math inline">\(G_{\theta_{G}}(I^{LR})\)</span>：由生成器生成的高分辨率图像，</li>
 </ul>
       
-      <a class="article-more-link" href="/2020/ck7k35ew8000a04vsh3e02c2z/">More...</a>
+      <a class="article-more-link" href="/2020/ck7ka1zf4000awkvs5yx9haks/">More...</a>
       
       
       <!-- reward -->
@@ -195,7 +189,7 @@ SSIM测量两个相似图像之间的感知差异</p>
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7k35eyn002204vs4r2m81vs/"
+  <a class="article-title" href="/2020/ck7ka1zh8001xwkvs26zj9fhq/"
     >生成式对抗网络综述</a
   >
 </h2>
@@ -206,7 +200,7 @@ SSIM测量两个相似图像之间的感知差异</p>
 
     
     <div class="article-meta">
-      <a href="/2020/ck7k35eyn002204vs4r2m81vs/" class="article-date">
+      <a href="/2020/ck7ka1zh8001xwkvs26zj9fhq/" class="article-date">
   <time datetime="2020-03-08T12:27:44.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
@@ -230,13 +224,13 @@ SSIM测量两个相似图像之间的感知差异</p>
       
 
       
-      <h1>生成式对抗网络综述</h1>
+      <h1 id="生成式对抗网络综述">生成式对抗网络综述</h1>
 <p>[toc]</p>
-<h2 id="1-简介">1. 简介</h2>
-<p>​		GAN包含两个模型：生成器和判别器。这两个模型通常由神经网络来实现，生成器尝试捕获真实示例的分布，以生成新的数据示例。判别器通常是二分类器，它尽可能准确地将生成器产生的的数据与真实的样本区分开。  GAN的优化是一个最小最大(minimax)优化问题。该优化终止于一个鞍点，该鞍点对于生成器而言是最小值，而对于鉴别器而言是最大值。也就是说，优化目标是达到Nash平衡[1]。然后，可以认为生成器已经捕获了真实样本的概率分布。</p>
-<p>​		先前的一些工作采用了使两个神经网络相互竞争的概念。GAN属于生成算法。生成算法和判别算法是两类机器学习算法。如果机器学习算法是基于观测数据的完全概率模型，则该算法是生成性的。生成算法由于其广泛的实际应用而变得越来越流行和重要。</p>
+<h2 id="简介">1. 简介</h2>
+<p>​ GAN包含两个模型：生成器和判别器。这两个模型通常由神经网络来实现，生成器尝试捕获真实示例的分布，以生成新的数据示例。判别器通常是二分类器，它尽可能准确地将生成器产生的的数据与真实的样本区分开。 GAN的优化是一个最小最大(minimax)优化问题。该优化终止于一个鞍点，该鞍点对于生成器而言是最小值，而对于鉴别器而言是最大值。也就是说，优化目标是达到Nash平衡[1]。然后，可以认为生成器已经捕获了真实样本的概率分布。</p>
+<p>​ 先前的一些工作采用了使两个神经网络相互竞争的概念。GAN属于生成算法。生成算法和判别算法是两类机器学习算法。如果机器学习算法是基于观测数据的完全概率模型，则该算法是生成性的。生成算法由于其广泛的实际应用而变得越来越流行和重要。</p>
       
-      <a class="article-more-link" href="/2020/ck7k35eyn002204vs4r2m81vs/">More...</a>
+      <a class="article-more-link" href="/2020/ck7ka1zh8001xwkvs26zj9fhq/">More...</a>
       
       
       <!-- reward -->
@@ -274,7 +268,7 @@ SSIM测量两个相似图像之间的感知差异</p>
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7k35ewn000m04vs8rgm8eq6/"
+  <a class="article-title" href="/2020/ck7ka1zh3001vwkvsfqws5zfc/"
     >爬虫-05-多线程的基本原理</a
   >
 </h2>
@@ -285,7 +279,7 @@ SSIM测量两个相似图像之间的感知差异</p>
 
     
     <div class="article-meta">
-      <a href="/2020/ck7k35ewn000m04vs8rgm8eq6/" class="article-date">
+      <a href="/2020/ck7ka1zh3001vwkvsfqws5zfc/" class="article-date">
   <time datetime="2020-03-08T09:11:59.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
@@ -309,13 +303,13 @@ SSIM测量两个相似图像之间的感知差异</p>
       
 
       
-      <h1>5.多线程基本原理</h1>
+      <h1 id="多线程基本原理">5.多线程基本原理</h1>
 <p>在编写爬虫程序时，为了提高效率，想同时运行多个爬虫任务，这里需要设计多进程和多线程的知识。</p>
 <p>[toc]</p>
 <h2 id="多线程">多线程</h2>
-<p>**进程：**进程是一个可以独立运行的程序单位，是线程的集合。比如打开一个浏览器，这就开启了一个浏览器进程。一个进程中是可以同时处理很多事情的，比如一个浏览器中可以打开多个选项卡页面，这就是线程，</p>
+<p><strong>进程：</strong>进程是一个可以独立运行的程序单位，是线程的集合。比如打开一个浏览器，这就开启了一个浏览器进程。一个进程中是可以同时处理很多事情的，比如一个浏览器中可以打开多个选项卡页面，这就是线程，</p>
       
-      <a class="article-more-link" href="/2020/ck7k35ewn000m04vs8rgm8eq6/">More...</a>
+      <a class="article-more-link" href="/2020/ck7ka1zh3001vwkvsfqws5zfc/">More...</a>
       
       
       <!-- reward -->
@@ -353,7 +347,7 @@ SSIM测量两个相似图像之间的感知差异</p>
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7k35evy000404vsb6ok9kd5/"
+  <a class="article-title" href="/2020/ck7ka1zeu0004wkvs6y3w5vro/"
     >NLP03-形式语言与自动机.md</a
   >
 </h2>
@@ -364,7 +358,7 @@ SSIM测量两个相似图像之间的感知差异</p>
 
     
     <div class="article-meta">
-      <a href="/2020/ck7k35evy000404vsb6ok9kd5/" class="article-date">
+      <a href="/2020/ck7ka1zeu0004wkvs6y3w5vro/" class="article-date">
   <time datetime="2020-03-07T17:43:09.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
@@ -388,10 +382,13 @@ SSIM测量两个相似图像之间的感知差异</p>
       
 
       
-      <h1>第三章 形式语言与自动机</h1>
-<p><img src="https://i.loli.net/2020/03/08/oat5uhJSM3Y8qPj.png" alt="第三周 形式语言与自动机-01.png"></p>
+      <h1 id="第三章-形式语言与自动机">第三章 形式语言与自动机</h1>
+<div class="figure">
+<img src="https://i.loli.net/2020/03/08/oat5uhJSM3Y8qPj.png" alt="第三周 形式语言与自动机-01.png" />
+<p class="caption">第三周 形式语言与自动机-01.png</p>
+</div>
       
-      <a class="article-more-link" href="/2020/ck7k35evy000404vsb6ok9kd5/">More...</a>
+      <a class="article-more-link" href="/2020/ck7ka1zeu0004wkvs6y3w5vro/">More...</a>
       
       
       <!-- reward -->
@@ -429,7 +426,7 @@ SSIM测量两个相似图像之间的感知差异</p>
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7k35evf000004vsedz4bmq7/"
+  <a class="article-title" href="/2020/ck7ka1zed0000wkvs2thw4c0c/"
     >DLHLP——1.课程简介</a
   >
 </h2>
@@ -440,7 +437,7 @@ SSIM测量两个相似图像之间的感知差异</p>
 
     
     <div class="article-meta">
-      <a href="/2020/ck7k35evf000004vsedz4bmq7/" class="article-date">
+      <a href="/2020/ck7ka1zed0000wkvs2thw4c0c/" class="article-date">
   <time datetime="2020-03-07T17:41:40.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
@@ -464,15 +461,15 @@ SSIM测量两个相似图像之间的感知差异</p>
       
 
       
-      <h1>DLHLP——1.课程简介</h1>
-<hr>
+      <h1 id="dlhlp1.课程简介">DLHLP——1.课程简介</h1>
+<hr />
 <p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
-<hr>
+<hr />
 <p>台大李宏毅老师2020年开的深度学习与人类语言处理课程，文档记录课程笔记。</p>
-<p>课程YouTube链接：<a href="https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG" target="_blank" rel="noopener">https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG</a></p>
-<p>课程网站Home：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html" target="_blank" rel="noopener">http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html</a></p>
+<p>课程YouTube链接：https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG</p>
+<p>课程网站Home：http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html</p>
       
-      <a class="article-more-link" href="/2020/ck7k35evf000004vsedz4bmq7/">More...</a>
+      <a class="article-more-link" href="/2020/ck7ka1zed0000wkvs2thw4c0c/">More...</a>
       
       
       <!-- reward -->
@@ -510,7 +507,7 @@ SSIM测量两个相似图像之间的感知差异</p>
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7k35evp000104vs8ymw6pig/"
+  <a class="article-title" href="/2020/ck7ka1zen0001wkvshnj30nud/"
     >NLP01-绪论</a
   >
 </h2>
@@ -521,7 +518,7 @@ SSIM测量两个相似图像之间的感知差异</p>
 
     
     <div class="article-meta">
-      <a href="/2020/ck7k35evp000104vs8ymw6pig/" class="article-date">
+      <a href="/2020/ck7ka1zen0001wkvshnj30nud/" class="article-date">
   <time datetime="2020-03-06T20:54:38.000Z" itemprop="datePublished">2020-03-07</time>
 </a>
       
@@ -545,10 +542,13 @@ SSIM测量两个相似图像之间的感知差异</p>
       
 
       
-      <h1>自然语言处理 第一章——绪论</h1>
-<p><img src="https://i.loli.net/2020/03/07/mQyYtiSbqzxnJwR.jpg" alt="0001.jpg"></p>
+      <h1 id="自然语言处理-第一章绪论">自然语言处理 第一章——绪论</h1>
+<div class="figure">
+<img src="https://i.loli.net/2020/03/07/mQyYtiSbqzxnJwR.jpg" alt="0001.jpg" />
+<p class="caption">0001.jpg</p>
+</div>
       
-      <a class="article-more-link" href="/2020/ck7k35evp000104vs8ymw6pig/">More...</a>
+      <a class="article-more-link" href="/2020/ck7ka1zen0001wkvshnj30nud/">More...</a>
       
       
       <!-- reward -->
@@ -586,7 +586,7 @@ SSIM测量两个相似图像之间的感知差异</p>
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7k35ewp000q04vsgn83d85z/"
+  <a class="article-title" href="/2020/ck7ka1zfi000mwkvsaii15i1m/"
     >4.Session和Cookies</a
   >
 </h2>
@@ -597,7 +597,7 @@ SSIM测量两个相似图像之间的感知差异</p>
 
     
     <div class="article-meta">
-      <a href="/2020/ck7k35ewp000q04vsgn83d85z/" class="article-date">
+      <a href="/2020/ck7ka1zfi000mwkvsaii15i1m/" class="article-date">
   <time datetime="2020-03-06T20:42:51.000Z" itemprop="datePublished">2020-03-07</time>
 </a>
       
@@ -621,16 +621,16 @@ SSIM测量两个相似图像之间的感知差异</p>
       
 
       
-      <h1>第4讲：Session与Cookies</h1>
+      <h1 id="第4讲session与cookies">第4讲：Session与Cookies</h1>
 <p>[toc]</p>
 <p>崔庆才《52轻松搞定网络爬虫》第4讲，版权归拉勾网所有。</p>
-<h2 id="4-1-静态网页和动态网页">4.1 静态网页和动态网页</h2>
-<p>​		最基本的HTML代码，我们将其保存为一个.html文件，然后把它放在某台具有固定公网IP的主机上，主机上装上Apache或Nginx等服务器，这样这台主机就可以作为服务器了，其他人可以通过访问服务器看到这个页面，这样就搭建了一个最简单的网站。</p>
-<p>​		这种HTML代码编写的网页叫静态网页，其文字、图片均是通过HTML代码指定。静态网页加载速度快，编写简单，但是可维护性差，不能根据URL灵活多变的展示内容。</p>
-<p>​		动态网页可以动态解析URL中的参数的变化，关联数据库并动态呈现不同的页面内容。现在大多数网页都是动态网页，它们不再是一个简单的HTML，而是可能有JSP、PHP、python等语言编写的。</p>
-<p>​		动态网页还可以实现用户登录和注册功能，需要通过Session和Cookies共同作用</p>
+<h2 id="静态网页和动态网页">4.1 静态网页和动态网页</h2>
+<p>​ 最基本的HTML代码，我们将其保存为一个.html文件，然后把它放在某台具有固定公网IP的主机上，主机上装上Apache或Nginx等服务器，这样这台主机就可以作为服务器了，其他人可以通过访问服务器看到这个页面，这样就搭建了一个最简单的网站。</p>
+<p>​ 这种HTML代码编写的网页叫静态网页，其文字、图片均是通过HTML代码指定。静态网页加载速度快，编写简单，但是可维护性差，不能根据URL灵活多变的展示内容。</p>
+<p>​ 动态网页可以动态解析URL中的参数的变化，关联数据库并动态呈现不同的页面内容。现在大多数网页都是动态网页，它们不再是一个简单的HTML，而是可能有JSP、PHP、python等语言编写的。</p>
+<p>​ 动态网页还可以实现用户登录和注册功能，需要通过Session和Cookies共同作用</p>
       
-      <a class="article-more-link" href="/2020/ck7k35ewp000q04vsgn83d85z/">More...</a>
+      <a class="article-more-link" href="/2020/ck7ka1zfi000mwkvsaii15i1m/">More...</a>
       
       
       <!-- reward -->
@@ -668,7 +668,7 @@ SSIM测量两个相似图像之间的感知差异</p>
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7k35ewk000l04vs7blu68q9/"
+  <a class="article-title" href="/2020/ck7ka1zfg000lwkvs9c3pbpd2/"
     >3.爬虫基本原理</a
   >
 </h2>
@@ -679,7 +679,7 @@ SSIM测量两个相似图像之间的感知差异</p>
 
     
     <div class="article-meta">
-      <a href="/2020/ck7k35ewk000l04vs7blu68q9/" class="article-date">
+      <a href="/2020/ck7ka1zfg000lwkvs9c3pbpd2/" class="article-date">
   <time datetime="2020-03-06T20:42:29.000Z" itemprop="datePublished">2020-03-07</time>
 </a>
       
@@ -703,15 +703,15 @@ SSIM测量两个相似图像之间的感知差异</p>
       
 
       
-      <h1>3. 爬虫的基本原理</h1>
+      <h1 id="爬虫的基本原理">3. 爬虫的基本原理</h1>
 <p>[toc]</p>
-<h2 id="3-1-爬虫概述">3.1 爬虫概述</h2>
-<p>​	简单地说，爬虫就是获取网页并提取保存信息的自动化程序</p>
-<h2 id="3-2-获取网页">3.2 获取网页</h2>
-<p>​	获取网页的源代码，向网站的服务器发送一个请求，返回的响应体便是网页源代码</p>
-<p>​	借助urllib、requests库可以实现HTTP请求操作，请求和响应都可以用库提供的数据结构表示，得到相应之后只需解析数据结构中的Body部分</p>
+<h2 id="爬虫概述">3.1 爬虫概述</h2>
+<p>​ 简单地说，爬虫就是获取网页并提取保存信息的自动化程序</p>
+<h2 id="获取网页">3.2 获取网页</h2>
+<p>​ 获取网页的源代码，向网站的服务器发送一个请求，返回的响应体便是网页源代码</p>
+<p>​ 借助urllib、requests库可以实现HTTP请求操作，请求和响应都可以用库提供的数据结构表示，得到相应之后只需解析数据结构中的Body部分</p>
       
-      <a class="article-more-link" href="/2020/ck7k35ewk000l04vs7blu68q9/">More...</a>
+      <a class="article-more-link" href="/2020/ck7ka1zfg000lwkvs9c3pbpd2/">More...</a>
       
       
       <!-- reward -->
@@ -749,7 +749,7 @@ SSIM测量两个相似图像之间的感知差异</p>
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7k35ewh000g04vs90zgekpu/"
+  <a class="article-title" href="/2020/ck7ka1zfd000gwkvs1igd8yxf/"
     >2.Web网页基础</a
   >
 </h2>
@@ -760,7 +760,7 @@ SSIM测量两个相似图像之间的感知差异</p>
 
     
     <div class="article-meta">
-      <a href="/2020/ck7k35ewh000g04vs90zgekpu/" class="article-date">
+      <a href="/2020/ck7ka1zfd000gwkvs1igd8yxf/" class="article-date">
   <time datetime="2020-03-06T20:42:15.000Z" itemprop="datePublished">2020-03-07</time>
 </a>
       
@@ -784,17 +784,17 @@ SSIM测量两个相似图像之间的感知差异</p>
       
 
       
-      <h1>2. Web网页基础</h1>
+      <h1 id="web网页基础">2. Web网页基础</h1>
 <p>[toc]</p>
-<h2 id="2-1-网页的基本组成">2.1 网页的基本组成</h2>
+<h2 id="网页的基本组成">2.1 网页的基本组成</h2>
 <p>网页可以分为三大部分：HTML、CSS 和 JavaScript。</p>
 <p>如果把网页比作一个人的话，HTML 相当于骨架，JavaScript 相当于肌肉，CSS 相当于皮肤，三者结合起来才能形成一个完整的网页。下面我们来分别介绍一下这三部分的功能。</p>
-<hr>
-<h3 id="2-1-1-HTML">2.1.1 HTML</h3>
+<hr />
+<h3 id="html">2.1.1 HTML</h3>
 <p>HTML 是用来描述网页的一种语言，其全称叫作 Hyper Text Markup Language，即超文本标记语言。</p>
 <p>我们浏览的网页包括文字、按钮、图片和视频等各种复杂的元素，其基础架构就是 HTML。不同类型的元素通过不同类型的标签来表示，如图片用 img 标签表示，视频用 video 标签表示，段落用 p 标签表示，它们之间的布局又常通过布局标签 div 嵌套组合而成，各种标签通过不同的排列和嵌套就可以形成网页的框架。</p>
       
-      <a class="article-more-link" href="/2020/ck7k35ewh000g04vs90zgekpu/">More...</a>
+      <a class="article-more-link" href="/2020/ck7ka1zfd000gwkvs1igd8yxf/">More...</a>
       
       
       <!-- reward -->
@@ -832,7 +832,7 @@ SSIM测量两个相似图像之间的感知差异</p>
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7k35ewd000e04vs0ut1fwnb/"
+  <a class="article-title" href="/2020/ck7ka1zf9000ewkvs8tpgasca/"
     >1.HTTP基本原理</a
   >
 </h2>
@@ -843,7 +843,7 @@ SSIM测量两个相似图像之间的感知差异</p>
 
     
     <div class="article-meta">
-      <a href="/2020/ck7k35ewd000e04vs0ut1fwnb/" class="article-date">
+      <a href="/2020/ck7ka1zf9000ewkvs8tpgasca/" class="article-date">
   <time datetime="2020-03-06T20:41:40.000Z" itemprop="datePublished">2020-03-07</time>
 </a>
       
@@ -867,16 +867,19 @@ SSIM测量两个相似图像之间的感知差异</p>
       
 
       
-      <h1>1.HTTP基本原理</h1>
+      <h1 id="http基本原理">1.HTTP基本原理</h1>
 <p>// 记录崔庆才老师的《52讲轻松搞定网络爬虫》学习笔记。</p>
 <p>[toc]</p>
-<h2 id="URI-和-URL">URI 和 URL</h2>
+<h2 id="uri-和-url">URI 和 URL</h2>
 <p><strong>URI</strong>的全称为 Uniform Resource Identifier，即<strong>统一资源标志符</strong></p>
 <p><strong>URL</strong>的全称为 Universal Resource Locator，即<strong>统一资源定位符</strong></p>
 <p>URL 是 URI 的子集，URI 还包括一个子类叫作URN，它的全称为 Universal Resource Name，即统一资源名称。URN 只命名资源而不指定如何定位资源（URN不常使用）</p>
-<p><img src="https://i.loli.net/2020/03/07/rK1CnWuBycQsYXZ.jpg" alt="1-1.jpg"></p>
+<div class="figure">
+<img src="https://i.loli.net/2020/03/07/rK1CnWuBycQsYXZ.jpg" alt="1-1.jpg" />
+<p class="caption">1-1.jpg</p>
+</div>
       
-      <a class="article-more-link" href="/2020/ck7k35ewd000e04vs0ut1fwnb/">More...</a>
+      <a class="article-more-link" href="/2020/ck7ka1zf9000ewkvs8tpgasca/">More...</a>
       
       
       <!-- reward -->
@@ -1220,7 +1223,7 @@ SSIM测量两个相似图像之间的感知差异</p>
 
 
     
-  </div>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 
 </html>
