@@ -52,7 +52,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ka1zf10009wkvs6qs7e67g/" class="article-date">
+      <a href="/2020/ck7kh2vzx000dm0vs7pp98a4i/" class="article-date">
   <time datetime="2020-03-06T20:35:06.000Z" itemprop="datePublished">2020-03-07</time>
 </a>
       
@@ -112,24 +112,21 @@
 <p>你的堂兄搞房地产赚了数百万美元。 由于你对数据科感兴趣兴趣，他想和你成为业务合作伙伴。 他将提供资金，并且您将提供预测各种房屋价值的模型。你问你的堂兄，他过去是如何预测房地产价值。 他说这只是直觉。 然而你认为，他从过去的房屋中识别出了价格的模式(pattern)，然后他利用这些模式对他正在考虑的新房屋做出预测。</p>
 <a id="more"></a>
 <p>机器学习的工作方式相同。 我们将从称为决策树的模型开始。 有更高级的模型可以提供更准确的预测。 但是决策树很容易理解，它们是数据科学中一些最佳模型的基本构建块。为简单起见，我们将从最简单的决策树开始。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/rLgERAwiINDBXvc.png" alt="7tsb5b1.png" />
-<p class="caption">7tsb5b1.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/rLgERAwiINDBXvc.png" alt="" /><figcaption>7tsb5b1.png</figcaption>
+</figure>
 <p>它仅将房屋分为两类。 房屋的预测价格为同一类别房屋的历史平均价格。我们使用数据来决定如何将房屋分为两组，然后再次确定每组中的预测价格。 从数据获取模式的这一步骤称为<strong>拟合</strong>或<strong>训练</strong>模型。 用于拟合模型的数据称为<strong>训练数据</strong>。</p>
 <p>有关模型拟合方式的详细信息（例如，如何拆分数据）非常复杂，我们将在以后考虑。 模型在训练之后，可以将其应用于新数据来预测其他房屋的价格。</p>
 <h4 id="改进决策树">1.2 改进决策树</h4>
 <p>通过拟合房地产训练数据，以下两个决策树中的哪个更有可能产生？</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/vDTtmPqRQEbjfNx.png" alt="prAjgku.png" />
-<p class="caption">prAjgku.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/vDTtmPqRQEbjfNx.png" alt="" /><figcaption>prAjgku.png</figcaption>
+</figure>
 <p>左侧的决策树可能更有意义，因为它反映了一个现实，即卧室多的房屋比卧室少的房屋的价格更高。 该模型的最大缺点是，它没有涵盖更多影响房价的因素，例如浴室数量，地段大小，位置等。</p>
 <p>您可以使用具有更多“分支”的树来获取更多因素。 这些被称为“更深”的树。 还要考虑每栋房屋总面积的决策树可能如下所示：</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/eORHfbyQKCVBcD6.png" alt="R3ywQsR.png" />
-<p class="caption">R3ywQsR.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/eORHfbyQKCVBcD6.png" alt="" /><figcaption>R3ywQsR.png</figcaption>
+</figure>
 <p>您可以通过跟踪决策树来预测任何房屋的价格，并始终选择与房屋特征相对应的路径。 房屋的预计价格在树的底部。 我们进行预测的底部点称为叶子节点。</p>
 <p>叶子上的分支和值将由数据确定，因此是时候检查要使用的数据了。</p>
 <hr />
@@ -143,166 +140,166 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#为了便于获取，将文件路径保存到变量中</span></span><br><span class="line">melbourne_file_path=<span class="string">'../input/melbourne-housing-snapshot/melb_data.csv'</span></span><br><span class="line"><span class="comment">#读取数据，将数据存储到DataFrame中</span></span><br><span class="line">melbourne_data=pd.read_csv(melbourne_file_path)</span><br><span class="line"><span class="comment">#打印melbourne_data的数据情况</span></span><br><span class="line">melbourne_data.describe()</span><br></pre></td></tr></table></figure>
 <table>
 <colgroup>
-<col width="3%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="6%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
+<col style="width: 3%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 8%" />
+<col style="width: 7%" />
+<col style="width: 6%" />
+<col style="width: 7%" />
+<col style="width: 8%" />
+<col style="width: 7%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Rooms</th>
-<th align="left">Price</th>
-<th align="left">Distance</th>
-<th align="left">Postcode</th>
-<th align="left">Bedroom2</th>
-<th align="left">Bathroom</th>
-<th align="left">Car</th>
-<th align="left">Landsize</th>
-<th align="left">BuildingArea</th>
-<th align="left">YearBuilt</th>
-<th align="left">Lattitude</th>
-<th align="left">Longtitude</th>
-<th align="left">Propertycount</th>
+<th style="text-align: left;">Rooms</th>
+<th style="text-align: left;">Price</th>
+<th style="text-align: left;">Distance</th>
+<th style="text-align: left;">Postcode</th>
+<th style="text-align: left;">Bedroom2</th>
+<th style="text-align: left;">Bathroom</th>
+<th style="text-align: left;">Car</th>
+<th style="text-align: left;">Landsize</th>
+<th style="text-align: left;">BuildingArea</th>
+<th style="text-align: left;">YearBuilt</th>
+<th style="text-align: left;">Lattitude</th>
+<th style="text-align: left;">Longtitude</th>
+<th style="text-align: left;">Propertycount</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">count</td>
-<td align="left">13580.000000</td>
-<td align="left">1.358000e+04</td>
-<td align="left">13580.000000</td>
-<td align="left">13580.000000</td>
-<td align="left">13580.000000</td>
-<td align="left">13580.000000</td>
-<td align="left">13518.000000</td>
-<td align="left">13580.000000</td>
-<td align="left">7130.000000</td>
-<td align="left">8205.000000</td>
-<td align="left">13580.000000</td>
-<td align="left">13580.000000</td>
+<td style="text-align: left;">count</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">1.358000e+04</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">13518.000000</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">7130.000000</td>
+<td style="text-align: left;">8205.000000</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">13580.000000</td>
 <td>13580.000000</td>
 </tr>
 <tr class="even">
-<td align="left">mean</td>
-<td align="left">2.937997</td>
-<td align="left">1.075684e+06</td>
-<td align="left">10.137776</td>
-<td align="left">3105.301915</td>
-<td align="left">2.914728</td>
-<td align="left">1.534242</td>
-<td align="left">1.610075</td>
-<td align="left">558.416127</td>
-<td align="left">151.967650</td>
-<td align="left">1964.684217</td>
-<td align="left">-37.809203</td>
-<td align="left">144.995216</td>
+<td style="text-align: left;">mean</td>
+<td style="text-align: left;">2.937997</td>
+<td style="text-align: left;">1.075684e+06</td>
+<td style="text-align: left;">10.137776</td>
+<td style="text-align: left;">3105.301915</td>
+<td style="text-align: left;">2.914728</td>
+<td style="text-align: left;">1.534242</td>
+<td style="text-align: left;">1.610075</td>
+<td style="text-align: left;">558.416127</td>
+<td style="text-align: left;">151.967650</td>
+<td style="text-align: left;">1964.684217</td>
+<td style="text-align: left;">-37.809203</td>
+<td style="text-align: left;">144.995216</td>
 <td>7454.417378</td>
 </tr>
 <tr class="odd">
-<td align="left">std</td>
-<td align="left">0.955748</td>
-<td align="left">6.393107e+05</td>
-<td align="left">5.868725</td>
-<td align="left">90.676964</td>
-<td align="left">0.965921</td>
-<td align="left">0.691712</td>
-<td align="left">0.962634</td>
-<td align="left">3990.669241</td>
-<td align="left">541.014538</td>
-<td align="left">37.273762</td>
-<td align="left">0.079260</td>
-<td align="left">0.103916</td>
+<td style="text-align: left;">std</td>
+<td style="text-align: left;">0.955748</td>
+<td style="text-align: left;">6.393107e+05</td>
+<td style="text-align: left;">5.868725</td>
+<td style="text-align: left;">90.676964</td>
+<td style="text-align: left;">0.965921</td>
+<td style="text-align: left;">0.691712</td>
+<td style="text-align: left;">0.962634</td>
+<td style="text-align: left;">3990.669241</td>
+<td style="text-align: left;">541.014538</td>
+<td style="text-align: left;">37.273762</td>
+<td style="text-align: left;">0.079260</td>
+<td style="text-align: left;">0.103916</td>
 <td>4378.581772</td>
 </tr>
 <tr class="even">
-<td align="left">min</td>
-<td align="left">1.000000</td>
-<td align="left">8.500000e+04</td>
-<td align="left">0.000000</td>
-<td align="left">3000.000000</td>
-<td align="left">0.000000</td>
-<td align="left">0.000000</td>
-<td align="left">0.000000</td>
-<td align="left">0.000000</td>
-<td align="left">0.000000</td>
-<td align="left">1196.000000</td>
-<td align="left">-38.182550</td>
-<td align="left">144.431810</td>
+<td style="text-align: left;">min</td>
+<td style="text-align: left;">1.000000</td>
+<td style="text-align: left;">8.500000e+04</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">3000.000000</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">1196.000000</td>
+<td style="text-align: left;">-38.182550</td>
+<td style="text-align: left;">144.431810</td>
 <td>249.000000</td>
 </tr>
 <tr class="odd">
-<td align="left">25%</td>
-<td align="left">2.000000</td>
-<td align="left">6.500000e+05</td>
-<td align="left">6.100000</td>
-<td align="left">3044.000000</td>
-<td align="left">2.000000</td>
-<td align="left">1.000000</td>
-<td align="left">1.000000</td>
-<td align="left">177.000000</td>
-<td align="left">93.000000</td>
-<td align="left">1940.000000</td>
-<td align="left">-37.856822</td>
-<td align="left">144.929600</td>
+<td style="text-align: left;">25%</td>
+<td style="text-align: left;">2.000000</td>
+<td style="text-align: left;">6.500000e+05</td>
+<td style="text-align: left;">6.100000</td>
+<td style="text-align: left;">3044.000000</td>
+<td style="text-align: left;">2.000000</td>
+<td style="text-align: left;">1.000000</td>
+<td style="text-align: left;">1.000000</td>
+<td style="text-align: left;">177.000000</td>
+<td style="text-align: left;">93.000000</td>
+<td style="text-align: left;">1940.000000</td>
+<td style="text-align: left;">-37.856822</td>
+<td style="text-align: left;">144.929600</td>
 <td>4380.000000</td>
 </tr>
 <tr class="even">
-<td align="left">50%</td>
-<td align="left">3.000000</td>
-<td align="left">9.030000e+05</td>
-<td align="left">9.200000</td>
-<td align="left">3084.000000</td>
-<td align="left">3.000000</td>
-<td align="left">1.000000</td>
-<td align="left">2.000000</td>
-<td align="left">440.000000</td>
-<td align="left">126.000000</td>
-<td align="left">1970.000000</td>
-<td align="left">-37.802355</td>
-<td align="left">145.000100</td>
+<td style="text-align: left;">50%</td>
+<td style="text-align: left;">3.000000</td>
+<td style="text-align: left;">9.030000e+05</td>
+<td style="text-align: left;">9.200000</td>
+<td style="text-align: left;">3084.000000</td>
+<td style="text-align: left;">3.000000</td>
+<td style="text-align: left;">1.000000</td>
+<td style="text-align: left;">2.000000</td>
+<td style="text-align: left;">440.000000</td>
+<td style="text-align: left;">126.000000</td>
+<td style="text-align: left;">1970.000000</td>
+<td style="text-align: left;">-37.802355</td>
+<td style="text-align: left;">145.000100</td>
 <td>6555.000000</td>
 </tr>
 <tr class="odd">
-<td align="left">75%</td>
-<td align="left">3.000000</td>
-<td align="left">1.330000e+06</td>
-<td align="left">13.000000</td>
-<td align="left">3148.000000</td>
-<td align="left">3.000000</td>
-<td align="left">2.000000</td>
-<td align="left">2.000000</td>
-<td align="left">651.000000</td>
-<td align="left">174.000000</td>
-<td align="left">1999.000000</td>
-<td align="left">-37.756400</td>
-<td align="left">145.058305</td>
+<td style="text-align: left;">75%</td>
+<td style="text-align: left;">3.000000</td>
+<td style="text-align: left;">1.330000e+06</td>
+<td style="text-align: left;">13.000000</td>
+<td style="text-align: left;">3148.000000</td>
+<td style="text-align: left;">3.000000</td>
+<td style="text-align: left;">2.000000</td>
+<td style="text-align: left;">2.000000</td>
+<td style="text-align: left;">651.000000</td>
+<td style="text-align: left;">174.000000</td>
+<td style="text-align: left;">1999.000000</td>
+<td style="text-align: left;">-37.756400</td>
+<td style="text-align: left;">145.058305</td>
 <td>10331.000000</td>
 </tr>
 <tr class="even">
-<td align="left">max</td>
-<td align="left">10.000000</td>
-<td align="left">9.000000e+06</td>
-<td align="left">48.100000</td>
-<td align="left">3977.000000</td>
-<td align="left">20.000000</td>
-<td align="left">8.000000</td>
-<td align="left">10.000000</td>
-<td align="left">433014.000000</td>
-<td align="left">44515.000000</td>
-<td align="left">2018.000000</td>
-<td align="left">-37.408530</td>
-<td align="left">145.526350</td>
+<td style="text-align: left;">max</td>
+<td style="text-align: left;">10.000000</td>
+<td style="text-align: left;">9.000000e+06</td>
+<td style="text-align: left;">48.100000</td>
+<td style="text-align: left;">3977.000000</td>
+<td style="text-align: left;">20.000000</td>
+<td style="text-align: left;">8.000000</td>
+<td style="text-align: left;">10.000000</td>
+<td style="text-align: left;">433014.000000</td>
+<td style="text-align: left;">44515.000000</td>
+<td style="text-align: left;">2018.000000</td>
+<td style="text-align: left;">-37.408530</td>
+<td style="text-align: left;">145.526350</td>
 <td>21650.000000</td>
 </tr>
 </tbody>
@@ -422,18 +419,16 @@
 <p>您可以在scikit-learn的文档中看到，决策树模型具有许多选项（其数量远远超过您在未来一段时间里需要用的选项数量）。其中，最重要的选项是确定树的深度。回想一下这个微课程的第一课，一棵树的深度是对树木进行预测之前进行多少次分裂的度量。</p>
 <p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html" target="_blank" rel="noopener">sklearn.tree.DecisionTreeRegressor参数介绍</a></p>
 <p>这是一棵深度为2的树:</p>
-<div class="figure">
-<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/R3ywQsR.png" alt="R3ywQsR" />
-<p class="caption">R3ywQsR</p>
-</div>
+<figure>
+<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/R3ywQsR.png" alt="" /><figcaption>R3ywQsR</figcaption>
+</figure>
 <p>实际上，一棵树在顶层（所有房屋）和叶子之间有10个拆分并不少见。随着树变深，数据集被切成叶子，房屋更少。如果一棵树只有1个拆分，它将把数据分成2组。如果每组再次拆分，我们将获得4组房屋。再次拆分每个将创建8个组。如果我们通过在每个级别添加更多的拆分来使组的数量增加一倍，那么到第10级时，我们将拥有<span class="math inline">\(2^{10}\)</span>个房屋组。那是1024片叶子。</p>
 <p>当我们在许多叶子之间划分房屋时，每个叶子中的房屋也更少。拥有很少房屋的叶子进行的预测将非常接近那些房屋的实际值，但是它们对新数据的预测可能非常不可靠（因为每个预测仅基于少数房屋）。这是一种称为过度拟合的现象，其中模型几乎完美地匹配了训练数据，但在验证和其他新数据方面却表现不佳。另一方面，如果我们使树非常浅，则不会将房屋分成非常不同的组。</p>
 <p>在极端情况下，如果一棵树将房屋仅分为2或4，则每组仍然拥有各种各样的房屋。即使对于训练数据，大多数房屋的预测结果也可能相去甚远（由于相同的原因，其验证也很糟糕）。当模型无法捕获数据中的重要区别和模式时，即使在训练数据中它也表现不佳，这被称为欠拟合。</p>
 <p>由于我们关心的是根据验证数据估算出的新数据的准确性，因此我们希望找到欠拟合与过度拟合之间的最佳结合点。在视觉上，我们希望得到（红色）验证曲线的最低点</p>
-<div class="figure">
-<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/2q85n9s.png" alt="2q85n9s" />
-<p class="caption">2q85n9s</p>
-</div>
+<figure>
+<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/2q85n9s.png" alt="" /><figcaption>2q85n9s</figcaption>
+</figure>
 <h4 id="举例">5.2 举例</h4>
 <p>有几种方法可以控制树的深度，许多方法允许通过树的某些路线的深度比其他路线的深度大。max_leaf_nodes参数提供了一种的方法来控制过拟合与欠拟合。模型的叶子越多，模型越远离欠拟合区域、越靠近过拟合区域。</p>
 <p>我们可以使用一个效用函数来帮助比较max_leaf_nodes的不同值的MAE分数：</p>
@@ -562,7 +557,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7ka1zf10009wkvs6qs7e67g/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7kh2vzx000dm0vs7pp98a4i/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -580,7 +575,7 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck7ka1zf9000ewkvs8tpgasca/" class="article-nav-link">
+      <a href="/2020/ck7kh2vzv000cm0vsejpc2ciw/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
@@ -590,7 +585,7 @@
       </a>
     
     
-      <a href="/2020/ck7ka1zey0006wkvs47la5qoc/" class="article-nav-link">
+      <a href="/2020/ck7kh2vzr0009m0vs7z3k21nj/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title">Hello World</div>
       </a>

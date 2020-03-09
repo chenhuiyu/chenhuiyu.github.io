@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>基于SRGAN的超分辨率重建</title>
-    <url>/2020/ck7ka1zf4000awkvs5yx9haks/</url>
+    <url>/2020/ck7kh2vzn0007m0vsguv50wt8/</url>
     <content><![CDATA[<h1 id="基于srgan的超分辨率重建">基于SRGAN的超分辨率重建</h1>
 <p>[toc]</p>
 <h2 id="简介">1. 简介</h2>
@@ -54,10 +54,9 @@
 </ul>
 <h2 id="srgan模型">3. SRGAN模型</h2>
 <p>高分辨率图像（HR）被下采样为低分辨率图像（LR）。 GAN生成器用于将其上采样到超分辨率图像（SR）。 我们使用鉴别器来识别HR图像，并反向传播GAN损失以训练鉴别器和生成器。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/09/SvJ6Cg1cuNpis9y.png" alt="TIM截图20200309030326.png" />
-<p class="caption">TIM截图20200309030326.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/09/SvJ6Cg1cuNpis9y.png" alt="" /><figcaption>TIM截图20200309030326.png</figcaption>
+</figure>
 <p>这是生成器和判别器网络的体系结构，其中为每个卷积层指示了相应的内核大小(<span class="math inline">\(k\)</span>)，特征图和(<span class="math inline">\(k\)</span>)，步幅(<span class="math inline">\(s\)</span>)。</p>
 <p>生成器：输入<span class="math inline">\(\to\)</span>卷积层$<span class="math inline">\(16个残差块\)</span><span class="math inline">\(卷积层\)</span><span class="math inline">\(BN层\)</span><span class="math inline">\(按元素求和\)</span><span class="math inline">\(卷积层\)</span><span class="math inline">\(2层上采样\)</span><span class="math inline">\(卷积层\)</span>$输出。</p>
 <p>判别器：VGG<span class="math inline">\(\to\)</span>卷积层<span class="math inline">\(\to\)</span>LeakyReLU$<span class="math inline">\(7层卷积、BN层\)</span><span class="math inline">\(全连接\)</span><span class="math inline">\(LeaklyReLU\)</span><span class="math inline">\(全连接\)</span>$输出</p>
@@ -65,17 +64,15 @@
 <h4 id="残差块">3.1.1 残差块</h4>
 <p>​ 随着网络层数的增加，网络发生了退化的现象：随着网络层数的增多，训练集loss逐渐下降，然后趋于饱和，当再增加网络深度的话，训练集loss反而会增大。当网络退化时，浅层网络能够达到比深层网络更好的训练效果，这时如果把低层的特征传到高层，那么效果应该至少不比浅层的网络效果差，而ResNet加入了直接映射，保证了 <span class="math inline">\(l+1\)</span>层的网络一定比<span class="math inline">\(l\)</span>层包含更多的图像信息。</p>
 <p>​ 残差网络是由一系列残差块组成的。一个残差块可以表示为：<span class="math display">\[x_{l+1}=h(x_l)+\mathcal F(x_l,W_l)\]</span>。残差块由两部分组成：直接映射<span class="math inline">\(h(x_l)\)</span>和残差部分<span class="math inline">\(\mathcal F(x_l,W_l)\)</span>。下图是5种不同的残差块的结构，SRGAN的生成器采用了原始的(a)类残差块。并且激活函数使用了PRelu。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/09/6tiPNnphTlkzY9C.png" alt="TIM截图20200309042154.png" />
-<p class="caption">TIM截图20200309042154.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/09/6tiPNnphTlkzY9C.png" alt="" /><figcaption>TIM截图20200309042154.png</figcaption>
+</figure>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#定义残差块</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">residual_block</span><span class="params">(x)</span>:</span></span><br><span class="line">    filters = [<span class="number">64</span>, <span class="number">64</span>]</span><br><span class="line">    kernel_size = <span class="number">3</span></span><br><span class="line">    strides = <span class="number">1</span></span><br><span class="line">    padding = <span class="string">"same"</span></span><br><span class="line">    momentum = <span class="number">0.8</span></span><br><span class="line">    activation = <span class="string">"relu"</span></span><br><span class="line"></span><br><span class="line">    res = Conv2D(filters=filters[<span class="number">0</span>], kernel_size=kernel_size, strides=strides, padding=padding)(x)</span><br><span class="line">    res = Activation(activation=activation)(res)</span><br><span class="line">    res = BatchNormalization(momentum=momentum)(res)</span><br><span class="line">    res = Conv2D(filters=filters[<span class="number">1</span>], kernel_size=kernel_size, strides=strides, padding=padding)(res)</span><br><span class="line">    res = BatchNormalization(momentum=momentum)(res)</span><br><span class="line"></span><br><span class="line">    res = Add()([res, x])</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <h4 id="上采样">3.1.2 上采样：</h4>
 <p>​ PixelShuffle(像素重组)的主要功能是将低分辨的特征图，通过卷积和多通道间的重组得到高分辨率的特征图。对特征图做上采样，生成器中使用了2个亚像素卷积。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/09/iR7rnpTkoBvS1fK.png" alt="1.png" />
-<p class="caption">1.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/09/iR7rnpTkoBvS1fK.png" alt="" /><figcaption>1.png</figcaption>
+</figure>
 <p>​ 上图展示了如何进行亚像素卷积，前面就是普通的CNN网络，在模型倒数第二层学习对应的通道数<span class="math inline">\(r^2c\)</span>的卷积，其中<span class="math inline">\(c\)</span>为最终的通道数，如输出是RGB图，则<span class="math inline">\(c\)</span>为3，如输出是灰度图，则<span class="math inline">\(c\)</span>为1；<span class="math inline">\(r\)</span>为需要进行的上采样倍数，为正整数倍，不同的上采样倍数只需要调整这一层卷积的通道数即可。如果想对原图放大3倍，那么需要生成出<span class="math inline">\(3^2=9\)</span>个同样大小的特征图。将九个特征图拼成一个大图，这就是亚像素卷积的操作。</p>
 <h4 id="生成器实现">3.1.3 生成器实现</h4>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_generator</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 生成器中有16个残差块</span></span><br><span class="line">    residual_blocks = <span class="number">16</span></span><br><span class="line">    momentum = <span class="number">0.8</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 低分辨率图像LR的尺寸</span></span><br><span class="line">    input_shape = (<span class="number">64</span>, <span class="number">64</span>, <span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 生成器的输入层</span></span><br><span class="line">    input_layer = Input(shape=input_shape)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 在残差块之前的卷积层</span></span><br><span class="line">    gen1 = Conv2D(filters=<span class="number">64</span>, kernel_size=<span class="number">9</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>, activation=<span class="string">'relu'</span>)(input_layer)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 添加16个残差块</span></span><br><span class="line">    res = residual_block(gen1)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(residual_blocks - <span class="number">1</span>):</span><br><span class="line">        res = residual_block(res)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#残差块之后的卷积层和BN层</span></span><br><span class="line">    gen2 = Conv2D(filters=<span class="number">64</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(res)</span><br><span class="line">    gen2 = BatchNormalization(momentum=momentum)(gen2)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 把BN层结果gen2和残差前卷积结果gen1按元素相加</span></span><br><span class="line">    gen3 = Add()([gen2, gen1])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 上采样增加维数</span></span><br><span class="line">    gen4 = UpSampling2D(size=<span class="number">2</span>)(gen3)</span><br><span class="line">    gen4 = Conv2D(filters=<span class="number">256</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(gen4)</span><br><span class="line">    gen4 = Activation(<span class="string">'relu'</span>)(gen4)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 上采样增加维数</span></span><br><span class="line">    gen5 = UpSampling2D(size=<span class="number">2</span>)(gen4)</span><br><span class="line">    gen5 = Conv2D(filters=<span class="number">256</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(gen5)</span><br><span class="line">    gen5 = Activation(<span class="string">'relu'</span>)(gen5)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 输出卷积层</span></span><br><span class="line">    gen6 = Conv2D(filters=<span class="number">3</span>, kernel_size=<span class="number">9</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(gen5)</span><br><span class="line">    output = Activation(<span class="string">'tanh'</span>)(gen6)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 定义generator模型</span></span><br><span class="line">    model = Model(inputs=[input_layer], outputs=[output], name=<span class="string">'generator'</span>)</span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
@@ -99,7 +96,7 @@
   </entry>
   <entry>
     <title>生成式对抗网络综述</title>
-    <url>/2020/ck7ka1zh8001xwkvs26zj9fhq/</url>
+    <url>/2020/ck7kh2w1q001rm0vsat9far0z/</url>
     <content><![CDATA[<h1 id="生成式对抗网络综述">生成式对抗网络综述</h1>
 <p>[toc]</p>
 <h2 id="简介">1. 简介</h2>
@@ -110,10 +107,9 @@
 <h2 id="算法">2. 算法</h2>
 <h3 id="原始gan">2.1 原始GAN</h3>
 <p>​ 当模型都是神经网络时，GANs框架很容易实现。为了从真实数据<span class="math inline">\(x\)</span>的分布中学习到生成器的概率分布<span class="math inline">\(p_g\)</span>，定义输入噪声变量的先验为<span class="math inline">\(p_z\)</span>，其中<span class="math inline">\(z\)</span>是噪音变量。然后，从噪声空间到数据空间的映射被记为<span class="math inline">\(G(z,\theta_g)\)</span>，其中<span class="math inline">\(G\)</span>是神经网络结构表示的可微函数，其参数为<span class="math inline">\(\theta_g\)</span>。除<span class="math inline">\(G\)</span>之外，还存在一个神经网络<span class="math inline">\(D(x，θ_d)\)</span>，其参数为<span class="math inline">\(θ_d\)</span>，并且<span class="math inline">\(D(x)\)</span>的输出是单个标量。<span class="math inline">\(D(x)\)</span>表示<span class="math inline">\(x\)</span>来自真实样本数据而非生成器<span class="math inline">\(G\)</span>所产生的概率。首先对判别器<span class="math inline">\(D\)</span>进行训练，使其可以最大可能地分辨数据是来自真实样本数据还是生成器<span class="math inline">\(G\)</span>产生的假数据。其次训练<span class="math inline">\(G\)</span>，同时最小化<span class="math inline">\(log(1- D(G(z)))\)</span>。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/08/aiEVHpJmhudCs3r.jpg" alt="图一.png" />
-<p class="caption">图一.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/08/aiEVHpJmhudCs3r.jpg" alt="" /><figcaption>图一.png</figcaption>
+</figure>
 <p><strong>GAN的目标函数</strong></p>
 <p><span class="math inline">\(\min_\limits{G} \max_\limits{D}V(D,G)=E_{x\sim p_{data}}[logD(x)]+E_{z\sim p_z(z)}[log(1-D(G(z)))]\)</span></p>
 <p>尽管理论上存在独特的解决方案，但GAN的训练仍然很困难，并且由于以下几个原因常常不稳定一个困难是来自这样一个事实，即GAN的最佳权重对应于损失函数的鞍点，而不是最小化点。</p>
@@ -162,7 +158,7 @@
   </entry>
   <entry>
     <title>爬虫-05-多线程的基本原理</title>
-    <url>/2020/ck7ka1zh3001vwkvsfqws5zfc/</url>
+    <url>/2020/ck7kh2w1o001pm0vs1g8tgjun/</url>
     <content><![CDATA[<h1 id="多线程基本原理">5.多线程基本原理</h1>
 <p>在编写爬虫程序时，为了提高效率，想同时运行多个爬虫任务，这里需要设计多进程和多线程的知识。</p>
 <p>[toc]</p>
@@ -215,18 +211,17 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>tutorial</tag>
         <tag>爬虫</tag>
+        <tag>tutorial</tag>
       </tags>
   </entry>
   <entry>
     <title>NLP03-形式语言与自动机.md</title>
-    <url>/2020/ck7ka1zeu0004wkvs6y3w5vro/</url>
+    <url>/2020/ck7kh2vzp0008m0vs1i047f3k/</url>
     <content><![CDATA[<h1 id="第三章-形式语言与自动机">第三章 形式语言与自动机</h1>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/08/oat5uhJSM3Y8qPj.png" alt="第三周 形式语言与自动机-01.png" />
-<p class="caption">第三周 形式语言与自动机-01.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/08/oat5uhJSM3Y8qPj.png" alt="" /><figcaption>第三周 形式语言与自动机-01.png</figcaption>
+</figure>
 <a id="more"></a>
 <p><img src="https://i.loli.net/2020/03/08/baVdnAPqlNzsKRX.png" alt="第三周 形式语言与自动机-02.png" /> <img src="https://i.loli.net/2020/03/08/12mkZgfSMqCYL7y.png" alt="第三周 形式语言与自动机-03.png" /> <img src="https://i.loli.net/2020/03/08/BakZgbqX8zYCHT5.png" alt="第三周 形式语言与自动机-04.png" /> <img src="https://i.loli.net/2020/03/08/5KBctrywhuIfsEl.png" alt="第三周 形式语言与自动机-05.png" /> <img src="https://i.loli.net/2020/03/08/kIhbKnifyFlGrMm.png" alt="第三周 形式语言与自动机-06.png" /> <img src="https://i.loli.net/2020/03/08/tnYLH7oAaJy8d3k.png" alt="第三周 形式语言与自动机-07.png" /> <img src="https://i.loli.net/2020/03/08/Os3IgVSH6evFiGx.png" alt="第三周 形式语言与自动机-08.png" /> <img src="https://i.loli.net/2020/03/08/vdqRhntOMeks6zS.png" alt="第三周 形式语言与自动机-09.png" /> <img src="https://i.loli.net/2020/03/08/hWzGJwV6vdqSRTO.png" alt="第三周 形式语言与自动机-10.png" /> <img src="https://i.loli.net/2020/03/08/nSICGdHmouB8fbs.png" alt="第三周 形式语言与自动机-11.png" /> <img src="https://i.loli.net/2020/03/08/QU7p2ycfaLt5G1R.png" alt="第三周 形式语言与自动机-12.png" /></p>
 <p><img src="https://i.loli.net/2020/03/08/rdBl8On14icFTWq.png" alt="第三周 形式语言与自动机-13.png" /> <img src="https://i.loli.net/2020/03/08/i2uGFbxYRQoW4XC.png" alt="第三周 形式语言与自动机-14.png" /> <img src="https://i.loli.net/2020/03/08/MY6Z34tfNC5hrp9.png" alt="第三周 形式语言与自动机-15.png" /> <img src="https://i.loli.net/2020/03/08/eW3nZBUQ9qt8Ju7.png" alt="第三周 形式语言与自动机-16.png" /> <img src="https://i.loli.net/2020/03/08/4tdGvfUDhuL61ZJ.png" alt="第三周 形式语言与自动机-17.png" /> <img src="https://i.loli.net/2020/03/08/OEhMGf3bN4RC5BH.png" alt="第三周 形式语言与自动机-18.png" /> <img src="https://i.loli.net/2020/03/08/zIZEisjBKLdp9Na.png" alt="第三周 形式语言与自动机-19.png" /></p>
@@ -241,7 +236,7 @@
   </entry>
   <entry>
     <title>DLHLP——1.课程简介</title>
-    <url>/2020/ck7ka1zed0000wkvs2thw4c0c/</url>
+    <url>/2020/ck7kh2vzf0004m0vshxlthspu/</url>
     <content><![CDATA[<h1 id="dlhlp1.课程简介">DLHLP——1.课程简介</h1>
 <hr />
 <p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
@@ -269,10 +264,9 @@
 </ul>
 <p>句子可以含有巨多的词汇，非常复杂</p>
 <h2 id="六种语言处理模型">2 六种语言处理模型：</h2>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/08/iot8lyqIZvFQ5Tb.png" alt="TIM截图20200308003659.png" />
-<p class="caption">TIM截图20200308003659.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/08/iot8lyqIZvFQ5Tb.png" alt="" /><figcaption>TIM截图20200308003659.png</figcaption>
+</figure>
 <h3 id="输入语音输出文字">2.1 输入语音，输出文字</h3>
 <p>语音识别（speech recognition）</p>
 <p>ASR：END-to-END——80MB</p>
@@ -294,10 +288,9 @@
 <h3 id="输入文字输出文字的类别">2.6 输入文字，输出文字的类别</h3>
 <h2 id="其他课程内容">3. 其他课程内容</h2>
 <h3 id="meta-learning">3.1 Meta Learning</h3>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/08/7f9D8LXeOh5vTRz.png" alt="TIM截图20200308004504.png" />
-<p class="caption">TIM截图20200308004504.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/08/7f9D8LXeOh5vTRz.png" alt="" /><figcaption>TIM截图20200308004504.png</figcaption>
+</figure>
 <h3 id="adversarial-attack">3.2 Adversarial Attack</h3>
 <h3 id="可解释ai">3.3 可解释AI</h3>
 <h2 id="结语-有关硬train一发">结语 有关<strong>硬train一发</strong></h2>
@@ -316,12 +309,11 @@
   </entry>
   <entry>
     <title>NLP01-绪论</title>
-    <url>/2020/ck7ka1zen0001wkvshnj30nud/</url>
+    <url>/2020/ck7kh2vzb0002m0vs4pwt4dkm/</url>
     <content><![CDATA[<h1 id="自然语言处理-第一章绪论">自然语言处理 第一章——绪论</h1>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/mQyYtiSbqzxnJwR.jpg" alt="0001.jpg" />
-<p class="caption">0001.jpg</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/mQyYtiSbqzxnJwR.jpg" alt="" /><figcaption>0001.jpg</figcaption>
+</figure>
 <a id="more"></a>
 <p><img src="https://i.loli.net/2020/03/07/9K7zaxhstriWBL6.jpg" alt="0002.jpg" /> <img src="https://i.loli.net/2020/03/07/NOG8suYBlViWD1c.jpg" alt="0003.jpg" /> <img src="https://i.loli.net/2020/03/07/SbrkLm5t6y7IhiD.jpg" alt="0004.jpg" /> <img src="https://i.loli.net/2020/03/07/ufKkVDYhE3Qs7lo.jpg" alt="0005.jpg" /> <img src="https://i.loli.net/2020/03/07/NfbPYnIW3GtC82V.jpg" alt="0006.jpg" /> <img src="https://i.loli.net/2020/03/07/BVHQeox9JgnvDjY.jpg" alt="0007.jpg" /> <img src="https://i.loli.net/2020/03/07/mdbHoBTh2U74vRy.jpg" alt="0008.jpg" /></p>
 ]]></content>
@@ -335,7 +327,7 @@
   </entry>
   <entry>
     <title>4.Session和Cookies</title>
-    <url>/2020/ck7ka1zfi000mwkvsaii15i1m/</url>
+    <url>/2020/ck7kh2w1m001om0vs727whogi/</url>
     <content><![CDATA[<h1 id="第4讲session与cookies">第4讲：Session与Cookies</h1>
 <p>[toc]</p>
 <p>崔庆才《52轻松搞定网络爬虫》第4讲，版权归拉勾网所有。</p>
@@ -354,10 +346,9 @@
 <h2 id="属性结构">4.4 属性结构</h2>
 <p>Cookies中有哪些内容：</p>
 <p>我们来看看Cookies都有哪些内容。在浏览器开发者工具中打开Application选项卡，然后在左侧会有一个Storage部分，最后一项即为Cookies，其中每个条目称为Cookie，它有如下几个属性</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/69PDuW4mKbYTp28.png" alt="4-1.png" />
-<p class="caption">4-1.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/69PDuW4mKbYTp28.png" alt="" /><figcaption>4-1.png</figcaption>
+</figure>
 <ul>
 <li>name：该Cookie的名称，Cookie一旦创建名称不可更改</li>
 <li>value：该Cookie的值，如果值为Unicode字符，需要为字符编码，如果值为二进制数据，需要BASE64编码</li>
@@ -373,13 +364,13 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>tutorial</tag>
         <tag>爬虫</tag>
+        <tag>tutorial</tag>
       </tags>
   </entry>
   <entry>
     <title>3.爬虫基本原理</title>
-    <url>/2020/ck7ka1zfg000lwkvs9c3pbpd2/</url>
+    <url>/2020/ck7kh2w03000km0vs6e6y4ifp/</url>
     <content><![CDATA[<h1 id="爬虫的基本原理">3. 爬虫的基本原理</h1>
 <p>[toc]</p>
 <h2 id="爬虫概述">3.1 爬虫概述</h2>
@@ -390,18 +381,18 @@
 <a id="more"></a>
 <h2 id="提取信息">3.3 提取信息</h2>
 <p>​ 如何在网页源代码中提取想要的数据，使杂乱的数据变得条理清晰</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>正则表达式</li>
 <li>根据节点属性、CSS选择器、XPath来提取网页信息的库，如Beatutiful Soup、pyquery、lxml等</li>
 </ol>
 <h2 id="保存数据">3.4 保存数据</h2>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>简单保存为TXT文本或JSON数据</li>
 <li>保存到MySQL或者MongoDB等数据库</li>
 <li>借助SFTP保存到远程服务</li>
 </ol>
 <h2 id="抓取什么样的数据">3.5 抓取什么样的数据</h2>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>最常见：HTML源代码</li>
 <li>JSON字符串（API接口常用）</li>
 <li>二进制数据——图片、视频、音频</li>
@@ -414,13 +405,13 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>tutorial</tag>
         <tag>爬虫</tag>
+        <tag>tutorial</tag>
       </tags>
   </entry>
   <entry>
     <title>2.Web网页基础</title>
-    <url>/2020/ck7ka1zfd000gwkvs1igd8yxf/</url>
+    <url>/2020/ck7kh2w00000hm0vsac4ka811/</url>
     <content><![CDATA[<h1 id="web网页基础">2. Web网页基础</h1>
 <p>[toc]</p>
 <h2 id="网页的基本组成">2.1 网页的基本组成</h2>
@@ -456,7 +447,9 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>This is a Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"title"</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span>Hello, this is a paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这就是一个最简单的 HTML 实例。</p>
 <p>开头用 DOCTYPE 定义了文档类型，其次最外层是 html 标签，最后还有对应的结束标签来表示闭合，其内部是 head 标签和 body 标签，分别代表网页头和网页体，它们也需要结束标签。</p>
-<p>head 标签内定义了一些页面的配置和引用，如：<meta charset="UTF-8">，它指定了网页的编码为 UTF-8。title 标签则定义了网页的标题，会显示在网页的选项卡中，不会显示在正文中。body 标签内则是在网页正文中显示的内容。</p>
+head 标签内定义了一些页面的配置和引用，如：
+<meta charset="UTF-8">
+<p>，它指定了网页的编码为 UTF-8。title 标签则定义了网页的标题，会显示在网页的选项卡中，不会显示在正文中。body 标签内则是在网页正文中显示的内容。</p>
 <p>div 标签定义了网页中的区块，它的 id 是 container，这是一个非常常用的属性，且 id 的内容在网页中是唯一的，我们可以通过它来获取这个区块。然后在此区块内又有一个 div 标签，它的 class 为 wrapper，这也是一个非常常用的属性，经常与 CSS 配合使用来设定样式。</p>
 <p>然后此区块内部又有一个 h2 标签，这代表一个二级标题。另外，还有一个 p 标签，这代表一个段落。在这两者中直接写入相应的内容即可在网页中呈现出来，它们也有各自的 class 属性。</p>
 <p>这个实例便是网页的一般结构。一个网页的标准形式是 html 标签内嵌套 head 和 body 标签，head 内定义网页的配置和引用，body 内定义网页的正文。</p>
@@ -481,10 +474,9 @@
 <li>注释是注释节点</li>
 </ul>
 <p>HTML DOM 将 HTML 文档视作树结构，这种结构被称为节点树，如图所示。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/DXf5U7yRJob8Nrh.jpg" alt="2-1.jpg" />
-<p class="caption">2-1.jpg</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/DXf5U7yRJob8Nrh.jpg" alt="" /><figcaption>2-1.jpg</figcaption>
+</figure>
 <h2 id="选择器">2.4 选择器</h2>
 <p>我们知道网页由一个个节点组成，CSS 选择器会根据不同的节点设置不同的样式规则，那么怎样来定位节点呢？<strong>在 CSS 中，我们使用 CSS 选择器来定位节点</strong>。最常用的 3 种表示，分别是根据 <strong>id、class、标签名</strong>筛选</p>
 <h3 id="id选择节点">2.4.1 id选择节点——</h3>
@@ -509,12 +501,12 @@
 <tr class="odd">
 <td>.class</td>
 <td>.intro</td>
-<td>选择 class=&quot;intro&quot; 的所有节点</td>
+<td>选择 class="intro" 的所有节点</td>
 </tr>
 <tr class="even">
 <td>#id</td>
 <td>#firstname</td>
-<td>选择 id=&quot;firstname&quot; 的所有节点</td>
+<td>选择 id="firstname" 的所有节点</td>
 </tr>
 <tr class="odd">
 <td>*</td>
@@ -554,7 +546,7 @@
 <tr class="even">
 <td>[attribute=value]</td>
 <td>[target=blank]</td>
-<td>选择 target=&quot;blank&quot; 的所有节点</td>
+<td>选择 target="blank" 的所有节点</td>
 </tr>
 <tr class="odd">
 <td>[attribute~=value]</td>
@@ -623,17 +615,17 @@
 </tr>
 <tr class="even">
 <td>[attribute^=value]</td>
-<td>a[src^=&quot;https&quot;]</td>
+<td>a[src^="https"]</td>
 <td>选择其 src 属性值以 https 开头的所有 a 节点</td>
 </tr>
 <tr class="odd">
-<td>[attribute$=value]</td>
-<td>a[src$=&quot;.pdf&quot;]</td>
+<td>[attribute$=value] | a[src$=".pdf"]</td>
 <td>选择其 src 属性以.pdf 结尾的所有 a 节点</td>
+<td></td>
 </tr>
 <tr class="even">
 <td>[attribute*=value]</td>
-<td>a[src*=&quot;abc&quot;]</td>
+<td>a[src*="abc"]</td>
 <td>选择其 src 属性中包含 abc 子串的所有 a 节点</td>
 </tr>
 <tr class="odd">
@@ -729,13 +721,13 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>tutorial</tag>
         <tag>爬虫</tag>
+        <tag>tutorial</tag>
       </tags>
   </entry>
   <entry>
     <title>1.HTTP基本原理</title>
-    <url>/2020/ck7ka1zf9000ewkvs8tpgasca/</url>
+    <url>/2020/ck7kh2vzv000cm0vsejpc2ciw/</url>
     <content><![CDATA[<h1 id="http基本原理">1.HTTP基本原理</h1>
 <p>// 记录崔庆才老师的《52讲轻松搞定网络爬虫》学习笔记。</p>
 <p>[toc]</p>
@@ -743,10 +735,9 @@
 <p><strong>URI</strong>的全称为 Uniform Resource Identifier，即<strong>统一资源标志符</strong></p>
 <p><strong>URL</strong>的全称为 Universal Resource Locator，即<strong>统一资源定位符</strong></p>
 <p>URL 是 URI 的子集，URI 还包括一个子类叫作URN，它的全称为 Universal Resource Name，即统一资源名称。URN 只命名资源而不指定如何定位资源（URN不常使用）</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/rK1CnWuBycQsYXZ.jpg" alt="1-1.jpg" />
-<p class="caption">1-1.jpg</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/rK1CnWuBycQsYXZ.jpg" alt="" /><figcaption>1-1.jpg</figcaption>
+</figure>
 <a id="more"></a>
 <h2 id="超文本-hypertext">超文本 Hypertext</h2>
 <p>超文本，其英文名称叫作 Hypertext，我们在浏览器里看到的网页就是超文本解析而成的，其网页源代码是一系列 HTML 代码，里面包含了一系列标签，比如 img 显示图片，p 指定显示段落等。浏览器解析这些标签后，便形成了我们平常看到的网页，而网页的源代码 HTML 就可以称作超文本。</p>
@@ -761,16 +752,14 @@
 </ul>
 <h2 id="http-请求过程">HTTP 请求过程</h2>
 <p>我们在浏览器中输入一个 URL，回车之后便可以在浏览器中观察到页面内容。实际上，这个过程是浏览器向网站所在的服务器发送了一个请求，网站服务器接收到这个请求后进行处理和解析，然后返回对应的响应，接着传回给浏览器。响应里包含了页面的源代码等内容，浏览器再对其进行解析，便将网页呈现了出来，传输模型如图所示。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/FK5qREk23dDfQ1b.jpg" alt="1-2.jpg" />
-<p class="caption">1-2.jpg</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/FK5qREk23dDfQ1b.jpg" alt="" /><figcaption>1-2.jpg</figcaption>
+</figure>
 <p>用 Chrome 浏览器的开发者模式下的 Network 监听组件来做下演示，它可以显示访问当前请求网页时发生的所有网络请求和响应。</p>
 <p>我们先观察第一个网络请求，即 www.baidu.com，其中各列的含义如下。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/QPmZUWghGID42yn.png" alt="1-3.png" />
-<p class="caption">1-3.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/QPmZUWghGID42yn.png" alt="" /><figcaption>1-3.png</figcaption>
+</figure>
 <ul>
 <li>第一列 Name：请求的名称，一般会将 URL 的最后一部分内容当作名称。</li>
 <li>第二列 Status：响应的状态码，这里显示为 200，代表响应是正常的。通过状态码，我们可以判断发送了请求之后是否得到了正常的响应。</li>
@@ -781,10 +770,9 @@
 <li>第七列 Waterfall：网络请求的可视化瀑布流。</li>
 </ul>
 <p>我们点击这个条目即可看到其更详细的信息，如图所示。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/U1dL3ADn4cEFuWY.jpg" alt="1-4.jpg" />
-<p class="caption">1-4.jpg</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/U1dL3ADn4cEFuWY.jpg" alt="" /><figcaption>1-4.jpg</figcaption>
+</figure>
 <p><strong>General</strong>部分：</p>
 <ul>
 <li><p>Request URL 为请求的 URL</p></li>
@@ -812,20 +800,17 @@
 </ul>
 <p>一般来说，登录时，需要提交用户名和密码，其中包含了敏感信息，使用 GET 方式请求的话，密码就会暴露在 URL 里面，造成密码泄露，所以这里最好以 POST 方式发送。上传文件时，由于文件内容比较大，也会选用 POST 方式。</p>
 <p>我们平常遇到的绝大部分请求都是 GET 或 POST 请求，另外还有一些请求方法，如 HEAD、PUT、DELETE、OPTIONS、CONNECT、TRACE 等，我们简单将其总结为下表。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/Cc718EeSt2nFHrm.png" alt="1-5.png" />
-<p class="caption">1-5.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/Cc718EeSt2nFHrm.png" alt="" /><figcaption>1-5.png</figcaption>
+</figure>
 <p>请求的网址，即统一资源定位符 URL，它可以唯一确定我们想请求的资源。</p>
 <h3 id="请求头">请求头</h3>
 <p>请求头，用来说明服务器要使用的附加信息，比较重要的信息有 Cookie、Referer、User-Agent 等。下面简要说明一些常用的头信息。</p>
 <ul>
 <li><p><strong>Cookie</strong>：也常用复数形式 Cookies，这是网站为了辨别用户进行会话跟踪而存储在用户本地的数据。它的主要功能是维持当前访问会话。例如，我们输入用户名和密码成功登录某个网站后，服务器会用会话保存登录状态信息，后面我们每次刷新或请求该站点的其他页面时，会发现都是登录状态，这就是 Cookies 的功劳。Cookies 里有信息标识了我们所对应的服务器的会话，每次浏览器在请求该站点的页面时，都会在请求头中加上 Cookies 并将其发送给服务器，服务器通过 Cookies 识别出是我们自己，并且查出当前状态是登录状态，所以返回结果就是登录之后才能看到的网页内容。</p></li>
 <li><p><strong>Referer</strong>：此内容用来标识这个请求是从哪个页面发过来的，服务器可以拿到这一信息并做相应的处理，如做来源统计、防盗链处理等。</p></li>
-<li><p><strong>User-Agent</strong>：简称 UA，它是一个特殊的字符串头，可以使服务器识别客户使用的操作系统及版本、浏览器及版本等信息。在做爬虫时加上此信息，可以伪装为浏览器；如果不加，很可能会被识别出为爬虫。</p></li>
-</ul>
-<p>#### 其他请求头信息</p>
-<ul>
+<li><p><strong>User-Agent</strong>：简称 UA，它是一个特殊的字符串头，可以使服务器识别客户使用的操作系统及版本、浏览器及版本等信息。在做爬虫时加上此信息，可以伪装为浏览器；如果不加，很可能会被识别出为爬虫。</p>
+<h4 id="其他请求头信息">其他请求头信息</h4></li>
 <li><p>Accept：请求报头域，用于指定客户端可接受哪些类型的信息。</p></li>
 <li><p>Accept-Language：指定客户端可接受的语言类型。</p></li>
 <li><p>Accept-Encoding：指定客户端可接受的内容编码。</p></li>
@@ -859,13 +844,13 @@
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>tutorial</tag>
         <tag>爬虫</tag>
+        <tag>tutorial</tag>
       </tags>
   </entry>
   <entry>
     <title>机器学习入门</title>
-    <url>/2020/ck7ka1zf10009wkvs6qs7e67g/</url>
+    <url>/2020/ck7kh2vzx000dm0vs7pp98a4i/</url>
     <content><![CDATA[<h2 id="kaggle官方教程之机器学习入门">Kaggle官方教程之机器学习入门</h2>
 <p>[toc]</p>
 <hr />
@@ -875,24 +860,21 @@
 <p>你的堂兄搞房地产赚了数百万美元。 由于你对数据科感兴趣兴趣，他想和你成为业务合作伙伴。 他将提供资金，并且您将提供预测各种房屋价值的模型。你问你的堂兄，他过去是如何预测房地产价值。 他说这只是直觉。 然而你认为，他从过去的房屋中识别出了价格的模式(pattern)，然后他利用这些模式对他正在考虑的新房屋做出预测。</p>
 <a id="more"></a>
 <p>机器学习的工作方式相同。 我们将从称为决策树的模型开始。 有更高级的模型可以提供更准确的预测。 但是决策树很容易理解，它们是数据科学中一些最佳模型的基本构建块。为简单起见，我们将从最简单的决策树开始。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/rLgERAwiINDBXvc.png" alt="7tsb5b1.png" />
-<p class="caption">7tsb5b1.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/rLgERAwiINDBXvc.png" alt="" /><figcaption>7tsb5b1.png</figcaption>
+</figure>
 <p>它仅将房屋分为两类。 房屋的预测价格为同一类别房屋的历史平均价格。我们使用数据来决定如何将房屋分为两组，然后再次确定每组中的预测价格。 从数据获取模式的这一步骤称为<strong>拟合</strong>或<strong>训练</strong>模型。 用于拟合模型的数据称为<strong>训练数据</strong>。</p>
 <p>有关模型拟合方式的详细信息（例如，如何拆分数据）非常复杂，我们将在以后考虑。 模型在训练之后，可以将其应用于新数据来预测其他房屋的价格。</p>
 <h4 id="改进决策树">1.2 改进决策树</h4>
 <p>通过拟合房地产训练数据，以下两个决策树中的哪个更有可能产生？</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/vDTtmPqRQEbjfNx.png" alt="prAjgku.png" />
-<p class="caption">prAjgku.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/vDTtmPqRQEbjfNx.png" alt="" /><figcaption>prAjgku.png</figcaption>
+</figure>
 <p>左侧的决策树可能更有意义，因为它反映了一个现实，即卧室多的房屋比卧室少的房屋的价格更高。 该模型的最大缺点是，它没有涵盖更多影响房价的因素，例如浴室数量，地段大小，位置等。</p>
 <p>您可以使用具有更多“分支”的树来获取更多因素。 这些被称为“更深”的树。 还要考虑每栋房屋总面积的决策树可能如下所示：</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/07/eORHfbyQKCVBcD6.png" alt="R3ywQsR.png" />
-<p class="caption">R3ywQsR.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/07/eORHfbyQKCVBcD6.png" alt="" /><figcaption>R3ywQsR.png</figcaption>
+</figure>
 <p>您可以通过跟踪决策树来预测任何房屋的价格，并始终选择与房屋特征相对应的路径。 房屋的预计价格在树的底部。 我们进行预测的底部点称为叶子节点。</p>
 <p>叶子上的分支和值将由数据确定，因此是时候检查要使用的数据了。</p>
 <hr />
@@ -906,166 +888,166 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#为了便于获取，将文件路径保存到变量中</span></span><br><span class="line">melbourne_file_path=<span class="string">'../input/melbourne-housing-snapshot/melb_data.csv'</span></span><br><span class="line"><span class="comment">#读取数据，将数据存储到DataFrame中</span></span><br><span class="line">melbourne_data=pd.read_csv(melbourne_file_path)</span><br><span class="line"><span class="comment">#打印melbourne_data的数据情况</span></span><br><span class="line">melbourne_data.describe()</span><br></pre></td></tr></table></figure>
 <table>
 <colgroup>
-<col width="3%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
-<col width="6%" />
-<col width="7%" />
-<col width="7%" />
-<col width="7%" />
+<col style="width: 3%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 8%" />
+<col style="width: 7%" />
+<col style="width: 6%" />
+<col style="width: 7%" />
+<col style="width: 8%" />
+<col style="width: 7%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Rooms</th>
-<th align="left">Price</th>
-<th align="left">Distance</th>
-<th align="left">Postcode</th>
-<th align="left">Bedroom2</th>
-<th align="left">Bathroom</th>
-<th align="left">Car</th>
-<th align="left">Landsize</th>
-<th align="left">BuildingArea</th>
-<th align="left">YearBuilt</th>
-<th align="left">Lattitude</th>
-<th align="left">Longtitude</th>
-<th align="left">Propertycount</th>
+<th style="text-align: left;">Rooms</th>
+<th style="text-align: left;">Price</th>
+<th style="text-align: left;">Distance</th>
+<th style="text-align: left;">Postcode</th>
+<th style="text-align: left;">Bedroom2</th>
+<th style="text-align: left;">Bathroom</th>
+<th style="text-align: left;">Car</th>
+<th style="text-align: left;">Landsize</th>
+<th style="text-align: left;">BuildingArea</th>
+<th style="text-align: left;">YearBuilt</th>
+<th style="text-align: left;">Lattitude</th>
+<th style="text-align: left;">Longtitude</th>
+<th style="text-align: left;">Propertycount</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">count</td>
-<td align="left">13580.000000</td>
-<td align="left">1.358000e+04</td>
-<td align="left">13580.000000</td>
-<td align="left">13580.000000</td>
-<td align="left">13580.000000</td>
-<td align="left">13580.000000</td>
-<td align="left">13518.000000</td>
-<td align="left">13580.000000</td>
-<td align="left">7130.000000</td>
-<td align="left">8205.000000</td>
-<td align="left">13580.000000</td>
-<td align="left">13580.000000</td>
+<td style="text-align: left;">count</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">1.358000e+04</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">13518.000000</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">7130.000000</td>
+<td style="text-align: left;">8205.000000</td>
+<td style="text-align: left;">13580.000000</td>
+<td style="text-align: left;">13580.000000</td>
 <td>13580.000000</td>
 </tr>
 <tr class="even">
-<td align="left">mean</td>
-<td align="left">2.937997</td>
-<td align="left">1.075684e+06</td>
-<td align="left">10.137776</td>
-<td align="left">3105.301915</td>
-<td align="left">2.914728</td>
-<td align="left">1.534242</td>
-<td align="left">1.610075</td>
-<td align="left">558.416127</td>
-<td align="left">151.967650</td>
-<td align="left">1964.684217</td>
-<td align="left">-37.809203</td>
-<td align="left">144.995216</td>
+<td style="text-align: left;">mean</td>
+<td style="text-align: left;">2.937997</td>
+<td style="text-align: left;">1.075684e+06</td>
+<td style="text-align: left;">10.137776</td>
+<td style="text-align: left;">3105.301915</td>
+<td style="text-align: left;">2.914728</td>
+<td style="text-align: left;">1.534242</td>
+<td style="text-align: left;">1.610075</td>
+<td style="text-align: left;">558.416127</td>
+<td style="text-align: left;">151.967650</td>
+<td style="text-align: left;">1964.684217</td>
+<td style="text-align: left;">-37.809203</td>
+<td style="text-align: left;">144.995216</td>
 <td>7454.417378</td>
 </tr>
 <tr class="odd">
-<td align="left">std</td>
-<td align="left">0.955748</td>
-<td align="left">6.393107e+05</td>
-<td align="left">5.868725</td>
-<td align="left">90.676964</td>
-<td align="left">0.965921</td>
-<td align="left">0.691712</td>
-<td align="left">0.962634</td>
-<td align="left">3990.669241</td>
-<td align="left">541.014538</td>
-<td align="left">37.273762</td>
-<td align="left">0.079260</td>
-<td align="left">0.103916</td>
+<td style="text-align: left;">std</td>
+<td style="text-align: left;">0.955748</td>
+<td style="text-align: left;">6.393107e+05</td>
+<td style="text-align: left;">5.868725</td>
+<td style="text-align: left;">90.676964</td>
+<td style="text-align: left;">0.965921</td>
+<td style="text-align: left;">0.691712</td>
+<td style="text-align: left;">0.962634</td>
+<td style="text-align: left;">3990.669241</td>
+<td style="text-align: left;">541.014538</td>
+<td style="text-align: left;">37.273762</td>
+<td style="text-align: left;">0.079260</td>
+<td style="text-align: left;">0.103916</td>
 <td>4378.581772</td>
 </tr>
 <tr class="even">
-<td align="left">min</td>
-<td align="left">1.000000</td>
-<td align="left">8.500000e+04</td>
-<td align="left">0.000000</td>
-<td align="left">3000.000000</td>
-<td align="left">0.000000</td>
-<td align="left">0.000000</td>
-<td align="left">0.000000</td>
-<td align="left">0.000000</td>
-<td align="left">0.000000</td>
-<td align="left">1196.000000</td>
-<td align="left">-38.182550</td>
-<td align="left">144.431810</td>
+<td style="text-align: left;">min</td>
+<td style="text-align: left;">1.000000</td>
+<td style="text-align: left;">8.500000e+04</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">3000.000000</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">0.000000</td>
+<td style="text-align: left;">1196.000000</td>
+<td style="text-align: left;">-38.182550</td>
+<td style="text-align: left;">144.431810</td>
 <td>249.000000</td>
 </tr>
 <tr class="odd">
-<td align="left">25%</td>
-<td align="left">2.000000</td>
-<td align="left">6.500000e+05</td>
-<td align="left">6.100000</td>
-<td align="left">3044.000000</td>
-<td align="left">2.000000</td>
-<td align="left">1.000000</td>
-<td align="left">1.000000</td>
-<td align="left">177.000000</td>
-<td align="left">93.000000</td>
-<td align="left">1940.000000</td>
-<td align="left">-37.856822</td>
-<td align="left">144.929600</td>
+<td style="text-align: left;">25%</td>
+<td style="text-align: left;">2.000000</td>
+<td style="text-align: left;">6.500000e+05</td>
+<td style="text-align: left;">6.100000</td>
+<td style="text-align: left;">3044.000000</td>
+<td style="text-align: left;">2.000000</td>
+<td style="text-align: left;">1.000000</td>
+<td style="text-align: left;">1.000000</td>
+<td style="text-align: left;">177.000000</td>
+<td style="text-align: left;">93.000000</td>
+<td style="text-align: left;">1940.000000</td>
+<td style="text-align: left;">-37.856822</td>
+<td style="text-align: left;">144.929600</td>
 <td>4380.000000</td>
 </tr>
 <tr class="even">
-<td align="left">50%</td>
-<td align="left">3.000000</td>
-<td align="left">9.030000e+05</td>
-<td align="left">9.200000</td>
-<td align="left">3084.000000</td>
-<td align="left">3.000000</td>
-<td align="left">1.000000</td>
-<td align="left">2.000000</td>
-<td align="left">440.000000</td>
-<td align="left">126.000000</td>
-<td align="left">1970.000000</td>
-<td align="left">-37.802355</td>
-<td align="left">145.000100</td>
+<td style="text-align: left;">50%</td>
+<td style="text-align: left;">3.000000</td>
+<td style="text-align: left;">9.030000e+05</td>
+<td style="text-align: left;">9.200000</td>
+<td style="text-align: left;">3084.000000</td>
+<td style="text-align: left;">3.000000</td>
+<td style="text-align: left;">1.000000</td>
+<td style="text-align: left;">2.000000</td>
+<td style="text-align: left;">440.000000</td>
+<td style="text-align: left;">126.000000</td>
+<td style="text-align: left;">1970.000000</td>
+<td style="text-align: left;">-37.802355</td>
+<td style="text-align: left;">145.000100</td>
 <td>6555.000000</td>
 </tr>
 <tr class="odd">
-<td align="left">75%</td>
-<td align="left">3.000000</td>
-<td align="left">1.330000e+06</td>
-<td align="left">13.000000</td>
-<td align="left">3148.000000</td>
-<td align="left">3.000000</td>
-<td align="left">2.000000</td>
-<td align="left">2.000000</td>
-<td align="left">651.000000</td>
-<td align="left">174.000000</td>
-<td align="left">1999.000000</td>
-<td align="left">-37.756400</td>
-<td align="left">145.058305</td>
+<td style="text-align: left;">75%</td>
+<td style="text-align: left;">3.000000</td>
+<td style="text-align: left;">1.330000e+06</td>
+<td style="text-align: left;">13.000000</td>
+<td style="text-align: left;">3148.000000</td>
+<td style="text-align: left;">3.000000</td>
+<td style="text-align: left;">2.000000</td>
+<td style="text-align: left;">2.000000</td>
+<td style="text-align: left;">651.000000</td>
+<td style="text-align: left;">174.000000</td>
+<td style="text-align: left;">1999.000000</td>
+<td style="text-align: left;">-37.756400</td>
+<td style="text-align: left;">145.058305</td>
 <td>10331.000000</td>
 </tr>
 <tr class="even">
-<td align="left">max</td>
-<td align="left">10.000000</td>
-<td align="left">9.000000e+06</td>
-<td align="left">48.100000</td>
-<td align="left">3977.000000</td>
-<td align="left">20.000000</td>
-<td align="left">8.000000</td>
-<td align="left">10.000000</td>
-<td align="left">433014.000000</td>
-<td align="left">44515.000000</td>
-<td align="left">2018.000000</td>
-<td align="left">-37.408530</td>
-<td align="left">145.526350</td>
+<td style="text-align: left;">max</td>
+<td style="text-align: left;">10.000000</td>
+<td style="text-align: left;">9.000000e+06</td>
+<td style="text-align: left;">48.100000</td>
+<td style="text-align: left;">3977.000000</td>
+<td style="text-align: left;">20.000000</td>
+<td style="text-align: left;">8.000000</td>
+<td style="text-align: left;">10.000000</td>
+<td style="text-align: left;">433014.000000</td>
+<td style="text-align: left;">44515.000000</td>
+<td style="text-align: left;">2018.000000</td>
+<td style="text-align: left;">-37.408530</td>
+<td style="text-align: left;">145.526350</td>
 <td>21650.000000</td>
 </tr>
 </tbody>
@@ -1185,18 +1167,16 @@
 <p>您可以在scikit-learn的文档中看到，决策树模型具有许多选项（其数量远远超过您在未来一段时间里需要用的选项数量）。其中，最重要的选项是确定树的深度。回想一下这个微课程的第一课，一棵树的深度是对树木进行预测之前进行多少次分裂的度量。</p>
 <p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html" target="_blank" rel="noopener">sklearn.tree.DecisionTreeRegressor参数介绍</a></p>
 <p>这是一棵深度为2的树:</p>
-<div class="figure">
-<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/R3ywQsR.png" alt="R3ywQsR" />
-<p class="caption">R3ywQsR</p>
-</div>
+<figure>
+<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/R3ywQsR.png" alt="" /><figcaption>R3ywQsR</figcaption>
+</figure>
 <p>实际上，一棵树在顶层（所有房屋）和叶子之间有10个拆分并不少见。随着树变深，数据集被切成叶子，房屋更少。如果一棵树只有1个拆分，它将把数据分成2组。如果每组再次拆分，我们将获得4组房屋。再次拆分每个将创建8个组。如果我们通过在每个级别添加更多的拆分来使组的数量增加一倍，那么到第10级时，我们将拥有<span class="math inline">\(2^{10}\)</span>个房屋组。那是1024片叶子。</p>
 <p>当我们在许多叶子之间划分房屋时，每个叶子中的房屋也更少。拥有很少房屋的叶子进行的预测将非常接近那些房屋的实际值，但是它们对新数据的预测可能非常不可靠（因为每个预测仅基于少数房屋）。这是一种称为过度拟合的现象，其中模型几乎完美地匹配了训练数据，但在验证和其他新数据方面却表现不佳。另一方面，如果我们使树非常浅，则不会将房屋分成非常不同的组。</p>
 <p>在极端情况下，如果一棵树将房屋仅分为2或4，则每组仍然拥有各种各样的房屋。即使对于训练数据，大多数房屋的预测结果也可能相去甚远（由于相同的原因，其验证也很糟糕）。当模型无法捕获数据中的重要区别和模式时，即使在训练数据中它也表现不佳，这被称为欠拟合。</p>
 <p>由于我们关心的是根据验证数据估算出的新数据的准确性，因此我们希望找到欠拟合与过度拟合之间的最佳结合点。在视觉上，我们希望得到（红色）验证曲线的最低点</p>
-<div class="figure">
-<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/2q85n9s.png" alt="2q85n9s" />
-<p class="caption">2q85n9s</p>
-</div>
+<figure>
+<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/2q85n9s.png" alt="" /><figcaption>2q85n9s</figcaption>
+</figure>
 <h4 id="举例">5.2 举例</h4>
 <p>有几种方法可以控制树的深度，许多方法允许通过树的某些路线的深度比其他路线的深度大。max_leaf_nodes参数提供了一种的方法来控制过拟合与欠拟合。模型的叶子越多，模型越远离欠拟合区域、越靠近过拟合区域。</p>
 <p>我们可以使用一个效用函数来帮助比较max_leaf_nodes的不同值的MAE分数：</p>
@@ -1265,14 +1245,14 @@
         <category>Machine Learning</category>
       </categories>
       <tags>
+        <tag>tutorial</tag>
         <tag>ML</tag>
         <tag>Kaggle</tag>
-        <tag>tutorial</tag>
       </tags>
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2020/ck7ka1zey0006wkvs47la5qoc/</url>
+    <url>/2020/ck7kh2vzr0009m0vs7z3k21nj/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="quick-start">Quick Start</h2>
 <h3 id="create-a-new-post">Create a new post</h3>
@@ -1298,10 +1278,9 @@
 <p>GitHub：<a href="https://github.com/chenhuiyu" target="_blank" rel="noopener">没有任何干货的GitHub</a></p>
 <p>研究方向：<span class="github-emoji" style="background-image: url(https://github.githubassets.com/images/icons/emoji/unicode/1f4a9.png?v8)" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a9.png?v8">💩</span></p>
 <a id="more"></a>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/08/t4R9hnpPqMXfS5m.jpg" alt="烦死了.jpg" />
-<p class="caption">烦死了.jpg</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/08/t4R9hnpPqMXfS5m.jpg" alt="" /><figcaption>烦死了.jpg</figcaption>
+</figure>
 ]]></content>
   </entry>
 </search>

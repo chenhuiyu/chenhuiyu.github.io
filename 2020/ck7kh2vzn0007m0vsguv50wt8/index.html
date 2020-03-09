@@ -52,7 +52,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ka1zf4000awkvs5yx9haks/" class="article-date">
+      <a href="/2020/ck7kh2vzn0007m0vsguv50wt8/" class="article-date">
   <time datetime="2020-03-09T06:06:32.000Z" itemprop="datePublished">2020-03-09</time>
 </a>
       
@@ -154,10 +154,9 @@
 </ul>
 <h2 id="srgan模型">3. SRGAN模型</h2>
 <p>高分辨率图像（HR）被下采样为低分辨率图像（LR）。 GAN生成器用于将其上采样到超分辨率图像（SR）。 我们使用鉴别器来识别HR图像，并反向传播GAN损失以训练鉴别器和生成器。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/09/SvJ6Cg1cuNpis9y.png" alt="TIM截图20200309030326.png" />
-<p class="caption">TIM截图20200309030326.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/09/SvJ6Cg1cuNpis9y.png" alt="" /><figcaption>TIM截图20200309030326.png</figcaption>
+</figure>
 <p>这是生成器和判别器网络的体系结构，其中为每个卷积层指示了相应的内核大小(<span class="math inline">\(k\)</span>)，特征图和(<span class="math inline">\(k\)</span>)，步幅(<span class="math inline">\(s\)</span>)。</p>
 <p>生成器：输入<span class="math inline">\(\to\)</span>卷积层$<span class="math inline">\(16个残差块\)</span><span class="math inline">\(卷积层\)</span><span class="math inline">\(BN层\)</span><span class="math inline">\(按元素求和\)</span><span class="math inline">\(卷积层\)</span><span class="math inline">\(2层上采样\)</span><span class="math inline">\(卷积层\)</span>$输出。</p>
 <p>判别器：VGG<span class="math inline">\(\to\)</span>卷积层<span class="math inline">\(\to\)</span>LeakyReLU$<span class="math inline">\(7层卷积、BN层\)</span><span class="math inline">\(全连接\)</span><span class="math inline">\(LeaklyReLU\)</span><span class="math inline">\(全连接\)</span>$输出</p>
@@ -165,17 +164,15 @@
 <h4 id="残差块">3.1.1 残差块</h4>
 <p>​ 随着网络层数的增加，网络发生了退化的现象：随着网络层数的增多，训练集loss逐渐下降，然后趋于饱和，当再增加网络深度的话，训练集loss反而会增大。当网络退化时，浅层网络能够达到比深层网络更好的训练效果，这时如果把低层的特征传到高层，那么效果应该至少不比浅层的网络效果差，而ResNet加入了直接映射，保证了 <span class="math inline">\(l+1\)</span>层的网络一定比<span class="math inline">\(l\)</span>层包含更多的图像信息。</p>
 <p>​ 残差网络是由一系列残差块组成的。一个残差块可以表示为：<span class="math display">\[x_{l+1}=h(x_l)+\mathcal F(x_l,W_l)\]</span>。残差块由两部分组成：直接映射<span class="math inline">\(h(x_l)\)</span>和残差部分<span class="math inline">\(\mathcal F(x_l,W_l)\)</span>。下图是5种不同的残差块的结构，SRGAN的生成器采用了原始的(a)类残差块。并且激活函数使用了PRelu。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/09/6tiPNnphTlkzY9C.png" alt="TIM截图20200309042154.png" />
-<p class="caption">TIM截图20200309042154.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/09/6tiPNnphTlkzY9C.png" alt="" /><figcaption>TIM截图20200309042154.png</figcaption>
+</figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义残差块</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">residual_block</span><span class="params">(x)</span>:</span></span><br><span class="line">    filters = [<span class="number">64</span>, <span class="number">64</span>]</span><br><span class="line">    kernel_size = <span class="number">3</span></span><br><span class="line">    strides = <span class="number">1</span></span><br><span class="line">    padding = <span class="string">"same"</span></span><br><span class="line">    momentum = <span class="number">0.8</span></span><br><span class="line">    activation = <span class="string">"relu"</span></span><br><span class="line"></span><br><span class="line">    res = Conv2D(filters=filters[<span class="number">0</span>], kernel_size=kernel_size, strides=strides, padding=padding)(x)</span><br><span class="line">    res = Activation(activation=activation)(res)</span><br><span class="line">    res = BatchNormalization(momentum=momentum)(res)</span><br><span class="line">    res = Conv2D(filters=filters[<span class="number">1</span>], kernel_size=kernel_size, strides=strides, padding=padding)(res)</span><br><span class="line">    res = BatchNormalization(momentum=momentum)(res)</span><br><span class="line"></span><br><span class="line">    res = Add()([res, x])</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <h4 id="上采样">3.1.2 上采样：</h4>
 <p>​ PixelShuffle(像素重组)的主要功能是将低分辨的特征图，通过卷积和多通道间的重组得到高分辨率的特征图。对特征图做上采样，生成器中使用了2个亚像素卷积。</p>
-<div class="figure">
-<img src="https://i.loli.net/2020/03/09/iR7rnpTkoBvS1fK.png" alt="1.png" />
-<p class="caption">1.png</p>
-</div>
+<figure>
+<img src="https://i.loli.net/2020/03/09/iR7rnpTkoBvS1fK.png" alt="" /><figcaption>1.png</figcaption>
+</figure>
 <p>​ 上图展示了如何进行亚像素卷积，前面就是普通的CNN网络，在模型倒数第二层学习对应的通道数<span class="math inline">\(r^2c\)</span>的卷积，其中<span class="math inline">\(c\)</span>为最终的通道数，如输出是RGB图，则<span class="math inline">\(c\)</span>为3，如输出是灰度图，则<span class="math inline">\(c\)</span>为1；<span class="math inline">\(r\)</span>为需要进行的上采样倍数，为正整数倍，不同的上采样倍数只需要调整这一层卷积的通道数即可。如果想对原图放大3倍，那么需要生成出<span class="math inline">\(3^2=9\)</span>个同样大小的特征图。将九个特征图拼成一个大图，这就是亚像素卷积的操作。</p>
 <h4 id="生成器实现">3.1.3 生成器实现</h4>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_generator</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 生成器中有16个残差块</span></span><br><span class="line">    residual_blocks = <span class="number">16</span></span><br><span class="line">    momentum = <span class="number">0.8</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 低分辨率图像LR的尺寸</span></span><br><span class="line">    input_shape = (<span class="number">64</span>, <span class="number">64</span>, <span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 生成器的输入层</span></span><br><span class="line">    input_layer = Input(shape=input_shape)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 在残差块之前的卷积层</span></span><br><span class="line">    gen1 = Conv2D(filters=<span class="number">64</span>, kernel_size=<span class="number">9</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>, activation=<span class="string">'relu'</span>)(input_layer)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 添加16个残差块</span></span><br><span class="line">    res = residual_block(gen1)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(residual_blocks - <span class="number">1</span>):</span><br><span class="line">        res = residual_block(res)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#残差块之后的卷积层和BN层</span></span><br><span class="line">    gen2 = Conv2D(filters=<span class="number">64</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(res)</span><br><span class="line">    gen2 = BatchNormalization(momentum=momentum)(gen2)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 把BN层结果gen2和残差前卷积结果gen1按元素相加</span></span><br><span class="line">    gen3 = Add()([gen2, gen1])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 上采样增加维数</span></span><br><span class="line">    gen4 = UpSampling2D(size=<span class="number">2</span>)(gen3)</span><br><span class="line">    gen4 = Conv2D(filters=<span class="number">256</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(gen4)</span><br><span class="line">    gen4 = Activation(<span class="string">'relu'</span>)(gen4)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 上采样增加维数</span></span><br><span class="line">    gen5 = UpSampling2D(size=<span class="number">2</span>)(gen4)</span><br><span class="line">    gen5 = Conv2D(filters=<span class="number">256</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(gen5)</span><br><span class="line">    gen5 = Activation(<span class="string">'relu'</span>)(gen5)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 输出卷积层</span></span><br><span class="line">    gen6 = Conv2D(filters=<span class="number">3</span>, kernel_size=<span class="number">9</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(gen5)</span><br><span class="line">    output = Activation(<span class="string">'tanh'</span>)(gen6)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 定义generator模型</span></span><br><span class="line">    model = Model(inputs=[input_layer], outputs=[output], name=<span class="string">'generator'</span>)</span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
@@ -253,7 +250,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7ka1zf4000awkvs5yx9haks/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7kh2vzn0007m0vsguv50wt8/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -272,7 +269,7 @@
   <nav class="article-nav">
     
     
-      <a href="/2020/ck7ka1zh8001xwkvs26zj9fhq/" class="article-nav-link">
+      <a href="/2020/ck7kh2w1q001rm0vsat9far0z/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
         <div class="article-nav-title">生成式对抗网络综述</div>
       </a>
