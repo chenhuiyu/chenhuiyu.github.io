@@ -10,11 +10,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    生成式对抗网络综述 |  黑头呆鱼进化之旅
+    1.HTTP基本原理 |  黑头呆鱼进化之旅
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
-  <link rel="shortcut icon" href="/me.ico" />
+  <link rel="shortcut icon" href="/images/cat1.ico" />
   
   
 <link rel="stylesheet" href="/css/main.css">
@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-生成式对抗网络综述" class="article article-type-post" itemscope
+  <article id="post-爬虫-01-HTTP基本原理" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +43,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  生成式对抗网络综述
+  1.HTTP基本原理
 </h1>
   
 
@@ -52,12 +52,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7k2e6ih000tiwvs5cfscdcc/" class="article-date">
-  <time datetime="2020-03-08T12:27:44.000Z" itemprop="datePublished">2020-03-08</time>
+      <a href="/2020/ck7k35ewd000e04vs0ut1fwnb/" class="article-date">
+  <time datetime="2020-03-06T20:41:40.000Z" itemprop="datePublished">2020-03-07</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/GAN/">GAN</a>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
   </div>
 
       
@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">2.6k字</span>
+            <span class="post-count">2.9k字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">9分钟</span>
+            <span class="post-count">10分钟</span>
         </span>
     </span>
 </div>
@@ -103,54 +103,133 @@
       
 
       
-      <h1>生成式对抗网络综述</h1>
+      <h1>1.HTTP基本原理</h1>
+<p>// 记录崔庆才老师的《52讲轻松搞定网络爬虫》学习笔记。</p>
 <p>[toc]</p>
-<h2 id="1-简介">1. 简介</h2>
-<p>​		GAN包含两个模型：生成器和判别器。这两个模型通常由神经网络来实现，生成器尝试捕获真实示例的分布，以生成新的数据示例。判别器通常是二分类器，它尽可能准确地将生成器产生的的数据与真实的样本区分开。  GAN的优化是一个最小最大(minimax)优化问题。该优化终止于一个鞍点，该鞍点对于生成器而言是最小值，而对于鉴别器而言是最大值。也就是说，优化目标是达到Nash平衡[1]。然后，可以认为生成器已经捕获了真实样本的概率分布。</p>
-<p>​		先前的一些工作采用了使两个神经网络相互竞争的概念。GAN属于生成算法。生成算法和判别算法是两类机器学习算法。如果机器学习算法是基于观测数据的完全概率模型，则该算法是生成性的。生成算法由于其广泛的实际应用而变得越来越流行和重要。</p>
+<h2 id="URI-和-URL">URI 和 URL</h2>
+<p><strong>URI</strong>的全称为 Uniform Resource Identifier，即<strong>统一资源标志符</strong></p>
+<p><strong>URL</strong>的全称为 Universal Resource Locator，即<strong>统一资源定位符</strong></p>
+<p>URL 是 URI 的子集，URI 还包括一个子类叫作URN，它的全称为 Universal Resource Name，即统一资源名称。URN 只命名资源而不指定如何定位资源（URN不常使用）</p>
+<p><img src="https://i.loli.net/2020/03/07/rK1CnWuBycQsYXZ.jpg" alt="1-1.jpg"></p>
 <a id="more"></a>
-<hr>
-<h2 id="2-算法">2. 算法</h2>
-<h3 id="2-1-原始GAN">2.1 原始GAN</h3>
-<p>​		当模型都是神经网络时，GANs框架很容易实现。为了从真实数据$x$的分布中学习到生成器的概率分布$p_g$，定义输入噪声变量的先验为$p_z$，其中$z$是噪音变量。然后，从噪声空间到数据空间的映射被记为$G(z,\theta_g)$，其中$G$是神经网络结构表示的可微函数，其参数为$\theta_g$。除$G$之外，还存在一个神经网络$D(x，θ_d)$，其参数为$θ_d$，并且$D(x)$的输出是单个标量。$D(x)$表示$x$来自真实样本数据而非生成器$G$所产生的概率。首先对判别器$D$进行训练，使其可以最大可能地分辨数据是来自真实样本数据还是生成器$G$产生的假数据。其次训练$G$，同时最小化$log(1- D(G(z)))$。</p>
-<p><img src="https://i.loli.net/2020/03/08/aiEVHpJmhudCs3r.jpg" alt="图一.png"></p>
-<p><strong>GAN的目标函数</strong></p>
-<p>$\min_\limits{G} \max_\limits{D}V(D,G)=E_{x\sim p_{data}}[logD(x)]+E_{z\sim p_z(z)}[log(1-D(G(z)))]$</p>
-<p>尽管理论上存在独特的解决方案，但GAN的训练仍然很困难，并且由于以下几个原因常常不稳定一个困难是来自这样一个事实，即GAN的最佳权重对应于损失函数的鞍点，而不是最小化点。</p>
-<h3 id="2-2-GAN的代表性变体">2.2 GAN的代表性变体</h3>
-<p>​	条件GAN(CGAN)。原始GAN的生成器G学到了数据的分布，生成出来的图片其实是随机的，也就是说这个G的生成过程处于一种没有指导的状态，cGAN相当于在原始GAN的基础上加上一个条件：condition，以此来指导G的生成过程。在生成模型G和判别模型D中同时加入条件约束y来引导数据的生成过程。条件可以是任何补充的信息，如类标签，其它模态的数据等，这样使得GAN能够更好地被应用于跨模态问题，例如图像自动标注。<img src="https://www.zhihu.com/equation?tex=%5Cmax_D+%5C%7B%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_%7Bdata%7D%7D+%5Clog+D%28x%7Cy%29%2B%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_%7BG%7D%7D+%5Clog+%281-%28D%28x%7Cy%29%29%5C%7D" alt="[公式]" style="zoom: 80%;" /></p>
-<hr>
-<h2 id="3-原理">3. 原理</h2>
-<h3 id="3-1-最大似然估计-MLE">3.1 最大似然估计 MLE</h3>
-<p>最小化$p_{data}(x)$和$p_g(x)$之间的Kullback-Leibler散度等于最大化样本数$m$增加时的对数似然</p>
-<p>$\theta^*=\arg\ \min_\limits{\theta}KLD(p_{data}||p_{g})$</p>
-<h3 id="3-2-模式崩溃">3.2 模式崩溃</h3>
-<p>​	模式崩溃是指，生成器学会了仅从几种数据分布模式中生成样本但是会错过许多其他模式，即使整个训练数据中都存在来自缺失模式的样本。GAN的优化目标是一个极小极大(minmax)问题，即 !$\min_\limits{G} \max_\limits{D}V(G,D)$ ，也就是说，优化生成器的时候，最小化的是 $\max_\limits{D}V(G,D)$。可是我们是迭代优化的，要保证$V(G,D)$最大化，就需要迭代非常多次，这就导致训练时间很长。如果我们只迭代一次判别器，然后迭代一次生成器，不断循环迭代。这样原先的极小极大问题，就容易变成极大极小(maxmin)问题，可二者是不一样的，即：$\min_\limits{G} \max_\limits{D}V(G,D) \ne \max_\limits{G} \min_\limits{D}V(G,D)$</p>
-<p>​		如果变化为极小极大问题，那么迭代就是这样的，生成器先生成一些样本，然后判别器给出错误的判别结果并惩罚生成器，于是生成器调整生成的概率分布。可是这样往往导致生成器变“懒”，只生成一些简单的，重复的样本，即缺乏多样性，也叫模式崩溃。</p>
-<hr>
-<h2 id="4-应用">4. 应用</h2>
-<p>​	GAN是强大的生成模型，可以仅通过随机向量$z$的生成逼真的样本。我们既不需要知道明确的真实数据分布，也不需要任何数学假设。这些优点使GAN可以广泛应用于许多领域，例如图像处理和计算机视觉，顺序数据。</p>
-<h3 id="4-1-图像处理和计算机视觉">4.1 图像处理和计算机视觉</h3>
-<p>​	GAN最成功的应用是在图像处理和计算机视觉中，例如图像超分辨率，图像合成和处理以及视频处理。</p>
-<h4 id="4-1-1-超分辨率">4.1.1 超分辨率</h4>
-<p>​	SRGAN用于超分辨率的GAN，是第一个能够推断出逼真的自然图像的放大系数的框架。SRGAN中使用GAN和感知损失生成细节丰富的图像。感知损失重点关注中间特征层的误差，而不是输出结果的逐像素误差。避免了生成的高分辨图像缺乏纹理细节信息问题。为了进一步提高SRGAN的视觉质量，Wang等人对其进行了改进，以得到增强型SRGAN（ESRGAN）。例如，ESRGAN引入了“相对”的思想来让判别器由判断绝对的真假概率变成相对为真或为假的概率。基于CycleGAN，提出了Cycle-in-Cycle GAN用于无监督图像超分辨率。</p>
-<h4 id="4-1-2-图像合成与处理">4.1.2 图像合成与处理</h4>
-<p>​	<strong>人脸生成</strong>：GAN生成的人脸质量逐年提高，从图7中可以看出，基于原始GAN生成的人脸视觉质量较低，只能用作概念证明。 Radford等人使用更好的神经网络架构：深度卷积神经网络来生成人脸。罗斯等。 解决了GAN训练的不稳定问题，允许使用更大的架构，例如ResNet。Karras等人利用多尺度训练，允许以高保真度生成百万像素的面部图像。</p>
-<p>​	面部生成效果较好的原因是，因为只有一类对象，每个对象都是一张脸，大多数脸数据集通常由直视摄像机的人组成。多数人已经将鼻子和眼睛以及其他地标放置在一致的位置上。</p>
-<p>​	<strong>通用对象</strong>：让GAN处理像ImageNet这样的分类数据集要困难一些，ImageNet 具有一千种不同的对象类。但是，最近几年我们看到了快速的进步。这些图像的质量逐年提高。</p>
-<h4 id="4-1-3-图像翻译">4.1.3 图像翻译</h4>
-<p>​	图像翻译是指把一幅图像从源域变换到目标域。翻译过程中会保持源域图像内容不变，但是风格或者一些其他属性变成目标域。成对图像翻译典型的例子就是pix2pix，pix2pix使用成对数据训练了一个条件GAN，Loss包括GAN的loss和逐像素差loss。使用特征图上的逐像素差作为感知损失替代图片上的逐像素差，以生成人眼感知上更加接近源域的图像。对于无成对训练数据的图像翻译问题，一个典型的例子是CycleGAN。CycleGAN使用两对GAN，将源域数据通过一个GAN网络转换到目标域之后，再使用另一个GAN网络将目标域数据转换回源域，转换回来的数据和源域数据正好是成对的，构成监督信息。</p>
-<h3 id="4-2-序列生成">4.2 序列生成</h3>
-<p>相比于GAN在图像领域的应用，GAN在文本，语音领域的应用要少很多。主要原因有两个：</p>
+<h2 id="超文本-Hypertext">超文本 Hypertext</h2>
+<p>超文本，其英文名称叫作 Hypertext，我们在浏览器里看到的网页就是超文本解析而成的，其网页源代码是一系列 HTML 代码，里面包含了一系列标签，比如 img 显示图片，p 指定显示段落等。浏览器解析这些标签后，便形成了我们平常看到的网页，而网页的源代码 HTML 就可以称作超文本。</p>
+<h2 id="HTTP-和-HTTPS">HTTP 和 HTTPS</h2>
+<p>URL 的开头会有 http 或 https，这个就是访问资源需要的协议类型，有时我们还会看到 ftp、sftp、smb 开头的 URL，那么这里的 ftp、sftp、smb 都是指的协议类型。在爬虫中，我们抓取的页面通常就是 http 或 https 协议的，我们在这里首先来了解一下这两个协议的含义。</p>
+<p><strong>HTTP</strong>的全称是 Hyper Text Transfer Protocol，中文名叫作<strong>超文本传输协议</strong>，HTTP 协议是用于从网络传输超文本数据到本地浏览器的传送协议，它能保证高效而准确地传送超文本文档。HTTP 由万维网协会（World Wide Web Consortium）和 Internet 工作小组 IETF（Internet Engineering Task Force）共同合作制定的规范，目前广泛使用的是 HTTP 1.1 版本。</p>
+<p><strong>HTTPS</strong>的全称是 Hyper Text Transfer Protocol over Secure Socket Layer，是以安全为目标的 HTTP 通道，简单讲是 <strong>HTTP 的安全版</strong>，即<strong>HTTP 下加入 SSL 层</strong>，简称为 HTTPS。</p>
+<p>HTTPS 的安全基础是 SSL，因此通过它传输的内容都是经过 SSL 加密的，它的主要作用可以分为两种：</p>
 <ul>
-<li>GAN在优化的时候使用BP算法，对于文本，语音这种离散数据，GAN没法直接跳到目标值，只能根据梯度一步步靠近。</li>
-<li>对于序列生成问题，每生成一个单词，我们就需要判断这个序列是否合理，可是GAN里面的判别器是没法做到的。除非我们针对每一个step都设置一个判别器，这显然不合理。</li>
+<li>建立一个信息安全通道，来保证数据传输的安全。</li>
+<li>确认网站的真实性，凡是使用了 HTTPS 的网站，都可以通过点击浏览器地址栏的锁头标志来查看网站认证之后的真实信息，也可以通过 CA 机构颁发的安全签章来查询。</li>
 </ul>
-<p>为了解决上述问题，强化学习中的策略梯度下降（Policy gredient descent）被引入到GAN中的序列生成问题。</p>
-<h4 id="4-2-1-自然语言生成">4.2.1 自然语言生成</h4>
-<p>​		LeakGAN解决长文本生成问题。我们允许判别网络将其高级提取的特征泄漏给产生网络，以进一步帮助指导。生成器通过一个附加的Manager模块将此类信息信号纳入所有生成步骤，该Manager模块采用当前生成的单词的提取特征并输出潜在矢量来指导Worker模块进行下一单词的生成。LeakGAN目前仍是文本生成的SOTA方法。</p>
-<h4 id="4-2-2-音乐生成">4.2.2 音乐生成</h4>
-<p>​		RNN-GAN使用LSTM作为生成器和判别器，直接生成整个音频序列。然而，正如上面提到的，音乐当做包括歌词和音符，对于这种离散数据生成问题直接使用GAN存在很多问题，特别是生成的数据缺乏局部一致性。使用神经网络生成符号音乐的常见方法涉及对自回归模型进行重复采样，直到获得完整的输出序列。尽管这样的方法在产生短音乐序列方面显示出了一定的希望，但这通常没有扩展到最终目标序列明显更长的情况下，例如整首音乐。</p>
+<h2 id="HTTP-请求过程">HTTP 请求过程</h2>
+<p>我们在浏览器中输入一个 URL，回车之后便可以在浏览器中观察到页面内容。实际上，这个过程是浏览器向网站所在的服务器发送了一个请求，网站服务器接收到这个请求后进行处理和解析，然后返回对应的响应，接着传回给浏览器。响应里包含了页面的源代码等内容，浏览器再对其进行解析，便将网页呈现了出来，传输模型如图所示。</p>
+<p><img src="https://i.loli.net/2020/03/07/FK5qREk23dDfQ1b.jpg" alt="1-2.jpg"></p>
+<p>用 Chrome 浏览器的开发者模式下的 Network 监听组件来做下演示，它可以显示访问当前请求网页时发生的所有网络请求和响应。</p>
+<p>我们先观察第一个网络请求，即 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a>，其中各列的含义如下。</p>
+<p><img src="https://i.loli.net/2020/03/07/QPmZUWghGID42yn.png" alt="1-3.png"></p>
+<ul>
+<li>第一列 Name：请求的名称，一般会将 URL 的最后一部分内容当作名称。</li>
+<li>第二列 Status：响应的状态码，这里显示为 200，代表响应是正常的。通过状态码，我们可以判断发送了请求之后是否得到了正常的响应。</li>
+<li>第三列 Type：请求的文档类型。这里为 document，代表我们这次请求的是一个 HTML 文档，内容就是一些 HTML 代码。</li>
+<li>第四列 Initiator：请求源。用来标记请求是由哪个对象或进程发起的。</li>
+<li>第五列 Size：从服务器下载的文件和请求的资源大小。如果是从缓存中取得的资源，则该列会显示 from cache。</li>
+<li>第六列 Time：发起请求到获取响应所用的总时间。</li>
+<li>第七列 Waterfall：网络请求的可视化瀑布流。</li>
+</ul>
+<p>我们点击这个条目即可看到其更详细的信息，如图所示。</p>
+<p><img src="https://i.loli.net/2020/03/07/U1dL3ADn4cEFuWY.jpg" alt="1-4.jpg"></p>
+<p><strong>General</strong>部分：</p>
+<ul>
+<li>
+<p>Request URL 为请求的 URL</p>
+</li>
+<li>
+<p>Request Method 为请求的方法</p>
+</li>
+<li>
+<p>Status Code 为响应状态码</p>
+</li>
+<li>
+<p>Remote Address 为远程服务器的地址和端口</p>
+</li>
+<li>
+<p>Referrer Policy 为 Referrer 判别策略。</p>
+</li>
+</ul>
+<p><strong>Response Headers</strong>——响应头</p>
+<p>Response Headers其中包含了服务器的类型、文档类型、日期等信息，浏览器接受到响应后，会解析响应内容，进而呈现网页内容。</p>
+<p><strong>Request Headers</strong>——请求头</p>
+<p>请求头里带有许多请求信息，例如浏览器标识、Cookies、Host 等信息，这是请求的一部分，服务器会根据请求头内的信息判断请求是否合法，进而作出对应的响应。</p>
+<h2 id="请求">请求</h2>
+<p>请求，由客户端向服务端发出，可以分为 4 部分内容：请求方法（Request Method）、请求的网址（Request URL）、请求头（Request Headers）、请求体（Request Body）。</p>
+<h3 id="请求方法">请求方法</h3>
+<p>常见的请求方法有两种：<strong>GET</strong> 和 <strong>POST</strong>。</p>
+<p><strong>GET方法</strong></p>
+<p>在浏览器中直接输入 URL 并回车，这便发起了一个 GET 请求，请求的参数会直接包含到 URL 里。例如，在百度中搜索 Python，这就是一个 GET 请求，链接为 <a href="https://www.baidu.com/s?wd=Python%EF%BC%8C%E5%85%B6%E4%B8%AD" target="_blank" rel="noopener">https://www.baidu.com/s?wd=Python，其中</a> URL 中包含了请求的参数信息，这里参数 wd 表示要搜寻的关键字。</p>
+<p><strong>POST方法</strong></p>
+<p>POST 请求大多在表单提交时发起。比如，对于一个登录表单，输入用户名和密码后，点击 “登录” 按钮，这通常会发起一个 POST 请求，其数据通常以表单的形式传输，而不会体现在 URL 中。</p>
+<p>GET 和 POST 请求方法有如下区别。</p>
+<ul>
+<li>GET 请求中的参数包含在 URL 里面，数据可以在 URL 中看到，而 POST 请求的 URL 不会包含这些数据，数据都是通过表单形式传输的，会包含在请求体中。</li>
+<li>GET 请求提交的数据最多只有 1024 字节，而 POST 请求没有限制。</li>
+</ul>
+<p>一般来说，登录时，需要提交用户名和密码，其中包含了敏感信息，使用 GET 方式请求的话，密码就会暴露在 URL 里面，造成密码泄露，所以这里最好以 POST 方式发送。上传文件时，由于文件内容比较大，也会选用 POST 方式。</p>
+<p>我们平常遇到的绝大部分请求都是 GET 或 POST 请求，另外还有一些请求方法，如 HEAD、PUT、DELETE、OPTIONS、CONNECT、TRACE 等，我们简单将其总结为下表。</p>
+<p><img src="https://i.loli.net/2020/03/07/Cc718EeSt2nFHrm.png" alt="1-5.png"></p>
+<p>请求的网址，即统一资源定位符 URL，它可以唯一确定我们想请求的资源。</p>
+<h3 id="请求头">请求头</h3>
+<p>请求头，用来说明服务器要使用的附加信息，比较重要的信息有 Cookie、Referer、User-Agent 等。下面简要说明一些常用的头信息。</p>
+<ul>
+<li>
+<p><strong>Cookie</strong>：也常用复数形式 Cookies，这是网站为了辨别用户进行会话跟踪而存储在用户本地的数据。它的主要功能是维持当前访问会话。例如，我们输入用户名和密码成功登录某个网站后，服务器会用会话保存登录状态信息，后面我们每次刷新或请求该站点的其他页面时，会发现都是登录状态，这就是 Cookies 的功劳。Cookies 里有信息标识了我们所对应的服务器的会话，每次浏览器在请求该站点的页面时，都会在请求头中加上 Cookies 并将其发送给服务器，服务器通过 Cookies 识别出是我们自己，并且查出当前状态是登录状态，所以返回结果就是登录之后才能看到的网页内容。</p>
+</li>
+<li>
+<p><strong>Referer</strong>：此内容用来标识这个请求是从哪个页面发过来的，服务器可以拿到这一信息并做相应的处理，如做来源统计、防盗链处理等。</p>
+</li>
+<li>
+<p><strong>User-Agent</strong>：简称 UA，它是一个特殊的字符串头，可以使服务器识别客户使用的操作系统及版本、浏览器及版本等信息。在做爬虫时加上此信息，可以伪装为浏览器；如果不加，很可能会被识别出为爬虫。</p>
+<h4 id="其他请求头信息">其他请求头信息</h4>
+</li>
+<li>
+<p>Accept：请求报头域，用于指定客户端可接受哪些类型的信息。</p>
+</li>
+<li>
+<p>Accept-Language：指定客户端可接受的语言类型。</p>
+</li>
+<li>
+<p>Accept-Encoding：指定客户端可接受的内容编码。</p>
+</li>
+<li>
+<p>Host：用于指定请求资源的主机 IP 和端口号，其内容为请求 URL 的原始服务器或网关的位置。从 HTTP 1.1 版本开始，请求必须包含此内容。</p>
+</li>
+<li>
+<p>Content-Type：也叫互联网媒体类型（Internet Media Type）或者 MIME 类型，在 HTTP 协议消息头中，它用来表示具体请求中的媒体类型信息。例如，text/html 代表 HTML 格式，image/gif 代表 GIF 图片，application/json 代表 JSON 类型，更多对应关系可以查看此对照表：<a href="http://tool.oschina.net/commons%E3%80%82" target="_blank" rel="noopener">http://tool.oschina.net/commons。</a></p>
+</li>
+</ul>
+<p>因此，请求头是请求的重要组成部分，在写爬虫时，大部分情况下都需要设定请求头。</p>
+<h3 id="请求体">请求体</h3>
+<p>请求体一般承载的内容是 POST 请求中的表单数据，而对于 GET 请求，请求体则为空。</p>
+<h2 id="响应">响应</h2>
+<p>响应，由服务端返回给客户端，可以分为三部分：响应状态码（Response Status Code）、响应头（Response Headers）和响应体（Response Body）。</p>
+<h3 id="响应状态码">响应状态码</h3>
+<p>响应状态码表示服务器的响应状态，如 200 代表服务器正常响应，404 代表页面未找到，500 代表服务器内部发生错误。在爬虫中，我们可以根据状态码来判断服务器响应状态，如状态码为 200，则证明成功返回数据，再进行进一步的处理，否则直接忽略。</p>
+<h3 id="响应头">响应头</h3>
+<p>包含了服务器对请求的应答信息，如 Content-Type、Server、Set-Cookie 等。下面简要说明一些常用的头信息。</p>
+<ul>
+<li>Date：标识响应产生的时间。</li>
+<li>Last-Modified：指定资源的最后修改时间。</li>
+<li>Content-Encoding：指定响应内容的编码。</li>
+<li>Server：包含服务器的信息，比如名称、版本号等。</li>
+<li>Content-Type：文档类型，指定返回的数据类型是什么，如 text/html 代表返回 HTML 文档，application/x-javascript 则代表返回 JavaScript 文件，image/jpeg 则代表返回图片。</li>
+<li>Set-Cookie：设置 Cookies。响应头中的 Set-Cookie 告诉浏览器需要将此内容放在 Cookies 中，下次请求携带 Cookies 请求。</li>
+<li>Expires：指定响应的过期时间，可以使代理服务器或浏览器将加载的内容更新到缓存中。如果再次访问时，就可以直接从缓存中加载，降低服务器负载，缩短加载时间。</li>
+</ul>
+<h3 id="★响应体">★响应体</h3>
+<p>最重要的当属响应体的内容了。响应的正文数据都在响应体中，比如请求网页时，它的响应体就是网页的 HTML 代码；请求一张图片时，它的响应体就是图片的二进制数据。我们做爬虫请求网页后，要解析的内容就是响应体，如图所示。</p>
+<p>在浏览器开发者工具中点击 Preview，就可以看到网页的源代码，也就是响应体的内容，它是解析的目标。</p>
+<p>在做爬虫时，我们主要通过响应体得到网页的源代码、JSON 数据等，然后从中做相应内容的提取。</p>
 
       
       <!-- reward -->
@@ -216,14 +295,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7k2e6ih000tiwvs5cfscdcc/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7k35ewd000e04vs0ut1fwnb/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GAN/" rel="tag">GAN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paper/" rel="tag">paper</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
 
 
     </footer>
@@ -234,19 +313,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck7k2e6hc0004iwvsgouy9q79/" class="article-nav-link">
+      <a href="/2020/ck7k35ewh000g04vs90zgekpu/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            基于SRGAN的超分辨率重建
+            2.Web网页基础
           
         </div>
       </a>
     
     
-      <a href="/2020/ck7k2e6ie000piwvs0m6257pz/" class="article-nav-link">
+      <a href="/2020/ck7k35ew5000904vsaxm7bex5/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">爬虫-05-多线程的基本原理</div>
+        <div class="article-nav-title">机器学习入门</div>
       </a>
     
   </nav>
@@ -362,7 +441,7 @@
 <nav class="navbar">
   
   <div class="logo">
-    <a href="/"><img src="/images/ayer-side.svg" alt="黑头呆鱼进化之旅"></a>
+    <a href="/"><img src="/images/shark.ico" alt="黑头呆鱼进化之旅"></a>
   </div>
   
   <ul class="nav nav-main">
