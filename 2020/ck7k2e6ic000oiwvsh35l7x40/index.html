@@ -10,11 +10,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    3.爬虫基本原理 |  黑头呆鱼进化之旅
+    4.Session和Cookies |  黑头呆鱼进化之旅
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="/me.ico" />
   
   
 <link rel="stylesheet" href="/css/main.css">
@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-爬虫-03-爬虫基本原理" class="article article-type-post" itemscope
+  <article id="post-爬虫-04-Session和Cookies" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +43,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  3.爬虫基本原理
+  4.Session和Cookies
 </h1>
   
 
@@ -52,8 +52,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7j2a7fl000nfgvsbe5lh64r/" class="article-date">
-  <time datetime="2020-03-06T20:42:29.000Z" itemprop="datePublished">2020-03-07</time>
+      <a href="/2020/ck7k2e6ic000oiwvsh35l7x40/" class="article-date">
+  <time datetime="2020-03-06T20:42:51.000Z" itemprop="datePublished">2020-03-07</time>
 </a>
       
   <div class="article-category">
@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">352字</span>
+            <span class="post-count">1.1k字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -103,35 +103,35 @@
       
 
       
-      <h1>3. 爬虫的基本原理</h1>
+      <h1>第4讲：Session与Cookies</h1>
 <p>[toc]</p>
-<h2 id="3-1-爬虫概述">3.1 爬虫概述</h2>
-<p>​	简单地说，爬虫就是获取网页并提取保存信息的自动化程序</p>
-<h2 id="3-2-获取网页">3.2 获取网页</h2>
-<p>​	获取网页的源代码，向网站的服务器发送一个请求，返回的响应体便是网页源代码</p>
-<p>​	借助urllib、requests库可以实现HTTP请求操作，请求和响应都可以用库提供的数据结构表示，得到相应之后只需解析数据结构中的Body部分</p>
+<p>崔庆才《52轻松搞定网络爬虫》第4讲，版权归拉勾网所有。</p>
+<h2 id="4-1-静态网页和动态网页">4.1 静态网页和动态网页</h2>
+<p>​		最基本的HTML代码，我们将其保存为一个.html文件，然后把它放在某台具有固定公网IP的主机上，主机上装上Apache或Nginx等服务器，这样这台主机就可以作为服务器了，其他人可以通过访问服务器看到这个页面，这样就搭建了一个最简单的网站。</p>
+<p>​		这种HTML代码编写的网页叫静态网页，其文字、图片均是通过HTML代码指定。静态网页加载速度快，编写简单，但是可维护性差，不能根据URL灵活多变的展示内容。</p>
+<p>​		动态网页可以动态解析URL中的参数的变化，关联数据库并动态呈现不同的页面内容。现在大多数网页都是动态网页，它们不再是一个简单的HTML，而是可能有JSP、PHP、python等语言编写的。</p>
+<p>​		动态网页还可以实现用户登录和注册功能，需要通过Session和Cookies共同作用</p>
 <a id="more"></a>
-<h2 id="3-3-提取信息">3.3 提取信息</h2>
-<p>​	如何在网页源代码中提取想要的数据，使杂乱的数据变得条理清晰</p>
-<ol>
-<li>正则表达式</li>
-<li>根据节点属性、CSS选择器、XPath来提取网页信息的库，如Beatutiful Soup、pyquery、lxml等</li>
-</ol>
-<h2 id="3-4-保存数据">3.4 保存数据</h2>
-<ol>
-<li>简单保存为TXT文本或JSON数据</li>
-<li>保存到MySQL或者MongoDB等数据库</li>
-<li>借助SFTP保存到远程服务</li>
-</ol>
-<h2 id="3-5-抓取什么样的数据">3.5 抓取什么样的数据</h2>
-<ol>
-<li>最常见：HTML源代码</li>
-<li>JSON字符串（API接口常用）</li>
-<li>二进制数据——图片、视频、音频</li>
-</ol>
-<h2 id="3-6-JavaScript渲染页面">3. 6 JavaScript渲染页面</h2>
-<p>​	有时使用urlib和requests抓取网页时，得到的源代码和浏览器中的不同。因为网页使用Ajax、前端模块化工具构建，整个网页可能是由JavaScript渲染出来的，原始HTML是一个空壳</p>
-<p>​	可使用Selenium、Splash的库来模拟JavaScript渲染</p>
+<h2 id="4-2-无状态HTTP">4.2 无状态HTTP</h2>
+<p>​		HTTP的无状态是指HTTP协议对事务处理是没有记忆能力的，也就是说服务器不知道客户端是什么状态。当我们向服务器发送请求后，服务器解析此请求，然后返回对应的响应，服务器负责完成这个过程，而这个过程是完全独立的，服务器不会记录前后状态的变化，也就是缺少状态记录。</p>
+<p>​		这意味着如果后续要处理前面的信息，则必须重传。由此出现了两个用于保持HTTP状态连接的技术，这就是Session、Cookies。Session在服务器端，Cookies在客户端，有了Cookies浏览器在下次访问网页时会自动附带上它，并发送给服务器，服务器端通过识别Cookies鉴定是哪个用户，再判断是否是登陆状态，进而返回对应的响应。Cookies里面保存了登陆的凭证，在爬虫中，一般把Cookies放在请求头里直接请求</p>
+<h2 id="4-3-原理">4.3 原理</h2>
+<p>​	<strong>Session</strong>：会话，Session对象用来存储特定用户Session所需的属性及配置信息。当用户在应用程序的web页之间跳转时，存储在Session对象中的变量不会丢失。</p>
+<p>​	<strong>Cookies</strong>：网站为了辨别用户身份、进行Session跟踪而存储在用户本地终端上的数据Session维持：客户端第一次请求服务器时，服务器会返回一个响应头中带有Set-Cookie字段的响应给客户端，用来标记是哪一个用户，客户端浏览器会把Cookies保存起来。当浏览器下一次请求服务器时，浏览器会把此Cookies放到请求头一起提交给服务器，Cookies携带了Session ID，服务器检查该Cookies即可找到对应的Session是什么，再判断Session来以此辨认用户状态。在成功登录某个网站时，服务器会告诉客户端设置哪些Cookies信息，在后续访问页面时客户端会把Cookies发送给服务器，服务器再找到对应的Session加以判断。如果Session中某些设置登陆状态的变量是有效的，则证明用户处于登陆状态</p>
+<h2 id="4-4-属性结构">4.4 属性结构</h2>
+<p>Cookies中有哪些内容：</p>
+<p>我们来看看Cookies都有哪些内容。在浏览器开发者工具中打开Application选项卡，然后在左侧会有一个Storage部分，最后一项即为Cookies，其中每个条目称为Cookie，它有如下几个属性</p>
+<p><img src="https://i.loli.net/2020/03/07/69PDuW4mKbYTp28.png" alt="4-1.png"></p>
+<ul>
+<li>name：该Cookie的名称，Cookie一旦创建名称不可更改</li>
+<li>value：该Cookie的值，如果值为Unicode字符，需要为字符编码，如果值为二进制数据，需要BASE64编码</li>
+<li>Domain：可以访问该Cookie的域名</li>
+<li>Path：Cookie的使用路径，如果是/path/，则只有路径为/path/的页面可以访问该Cookie</li>
+<li>Expires/Max Age：该Cookie的失效时间</li>
+<li>Size：Cookie大小</li>
+<li>HttpOnly：如果为true，只有在http headers中会带有此Cookie的信息</li>
+<li>Secure：是否仅被使用安全协议传输</li>
+</ul>
 
       
       <!-- reward -->
@@ -197,7 +197,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7j2a7fl000nfgvsbe5lh64r/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7k2e6ic000oiwvsh35l7x40/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -215,19 +215,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck7j2a7fh000ifgvshnxtfvky/" class="article-nav-link">
+      <a href="/2020/ck7k2e6hl0008iwvsa17yfw9x/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            4.Session和Cookies
+            NLP01-绪论
           
         </div>
       </a>
     
     
-      <a href="/2020/ck7j2a7ff000gfgvsc79ma4zu/" class="article-nav-link">
+      <a href="/2020/ck7k2e6i7000jiwvsehh2bdv4/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">2.Web网页基础</div>
+        <div class="article-nav-title">3.爬虫基本原理</div>
       </a>
     
   </nav>

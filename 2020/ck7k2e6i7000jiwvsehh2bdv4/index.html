@@ -10,11 +10,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    DLHLP——1.课程简介 |  黑头呆鱼进化之旅
+    3.爬虫基本原理 |  黑头呆鱼进化之旅
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
-  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="/me.ico" />
   
   
 <link rel="stylesheet" href="/css/main.css">
@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-DLHLP——1.课程简介" class="article article-type-post" itemscope
+  <article id="post-爬虫-03-爬虫基本原理" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +43,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  DLHLP——1.课程简介
+  3.爬虫基本原理
 </h1>
   
 
@@ -52,12 +52,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7j2a7eb0000fgvs1fs9gqzs/" class="article-date">
-  <time datetime="2020-03-07T17:41:40.000Z" itemprop="datePublished">2020-03-08</time>
+      <a href="/2020/ck7k2e6i7000jiwvsehh2bdv4/" class="article-date">
+  <time datetime="2020-03-06T20:42:29.000Z" itemprop="datePublished">2020-03-07</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/DLHLP/">DLHLP</a>
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
   </div>
 
       
@@ -67,7 +67,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">525字</span>
+            <span class="post-count">352字</span>
         </span>
     </span>
 
@@ -76,7 +76,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
+            <span class="post-count">1分钟</span>
         </span>
     </span>
 </div>
@@ -103,63 +103,35 @@
       
 
       
-      <h1>DLHLP——1.课程简介</h1>
-<hr>
-<p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
-<hr>
-<p>台大李宏毅老师2020年开的深度学习与人类语言处理课程，文档记录课程笔记。</p>
-<p>课程YouTube链接：<a href="https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG" target="_blank" rel="noopener">https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG</a></p>
-<p>课程网站Home：<a href="http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html" target="_blank" rel="noopener">http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html</a></p>
-<a id="more"></a>
+      <h1>3. 爬虫的基本原理</h1>
 <p>[toc]</p>
-<h2 id="1-本课程和其他NLP课程的不同之处">1 本课程和其他NLP课程的不同之处</h2>
-<p>常见NLP课程内容——文字：语音=9：1</p>
-<p>本课程内容——文字：语音=5：5</p>
-<p>1.1 为什么语音非常重要？</p>
-<p>语音处理不仅仅包含语音辨识</p>
-<p>有些语言是没有文字的，语言处理非常重要</p>
-<p>1.2 人类语音非常复杂</p>
-<ul>
-<li>语音：</li>
-</ul>
-<p><em>常用多少K赫兹便是多少信息量</em></p>
-<p>一秒钟的声音讯号需要一万六千个real number来表示</p>
-<p>即使是同一个人说的同一句话，声音讯号也不会一样</p>
-<ul>
-<li>文字：</li>
-</ul>
-<p>句子可以含有巨多的词汇，非常复杂</p>
-<h2 id="2-六种语言处理模型：">2 六种语言处理模型：</h2>
-<p><img src="https://i.loli.net/2020/03/08/iot8lyqIZvFQ5Tb.png" alt="TIM截图20200308003659.png"></p>
-<h3 id="2-1-输入语音，输出文字">2.1 输入语音，输出文字</h3>
-<p>语音识别（speech recognition）</p>
-<p>ASR：END-to-END——80MB</p>
-<p>​		   不是一般的seq2seq的model</p>
-<p>传统语音辨识：有很多模组，整个模型会非常大——2GB</p>
-<h3 id="2-2-输入文字，输出语音">2.2 输入文字，输出语音</h3>
-<p>语音合成——TTS (text-to-speech）</p>
-<h3 id="2-3-输入语音，输出语音">2.3 输入语音，输出语音</h3>
-<p>语音分离（Speech Separation）——鸡尾酒会效应</p>
-<p>Voice Conversion——使用one-shot learning</p>
-<h3 id="2-4-输入语音，输出语音的类别">2.4 输入语音，输出语音的类别</h3>
-<p>Speaker Recognition</p>
-<p>Keyword Spotting：模型要够小（低功耗）</p>
-<h3 id="2-5-输入文字，输出文字">2.5 输入文字，输出文字</h3>
-<p>机器翻译</p>
-<p>自动摘要</p>
-<p>聊天机器人</p>
-<p>问答系统</p>
-<h3 id="2-6-输入文字，输出文字的类别">2.6 输入文字，输出文字的类别</h3>
-<h2 id="3-其他课程内容">3. 其他课程内容</h2>
-<h3 id="3-1-Meta-Learning">3.1 Meta Learning</h3>
-<p><img src="https://i.loli.net/2020/03/08/7f9D8LXeOh5vTRz.png" alt="TIM截图20200308004504.png"></p>
-<h3 id="3-2-Adversarial-Attack">3.2 Adversarial Attack</h3>
-<h3 id="3-3-可解释AI">3.3 可解释AI</h3>
-<h2 id="结语-有关硬train一发">结语 有关<strong>硬train一发</strong></h2>
-<p>Model=Deep Network</p>
-<p>遇到问题用deep learning<strong>硬train一发</strong>就对了</p>
-<p>什么是<strong>硬train一发</strong>：</p>
-<p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
+<h2 id="3-1-爬虫概述">3.1 爬虫概述</h2>
+<p>​	简单地说，爬虫就是获取网页并提取保存信息的自动化程序</p>
+<h2 id="3-2-获取网页">3.2 获取网页</h2>
+<p>​	获取网页的源代码，向网站的服务器发送一个请求，返回的响应体便是网页源代码</p>
+<p>​	借助urllib、requests库可以实现HTTP请求操作，请求和响应都可以用库提供的数据结构表示，得到相应之后只需解析数据结构中的Body部分</p>
+<a id="more"></a>
+<h2 id="3-3-提取信息">3.3 提取信息</h2>
+<p>​	如何在网页源代码中提取想要的数据，使杂乱的数据变得条理清晰</p>
+<ol>
+<li>正则表达式</li>
+<li>根据节点属性、CSS选择器、XPath来提取网页信息的库，如Beatutiful Soup、pyquery、lxml等</li>
+</ol>
+<h2 id="3-4-保存数据">3.4 保存数据</h2>
+<ol>
+<li>简单保存为TXT文本或JSON数据</li>
+<li>保存到MySQL或者MongoDB等数据库</li>
+<li>借助SFTP保存到远程服务</li>
+</ol>
+<h2 id="3-5-抓取什么样的数据">3.5 抓取什么样的数据</h2>
+<ol>
+<li>最常见：HTML源代码</li>
+<li>JSON字符串（API接口常用）</li>
+<li>二进制数据——图片、视频、音频</li>
+</ol>
+<h2 id="3-6-JavaScript渲染页面">3. 6 JavaScript渲染页面</h2>
+<p>​	有时使用urlib和requests抓取网页时，得到的源代码和浏览器中的不同。因为网页使用Ajax、前端模块化工具构建，整个网页可能是由JavaScript渲染出来的，原始HTML是一个空壳</p>
+<p>​	可使用Selenium、Splash的库来模拟JavaScript渲染</p>
 
       
       <!-- reward -->
@@ -225,14 +197,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7j2a7eb0000fgvs1fs9gqzs/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7k2e6i7000jiwvsehh2bdv4/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DLHLP/" rel="tag">DLHLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%A4%84%E7%90%86/" rel="tag">语音处理</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
 
 
     </footer>
@@ -243,19 +215,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck7j2a7ex0006fgvsd4esh6s5/" class="article-nav-link">
+      <a href="/2020/ck7k2e6ic000oiwvsh35l7x40/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            NLP03-形式语言与自动机.md
+            4.Session和Cookies
           
         </div>
       </a>
     
     
-      <a href="/2020/ck7j2a7eo0002fgvs6dhm7rkx/" class="article-nav-link">
+      <a href="/2020/ck7k2e6i5000hiwvsfn292k4v/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">NLP01-绪论</div>
+        <div class="article-nav-title">2.Web网页基础</div>
       </a>
     
   </nav>
