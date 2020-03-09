@@ -125,7 +125,11 @@
 <div id="share-mask"></div>
       
       
-
+	      
+        <span id="busuanzi_container_page_pv" style="color: #999; margin-left: 30px">
+          阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+      
     </footer>
 
   </div>
@@ -147,13 +151,13 @@
 <script>
     new Valine({
         el: '#vcomments',
-        app_id: '',
-        app_key: '',
+        app_id: 'R4YHzXgdvm9AwvtS2tNmT9g8-gzGzoHsz',
+        app_key: '5EggBAi2pBMt9hj0m8p3PeXn',
         path: window.location.pathname,
         notify: 'false',
         verify: 'false',
-        avatar: 'mp',
-        placeholder: '给我的文章加点评论吧~',
+        avatar: 'retro',
+        placeholder: '来唠嗑不？',
         recordIP: true
     });
     const infoEle = document.querySelector('#vcomments .info');
@@ -260,6 +264,22 @@
     
     <li class="nav-item">
       <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%AE%BA%E6%96%87">论文</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E9%9A%8F%E7%AC%94">随笔</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E7%BC%96%E7%A8%8B">编程</a>
     </li>
     
     <li class="nav-item">
@@ -495,7 +515,41 @@
 
 
     
-  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=456175582&auto=0&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 
 </html>
