@@ -3,7 +3,14 @@
   <entry>
     <title>LaTeX符号速查表</title>
     <url>/2020/ck7mbkzho0001mgvs5jjt9j14/</url>
-    <content><![CDATA[<p>title: LaTeX符号速查表 top: false cover: false toc: true mathjax: true tags: - LaTeX - 工具 categories: - 工具 date: 2020-03-11 03:37:21 password: summary:</p>
+    <content><![CDATA[<hr />
+<p>title: LaTeX符号速查表 top: false cover: false toc: true mathjax: true tags:</p>
+<ul>
+<li><p>LaTeX</p></li>
+<li><p>工具 categories:</p></li>
+<li><p>工具 date: 2020-03-11 03:37:21 password: summary:</p></li>
+</ul>
+<hr />
 <a id="more"></a>
 <p>转载：https://imzlp.me/posts/23224/</p>
 <p>[toc]</p>
@@ -819,8 +826,8 @@ D &amp; E &amp; F
 <p>我们以一个简单的房屋价格预测作为例子来解释线性回归的基本要素。这个应用的目标是预测一栋房子的售出价格（元）。为了简单起见，这里我们假设价格只取决于房屋状况的两个因素，即面积（平方米）和房龄（年）。接下来我们希望探索价格与这两个因素的具体关系。</p>
 <h3 id="模型">1.1 模型</h3>
 <p>设房屋的面积为<span class="math inline">\(x1\)</span>，房龄为<span class="math inline">\(x2\)</span>，售出价格为<span class="math inline">\(y\)</span>。我们需要建立基于输入<span class="math inline">\(x1\)</span>和<span class="math inline">\(x2\)</span>来计算输出<span class="math inline">\(y\)</span>的表达式，也就是模型（model）。线性回归假设输出与各个输入之间是线性关系：</p>
-<p><span class="math inline">\(y\)</span></p>
-<p>其中<em>w</em>1和<em>w</em>2是权重（weight），<em>b</em>是偏差（bias），且均为标量。它们是线性回归模型的参数（parameter）。模型输出ˆ<em>y</em>是线性回归对真实价格<em>y</em>的预测或估计。我们通常允许它们之间有一定误差。</p>
+<p><span class="math display">\[\hat{y}=x_1w_1+x_2w_2+b\]</span></p>
+<p>其中<span class="math inline">\(w_1\)</span>和<span class="math inline">\(w_2\)</span>是权重（weight），<span class="math inline">\(b\)</span>是偏差（bias），且均为标量。它们是线性回归模型的参数（parameter）。模型输出<span class="math inline">\(\hat{y}\)</span>是线性回归对真实价格<span class="math inline">\(y\)</span>的预测或估计。我们通常允许它们之间有一定误差。</p>
 ]]></content>
       <categories>
         <category>DeepLearning</category>
