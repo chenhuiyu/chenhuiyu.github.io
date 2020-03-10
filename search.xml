@@ -3,8 +3,7 @@
   <entry>
     <title>LaTeX符号速查</title>
     <url>/2020/ck7mbxj8c0002h0vsgjv87zg3/</url>
-    <content><![CDATA[<a id="more"></a>
-<p>转载：https://imzlp.me/posts/23224/</p>
+    <content><![CDATA[<p>转载：https://imzlp.me/posts/23224/</p>
 <p>[toc]</p>
 <h3 id="加减乘除">加减乘除</h3>
 <table>
@@ -33,6 +32,7 @@
 </tr>
 </tbody>
 </table>
+<a id="more"></a>
 <h3 id="幂运算">幂运算</h3>
 <table>
 <thead>
@@ -827,7 +827,6 @@ D &amp; E &amp; F
 <p><span class="math display">\[\hat{y}=x_1w_1+x_2w_2+b\]</span></p>
 <p>其中<span class="math inline">\(w_1\)</span>和<span class="math inline">\(w_2\)</span>是权重（weight），<span class="math inline">\(b\)</span>是偏差（bias），且均为标量。它们是线性回归模型的参数（parameter）。模型输出<span class="math inline">\(\hat{y}\)</span>是线性回归对真实价格<span class="math inline">\(y\)</span>的预测或估计。我们通常允许它们之间有一定误差。</p>
 <a id="more"></a>
-<p>这个也没写完 先占坑</p>
 ]]></content>
       <categories>
         <category>DeepLearning</category>
