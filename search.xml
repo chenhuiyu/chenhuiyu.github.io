@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>LaTeX符号速查表</title>
-    <url>/2020/ck7mbkzho0001mgvs5jjt9j14/</url>
-    <content><![CDATA[<hr />
-<p>title: LaTeX符号速查表 top: false cover: false toc: true mathjax: true tags:</p>
-<ul>
-<li><p>LaTeX</p></li>
-<li><p>工具 categories:</p></li>
-<li><p>工具 date: 2020-03-11 03:37:21 password: summary:</p></li>
-</ul>
-<hr />
-<a id="more"></a>
+    <title>LaTeX符号速查</title>
+    <url>/2020/ck7mbxj8c0002h0vsgjv87zg3/</url>
+    <content><![CDATA[<a id="more"></a>
 <p>转载：https://imzlp.me/posts/23224/</p>
 <p>[toc]</p>
 <h3 id="加减乘除">加减乘除</h3>
@@ -815,10 +807,16 @@ D &amp; E &amp; F
 </tbody>
 </table>
 ]]></content>
+      <categories>
+        <category>LaTeX</category>
+      </categories>
+      <tags>
+        <tag>LaTeX</tag>
+      </tags>
   </entry>
   <entry>
     <title>DL-01-线性回归</title>
-    <url>/2020/ck7mbkzhc0000mgvs2pkjh3nk/</url>
+    <url>/2020/ck7mbxj810000h0vs3yfkf82o/</url>
     <content><![CDATA[<h1 id="线性回归">线性回归</h1>
 <p>[toc]</p>
 <p>线性回归输出是一个连续值，因此适用于回归问题。softmax回归则适用于分类问题。线性回归和softmax回归都是单层神经网络，以线性回归为例，介绍大多数深度学习模型的基本要素和表示方法。</p>
@@ -828,6 +826,8 @@ D &amp; E &amp; F
 <p>设房屋的面积为<span class="math inline">\(x1\)</span>，房龄为<span class="math inline">\(x2\)</span>，售出价格为<span class="math inline">\(y\)</span>。我们需要建立基于输入<span class="math inline">\(x1\)</span>和<span class="math inline">\(x2\)</span>来计算输出<span class="math inline">\(y\)</span>的表达式，也就是模型（model）。线性回归假设输出与各个输入之间是线性关系：</p>
 <p><span class="math display">\[\hat{y}=x_1w_1+x_2w_2+b\]</span></p>
 <p>其中<span class="math inline">\(w_1\)</span>和<span class="math inline">\(w_2\)</span>是权重（weight），<span class="math inline">\(b\)</span>是偏差（bias），且均为标量。它们是线性回归模型的参数（parameter）。模型输出<span class="math inline">\(\hat{y}\)</span>是线性回归对真实价格<span class="math inline">\(y\)</span>的预测或估计。我们通常允许它们之间有一定误差。</p>
+<a id="more"></a>
+<p>这个也没写完 先占坑</p>
 ]]></content>
       <categories>
         <category>DeepLearning</category>
@@ -838,13 +838,14 @@ D &amp; E &amp; F
   </entry>
   <entry>
     <title>MLHW1-预测PM2.5-LinearRegression</title>
-    <url>/2020/ck7mbkzja0006mgvs0pkh2pdx/</url>
+    <url>/2020/ck7mbxj8n0006h0vscbx9h2ic/</url>
     <content><![CDATA[<h1 id="homework-1-linear-regression">Homework 1: Linear Regression</h1>
 <p>[toc]</p>
 <p><em>李宏毅老师课程ML20作业1</em></p>
 <h2 id="题目及要求">题目及要求</h2>
 <p>本次作业的资料是从行政院环境环保署空气品质监测网所下载的观测资料。在本作业实作 linear regression 预测出 PM2.5 的数值</p>
 <p>本次作业使用丰原站的观测记录，分成 train set 跟 test set。train set 是丰原站每个月的前 20 天所有资料。test set 则是从丰原站剩下的资料中取样出来。</p>
+<a id="more"></a>
 <ul>
 <li><p>train.csv: 每个月前 20 天的完整资料。</p></li>
 <li><p>test.csv : 从剩下的资料当中取样出连续的 10 小时为一笔，前九小时的所有观测数据当作 feature，第十小时的 PM2.5 当作 answer。一共取出 240 笔不重複的 test data，请根据 feature 预测这 240 笔的 PM2.5。</p>
@@ -862,7 +863,7 @@ D &amp; E &amp; F
 </ul>
 <h2 id="实现">实现</h2>
 <h3 id="载入数据">载入数据</h3>
-<p>​ 课程提供的数据存放在google.colab上，首先<code>pip install google.colab</code>，这时出现了一些问题，说有一个库现在版本不对，需要卸载重装，但是这个库是distutils安装的，不知道直接卸载能不能正确的卸载干净。懒得理他，我坚信我的库是对的，在pip命令后加上--ignore-installed表示忽略已经安装的库，直接整上新的。</p>
+<p>没写完 先占坑</p>
 ]]></content>
       <categories>
         <category>Machine Learning</category>
@@ -874,7 +875,7 @@ D &amp; E &amp; F
   </entry>
   <entry>
     <title>基于SRGAN的超分辨率重建</title>
-    <url>/2020/ck7kki38q000e8svs4cbfauws/</url>
+    <url>/2020/ck7mbxj98000jh0vs0fpj8zbi/</url>
     <content><![CDATA[<h1 id="基于srgan的超分辨率重建">基于SRGAN的超分辨率重建</h1>
 <p>[toc]</p>
 <h2 id="简介">1. 简介</h2>
@@ -927,7 +928,7 @@ D &amp; E &amp; F
 <h2 id="srgan模型">3. SRGAN模型</h2>
 <p>高分辨率图像（HR）被下采样为低分辨率图像（LR）。 GAN生成器用于将其上采样到超分辨率图像（SR）。 我们使用鉴别器来识别HR图像，并反向传播GAN损失以训练鉴别器和生成器。</p>
 <figure>
-<img src="https://i.loli.net/2020/03/09/SvJ6Cg1cuNpis9y.png" alt="" /><figcaption>TIM截图20200309030326.png</figcaption>
+<img src="https://i.loli.net/2020/03/09/SvJ6Cg1cuNpis9y.png" alt="TIM截图20200309030326.png" /><figcaption>TIM截图20200309030326.png</figcaption>
 </figure>
 <p>这是生成器和判别器网络的体系结构，其中为每个卷积层指示了相应的内核大小(<span class="math inline">\(k\)</span>)，特征图和(<span class="math inline">\(k\)</span>)，步幅(<span class="math inline">\(s\)</span>)。</p>
 <p>生成器：输入<span class="math inline">\(\to\)</span>卷积层$<span class="math inline">\(16个残差块\)</span><span class="math inline">\(卷积层\)</span><span class="math inline">\(BN层\)</span><span class="math inline">\(按元素求和\)</span><span class="math inline">\(卷积层\)</span><span class="math inline">\(2层上采样\)</span><span class="math inline">\(卷积层\)</span>$输出。</p>
@@ -937,13 +938,13 @@ D &amp; E &amp; F
 <p>​ 随着网络层数的增加，网络发生了退化的现象：随着网络层数的增多，训练集loss逐渐下降，然后趋于饱和，当再增加网络深度的话，训练集loss反而会增大。当网络退化时，浅层网络能够达到比深层网络更好的训练效果，这时如果把低层的特征传到高层，那么效果应该至少不比浅层的网络效果差，而ResNet加入了直接映射，保证了 <span class="math inline">\(l+1\)</span>层的网络一定比<span class="math inline">\(l\)</span>层包含更多的图像信息。</p>
 <p>​ 残差网络是由一系列残差块组成的。一个残差块可以表示为：<span class="math display">\[x_{l+1}=h(x_l)+\mathcal F(x_l,W_l)\]</span>。残差块由两部分组成：直接映射<span class="math inline">\(h(x_l)\)</span>和残差部分<span class="math inline">\(\mathcal F(x_l,W_l)\)</span>。下图是5种不同的残差块的结构，SRGAN的生成器采用了原始的(a)类残差块。并且激活函数使用了PRelu。</p>
 <figure>
-<img src="https://i.loli.net/2020/03/09/6tiPNnphTlkzY9C.png" alt="" /><figcaption>TIM截图20200309042154.png</figcaption>
+<img src="https://i.loli.net/2020/03/09/6tiPNnphTlkzY9C.png" alt="TIM截图20200309042154.png" /><figcaption>TIM截图20200309042154.png</figcaption>
 </figure>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#定义残差块</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">residual_block</span><span class="params">(x)</span>:</span></span><br><span class="line">    filters = [<span class="number">64</span>, <span class="number">64</span>]</span><br><span class="line">    kernel_size = <span class="number">3</span></span><br><span class="line">    strides = <span class="number">1</span></span><br><span class="line">    padding = <span class="string">"same"</span></span><br><span class="line">    momentum = <span class="number">0.8</span></span><br><span class="line">    activation = <span class="string">"relu"</span></span><br><span class="line"></span><br><span class="line">    res = Conv2D(filters=filters[<span class="number">0</span>], kernel_size=kernel_size, strides=strides, padding=padding)(x)</span><br><span class="line">    res = Activation(activation=activation)(res)</span><br><span class="line">    res = BatchNormalization(momentum=momentum)(res)</span><br><span class="line">    res = Conv2D(filters=filters[<span class="number">1</span>], kernel_size=kernel_size, strides=strides, padding=padding)(res)</span><br><span class="line">    res = BatchNormalization(momentum=momentum)(res)</span><br><span class="line"></span><br><span class="line">    res = Add()([res, x])</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 <h4 id="上采样">3.1.2 上采样：</h4>
 <p>​ PixelShuffle(像素重组)的主要功能是将低分辨的特征图，通过卷积和多通道间的重组得到高分辨率的特征图。对特征图做上采样，生成器中使用了2个亚像素卷积。</p>
 <figure>
-<img src="https://i.loli.net/2020/03/09/iR7rnpTkoBvS1fK.png" alt="" /><figcaption>1.png</figcaption>
+<img src="https://i.loli.net/2020/03/09/iR7rnpTkoBvS1fK.png" alt="1.png" /><figcaption>1.png</figcaption>
 </figure>
 <p>​ 上图展示了如何进行亚像素卷积，前面就是普通的CNN网络，在模型倒数第二层学习对应的通道数<span class="math inline">\(r^2c\)</span>的卷积，其中<span class="math inline">\(c\)</span>为最终的通道数，如输出是RGB图，则<span class="math inline">\(c\)</span>为3，如输出是灰度图，则<span class="math inline">\(c\)</span>为1；<span class="math inline">\(r\)</span>为需要进行的上采样倍数，为正整数倍，不同的上采样倍数只需要调整这一层卷积的通道数即可。如果想对原图放大3倍，那么需要生成出<span class="math inline">\(3^2=9\)</span>个同样大小的特征图。将九个特征图拼成一个大图，这就是亚像素卷积的操作。</p>
 <h4 id="生成器实现">3.1.3 生成器实现</h4>
@@ -968,7 +969,7 @@ D &amp; E &amp; F
   </entry>
   <entry>
     <title>生成式对抗网络综述</title>
-    <url>/2020/ck7kki398000w8svs5zb1boad/</url>
+    <url>/2020/ck7mbxjb80028h0vs8eby4k2i/</url>
     <content><![CDATA[<h1 id="生成式对抗网络综述">生成式对抗网络综述</h1>
 <p>[toc]</p>
 <h2 id="简介">1. 简介</h2>
@@ -980,7 +981,7 @@ D &amp; E &amp; F
 <h3 id="原始gan">2.1 原始GAN</h3>
 <p>​ 当模型都是神经网络时，GANs框架很容易实现。为了从真实数据<span class="math inline">\(x\)</span>的分布中学习到生成器的概率分布<span class="math inline">\(p_g\)</span>，定义输入噪声变量的先验为<span class="math inline">\(p_z\)</span>，其中<span class="math inline">\(z\)</span>是噪音变量。然后，从噪声空间到数据空间的映射被记为<span class="math inline">\(G(z,\theta_g)\)</span>，其中<span class="math inline">\(G\)</span>是神经网络结构表示的可微函数，其参数为<span class="math inline">\(\theta_g\)</span>。除<span class="math inline">\(G\)</span>之外，还存在一个神经网络<span class="math inline">\(D(x，θ_d)\)</span>，其参数为<span class="math inline">\(θ_d\)</span>，并且<span class="math inline">\(D(x)\)</span>的输出是单个标量。<span class="math inline">\(D(x)\)</span>表示<span class="math inline">\(x\)</span>来自真实样本数据而非生成器<span class="math inline">\(G\)</span>所产生的概率。首先对判别器<span class="math inline">\(D\)</span>进行训练，使其可以最大可能地分辨数据是来自真实样本数据还是生成器<span class="math inline">\(G\)</span>产生的假数据。其次训练<span class="math inline">\(G\)</span>，同时最小化<span class="math inline">\(log(1- D(G(z)))\)</span>。</p>
 <figure>
-<img src="https://i.loli.net/2020/03/08/aiEVHpJmhudCs3r.jpg" alt="" /><figcaption>图一.png</figcaption>
+<img src="https://i.loli.net/2020/03/08/aiEVHpJmhudCs3r.jpg" alt="图一.png" /><figcaption>图一.png</figcaption>
 </figure>
 <p><strong>GAN的目标函数</strong></p>
 <p><span class="math inline">\(\min_\limits{G} \max_\limits{D}V(D,G)=E_{x\sim p_{data}}[logD(x)]+E_{z\sim p_z(z)}[log(1-D(G(z)))]\)</span></p>
@@ -1030,7 +1031,7 @@ D &amp; E &amp; F
   </entry>
   <entry>
     <title>爬虫-05-多线程的基本原理</title>
-    <url>/2020/ck7kki395000u8svsepr270w2/</url>
+    <url>/2020/ck7mbxjb50026h0vs4xxxe2u4/</url>
     <content><![CDATA[<h1 id="爬虫-05-多线程的基本原理">爬虫-05-多线程的基本原理</h1>
 <p>在编写爬虫程序时，为了提高效率，想同时运行多个爬虫任务，这里需要设计多进程和多线程的知识。</p>
 <p>[toc]</p>
@@ -1089,10 +1090,10 @@ D &amp; E &amp; F
   </entry>
   <entry>
     <title>NLP03-形式语言与自动机.md</title>
-    <url>/2020/ck7kki38f00088svs8ajc1ql8/</url>
+    <url>/2020/ck7mbxj92000dh0vsfafqeyle/</url>
     <content><![CDATA[<h1 id="第三章-形式语言与自动机">第三章 形式语言与自动机</h1>
 <figure>
-<img src="https://i.loli.net/2020/03/08/oat5uhJSM3Y8qPj.png" alt="" /><figcaption>第三周 形式语言与自动机-01.png</figcaption>
+<img src="https://i.loli.net/2020/03/08/oat5uhJSM3Y8qPj.png" alt="第三周 形式语言与自动机-01.png" /><figcaption>第三周 形式语言与自动机-01.png</figcaption>
 </figure>
 <a id="more"></a>
 <p><img src="https://i.loli.net/2020/03/08/baVdnAPqlNzsKRX.png" alt="第三周 形式语言与自动机-02.png" /> <img src="https://i.loli.net/2020/03/08/12mkZgfSMqCYL7y.png" alt="第三周 形式语言与自动机-03.png" /> <img src="https://i.loli.net/2020/03/08/BakZgbqX8zYCHT5.png" alt="第三周 形式语言与自动机-04.png" /> <img src="https://i.loli.net/2020/03/08/5KBctrywhuIfsEl.png" alt="第三周 形式语言与自动机-05.png" /> <img src="https://i.loli.net/2020/03/08/kIhbKnifyFlGrMm.png" alt="第三周 形式语言与自动机-06.png" /> <img src="https://i.loli.net/2020/03/08/tnYLH7oAaJy8d3k.png" alt="第三周 形式语言与自动机-07.png" /> <img src="https://i.loli.net/2020/03/08/Os3IgVSH6evFiGx.png" alt="第三周 形式语言与自动机-08.png" /> <img src="https://i.loli.net/2020/03/08/vdqRhntOMeks6zS.png" alt="第三周 形式语言与自动机-09.png" /> <img src="https://i.loli.net/2020/03/08/hWzGJwV6vdqSRTO.png" alt="第三周 形式语言与自动机-10.png" /> <img src="https://i.loli.net/2020/03/08/nSICGdHmouB8fbs.png" alt="第三周 形式语言与自动机-11.png" /> <img src="https://i.loli.net/2020/03/08/QU7p2ycfaLt5G1R.png" alt="第三周 形式语言与自动机-12.png" /></p>
@@ -1108,7 +1109,7 @@ D &amp; E &amp; F
   </entry>
   <entry>
     <title>DLHLP——1.课程简介</title>
-    <url>/2020/ck7kki37s00028svs5m9d2vha/</url>
+    <url>/2020/ck7mbxj8q0007h0vsfxp9fgx8/</url>
     <content><![CDATA[<h1 id="dlhlp1.课程简介">DLHLP——1.课程简介</h1>
 <hr />
 <p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
@@ -1137,7 +1138,7 @@ D &amp; E &amp; F
 <p>句子可以含有巨多的词汇，非常复杂</p>
 <h2 id="六种语言处理模型">2 六种语言处理模型：</h2>
 <figure>
-<img src="https://i.loli.net/2020/03/08/iot8lyqIZvFQ5Tb.png" alt="" /><figcaption>TIM截图20200308003659.png</figcaption>
+<img src="https://i.loli.net/2020/03/08/iot8lyqIZvFQ5Tb.png" alt="TIM截图20200308003659.png" /><figcaption>TIM截图20200308003659.png</figcaption>
 </figure>
 <h3 id="输入语音输出文字">2.1 输入语音，输出文字</h3>
 <p>语音识别（speech recognition）</p>
@@ -1161,7 +1162,7 @@ D &amp; E &amp; F
 <h2 id="其他课程内容">3. 其他课程内容</h2>
 <h3 id="meta-learning">3.1 Meta Learning</h3>
 <figure>
-<img src="https://i.loli.net/2020/03/08/7f9D8LXeOh5vTRz.png" alt="" /><figcaption>TIM截图20200308004504.png</figcaption>
+<img src="https://i.loli.net/2020/03/08/7f9D8LXeOh5vTRz.png" alt="TIM截图20200308004504.png" /><figcaption>TIM截图20200308004504.png</figcaption>
 </figure>
 <h3 id="adversarial-attack">3.2 Adversarial Attack</h3>
 <h3 id="可解释ai">3.3 可解释AI</h3>
@@ -1181,10 +1182,10 @@ D &amp; E &amp; F
   </entry>
   <entry>
     <title>NLP01-绪论</title>
-    <url>/2020/ck7kki38400048svs0j4rbbtg/</url>
+    <url>/2020/ck7mbxj8z000ch0vsexwlbyhs/</url>
     <content><![CDATA[<h1 id="自然语言处理-第一章绪论">自然语言处理 第一章——绪论</h1>
 <figure>
-<img src="https://i.loli.net/2020/03/07/mQyYtiSbqzxnJwR.jpg" alt="" /><figcaption>0001.jpg</figcaption>
+<img src="https://i.loli.net/2020/03/07/mQyYtiSbqzxnJwR.jpg" alt="0001.jpg" /><figcaption>0001.jpg</figcaption>
 </figure>
 <a id="more"></a>
 <p><img src="https://i.loli.net/2020/03/07/9K7zaxhstriWBL6.jpg" alt="0002.jpg" /> <img src="https://i.loli.net/2020/03/07/NOG8suYBlViWD1c.jpg" alt="0003.jpg" /> <img src="https://i.loli.net/2020/03/07/SbrkLm5t6y7IhiD.jpg" alt="0004.jpg" /> <img src="https://i.loli.net/2020/03/07/ufKkVDYhE3Qs7lo.jpg" alt="0005.jpg" /> <img src="https://i.loli.net/2020/03/07/NfbPYnIW3GtC82V.jpg" alt="0006.jpg" /> <img src="https://i.loli.net/2020/03/07/BVHQeox9JgnvDjY.jpg" alt="0007.jpg" /> <img src="https://i.loli.net/2020/03/07/mdbHoBTh2U74vRy.jpg" alt="0008.jpg" /></p>
@@ -1199,7 +1200,7 @@ D &amp; E &amp; F
   </entry>
   <entry>
     <title>爬虫-04-Session和Cookies</title>
-    <url>/2020/ck7kki392000q8svs4klxg6we/</url>
+    <url>/2020/ck7mbxjb20025h0vsa4lm3az4/</url>
     <content><![CDATA[<h1 id="爬虫-04-session和cookies">爬虫-04-Session和Cookies</h1>
 <p>[toc]</p>
 <p>崔庆才《52轻松搞定网络爬虫》第4讲，版权归拉勾网所有。</p>
@@ -1219,7 +1220,7 @@ D &amp; E &amp; F
 <p>Cookies中有哪些内容：</p>
 <p>我们来看看Cookies都有哪些内容。在浏览器开发者工具中打开Application选项卡，然后在左侧会有一个Storage部分，最后一项即为Cookies，其中每个条目称为Cookie，它有如下几个属性</p>
 <figure>
-<img src="https://i.loli.net/2020/03/07/69PDuW4mKbYTp28.png" alt="" /><figcaption>4-1.png</figcaption>
+<img src="https://i.loli.net/2020/03/07/69PDuW4mKbYTp28.png" alt="4-1.png" /><figcaption>4-1.png</figcaption>
 </figure>
 <ul>
 <li>name：该Cookie的名称，Cookie一旦创建名称不可更改</li>
@@ -1242,7 +1243,7 @@ D &amp; E &amp; F
   </entry>
   <entry>
     <title>爬虫-03-爬虫基本原理</title>
-    <url>/2020/ck7kki390000p8svs5zav7kok/</url>
+    <url>/2020/ck7mbxj9b000nh0vsgikqac6p/</url>
     <content><![CDATA[<h1 id="爬虫-03-爬虫基本原理">爬虫-03-爬虫基本原理</h1>
 <p>[toc]</p>
 <h2 id="爬虫概述">3.1 爬虫概述</h2>
@@ -1283,7 +1284,7 @@ D &amp; E &amp; F
   </entry>
   <entry>
     <title>爬虫-02-Web网页基础</title>
-    <url>/2020/ck7kki38x000k8svs13b8fhib/</url>
+    <url>/2020/ck7mbxj9i000sh0vs0yhmgejo/</url>
     <content><![CDATA[<h1 id="爬虫-02-web网页基础">爬虫-02-Web网页基础</h1>
 <p>[toc]</p>
 <h2 id="网页的基本组成">2.1 网页的基本组成</h2>
@@ -1347,7 +1348,7 @@ head 标签内定义了一些页面的配置和引用，如：
 </ul>
 <p>HTML DOM 将 HTML 文档视作树结构，这种结构被称为节点树，如图所示。</p>
 <figure>
-<img src="https://i.loli.net/2020/03/07/DXf5U7yRJob8Nrh.jpg" alt="" /><figcaption>2-1.jpg</figcaption>
+<img src="https://i.loli.net/2020/03/07/DXf5U7yRJob8Nrh.jpg" alt="2-1.jpg" /><figcaption>2-1.jpg</figcaption>
 </figure>
 <h2 id="选择器">2.4 选择器</h2>
 <p>我们知道网页由一个个节点组成，CSS 选择器会根据不同的节点设置不同的样式规则，那么怎样来定位节点呢？<strong>在 CSS 中，我们使用 CSS 选择器来定位节点</strong>。最常用的 3 种表示，分别是根据 <strong>id、class、标签名</strong>筛选</p>
@@ -1373,12 +1374,12 @@ head 标签内定义了一些页面的配置和引用，如：
 <tr class="odd">
 <td>.class</td>
 <td>.intro</td>
-<td>选择 class="intro" 的所有节点</td>
+<td>选择 class=&quot;intro&quot; 的所有节点</td>
 </tr>
 <tr class="even">
 <td>#id</td>
 <td>#firstname</td>
-<td>选择 id="firstname" 的所有节点</td>
+<td>选择 id=&quot;firstname&quot; 的所有节点</td>
 </tr>
 <tr class="odd">
 <td>*</td>
@@ -1418,7 +1419,7 @@ head 标签内定义了一些页面的配置和引用，如：
 <tr class="even">
 <td>[attribute=value]</td>
 <td>[target=blank]</td>
-<td>选择 target="blank" 的所有节点</td>
+<td>选择 target=&quot;blank&quot; 的所有节点</td>
 </tr>
 <tr class="odd">
 <td>[attribute~=value]</td>
@@ -1487,17 +1488,17 @@ head 标签内定义了一些页面的配置和引用，如：
 </tr>
 <tr class="even">
 <td>[attribute^=value]</td>
-<td>a[src^="https"]</td>
+<td>a[src^=&quot;https&quot;]</td>
 <td>选择其 src 属性值以 https 开头的所有 a 节点</td>
 </tr>
 <tr class="odd">
-<td>[attribute$=value] | a[src$=".pdf"]</td>
+<td>[attribute$=value] | a[src$=&quot;.pdf&quot;]</td>
 <td>选择其 src 属性以.pdf 结尾的所有 a 节点</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>[attribute*=value]</td>
-<td>a[src*="abc"]</td>
+<td>a[src*=&quot;abc&quot;]</td>
 <td>选择其 src 属性中包含 abc 子串的所有 a 节点</td>
 </tr>
 <tr class="odd">
@@ -1599,7 +1600,7 @@ head 标签内定义了一些页面的配置和引用，如：
   </entry>
   <entry>
     <title>爬虫-01-HTTP基本原理</title>
-    <url>/2020/ck7kki38v000i8svshbsqdpet/</url>
+    <url>/2020/ck7mbxj9l000vh0vs3yrd18l0/</url>
     <content><![CDATA[<h1 id="爬虫-01-http基本原理">爬虫-01-HTTP基本原理</h1>
 <p>// 记录崔庆才老师的《52讲轻松搞定网络爬虫》学习笔记。</p>
 <p>[toc]</p>
@@ -1608,7 +1609,7 @@ head 标签内定义了一些页面的配置和引用，如：
 <p><strong>URL</strong>的全称为 Universal Resource Locator，即<strong>统一资源定位符</strong></p>
 <p>URL 是 URI 的子集，URI 还包括一个子类叫作URN，它的全称为 Universal Resource Name，即统一资源名称。URN 只命名资源而不指定如何定位资源（URN不常使用）</p>
 <figure>
-<img src="https://i.loli.net/2020/03/07/rK1CnWuBycQsYXZ.jpg" alt="" /><figcaption>1-1.jpg</figcaption>
+<img src="https://i.loli.net/2020/03/07/rK1CnWuBycQsYXZ.jpg" alt="1-1.jpg" /><figcaption>1-1.jpg</figcaption>
 </figure>
 <a id="more"></a>
 <h2 id="超文本-hypertext">超文本 Hypertext</h2>
@@ -1625,12 +1626,12 @@ head 标签内定义了一些页面的配置和引用，如：
 <h2 id="http-请求过程">HTTP 请求过程</h2>
 <p>我们在浏览器中输入一个 URL，回车之后便可以在浏览器中观察到页面内容。实际上，这个过程是浏览器向网站所在的服务器发送了一个请求，网站服务器接收到这个请求后进行处理和解析，然后返回对应的响应，接着传回给浏览器。响应里包含了页面的源代码等内容，浏览器再对其进行解析，便将网页呈现了出来，传输模型如图所示。</p>
 <figure>
-<img src="https://i.loli.net/2020/03/07/FK5qREk23dDfQ1b.jpg" alt="" /><figcaption>1-2.jpg</figcaption>
+<img src="https://i.loli.net/2020/03/07/FK5qREk23dDfQ1b.jpg" alt="1-2.jpg" /><figcaption>1-2.jpg</figcaption>
 </figure>
 <p>用 Chrome 浏览器的开发者模式下的 Network 监听组件来做下演示，它可以显示访问当前请求网页时发生的所有网络请求和响应。</p>
 <p>我们先观察第一个网络请求，即 www.baidu.com，其中各列的含义如下。</p>
 <figure>
-<img src="https://i.loli.net/2020/03/07/QPmZUWghGID42yn.png" alt="" /><figcaption>1-3.png</figcaption>
+<img src="https://i.loli.net/2020/03/07/QPmZUWghGID42yn.png" alt="1-3.png" /><figcaption>1-3.png</figcaption>
 </figure>
 <ul>
 <li>第一列 Name：请求的名称，一般会将 URL 的最后一部分内容当作名称。</li>
@@ -1643,7 +1644,7 @@ head 标签内定义了一些页面的配置和引用，如：
 </ul>
 <p>我们点击这个条目即可看到其更详细的信息，如图所示。</p>
 <figure>
-<img src="https://i.loli.net/2020/03/07/U1dL3ADn4cEFuWY.jpg" alt="" /><figcaption>1-4.jpg</figcaption>
+<img src="https://i.loli.net/2020/03/07/U1dL3ADn4cEFuWY.jpg" alt="1-4.jpg" /><figcaption>1-4.jpg</figcaption>
 </figure>
 <p><strong>General</strong>部分：</p>
 <ul>
@@ -1673,7 +1674,7 @@ head 标签内定义了一些页面的配置和引用，如：
 <p>一般来说，登录时，需要提交用户名和密码，其中包含了敏感信息，使用 GET 方式请求的话，密码就会暴露在 URL 里面，造成密码泄露，所以这里最好以 POST 方式发送。上传文件时，由于文件内容比较大，也会选用 POST 方式。</p>
 <p>我们平常遇到的绝大部分请求都是 GET 或 POST 请求，另外还有一些请求方法，如 HEAD、PUT、DELETE、OPTIONS、CONNECT、TRACE 等，我们简单将其总结为下表。</p>
 <figure>
-<img src="https://i.loli.net/2020/03/07/Cc718EeSt2nFHrm.png" alt="" /><figcaption>1-5.png</figcaption>
+<img src="https://i.loli.net/2020/03/07/Cc718EeSt2nFHrm.png" alt="1-5.png" /><figcaption>1-5.png</figcaption>
 </figure>
 <p>请求的网址，即统一资源定位符 URL，它可以唯一确定我们想请求的资源。</p>
 <h3 id="请求头">请求头</h3>
@@ -1722,7 +1723,7 @@ head 标签内定义了一些页面的配置和引用，如：
   </entry>
   <entry>
     <title>机器学习入门</title>
-    <url>/2020/ck7kki38o000d8svsgoagh750/</url>
+    <url>/2020/ck7mbxj95000hh0vsf947cyz4/</url>
     <content><![CDATA[<h2 id="kaggle官方教程之机器学习入门">Kaggle官方教程之机器学习入门</h2>
 <p>[toc]</p>
 <hr />
@@ -1733,19 +1734,19 @@ head 标签内定义了一些页面的配置和引用，如：
 <a id="more"></a>
 <p>机器学习的工作方式相同。 我们将从称为决策树的模型开始。 有更高级的模型可以提供更准确的预测。 但是决策树很容易理解，它们是数据科学中一些最佳模型的基本构建块。为简单起见，我们将从最简单的决策树开始。</p>
 <figure>
-<img src="https://i.loli.net/2020/03/07/rLgERAwiINDBXvc.png" alt="" /><figcaption>7tsb5b1.png</figcaption>
+<img src="https://i.loli.net/2020/03/07/rLgERAwiINDBXvc.png" alt="7tsb5b1.png" /><figcaption>7tsb5b1.png</figcaption>
 </figure>
 <p>它仅将房屋分为两类。 房屋的预测价格为同一类别房屋的历史平均价格。我们使用数据来决定如何将房屋分为两组，然后再次确定每组中的预测价格。 从数据获取模式的这一步骤称为<strong>拟合</strong>或<strong>训练</strong>模型。 用于拟合模型的数据称为<strong>训练数据</strong>。</p>
 <p>有关模型拟合方式的详细信息（例如，如何拆分数据）非常复杂，我们将在以后考虑。 模型在训练之后，可以将其应用于新数据来预测其他房屋的价格。</p>
 <h4 id="改进决策树">1.2 改进决策树</h4>
 <p>通过拟合房地产训练数据，以下两个决策树中的哪个更有可能产生？</p>
 <figure>
-<img src="https://i.loli.net/2020/03/07/vDTtmPqRQEbjfNx.png" alt="" /><figcaption>prAjgku.png</figcaption>
+<img src="https://i.loli.net/2020/03/07/vDTtmPqRQEbjfNx.png" alt="prAjgku.png" /><figcaption>prAjgku.png</figcaption>
 </figure>
 <p>左侧的决策树可能更有意义，因为它反映了一个现实，即卧室多的房屋比卧室少的房屋的价格更高。 该模型的最大缺点是，它没有涵盖更多影响房价的因素，例如浴室数量，地段大小，位置等。</p>
 <p>您可以使用具有更多“分支”的树来获取更多因素。 这些被称为“更深”的树。 还要考虑每栋房屋总面积的决策树可能如下所示：</p>
 <figure>
-<img src="https://i.loli.net/2020/03/07/eORHfbyQKCVBcD6.png" alt="" /><figcaption>R3ywQsR.png</figcaption>
+<img src="https://i.loli.net/2020/03/07/eORHfbyQKCVBcD6.png" alt="R3ywQsR.png" /><figcaption>R3ywQsR.png</figcaption>
 </figure>
 <p>您可以通过跟踪决策树来预测任何房屋的价格，并始终选择与房屋特征相对应的路径。 房屋的预计价格在树的底部。 我们进行预测的底部点称为叶子节点。</p>
 <p>叶子上的分支和值将由数据确定，因此是时候检查要使用的数据了。</p>
@@ -2040,14 +2041,14 @@ head 标签内定义了一些页面的配置和引用，如：
 <p><a href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html" target="_blank" rel="noopener">sklearn.tree.DecisionTreeRegressor参数介绍</a></p>
 <p>这是一棵深度为2的树:</p>
 <figure>
-<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/R3ywQsR.png" alt="" /><figcaption>R3ywQsR</figcaption>
+<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/R3ywQsR.png" alt="R3ywQsR" /><figcaption>R3ywQsR</figcaption>
 </figure>
 <p>实际上，一棵树在顶层（所有房屋）和叶子之间有10个拆分并不少见。随着树变深，数据集被切成叶子，房屋更少。如果一棵树只有1个拆分，它将把数据分成2组。如果每组再次拆分，我们将获得4组房屋。再次拆分每个将创建8个组。如果我们通过在每个级别添加更多的拆分来使组的数量增加一倍，那么到第10级时，我们将拥有<span class="math inline">\(2^{10}\)</span>个房屋组。那是1024片叶子。</p>
 <p>当我们在许多叶子之间划分房屋时，每个叶子中的房屋也更少。拥有很少房屋的叶子进行的预测将非常接近那些房屋的实际值，但是它们对新数据的预测可能非常不可靠（因为每个预测仅基于少数房屋）。这是一种称为过度拟合的现象，其中模型几乎完美地匹配了训练数据，但在验证和其他新数据方面却表现不佳。另一方面，如果我们使树非常浅，则不会将房屋分成非常不同的组。</p>
 <p>在极端情况下，如果一棵树将房屋仅分为2或4，则每组仍然拥有各种各样的房屋。即使对于训练数据，大多数房屋的预测结果也可能相去甚远（由于相同的原因，其验证也很糟糕）。当模型无法捕获数据中的重要区别和模式时，即使在训练数据中它也表现不佳，这被称为欠拟合。</p>
 <p>由于我们关心的是根据验证数据估算出的新数据的准确性，因此我们希望找到欠拟合与过度拟合之间的最佳结合点。在视觉上，我们希望得到（红色）验证曲线的最低点</p>
 <figure>
-<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/2q85n9s.png" alt="" /><figcaption>2q85n9s</figcaption>
+<img src="../../../../MARKDOWN/kaggle-courses/机器学习入门教程/2q85n9s.png" alt="2q85n9s" /><figcaption>2q85n9s</figcaption>
 </figure>
 <h4 id="举例">5.2 举例</h4>
 <p>有几种方法可以控制树的深度，许多方法允许通过树的某些路线的深度比其他路线的深度大。max_leaf_nodes参数提供了一种的方法来控制过拟合与欠拟合。模型的叶子越多，模型越远离欠拟合区域、越靠近过拟合区域。</p>
@@ -2124,7 +2125,7 @@ head 标签内定义了一些页面的配置和引用，如：
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2020/ck7kki38k000a8svs46xq7ldn/</url>
+    <url>/2020/ck7mbxj9f000oh0vs6661360q/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="quick-start">Quick Start</h2>
 <h3 id="create-a-new-post">Create a new post</h3>
@@ -2148,10 +2149,10 @@ head 标签内定义了一些页面的配置和引用，如：
 <p>姓名：黑头呆鱼</p>
 <p>微信：yvette-chen-</p>
 <p>GitHub：<a href="https://github.com/chenhuiyu" target="_blank" rel="noopener">没有任何干货的GitHub</a></p>
-<p>研究方向：<span class="github-emoji" style="background-image: url(https://github.githubassets.com/images/icons/emoji/unicode/1f4a9.png?v8)" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a9.png?v8">💩</span></p>
+<p>研究方向：:shit:</p>
 <a id="more"></a>
 <figure>
-<img src="https://i.loli.net/2020/03/08/t4R9hnpPqMXfS5m.jpg" alt="" /><figcaption>烦死了.jpg</figcaption>
+<img src="https://i.loli.net/2020/03/08/t4R9hnpPqMXfS5m.jpg" alt="烦死了.jpg" /><figcaption>烦死了.jpg</figcaption>
 </figure>
 ]]></content>
   </entry>
