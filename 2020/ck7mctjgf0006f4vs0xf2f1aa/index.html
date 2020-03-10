@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    NLP03-形式语言与自动机.md |  黑头呆鱼进化之旅
+    MLHW1-预测PM2.5-LinearRegression |  黑头呆鱼进化之旅
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -38,7 +38,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-NLP-03-形式语言与自动机" class="article article-type-post" itemscope
+  <article id="post-MLHW1-预测PM2-5-LinearRegression" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -46,7 +46,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  NLP03-形式语言与自动机.md
+  MLHW1-预测PM2.5-LinearRegression
 </h1>
   
 
@@ -55,12 +55,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7mbxj92000dh0vsfafqeyle/" class="article-date">
-  <time datetime="2020-03-07T17:43:09.000Z" itemprop="datePublished">2020-03-08</time>
+      <a href="/2020/ck7mctjgf0006f4vs0xf2f1aa/" class="article-date">
+  <time datetime="2020-03-10T09:12:45.000Z" itemprop="datePublished">2020-03-10</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/NLP/">NLP</a>
+    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
   </div>
 
       
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">24字</span>
+            <span class="post-count">357字</span>
         </span>
     </span>
 
@@ -106,13 +106,31 @@
       
 
       
-      <h1 id="第三章-形式语言与自动机">第三章 形式语言与自动机</h1>
-<figure>
-<img src="https://i.loli.net/2020/03/08/oat5uhJSM3Y8qPj.png" alt="第三周 形式语言与自动机-01.png" /><figcaption>第三周 形式语言与自动机-01.png</figcaption>
-</figure>
+      <h1 id="homework-1-linear-regression">Homework 1: Linear Regression</h1>
+<p>[toc]</p>
+<p><em>李宏毅老师课程ML20作业1</em></p>
+<h2 id="题目及要求">题目及要求</h2>
+<p>本次作业的资料是从行政院环境环保署空气品质监测网所下载的观测资料。在本作业实作 linear regression 预测出 PM2.5 的数值</p>
+<p>本次作业使用丰原站的观测记录，分成 train set 跟 test set。train set 是丰原站每个月的前 20 天所有资料。test set 则是从丰原站剩下的资料中取样出来。</p>
 <a id="more"></a>
-<p><img src="https://i.loli.net/2020/03/08/baVdnAPqlNzsKRX.png" alt="第三周 形式语言与自动机-02.png" /> <img src="https://i.loli.net/2020/03/08/12mkZgfSMqCYL7y.png" alt="第三周 形式语言与自动机-03.png" /> <img src="https://i.loli.net/2020/03/08/BakZgbqX8zYCHT5.png" alt="第三周 形式语言与自动机-04.png" /> <img src="https://i.loli.net/2020/03/08/5KBctrywhuIfsEl.png" alt="第三周 形式语言与自动机-05.png" /> <img src="https://i.loli.net/2020/03/08/kIhbKnifyFlGrMm.png" alt="第三周 形式语言与自动机-06.png" /> <img src="https://i.loli.net/2020/03/08/tnYLH7oAaJy8d3k.png" alt="第三周 形式语言与自动机-07.png" /> <img src="https://i.loli.net/2020/03/08/Os3IgVSH6evFiGx.png" alt="第三周 形式语言与自动机-08.png" /> <img src="https://i.loli.net/2020/03/08/vdqRhntOMeks6zS.png" alt="第三周 形式语言与自动机-09.png" /> <img src="https://i.loli.net/2020/03/08/hWzGJwV6vdqSRTO.png" alt="第三周 形式语言与自动机-10.png" /> <img src="https://i.loli.net/2020/03/08/nSICGdHmouB8fbs.png" alt="第三周 形式语言与自动机-11.png" /> <img src="https://i.loli.net/2020/03/08/QU7p2ycfaLt5G1R.png" alt="第三周 形式语言与自动机-12.png" /></p>
-<p><img src="https://i.loli.net/2020/03/08/rdBl8On14icFTWq.png" alt="第三周 形式语言与自动机-13.png" /> <img src="https://i.loli.net/2020/03/08/i2uGFbxYRQoW4XC.png" alt="第三周 形式语言与自动机-14.png" /> <img src="https://i.loli.net/2020/03/08/MY6Z34tfNC5hrp9.png" alt="第三周 形式语言与自动机-15.png" /> <img src="https://i.loli.net/2020/03/08/eW3nZBUQ9qt8Ju7.png" alt="第三周 形式语言与自动机-16.png" /> <img src="https://i.loli.net/2020/03/08/4tdGvfUDhuL61ZJ.png" alt="第三周 形式语言与自动机-17.png" /> <img src="https://i.loli.net/2020/03/08/OEhMGf3bN4RC5BH.png" alt="第三周 形式语言与自动机-18.png" /> <img src="https://i.loli.net/2020/03/08/zIZEisjBKLdp9Na.png" alt="第三周 形式语言与自动机-19.png" /></p>
+<ul>
+<li><p>train.csv: 每个月前 20 天的完整资料。</p></li>
+<li><p>test.csv : 从剩下的资料当中取样出连续的 10 小时为一笔，前九小时的所有观测数据当作 feature，第十小时的 PM2.5 当作 answer。一共取出 240 笔不重複的 test data，请根据 feature 预测这 240 笔的 PM2.5。</p>
+<p>Data 含有 18 项观测数据 AMB_TEMP, CH4, CO, NHMC, NO, NO2, NOx, O3, PM10, PM2.5, RAINFALL, RH, SO2, THC, WD_HR, WIND_DIREC, WIND_SPEED, WS_HR。</p></li>
+</ul>
+<figure>
+<img src="https://lh4.googleusercontent.com/2T5jn2-J7Wh4JrOMGPonL9QXPeaaCDDIUwrENelNfXuxRRvhnFz9CE2cQHbPQwtiPfyrICDY0Eec4muzI3OinRvS76bd6SQ02yz4kkh1YNwBgHzLmPvqKf2rAld1dIYNDE_ZPSZPsis" alt="img" /><figcaption>img</figcaption>
+</figure>
+<p>Link: https://www.kaggle.com/c/ml2020spring-hw1</p>
+<p>预测 240 笔 testing data 中的 PM2.5 值，并将预测结果上传至 Kaggle</p>
+<p>Upload format : csv file第一行必须是 id,value第二行开始，每行分别为 id 值及预测 PM2.5 数值，以逗号隔开。</p>
+<ul>
+<li>hw1.sh：请手刻实作 linear regression，方法限使用 gradient descent。 禁止使用 numpy.linalg.lstsq</li>
+<li>hw1_best.sh：不限定作法，但套件规定仍必须遵照期初公告。</li>
+</ul>
+<h2 id="实现">实现</h2>
+<h3 id="载入数据">载入数据</h3>
+<p>没写完 先占坑</p>
 
       
       <!-- reward -->
@@ -178,14 +196,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7mbxj92000dh0vsfafqeyle/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck7mctjgf0006f4vs0xf2f1aa/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/homework/" rel="tag">homework</a></li></ul>
 
 	      
         <span id="busuanzi_container_page_pv" style="color: #999; margin-left: 30px">
@@ -200,19 +218,19 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck7mbxjb50026h0vs4xxxe2u4/" class="article-nav-link">
+      <a href="/2020/ck7mctjfy0000f4vs7uui764n/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            爬虫-05-多线程的基本原理
+            DL-01-线性回归
           
         </div>
       </a>
     
     
-      <a href="/2020/ck7mbxj8q0007h0vsfxp9fgx8/" class="article-nav-link">
+      <a href="/2020/ck7mctjgz000mf4vs2hyfd9nf/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">DLHLP——1.课程简介</div>
+        <div class="article-nav-title">基于SRGAN的超分辨率重建</div>
       </a>
     
   </nav>
