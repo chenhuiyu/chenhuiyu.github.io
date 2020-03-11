@@ -77,6 +77,213 @@
     
     
     
+    <article id="post-爬虫-06-多进程的基本原理" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ck7nf7ddn0004dovse8wg4ubx/"
+    >爬虫-06-多进程的基本原理</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck7nf7ddn0004dovse8wg4ubx/" class="article-date">
+  <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="爬虫-06-多进程的基本原理">爬虫-06-多进程的基本原理</h1>
+<p>[toc]</p>
+<h2 id="python多线程存在的问题">python多线程存在的问题</h2>
+<p>GIL全称为Global Interpreter Lock,即为全局解释所。</p>
+<p>在python多线程下，每个线程的执行方式如下：</p>
+<ul>
+<li>获取GIL</li>
+<li>执行对应线程的代码</li>
+<li>释放GIL</li>
+</ul>
+<p>某个线程想要执行，必须先拿到GIL，一个python进程中GIL只有一个，GIL的存在使得Python无论是在单核还是多核的条件下，同一时刻只能运行一个线程，导致python多线程无法发挥多核并行的优势。</p>
+<h2 id="python多进程的实现">python多进程的实现</h2>
+<p>进程是系统进行资源分配和调度的独立单位，各个进程之间的数据是无法共享的，多个进程无法共享一个全局变量。</p>
+<p>Python内置的multiprocessing是用来实现多进程的库。multiprocessing提供了一系列组件，如Process（进程）、Queue（队列）、Semaphore（信号量）、Pipe（管道）、Lock（锁）、Pool（进程池）</p>
+<h2 id="process类">Process类</h2>
+<p>在multiprocessing中，每个进程都用一个Process类来表示</p>
+<p><code>Process([group [, target [, name [, args [, kwargs]]]]])</code></p>
+<ul>
+<li>target 表示调用对象，可以传入方法的名字</li>
+<li>args表示被调用对象位置参数元组，比如target是函数func，他有两个参数m,n，那么args就传入[m,n]即可</li>
+<li>kwargs表示调用对象的字典</li>
+<li>name是别名，相当于给这个进程取个名字</li>
+<li>group分组</li>
+</ul>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+
+	      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-爬虫-07-Requests库" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ck7nf7dcm0000dovsc8b51m13/"
+    >爬虫-07-Requests库</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck7nf7dcm0000dovsc8b51m13/" class="article-date">
+  <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="爬虫-07-requests库">爬虫-07-Requests库</h1>
+<p>[toc]</p>
+<p>爬虫最基础的便是模拟浏览器向服务器发出请求，利用python库可以方便的对网络请求进行模拟，常见的库有urllib、requests等。借助requests库，我们只需关心请求的链接、需要传的参数以及如何设置可选的参数，无需实现底层通信和传输。</p>
+<p>当我们在浏览器中输入一个URL并回车，实际上就是让浏览器发起了一个GET类型的HTTP请求，浏览器得到源代码后，把它渲染出来就可以看到网页内容了。</p>
+<p>requests提供了一个get方法，我们调用这个方法，传入对应的URL就能得到网页的源代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+<p>输出结果为目标网页的HTML源代码</p>
+<h2 id="请求">请求</h2>
+<p>下面来了解一下利用requests库构建GET请求的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"args"</span>: &#123;&#125;, </span><br><span class="line">  <span class="string">"headers"</span>: &#123;</span><br><span class="line">    <span class="string">"Accept"</span>: <span class="string">"*/*"</span>, </span><br><span class="line">    <span class="string">"Accept-Encoding"</span>: <span class="string">"gzip, deflate"</span>, </span><br><span class="line">    <span class="string">"Host"</span>: <span class="string">"httpbin.org"</span>, </span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"python-requests/2.18.4"</span>, </span><br><span class="line">    <span class="string">"X-Amzn-Trace-Id"</span>: <span class="string">"Root=1-5e68e6f4-b1c59b00102f4a7278670374"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"origin"</span>: <span class="string">"158.51.124.182"</span>, </span><br><span class="line">  <span class="string">"url"</span>: <span class="string">"http://httpbin.org/get"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们成功发起了GET请求，返回结果包括了Headers、URL、IP等</p>
+<p>我们可以通过params参数传递URL的参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">data=&#123;</span><br><span class="line">    <span class="string">'name'</span>:<span class="string">'germey'</span>,</span><br><span class="line">    <span class="string">'age'</span>:<span class="number">25</span></span><br><span class="line">&#125;</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>,params=data)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+<p>在这里我们把URL参数通过字典的形式传给get方法的params参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"args"</span>: &#123;</span><br><span class="line">    <span class="string">"age"</span>: <span class="string">"25"</span>, </span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"germey"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"headers"</span>: &#123;</span><br><span class="line">    <span class="string">"Accept"</span>: <span class="string">"*/*"</span>, </span><br><span class="line">    <span class="string">"Accept-Encoding"</span>: <span class="string">"gzip, deflate"</span>, </span><br><span class="line">    <span class="string">"Host"</span>: <span class="string">"httpbin.org"</span>, </span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"python-requests/2.18.4"</span>, </span><br><span class="line">    <span class="string">"X-Amzn-Trace-Id"</span>: <span class="string">"Root=1-5e68e7c7-0daed52e693fe50fdcec097e"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"origin"</span>: <span class="string">"158.51.124.182"</span>, </span><br><span class="line">  <span class="string">"url"</span>: <span class="string">"http://httpbin.org/get?name=germey&amp;age=25"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由上述返回信息可知，请求的链接自动被构造成了</p>
+<p>&quot;http://httpbin.org/get?name=germey&amp;age=25&quot;</p>
+<p>网页返回的类型json格式的str类型，如果想直接解析返回结果，可以直接调用json方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">print(type(r.text))</span><br><span class="line">print(r.json())</span><br><span class="line">print(type(r.json()))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line">&#123;'args': &#123;&#125;, 'headers': &#123;'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.18.4', 'X-Amzn-Trace-Id': 'Root=1-5e68e918-fc7bf9a0438ed2f0bf1aab90'&#125;, 'origin': '158.51.124.182', 'url': 'http://httpbin.org/get'&#125;</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">dict</span>'&gt;</span></span><br></pre></td></tr></table></figure>
+<p>调用json方法，就可以将返回结果是json格式的字符串转换为字典</p>
+<h2 id="抓取网页">抓取网页</h2>
+<p>上面请求链接返回的是JSON形式的字符串，下面以<code>https://static1.scrape.cuiqingcai.com/</code>为例，提取电影的标题。</p>
+<figure>
+<img src="https://i.loli.net/2020/03/11/AIUVoCJmP5E6nDG.jpg" alt="Scrape截图.jpg" /><figcaption>Scrape截图.jpg</figcaption>
+</figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">pattern=re.compile(<span class="string">'&lt;h2.*?&gt;(.*?)&lt;/h2&gt;'</span>,re.S)</span><br><span class="line">title=re.findall(pattern,r.text)</span><br><span class="line">print(title)</span><br></pre></td></tr></table></figure>
+<p>使用了正则表达式来匹配所有的标题</p>
+<h2 id="抓取二进制数据">抓取二进制数据</h2>
+<p>上述例子返回的一个HTML文档，如何抓取图片、音频、视频文件呢？这些文件本质都是二进制数据，下面以本博客的站点图标为例：</p>
+<figure>
+<img src="https://i.loli.net/2020/03/11/FenQqcPKOgxarIt.jpg" alt="图标.jpg" /><figcaption>图标.jpg</figcaption>
+</figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://chenhuiyu.github.io/cat.ico'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+<p>这里出现了一些乱码，由于图片是二进制数据，在打印的时候转化为str类型，所以出现了乱码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(r.content)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">b'\x00\x00\x01\x00\x01\x00  \x00\x00\x01\x00 \x00\xa8\x10\x00\x00\x16\x00\x00\x00(\x00\x00\x00 \x00\x00\x00@\x00\x00\x00\x01\x00</span></span><br></pre></td></tr></table></figure>
+<p>content返回了一些二进制代码，b'表示bytes类型的数据，我们把它保存下来</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+
+	      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-LaTeX符号速查" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -747,166 +954,6 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DLHLP/" rel="tag">DLHLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%A4%84%E7%90%86/" rel="tag">语音处理</a></li></ul>
-
-	      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-NLP-01-绪论" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7mctjgk0008f4vsg7ib0l07/"
-    >NLP01-绪论</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/ck7mctjgk0008f4vsg7ib0l07/" class="article-date">
-  <time datetime="2020-03-06T20:54:38.000Z" itemprop="datePublished">2020-03-07</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/NLP/">NLP</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="自然语言处理-第一章绪论">自然语言处理 第一章——绪论</h1>
-<figure>
-<img src="https://i.loli.net/2020/03/07/mQyYtiSbqzxnJwR.jpg" alt="0001.jpg" /><figcaption>0001.jpg</figcaption>
-</figure>
-      
-      <a class="article-more-link" href="/2020/ck7mctjgk0008f4vsg7ib0l07/">More...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
-
-	      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-爬虫-04-Session和Cookies" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7mctjhd000yf4vs9n6sdspd/"
-    >爬虫-04-Session和Cookies</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/ck7mctjhd000yf4vs9n6sdspd/" class="article-date">
-  <time datetime="2020-03-06T20:42:51.000Z" itemprop="datePublished">2020-03-07</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="爬虫-04-session和cookies">爬虫-04-Session和Cookies</h1>
-<p>[toc]</p>
-<p>崔庆才《52轻松搞定网络爬虫》第4讲，版权归拉勾网所有。</p>
-<h2 id="静态网页和动态网页">4.1 静态网页和动态网页</h2>
-<p>​ 最基本的HTML代码，我们将其保存为一个.html文件，然后把它放在某台具有固定公网IP的主机上，主机上装上Apache或Nginx等服务器，这样这台主机就可以作为服务器了，其他人可以通过访问服务器看到这个页面，这样就搭建了一个最简单的网站。</p>
-<p>​ 这种HTML代码编写的网页叫静态网页，其文字、图片均是通过HTML代码指定。静态网页加载速度快，编写简单，但是可维护性差，不能根据URL灵活多变的展示内容。</p>
-<p>​ 动态网页可以动态解析URL中的参数的变化，关联数据库并动态呈现不同的页面内容。现在大多数网页都是动态网页，它们不再是一个简单的HTML，而是可能有JSP、PHP、python等语言编写的。</p>
-<p>​ 动态网页还可以实现用户登录和注册功能，需要通过Session和Cookies共同作用</p>
-      
-      <a class="article-more-link" href="/2020/ck7mctjhd000yf4vs9n6sdspd/">More...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
 
 	      
     </footer>
