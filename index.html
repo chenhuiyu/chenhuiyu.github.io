@@ -77,6 +77,95 @@
     
     
     
+    <article id="post-Logistic-Regression" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ck7qihfqo000048vs75iefg3k/"
+    >ML-Logistic-Regression</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck7qihfqo000048vs75iefg3k/" class="article-date">
+  <time datetime="2020-03-12T16:33:38.000Z" itemprop="datePublished">2020-03-13</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="logistic-regression">Logistic Regression</h1>
+<p>[toc]</p>
+<p><del>！数学预警！！长文预警！写这个真把我累死了，来自数学垃圾的哭泣</del></p>
+<h2 id="logistic-regression模型简介">Logistic Regression模型简介</h2>
+<p>用线性回归做分类任务，采用类别标签向量，利用广义线性回归的思想，期望找到一个单调可微的函数，利用该函数将分类任务的真实标记和回归模型的预测值联系起来。 - 对于二分类，正样本被回归到+1，负样本被回归到0 - 对于多分类问题，将样本回归到one-hot编码的向量</p>
+<p>考虑二分类问题，其输出标记为<span class="math inline">\(\{0，1\}\)</span>，然鹅，线性回归的模型产生的预测值<span class="math inline">\(z=W^TX+b\)</span>是实值，我们需要将实值<span class="math inline">\(z\)</span>转化为离散的0、1标记。首先想到的可能是单位阶跃函数，然鹅，单位阶跃函数不连续，且反函数不存在，我们选用sigmoid函数。</p>
+<p><em>sigmoid函数也是一种阶跃函数，在数学上，如果实数域上的某个函数可以用半开区间上的指示函数的有限次线性组合，那么这个函数就是阶跃函数。</em></p>
+<p><em>指示函数是定义在某集合<span class="math inline">\(X\)</span>上的函数，表示其中有哪些元素属于某个子集<span class="math inline">\(A\)</span></em></p>
+<p>Sigmoid函数的具体计算公式如下： <span class="math display">\[
+\begin{equation}
+\begin{split}
+\sigma (z)=\dfrac{1}{1+e^{-z}}
+\end{split}
+\end{equation}
+\]</span> 当<span class="math inline">\(x=0\)</span>时，sigmoid值为0.5，随着<span class="math inline">\(x\)</span>增大，sigmoid值逼近于1；<span class="math inline">\(x\)</span>减小，sigmoid值逼近于0。</p>
+      
+      <a class="article-more-link" href="/2020/ck7qihfqo000048vs75iefg3k/">More...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li></ul>
+
+	      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-爬虫-06-多进程的基本原理" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -85,7 +174,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7ngyvr9000x6svsalnm6sim/"
+  <a class="article-title" href="/2020/ck7qihfsg001348vsg3yx1oca/"
     >爬虫-06-多进程的基本原理</a
   >
 </h2>
@@ -96,7 +185,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ngyvr9000x6svsalnm6sim/" class="article-date">
+      <a href="/2020/ck7qihfsg001348vsg3yx1oca/" class="article-date">
   <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
 </a>
       
@@ -181,7 +270,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7ngyvr7000u6svsg04xgar9/"
+  <a class="article-title" href="/2020/ck7qihfrv000o48vsftfngrdl/"
     >爬虫-07-Requests库</a
   >
 </h2>
@@ -192,7 +281,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ngyvr7000u6svsg04xgar9/" class="article-date">
+      <a href="/2020/ck7qihfrv000o48vsftfngrdl/" class="article-date">
   <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
 </a>
       
@@ -222,69 +311,9 @@
 <p>当我们在浏览器中输入一个URL并回车，实际上就是让浏览器发起了一个GET类型的HTTP请求，浏览器得到源代码后，把它渲染出来就可以看到网页内容了。</p>
 <p>requests提供了一个get方法，我们调用这个方法，传入对应的URL就能得到网页的源代码。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-<p>输出结果为目标网页的HTML源代码</p>
-<h2 id="请求">请求</h2>
-<p>下面来了解一下利用requests库构建GET请求的方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-<p>我们成功发起了GET请求，返回结果包括了Headers、URL、IP等</p>
-<p>我们可以通过params参数传递URL的参数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">data=&#123;</span><br><span class="line">    <span class="string">'name'</span>:<span class="string">'germey'</span>,</span><br><span class="line">    <span class="string">'age'</span>:<span class="number">25</span></span><br><span class="line">&#125;</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>,params=data)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-<p>在这里我们把URL参数通过字典的形式传给get方法的params参数。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"args"</span>: &#123;</span><br><span class="line">    <span class="string">"age"</span>: <span class="string">"25"</span>, </span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"germey"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"headers"</span>: &#123;</span><br><span class="line">    <span class="string">"Accept"</span>: <span class="string">"*/*"</span>, </span><br><span class="line">    <span class="string">"Accept-Encoding"</span>: <span class="string">"gzip, deflate"</span>, </span><br><span class="line">    <span class="string">"Host"</span>: <span class="string">"httpbin.org"</span>, </span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"python-requests/2.18.4"</span>, </span><br><span class="line">    <span class="string">"X-Amzn-Trace-Id"</span>: <span class="string">"Root=1-5e68e7c7-0daed52e693fe50fdcec097e"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"origin"</span>: <span class="string">"158.51.124.182"</span>, </span><br><span class="line">  <span class="string">"url"</span>: <span class="string">"http://httpbin.org/get?name=germey&amp;age=25"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由上述返回信息可知，请求的链接自动被构造成了</p>
-<p>&quot;http://httpbin.org/get?name=germey&amp;age=25&quot;</p>
-<p>网页返回的类型json格式的str类型，如果想直接解析返回结果，可以直接调用json方法</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">print(type(r.text))</span><br><span class="line">print(r.json())</span><br><span class="line">print(type(r.json()))</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line">&#123;'args': &#123;&#125;, 'headers': &#123;'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.18.4', 'X-Amzn-Trace-Id': 'Root=1-5e68e918-fc7bf9a0438ed2f0bf1aab90'&#125;, 'origin': '158.51.124.182', 'url': 'http://httpbin.org/get'&#125;</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">dict</span>'&gt;</span></span><br></pre></td></tr></table></figure>
-<p>调用json方法，就可以将返回结果是json格式的字符串转换为字典</p>
-<h2 id="抓取网页">抓取网页</h2>
-<p>上面请求链接返回的是JSON形式的字符串，下面以<code>https://static1.scrape.cuiqingcai.com/</code>为例，提取电影的标题。</p>
-<figure>
-<img src="https://i.loli.net/2020/03/11/AIUVoCJmP5E6nDG.jpg" alt="Scrape截图.jpg" /><figcaption>Scrape截图.jpg</figcaption>
-</figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">pattern=re.compile(<span class="string">'&lt;h2.*?&gt;(.*?)&lt;/h2&gt;'</span>,re.S)</span><br><span class="line">title=re.findall(pattern,r.text)</span><br><span class="line">print(title)</span><br></pre></td></tr></table></figure>
-<p>使用了正则表达式来匹配所有的标题</p>
-<h2 id="抓取二进制数据">抓取二进制数据</h2>
-<p>上述例子返回的一个HTML文档，如何抓取图片、音频、视频文件呢？这些文件本质都是二进制数据，下面以本博客的站点图标为例：</p>
-<figure>
-<img src="https://i.loli.net/2020/03/11/FenQqcPKOgxarIt.jpg" alt="图标.jpg" /><figcaption>图标.jpg</figcaption>
-</figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://chenhuiyu.github.io/cat.ico'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-<p>这里出现了一些乱码，由于图片是二进制数据，在打印的时候转化为str类型，所以出现了乱码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(r.content)</span><br><span class="line"></span><br><span class="line"><span class="string">b'\x00\x00\x01\x00\x01\x00  \x00\x00\x01\x00 \x00\xa8\x10\x00\x00\x16\x00\x00\x00(\x00\x00\x00 \x00\x00\x00@\x00\x00\x00\x01\x00</span></span><br></pre></td></tr></table></figure>
-<p>content返回了一些二进制代码，b'表示bytes类型的数据，我们把它保存下来</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://chenhuiyu.github.io/cat.ico'</span>)</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'cat.ico'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(r.content)</span><br></pre></td></tr></table></figure>
-<p>这样运行结束后，文件夹中就出现了名为‘cat.ico’的图标</p>
-<p>音频和视频文件同样用这种方法获取。</p>
-<h2 id="添加headers">添加Headers</h2>
-<p>设置headers参数以设置HTTP请求的请求头Request Headers。如果我们不设置Request Headers信息，某些网站会发现这不是一个正常浏览器发起的请求，网站可能会返回异常的结果，导致网页抓取失败。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">headers=&#123;</span><br><span class="line">    <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36'</span></span><br><span class="line">&#125;</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>,headers=headers)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-<h2 id="post请求">post请求</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">data=&#123;<span class="string">'name'</span>:<span class="string">'germey'</span>,<span class="string">'age'</span>:<span class="string">'25'</span>&#125;</span><br><span class="line">r=request.post(<span class="string">"http://httpbin.org/post"</span>,data=data)</span><br></pre></td></tr></table></figure>
-<h2 id="响应">响应</h2>
-<p>发送请求后，得到的响应即Response，上文我们使用了text和content获取相应的内容，此外还有很多属性和方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">print(type(r.status_code),r.status_code)</span><br><span class="line">print(type(r.headers),r.headers)</span><br><span class="line">print(type(r.cookies),r.cookies)</span><br><span class="line">print(type(r.url),r.url)</span><br><span class="line">print(type(r.history),r.history)</span><br></pre></td></tr></table></figure>
-<p>这里分别打印输出</p>
-<ul>
-<li>status_code——状态码</li>
-<li>headers——响应头</li>
-<li>cookies——Cookies</li>
-<li>url——URL，</li>
-<li>history——请求历史</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">int</span>'&gt; 200</span></span><br><span class="line">&lt;class 'requests.structures.CaseInsensitiveDict'&gt; &#123;'Server': 'nginx/1.17.8', 'Date': 'Wed, 11 Mar 2020 14:52:48 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Vary': 'Accept-Encoding', 'X-Frame-Options': 'SAMEORIGIN', 'Strict-Transport-Security': 'max-age=15724800; includeSubDomains', 'Content-Encoding': 'gzip'&#125;</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">requests</span>.<span class="title">cookies</span>.<span class="title">RequestsCookieJar</span>'&gt; &lt;<span class="title">RequestsCookieJar</span>[]&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">str</span>'&gt; <span class="title">https</span>:</span>//static1.scrape.cuiqingcai.com/</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">list</span>'&gt; []</span></span><br></pre></td></tr></table></figure>
-<p>可以看到，headers 和 cookies 这两个属性得到的结果分别是 CaseInsensitiveDict 和 RequestsCookieJar 类型。状态码是用来表示响应状态的，比如返回 200 代表我们得到的响应是没问题的，上面的例子正好输出的结果也是 200，所以我们可以通过判断 Response 的状态码来确认是否爬取成功。</p>
-<p>requests 还提供了一个内置的状态码查询对象 requests.codes，用法示例如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">exit() <span class="keyword">if</span> <span class="keyword">not</span> r.status_code==requests.codes.ok <span class="keyword">else</span> print(<span class="string">'Request Successfully'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://www.lgstatic.com/i/image3/M01/72/AB/CgpOIF5on8OATn1rAApl7Kdp5_0626.png" /></p>
-<h2 id="文件上传">文件上传</h2>
-<p>我们知道 requests 可以模拟提交一些数据。假如有的网站需要上传文件，我们也可以用它来实现，示例如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">files=&#123;<span class="string">'file'</span>:open(<span class="string">'cat.ico'</span>,<span class="string">'rb'</span>)&#125;</span><br><span class="line">r=requests.post(<span class="string">'http://httpbin.org/post'</span>,files=files)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-<h2 id="cookies">Cookies</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://www.baidu.com'</span>)</span><br><span class="line">print(r.cookies)</span><br><span class="line"><span class="keyword">for</span> key,value <span class="keyword">in</span> r.cookies.items():</span><br><span class="line">    print(key+<span class="string">'='</span>+value)</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;RequestsCookieJar[&lt;Cookie BDORZ=<span class="number">27315</span> <span class="keyword">for</span> .baidu.com/&gt;]&gt;</span><br><span class="line">BDORZ=<span class="number">27315</span></span><br></pre></td></tr></table></figure>
-<p>这里我们首先调用cookies属性即可成功得到Cookies，可以发现它是RequestCookieJar类型。然后用items方法将其转化为元组组成的列表，遍历输出每一个Cookied的名称和值，实现Cookie的遍历解析。</p>
-
+      
+      <a class="article-more-link" href="/2020/ck7qihfrv000o48vsftfngrdl/">More...</a>
+      
       
       <!-- reward -->
       
@@ -321,7 +350,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7ngyvq400026svsbr9c6gwn/"
+  <a class="article-title" href="/2020/ck7qihfrj000d48vsd0f22m86/"
     >LaTeX符号速查</a
   >
 </h2>
@@ -332,7 +361,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ngyvq400026svsbr9c6gwn/" class="article-date">
+      <a href="/2020/ck7qihfrj000d48vsd0f22m86/" class="article-date">
   <time datetime="2020-03-10T20:07:26.000Z" itemprop="datePublished">2020-03-11</time>
 </a>
       
@@ -386,7 +415,7 @@
 </tbody>
 </table>
       
-      <a class="article-more-link" href="/2020/ck7ngyvq400026svsbr9c6gwn/">More...</a>
+      <a class="article-more-link" href="/2020/ck7qihfrj000d48vsd0f22m86/">More...</a>
       
       
       <!-- reward -->
@@ -424,7 +453,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7ngyvpv00006svs0uln0cs3/"
+  <a class="article-title" href="/2020/ck7qihfrc000848vs0r305cc9/"
     >DL-01-线性回归</a
   >
 </h2>
@@ -435,7 +464,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ngyvpv00006svs0uln0cs3/" class="article-date">
+      <a href="/2020/ck7qihfrc000848vs0r305cc9/" class="article-date">
   <time datetime="2020-03-10T17:15:19.000Z" itemprop="datePublished">2020-03-11</time>
 </a>
       
@@ -469,7 +498,7 @@
 <p><span class="math display">\[\hat{y}=x_1w_1+x_2w_2+b\]</span></p>
 <p>其中<span class="math inline">\(w_1\)</span>和<span class="math inline">\(w_2\)</span>是权重（weight），<span class="math inline">\(b\)</span>是偏差（bias），且均为标量。它们是线性回归模型的参数（parameter）。模型输出<span class="math inline">\(\hat{y}\)</span>是线性回归对真实价格<span class="math inline">\(y\)</span>的预测或估计。我们通常允许它们之间有一定误差。</p>
       
-      <a class="article-more-link" href="/2020/ck7ngyvpv00006svs0uln0cs3/">More...</a>
+      <a class="article-more-link" href="/2020/ck7qihfrc000848vs0r305cc9/">More...</a>
       
       
       <!-- reward -->
@@ -499,86 +528,6 @@
 
 </article>
     
-    <article id="post-MLHW1-预测PM2-5-LinearRegression" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7ngyvqn000c6svs5wauf9gg/"
-    >MLHW1-预测PM2.5-LinearRegression</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/ck7ngyvqn000c6svs5wauf9gg/" class="article-date">
-  <time datetime="2020-03-10T09:12:45.000Z" itemprop="datePublished">2020-03-10</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="homework-1-linear-regression">Homework 1: Linear Regression</h1>
-<p>[toc]</p>
-<p><em>李宏毅老师课程ML20作业1</em></p>
-<h2 id="题目及要求">题目及要求</h2>
-<p>本次作业的资料是从行政院环境环保署空气品质监测网所下载的观测资料。在本作业实作 linear regression 预测出 PM2.5 的数值</p>
-<p>本次作业使用丰原站的观测记录，分成 train set 跟 test set。train set 是丰原站每个月的前 20 天所有资料。test set 则是从丰原站剩下的资料中取样出来。</p>
-      
-      <a class="article-more-link" href="/2020/ck7ngyvqn000c6svs5wauf9gg/">More...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/homework/" rel="tag">homework</a></li></ul>
-
-	      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-基于SRGAN的超分辨率重建" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -587,7 +536,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7ngyvr1000o6svs0p9edazx/"
+  <a class="article-title" href="/2020/ck7qihfrs000m48vsh2twgqmx/"
     >基于SRGAN的超分辨率重建</a
   >
 </h2>
@@ -598,7 +547,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ngyvr1000o6svs0p9edazx/" class="article-date">
+      <a href="/2020/ck7qihfrs000m48vsh2twgqmx/" class="article-date">
   <time datetime="2020-03-09T06:06:32.000Z" itemprop="datePublished">2020-03-09</time>
 </a>
       
@@ -652,7 +601,7 @@
 <li><span class="math inline">\(G_{\theta_{G}}(I^{LR})\)</span>：由生成器生成的高分辨率图像，</li>
 </ul>
       
-      <a class="article-more-link" href="/2020/ck7ngyvr1000o6svs0p9edazx/">More...</a>
+      <a class="article-more-link" href="/2020/ck7qihfrs000m48vsh2twgqmx/">More...</a>
       
       
       <!-- reward -->
@@ -690,7 +639,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7ngyvrq00176svs07swbwtw/"
+  <a class="article-title" href="/2020/ck7qihfsn001a48vs7xu97o6n/"
     >生成式对抗网络综述</a
   >
 </h2>
@@ -701,7 +650,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ngyvrq00176svs07swbwtw/" class="article-date">
+      <a href="/2020/ck7qihfsn001a48vs7xu97o6n/" class="article-date">
   <time datetime="2020-03-08T12:27:44.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
@@ -731,7 +680,7 @@
 <p>​ GAN包含两个模型：生成器和判别器。这两个模型通常由神经网络来实现，生成器尝试捕获真实示例的分布，以生成新的数据示例。判别器通常是二分类器，它尽可能准确地将生成器产生的的数据与真实的样本区分开。 GAN的优化是一个最小最大(minimax)优化问题。该优化终止于一个鞍点，该鞍点对于生成器而言是最小值，而对于鉴别器而言是最大值。也就是说，优化目标是达到Nash平衡[1]。然后，可以认为生成器已经捕获了真实样本的概率分布。</p>
 <p>​ 先前的一些工作采用了使两个神经网络相互竞争的概念。GAN属于生成算法。生成算法和判别算法是两类机器学习算法。如果机器学习算法是基于观测数据的完全概率模型，则该算法是生成性的。生成算法由于其广泛的实际应用而变得越来越流行和重要。</p>
       
-      <a class="article-more-link" href="/2020/ck7ngyvrq00176svs07swbwtw/">More...</a>
+      <a class="article-more-link" href="/2020/ck7qihfsn001a48vs7xu97o6n/">More...</a>
       
       
       <!-- reward -->
@@ -769,7 +718,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7ngyvrk00156svs3s6whnz5/"
+  <a class="article-title" href="/2020/ck7qihfs9000x48vs48et16w8/"
     >爬虫-05-多线程的基本原理</a
   >
 </h2>
@@ -780,7 +729,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ngyvrk00156svs3s6whnz5/" class="article-date">
+      <a href="/2020/ck7qihfs9000x48vs48et16w8/" class="article-date">
   <time datetime="2020-03-08T09:11:59.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
@@ -810,7 +759,7 @@
 <h2 id="多线程">多线程</h2>
 <p><strong>进程：</strong>进程是一个可以独立运行的程序单位，是线程的集合。比如打开一个浏览器，这就开启了一个浏览器进程。一个进程中是可以同时处理很多事情的，比如一个浏览器中可以打开多个选项卡页面，这就是线程，</p>
       
-      <a class="article-more-link" href="/2020/ck7ngyvrk00156svs3s6whnz5/">More...</a>
+      <a class="article-more-link" href="/2020/ck7qihfs9000x48vs48et16w8/">More...</a>
       
       
       <!-- reward -->
@@ -848,7 +797,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7ngyvqt000h6svse2b7ccuc/"
+  <a class="article-title" href="/2020/ck7qihfrp000i48vscu3rbhcu/"
     >NLP03-形式语言与自动机.md</a
   >
 </h2>
@@ -859,7 +808,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ngyvqt000h6svse2b7ccuc/" class="article-date">
+      <a href="/2020/ck7qihfrp000i48vscu3rbhcu/" class="article-date">
   <time datetime="2020-03-07T17:43:09.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
@@ -888,7 +837,7 @@
 <img src="https://i.loli.net/2020/03/08/oat5uhJSM3Y8qPj.png" alt="第三周 形式语言与自动机-01.png" /><figcaption>第三周 形式语言与自动机-01.png</figcaption>
 </figure>
       
-      <a class="article-more-link" href="/2020/ck7ngyvqt000h6svse2b7ccuc/">More...</a>
+      <a class="article-more-link" href="/2020/ck7qihfrp000i48vscu3rbhcu/">More...</a>
       
       
       <!-- reward -->
@@ -926,7 +875,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7ngyvqd00066svsgoq4e23d/"
+  <a class="article-title" href="/2020/ck7qihfr7000648vsc1i5gajx/"
     >DLHLP——1.课程简介</a
   >
 </h2>
@@ -937,7 +886,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7ngyvqd00066svsgoq4e23d/" class="article-date">
+      <a href="/2020/ck7qihfr7000648vsc1i5gajx/" class="article-date">
   <time datetime="2020-03-07T17:41:40.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
@@ -969,7 +918,7 @@
 <p>课程YouTube链接：https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG</p>
 <p>课程网站Home：http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html</p>
       
-      <a class="article-more-link" href="/2020/ck7ngyvqd00066svsgoq4e23d/">More...</a>
+      <a class="article-more-link" href="/2020/ck7qihfr7000648vsc1i5gajx/">More...</a>
       
       
       <!-- reward -->
@@ -1320,23 +1269,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
 
 
-    
-    <div id="music">
-    
-    
-    
-    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
-        src="//music.163.com/outchain/player?type=2&id=456175582&auto=0&height=66"></iframe>
-</div>
-
-<style>
-    #music {
-        position: fixed;
-        right: 15px;
-        bottom: 0;
-        z-index: 998;
-    }
-</style>
     
   </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
