@@ -77,7 +77,7 @@
     
     
     
-    <article id="post-Logistic-Regression" class="article article-type-post" itemscope
+    <article id="post-Linear-Regression-线性回归" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -85,8 +85,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7qihfqo000048vs75iefg3k/"
-    >ML-Logistic-Regression</a
+  <a class="article-title" href="/2020/ck7s223530002s8vshp93fcvl/"
+    >ML-Linear-Regression-线性回归</a
   >
 </h2>
   
@@ -96,7 +96,118 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7qihfqo000048vs75iefg3k/" class="article-date">
+      <a href="/2020/ck7s223530002s8vshp93fcvl/" class="article-date">
+  <time datetime="2020-03-13T18:35:38.000Z" itemprop="datePublished">2020-03-14</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="linear-regression-线性回归">Linear-Regression-线性回归</h1>
+<p>[toc]</p>
+<h2 id="线性回归">线性回归</h2>
+<p>给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)\)</span>，其中<span class="math inline">\(x_i=(x_{1i};x_{2i};\dots;x_{id}),y_i \in \mathbb R\)</span>，为<span class="math inline">\(d\)</span>维样本特征，<span class="math inline">\(y_i \in \{0,1\}\)</span>为其对应的类别标签。线性回归试图学习一个线性模型尽可能使的预测实值输出标记。对于离散属性，如果属性间存在“序(order)关系”，可通过连续化将其转化为连续值；若属性间不存在序关系，假定有<span class="math inline">\(k\)</span>个属性值，通常转化为<span class="math inline">\(k\)</span>维向量。</p>
+<p>线性回归试图学得： <span class="math display">\[
+f(x_i)=wx_i+b,使得f(x_i)\simeq y_i
+\]</span> 如何确定<span class="math inline">\(w\)</span>和<span class="math inline">\(b\)</span>？这里需要引入<strong>均方误差</strong>，它可以衡量<span class="math inline">\(f(x)\)</span>和<span class="math inline">\(y\)</span>直接的差别。均方误差对应了欧氏距离，基于均方误差最小化来进行模型求解的方法称为“最小二乘法”。在线性回归中，最小二乘法就是试图找到一条直线，使所有样本到这条直线的欧氏距离之和最小。利用下式将均方误差最小化： <span class="math display">\[
+\begin{equation}
+\begin{split}
+(w^*,b^*)&amp;=arg\ \min \limits_{w,b} \sum \limits _{i=1} ^{n} (f(x_i)-y_i)^2\\
+&amp;=arg\ \min \limits_{w,b} \sum \limits _{i=1} ^{n} (wx_i+b-y_i)^2\\
+&amp;=arg\ \min \limits_{W \in \mathbb R^d,b} \sum \limits _{i=1} ^{n} (W^Tx_i+b-y_i)^2
+\end{split}
+\end{equation}
+\]</span></p>
+<h2 id="求解目标函数">求解目标函数</h2>
+<p><span class="math display">\[
+\begin{equation}
+\begin{split}
+E(W,b) &amp;=\sum \limits _{i=1} ^n (W^Tx_i+b-y_i)^2 \\
+&amp;=\sum \limits _{i=1} ^n |W^Tx_i+b-y_i|^2
+\end{split}
+\end{equation}
+\]</span></p>
+<h3 id="hat-x齐次坐标形式"><span class="math inline">\(\hat X\)</span>：齐次坐标形式</h3>
+<p><span class="math display">\[
+\begin{equation}
+\hat X=
+\begin{pmatrix}
+x_{11} \ \ x_{12}\ \ \dots \ \ x_{1d} \ \ 1 \\
+x_{21} \ \ x_{22}\ \ \dots \ \ x_{2d} \ \ 1 \\
+\vdots\\  
+x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
+\end{pmatrix}
+∈\mathbb{R}^{n \times (d+1)}
+\end{equation}
+\]</span>
+      
+      <a class="article-more-link" href="/2020/ck7s223530002s8vshp93fcvl/">More...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" rel="tag">线性模型</a></li></ul>
+
+	      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-Logistic-Regression-对数几率回归" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ck7s2235l0005s8vseeug3k2i/"
+    >ML-Logistic-Regression-对数几率回归</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck7s2235l0005s8vseeug3k2i/" class="article-date">
   <time datetime="2020-03-12T16:33:38.000Z" itemprop="datePublished">2020-03-13</time>
 </a>
       
@@ -120,7 +231,7 @@
       
 
       
-      <h1 id="logistic-regression">Logistic Regression</h1>
+      <h1 id="logistic-regression-对数几率回归">Logistic Regression-对数几率回归</h1>
 <p>[toc]</p>
 <p><del>！数学预警！！长文预警！写这个真把我累死了，来自数学垃圾的哭泣</del></p>
 <h2 id="logistic-regression模型简介">Logistic Regression模型简介</h2>
@@ -136,7 +247,7 @@
 \end{equation}
 \]</span> 当<span class="math inline">\(x=0\)</span>时，sigmoid值为0.5，随着<span class="math inline">\(x\)</span>增大，sigmoid值逼近于1；<span class="math inline">\(x\)</span>减小，sigmoid值逼近于0。</p>
       
-      <a class="article-more-link" href="/2020/ck7qihfqo000048vs75iefg3k/">More...</a>
+      <a class="article-more-link" href="/2020/ck7s2235l0005s8vseeug3k2i/">More...</a>
       
       
       <!-- reward -->
@@ -149,7 +260,87 @@
     <footer class="article-footer">
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" rel="tag">线性模型</a></li></ul>
+
+	      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
+    <article id="post-爬虫-07-Requests库" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ck7s223b9002rs8vsao152pn7/"
+    >爬虫-07-Requests库</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck7s223b9002rs8vsao152pn7/" class="article-date">
+  <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="爬虫-07-requests库">爬虫-07-Requests库</h1>
+<p>[toc]</p>
+<p>爬虫最基础的便是模拟浏览器向服务器发出请求，利用python库可以方便的对网络请求进行模拟，常见的库有urllib、requests等。借助requests库，我们只需关心请求的链接、需要传的参数以及如何设置可选的参数，无需实现底层通信和传输。</p>
+<p>当我们在浏览器中输入一个URL并回车，实际上就是让浏览器发起了一个GET类型的HTTP请求，浏览器得到源代码后，把它渲染出来就可以看到网页内容了。</p>
+<p>requests提供了一个get方法，我们调用这个方法，传入对应的URL就能得到网页的源代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+      
+      <a class="article-more-link" href="/2020/ck7s223b9002rs8vsao152pn7/">More...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
 
 	      
     </footer>
@@ -174,7 +365,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7qihfsg001348vsg3yx1oca/"
+  <a class="article-title" href="/2020/ck7s223b4002qs8vs8byy75jb/"
     >爬虫-06-多进程的基本原理</a
   >
 </h2>
@@ -185,7 +376,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7qihfsg001348vsg3yx1oca/" class="article-date">
+      <a href="/2020/ck7s223b4002qs8vs8byy75jb/" class="article-date">
   <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
 </a>
       
@@ -262,86 +453,6 @@
 
 </article>
     
-    <article id="post-爬虫-07-Requests库" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7qihfrv000o48vsftfngrdl/"
-    >爬虫-07-Requests库</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/ck7qihfrv000o48vsftfngrdl/" class="article-date">
-  <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="爬虫-07-requests库">爬虫-07-Requests库</h1>
-<p>[toc]</p>
-<p>爬虫最基础的便是模拟浏览器向服务器发出请求，利用python库可以方便的对网络请求进行模拟，常见的库有urllib、requests等。借助requests库，我们只需关心请求的链接、需要传的参数以及如何设置可选的参数，无需实现底层通信和传输。</p>
-<p>当我们在浏览器中输入一个URL并回车，实际上就是让浏览器发起了一个GET类型的HTTP请求，浏览器得到源代码后，把它渲染出来就可以看到网页内容了。</p>
-<p>requests提供了一个get方法，我们调用这个方法，传入对应的URL就能得到网页的源代码。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-      
-      <a class="article-more-link" href="/2020/ck7qihfrv000o48vsftfngrdl/">More...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
-
-	      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-LaTeX符号速查" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -350,7 +461,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7qihfrj000d48vsd0f22m86/"
+  <a class="article-title" href="/2020/ck7s2235u0007s8vs0f6ghgdj/"
     >LaTeX符号速查</a
   >
 </h2>
@@ -361,7 +472,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7qihfrj000d48vsd0f22m86/" class="article-date">
+      <a href="/2020/ck7s2235u0007s8vs0f6ghgdj/" class="article-date">
   <time datetime="2020-03-10T20:07:26.000Z" itemprop="datePublished">2020-03-11</time>
 </a>
       
@@ -415,7 +526,7 @@
 </tbody>
 </table>
       
-      <a class="article-more-link" href="/2020/ck7qihfrj000d48vsd0f22m86/">More...</a>
+      <a class="article-more-link" href="/2020/ck7s2235u0007s8vs0f6ghgdj/">More...</a>
       
       
       <!-- reward -->
@@ -453,7 +564,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7qihfrc000848vs0r305cc9/"
+  <a class="article-title" href="/2020/ck7s2234k0000s8vsc4v97ku6/"
     >DL-01-线性回归</a
   >
 </h2>
@@ -464,7 +575,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7qihfrc000848vs0r305cc9/" class="article-date">
+      <a href="/2020/ck7s2234k0000s8vsc4v97ku6/" class="article-date">
   <time datetime="2020-03-10T17:15:19.000Z" itemprop="datePublished">2020-03-11</time>
 </a>
       
@@ -498,7 +609,7 @@
 <p><span class="math display">\[\hat{y}=x_1w_1+x_2w_2+b\]</span></p>
 <p>其中<span class="math inline">\(w_1\)</span>和<span class="math inline">\(w_2\)</span>是权重（weight），<span class="math inline">\(b\)</span>是偏差（bias），且均为标量。它们是线性回归模型的参数（parameter）。模型输出<span class="math inline">\(\hat{y}\)</span>是线性回归对真实价格<span class="math inline">\(y\)</span>的预测或估计。我们通常允许它们之间有一定误差。</p>
       
-      <a class="article-more-link" href="/2020/ck7qihfrc000848vs0r305cc9/">More...</a>
+      <a class="article-more-link" href="/2020/ck7s2234k0000s8vsc4v97ku6/">More...</a>
       
       
       <!-- reward -->
@@ -536,7 +647,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7qihfrs000m48vsh2twgqmx/"
+  <a class="article-title" href="/2020/ck7s2236o000ls8vs7fzv8r0e/"
     >基于SRGAN的超分辨率重建</a
   >
 </h2>
@@ -547,7 +658,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7qihfrs000m48vsh2twgqmx/" class="article-date">
+      <a href="/2020/ck7s2236o000ls8vs7fzv8r0e/" class="article-date">
   <time datetime="2020-03-09T06:06:32.000Z" itemprop="datePublished">2020-03-09</time>
 </a>
       
@@ -601,7 +712,7 @@
 <li><span class="math inline">\(G_{\theta_{G}}(I^{LR})\)</span>：由生成器生成的高分辨率图像，</li>
 </ul>
       
-      <a class="article-more-link" href="/2020/ck7qihfrs000m48vsh2twgqmx/">More...</a>
+      <a class="article-more-link" href="/2020/ck7s2236o000ls8vs7fzv8r0e/">More...</a>
       
       
       <!-- reward -->
@@ -639,7 +750,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7qihfsn001a48vs7xu97o6n/"
+  <a class="article-title" href="/2020/ck7s223bd002ts8vs0hf29d7q/"
     >生成式对抗网络综述</a
   >
 </h2>
@@ -650,7 +761,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7qihfsn001a48vs7xu97o6n/" class="article-date">
+      <a href="/2020/ck7s223bd002ts8vs0hf29d7q/" class="article-date">
   <time datetime="2020-03-08T12:27:44.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
@@ -680,7 +791,7 @@
 <p>​ GAN包含两个模型：生成器和判别器。这两个模型通常由神经网络来实现，生成器尝试捕获真实示例的分布，以生成新的数据示例。判别器通常是二分类器，它尽可能准确地将生成器产生的的数据与真实的样本区分开。 GAN的优化是一个最小最大(minimax)优化问题。该优化终止于一个鞍点，该鞍点对于生成器而言是最小值，而对于鉴别器而言是最大值。也就是说，优化目标是达到Nash平衡[1]。然后，可以认为生成器已经捕获了真实样本的概率分布。</p>
 <p>​ 先前的一些工作采用了使两个神经网络相互竞争的概念。GAN属于生成算法。生成算法和判别算法是两类机器学习算法。如果机器学习算法是基于观测数据的完全概率模型，则该算法是生成性的。生成算法由于其广泛的实际应用而变得越来越流行和重要。</p>
       
-      <a class="article-more-link" href="/2020/ck7qihfsn001a48vs7xu97o6n/">More...</a>
+      <a class="article-more-link" href="/2020/ck7s223bd002ts8vs0hf29d7q/">More...</a>
       
       
       <!-- reward -->
@@ -718,7 +829,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7qihfs9000x48vs48et16w8/"
+  <a class="article-title" href="/2020/ck7s2237m0013s8vshyn13jzt/"
     >爬虫-05-多线程的基本原理</a
   >
 </h2>
@@ -729,7 +840,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7qihfs9000x48vs48et16w8/" class="article-date">
+      <a href="/2020/ck7s2237m0013s8vshyn13jzt/" class="article-date">
   <time datetime="2020-03-08T09:11:59.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
@@ -759,7 +870,7 @@
 <h2 id="多线程">多线程</h2>
 <p><strong>进程：</strong>进程是一个可以独立运行的程序单位，是线程的集合。比如打开一个浏览器，这就开启了一个浏览器进程。一个进程中是可以同时处理很多事情的，比如一个浏览器中可以打开多个选项卡页面，这就是线程，</p>
       
-      <a class="article-more-link" href="/2020/ck7qihfs9000x48vs48et16w8/">More...</a>
+      <a class="article-more-link" href="/2020/ck7s2237m0013s8vshyn13jzt/">More...</a>
       
       
       <!-- reward -->
@@ -797,7 +908,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7qihfrp000i48vscu3rbhcu/"
+  <a class="article-title" href="/2020/ck7s22362000bs8vs9goc92yl/"
     >NLP03-形式语言与自动机.md</a
   >
 </h2>
@@ -808,7 +919,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck7qihfrp000i48vscu3rbhcu/" class="article-date">
+      <a href="/2020/ck7s22362000bs8vs9goc92yl/" class="article-date">
   <time datetime="2020-03-07T17:43:09.000Z" itemprop="datePublished">2020-03-08</time>
 </a>
       
@@ -837,7 +948,7 @@
 <img src="https://i.loli.net/2020/03/08/oat5uhJSM3Y8qPj.png" alt="第三周 形式语言与自动机-01.png" /><figcaption>第三周 形式语言与自动机-01.png</figcaption>
 </figure>
       
-      <a class="article-more-link" href="/2020/ck7qihfrp000i48vscu3rbhcu/">More...</a>
+      <a class="article-more-link" href="/2020/ck7s22362000bs8vs9goc92yl/">More...</a>
       
       
       <!-- reward -->
@@ -851,87 +962,6 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
-
-	      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-DLHLP——1.课程简介" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/ck7qihfr7000648vsc1i5gajx/"
-    >DLHLP——1.课程简介</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/ck7qihfr7000648vsc1i5gajx/" class="article-date">
-  <time datetime="2020-03-07T17:41:40.000Z" itemprop="datePublished">2020-03-08</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/DLHLP/">DLHLP</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="dlhlp1.课程简介">DLHLP——1.课程简介</h1>
-<hr />
-<p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
-<hr />
-<p>台大李宏毅老师2020年开的深度学习与人类语言处理课程，文档记录课程笔记。</p>
-<p>课程YouTube链接：https://www.youtube.com/playlist?list=PLJV_el3uVTsO07RpBYFsXg-bN5Lu0nhdG</p>
-<p>课程网站Home：http://speech.ee.ntu.edu.tw/~tlkagk/courses_DLHLP20.html</p>
-      
-      <a class="article-more-link" href="/2020/ck7qihfr7000648vsc1i5gajx/">More...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DLHLP/" rel="tag">DLHLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%AD%E9%9F%B3%E5%A4%84%E7%90%86/" rel="tag">语音处理</a></li></ul>
 
 	      
     </footer>
