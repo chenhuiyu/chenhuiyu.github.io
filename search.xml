@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>ML-Linear-Regression-线性回归</title>
-    <url>/2020/ck7s223530002s8vshp93fcvl/</url>
+    <url>/2020/ck7sjiitc0005jwvs3qrd61xb/</url>
     <content><![CDATA[<h1 id="linear-regression-线性回归">Linear-Regression-线性回归</h1>
 <p>[toc]</p>
 <h2 id="线性回归">线性回归</h2>
@@ -94,8 +94,8 @@ E(w,b) &amp;=E(\hat w)\\
 <p>求解<span class="math inline">\(w\)</span>和<span class="math inline">\(b\)</span>（即<span class="math inline">\(\hat w\)</span>）使<span class="math inline">\(E(\hat w)\)</span>最小化的过程成为线性回归模型的最小二乘参数估计，对<span class="math inline">\(\hat w\)</span>求偏导数，计算如下： <span class="math display">\[
 \begin{equation}
 \begin{split}
-\frac {\part E(\hat w)}{\part \hat w} &amp;=\frac {\part (X\hat w-y)^T(X\hat w-y) }{\part \hat w} \\
-&amp;=\frac {\part (\hat w^T X^TX\hat w-2\hat w^TX^Ty+y^Ty) }{\part \hat w}\\
+\frac {\partial E(\hat w)}{\partial \hat w} &amp;=\frac {\partial (X\hat w-y)^T(X\hat w-y) }{\partial \hat w} \\
+&amp;=\frac {\partial (\hat w^T X^TX\hat w-2\hat w^TX^Ty+y^Ty) }{\partial \hat w}\\
 &amp;=(X^TX\hat x)+(X^TX\hat x)-(2X^Ty)\\
 &amp;=2X^TX\hat w-2X^Ty
 \end{split}
@@ -104,7 +104,7 @@ E(w,b) &amp;=E(\hat w)\\
 <h4 id="向量积对列向量的求导运算法则">向量积对列向量的求导运算法则：</h4>
 <p>$$ <span class="math display">\[\begin{equation}
 \begin{split}
-\frac {\part X^TAX}{\part X} &amp;=\frac {\part X^T }{\part X}AX+ \frac {\part X^TA^T }{\part X}X=(A+A^T)X\\
+\frac {\partial X^TAX}{\partial X} &amp;=\frac {\partial X^T }{\part X}AX+ \frac {\partial X^TA^T }{\partial X}X=(A+A^T)X\\
 
 \end{split}
 \end{equation}\]</span> $$</p>
@@ -141,7 +141,7 @@ f(\hat x)=\hat x^T(X^TX)^{-1}X^Ty
   </entry>
   <entry>
     <title>ML-Logistic-Regression-对数几率回归</title>
-    <url>/2020/ck7s2235l0005s8vseeug3k2i/</url>
+    <url>/2020/ck7sjiitf0006jwvs0bavg8yq/</url>
     <content><![CDATA[<h1 id="logistic-regression-对数几率回归">Logistic Regression-对数几率回归</h1>
 <p>[toc]</p>
 <p><del>！数学预警！！长文预警！写这个真把我累死了，来自数学垃圾的哭泣</del></p>
@@ -394,7 +394,7 @@ x_2=\frac{-w_0-w_1x_1}{w_2}
   </entry>
   <entry>
     <title>爬虫-07-Requests库</title>
-    <url>/2020/ck7s223b9002rs8vsao152pn7/</url>
+    <url>/2020/ck7sjiiug0016jwvs4xocaiyi/</url>
     <content><![CDATA[<h1 id="爬虫-07-requests库">爬虫-07-Requests库</h1>
 <p>[toc]</p>
 <p>爬虫最基础的便是模拟浏览器向服务器发出请求，利用python库可以方便的对网络请求进行模拟，常见的库有urllib、requests等。借助requests库，我们只需关心请求的链接、需要传的参数以及如何设置可选的参数，无需实现底层通信和传输。</p>
@@ -469,13 +469,13 @@ x_2=\frac{-w_0-w_1x_1}{w_2}
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>tutorial</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
     <title>爬虫-06-多进程的基本原理</title>
-    <url>/2020/ck7s223b4002qs8vs8byy75jb/</url>
+    <url>/2020/ck7sjiiue0014jwvs5615asjz/</url>
     <content><![CDATA[<h1 id="爬虫-06-多进程的基本原理">爬虫-06-多进程的基本原理</h1>
 <p>[toc]</p>
 <h2 id="python多线程存在的问题">python多线程存在的问题</h2>
@@ -505,13 +505,13 @@ x_2=\frac{-w_0-w_1x_1}{w_2}
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>tutorial</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
     <title>LaTeX符号速查</title>
-    <url>/2020/ck7s2235u0007s8vs0f6ghgdj/</url>
+    <url>/2020/ck7sjiit90004jwvs43j14693/</url>
     <content><![CDATA[<p>转载：https://imzlp.me/posts/23224/</p>
 <p>[toc]</p>
 <h3 id="加减乘除">加减乘除</h3>
@@ -1325,7 +1325,7 @@ D &amp; E &amp; F
   </entry>
   <entry>
     <title>DL-01-线性回归</title>
-    <url>/2020/ck7s2234k0000s8vsc4v97ku6/</url>
+    <url>/2020/ck7sjiisq0000jwvsf26yav8q/</url>
     <content><![CDATA[<h1 id="线性回归">线性回归</h1>
 <p>[toc]</p>
 <p>线性回归输出是一个连续值，因此适用于回归问题。softmax回归则适用于分类问题。线性回归和softmax回归都是单层神经网络，以线性回归为例，介绍大多数深度学习模型的基本要素和表示方法。</p>
@@ -1449,7 +1449,7 @@ b &amp;\leftarrow b -   \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \fra
   </entry>
   <entry>
     <title>基于SRGAN的超分辨率重建</title>
-    <url>/2020/ck7s2236o000ls8vs7fzv8r0e/</url>
+    <url>/2020/ck7sjiitv000mjwvscjgs90af/</url>
     <content><![CDATA[<h1 id="基于srgan的超分辨率重建">基于SRGAN的超分辨率重建</h1>
 <p>[toc]</p>
 <h2 id="简介">1. 简介</h2>
@@ -1543,7 +1543,7 @@ b &amp;\leftarrow b -   \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \fra
   </entry>
   <entry>
     <title>生成式对抗网络综述</title>
-    <url>/2020/ck7s223bd002ts8vs0hf29d7q/</url>
+    <url>/2020/ck7sjiiuj001bjwvs9zqdeaq9/</url>
     <content><![CDATA[<h1 id="生成式对抗网络综述">生成式对抗网络综述</h1>
 <p>[toc]</p>
 <h2 id="简介">1. 简介</h2>
@@ -1605,7 +1605,7 @@ b &amp;\leftarrow b -   \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \fra
   </entry>
   <entry>
     <title>爬虫-05-多线程的基本原理</title>
-    <url>/2020/ck7s2237m0013s8vshyn13jzt/</url>
+    <url>/2020/ck7sjiiuc0011jwvse2xva4nu/</url>
     <content><![CDATA[<h1 id="爬虫-05-多线程的基本原理">爬虫-05-多线程的基本原理</h1>
 <p>在编写爬虫程序时，为了提高效率，想同时运行多个爬虫任务，这里需要设计多进程和多线程的知识。</p>
 <p>[toc]</p>
@@ -1658,13 +1658,13 @@ b &amp;\leftarrow b -   \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \fra
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>tutorial</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
     <title>NLP03-形式语言与自动机.md</title>
-    <url>/2020/ck7s22362000bs8vs9goc92yl/</url>
+    <url>/2020/ck7sjiitl000bjwvs6vgqem37/</url>
     <content><![CDATA[<h1 id="第三章-形式语言与自动机">第三章 形式语言与自动机</h1>
 <figure>
 <img src="https://i.loli.net/2020/03/08/oat5uhJSM3Y8qPj.png" alt="第三周 形式语言与自动机-01.png" /><figcaption>第三周 形式语言与自动机-01.png</figcaption>
@@ -1683,7 +1683,7 @@ b &amp;\leftarrow b -   \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \fra
   </entry>
   <entry>
     <title>DLHLP——1.课程简介</title>
-    <url>/2020/ck7s2235q0006s8vsdpng4h9q/</url>
+    <url>/2020/ck7sjiisy0001jwvse8ty2yab/</url>
     <content><![CDATA[<h1 id="dlhlp1.课程简介">DLHLP——1.课程简介</h1>
 <hr />
 <p>硬train一发是一种信念，是一种浪漫，是人类最原始的冲动，是人类亘古以来的目标。——李宏毅</p>
@@ -1756,7 +1756,7 @@ b &amp;\leftarrow b -   \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \fra
   </entry>
   <entry>
     <title>NLP01-绪论</title>
-    <url>/2020/ck7s22367000cs8vs4udb7tbd/</url>
+    <url>/2020/ck7sjiitj000ajwvsgol3f6so/</url>
     <content><![CDATA[<h1 id="自然语言处理-第一章绪论">自然语言处理 第一章——绪论</h1>
 <figure>
 <img src="https://i.loli.net/2020/03/07/mQyYtiSbqzxnJwR.jpg" alt="0001.jpg" /><figcaption>0001.jpg</figcaption>
@@ -1774,7 +1774,7 @@ b &amp;\leftarrow b -   \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \fra
   </entry>
   <entry>
     <title>爬虫-04-Session和Cookies</title>
-    <url>/2020/ck7s2237b000zs8vsbsn2drjx/</url>
+    <url>/2020/ck7sjiiua000zjwvscef2g57z/</url>
     <content><![CDATA[<h1 id="爬虫-04-session和cookies">爬虫-04-Session和Cookies</h1>
 <p>[toc]</p>
 <p>崔庆才《52轻松搞定网络爬虫》第4讲，版权归拉勾网所有。</p>
@@ -1811,13 +1811,13 @@ b &amp;\leftarrow b -   \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \fra
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>tutorial</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
     <title>爬虫-03-爬虫基本原理</title>
-    <url>/2020/ck7s22378000xs8vsffvwgy97/</url>
+    <url>/2020/ck7sjiiu4000wjwvsgqhohiep/</url>
     <content><![CDATA[<h1 id="爬虫-03-爬虫基本原理">爬虫-03-爬虫基本原理</h1>
 <p>[toc]</p>
 <h2 id="爬虫概述">3.1 爬虫概述</h2>
@@ -1852,13 +1852,13 @@ b &amp;\leftarrow b -   \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}} \fra
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>tutorial</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
     <title>爬虫-02-Web网页基础</title>
-    <url>/2020/ck7s22370000ts8vs8v9z6qd3/</url>
+    <url>/2020/ck7sjiiu1000tjwvsdgwi1zyo/</url>
     <content><![CDATA[<h1 id="爬虫-02-web网页基础">爬虫-02-Web网页基础</h1>
 <p>[toc]</p>
 <h2 id="网页的基本组成">2.1 网页的基本组成</h2>
@@ -2168,13 +2168,13 @@ head 标签内定义了一些页面的配置和引用，如：
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>tutorial</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
     <title>爬虫-01-HTTP基本原理</title>
-    <url>/2020/ck7s2236r000ns8vscp5p6h2j/</url>
+    <url>/2020/ck7sjiity000rjwvs9nzihme6/</url>
     <content><![CDATA[<h1 id="爬虫-01-http基本原理">爬虫-01-HTTP基本原理</h1>
 <p>// 记录崔庆才老师的《52讲轻松搞定网络爬虫》学习笔记。</p>
 <p>[toc]</p>
@@ -2291,13 +2291,13 @@ head 标签内定义了一些页面的配置和引用，如：
         <category>爬虫</category>
       </categories>
       <tags>
-        <tag>爬虫</tag>
         <tag>tutorial</tag>
+        <tag>爬虫</tag>
       </tags>
   </entry>
   <entry>
     <title>机器学习入门</title>
-    <url>/2020/ck7s2236x000ss8vs2f7h7jxz/</url>
+    <url>/2020/ck7sjiitt000kjwvs2v5z94ba/</url>
     <content><![CDATA[<h2 id="kaggle官方教程之机器学习入门">Kaggle官方教程之机器学习入门</h2>
 <p>[toc]</p>
 <hr />
@@ -2693,13 +2693,13 @@ head 标签内定义了一些页面的配置和引用，如：
       </categories>
       <tags>
         <tag>ML</tag>
-        <tag>tutorial</tag>
         <tag>Kaggle</tag>
+        <tag>tutorial</tag>
       </tags>
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2020/ck7s2236e000gs8vsb2au4lic/</url>
+    <url>/2020/ck7sjiitq000gjwvsdd173dgx/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="quick-start">Quick Start</h2>
 <h3 id="create-a-new-post">Create a new post</h3>
