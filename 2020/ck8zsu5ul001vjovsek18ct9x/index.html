@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
+  <meta name="google-site-verification" content="tlhm0TPr0COuwtHNQ-DYfsCZ5xoIGLOAZuc5MP1w9MA" />
+  <meta name="baidu-site-verification" content="yrWjI3OWej" />
+  
+   
+  <meta name="keywords" content="ML,NLP,GAN,爬虫" />
+   
+  <meta name="description" content="daily learning" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    基于SRGAN的超分辨率重建 |  黑头呆鱼进化之旅
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/images/cat1.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+</html>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-基于SRGAN的超分辨率重建" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  基于SRGAN的超分辨率重建
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck8zsu5ul001vjovsek18ct9x/" class="article-date">
+  <time datetime="2020-03-09T06:06:32.000Z" itemprop="datePublished">2020-03-09</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/GAN/">GAN</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.9k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">12分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="基于SRGAN的超分辨率重建"><a href="#基于SRGAN的超分辨率重建" class="headerlink" title="基于SRGAN的超分辨率重建"></a>基于SRGAN的超分辨率重建</h1><p>[toc]</p>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><h3 id="1-1-超分辨率重建问题"><a href="#1-1-超分辨率重建问题" class="headerlink" title="1.1 超分辨率重建问题"></a>1.1 超分辨率重建问题</h3><p>​        超分辨率重建是指将低分辨率图像(LR)恢复成高分辨率图像(HR)的过程，一张被重建的高分辨率图像被称为超分辨率图像或SR图像。超分辨率重建仍旧是计算机视觉领域一个富有挑战性的问题。首先，超分辨率重建问题是一个不适定问题，对于同一个低分辨率图像，存在多个解决方案，而不是一个唯一的解决方案。 为了限制解决方案空间，通常需要可靠的先验信息。此外，超分辨率重建问题的复杂性随着放大倍数的增加而增加。 在较高的放大系数下，丢失场景细节的恢复变得更加复杂。如何用一大较大的放大系数的情况下仍能恢复画质细节成为研究的难点。目前的大部分研究都聚焦于最小化重建均方误差。以此作为优化的结果会带来很高的PSNR(峰值信噪比)，但是通常的结果是缺乏高频细节以及在感知上不与原图匹配。</p>
+<p>定量指标</p>
+<ul>
+<li><p>PSNR = 峰值信噪比<br>PSNR是信号最大可能功率和影响它的表示精度的破坏性噪声功率的比值</p>
+</li>
+<li><p>SSIM = 结构相似性指数<br>SSIM测量两个相似图像之间的感知差异</p>
+</li>
+</ul>
+<h3 id="1-2-生成对抗网络"><a href="#1-2-生成对抗网络" class="headerlink" title="1.2 生成对抗网络"></a>1.2 生成对抗网络</h3><p>​        生成对抗网络（GAN）是一种基于博弈论方法的深度神经网络体系结构，其中模型的两个组成部分，即生成器和判别器。生成器尝试捕获真实示例的分布，以生成新的数据示例。判别器通常是二分类器，它尽可能准确地将生成器产生的的数据与真实的样本区分开。  GAN的优化是一个最小最大(minimax)优化问题。该优化终止于一个鞍点，该鞍点对于生成器而言是最小值，而对于鉴别器而言是最大值。也就是说，优化目标是达到Nash均衡。然后，可以认为生成器已经捕获了真实样本的概率分布。 通过这种方式，生成器学习生成更好，更逼真的图像。</p>
+<p>​        GAN适用于超分辨率问题：生成器创建SR图像，使鉴别器无法将其识别为真实HR图像或人为的超分辨输出。 以这种方式，产生具有更好的感知质量的HR图像。</p>
+<h2 id="2-损失函数"><a href="#2-损失函数" class="headerlink" title="2. 损失函数"></a>2. 损失函数</h2><p>SRGAN将损失函数由MSE改为感知损失函数。感知损失是内容损失和对抗性损失的加权总和。</p>
+<p>$l^{SR}=l^{SR}_X+10^{-3}l^{SR}_{Gen}$</p>
+<p>其中$l^{SR}$叫做感知损失，$l^{SR}_X$是内容损失，$10^{-3}l^{SR}_{Gen}$是对抗损失</p>
+<h3 id="2-1-内容损失"><a href="#2-1-内容损失" class="headerlink" title="2.1 内容损失"></a>2.1 内容损失</h3><p>内容损失有两种类型：</p>
+<h4 id="2-1-1-Pixel-wise-MSE损失"><a href="#2-1-1-Pixel-wise-MSE损失" class="headerlink" title="2.1.1 Pixel-wise MSE损失"></a>2.1.1 Pixel-wise MSE损失</h4><p>​        逐个像素的MSE损失（Pixel-wise MSE）是真实图像中每个像素与生成图像中一个像素之间的平方误差。Pixel-wise MSE强调的是两幅图像之间每个对应像素的匹配，这与人眼的感知结果有所区别。通过pixel-wise loss训练的图片通常会较为平滑，缺少高频信息。即使输出图片具有较高的PSNR，视觉效果也并没有很突出。</p>
+<script type="math/tex; mode=display">l^{SR}_{MSE}=\frac{1}{r^2WH}\sum\limits^{rW}_{x=1}\sum\limits^{rH}_{y=1}(I^{HR}_{x,y}-G_{\theta_{G}}(I^{LR})_{x,y})^2</script><ul>
+<li>$W,H$：图像的宽度和高度</li>
+<li>$r$：下采样因子</li>
+<li>$G_{\theta_{G}}$：生成器，一个前馈CNN网络</li>
+<li>$\theta_{G}={W_{1:L;b{1:L}}}$:L层神经网络的参数，包括Weight和bias</li>
+<li>$G_{\theta_{G}}(I^{LR})$：由生成器生成的高分辨率图像，</li>
+</ul>
+<a id="more"></a>
+<h4 id="2-1-2-VGG损失"><a href="#2-1-2-VGG损失" class="headerlink" title="2.1.2 VGG损失"></a>2.1.2 VGG损失</h4><p>​        VGG损失是生成的图像和真实图像的特征图之间的欧式距离。VGG19是一种非常流行的深度神经网络，主要用于图像分类。预训练的VGG19网络的中间层用作特征提取器，可用于提取生成的图像和真实图像的特征图。 VGG损失基于这些提取的特征图。 计算为生成的图像和真实图像的特征图之间的欧几里得距离。</p>
+<script type="math/tex; mode=display">l^{SR}_{VGG/i,j}=\frac{1}{W_{i,j}H_{i,j}}\sum\limits^{W_{i,j}}_{x=1}\sum\limits^{H_{i,j}}_{y=1}(\phi_{i,j} (I^{HR})_{x,y}-\phi_{i,j}(G_{\theta_{G}}(I^{LR}))_{x,y})^2</script><ul>
+<li>$\phi_{i,j}$:VGG19网络中在$j$层卷积层和激活函数之后，在$i$层池化层之前的特征图(feature map)</li>
+<li>$W_{i,j},H_{i,j}$：特征图的维度参数</li>
+</ul>
+<h3 id="2-2-对抗损失"><a href="#2-2-对抗损失" class="headerlink" title="2.2 对抗损失"></a>2.2 对抗损失</h3><p>对抗损失是根据判别器提供的概率计算的：</p>
+<script type="math/tex; mode=display">l^{SR}_{Gen}=\sum\limits^N_{n-1}-logD_{\theta_D}(G_{\theta_G}(I^{LR}))</script><ul>
+<li>$D_{\theta_D}(G_{\theta_G}(I^{LR}))$：是判别器D认为重建图像$G_{\theta_G}(I^{LR})$是真实图像的可能性</li>
+</ul>
+<p>训练判别器是要解一个最大化问题：</p>
+<script type="math/tex; mode=display">\min\limits_{\theta_G}\max\limits_{\theta_D}\mathbb E_{I^{HR}\sim P_{train}(I^{HR})}[logD_{\theta_D}(I^{HR})]+\mathbb E_{I^{LR}\sim P_G(I^{LR})}[log(1-D_{\theta_D}(G_{\theta_G}(I^{HR}))]</script><ul>
+<li>最大化$\theta_D$，因此$D_{\theta_D}(I^{HR})$要最大化，这表示让判别器尽可能给真实高分辨率图像高的可能性</li>
+<li>最小化$\theta_G$，因此$D_{\theta_D}(G_{\theta_G}(I^{HR}))$要最大化，这表示让生成器尽量生成足以使判别器难以分辨的重建图像</li>
+</ul>
+<h2 id="3-SRGAN模型"><a href="#3-SRGAN模型" class="headerlink" title="3. SRGAN模型"></a>3. SRGAN模型</h2><p>高分辨率图像（HR）被下采样为低分辨率图像（LR）。 GAN生成器用于将其上采样到超分辨率图像（SR）。 我们使用鉴别器来识别HR图像，并反向传播GAN损失以训练鉴别器和生成器。</p>
+<p><img src="https://i.loli.net/2020/03/09/SvJ6Cg1cuNpis9y.png" alt="TIM截图20200309030326.png"></p>
+<p>这是生成器和判别器网络的体系结构，其中为每个卷积层指示了相应的内核大小($k$)，特征图和($k$)，步幅($s$)。 </p>
+<p>生成器：输入$\to$卷积层$\to$16个残差块$\to$卷积层$\to$BN层$\to$按元素求和$\to$卷积层$\to$2层上采样$\to$卷积层$\to$输出。</p>
+<p>判别器：VGG$\to$卷积层$\to$LeakyReLU$\to$7层卷积、BN层$\to$全连接$\to$LeaklyReLU$\to$全连接$\to$输出</p>
+<h3 id="3-1-生成器"><a href="#3-1-生成器" class="headerlink" title="3.1 生成器"></a>3.1 生成器</h3><h4 id="3-1-1-残差块"><a href="#3-1-1-残差块" class="headerlink" title="3.1.1 残差块"></a>3.1.1 残差块</h4><p>​        随着网络层数的增加，网络发生了退化的现象：随着网络层数的增多，训练集loss逐渐下降，然后趋于饱和，当再增加网络深度的话，训练集loss反而会增大。当网络退化时，浅层网络能够达到比深层网络更好的训练效果，这时如果把低层的特征传到高层，那么效果应该至少不比浅层的网络效果差，而ResNet加入了直接映射，保证了 $l+1$层的网络一定比$l$层包含更多的图像信息。</p>
+<p>​    残差网络是由一系列残差块组成的。一个残差块可以表示为：<script type="math/tex">x_{l+1}=h(x_l)+\mathcal F(x_l,W_l)</script>。残差块由两部分组成：直接映射$h(x_l)$和残差部分$\mathcal F(x_l,W_l)$。下图是5种不同的残差块的结构，SRGAN的生成器采用了原始的(a)类残差块。并且激活函数使用了PRelu。</p>
+<p><img src="https://i.loli.net/2020/03/09/6tiPNnphTlkzY9C.png" alt="TIM截图20200309042154.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#定义残差块</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">residual_block</span><span class="params">(x)</span>:</span></span><br><span class="line">    filters = [<span class="number">64</span>, <span class="number">64</span>]</span><br><span class="line">    kernel_size = <span class="number">3</span></span><br><span class="line">    strides = <span class="number">1</span></span><br><span class="line">    padding = <span class="string">"same"</span></span><br><span class="line">    momentum = <span class="number">0.8</span></span><br><span class="line">    activation = <span class="string">"relu"</span></span><br><span class="line"></span><br><span class="line">    res = Conv2D(filters=filters[<span class="number">0</span>], kernel_size=kernel_size, strides=strides, padding=padding)(x)</span><br><span class="line">    res = Activation(activation=activation)(res)</span><br><span class="line">    res = BatchNormalization(momentum=momentum)(res)</span><br><span class="line">    res = Conv2D(filters=filters[<span class="number">1</span>], kernel_size=kernel_size, strides=strides, padding=padding)(res)</span><br><span class="line">    res = BatchNormalization(momentum=momentum)(res)</span><br><span class="line"></span><br><span class="line">    res = Add()([res, x])</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h4 id="3-1-2-上采样："><a href="#3-1-2-上采样：" class="headerlink" title="3.1.2 上采样："></a>3.1.2 上采样：</h4><p>​        PixelShuffle(像素重组)的主要功能是将低分辨的特征图，通过卷积和多通道间的重组得到高分辨率的特征图。对特征图做上采样，生成器中使用了2个亚像素卷积。 </p>
+<p><img src="https://i.loli.net/2020/03/09/iR7rnpTkoBvS1fK.png" alt="1.png"></p>
+<p>​        上图展示了如何进行亚像素卷积，前面就是普通的CNN网络，在模型倒数第二层学习对应的通道数$r^2c$的卷积，其中$c$为最终的通道数，如输出是RGB图，则$c$为3，如输出是灰度图，则$c$为1；$r$为需要进行的上采样倍数，为正整数倍，不同的上采样倍数只需要调整这一层卷积的通道数即可。如果想对原图放大3倍，那么需要生成出$3^2=9$个同样大小的特征图。将九个特征图拼成一个大图，这就是亚像素卷积的操作。</p>
+<h4 id="3-1-3-生成器实现"><a href="#3-1-3-生成器实现" class="headerlink" title="3.1.3 生成器实现"></a>3.1.3 生成器实现</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_generator</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 生成器中有16个残差块</span></span><br><span class="line">    residual_blocks = <span class="number">16</span></span><br><span class="line">    momentum = <span class="number">0.8</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 低分辨率图像LR的尺寸</span></span><br><span class="line">    input_shape = (<span class="number">64</span>, <span class="number">64</span>, <span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 生成器的输入层</span></span><br><span class="line">    input_layer = Input(shape=input_shape)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 在残差块之前的卷积层</span></span><br><span class="line">    gen1 = Conv2D(filters=<span class="number">64</span>, kernel_size=<span class="number">9</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>, activation=<span class="string">'relu'</span>)(input_layer)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 添加16个残差块</span></span><br><span class="line">    res = residual_block(gen1)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(residual_blocks - <span class="number">1</span>):</span><br><span class="line">        res = residual_block(res)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#残差块之后的卷积层和BN层</span></span><br><span class="line">    gen2 = Conv2D(filters=<span class="number">64</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(res)</span><br><span class="line">    gen2 = BatchNormalization(momentum=momentum)(gen2)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 把BN层结果gen2和残差前卷积结果gen1按元素相加</span></span><br><span class="line">    gen3 = Add()([gen2, gen1])</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 上采样增加维数</span></span><br><span class="line">    gen4 = UpSampling2D(size=<span class="number">2</span>)(gen3)</span><br><span class="line">    gen4 = Conv2D(filters=<span class="number">256</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(gen4)</span><br><span class="line">    gen4 = Activation(<span class="string">'relu'</span>)(gen4)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 上采样增加维数</span></span><br><span class="line">    gen5 = UpSampling2D(size=<span class="number">2</span>)(gen4)</span><br><span class="line">    gen5 = Conv2D(filters=<span class="number">256</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(gen5)</span><br><span class="line">    gen5 = Activation(<span class="string">'relu'</span>)(gen5)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 输出卷积层</span></span><br><span class="line">    gen6 = Conv2D(filters=<span class="number">3</span>, kernel_size=<span class="number">9</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(gen5)</span><br><span class="line">    output = Activation(<span class="string">'tanh'</span>)(gen6)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 定义generator模型</span></span><br><span class="line">    model = Model(inputs=[input_layer], outputs=[output], name=<span class="string">'generator'</span>)</span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-判别器"><a href="#3-2-判别器" class="headerlink" title="3.2 判别器"></a>3.2 判别器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_discriminator</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 设置超参数</span></span><br><span class="line">    leakyrelu_alpha = <span class="number">0.2</span></span><br><span class="line">    momentum = <span class="number">0.8</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 高分辨率图像HR的尺寸</span></span><br><span class="line">    input_shape = (<span class="number">256</span>, <span class="number">256</span>, <span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 鉴别器的输入大小</span></span><br><span class="line">    input_layer = Input(shape=input_shape)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 8个卷积层，7个BN层  </span></span><br><span class="line">    dis1 = Conv2D(filters=<span class="number">64</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(input_layer)</span><br><span class="line">    dis1 = LeakyReLU(alpha=leakyrelu_alpha)(dis1)</span><br><span class="line"></span><br><span class="line">    dis2 = Conv2D(filters=<span class="number">64</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">2</span>, padding=<span class="string">'same'</span>)(dis1)</span><br><span class="line">    dis2 = LeakyReLU(alpha=leakyrelu_alpha)(dis2)</span><br><span class="line">    dis2 = BatchNormalization(momentum=momentum)(dis2)</span><br><span class="line"></span><br><span class="line">    dis3 = Conv2D(filters=<span class="number">128</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(dis2)</span><br><span class="line">    dis3 = LeakyReLU(alpha=leakyrelu_alpha)(dis3)</span><br><span class="line">    dis3 = BatchNormalization(momentum=momentum)(dis3)</span><br><span class="line"></span><br><span class="line">    dis4 = Conv2D(filters=<span class="number">128</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">2</span>, padding=<span class="string">'same'</span>)(dis3)</span><br><span class="line">    dis4 = LeakyReLU(alpha=leakyrelu_alpha)(dis4)</span><br><span class="line">    dis4 = BatchNormalization(momentum=<span class="number">0.8</span>)(dis4)</span><br><span class="line"></span><br><span class="line">    dis5 = Conv2D(<span class="number">256</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(dis4)</span><br><span class="line">    dis5 = LeakyReLU(alpha=leakyrelu_alpha)(dis5)</span><br><span class="line">    dis5 = BatchNormalization(momentum=momentum)(dis5)</span><br><span class="line"></span><br><span class="line">    dis6 = Conv2D(filters=<span class="number">256</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">2</span>, padding=<span class="string">'same'</span>)(dis5)</span><br><span class="line">    dis6 = LeakyReLU(alpha=leakyrelu_alpha)(dis6)</span><br><span class="line">    dis6 = BatchNormalization(momentum=momentum)(dis6)</span><br><span class="line"></span><br><span class="line">    dis7 = Conv2D(filters=<span class="number">512</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, padding=<span class="string">'same'</span>)(dis6)</span><br><span class="line">    dis7 = LeakyReLU(alpha=leakyrelu_alpha)(dis7)</span><br><span class="line">    dis7 = BatchNormalization(momentum=momentum)(dis7)</span><br><span class="line"></span><br><span class="line">    dis8 = Conv2D(filters=<span class="number">512</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">2</span>, padding=<span class="string">'same'</span>)(dis7)</span><br><span class="line">    dis8 = LeakyReLU(alpha=leakyrelu_alpha)(dis8)</span><br><span class="line">    dis8 = BatchNormalization(momentum=momentum)(dis8)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 全连接层</span></span><br><span class="line">    dis9 = Dense(units=<span class="number">1024</span>)(dis8)</span><br><span class="line">    dis9 = LeakyReLU(alpha=<span class="number">0.2</span>)(dis9)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 用于分类的最后一个全连接层</span></span><br><span class="line">    output = Dense(units=<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>)(dis9)</span><br><span class="line">        </span><br><span class="line">    model = Model(inputs=[input_layer], outputs=[output], name=<span class="string">'discriminator'</span>)</span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-预训练VGG模型"><a href="#3-3-预训练VGG模型" class="headerlink" title="3.3 预训练VGG模型"></a>3.3 预训练VGG模型</h3><p>预训练的VGG19将用于从真实图像和生成的图像中提取特征</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_vgg</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 高分辨率图像HR尺寸</span></span><br><span class="line">    input_shape = (<span class="number">256</span>, <span class="number">256</span>, <span class="number">3</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 加载在'Imagenet'上的VGG19与训练模型</span></span><br><span class="line">    vgg = VGG19(weights=<span class="string">"imagenet"</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 从第9层获取输出</span></span><br><span class="line">    vgg.outputs = [vgg.layers[<span class="number">9</span>].output]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 设置输入层</span></span><br><span class="line">    input_layer = Input(shape=input_shape)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 提取特征</span></span><br><span class="line">    features = vgg(input_layer)</span><br><span class="line">    </span><br><span class="line">    model = Model(inputs=[input_layer], outputs=[features])</span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+<h3 id="3-4-GAN模型"><a href="#3-4-GAN模型" class="headerlink" title="3.4 GAN模型"></a>3.4 GAN模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_adversarial_model</span><span class="params">(generator, discriminator, vgg)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 高分辨率图像输入</span></span><br><span class="line">    input_high_resolution = Input(shape=high_resolution_shape)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 低分辨率图像输入</span></span><br><span class="line">    input_low_resolution = Input(shape=low_resolution_shape)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 从低分辨率图像生成超分辨率重建的图像</span></span><br><span class="line">    generated_high_resolution_images = generator(input_low_resolution)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 从生成的图像中提取特征图</span></span><br><span class="line">    features = vgg(generated_high_resolution_images)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 让我们使GAN内部的判别器停止训练，不需要在生成器学习时训练判别器。</span></span><br><span class="line">    discriminator.trainable = <span class="literal">False</span></span><br><span class="line">    discriminator.compile(loss=<span class="string">'mse'</span>, optimizer=common_optimizer, metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 判别器判断生成的超分辨率重建图像是真实图像的的概率</span></span><br><span class="line">    probs = discriminator(generated_high_resolution_images)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 创建并编译模型</span></span><br><span class="line">    adversarial_model = Model([input_low_resolution, input_high_resolution], [probs, features])</span><br><span class="line">    adversarial_model.compile(loss=[<span class="string">'binary_crossentropy'</span>, <span class="string">'mse'</span>], loss_weights=[<span class="number">1e-3</span>, <span class="number">1</span>], optimizer=common_optimizer)</span><br><span class="line">    <span class="keyword">return</span> adversarial_model</span><br></pre></td></tr></table></figure>
+<h2 id="4-结果展示"><a href="#4-结果展示" class="headerlink" title="4. 结果展示"></a>4. 结果展示</h2><p><img src="https://i.loli.net/2020/03/09/r9BvaOWL5keHMnF.png" alt="gen_0.png"><br><img src="https://i.loli.net/2020/03/09/MmVWqQvCyjApFxu.png" alt="gen_1.png"><br><img src="https://i.loli.net/2020/03/09/bTulPraSAMgqzXh.png" alt="gen_3.png"><br><img src="https://i.loli.net/2020/03/09/i8MYaxyoEdU4Fwv.png" alt="gen_2.png"><br><img src="https://i.loli.net/2020/03/09/BLJsKe3NYvT5Ord.png" alt="gen_7.png"><br><img src="https://i.loli.net/2020/03/09/4Cp3ZrGu2kRdyxP.png" alt="gen_4.png"><br><img src="https://i.loli.net/2020/03/09/4TEApIr9JWCLS5o.png" alt="gen_5.png"><br><img src="https://i.loli.net/2020/03/09/GxhLMFNOJjAikCs.png" alt="gen_6.png"><br><img src="https://i.loli.net/2020/03/09/2qQBIhn1W3fRCmj.png" alt="gen_8.png"><br><img src="https://i.loli.net/2020/03/09/QsAKqxaOUXPDTyM.png" alt="gen_9.png"></p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck8zsu5ul001vjovsek18ct9x/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GAN/" rel="tag">GAN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paper/" rel="tag">paper</a></li></ul>
+
+	      
+        <span id="busuanzi_container_page_pv" style="color: #999; margin-left: 30px">
+          阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+      
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/ck8zsu5p30000jovs90o5ci20/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            DL-01-线性回归
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/ck8zsu5w6003gjovs8q5e5f3b/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">生成式对抗网络综述</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'R4YHzXgdvm9AwvtS2tNmT9g8-gzGzoHsz',
+        app_key: '5EggBAi2pBMt9hj0m8p3PeXn',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'retro',
+        placeholder: '来唠嗑不？',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2020
+        ChenHuiyu
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/shark.ico" alt="黑头呆鱼进化之旅"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%81%8A%E5%A4%A9%E5%AE%A4">聊天室</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2020/about">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://www.google.com.hk/" target="_blank" rel="noopener">神奇海螺</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['热情、友好且一问三不知', '永远年迈，永远老泪纵横', '我的每一行代码都是诗，即使无法运行也很美'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/js/ayer.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+
+    
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+
+</html>
