@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenhuiyu.github.io/"/>
-  <updated>2020-04-20T14:41:32.955Z</updated>
+  <updated>2020-04-20T17:49:12.650Z</updated>
   <id>https://chenhuiyu.github.io/</id>
   
   <author>
@@ -17,9 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>[转载]Tensorflow加载预训练模型和保存模型</title>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwx8001ue4vs5632b6lk/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwx8001ue4vs5632b6lk/</id>
+    <published>2020-04-20T17:48:17.000Z</published>
+    <updated>2020-04-20T17:49:12.650Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="转载tensorflow加载预训练模型和保存模型">[转载]Tensorflow加载预训练模型和保存模型</h1><p>原文链接：https://blog.csdn.net/huachao1001/article/details/78501928</p><p>使用tensorflow过程中，训练结束后我们需要用到模型文件。有时候，我们可能也需要用到别人训练好的模型，并在这个基础上再次训练。这时候我们需要掌握如何操作这些模型数据。</p><h2 id="tensorflow模型文件">1 Tensorflow模型文件</h2><p>我们在checkpoint_dir目录下保存的文件结构如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">|--checkpoint_dir</span><br><span class="line">|    |--checkpoint</span><br><span class="line">|    |--MyModel.meta</span><br><span class="line">|    |--MyModel.data<span class="number">-00000</span>-of<span class="number">-00001</span></span><br><span class="line">|    |--MyModel.index</span><br></pre></td></tr></table></figure><h3 id="meta文件">1.1 meta文件</h3><p>MyModel.meta文件保存的是图结构，meta文件是pb（protocol buffer）格式文件，包含变量、op、集合等。</p><a id="more"></a><h3 id="ckpt文件">1.2 ckpt文件</h3><p>ckpt文件是二进制文件，保存了所有的weights、biases、gradients等变量。在tensorflow 0.11之前，保存在<strong>.ckpt</strong>文件中。0.11后，通过两个文件保存,如：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MyModel.data<span class="number">-00000</span>-of<span class="number">-00001</span></span><br><span class="line">MyModel.index</span><br></pre></td></tr></table></figure><h3 id="checkpoint文件">1.3 checkpoint文件</h3><p>checkpoint_dir目录下还有checkpoint文件，该文件是个文本文件，里面记录了保存的最新的checkpoint文件以及其它checkpoint文件列表。在inference时，可以通过修改这个文件，指定使用哪个model</p><h2 id="保存tensorflow模型">2 保存Tensorflow模型</h2><p>tensorflow 提供了<code>tf.train.Saver</code>类来保存模型，值得注意的是，在tensorflow中，变量是存在于Session环境中，也就是说，只有在Session环境下才会存有变量值，因此，保存模型时需要传入session：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">saver = tf.train.Saver()</span><br><span class="line">saver.save(sess,<span class="string">"./checkpoint_dir/MyModel"</span>)</span><br></pre></td></tr></table></figure><p>看一个简单例子：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">w1 = tf.Variable(tf.random_normal(shape=[<span class="number">2</span>]), name=<span class="string">'w1'</span>)</span><br><span class="line">w2 = tf.Variable(tf.random_normal(shape=[<span class="number">5</span>]), name=<span class="string">'w2'</span>)</span><br><span class="line">saver = tf.train.Saver()</span><br><span class="line">sess = tf.Session()</span><br><span class="line">sess.run(tf.global_variables_initializer())</span><br><span class="line">saver.save(sess, <span class="string">'./checkpoint_dir/MyModel'</span>)</span><br></pre></td></tr></table></figure><p>执行后，在checkpoint_dir目录下创建模型文件如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">checkpoint</span><br><span class="line">MyModel.data<span class="number">-00000</span>-of<span class="number">-00001</span></span><br><span class="line">MyModel.index</span><br><span class="line">MyModel.meta</span><br></pre></td></tr></table></figure><p>另外，如果想要在1000次迭代后，再保存模型，只需设置global_step参数即可：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">saver.save(sess, <span class="string">'./checkpoint_dir/MyModel'</span>,global_step=<span class="number">1000</span>)</span><br></pre></td></tr></table></figure><p>保存的模型文件名称会在后面加-1000,如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">checkpoint</span><br><span class="line">MyModel<span class="number">-1000.</span>data<span class="number">-00000</span>-of<span class="number">-00001</span></span><br><span class="line">MyModel<span class="number">-1000.</span>index</span><br><span class="line">MyModel<span class="number">-1000.</span>meta</span><br></pre></td></tr></table></figure><p>在实际训练中，我们可能会在每1000次迭代中保存一次模型数据，但是由于图是不变的，没必要每次都去保存，可以通过如下方式指定不保存图：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">saver.save(sess, <span class="string">'./checkpoint_dir/MyModel'</span>,global_step=step,write_meta_graph=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure><p>另一种比较实用的是，如果你希望每2小时保存一次模型，并且只保存最近的5个模型文件：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.train.Saver(max_to_keep=<span class="number">5</span>, keep_checkpoint_every_n_hours=<span class="number">2</span>)</span><br></pre></td></tr></table></figure><p>注意：tensorflow默认只会保存最近的5个模型文件，如果你希望保存更多，可以通过<code>max_to_keep</code>来指定</p><p>如果我们不对<code>tf.train.Saver</code>指定任何参数，默认会保存所有变量。如果你不想保存所有变量，而只保存一部分变量，可以通过指定<code>variables/collections</code>。在创建<code>tf.train.Saver</code>实例时，通过将需要保存的变量构造list或者dictionary，传入到<code>Saver</code>中：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">w1 = tf.Variable(tf.random_normal(shape=[<span class="number">2</span>]), name=<span class="string">'w1'</span>)</span><br><span class="line">w2 = tf.Variable(tf.random_normal(shape=[<span class="number">5</span>]), name=<span class="string">'w2'</span>)</span><br><span class="line">saver = tf.train.Saver([w1,w2])</span><br><span class="line">sess = tf.Session()</span><br><span class="line">sess.run(tf.global_variables_initializer())</span><br><span class="line">saver.save(sess, <span class="string">'./checkpoint_dir/MyModel'</span>,global_step=<span class="number">1000</span>)</span><br></pre></td></tr></table></figure><h2 id="导入训练好的模型">3 导入训练好的模型</h2><p>在第1小节中我们介绍过，tensorflow将图和变量数据分开保存为不同的文件。因此，在导入模型时，也要分为2步：<strong>构造网络图</strong>和加<strong>载参数</strong></p><h3 id="构造网络图">3.1 构造网络图</h3><p>一个比较笨的方法是，手敲代码，实现跟模型一模一样的图结构。其实，我们既然已经保存了图，那就没必要在去手写一次图结构代码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">saver=tf.train.import_meta_graph(<span class="string">'./checkpoint_dir/MyModel-1000.meta'</span>)</span><br></pre></td></tr></table></figure><p>上面一行代码，就把图加载进来了</p><h3 id="加载参数">3.2 加载参数</h3><p>仅仅有图并没有用，更重要的是，我们需要前面训练好的模型参数（即weights、biases等），本文第2节提到过，变量值需要依赖于Session，因此在加载参数时，先要构造好Session：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">  new_saver = tf.train.import_meta_graph(<span class="string">'./checkpoint_dir/MyModel-1000.meta'</span>)</span><br><span class="line">  new_saver.restore(sess, tf.train.latest_checkpoint(<span class="string">'./checkpoint_dir'</span>))</span><br></pre></td></tr></table></figure><p>此时，W1和W2加载进了图，并且可以被访问：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:    </span><br><span class="line">    saver = tf.train.import_meta_graph(<span class="string">'./checkpoint_dir/MyModel-1000.meta'</span>)</span><br><span class="line">    saver.restore(sess,tf.train.latest_checkpoint(<span class="string">'./checkpoint_dir'</span>))</span><br><span class="line">    print(sess.run(<span class="string">'w1:0'</span>))</span><br><span class="line"><span class="comment">##Model has been restored. Above statement will print the saved value</span></span><br></pre></td></tr></table></figure><p>执行后，打印如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ 0.51480412 -0.56989086]</span><br></pre></td></tr></table></figure><h2 id="使用恢复的模型">4 使用恢复的模型</h2><p>前面我们理解了如何保存和恢复模型，很多时候，我们希望使用一些已经训练好的模型，如prediction、fine-tuning以及进一步训练等。这时候，我们可能需要获取训练好的模型中的一些中间结果值，可以通过<code>graph.get_tensor_by_name('w1:0')</code>来获取，注意<code>w1:0</code>是tensor的name。</p><p>假设我们有一个简单的网络模型，代码如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">w1 = tf.placeholder(<span class="string">"float"</span>, name=<span class="string">"w1"</span>)</span><br><span class="line">w2 = tf.placeholder(<span class="string">"float"</span>, name=<span class="string">"w2"</span>)</span><br><span class="line">b1= tf.Variable(<span class="number">2.0</span>,name=<span class="string">"bias"</span>) </span><br><span class="line"></span><br><span class="line"><span class="comment">#定义一个op，用于后面恢复</span></span><br><span class="line">w3 = tf.add(w1,w2)</span><br><span class="line">w4 = tf.multiply(w3,b1,name=<span class="string">"op_to_restore"</span>)</span><br><span class="line">sess = tf.Session()</span><br><span class="line">sess.run(tf.global_variables_initializer())</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建一个Saver对象，用于保存所有变量</span></span><br><span class="line">saver = tf.train.Saver()</span><br><span class="line"></span><br><span class="line"><span class="comment">#通过传入数据，执行op</span></span><br><span class="line">print(sess.run(w4,feed_dict =&#123;w1:<span class="number">4</span>,w2:<span class="number">8</span>&#125;))</span><br><span class="line"><span class="comment">#打印 24.0 ==&gt;(w1+w2)*b1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#现在保存模型</span></span><br><span class="line">saver.save(sess, <span class="string">'./checkpoint_dir/MyModel'</span>,global_step=<span class="number">1000</span>)</span><br></pre></td></tr></table></figure><p>接下来我们使用graph.get_tensor_by_name()方法来操纵这个保存的模型。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">sess=tf.Session()</span><br><span class="line"><span class="comment">#先加载图和参数变量</span></span><br><span class="line">saver = tf.train.import_meta_graph(<span class="string">'./checkpoint_dir/MyModel-1000.meta'</span>)</span><br><span class="line">saver.restore(sess, tf.train.latest_checkpoint(<span class="string">'./checkpoint_dir'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问placeholders变量，并且创建feed-dict来作为placeholders的新值</span></span><br><span class="line">graph = tf.get_default_graph()</span><br><span class="line">w1 = graph.get_tensor_by_name(<span class="string">"w1:0"</span>)</span><br><span class="line">w2 = graph.get_tensor_by_name(<span class="string">"w2:0"</span>)</span><br><span class="line">feed_dict =&#123;w1:<span class="number">13.0</span>,w2:<span class="number">17.0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#接下来，访问你想要执行的op</span></span><br><span class="line">op_to_restore = graph.get_tensor_by_name(<span class="string">"op_to_restore:0"</span>)</span><br><span class="line"></span><br><span class="line">print(sess.run(op_to_restore,feed_dict))</span><br><span class="line"><span class="comment">#打印结果为60.0==&gt;(13+17)*2</span></span><br></pre></td></tr></table></figure><p>注意：保存模型时，只会保存变量的值，placeholder里面的值不会被保存</p><p>如果你不仅仅是用训练好的模型，还要加入一些op，或者说加入一些layers并训练新的模型，可以通过一个简单例子来看如何操作：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">sess = tf.Session()</span><br><span class="line"><span class="comment"># 先加载图和变量</span></span><br><span class="line">saver = tf.train.import_meta_graph(<span class="string">'my_test_model-1000.meta'</span>)</span><br><span class="line">saver.restore(sess, tf.train.latest_checkpoint(<span class="string">'./'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 访问placeholders变量，并且创建feed-dict来作为placeholders的新值</span></span><br><span class="line">graph = tf.get_default_graph()</span><br><span class="line">w1 = graph.get_tensor_by_name(<span class="string">"w1:0"</span>)</span><br><span class="line">w2 = graph.get_tensor_by_name(<span class="string">"w2:0"</span>)</span><br><span class="line">feed_dict = &#123;w1: <span class="number">13.0</span>, w2: <span class="number">17.0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#接下来，访问你想要执行的op</span></span><br><span class="line">op_to_restore = graph.get_tensor_by_name(<span class="string">"op_to_restore:0"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在当前图中能够加入op</span></span><br><span class="line">add_on_op = tf.multiply(op_to_restore, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (sess.run(add_on_op, feed_dict))</span><br><span class="line"><span class="comment"># 打印120.0==&gt;(13+17)*2*2</span></span><br></pre></td></tr></table></figure><p>如果只想恢复图的一部分，并且再加入其它的op用于fine-tuning。只需通过graph.get_tensor_by_name()方法获取需要的op，并且在此基础上建立图，看一个简单例子，假设我们需要在训练好的VGG网络使用图，并且修改最后一层，将输出改为2，用于fine-tuning新数据：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">......</span><br><span class="line">......</span><br><span class="line">saver = tf.train.import_meta_graph(<span class="string">'vgg.meta'</span>)</span><br><span class="line"><span class="comment"># 访问图</span></span><br><span class="line">graph = tf.get_default_graph() </span><br><span class="line"> </span><br><span class="line"><span class="comment">#访问用于fine-tuning的output</span></span><br><span class="line">fc7= graph.get_tensor_by_name(<span class="string">'fc7:0'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="comment">#如果你想修改最后一层梯度，需要如下</span></span><br><span class="line">fc7 = tf.stop_gradient(fc7) <span class="comment"># It's an identity function</span></span><br><span class="line">fc7_shape= fc7.get_shape().as_list()</span><br><span class="line"></span><br><span class="line">new_outputs=<span class="number">2</span></span><br><span class="line">weights = tf.Variable(tf.truncated_normal([fc7_shape[<span class="number">3</span>], num_outputs], stddev=<span class="number">0.05</span>))</span><br><span class="line">biases = tf.Variable(tf.constant(<span class="number">0.05</span>, shape=[num_outputs]))</span><br><span class="line">output = tf.matmul(fc7, weights) + biases</span><br><span class="line">pred = tf.nn.softmax(output)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Now, you run this with fine-tuning data in sess.run()</span></span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;转载tensorflow加载预训练模型和保存模型&quot;&gt;[转载]Tensorflow加载预训练模型和保存模型&lt;/h1&gt;
+&lt;p&gt;原文链接：https://blog.csdn.net/huachao1001/article/details/78501928&lt;/p&gt;
+&lt;p&gt;使用tensorflow过程中，训练结束后我们需要用到模型文件。有时候，我们可能也需要用到别人训练好的模型，并在这个基础上再次训练。这时候我们需要掌握如何操作这些模型数据。&lt;/p&gt;
+&lt;h2 id=&quot;tensorflow模型文件&quot;&gt;1 Tensorflow模型文件&lt;/h2&gt;
+&lt;p&gt;我们在checkpoint_dir目录下保存的文件结构如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;|--checkpoint_dir&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|    |--checkpoint&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|    |--MyModel.meta&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|    |--MyModel.data&lt;span class=&quot;number&quot;&gt;-00000&lt;/span&gt;-of&lt;span class=&quot;number&quot;&gt;-00001&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;|    |--MyModel.index&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;meta文件&quot;&gt;1.1 meta文件&lt;/h3&gt;
+&lt;p&gt;MyModel.meta文件保存的是图结构，meta文件是pb（protocol buffer）格式文件，包含变量、op、集合等。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Tensorflow" scheme="https://chenhuiyu.github.io/categories/Tensorflow/"/>
+    
+    
+      <category term="Tensorflow" scheme="https://chenhuiyu.github.io/tags/Tensorflow/"/>
+    
+  </entry>
+  
+  <entry>
     <title>文献阅读-闭环问题：用于单图像超分辨率的对偶回归网络</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn35r0012p4vs7qa63hx2/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn35r0012p4vs7qa63hx2/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwwc0013e4vs7tjl0oum/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwwc0013e4vs7tjl0oum/</id>
     <published>2020-04-20T14:21:17.000Z</published>
     <updated>2020-04-20T14:41:32.955Z</updated>
     
@@ -57,8 +87,8 @@
   
   <entry>
     <title>leetcode-445-两数相加 II</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn35j000xp4vs6yusdfg9/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn35j000xp4vs6yusdfg9/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxww7000ye4vsc7ptfq9z/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxww7000ye4vsc7ptfq9z/</id>
     <published>2020-04-14T14:50:00.000Z</published>
     <updated>2020-04-14T14:51:20.746Z</updated>
     
@@ -93,8 +123,8 @@
   
   <entry>
     <title>leetcode-03.04-化栈为队</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn35d000rp4vsbnvv0q9u/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn35d000rp4vsbnvv0q9u/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxww0000te4vs25weh1fo/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxww0000te4vs25weh1fo/</id>
     <published>2020-04-14T11:04:01.720Z</published>
     <updated>2020-04-20T14:23:32.793Z</updated>
     
@@ -130,8 +160,8 @@
   
   <entry>
     <title>leetcode-20-有效的括号</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn35g000tp4vs6li8c69c/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn35g000tp4vs6li8c69c/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxww4000ve4vs15ic4p6e/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxww4000ve4vs15ic4p6e/</id>
     <published>2020-04-13T10:22:59.000Z</published>
     <updated>2020-04-13T10:27:47.832Z</updated>
     
@@ -168,9 +198,40 @@
   </entry>
   
   <entry>
+    <title>ML-Softmax回归</title>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwvp000he4vs2r5e2h56/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwvp000he4vs2r5e2h56/</id>
+    <published>2020-03-13T18:35:38.000Z</published>
+    <updated>2020-03-15T21:35:21.516Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="softmax回归">Softmax回归</h1><p>[toc]</p><h2 id="softmax简介">softmax简介</h2><p>Logistic Regression是一种二分类算法，它利用后验概率最大化去计算权重<span class="math inline">\(w\)</span>，Softmax Regression是Logistic Regression的推广，能以更加紧凑的方式来处理多分类问题。Softmax函数的输入是c维的随机真值向量，输出是另一个c维的真值向量，且值的范围是<span class="math inline">\((0,1)\)</span>，和为<span class="math inline">\(1\)</span>。即映射：<span class="math inline">\(S(a)=\mathbb R^c→\mathbb R^c\)</span></p><p>设<span class="math inline">\(z=[z_1,z_2,\cdots,z_c]^T\)</span>为一个<span class="math inline">\(c\)</span>维空间的一个向量，Softmax函数<span class="math inline">\(\sigma\)</span>是一个<span class="math inline">\(\mathbb R^c\)</span>到<span class="math inline">\([0,1]^c\)</span>上的<span class="math inline">\(c\)</span>维映射函数： <span class="math display">\[[\sigma(z)]_j=\frac{e^z_j}{\sum _{i=1} ^c e^z_i} j=1,2,\cdots,c\]</span> softmax函数的输出可以用来描述关于类别的分布： <span class="math display">\[P(y=j|\mathbf x)=\frac{e^{\mathbf w_j^T \mathbf x+b_j}}{\sum _{i=1} ^c e^{\mathbf w_i^T \mathbf x+b_i}} j=1,2,\cdots,c\]</span> 给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((\mathbf x_1,y_1),(\mathbf x_2,y_2),\cdots,(\mathbf x_n,y_n)\)</span>，其中<span class="math inline">\(\mathbf x_i \in \mathbb R^d,i=1,2,\cdots,n\)</span>为<span class="math inline">\(d\)</span>维空间的样本特征，<span class="math inline">\(y_i \in\{1,2,\cdots,c\}\)</span>为对应的类别标签</p><p>给定测试样本<span class="math inline">\(\bf x\)</span>，期望基于所学的假设函数能对每个类别<span class="math inline">\(j\)</span>估算其概率值<span class="math inline">\(P(y=j|\bf x)\)</span>，即估计<span class="math inline">\(\bf x\)</span>的每一种分类结果出现的概率。因此，假设函数应该有能力输出一个<span class="math inline">\(c\)</span>维向量（向量元素之和为1）来表示<span class="math inline">\(c\)</span>个估计的概率值。</p><h2 id="假设函数">假设函数</h2><p>假设函数即为softmax函数，所有softmax函数构成假设空间。</p><p>假设所有的数据<span class="math inline">\(\bf x\)</span>都是齐次坐标形式，即<span class="math inline">\(\bf x\)</span>的维度是<span class="math inline">\(d+1\)</span>维，假设函数的形式如下： $$ </p><p>=  $$ 其中$_1,w_2,,w_c]R^{(d+1)c} $</p><h2 id="代价函数">代价函数</h2><p>采用交叉熵损失：</p><h3 id="两类分类时">两类分类时</h3><p><span class="math display">\[\begin {equation}\begin {split}l(\mathbf w,\mathrm b)&amp;=-\sum \limits _{i=1} ^n (y_i log(h(\mathbf x_i|\mathbf w,b))+((1-y_i) log(1-h(\mathbf x_i|\mathbf w,b)))\\&amp;=\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^1\delta(y_i=j)logP(y_i=j|\mathbf x_i|\mathbf w,b)\right]\end {split}\end {equation}\]</span></p><p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[\delta(y_i=j)=\begin{cases} 1,\text y_i=j\\0,\text y_i≠j\end{cases},j\in\{0,1\}\]</span></p><h3 id="多类分类时">多类分类时</h3><p><span class="math display">\[\begin {equation}\begin {split}l(\mathbf W)&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^c\delta(y_i=j)logP(y=j_i|\mathbf x|\mathbf w,b)\right]\\&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=1} ^c\delta(y_i=j)log\frac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits_{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right]\end {split}\end {equation}\]</span></p><p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[\delta(y_i=j)=\begin{cases} 1,\text y_i=j\\0,\text y_i≠j\end{cases},j\in\{1,2,\cdots,c\}\]</span></p><h2 id="求解">求解</h2><p>分两种情况进行求导：</p><h3 id="当y_ij时">当<span class="math inline">\(y_i=j\)</span>时</h3><p><span class="math display">\[\begin {equation}\begin {split}\dfrac{\partial l(\mathbf W)}{\partial \mathbf w_j}&amp;=-\dfrac{\partial \left( \sum \limits _{i=1} ^n \left( log\dfrac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits _{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right)\right)}{\partial \mathbf w_j}\\&amp;=\end {split}\end {equation}\]</span></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;softmax回归&quot;&gt;Softmax回归&lt;/h1&gt;
+&lt;p&gt;[toc]&lt;/p&gt;
+&lt;h2 id=&quot;softmax简介&quot;&gt;softmax简介&lt;/h2&gt;
+&lt;p&gt;Logistic Regression是一种二分类算法，它利用后验概率最大化去计算权重&lt;span clas
+      
+    
+    </summary>
+    
+    
+      <category term="Machine Learning" scheme="https://chenhuiyu.github.io/categories/Machine-Learning/"/>
+    
+    
+      <category term="ML" scheme="https://chenhuiyu.github.io/tags/ML/"/>
+    
+      <category term="线性模型" scheme="https://chenhuiyu.github.io/tags/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ML-Linear-Regression-线性回归</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn34s0006p4vs97x171s8/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn34s0006p4vs97x171s8/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwvc0007e4vs0nv380bt/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwvc0007e4vs0nv380bt/</id>
     <published>2020-03-13T18:35:38.000Z</published>
     <updated>2020-03-15T06:23:48.738Z</updated>
     
@@ -229,40 +290,9 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   </entry>
   
   <entry>
-    <title>ML-Softmax回归</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn34z000cp4vsez2i3jfx/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn34z000cp4vsez2i3jfx/</id>
-    <published>2020-03-13T18:35:38.000Z</published>
-    <updated>2020-03-15T21:35:21.516Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="softmax回归">Softmax回归</h1><p>[toc]</p><h2 id="softmax简介">softmax简介</h2><p>Logistic Regression是一种二分类算法，它利用后验概率最大化去计算权重<span class="math inline">\(w\)</span>，Softmax Regression是Logistic Regression的推广，能以更加紧凑的方式来处理多分类问题。Softmax函数的输入是c维的随机真值向量，输出是另一个c维的真值向量，且值的范围是<span class="math inline">\((0,1)\)</span>，和为<span class="math inline">\(1\)</span>。即映射：<span class="math inline">\(S(a)=\mathbb R^c→\mathbb R^c\)</span></p><p>设<span class="math inline">\(z=[z_1,z_2,\cdots,z_c]^T\)</span>为一个<span class="math inline">\(c\)</span>维空间的一个向量，Softmax函数<span class="math inline">\(\sigma\)</span>是一个<span class="math inline">\(\mathbb R^c\)</span>到<span class="math inline">\([0,1]^c\)</span>上的<span class="math inline">\(c\)</span>维映射函数： <span class="math display">\[[\sigma(z)]_j=\frac{e^z_j}{\sum _{i=1} ^c e^z_i} j=1,2,\cdots,c\]</span> softmax函数的输出可以用来描述关于类别的分布： <span class="math display">\[P(y=j|\mathbf x)=\frac{e^{\mathbf w_j^T \mathbf x+b_j}}{\sum _{i=1} ^c e^{\mathbf w_i^T \mathbf x+b_i}} j=1,2,\cdots,c\]</span> 给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((\mathbf x_1,y_1),(\mathbf x_2,y_2),\cdots,(\mathbf x_n,y_n)\)</span>，其中<span class="math inline">\(\mathbf x_i \in \mathbb R^d,i=1,2,\cdots,n\)</span>为<span class="math inline">\(d\)</span>维空间的样本特征，<span class="math inline">\(y_i \in\{1,2,\cdots,c\}\)</span>为对应的类别标签</p><p>给定测试样本<span class="math inline">\(\bf x\)</span>，期望基于所学的假设函数能对每个类别<span class="math inline">\(j\)</span>估算其概率值<span class="math inline">\(P(y=j|\bf x)\)</span>，即估计<span class="math inline">\(\bf x\)</span>的每一种分类结果出现的概率。因此，假设函数应该有能力输出一个<span class="math inline">\(c\)</span>维向量（向量元素之和为1）来表示<span class="math inline">\(c\)</span>个估计的概率值。</p><h2 id="假设函数">假设函数</h2><p>假设函数即为softmax函数，所有softmax函数构成假设空间。</p><p>假设所有的数据<span class="math inline">\(\bf x\)</span>都是齐次坐标形式，即<span class="math inline">\(\bf x\)</span>的维度是<span class="math inline">\(d+1\)</span>维，假设函数的形式如下： $$ </p><p>=  $$ 其中$_1,w_2,,w_c]R^{(d+1)c} $</p><h2 id="代价函数">代价函数</h2><p>采用交叉熵损失：</p><h3 id="两类分类时">两类分类时</h3><p><span class="math display">\[\begin {equation}\begin {split}l(\mathbf w,\mathrm b)&amp;=-\sum \limits _{i=1} ^n (y_i log(h(\mathbf x_i|\mathbf w,b))+((1-y_i) log(1-h(\mathbf x_i|\mathbf w,b)))\\&amp;=\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^1\delta(y_i=j)logP(y_i=j|\mathbf x_i|\mathbf w,b)\right]\end {split}\end {equation}\]</span></p><p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[\delta(y_i=j)=\begin{cases} 1,\text y_i=j\\0,\text y_i≠j\end{cases},j\in\{0,1\}\]</span></p><h3 id="多类分类时">多类分类时</h3><p><span class="math display">\[\begin {equation}\begin {split}l(\mathbf W)&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^c\delta(y_i=j)logP(y=j_i|\mathbf x|\mathbf w,b)\right]\\&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=1} ^c\delta(y_i=j)log\frac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits_{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right]\end {split}\end {equation}\]</span></p><p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[\delta(y_i=j)=\begin{cases} 1,\text y_i=j\\0,\text y_i≠j\end{cases},j\in\{1,2,\cdots,c\}\]</span></p><h2 id="求解">求解</h2><p>分两种情况进行求导：</p><h3 id="当y_ij时">当<span class="math inline">\(y_i=j\)</span>时</h3><p><span class="math display">\[\begin {equation}\begin {split}\dfrac{\partial l(\mathbf W)}{\partial \mathbf w_j}&amp;=-\dfrac{\partial \left( \sum \limits _{i=1} ^n \left( log\dfrac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits _{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right)\right)}{\partial \mathbf w_j}\\&amp;=\end {split}\end {equation}\]</span></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;softmax回归&quot;&gt;Softmax回归&lt;/h1&gt;
-&lt;p&gt;[toc]&lt;/p&gt;
-&lt;h2 id=&quot;softmax简介&quot;&gt;softmax简介&lt;/h2&gt;
-&lt;p&gt;Logistic Regression是一种二分类算法，它利用后验概率最大化去计算权重&lt;span clas
-      
-    
-    </summary>
-    
-    
-      <category term="Machine Learning" scheme="https://chenhuiyu.github.io/categories/Machine-Learning/"/>
-    
-    
-      <category term="ML" scheme="https://chenhuiyu.github.io/tags/ML/"/>
-    
-      <category term="线性模型" scheme="https://chenhuiyu.github.io/tags/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/"/>
-    
-  </entry>
-  
-  <entry>
     <title>ML-Logistic-Regression-对数几率回归</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn34t0007p4vscgww2dxb/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn34t0007p4vscgww2dxb/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwve0008e4vs3fqwgl6n/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwve0008e4vs3fqwgl6n/</id>
     <published>2020-03-12T16:33:38.000Z</published>
     <updated>2020-04-04T15:50:07.064Z</updated>
     
@@ -300,8 +330,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>爬虫-07-Requests库</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn36d001op4vsgavq8y3x/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn36d001op4vsgavq8y3x/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwx2001pe4vsa68r1ej8/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwx2001pe4vsa68r1ej8/</id>
     <published>2020-03-11T09:11:59.000Z</published>
     <updated>2020-04-14T23:21:25.597Z</updated>
     
@@ -330,8 +360,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>爬虫-06-多进程的基本原理</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn369001jp4vsem7keyeb/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn369001jp4vsem7keyeb/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwwz001ke4vscqyj1hk7/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwwz001ke4vscqyj1hk7/</id>
     <published>2020-03-11T09:11:59.000Z</published>
     <updated>2020-03-11T12:15:21.495Z</updated>
     
@@ -361,8 +391,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>LaTeX符号速查</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn34j0002p4vs84jr2egf/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn34j0002p4vs84jr2egf/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwv90006e4vs5dbge0sn/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwv90006e4vs5dbge0sn/</id>
     <published>2020-03-10T20:07:26.000Z</published>
     <updated>2020-03-10T20:12:54.998Z</updated>
     
@@ -412,8 +442,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>DL-01-线性回归</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn34a0000p4vsd1vn2tkc/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn34a0000p4vsd1vn2tkc/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwur0000e4vs7s7cgp2b/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwur0000e4vs7s7cgp2b/</id>
     <published>2020-03-10T17:15:19.000Z</published>
     <updated>2020-03-10T20:35:06.016Z</updated>
     
@@ -443,8 +473,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>基于SRGAN的超分辨率重建</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn35p0010p4vs59rufaw0/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn35p0010p4vs59rufaw0/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxww90011e4vsbvm12x19/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxww90011e4vsbvm12x19/</id>
     <published>2020-03-09T06:06:32.000Z</published>
     <updated>2020-03-09T12:45:37.145Z</updated>
     
@@ -496,8 +526,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>生成式对抗网络综述</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn36f001pp4vs4ap114x9/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn36f001pp4vs4ap114x9/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwx5001qe4vsewbzeenz/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwx5001qe4vsewbzeenz/</id>
     <published>2020-03-08T12:27:44.000Z</published>
     <updated>2020-03-08T12:52:16.164Z</updated>
     
@@ -525,8 +555,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>爬虫-05-多线程的基本原理</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn367001hp4vsbpqdht2n/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn367001hp4vsbpqdht2n/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwwx001ie4vs26mk28iq/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwwx001ie4vs26mk28iq/</id>
     <published>2020-03-08T09:11:59.000Z</published>
     <updated>2020-03-09T14:15:23.861Z</updated>
     
@@ -554,8 +584,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>NLP03-形式语言与自动机.md</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn34x000bp4vs5r9w8ewe/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn34x000bp4vs5r9w8ewe/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwvm000de4vs52dwf0to/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwvm000de4vs52dwf0to/</id>
     <published>2020-03-07T17:43:09.000Z</published>
     <updated>2020-03-07T17:45:59.257Z</updated>
     
@@ -582,8 +612,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>DLHLP——1.课程简介</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn34q0005p4vsgf1wgb2k/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn34q0005p4vsgf1wgb2k/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwv00002e4vs6k7ldcsi/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwv00002e4vs6k7ldcsi/</id>
     <published>2020-03-07T17:41:40.000Z</published>
     <updated>2020-03-07T16:56:34.492Z</updated>
     
@@ -613,8 +643,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>NLP01-绪论</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn352000gp4vs9dsef2hd/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn352000gp4vs9dsef2hd/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwvj000ce4vsgc8g87lt/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwvj000ce4vsgc8g87lt/</id>
     <published>2020-03-06T20:54:38.000Z</published>
     <updated>2020-03-06T21:11:42.030Z</updated>
     
@@ -641,8 +671,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>爬虫-04-Session和Cookies</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn362001dp4vs8d01gvk9/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn362001dp4vs8d01gvk9/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwwp001de4vsgest2gdx/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwwp001de4vsgest2gdx/</id>
     <published>2020-03-06T20:42:51.000Z</published>
     <updated>2020-03-09T14:17:38.092Z</updated>
     
@@ -673,8 +703,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>爬虫-03-爬虫基本原理</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn360001cp4vsajit4kbo/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn360001cp4vsajit4kbo/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwwt001ee4vs2y0bageo/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwwt001ee4vs2y0bageo/</id>
     <published>2020-03-06T20:42:29.000Z</published>
     <updated>2020-03-09T14:17:50.586Z</updated>
     
@@ -704,8 +734,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>爬虫-02-Web网页基础</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn35w0017p4vsf3n4dhk7/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn35w0017p4vsf3n4dhk7/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwwh0018e4vs5hwdhe2n/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwwh0018e4vs5hwdhe2n/</id>
     <published>2020-03-06T20:42:15.000Z</published>
     <updated>2020-03-09T14:17:32.724Z</updated>
     
@@ -737,8 +767,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>爬虫-01-HTTP基本原理</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn35u0015p4vs1x2x1kmc/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn35u0015p4vs1x2x1kmc/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwwf0016e4vse95h5iws/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwwf0016e4vse95h5iws/</id>
     <published>2020-03-06T20:41:40.000Z</published>
     <updated>2020-03-09T14:12:36.804Z</updated>
     
@@ -771,8 +801,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>机器学习入门</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn359000np4vs3205ek8r/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn359000np4vs3205ek8r/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwvx000oe4vs47wc9w96/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwvx000oe4vs47wc9w96/</id>
     <published>2020-03-06T20:35:06.000Z</published>
     <updated>2020-03-06T21:12:04.753Z</updated>
     
@@ -804,8 +834,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>Hello World</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rn357000mp4vs95ot8v36/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rn357000mp4vs95ot8v36/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98rxwvu000me4vs3k3y0ngi/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98rxwvu000me4vs3k3y0ngi/</id>
     <published>2020-03-06T19:36:30.886Z</published>
     <updated>2020-03-06T19:36:30.886Z</updated>
     

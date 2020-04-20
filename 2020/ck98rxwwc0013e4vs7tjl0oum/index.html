@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
+  <meta name="google-site-verification" content="tlhm0TPr0COuwtHNQ-DYfsCZ5xoIGLOAZuc5MP1w9MA" />
+  <meta name="baidu-site-verification" content="yrWjI3OWej" />
+  
+   
+  <meta name="keywords" content="ML,NLP,GAN,爬虫" />
+   
+  <meta name="description" content="daily learning" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    文献阅读-闭环问题：用于单图像超分辨率的对偶回归网络 |  黑头呆鱼进化之旅
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/images/cat1.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+</html>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-文献阅读-用于单图像超分辨率的对偶回归网络" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  文献阅读-闭环问题：用于单图像超分辨率的对偶回归网络
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck98rxwwc0013e4vs7tjl0oum/" class="article-date">
+  <time datetime="2020-04-20T14:21:17.000Z" itemprop="datePublished">2020-04-20</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB/">文献阅读</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.4k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="闭环问题用于单图像超分辨率的对偶回归网络">闭环问题：用于单图像超分辨率的对偶回归网络</h1>
+<p>Closed-loop Matters: Dual Regression Networks for Single Image Super-Resolution</p>
+<p>论文：https://arxiv.org/pdf/2003.07018.pdf</p>
+<p>[toc]</p>
+<h2 id="现有模型存在的问题">现有模型存在的问题</h2>
+<p>1.学习从LR到HR图像的映射通常是一个不适定的问题，存在无限多的HR图像，可以缩小比例以获得相同的LR图像。因此，<strong>将LR映射到HR图像的可能功能的空间变得极大</strong>。由于很难在如此大的空间中学习好的解决方案，因此学习性能可能受到限制。如何减少映射函数的可能空间以提高SR模型的训练成为重要的问题。</p>
+<p>2.当<strong>不存在成对的LR、HR数据时，超分辨率模型变得很难实现</strong>。大多数SR方法都依赖于成对的训练数据，即HR图像及其降级的LR对应图像。但是，不配对的数据通常在实际应用中占主导地位。此外，现实世界的数据不一定与通过特定的降级方法获得的LR图像具有相同的分布。因此，如何有效利用未配对的数据以使SR模型适应实际应用成为一个重要的问题。</p>
+<h2 id="创新点">创新点</h2>
+<p>通过在LR数据上引入附加约束来减少可能的映射关系的空间：具体表现为除了学习LR到HR的原始映射，还额外学习从HR到LR的对偶映射，形成了一个LR到HR到LR的闭环。从而减少可能的函数空间。在这样的对偶过程中，LR图像的回归不依赖于HR图像，因此可以直接从LR图像中学习。</p>
+<figure>
+<img src="C:\Users\陈惠宇宝宝\AppData\Roaming\Typora\typora-user-images\image-20200413064928533.png" alt="image-20200413064928533" /><figcaption>image-20200413064928533</figcaption>
+</figure>
+<p>对偶回归网络，其中包括用于超分辨率的原始回归任务和用于将HR图像投影回LR图像的对偶回归任务。原始和对偶回归任务形成一个闭环。</p>
+<a id="more"></a>
+<h2 id="算法">算法</h2>
+<p>令<span class="math inline">\(x∈X\)</span>为LR图像，<span class="math inline">\(y∈Y\)</span>为HR图像。我们同时学习原始映射<span class="math inline">\(P(x\to y)\)</span>来重建HR图像和对偶映射<span class="math inline">\(D(y \to x)\)</span>来重建LR图像。其中，对偶映射可以看作是对底层下采样内核的估计。形式上，将SR问题公式化为涉及两个回归任务的对偶回归方案。</p>
+<p>1.基本回归任务：找到一个函数<span class="math inline">\(P:X→Y\)</span>，使得预测<span class="math inline">\(P(x)\)</span>与其对应的HR图像<span class="math inline">\(y\)</span>类似</p>
+<p>2.对偶回归任务：找到一个函数<span class="math inline">\(D:Y→X\)</span>，使得预测<span class="math inline">\(D(y)\)</span>与其对应的原始输入LR图像类似</p>
+<p>原始学习和对偶学习任务可以形成一个闭环，并提供信息性指导来训练模型<span class="math inline">\(P\)</span>和<span class="math inline">\(D\)</span>。如果<span class="math inline">\(P(x)\)</span>是正确的HR图像，则下采样图像<span class="math inline">\(D(P(x))\)</span>应该非常接近到输入的LR图像<span class="math inline">\(x\)</span>。建立如下训练超分辨率模型。给定一组<span class="math inline">\(N\)</span>个配对样本<span class="math inline">\(S_P=\{(xi，yi)\}^N_{i=1}\)</span>，其中<span class="math inline">\(x_i\)</span>和<span class="math inline">\(y_i\)</span>表示成对数据集中的第<span class="math inline">\(i\)</span>对低分辨率和高分辨率图像。训练损失可以写成</p>
+<figure>
+<img src="C:\Users\陈惠宇宝宝\AppData\Roaming\Typora\typora-user-images\image-20200413075250793.png" alt="image-20200413075250793" /><figcaption>image-20200413075250793</figcaption>
+</figure>
+<p>对于不成对数据：</p>
+<p>给定<span class="math inline">\(M\)</span>个不成对的LR样本和<span class="math inline">\(N\)</span>个成对的样本，目标函数可以写成</p>
+<figure>
+<img src="C:\Users\陈惠宇宝宝\AppData\Roaming\Typora\typora-user-images\image-20200413081727547.png" alt="image-20200413081727547" /><figcaption>image-20200413081727547</figcaption>
+</figure>
+<p>未配对数据的自适应算法</p>
+<p>输入:</p>
+<ul>
+<li><p>不成对真实数据：<span class="math inline">\(S_U\)</span></p></li>
+<li><p>成对数据：<span class="math inline">\(S_P\)</span></p></li>
+<li><p><span class="math inline">\(S_U\)</span>和<span class="math inline">\(S_P\)</span>的Batch sizes: <span class="math inline">\(m\)</span> ，<span class="math inline">\(n\)</span></p></li>
+<li><p>指示函数: <span class="math inline">\(1_{SP}(·)\)</span></p>
+<ol type="1">
+<li>加载预训练的模型P和D。</li>
+<li>while 不收敛 do
+<ol type="1">
+<li>取来自<span class="math inline">\(S_U\)</span>的样本未标记数据<span class="math inline">\(\{x_i\}^m_{i=1}\)</span></li>
+<li>取来自<span class="math inline">\(S_P\)</span>的样本标记数据<span class="math inline">\(\{(x_i,y_i)\}^{m+n}_{i=1}\)</span></li>
+<li>// 更新原始模型</li>
+<li>通过最小化目标来更新<span class="math inline">\(P\)</span>：</li>
+<li><span class="math display">\[\sum \limits ^{m+n} _{i=1}1_{S_P}(\mathbf x_i) L_p(P(\mathbf x_i,\mathbf y_i))+\lambda L_D(D(P(\mathbf x_i)),\mathbf x_i)\]</span></li>
+<li>// 更新对偶模型</li>
+<li>通过最小化目标来更新<span class="math inline">\(D\)</span>：</li>
+<li><span class="math display">\[\sum \limits ^{m+n} _{i=1}\lambda L_D(D(P(\mathbf x_i)),\mathbf x_i)\]</span></li>
+</ol></li>
+<li>end</li>
+</ol></li>
+</ul>
+<h2 id="训练模型">训练模型</h2>
+<figure>
+<img src="C:/Users/陈惠宇宝宝/AppData/Roaming/Typora/typora-user-images/image-20200413082033980.png" alt="image-20200413082033980" /><figcaption>image-20200413082033980</figcaption>
+</figure>
+<p>图3. 4×SR的DRN架构。DRN包含一个原始网络和一个对偶网络（黑线表示原始映射，红线表示对偶映射）。绿色框表示下采样模块的特征图（左半部分），黄色框表示上采样模块的特征图（右半部分）。在U-Net之后，通过快捷连接来连接相应的浅层和深层特征图。编码器部分由卷积层和LeakyRelu组成，分辨率逐层降低。解码器部分由RCAB（残差结构+CA注意力）和pixelshuffle上采样组成。编码器和解码器组成了原始回归任务。对偶回归任务对超分后的图像进行卷积下采样得到LR图像</p>
+<p>原始网络遵循U-Net的下采样上采样设计。下采样（左半部分）和上采样（右半部分）模块都包含<span class="math inline">\(log_2(s)\)</span>基本块，其中<span class="math inline">\(s\)</span>表示比例因子。这意味着网络将有2个块用于4倍放大和3个块用于8倍放大。与基线U-Net不同，使用<span class="math inline">\(B\)</span>残留通道关注块（RCAB）构建每个基本块。添加了额外的输出以生成相应比例的图像（即1×，2×和4×图像），并将建议的损失应用于它们以训练模型。注意，在将LR图像馈入原始网络之前，使用Bicubic内核对LR图像进行升级。</p>
+<p>对偶网络，从超分辨的图像中生成降采样的LR图像。请注意，对偶任务旨在学习下采样操作，这比用于学习原始任务要简单得多。因此，对偶模型只有两个卷积层和一个LeakyReLU激活层，它的计算成本比原始模型低得多</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck98rxwwc0013e4vs7tjl0oum/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gan/" rel="tag">gan</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paper/" rel="tag">paper</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sr/" rel="tag">sr</a></li></ul>
+
+	      
+        <span id="busuanzi_container_page_pv" style="color: #999; margin-left: 30px">
+          阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+      
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/ck98rxwx8001ue4vs5632b6lk/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            [转载]Tensorflow加载预训练模型和保存模型
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/ck98rxww7000ye4vsc7ptfq9z/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">leetcode-445-两数相加 II</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'R4YHzXgdvm9AwvtS2tNmT9g8-gzGzoHsz',
+        app_key: '5EggBAi2pBMt9hj0m8p3PeXn',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'retro',
+        placeholder: '来唠嗑不？',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2020
+        ChenHuiyu
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/shark.ico" alt="黑头呆鱼进化之旅"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%81%8A%E5%A4%A9%E5%AE%A4">聊天室</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2020/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['热情、友好且一问三不知', '永远年迈，永远老泪纵横', '我的每一行代码都是诗，即使无法运行也很美'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/js/ayer.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+
+    
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+
+</html>
