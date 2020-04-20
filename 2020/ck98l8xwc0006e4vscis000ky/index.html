@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
+  <meta name="google-site-verification" content="tlhm0TPr0COuwtHNQ-DYfsCZ5xoIGLOAZuc5MP1w9MA" />
+  <meta name="baidu-site-verification" content="yrWjI3OWej" />
+  
+   
+  <meta name="keywords" content="ML,NLP,GAN,爬虫" />
+   
+  <meta name="description" content="daily learning" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    ML-Linear-Regression-线性回归 |  黑头呆鱼进化之旅
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/images/cat1.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+</html>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-Linear-Regression-线性回归" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  ML-Linear-Regression-线性回归
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck98l8xwc0006e4vscis000ky/" class="article-date">
+  <time datetime="2020-03-13T18:35:38.000Z" itemprop="datePublished">2020-03-14</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.1k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="linear-regression-线性回归">Linear-Regression-线性回归</h1>
+<p>[toc]</p>
+<h2 id="线性回归">1. 线性回归</h2>
+<p>给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)\)</span>，其中<span class="math inline">\(x_i=(x_{1i};x_{2i};\dots;x_{id}),y_i \in \mathbb R\)</span>，为<span class="math inline">\(d\)</span>维样本特征，<span class="math inline">\(y_i \in \{0,1\}\)</span>为其对应的类别标签。线性回归试图学习一个线性模型尽可能使的预测实值输出标记。对于离散属性，如果属性间存在“序(order)关系”，可通过连续化将其转化为连续值；若属性间不存在序关系，假定有<span class="math inline">\(k\)</span>个属性值，通常转化为<span class="math inline">\(k\)</span>维向量。</p>
+<p>线性回归试图学得： <span class="math display">\[
+f(x_i)=wx_i+b,使得f(x_i)\simeq y_i
+\]</span> 如何确定<span class="math inline">\(w\)</span>和<span class="math inline">\(b\)</span>？这里需要引入<strong>均方误差</strong>，它可以衡量<span class="math inline">\(f(x)\)</span>和<span class="math inline">\(y\)</span>直接的差别。均方误差对应了欧氏距离，基于均方误差最小化来进行模型求解的方法称为“最小二乘法”。在线性回归中，最小二乘法就是试图找到一条直线，使所有样本到这条直线的欧氏距离之和最小。利用下式将均方误差最小化： <span class="math display">\[
+\begin{equation}
+\begin{split}
+(w^*,b^*)&amp;=arg\ \min \limits_{w,b} \sum \limits _{i=1} ^{n} (f(x_i)-y_i)^2\\
+&amp;=arg\ \min \limits_{w,b} \sum \limits _{i=1} ^{n} (wx_i+b-y_i)^2\\
+&amp;=arg\ \min \limits_{W \in \mathbb R^d,b} \sum \limits _{i=1} ^{n} (W^Tx_i+b-y_i)^2
+\end{split}
+\end{equation}
+\]</span></p>
+<h2 id="求解目标函数">2. 求解目标函数</h2>
+<p><span class="math display">\[
+\begin{equation}
+\begin{split}
+E(W,b) &amp;=\sum \limits _{i=1} ^n (W^Tx_i+b-y_i)^2 \\
+&amp;=\sum \limits _{i=1} ^n |W^Tx_i+b-y_i|^2
+\end{split}
+\end{equation}
+\]</span></p>
+<h3 id="hat-x齐次坐标形式">2.1 <span class="math inline">\(\hat X\)</span>：齐次坐标形式</h3>
+<p><span class="math display">\[
+\begin{equation}
+\hat X=
+\begin{pmatrix}
+x_{11} \ \ x_{12}\ \ \dots \ \ x_{1d} \ \ 1 \\
+x_{21} \ \ x_{22}\ \ \dots \ \ x_{2d} \ \ 1 \\
+\vdots\\  
+x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
+\end{pmatrix}
+∈\mathbb{R}^{n \times (d+1)}
+\end{equation}
+\]</span> <a id="more"></a></p>
+<h3 id="hat-w参数">2.2 <span class="math inline">\(\hat w\)</span>：参数</h3>
+<p><span class="math display">\[
+\begin{equation}
+\hat{w}=
+\begin{pmatrix}
+w_{1}\\
+w_{2} \\
+\vdots\\  
+w_{d}\\
+b
+\end{pmatrix}
+∈\mathbb{R}^{d+1}
+\end{equation}
+\]</span></p>
+<h3 id="y回归目标">2.3 <span class="math inline">\(y\)</span>：回归目标</h3>
+<p><span class="math display">\[
+\begin{equation}
+y=
+\begin{pmatrix}
+y_{1}\\
+y_{2} \\
+\vdots\\  
+y_{n}\\
+\end{pmatrix}
+∈\mathbb{R}^{n}
+\end{equation}
+\]</span></p>
+<h3 id="ewb代价函数的向量化表示">2.4 <span class="math inline">\(E(w,b)：\)</span>代价函数的向量化表示</h3>
+<p><span class="math display">\[
+\begin{equation}
+\begin{split}
+E(w,b) &amp;=E(\hat w)\\
+&amp;=(X\hat w-y)^T(X\hat w-y) \\
+&amp;=( \hat w^T X^T-y^T)(X\hat w-y) \\
+&amp;=(\hat w^T X^T X\hat w - \hat w^T X^T y-X\hat w y^T+y^Ty)\\
+&amp;=\hat w^T X^TX\hat w-2\hat w^T\hat X^Ty+y^Ty 
+\end{split}
+\end{equation}
+\]</span></p>
+<p>本数学垃圾的矩阵转置补习小课堂： <span class="math display">\[
+\begin{split}
+&amp;(1)(X\hat w-y)^T=(X\hat w)^T-y^T\\
+&amp;(2) (X\hat w)^T=\hat w^TX^T\\
+&amp;(3)X\in \mathbb R^{n \times d+1};\\
+&amp;\ \ \ \ \ \ \hat w\in \mathbb R^{d+1 \times 1};\\
+&amp;\ \ \ \ \ \ \  y\in \mathbb R^{n \times 1};\\
+&amp;\ \ X\hat w y^T是一个标量\\
+&amp;\ \ \   \hat w y^T=\hat w^T X^T y(标量转置等于自身)\\
+\end{split}
+\]</span></p>
+<h3 id="参数估计">2.5 $ $：参数估计</h3>
+<p>求解<span class="math inline">\(w\)</span>和<span class="math inline">\(b\)</span>（即<span class="math inline">\(\hat w\)</span>）使<span class="math inline">\(E(\hat w)\)</span>最小化的过程成为线性回归模型的最小二乘参数估计，对<span class="math inline">\(\hat w\)</span>求偏导数，计算如下： <span class="math display">\[
+\begin{equation}
+\begin{split}
+\frac {\partial E(\hat w)}{\partial \hat w} &amp;=\frac {\partial (X\hat w-y)^T(X\hat w-y) }{\partial \hat w} \\
+&amp;=\frac {\partial (\hat w^T X^TX\hat w-2\hat w^TX^Ty+y^Ty) }{\partial \hat w}\\
+&amp;=(X^TX\hat x)+(X^TX\hat x)-(2X^Ty)\\
+&amp;=2X^TX\hat w-2X^Ty
+\end{split}
+\end{equation}
+\]</span> 本数学垃圾的矩阵转置补习小课堂：</p>
+<h4 id="向量积对列向量的求导运算法则">向量积对列向量的求导运算法则：</h4>
+<p>$$ <span class="math display">\[\begin{equation}
+\begin{split}
+\frac {\partial X^TAX}{\partial X} &amp;=\frac {\partial X^T }{\partial X}AX+ \frac {\partial X^TA^T }{\partial X}X=(A+A^T)X\\
+
+\end{split}
+\end{equation}\]</span> $$</p>
+<h3 id="求解hat-w">2.6 求解<span class="math inline">\(\hat w^*\)</span></h3>
+<p><span class="math display">\[
+\begin{equation}
+\begin{split}
+2X^TX\hat w-2X^Ty=0\\
+\end{split}
+\end{equation}
+\]</span></p>
+<p>解得： <span class="math display">\[
+\hat w^*=(X^TX)^{-1}X^Ty
+\]</span></p>
+<ul>
+<li><p>当<span class="math inline">\(X^TX\)</span>为满秩矩阵或正定矩阵时，式<span class="math inline">\((12)\)</span>成立，其中<span class="math inline">\((X^TX)^{-1}\)</span>是<span class="math inline">\(X^TX\)</span>的逆矩阵，令<span class="math inline">\(\hat x_i=(x_i,1)=[x_1,x_2,\cdots,x_d,1]^T\in \mathbb R^{d+1}\)</span>，所学到的线性变换即为 <span class="math display">\[
+f(\hat x)=\hat x^T(X^TX)^{-1}X^Ty
+\]</span></p></li>
+<li><p>当<span class="math inline">\(X^TX\)</span>不是满秩矩阵，比如样本的特征数大于样本数时，导致<span class="math inline">\(X\)</span>的列数多于行数，此时可以解出多个<span class="math inline">\(\hat w\)</span>都能使均方误差最小化，此时常见的做法是引入正则化项。</p>
+<p>在<span class="math inline">\(X^TX\)</span>的主对角线元素上加上一个很小的正数<span class="math inline">\(\lambda\)</span> <span class="math display">\[
+\hat w^*=(X^TX+\lambda I)^{-1}X^Ty
+\]</span> 式<span class="math inline">\((14)\)</span>即为如下结构风险最小化模型（正则化模型）的最优解： <span class="math display">\[
+\min \limits _\hat w||X\hat w-y||^2_F+\lambda||\hat w||^2_F
+\]</span></p></li>
+</ul>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck98l8xwc0006e4vscis000ky/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" rel="tag">线性模型</a></li></ul>
+
+	      
+        <span id="busuanzi_container_page_pv" style="color: #999; margin-left: 30px">
+          阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+      
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/ck98l8xxd000ve4vs5p8n6kg9/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            leetcode-20-有效的括号
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/ck98l8xws000he4vs158xentr/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">ML-Softmax回归</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'R4YHzXgdvm9AwvtS2tNmT9g8-gzGzoHsz',
+        app_key: '5EggBAi2pBMt9hj0m8p3PeXn',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'retro',
+        placeholder: '来唠嗑不？',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2020
+        ChenHuiyu
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/shark.ico" alt="黑头呆鱼进化之旅"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%81%8A%E5%A4%A9%E5%AE%A4">聊天室</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2020/about">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://www.google.com.hk/" target="_blank" rel="noopener">神奇海螺</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['热情、友好且一问三不知', '永远年迈，永远老泪纵横', '我的每一行代码都是诗，即使无法运行也很美'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/js/ayer.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+
+    
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+
+</html>

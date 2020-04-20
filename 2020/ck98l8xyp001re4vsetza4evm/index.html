@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8" />
+  <meta name="google-site-verification" content="tlhm0TPr0COuwtHNQ-DYfsCZ5xoIGLOAZuc5MP1w9MA" />
+  <meta name="baidu-site-verification" content="yrWjI3OWej" />
+  
+   
+  <meta name="keywords" content="ML,NLP,GAN,爬虫" />
+   
+  <meta name="description" content="daily learning" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    生成式对抗网络综述 |  黑头呆鱼进化之旅
+  </title>
+  <meta name="generator" content="hexo-theme-yilia-plus">
+  
+  <link rel="shortcut icon" href="/images/cat1.ico" />
+  
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+</html>
+
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
+    <main class="content">
+      <section class="outer">
+  <article id="post-生成式对抗网络综述" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  生成式对抗网络综述
+</h1>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck98l8xyp001re4vsetza4evm/" class="article-date">
+  <time datetime="2020-03-08T12:27:44.000Z" itemprop="datePublished">2020-03-08</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/GAN/">GAN</a>
+  </div>
+
+      
+      
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.6k字</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9分钟</span>
+        </span>
+    </span>
+</div>
+
+      
+    </div>
+    
+
+    
+    
+    <div class="tocbot"></div>
+
+
+
+
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="生成式对抗网络综述">生成式对抗网络综述</h1>
+<p>[toc]</p>
+<h2 id="简介">1. 简介</h2>
+<p>​ GAN包含两个模型：生成器和判别器。这两个模型通常由神经网络来实现，生成器尝试捕获真实示例的分布，以生成新的数据示例。判别器通常是二分类器，它尽可能准确地将生成器产生的的数据与真实的样本区分开。 GAN的优化是一个最小最大(minimax)优化问题。该优化终止于一个鞍点，该鞍点对于生成器而言是最小值，而对于鉴别器而言是最大值。也就是说，优化目标是达到Nash平衡[1]。然后，可以认为生成器已经捕获了真实样本的概率分布。</p>
+<p>​ 先前的一些工作采用了使两个神经网络相互竞争的概念。GAN属于生成算法。生成算法和判别算法是两类机器学习算法。如果机器学习算法是基于观测数据的完全概率模型，则该算法是生成性的。生成算法由于其广泛的实际应用而变得越来越流行和重要。</p>
+<a id="more"></a>
+<hr />
+<h2 id="算法">2. 算法</h2>
+<h3 id="原始gan">2.1 原始GAN</h3>
+<p>​ 当模型都是神经网络时，GANs框架很容易实现。为了从真实数据<span class="math inline">\(x\)</span>的分布中学习到生成器的概率分布<span class="math inline">\(p_g\)</span>，定义输入噪声变量的先验为<span class="math inline">\(p_z\)</span>，其中<span class="math inline">\(z\)</span>是噪音变量。然后，从噪声空间到数据空间的映射被记为<span class="math inline">\(G(z,\theta_g)\)</span>，其中<span class="math inline">\(G\)</span>是神经网络结构表示的可微函数，其参数为<span class="math inline">\(\theta_g\)</span>。除<span class="math inline">\(G\)</span>之外，还存在一个神经网络<span class="math inline">\(D(x，θ_d)\)</span>，其参数为<span class="math inline">\(θ_d\)</span>，并且<span class="math inline">\(D(x)\)</span>的输出是单个标量。<span class="math inline">\(D(x)\)</span>表示<span class="math inline">\(x\)</span>来自真实样本数据而非生成器<span class="math inline">\(G\)</span>所产生的概率。首先对判别器<span class="math inline">\(D\)</span>进行训练，使其可以最大可能地分辨数据是来自真实样本数据还是生成器<span class="math inline">\(G\)</span>产生的假数据。其次训练<span class="math inline">\(G\)</span>，同时最小化<span class="math inline">\(log(1- D(G(z)))\)</span>。</p>
+<figure>
+<img src="https://i.loli.net/2020/03/08/aiEVHpJmhudCs3r.jpg" alt="图一.png" /><figcaption>图一.png</figcaption>
+</figure>
+<p><strong>GAN的目标函数</strong></p>
+<p><span class="math inline">\(\min_\limits{G} \max_\limits{D}V(D,G)=E_{x\sim p_{data}}[logD(x)]+E_{z\sim p_z(z)}[log(1-D(G(z)))]\)</span></p>
+<p>尽管理论上存在独特的解决方案，但GAN的训练仍然很困难，并且由于以下几个原因常常不稳定一个困难是来自这样一个事实，即GAN的最佳权重对应于损失函数的鞍点，而不是最小化点。</p>
+<h3 id="gan的代表性变体">2.2 GAN的代表性变体</h3>
+<p>​ 条件GAN(CGAN)。原始GAN的生成器G学到了数据的分布，生成出来的图片其实是随机的，也就是说这个G的生成过程处于一种没有指导的状态，cGAN相当于在原始GAN的基础上加上一个条件：condition，以此来指导G的生成过程。在生成模型G和判别模型D中同时加入条件约束y来引导数据的生成过程。条件可以是任何补充的信息，如类标签，其它模态的数据等，这样使得GAN能够更好地被应用于跨模态问题，例如图像自动标注。<img src="https://www.zhihu.com/equation?tex=%5Cmax_D+%5C%7B%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_%7Bdata%7D%7D+%5Clog+D%28x%7Cy%29%2B%5Cmathbb%7BE%7D_%7Bx+%5Csim+P_%7BG%7D%7D+%5Clog+%281-%28D%28x%7Cy%29%29%5C%7D" alt="[公式]" style="zoom: 80%;" /></p>
+<hr />
+<h2 id="原理">3. 原理</h2>
+<h3 id="最大似然估计-mle">3.1 最大似然估计 MLE</h3>
+<p>最小化<span class="math inline">\(p_{data}(x)\)</span>和<span class="math inline">\(p_g(x)\)</span>之间的Kullback-Leibler散度等于最大化样本数<span class="math inline">\(m\)</span>增加时的对数似然</p>
+<p><span class="math inline">\(\theta^*=\arg\ \min_\limits{\theta}KLD(p_{data}||p_{g})\)</span></p>
+<h3 id="模式崩溃">3.2 模式崩溃</h3>
+<p>​ 模式崩溃是指，生成器学会了仅从几种数据分布模式中生成样本但是会错过许多其他模式，即使整个训练数据中都存在来自缺失模式的样本。GAN的优化目标是一个极小极大(minmax)问题，即 !<span class="math inline">\(\min_\limits{G} \max_\limits{D}V(G,D)\)</span> ，也就是说，优化生成器的时候，最小化的是 <span class="math inline">\(\max_\limits{D}V(G,D)\)</span>。可是我们是迭代优化的，要保证<span class="math inline">\(V(G,D)\)</span>最大化，就需要迭代非常多次，这就导致训练时间很长。如果我们只迭代一次判别器，然后迭代一次生成器，不断循环迭代。这样原先的极小极大问题，就容易变成极大极小(maxmin)问题，可二者是不一样的，即：<span class="math inline">\(\min_\limits{G} \max_\limits{D}V(G,D) \ne \max_\limits{G} \min_\limits{D}V(G,D)\)</span></p>
+<p>​ 如果变化为极小极大问题，那么迭代就是这样的，生成器先生成一些样本，然后判别器给出错误的判别结果并惩罚生成器，于是生成器调整生成的概率分布。可是这样往往导致生成器变“懒”，只生成一些简单的，重复的样本，即缺乏多样性，也叫模式崩溃。</p>
+<hr />
+<h2 id="应用">4. 应用</h2>
+<p>​ GAN是强大的生成模型，可以仅通过随机向量<span class="math inline">\(z\)</span>的生成逼真的样本。我们既不需要知道明确的真实数据分布，也不需要任何数学假设。这些优点使GAN可以广泛应用于许多领域，例如图像处理和计算机视觉，顺序数据。</p>
+<h3 id="图像处理和计算机视觉">4.1 图像处理和计算机视觉</h3>
+<p>​ GAN最成功的应用是在图像处理和计算机视觉中，例如图像超分辨率，图像合成和处理以及视频处理。</p>
+<h4 id="超分辨率">4.1.1 超分辨率</h4>
+<p>​ SRGAN用于超分辨率的GAN，是第一个能够推断出逼真的自然图像的放大系数的框架。SRGAN中使用GAN和感知损失生成细节丰富的图像。感知损失重点关注中间特征层的误差，而不是输出结果的逐像素误差。避免了生成的高分辨图像缺乏纹理细节信息问题。为了进一步提高SRGAN的视觉质量，Wang等人对其进行了改进，以得到增强型SRGAN（ESRGAN）。例如，ESRGAN引入了“相对”的思想来让判别器由判断绝对的真假概率变成相对为真或为假的概率。基于CycleGAN，提出了Cycle-in-Cycle GAN用于无监督图像超分辨率。</p>
+<h4 id="图像合成与处理">4.1.2 图像合成与处理</h4>
+<p>​ <strong>人脸生成</strong>：GAN生成的人脸质量逐年提高，从图7中可以看出，基于原始GAN生成的人脸视觉质量较低，只能用作概念证明。 Radford等人使用更好的神经网络架构：深度卷积神经网络来生成人脸。罗斯等。 解决了GAN训练的不稳定问题，允许使用更大的架构，例如ResNet。Karras等人利用多尺度训练，允许以高保真度生成百万像素的面部图像。</p>
+<p>​ 面部生成效果较好的原因是，因为只有一类对象，每个对象都是一张脸，大多数脸数据集通常由直视摄像机的人组成。多数人已经将鼻子和眼睛以及其他地标放置在一致的位置上。</p>
+<p>​ <strong>通用对象</strong>：让GAN处理像ImageNet这样的分类数据集要困难一些，ImageNet 具有一千种不同的对象类。但是，最近几年我们看到了快速的进步。这些图像的质量逐年提高。</p>
+<h4 id="图像翻译">4.1.3 图像翻译</h4>
+<p>​ 图像翻译是指把一幅图像从源域变换到目标域。翻译过程中会保持源域图像内容不变，但是风格或者一些其他属性变成目标域。成对图像翻译典型的例子就是pix2pix，pix2pix使用成对数据训练了一个条件GAN，Loss包括GAN的loss和逐像素差loss。使用特征图上的逐像素差作为感知损失替代图片上的逐像素差，以生成人眼感知上更加接近源域的图像。对于无成对训练数据的图像翻译问题，一个典型的例子是CycleGAN。CycleGAN使用两对GAN，将源域数据通过一个GAN网络转换到目标域之后，再使用另一个GAN网络将目标域数据转换回源域，转换回来的数据和源域数据正好是成对的，构成监督信息。</p>
+<h3 id="序列生成">4.2 序列生成</h3>
+<p>相比于GAN在图像领域的应用，GAN在文本，语音领域的应用要少很多。主要原因有两个：</p>
+<ul>
+<li>GAN在优化的时候使用BP算法，对于文本，语音这种离散数据，GAN没法直接跳到目标值，只能根据梯度一步步靠近。</li>
+<li>对于序列生成问题，每生成一个单词，我们就需要判断这个序列是否合理，可是GAN里面的判别器是没法做到的。除非我们针对每一个step都设置一个判别器，这显然不合理。</li>
+</ul>
+<p>为了解决上述问题，强化学习中的策略梯度下降（Policy gredient descent）被引入到GAN中的序列生成问题。</p>
+<h4 id="自然语言生成">4.2.1 自然语言生成</h4>
+<p>​ LeakGAN解决长文本生成问题。我们允许判别网络将其高级提取的特征泄漏给产生网络，以进一步帮助指导。生成器通过一个附加的Manager模块将此类信息信号纳入所有生成步骤，该Manager模块采用当前生成的单词的提取特征并输出潜在矢量来指导Worker模块进行下一单词的生成。LeakGAN目前仍是文本生成的SOTA方法。</p>
+<h4 id="音乐生成">4.2.2 音乐生成</h4>
+<p>​ RNN-GAN使用LSTM作为生成器和判别器，直接生成整个音频序列。然而，正如上面提到的，音乐当做包括歌词和音符，对于这种离散数据生成问题直接使用GAN存在很多问题，特别是生成的数据缺乏局部一致性。使用神经网络生成符号音乐的常见方法涉及对自回归模型进行重复采样，直到获得完整的输出序列。尽管这样的方法在产生短音乐序列方面显示出了一定的希望，但这通常没有扩展到最终目标序列明显更长的情况下，例如整首音乐。</p>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+        <div class="declare">
+          <ul class="post-copyright">
+            <li>
+              <i class="ri-copyright-line"></i>
+              <strong>版权声明： </strong s>
+              本博客所有文章除特别声明外，均采用 <a href="https://www.apache.org/licenses/LICENSE-2.0.html" rel="external nofollow"
+                target="_blank">Apache License 2.0</a> 许可协议。转载请注明出处！
+            </li>
+          </ul>
+        </div>
+        
+    <footer class="article-footer">
+      
+          
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck98l8xyp001re4vsetza4evm/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GAN/" rel="tag">GAN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/paper/" rel="tag">paper</a></li></ul>
+
+	      
+        <span id="busuanzi_container_page_pv" style="color: #999; margin-left: 30px">
+          阅读量<span id="busuanzi_value_page_pv"></span>次
+        </span>
+      
+    </footer>
+
+  </div>
+
+  
+  
+  <nav class="article-nav">
+    
+      <a href="/2020/ck98l8xxm0012e4vs05q9chez/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            基于SRGAN的超分辨率重建
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/ck98l8xye001je4vs7x7rgb8z/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">爬虫-05-多线程的基本原理</div>
+      </a>
+    
+  </nav>
+
+
+  
+
+  
+  
+<!-- valine评论 -->
+<div id="vcomments-box">
+    <div id="vcomments">
+    </div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        app_id: 'R4YHzXgdvm9AwvtS2tNmT9g8-gzGzoHsz',
+        app_key: '5EggBAi2pBMt9hj0m8p3PeXn',
+        path: window.location.pathname,
+        notify: 'false',
+        verify: 'false',
+        avatar: 'retro',
+        placeholder: '来唠嗑不？',
+        recordIP: true
+    });
+    const infoEle = document.querySelector('#vcomments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+        infoEle.childNodes.forEach(function (item) {
+            item.parentNode.removeChild(item);
+        });
+    }
+</script>
+<style>
+    #vcomments-box {
+        padding: 5px 30px;
+    }
+
+    @media screen and (max-width: 800px) {
+        #vcomments-box {
+            padding: 5px 0px;
+        }
+    }
+
+    #vcomments-box #vcomments {
+        background-color: #fff;
+    }
+
+    .v .vlist .vcard .vh {
+        padding-right: 20px;
+    }
+
+    .v .vlist .vcard {
+        padding-left: 10px;
+    }
+</style>
+
+  
+
+  
+  
+  
+
+</article>
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>
+        &copy;
+        2020
+        ChenHuiyu
+      </li>
+      <li>
+        
+        Powered by
+        
+        
+        <a href="https://hexo.io" target="_blank">Hexo</a> Theme <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul class="list-inline">
+      <li>
+        
+        
+        <span>
+  <i>PV:<span id="busuanzi_value_page_pv"></span></i>
+  <i>UV:<span id="busuanzi_value_site_uv"></span></i>
+</span>
+        
+      </li>
+      
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="to_top">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+      </div>
+    </main>
+    <aside class="sidebar">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/shark.ico" alt="黑头呆鱼进化之旅"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories/%E8%81%8A%E5%A4%A9%E5%AE%A4">聊天室</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2020/about">关于我</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="https://www.google.com.hk/" target="_blank" rel="noopener">神奇海螺</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/share.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script>
+  try {
+    var typed = new Typed("#subtitle", {
+      strings: ['热情、友好且一问三不知', '永远年迈，永远老泪纵横', '我的每一行代码都是诗，即使无法运行也很美'],
+      startDelay: 0,
+      typeSpeed: 200,
+      loop: true,
+      backSpeed: 100,
+      showCursor: true
+    });
+  } catch (err) {
+  }
+
+</script>
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    onClick: (e) => {
+      $('.toc-link').removeClass('is-active-link');
+      $(`a[href=${e.target.hash}]`).addClass('is-active-link');
+      $(e.target.hash).scrollIntoView();
+      return false;
+    }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/js/ayer.js"></script>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script type="text/javascript" src="https://js.users.51.la/20544303.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+
+    
+  </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+
+</html>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenhuiyu.github.io/"/>
-  <updated>2020-04-20T14:37:13.540Z</updated>
+  <updated>2020-04-20T14:41:32.955Z</updated>
   <id>https://chenhuiyu.github.io/</id>
   
   <author>
@@ -18,20 +18,28 @@
   
   <entry>
     <title>文献阅读-闭环问题：用于单图像超分辨率的对偶回归网络</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fia000ymkvs8zlx2497/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fia000ymkvs8zlx2497/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xxw0018e4vs4bhzf8t9/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xxw0018e4vs4bhzf8t9/</id>
     <published>2020-04-20T14:21:17.000Z</published>
-    <updated>2020-04-20T14:37:13.540Z</updated>
+    <updated>2020-04-20T14:41:32.955Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="闭环问题用于单图像超分辨率的对偶回归网络">闭环问题：用于单图像超分辨率的对偶回归网络</h1><p>Closed-loop Matters: Dual Regression Networks for Single Image Super-Resolution</p><p>论文：https://arxiv.org/pdf/2003.07018.pdf</p><p>[toc]</p><h2 id="现有模型存在的问题">现有模型存在的问题</h2><p>1.学习从LR到HR图像的映射通常是一个不适定的问题，存在无限多的HR图像，可以缩小比例以获得相同的LR图像。因此，<strong>将LR映射到HR图像的可能功能的空间变得极大</strong>。由于很难在如此大的空间中学习好的解决方案，因此学习性能可能受到限制。如何减少映射函数的可能空间以提高SR模型的训练成为重要的问题。</p><p>2.当<strong>不存在成对的LR、HR数据时，超分辨率模型变得很难实现</strong>。大多数SR方法都依赖于成对的训练数据，即HR图像及其降级的LR对应图像。但是，不配对的数据通常在实际应用中占主导地位。此外，现实世界的数据不一定与通过特定的降级方法获得的LR图像具有相同的分布。因此，如何有效利用未配对的数据以使SR模型适应实际应用成为一个重要的问题。</p><h2 id="创新点">创新点</h2><p>通过在LR数据上引入附加约束来减少可能的映射关系的空间：具体表现为除了学习LR到HR的原始映射，还额外学习从HR到LR的对偶映射，形成了一个LR到HR到LR的闭环。从而减少可能的函数空间。在这样的对偶过程中，LR图像的回归不依赖于HR图像，因此可以直接从LR图像中学习。</p><figure><img src="C:\Users\陈惠宇宝宝\AppData\Roaming\Typora\typora-user-images\image-20200413064928533.png" alt="image-20200413064928533" /><figcaption>image-20200413064928533</figcaption></figure><p>对偶回归网络，其中包括用于超分辨率的原始回归任务和用于将HR图像投影回LR图像的对偶回归任务。原始和对偶回归任务形成一个闭环。</p><h2 id="算法">算法</h2><p>令<span class="math inline">\(x∈X\)</span>为LR图像，<span class="math inline">\(y∈Y\)</span>为HR图像。我们同时学习原始映射<span class="math inline">\(P(x\to y)\)</span>来重建HR图像和对偶映射<span class="math inline">\(D(y \to x)\)</span>来重建LR图像。其中，对偶映射可以看作是对底层下采样内核的估计。形式上，将SR问题公式化为涉及两个回归任务的对偶回归方案。</p><p>1.基本回归任务：找到一个函数<span class="math inline">\(P:X→Y\)</span>，使得预测<span class="math inline">\(P(x)\)</span>与其对应的HR图像<span class="math inline">\(y\)</span>类似</p><p>2.对偶回归任务：找到一个函数<span class="math inline">\(D:Y→X\)</span>，使得预测<span class="math inline">\(D(y)\)</span>与其对应的原始输入LR图像类似</p><p>原始学习和对偶学习任务可以形成一个闭环，并提供信息性指导来训练模型<span class="math inline">\(P\)</span>和<span class="math inline">\(D\)</span>。如果<span class="math inline">\(P(x)\)</span>是正确的HR图像，则下采样图像<span class="math inline">\(D(P(x))\)</span>应该非常接近到输入的LR图像<span class="math inline">\(x\)</span>。建立如下训练超分辨率模型。给定一组<span class="math inline">\(N\)</span>个配对样本<span class="math inline">\(S_P=\{(xi，yi)\}^N_{i=1}\)</span>，其中<span class="math inline">\(x_i\)</span>和<span class="math inline">\(y_i\)</span>表示成对数据集中的第<span class="math inline">\(i\)</span>对低分辨率和高分辨率图像。训练损失可以写成</p><figure><img src="C:\Users\陈惠宇宝宝\AppData\Roaming\Typora\typora-user-images\image-20200413075250793.png" alt="image-20200413075250793" /><figcaption>image-20200413075250793</figcaption></figure><p>对于不成对数据：</p><p>给定<span class="math inline">\(M\)</span>个不成对的LR样本和<span class="math inline">\(N\)</span>个成对的样本，目标函数可以写成</p><figure><img src="C:\Users\陈惠宇宝宝\AppData\Roaming\Typora\typora-user-images\image-20200413081727547.png" alt="image-20200413081727547" /><figcaption>image-20200413081727547</figcaption></figure><p>未配对数据的自适应算法</p><p>输入:</p><ul><li><p>不成对真实数据：<span class="math inline">\(S_U\)</span></p></li><li><p>成对数据：<span class="math inline">\(S_P\)</span></p></li><li><p><span class="math inline">\(S_U\)</span>和<span class="math inline">\(S_P\)</span>的Batch sizes: <span class="math inline">\(m\)</span> ，<span class="math inline">\(n\)</span></p></li><li><p>指示函数: <span class="math inline">\(1_{SP}(·)\)</span></p><ol type="1"><li>加载预训练的模型P和D。</li><li>while 不收敛 do<ol type="1"><li>取来自<span class="math inline">\(S_U\)</span>的样本未标记数据<span class="math inline">\(\{x_i\}^m_{i=1}\)</span></li><li>取来自<span class="math inline">\(S_P\)</span>的样本标记数据<span class="math inline">\(\{(x_i,y_i)\}^{m+n}_{i=1}\)</span></li><li>// 更新原始模型</li><li>通过最小化目标来更新<span class="math inline">\(P\)</span>：</li><li><span class="math display">\[\sum \limits ^{m+n} _{i=1}1_{S_P}(\mathbf x_i) L_p(P(\mathbf x_i,\mathbf y_i))+\lambda L_D(D(P(\mathbf x_i)),\mathbf x_i)\]</span></li><li>// 更新对偶模型</li><li>通过最小化目标来更新<span class="math inline">\(D\)</span>：</li><li><span class="math display">\[\sum \limits ^{m+n} _{i=1}\lambda L_D(D(P(\mathbf x_i)),\mathbf x_i)\]</span></li></ol></li><li>end</li></ol></li></ul><h2 id="训练模型">训练模型</h2><figure><img src="C:/Users/陈惠宇宝宝/AppData/Roaming/Typora/typora-user-images/image-20200413082033980.png" alt="image-20200413082033980" /><figcaption>image-20200413082033980</figcaption></figure><p>图3. 4×SR的DRN架构。DRN包含一个原始网络和一个对偶网络（黑线表示原始映射，红线表示对偶映射）。绿色框表示下采样模块的特征图（左半部分），黄色框表示上采样模块的特征图（右半部分）。在U-Net之后，通过快捷连接来连接相应的浅层和深层特征图。编码器部分由卷积层和LeakyRelu组成，分辨率逐层降低。解码器部分由RCAB（残差结构+CA注意力）和pixelshuffle上采样组成。编码器和解码器组成了原始回归任务。对偶回归任务对超分后的图像进行卷积下采样得到LR图像</p><p>原始网络遵循U-Net的下采样上采样设计。下采样（左半部分）和上采样（右半部分）模块都包含<span class="math inline">\(log_2(s)\)</span>基本块，其中<span class="math inline">\(s\)</span>表示比例因子。这意味着网络将有2个块用于4倍放大和3个块用于8倍放大。与基线U-Net不同，使用<span class="math inline">\(B\)</span>残留通道关注块（RCAB）构建每个基本块。添加了额外的输出以生成相应比例的图像（即1×，2×和4×图像），并将建议的损失应用于它们以训练模型。注意，在将LR图像馈入原始网络之前，使用Bicubic内核对LR图像进行升级。</p><p>对偶网络，从超分辨的图像中生成降采样的LR图像。请注意，对偶任务旨在学习下采样操作，这比用于学习原始任务要简单得多。因此，对偶模型只有两个卷积层和一个LeakyReLU激活层，它的计算成本比原始模型低得多</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="闭环问题用于单图像超分辨率的对偶回归网络">闭环问题：用于单图像超分辨率的对偶回归网络</h1><p>Closed-loop Matters: Dual Regression Networks for Single Image Super-Resolution</p><p>论文：https://arxiv.org/pdf/2003.07018.pdf</p><p>[toc]</p><h2 id="现有模型存在的问题">现有模型存在的问题</h2><p>1.学习从LR到HR图像的映射通常是一个不适定的问题，存在无限多的HR图像，可以缩小比例以获得相同的LR图像。因此，<strong>将LR映射到HR图像的可能功能的空间变得极大</strong>。由于很难在如此大的空间中学习好的解决方案，因此学习性能可能受到限制。如何减少映射函数的可能空间以提高SR模型的训练成为重要的问题。</p><p>2.当<strong>不存在成对的LR、HR数据时，超分辨率模型变得很难实现</strong>。大多数SR方法都依赖于成对的训练数据，即HR图像及其降级的LR对应图像。但是，不配对的数据通常在实际应用中占主导地位。此外，现实世界的数据不一定与通过特定的降级方法获得的LR图像具有相同的分布。因此，如何有效利用未配对的数据以使SR模型适应实际应用成为一个重要的问题。</p><h2 id="创新点">创新点</h2><p>通过在LR数据上引入附加约束来减少可能的映射关系的空间：具体表现为除了学习LR到HR的原始映射，还额外学习从HR到LR的对偶映射，形成了一个LR到HR到LR的闭环。从而减少可能的函数空间。在这样的对偶过程中，LR图像的回归不依赖于HR图像，因此可以直接从LR图像中学习。</p><figure><img src="C:\Users\陈惠宇宝宝\AppData\Roaming\Typora\typora-user-images\image-20200413064928533.png" alt="image-20200413064928533" /><figcaption>image-20200413064928533</figcaption></figure><p>对偶回归网络，其中包括用于超分辨率的原始回归任务和用于将HR图像投影回LR图像的对偶回归任务。原始和对偶回归任务形成一个闭环。</p><a id="more"></a><h2 id="算法">算法</h2><p>令<span class="math inline">\(x∈X\)</span>为LR图像，<span class="math inline">\(y∈Y\)</span>为HR图像。我们同时学习原始映射<span class="math inline">\(P(x\to y)\)</span>来重建HR图像和对偶映射<span class="math inline">\(D(y \to x)\)</span>来重建LR图像。其中，对偶映射可以看作是对底层下采样内核的估计。形式上，将SR问题公式化为涉及两个回归任务的对偶回归方案。</p><p>1.基本回归任务：找到一个函数<span class="math inline">\(P:X→Y\)</span>，使得预测<span class="math inline">\(P(x)\)</span>与其对应的HR图像<span class="math inline">\(y\)</span>类似</p><p>2.对偶回归任务：找到一个函数<span class="math inline">\(D:Y→X\)</span>，使得预测<span class="math inline">\(D(y)\)</span>与其对应的原始输入LR图像类似</p><p>原始学习和对偶学习任务可以形成一个闭环，并提供信息性指导来训练模型<span class="math inline">\(P\)</span>和<span class="math inline">\(D\)</span>。如果<span class="math inline">\(P(x)\)</span>是正确的HR图像，则下采样图像<span class="math inline">\(D(P(x))\)</span>应该非常接近到输入的LR图像<span class="math inline">\(x\)</span>。建立如下训练超分辨率模型。给定一组<span class="math inline">\(N\)</span>个配对样本<span class="math inline">\(S_P=\{(xi，yi)\}^N_{i=1}\)</span>，其中<span class="math inline">\(x_i\)</span>和<span class="math inline">\(y_i\)</span>表示成对数据集中的第<span class="math inline">\(i\)</span>对低分辨率和高分辨率图像。训练损失可以写成</p><figure><img src="C:\Users\陈惠宇宝宝\AppData\Roaming\Typora\typora-user-images\image-20200413075250793.png" alt="image-20200413075250793" /><figcaption>image-20200413075250793</figcaption></figure><p>对于不成对数据：</p><p>给定<span class="math inline">\(M\)</span>个不成对的LR样本和<span class="math inline">\(N\)</span>个成对的样本，目标函数可以写成</p><figure><img src="C:\Users\陈惠宇宝宝\AppData\Roaming\Typora\typora-user-images\image-20200413081727547.png" alt="image-20200413081727547" /><figcaption>image-20200413081727547</figcaption></figure><p>未配对数据的自适应算法</p><p>输入:</p><ul><li><p>不成对真实数据：<span class="math inline">\(S_U\)</span></p></li><li><p>成对数据：<span class="math inline">\(S_P\)</span></p></li><li><p><span class="math inline">\(S_U\)</span>和<span class="math inline">\(S_P\)</span>的Batch sizes: <span class="math inline">\(m\)</span> ，<span class="math inline">\(n\)</span></p></li><li><p>指示函数: <span class="math inline">\(1_{SP}(·)\)</span></p><ol type="1"><li>加载预训练的模型P和D。</li><li>while 不收敛 do<ol type="1"><li>取来自<span class="math inline">\(S_U\)</span>的样本未标记数据<span class="math inline">\(\{x_i\}^m_{i=1}\)</span></li><li>取来自<span class="math inline">\(S_P\)</span>的样本标记数据<span class="math inline">\(\{(x_i,y_i)\}^{m+n}_{i=1}\)</span></li><li>// 更新原始模型</li><li>通过最小化目标来更新<span class="math inline">\(P\)</span>：</li><li><span class="math display">\[\sum \limits ^{m+n} _{i=1}1_{S_P}(\mathbf x_i) L_p(P(\mathbf x_i,\mathbf y_i))+\lambda L_D(D(P(\mathbf x_i)),\mathbf x_i)\]</span></li><li>// 更新对偶模型</li><li>通过最小化目标来更新<span class="math inline">\(D\)</span>：</li><li><span class="math display">\[\sum \limits ^{m+n} _{i=1}\lambda L_D(D(P(\mathbf x_i)),\mathbf x_i)\]</span></li></ol></li><li>end</li></ol></li></ul><h2 id="训练模型">训练模型</h2><figure><img src="C:/Users/陈惠宇宝宝/AppData/Roaming/Typora/typora-user-images/image-20200413082033980.png" alt="image-20200413082033980" /><figcaption>image-20200413082033980</figcaption></figure><p>图3. 4×SR的DRN架构。DRN包含一个原始网络和一个对偶网络（黑线表示原始映射，红线表示对偶映射）。绿色框表示下采样模块的特征图（左半部分），黄色框表示上采样模块的特征图（右半部分）。在U-Net之后，通过快捷连接来连接相应的浅层和深层特征图。编码器部分由卷积层和LeakyRelu组成，分辨率逐层降低。解码器部分由RCAB（残差结构+CA注意力）和pixelshuffle上采样组成。编码器和解码器组成了原始回归任务。对偶回归任务对超分后的图像进行卷积下采样得到LR图像</p><p>原始网络遵循U-Net的下采样上采样设计。下采样（左半部分）和上采样（右半部分）模块都包含<span class="math inline">\(log_2(s)\)</span>基本块，其中<span class="math inline">\(s\)</span>表示比例因子。这意味着网络将有2个块用于4倍放大和3个块用于8倍放大。与基线U-Net不同，使用<span class="math inline">\(B\)</span>残留通道关注块（RCAB）构建每个基本块。添加了额外的输出以生成相应比例的图像（即1×，2×和4×图像），并将建议的损失应用于它们以训练模型。注意，在将LR图像馈入原始网络之前，使用Bicubic内核对LR图像进行升级。</p><p>对偶网络，从超分辨的图像中生成降采样的LR图像。请注意，对偶任务旨在学习下采样操作，这比用于学习原始任务要简单得多。因此，对偶模型只有两个卷积层和一个LeakyReLU激活层，它的计算成本比原始模型低得多</p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;闭环问题用于单图像超分辨率的对偶回归网络&quot;&gt;闭环问题：用于单图像超分辨率的对偶回归网络&lt;/h1&gt;
-&lt;p&gt;Closed-loop Matters: Dual Regression Networks for Single Image Super-Resolution
-      
+      &lt;h1 id=&quot;闭环问题用于单图像超分辨率的对偶回归网络&quot;&gt;闭环问题：用于单图像超分辨率的对偶回归网络&lt;/h1&gt;
+&lt;p&gt;Closed-loop Matters: Dual Regression Networks for Single Image Super-Resolution&lt;/p&gt;
+&lt;p&gt;论文：https://arxiv.org/pdf/2003.07018.pdf&lt;/p&gt;
+&lt;p&gt;[toc]&lt;/p&gt;
+&lt;h2 id=&quot;现有模型存在的问题&quot;&gt;现有模型存在的问题&lt;/h2&gt;
+&lt;p&gt;1.学习从LR到HR图像的映射通常是一个不适定的问题，存在无限多的HR图像，可以缩小比例以获得相同的LR图像。因此，&lt;strong&gt;将LR映射到HR图像的可能功能的空间变得极大&lt;/strong&gt;。由于很难在如此大的空间中学习好的解决方案，因此学习性能可能受到限制。如何减少映射函数的可能空间以提高SR模型的训练成为重要的问题。&lt;/p&gt;
+&lt;p&gt;2.当&lt;strong&gt;不存在成对的LR、HR数据时，超分辨率模型变得很难实现&lt;/strong&gt;。大多数SR方法都依赖于成对的训练数据，即HR图像及其降级的LR对应图像。但是，不配对的数据通常在实际应用中占主导地位。此外，现实世界的数据不一定与通过特定的降级方法获得的LR图像具有相同的分布。因此，如何有效利用未配对的数据以使SR模型适应实际应用成为一个重要的问题。&lt;/p&gt;
+&lt;h2 id=&quot;创新点&quot;&gt;创新点&lt;/h2&gt;
+&lt;p&gt;通过在LR数据上引入附加约束来减少可能的映射关系的空间：具体表现为除了学习LR到HR的原始映射，还额外学习从HR到LR的对偶映射，形成了一个LR到HR到LR的闭环。从而减少可能的函数空间。在这样的对偶过程中，LR图像的回归不依赖于HR图像，因此可以直接从LR图像中学习。&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&quot;C:\Users\陈惠宇宝宝\AppData\Roaming\Typora\typora-user-images\image-20200413064928533.png&quot; alt=&quot;image-20200413064928533&quot; /&gt;&lt;figcaption&gt;image-20200413064928533&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;对偶回归网络，其中包括用于超分辨率的原始回归任务和用于将HR图像投影回LR图像的对偶回归任务。原始和对偶回归任务形成一个闭环。&lt;/p&gt;
     
     </summary>
     
@@ -49,8 +57,8 @@
   
   <entry>
     <title>leetcode-445-两数相加 II</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fih0014mkvs137acs8k/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fih0014mkvs137acs8k/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xxi000ye4vs03pdc0gq/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xxi000ye4vs03pdc0gq/</id>
     <published>2020-04-14T14:50:00.000Z</published>
     <updated>2020-04-14T14:51:20.746Z</updated>
     
@@ -85,8 +93,8 @@
   
   <entry>
     <title>leetcode-03.04-化栈为队</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fga000rmkvs6u8lckmk/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fga000rmkvs6u8lckmk/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xx7000te4vscnq31761/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xx7000te4vscnq31761/</id>
     <published>2020-04-14T11:04:01.720Z</published>
     <updated>2020-04-20T14:23:32.793Z</updated>
     
@@ -122,8 +130,8 @@
   
   <entry>
     <title>leetcode-20-有效的括号</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fi5000vmkvs3v5242zr/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fi5000vmkvs3v5242zr/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xxd000ve4vs5p8n6kg9/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xxd000ve4vs5p8n6kg9/</id>
     <published>2020-04-13T10:22:59.000Z</published>
     <updated>2020-04-13T10:27:47.832Z</updated>
     
@@ -160,40 +168,9 @@
   </entry>
   
   <entry>
-    <title>ML-Softmax回归</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fij0015mkvs3srw06f0/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fij0015mkvs3srw06f0/</id>
-    <published>2020-03-13T18:35:38.000Z</published>
-    <updated>2020-03-15T21:35:21.516Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="softmax回归">Softmax回归</h1><p>[toc]</p><h2 id="softmax简介">softmax简介</h2><p>Logistic Regression是一种二分类算法，它利用后验概率最大化去计算权重<span class="math inline">\(w\)</span>，Softmax Regression是Logistic Regression的推广，能以更加紧凑的方式来处理多分类问题。Softmax函数的输入是c维的随机真值向量，输出是另一个c维的真值向量，且值的范围是<span class="math inline">\((0,1)\)</span>，和为<span class="math inline">\(1\)</span>。即映射：<span class="math inline">\(S(a)=\mathbb R^c→\mathbb R^c\)</span></p><p>设<span class="math inline">\(z=[z_1,z_2,\cdots,z_c]^T\)</span>为一个<span class="math inline">\(c\)</span>维空间的一个向量，Softmax函数<span class="math inline">\(\sigma\)</span>是一个<span class="math inline">\(\mathbb R^c\)</span>到<span class="math inline">\([0,1]^c\)</span>上的<span class="math inline">\(c\)</span>维映射函数： <span class="math display">\[[\sigma(z)]_j=\frac{e^z_j}{\sum _{i=1} ^c e^z_i} j=1,2,\cdots,c\]</span> softmax函数的输出可以用来描述关于类别的分布： <span class="math display">\[P(y=j|\mathbf x)=\frac{e^{\mathbf w_j^T \mathbf x+b_j}}{\sum _{i=1} ^c e^{\mathbf w_i^T \mathbf x+b_i}} j=1,2,\cdots,c\]</span> 给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((\mathbf x_1,y_1),(\mathbf x_2,y_2),\cdots,(\mathbf x_n,y_n)\)</span>，其中<span class="math inline">\(\mathbf x_i \in \mathbb R^d,i=1,2,\cdots,n\)</span>为<span class="math inline">\(d\)</span>维空间的样本特征，<span class="math inline">\(y_i \in\{1,2,\cdots,c\}\)</span>为对应的类别标签</p><p>给定测试样本<span class="math inline">\(\bf x\)</span>，期望基于所学的假设函数能对每个类别<span class="math inline">\(j\)</span>估算其概率值<span class="math inline">\(P(y=j|\bf x)\)</span>，即估计<span class="math inline">\(\bf x\)</span>的每一种分类结果出现的概率。因此，假设函数应该有能力输出一个<span class="math inline">\(c\)</span>维向量（向量元素之和为1）来表示<span class="math inline">\(c\)</span>个估计的概率值。</p><h2 id="假设函数">假设函数</h2><p>假设函数即为softmax函数，所有softmax函数构成假设空间。</p><p>假设所有的数据<span class="math inline">\(\bf x\)</span>都是齐次坐标形式，即<span class="math inline">\(\bf x\)</span>的维度是<span class="math inline">\(d+1\)</span>维，假设函数的形式如下： $$ </p><p>=  $$ 其中$_1,w_2,,w_c]R^{(d+1)c} $</p><h2 id="代价函数">代价函数</h2><p>采用交叉熵损失：</p><h3 id="两类分类时">两类分类时</h3><p><span class="math display">\[\begin {equation}\begin {split}l(\mathbf w,\mathrm b)&amp;=-\sum \limits _{i=1} ^n (y_i log(h(\mathbf x_i|\mathbf w,b))+((1-y_i) log(1-h(\mathbf x_i|\mathbf w,b)))\\&amp;=\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^1\delta(y_i=j)logP(y_i=j|\mathbf x_i|\mathbf w,b)\right]\end {split}\end {equation}\]</span></p><p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[\delta(y_i=j)=\begin{cases} 1,\text y_i=j\\0,\text y_i≠j\end{cases},j\in\{0,1\}\]</span></p><h3 id="多类分类时">多类分类时</h3><p><span class="math display">\[\begin {equation}\begin {split}l(\mathbf W)&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^c\delta(y_i=j)logP(y=j_i|\mathbf x|\mathbf w,b)\right]\\&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=1} ^c\delta(y_i=j)log\frac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits_{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right]\end {split}\end {equation}\]</span></p><p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[\delta(y_i=j)=\begin{cases} 1,\text y_i=j\\0,\text y_i≠j\end{cases},j\in\{1,2,\cdots,c\}\]</span></p><h2 id="求解">求解</h2><p>分两种情况进行求导：</p><h3 id="当y_ij时">当<span class="math inline">\(y_i=j\)</span>时</h3><p><span class="math display">\[\begin {equation}\begin {split}\dfrac{\partial l(\mathbf W)}{\partial \mathbf w_j}&amp;=-\dfrac{\partial \left( \sum \limits _{i=1} ^n \left( log\dfrac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits _{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right)\right)}{\partial \mathbf w_j}\\&amp;=\end {split}\end {equation}\]</span></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;softmax回归&quot;&gt;Softmax回归&lt;/h1&gt;
-&lt;p&gt;[toc]&lt;/p&gt;
-&lt;h2 id=&quot;softmax简介&quot;&gt;softmax简介&lt;/h2&gt;
-&lt;p&gt;Logistic Regression是一种二分类算法，它利用后验概率最大化去计算权重&lt;span clas
-      
-    
-    </summary>
-    
-    
-      <category term="Machine Learning" scheme="https://chenhuiyu.github.io/categories/Machine-Learning/"/>
-    
-    
-      <category term="ML" scheme="https://chenhuiyu.github.io/tags/ML/"/>
-    
-      <category term="线性模型" scheme="https://chenhuiyu.github.io/tags/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/"/>
-    
-  </entry>
-  
-  <entry>
     <title>ML-Linear-Regression-线性回归</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fin0018mkvshbhqcurk/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fin0018mkvshbhqcurk/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xwc0006e4vscis000ky/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xwc0006e4vscis000ky/</id>
     <published>2020-03-13T18:35:38.000Z</published>
     <updated>2020-03-15T06:23:48.738Z</updated>
     
@@ -252,9 +229,40 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   </entry>
   
   <entry>
+    <title>ML-Softmax回归</title>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xws000he4vs158xentr/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xws000he4vs158xentr/</id>
+    <published>2020-03-13T18:35:38.000Z</published>
+    <updated>2020-03-15T21:35:21.516Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="softmax回归">Softmax回归</h1><p>[toc]</p><h2 id="softmax简介">softmax简介</h2><p>Logistic Regression是一种二分类算法，它利用后验概率最大化去计算权重<span class="math inline">\(w\)</span>，Softmax Regression是Logistic Regression的推广，能以更加紧凑的方式来处理多分类问题。Softmax函数的输入是c维的随机真值向量，输出是另一个c维的真值向量，且值的范围是<span class="math inline">\((0,1)\)</span>，和为<span class="math inline">\(1\)</span>。即映射：<span class="math inline">\(S(a)=\mathbb R^c→\mathbb R^c\)</span></p><p>设<span class="math inline">\(z=[z_1,z_2,\cdots,z_c]^T\)</span>为一个<span class="math inline">\(c\)</span>维空间的一个向量，Softmax函数<span class="math inline">\(\sigma\)</span>是一个<span class="math inline">\(\mathbb R^c\)</span>到<span class="math inline">\([0,1]^c\)</span>上的<span class="math inline">\(c\)</span>维映射函数： <span class="math display">\[[\sigma(z)]_j=\frac{e^z_j}{\sum _{i=1} ^c e^z_i} j=1,2,\cdots,c\]</span> softmax函数的输出可以用来描述关于类别的分布： <span class="math display">\[P(y=j|\mathbf x)=\frac{e^{\mathbf w_j^T \mathbf x+b_j}}{\sum _{i=1} ^c e^{\mathbf w_i^T \mathbf x+b_i}} j=1,2,\cdots,c\]</span> 给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((\mathbf x_1,y_1),(\mathbf x_2,y_2),\cdots,(\mathbf x_n,y_n)\)</span>，其中<span class="math inline">\(\mathbf x_i \in \mathbb R^d,i=1,2,\cdots,n\)</span>为<span class="math inline">\(d\)</span>维空间的样本特征，<span class="math inline">\(y_i \in\{1,2,\cdots,c\}\)</span>为对应的类别标签</p><p>给定测试样本<span class="math inline">\(\bf x\)</span>，期望基于所学的假设函数能对每个类别<span class="math inline">\(j\)</span>估算其概率值<span class="math inline">\(P(y=j|\bf x)\)</span>，即估计<span class="math inline">\(\bf x\)</span>的每一种分类结果出现的概率。因此，假设函数应该有能力输出一个<span class="math inline">\(c\)</span>维向量（向量元素之和为1）来表示<span class="math inline">\(c\)</span>个估计的概率值。</p><h2 id="假设函数">假设函数</h2><p>假设函数即为softmax函数，所有softmax函数构成假设空间。</p><p>假设所有的数据<span class="math inline">\(\bf x\)</span>都是齐次坐标形式，即<span class="math inline">\(\bf x\)</span>的维度是<span class="math inline">\(d+1\)</span>维，假设函数的形式如下： $$ </p><p>=  $$ 其中$_1,w_2,,w_c]R^{(d+1)c} $</p><h2 id="代价函数">代价函数</h2><p>采用交叉熵损失：</p><h3 id="两类分类时">两类分类时</h3><p><span class="math display">\[\begin {equation}\begin {split}l(\mathbf w,\mathrm b)&amp;=-\sum \limits _{i=1} ^n (y_i log(h(\mathbf x_i|\mathbf w,b))+((1-y_i) log(1-h(\mathbf x_i|\mathbf w,b)))\\&amp;=\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^1\delta(y_i=j)logP(y_i=j|\mathbf x_i|\mathbf w,b)\right]\end {split}\end {equation}\]</span></p><p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[\delta(y_i=j)=\begin{cases} 1,\text y_i=j\\0,\text y_i≠j\end{cases},j\in\{0,1\}\]</span></p><h3 id="多类分类时">多类分类时</h3><p><span class="math display">\[\begin {equation}\begin {split}l(\mathbf W)&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^c\delta(y_i=j)logP(y=j_i|\mathbf x|\mathbf w,b)\right]\\&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=1} ^c\delta(y_i=j)log\frac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits_{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right]\end {split}\end {equation}\]</span></p><p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[\delta(y_i=j)=\begin{cases} 1,\text y_i=j\\0,\text y_i≠j\end{cases},j\in\{1,2,\cdots,c\}\]</span></p><h2 id="求解">求解</h2><p>分两种情况进行求导：</p><h3 id="当y_ij时">当<span class="math inline">\(y_i=j\)</span>时</h3><p><span class="math display">\[\begin {equation}\begin {split}\dfrac{\partial l(\mathbf W)}{\partial \mathbf w_j}&amp;=-\dfrac{\partial \left( \sum \limits _{i=1} ^n \left( log\dfrac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits _{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right)\right)}{\partial \mathbf w_j}\\&amp;=\end {split}\end {equation}\]</span></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;softmax回归&quot;&gt;Softmax回归&lt;/h1&gt;
+&lt;p&gt;[toc]&lt;/p&gt;
+&lt;h2 id=&quot;softmax简介&quot;&gt;softmax简介&lt;/h2&gt;
+&lt;p&gt;Logistic Regression是一种二分类算法，它利用后验概率最大化去计算权重&lt;span clas
+      
+    
+    </summary>
+    
+    
+      <category term="Machine Learning" scheme="https://chenhuiyu.github.io/categories/Machine-Learning/"/>
+    
+    
+      <category term="ML" scheme="https://chenhuiyu.github.io/tags/ML/"/>
+    
+      <category term="线性模型" scheme="https://chenhuiyu.github.io/tags/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ML-Logistic-Regression-对数几率回归</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3ffx000amkvs82meci3j/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3ffx000amkvs82meci3j/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xwi0008e4vsdsjdcy8b/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xwi0008e4vsdsjdcy8b/</id>
     <published>2020-03-12T16:33:38.000Z</published>
     <updated>2020-04-04T15:50:07.064Z</updated>
     
@@ -291,9 +299,39 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   </entry>
   
   <entry>
+    <title>爬虫-07-Requests库</title>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xym001qe4vs3p7p6hj6/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xym001qe4vs3p7p6hj6/</id>
+    <published>2020-03-11T09:11:59.000Z</published>
+    <updated>2020-04-14T23:21:25.597Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="爬虫-07-requests库">爬虫-07-Requests库</h1><p>[toc]</p><p>爬虫最基础的便是模拟浏览器向服务器发出请求，利用python库可以方便的对网络请求进行模拟，常见的库有urllib、requests等。借助requests库，我们只需关心请求的链接、需要传的参数以及如何设置可选的参数，无需实现底层通信和传输。</p><p>当我们在浏览器中输入一个URL并回车，实际上就是让浏览器发起了一个GET类型的HTTP请求，浏览器得到源代码后，把它渲染出来就可以看到网页内容了。</p><p>requests提供了一个get方法，我们调用这个方法，传入对应的URL就能得到网页的源代码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure><a id="more"></a><p>输出结果为目标网页的HTML源代码</p><h2 id="请求">请求</h2><p>下面来了解一下利用requests库构建GET请求的方法</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure><p>我们成功发起了GET请求，返回结果包括了Headers、URL、IP等</p><p>我们可以通过params参数传递URL的参数</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">data=&#123;</span><br><span class="line">    <span class="string">'name'</span>:<span class="string">'germey'</span>,</span><br><span class="line">    <span class="string">'age'</span>:<span class="number">25</span></span><br><span class="line">&#125;</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>,params=data)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure><p>在这里我们把URL参数通过字典的形式传给get方法的params参数。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"args"</span>: &#123;</span><br><span class="line">    <span class="string">"age"</span>: <span class="string">"25"</span>, </span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"germey"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"headers"</span>: &#123;</span><br><span class="line">    <span class="string">"Accept"</span>: <span class="string">"*/*"</span>, </span><br><span class="line">    <span class="string">"Accept-Encoding"</span>: <span class="string">"gzip, deflate"</span>, </span><br><span class="line">    <span class="string">"Host"</span>: <span class="string">"httpbin.org"</span>, </span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"python-requests/2.18.4"</span>, </span><br><span class="line">    <span class="string">"X-Amzn-Trace-Id"</span>: <span class="string">"Root=1-5e68e7c7-0daed52e693fe50fdcec097e"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"origin"</span>: <span class="string">"158.51.124.182"</span>, </span><br><span class="line">  <span class="string">"url"</span>: <span class="string">"http://httpbin.org/get?name=germey&amp;age=25"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>由上述返回信息可知，请求的链接自动被构造成了</p><p>&quot;http://httpbin.org/get?name=germey&amp;age=25&quot;</p><p>网页返回的类型json格式的str类型，如果想直接解析返回结果，可以直接调用json方法</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">print(type(r.text))</span><br><span class="line">print(r.json())</span><br><span class="line">print(type(r.json()))</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line">&#123;'args': &#123;&#125;, 'headers': &#123;'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.18.4', 'X-Amzn-Trace-Id': 'Root=1-5e68e918-fc7bf9a0438ed2f0bf1aab90'&#125;, 'origin': '158.51.124.182', 'url': 'http://httpbin.org/get'&#125;</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">dict</span>'&gt;</span></span><br></pre></td></tr></table></figure><p>调用json方法，就可以将返回结果是json格式的字符串转换为字典</p><h2 id="抓取网页">抓取网页</h2><p>上面请求链接返回的是JSON形式的字符串，下面以<code>https://static1.scrape.cuiqingcai.com/</code>为例，提取电影的标题。</p><figure><img src="https://i.loli.net/2020/03/11/AIUVoCJmP5E6nDG.jpg" alt="Scrape截图.jpg" /><figcaption>Scrape截图.jpg</figcaption></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">pattern=re.compile(<span class="string">'&lt;h2.*?&gt;(.*?)&lt;/h2&gt;'</span>,re.S)</span><br><span class="line">title=re.findall(pattern,r.text)</span><br><span class="line">print(title)</span><br></pre></td></tr></table></figure><p>使用了正则表达式来匹配所有的标题</p><h2 id="抓取二进制数据">抓取二进制数据</h2><p>上述例子返回的一个HTML文档，如何抓取图片、音频、视频文件呢？这些文件本质都是二进制数据，下面以本博客的站点图标为例：</p><figure><img src="https://i.loli.net/2020/03/11/FenQqcPKOgxarIt.jpg" alt="图标.jpg" /><figcaption>图标.jpg</figcaption></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://chenhuiyu.github.io/cat.ico'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure><p>这里出现了一些乱码，由于图片是二进制数据，在打印的时候转化为str类型，所以出现了乱码</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(r.content)</span><br><span class="line"></span><br><span class="line"><span class="string">b'\x00\x00\x01\x00\x01\x00  \x00\x00\x01\x00 \x00\xa8\x10\x00\x00\x16\x00\x00\x00(\x00\x00\x00 \x00\x00\x00@\x00\x00\x00\x01\x00</span></span><br></pre></td></tr></table></figure><p>content返回了一些二进制代码，b'表示bytes类型的数据，我们把它保存下来</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://chenhuiyu.github.io/cat.ico'</span>)</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'cat.ico'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(r.content)</span><br></pre></td></tr></table></figure><p>这样运行结束后，文件夹中就出现了名为‘cat.ico’的图标</p><p>音频和视频文件同样用这种方法获取。</p><h2 id="添加headers">添加Headers</h2><p>设置headers参数以设置HTTP请求的请求头Request Headers。如果我们不设置Request Headers信息，某些网站会发现这不是一个正常浏览器发起的请求，网站可能会返回异常的结果，导致网页抓取失败。</p><h2 id="post请求">post请求</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">data=&#123;<span class="string">'name'</span>:<span class="string">'germey'</span>,<span class="string">'age'</span>:<span class="string">'25'</span>&#125;</span><br><span class="line">r=request.post(<span class="string">"http://httpbin.org/post"</span>,data=data)</span><br></pre></td></tr></table></figure><ul><li><h2 id="响应">响应</h2></li></ul><p>发送请求后，得到的响应即Response，上文我们使用了text和content获取相应的内容，此外还有很多属性和方法。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">print(type(r.status_code),r.status_code)</span><br><span class="line">print(type(r.headers),r.headers)</span><br><span class="line">print(type(r.cookies),r.cookies)</span><br><span class="line">print(type(r.url),r.url)</span><br><span class="line">print(type(r.history),r.history)</span><br></pre></td></tr></table></figure><p>这里分别打印输出</p><ul><li>status_code——状态码</li><li>headers——响应头</li><li>cookies——Cookies</li><li>url——URL，</li><li>history——请求历史</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">int</span>'&gt; 200</span></span><br><span class="line">&lt;class 'requests.structures.CaseInsensitiveDict'&gt; &#123;'Server': 'nginx/1.17.8', 'Date': 'Wed, 11 Mar 2020 14:52:48 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Vary': 'Accept-Encoding', 'X-Frame-Options': 'SAMEORIGIN', 'Strict-Transport-Security': 'max-age=15724800; includeSubDomains', 'Content-Encoding': 'gzip'&#125;</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">requests</span>.<span class="title">cookies</span>.<span class="title">RequestsCookieJar</span>'&gt; &lt;<span class="title">RequestsCookieJar</span>[]&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">str</span>'&gt; <span class="title">https</span>:</span>//static1.scrape.cuiqingcai.com/</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">list</span>'&gt; []</span></span><br></pre></td></tr></table></figure><p>可以看到，headers 和 cookies 这两个属性得到的结果分别是 CaseInsensitiveDict 和 RequestsCookieJar 类型。状态码是用来表示响应状态的，比如返回 200 代表我们得到的响应是没问题的，上面的例子正好输出的结果也是 200，所以我们可以通过判断 Response 的状态码来确认是否爬取成功。</p><p>requests 还提供了一个内置的状态码查询对象 requests.codes，用法示例如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">exit() <span class="keyword">if</span> <span class="keyword">not</span> r.status_code==requests.codes.ok <span class="keyword">else</span> print(<span class="string">'Request Successfully'</span>)</span><br></pre></td></tr></table></figure><p><img src="https://www.lgstatic.com/i/image3/M01/72/AB/CgpOIF5on8OATn1rAApl7Kdp5_0626.png" /></p><h2 id="文件上传">文件上传</h2><p>我们知道 requests 可以模拟提交一些数据。假如有的网站需要上传文件，我们也可以用它来实现，示例如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">files=&#123;<span class="string">'file'</span>:open(<span class="string">'cat.ico'</span>,<span class="string">'rb'</span>)&#125;</span><br><span class="line">r=requests.post(<span class="string">'http://httpbin.org/post'</span>,files=files)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure><h2 id="cookies">Cookies</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://www.baidu.com'</span>)</span><br><span class="line">print(r.cookies)</span><br><span class="line"><span class="keyword">for</span> key,value <span class="keyword">in</span> r.cookies.items():</span><br><span class="line">    print(key+<span class="string">'='</span>+value)</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;RequestsCookieJar[&lt;Cookie BDORZ=<span class="number">27315</span> <span class="keyword">for</span> .baidu.com/&gt;]&gt;</span><br><span class="line">BDORZ=<span class="number">27315</span></span><br></pre></td></tr></table></figure><p>这里我们首先调用cookies属性即可成功得到Cookies，可以发现它是RequestCookieJar类型。然后用items方法将其转化为元组组成的列表，遍历输出每一个Cookied的名称和值，实现Cookie的遍历解析。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;爬虫-07-requests库&quot;&gt;爬虫-07-Requests库&lt;/h1&gt;
+&lt;p&gt;[toc]&lt;/p&gt;
+&lt;p&gt;爬虫最基础的便是模拟浏览器向服务器发出请求，利用python库可以方便的对网络请求进行模拟，常见的库有urllib、requests等。借助requests库，我们只需关心请求的链接、需要传的参数以及如何设置可选的参数，无需实现底层通信和传输。&lt;/p&gt;
+&lt;p&gt;当我们在浏览器中输入一个URL并回车，实际上就是让浏览器发起了一个GET类型的HTTP请求，浏览器得到源代码后，把它渲染出来就可以看到网页内容了。&lt;/p&gt;
+&lt;p&gt;requests提供了一个get方法，我们调用这个方法，传入对应的URL就能得到网页的源代码。&lt;/p&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; requests&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;r=requests.get(&lt;span class=&quot;string&quot;&gt;&#39;https://static1.scrape.cuiqingcai.com/&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(r.text)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="爬虫" scheme="https://chenhuiyu.github.io/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="tutorial" scheme="https://chenhuiyu.github.io/tags/tutorial/"/>
+    
+      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>爬虫-06-多进程的基本原理</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fn3003jmkvs3qpj2wn7/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fn3003jmkvs3qpj2wn7/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xyh001le4vs6rapai81/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xyh001le4vs6rapai81/</id>
     <published>2020-03-11T09:11:59.000Z</published>
     <updated>2020-03-11T12:15:21.495Z</updated>
     
@@ -315,46 +353,16 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
       <category term="爬虫" scheme="https://chenhuiyu.github.io/categories/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="tutorial" scheme="https://chenhuiyu.github.io/tags/tutorial/"/>
     
-  </entry>
-  
-  <entry>
-    <title>爬虫-07-Requests库</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fiv001imkvs9bnaaxwb/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fiv001imkvs9bnaaxwb/</id>
-    <published>2020-03-11T09:11:59.000Z</published>
-    <updated>2020-04-14T23:21:25.597Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="爬虫-07-requests库">爬虫-07-Requests库</h1><p>[toc]</p><p>爬虫最基础的便是模拟浏览器向服务器发出请求，利用python库可以方便的对网络请求进行模拟，常见的库有urllib、requests等。借助requests库，我们只需关心请求的链接、需要传的参数以及如何设置可选的参数，无需实现底层通信和传输。</p><p>当我们在浏览器中输入一个URL并回车，实际上就是让浏览器发起了一个GET类型的HTTP请求，浏览器得到源代码后，把它渲染出来就可以看到网页内容了。</p><p>requests提供了一个get方法，我们调用这个方法，传入对应的URL就能得到网页的源代码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure><a id="more"></a><p>输出结果为目标网页的HTML源代码</p><h2 id="请求">请求</h2><p>下面来了解一下利用requests库构建GET请求的方法</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure><p>我们成功发起了GET请求，返回结果包括了Headers、URL、IP等</p><p>我们可以通过params参数传递URL的参数</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">data=&#123;</span><br><span class="line">    <span class="string">'name'</span>:<span class="string">'germey'</span>,</span><br><span class="line">    <span class="string">'age'</span>:<span class="number">25</span></span><br><span class="line">&#125;</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>,params=data)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure><p>在这里我们把URL参数通过字典的形式传给get方法的params参数。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"args"</span>: &#123;</span><br><span class="line">    <span class="string">"age"</span>: <span class="string">"25"</span>, </span><br><span class="line">    <span class="string">"name"</span>: <span class="string">"germey"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"headers"</span>: &#123;</span><br><span class="line">    <span class="string">"Accept"</span>: <span class="string">"*/*"</span>, </span><br><span class="line">    <span class="string">"Accept-Encoding"</span>: <span class="string">"gzip, deflate"</span>, </span><br><span class="line">    <span class="string">"Host"</span>: <span class="string">"httpbin.org"</span>, </span><br><span class="line">    <span class="string">"User-Agent"</span>: <span class="string">"python-requests/2.18.4"</span>, </span><br><span class="line">    <span class="string">"X-Amzn-Trace-Id"</span>: <span class="string">"Root=1-5e68e7c7-0daed52e693fe50fdcec097e"</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="string">"origin"</span>: <span class="string">"158.51.124.182"</span>, </span><br><span class="line">  <span class="string">"url"</span>: <span class="string">"http://httpbin.org/get?name=germey&amp;age=25"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>由上述返回信息可知，请求的链接自动被构造成了</p><p>&quot;http://httpbin.org/get?name=germey&amp;age=25&quot;</p><p>网页返回的类型json格式的str类型，如果想直接解析返回结果，可以直接调用json方法</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line">print(type(r.text))</span><br><span class="line">print(r.json())</span><br><span class="line">print(type(r.json()))</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">str</span>'&gt;</span></span><br><span class="line">&#123;'args': &#123;&#125;, 'headers': &#123;'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate', 'Host': 'httpbin.org', 'User-Agent': 'python-requests/2.18.4', 'X-Amzn-Trace-Id': 'Root=1-5e68e918-fc7bf9a0438ed2f0bf1aab90'&#125;, 'origin': '158.51.124.182', 'url': 'http://httpbin.org/get'&#125;</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">dict</span>'&gt;</span></span><br></pre></td></tr></table></figure><p>调用json方法，就可以将返回结果是json格式的字符串转换为字典</p><h2 id="抓取网页">抓取网页</h2><p>上面请求链接返回的是JSON形式的字符串，下面以<code>https://static1.scrape.cuiqingcai.com/</code>为例，提取电影的标题。</p><figure><img src="https://i.loli.net/2020/03/11/AIUVoCJmP5E6nDG.jpg" alt="Scrape截图.jpg" /><figcaption>Scrape截图.jpg</figcaption></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">pattern=re.compile(<span class="string">'&lt;h2.*?&gt;(.*?)&lt;/h2&gt;'</span>,re.S)</span><br><span class="line">title=re.findall(pattern,r.text)</span><br><span class="line">print(title)</span><br></pre></td></tr></table></figure><p>使用了正则表达式来匹配所有的标题</p><h2 id="抓取二进制数据">抓取二进制数据</h2><p>上述例子返回的一个HTML文档，如何抓取图片、音频、视频文件呢？这些文件本质都是二进制数据，下面以本博客的站点图标为例：</p><figure><img src="https://i.loli.net/2020/03/11/FenQqcPKOgxarIt.jpg" alt="图标.jpg" /><figcaption>图标.jpg</figcaption></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://chenhuiyu.github.io/cat.ico'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure><p>这里出现了一些乱码，由于图片是二进制数据，在打印的时候转化为str类型，所以出现了乱码</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(r.content)</span><br><span class="line"></span><br><span class="line"><span class="string">b'\x00\x00\x01\x00\x01\x00  \x00\x00\x01\x00 \x00\xa8\x10\x00\x00\x16\x00\x00\x00(\x00\x00\x00 \x00\x00\x00@\x00\x00\x00\x01\x00</span></span><br></pre></td></tr></table></figure><p>content返回了一些二进制代码，b'表示bytes类型的数据，我们把它保存下来</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://chenhuiyu.github.io/cat.ico'</span>)</span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'cat.ico'</span>,<span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(r.content)</span><br></pre></td></tr></table></figure><p>这样运行结束后，文件夹中就出现了名为‘cat.ico’的图标</p><p>音频和视频文件同样用这种方法获取。</p><h2 id="添加headers">添加Headers</h2><p>设置headers参数以设置HTTP请求的请求头Request Headers。如果我们不设置Request Headers信息，某些网站会发现这不是一个正常浏览器发起的请求，网站可能会返回异常的结果，导致网页抓取失败。</p><h2 id="post请求">post请求</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">data=&#123;<span class="string">'name'</span>:<span class="string">'germey'</span>,<span class="string">'age'</span>:<span class="string">'25'</span>&#125;</span><br><span class="line">r=request.post(<span class="string">"http://httpbin.org/post"</span>,data=data)</span><br></pre></td></tr></table></figure><ul><li><h2 id="响应">响应</h2></li></ul><p>发送请求后，得到的响应即Response，上文我们使用了text和content获取相应的内容，此外还有很多属性和方法。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">print(type(r.status_code),r.status_code)</span><br><span class="line">print(type(r.headers),r.headers)</span><br><span class="line">print(type(r.cookies),r.cookies)</span><br><span class="line">print(type(r.url),r.url)</span><br><span class="line">print(type(r.history),r.history)</span><br></pre></td></tr></table></figure><p>这里分别打印输出</p><ul><li>status_code——状态码</li><li>headers——响应头</li><li>cookies——Cookies</li><li>url——URL，</li><li>history——请求历史</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">int</span>'&gt; 200</span></span><br><span class="line">&lt;class 'requests.structures.CaseInsensitiveDict'&gt; &#123;'Server': 'nginx/1.17.8', 'Date': 'Wed, 11 Mar 2020 14:52:48 GMT', 'Content-Type': 'text/html; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Vary': 'Accept-Encoding', 'X-Frame-Options': 'SAMEORIGIN', 'Strict-Transport-Security': 'max-age=15724800; includeSubDomains', 'Content-Encoding': 'gzip'&#125;</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">requests</span>.<span class="title">cookies</span>.<span class="title">RequestsCookieJar</span>'&gt; &lt;<span class="title">RequestsCookieJar</span>[]&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">class</span> '<span class="title">str</span>'&gt; <span class="title">https</span>:</span>//static1.scrape.cuiqingcai.com/</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">list</span>'&gt; []</span></span><br></pre></td></tr></table></figure><p>可以看到，headers 和 cookies 这两个属性得到的结果分别是 CaseInsensitiveDict 和 RequestsCookieJar 类型。状态码是用来表示响应状态的，比如返回 200 代表我们得到的响应是没问题的，上面的例子正好输出的结果也是 200，所以我们可以通过判断 Response 的状态码来确认是否爬取成功。</p><p>requests 还提供了一个内置的状态码查询对象 requests.codes，用法示例如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">exit() <span class="keyword">if</span> <span class="keyword">not</span> r.status_code==requests.codes.ok <span class="keyword">else</span> print(<span class="string">'Request Successfully'</span>)</span><br></pre></td></tr></table></figure><p><img src="https://www.lgstatic.com/i/image3/M01/72/AB/CgpOIF5on8OATn1rAApl7Kdp5_0626.png" /></p><h2 id="文件上传">文件上传</h2><p>我们知道 requests 可以模拟提交一些数据。假如有的网站需要上传文件，我们也可以用它来实现，示例如下</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">files=&#123;<span class="string">'file'</span>:open(<span class="string">'cat.ico'</span>,<span class="string">'rb'</span>)&#125;</span><br><span class="line">r=requests.post(<span class="string">'http://httpbin.org/post'</span>,files=files)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure><h2 id="cookies">Cookies</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://www.baidu.com'</span>)</span><br><span class="line">print(r.cookies)</span><br><span class="line"><span class="keyword">for</span> key,value <span class="keyword">in</span> r.cookies.items():</span><br><span class="line">    print(key+<span class="string">'='</span>+value)</span><br></pre></td></tr></table></figure><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;RequestsCookieJar[&lt;Cookie BDORZ=<span class="number">27315</span> <span class="keyword">for</span> .baidu.com/&gt;]&gt;</span><br><span class="line">BDORZ=<span class="number">27315</span></span><br></pre></td></tr></table></figure><p>这里我们首先调用cookies属性即可成功得到Cookies，可以发现它是RequestCookieJar类型。然后用items方法将其转化为元组组成的列表，遍历输出每一个Cookied的名称和值，实现Cookie的遍历解析。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;爬虫-07-requests库&quot;&gt;爬虫-07-Requests库&lt;/h1&gt;
-&lt;p&gt;[toc]&lt;/p&gt;
-&lt;p&gt;爬虫最基础的便是模拟浏览器向服务器发出请求，利用python库可以方便的对网络请求进行模拟，常见的库有urllib、requests等。借助requests库，我们只需关心请求的链接、需要传的参数以及如何设置可选的参数，无需实现底层通信和传输。&lt;/p&gt;
-&lt;p&gt;当我们在浏览器中输入一个URL并回车，实际上就是让浏览器发起了一个GET类型的HTTP请求，浏览器得到源代码后，把它渲染出来就可以看到网页内容了。&lt;/p&gt;
-&lt;p&gt;requests提供了一个get方法，我们调用这个方法，传入对应的URL就能得到网页的源代码。&lt;/p&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; requests&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;r=requests.get(&lt;span class=&quot;string&quot;&gt;&#39;https://static1.scrape.cuiqingcai.com/&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;print(r.text)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-    
-      <category term="爬虫" scheme="https://chenhuiyu.github.io/categories/%E7%88%AC%E8%99%AB/"/>
-    
-    
       <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
-      <category term="tutorial" scheme="https://chenhuiyu.github.io/tags/tutorial/"/>
     
   </entry>
   
   <entry>
     <title>LaTeX符号速查</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fie0012mkvs7f236hu2/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fie0012mkvs7f236hu2/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xwf0007e4vs9z5r4r3k/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xwf0007e4vs9z5r4r3k/</id>
     <published>2020-03-10T20:07:26.000Z</published>
     <updated>2020-03-10T20:12:54.998Z</updated>
     
@@ -404,8 +412,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>DL-01-线性回归</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fd80000mkvsd6cnal40/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fd80000mkvsd6cnal40/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xvp0000e4vsh6w8dnj7/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xvp0000e4vsh6w8dnj7/</id>
     <published>2020-03-10T17:15:19.000Z</published>
     <updated>2020-03-10T20:35:06.016Z</updated>
     
@@ -435,8 +443,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>基于SRGAN的超分辨率重建</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fit001fmkvscxoe6ibo/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fit001fmkvscxoe6ibo/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xxm0012e4vs05q9chez/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xxm0012e4vs05q9chez/</id>
     <published>2020-03-09T06:06:32.000Z</published>
     <updated>2020-03-09T12:45:37.145Z</updated>
     
@@ -480,16 +488,16 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
       <category term="GAN" scheme="https://chenhuiyu.github.io/categories/GAN/"/>
     
     
-      <category term="paper" scheme="https://chenhuiyu.github.io/tags/paper/"/>
-    
       <category term="GAN" scheme="https://chenhuiyu.github.io/tags/GAN/"/>
+    
+      <category term="paper" scheme="https://chenhuiyu.github.io/tags/paper/"/>
     
   </entry>
   
   <entry>
     <title>生成式对抗网络综述</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fn4003kmkvs9lrn7hml/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fn4003kmkvs9lrn7hml/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xyp001re4vsetza4evm/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xyp001re4vsetza4evm/</id>
     <published>2020-03-08T12:27:44.000Z</published>
     <updated>2020-03-08T12:52:16.164Z</updated>
     
@@ -509,16 +517,16 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
       <category term="GAN" scheme="https://chenhuiyu.github.io/categories/GAN/"/>
     
     
-      <category term="paper" scheme="https://chenhuiyu.github.io/tags/paper/"/>
-    
       <category term="GAN" scheme="https://chenhuiyu.github.io/tags/GAN/"/>
+    
+      <category term="paper" scheme="https://chenhuiyu.github.io/tags/paper/"/>
     
   </entry>
   
   <entry>
     <title>爬虫-05-多线程的基本原理</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fiz001qmkvsh1qwc74t/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fiz001qmkvsh1qwc74t/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xye001je4vs7x7rgb8z/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xye001je4vs7x7rgb8z/</id>
     <published>2020-03-08T09:11:59.000Z</published>
     <updated>2020-03-09T14:15:23.861Z</updated>
     
@@ -538,16 +546,16 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
       <category term="爬虫" scheme="https://chenhuiyu.github.io/categories/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="tutorial" scheme="https://chenhuiyu.github.io/tags/tutorial/"/>
+    
+      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>NLP03-形式语言与自动机.md</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fhq000tmkvs3vq810bd/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fhq000tmkvs3vq810bd/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xwp000de4vs454651ct/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xwp000de4vs454651ct/</id>
     <published>2020-03-07T17:43:09.000Z</published>
     <updated>2020-03-07T17:45:59.257Z</updated>
     
@@ -574,8 +582,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>DLHLP——1.课程简介</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3ffg0005mkvs1stgeo9w/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3ffg0005mkvs1stgeo9w/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xw20002e4vscj689kq3/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xw20002e4vscj689kq3/</id>
     <published>2020-03-07T17:41:40.000Z</published>
     <updated>2020-03-07T16:56:34.492Z</updated>
     
@@ -605,8 +613,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>NLP01-绪论</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3ffw0009mkvsadfi9ecq/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3ffw0009mkvsadfi9ecq/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xwm000ce4vsfmucd2wa/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xwm000ce4vsfmucd2wa/</id>
     <published>2020-03-06T20:54:38.000Z</published>
     <updated>2020-03-06T21:11:42.030Z</updated>
     
@@ -633,8 +641,8 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
   
   <entry>
     <title>爬虫-04-Session和Cookies</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fj3001ymkvs6kth8zre/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fj3001ymkvs6kth8zre/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xya001fe4vs1ac046cu/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xya001fe4vs1ac046cu/</id>
     <published>2020-03-06T20:42:51.000Z</published>
     <updated>2020-03-09T14:17:38.092Z</updated>
     
@@ -657,16 +665,16 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
       <category term="爬虫" scheme="https://chenhuiyu.github.io/categories/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="tutorial" scheme="https://chenhuiyu.github.io/tags/tutorial/"/>
+    
+      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>爬虫-03-爬虫基本原理</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fj50020mkvsh9tsdpev/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fj50020mkvsh9tsdpev/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xy7001ee4vs6klt2v75/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xy7001ee4vs6klt2v75/</id>
     <published>2020-03-06T20:42:29.000Z</published>
     <updated>2020-03-09T14:17:50.586Z</updated>
     
@@ -688,16 +696,16 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
       <category term="爬虫" scheme="https://chenhuiyu.github.io/categories/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="tutorial" scheme="https://chenhuiyu.github.io/tags/tutorial/"/>
+    
+      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>爬虫-02-Web网页基础</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fj2001vmkvs4phzg0mt/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fj2001vmkvs4phzg0mt/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xxz001ae4vshokecigu/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xxz001ae4vshokecigu/</id>
     <published>2020-03-06T20:42:15.000Z</published>
     <updated>2020-03-09T14:17:32.724Z</updated>
     
@@ -721,16 +729,16 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
       <category term="爬虫" scheme="https://chenhuiyu.github.io/categories/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="tutorial" scheme="https://chenhuiyu.github.io/tags/tutorial/"/>
+    
+      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>爬虫-01-HTTP基本原理</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fip001amkvshf3od4e3/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fip001amkvshf3od4e3/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xxr0015e4vs2u6l84fi/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xxr0015e4vs2u6l84fi/</id>
     <published>2020-03-06T20:41:40.000Z</published>
     <updated>2020-03-09T14:12:36.804Z</updated>
     
@@ -755,16 +763,16 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
       <category term="爬虫" scheme="https://chenhuiyu.github.io/categories/%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
-    
       <category term="tutorial" scheme="https://chenhuiyu.github.io/tags/tutorial/"/>
+    
+      <category term="爬虫" scheme="https://chenhuiyu.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>机器学习入门</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fiy001nmkvsa02hcf9y/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fiy001nmkvsa02hcf9y/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xx3000oe4vsc0rzezw2/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xx3000oe4vsc0rzezw2/</id>
     <published>2020-03-06T20:35:06.000Z</published>
     <updated>2020-03-06T21:12:04.753Z</updated>
     
@@ -788,16 +796,16 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
     
       <category term="ML" scheme="https://chenhuiyu.github.io/tags/ML/"/>
     
-      <category term="tutorial" scheme="https://chenhuiyu.github.io/tags/tutorial/"/>
-    
       <category term="Kaggle" scheme="https://chenhuiyu.github.io/tags/Kaggle/"/>
+    
+      <category term="tutorial" scheme="https://chenhuiyu.github.io/tags/tutorial/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98l3fgc000smkvsdwlx1mze/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98l3fgc000smkvsdwlx1mze/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck98l8xwz000me4vsfh1l8de3/"/>
+    <id>https://chenhuiyu.github.io/2020/ck98l8xwz000me4vsfh1l8de3/</id>
     <published>2020-03-06T19:36:30.886Z</published>
     <updated>2020-03-06T19:36:30.886Z</updated>
     
