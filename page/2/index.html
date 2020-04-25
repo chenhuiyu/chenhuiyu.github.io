@@ -77,6 +77,102 @@
     
     
     
+    <article id="post-爬虫-06-多进程的基本原理" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ck98rxwwz001ke4vscqyj1hk7/"
+    >爬虫-06-多进程的基本原理</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck98rxwwz001ke4vscqyj1hk7/" class="article-date">
+  <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="爬虫-06-多进程的基本原理">爬虫-06-多进程的基本原理</h1>
+<p>[toc]</p>
+<h2 id="python多线程存在的问题">python多线程存在的问题</h2>
+<p>GIL全称为Global Interpreter Lock,即为全局解释所。</p>
+<p>在python多线程下，每个线程的执行方式如下：</p>
+<ul>
+<li>获取GIL</li>
+<li>执行对应线程的代码</li>
+<li>释放GIL</li>
+</ul>
+<p>某个线程想要执行，必须先拿到GIL，一个python进程中GIL只有一个，GIL的存在使得Python无论是在单核还是多核的条件下，同一时刻只能运行一个线程，导致python多线程无法发挥多核并行的优势。</p>
+<h2 id="python多进程的实现">python多进程的实现</h2>
+<p>进程是系统进行资源分配和调度的独立单位，各个进程之间的数据是无法共享的，多个进程无法共享一个全局变量。</p>
+<p>Python内置的multiprocessing是用来实现多进程的库。multiprocessing提供了一系列组件，如Process（进程）、Queue（队列）、Semaphore（信号量）、Pipe（管道）、Lock（锁）、Pool（进程池）</p>
+<h2 id="process类">Process类</h2>
+<p>在multiprocessing中，每个进程都用一个Process类来表示</p>
+<p><code>Process([group [, target [, name [, args [, kwargs]]]]])</code></p>
+<ul>
+<li>target 表示调用对象，可以传入方法的名字</li>
+<li>args表示被调用对象位置参数元组，比如target是函数func，他有两个参数m,n，那么args就传入[m,n]即可</li>
+<li>kwargs表示调用对象的字典</li>
+<li>name是别名，相当于给这个进程取个名字</li>
+<li>group分组</li>
+</ul>
+
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+
+	      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-LaTeX符号速查" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -814,87 +910,6 @@
 <p>​ 动态网页还可以实现用户登录和注册功能，需要通过Session和Cookies共同作用</p>
       
       <a class="article-more-link" href="/2020/ck98rxwwp001de4vsgest2gdx/">More...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
-
-	      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-爬虫-03-爬虫基本原理" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/ck98rxwwt001ee4vs2y0bageo/"
-    >爬虫-03-爬虫基本原理</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/ck98rxwwt001ee4vs2y0bageo/" class="article-date">
-  <time datetime="2020-03-06T20:42:29.000Z" itemprop="datePublished">2020-03-07</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="爬虫-03-爬虫基本原理">爬虫-03-爬虫基本原理</h1>
-<p>[toc]</p>
-<h2 id="爬虫概述">3.1 爬虫概述</h2>
-<p>​ 简单地说，爬虫就是获取网页并提取保存信息的自动化程序</p>
-<h2 id="获取网页">3.2 获取网页</h2>
-<p>​ 获取网页的源代码，向网站的服务器发送一个请求，返回的响应体便是网页源代码</p>
-<p>​ 借助urllib、requests库可以实现HTTP请求操作，请求和响应都可以用库提供的数据结构表示，得到相应之后只需解析数据结构中的Body部分</p>
-      
-      <a class="article-more-link" href="/2020/ck98rxwwt001ee4vs2y0bageo/">More...</a>
       
       
       <!-- reward -->

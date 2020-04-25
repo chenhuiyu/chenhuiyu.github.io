@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    ML-Linear-Regression-线性回归 |  黑头呆鱼进化之旅
+    ML-Softmax回归 |  黑头呆鱼进化之旅
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -38,7 +38,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-Linear-Regression-线性回归" class="article article-type-post" itemscope
+  <article id="post-ML-Softmax回归" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -46,7 +46,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  ML-Linear-Regression-线性回归
+  ML-Softmax回归
 </h1>
   
 
@@ -55,7 +55,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck98rxwvc0007e4vs0nv380bt/" class="article-date">
+      <a href="/2020/ck9fc4gms0003s0vs36bzdto5/" class="article-date">
   <time datetime="2020-03-13T18:35:38.000Z" itemprop="datePublished">2020-03-14</time>
 </a>
       
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.1k字</span>
+            <span class="post-count">725字</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">5分钟</span>
+            <span class="post-count">3分钟</span>
         </span>
     </span>
 </div>
@@ -106,133 +106,69 @@
       
 
       
-      <h1 id="linear-regression-线性回归">Linear-Regression-线性回归</h1>
+      <h1 id="softmax回归">Softmax回归</h1>
 <p>[toc]</p>
-<h2 id="线性回归">1. 线性回归</h2>
-<p>给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)\)</span>，其中<span class="math inline">\(x_i=(x_{1i};x_{2i};\dots;x_{id}),y_i \in \mathbb R\)</span>，为<span class="math inline">\(d\)</span>维样本特征，<span class="math inline">\(y_i \in \{0,1\}\)</span>为其对应的类别标签。线性回归试图学习一个线性模型尽可能使的预测实值输出标记。对于离散属性，如果属性间存在“序(order)关系”，可通过连续化将其转化为连续值；若属性间不存在序关系，假定有<span class="math inline">\(k\)</span>个属性值，通常转化为<span class="math inline">\(k\)</span>维向量。</p>
-<p>线性回归试图学得： <span class="math display">\[
-f(x_i)=wx_i+b,使得f(x_i)\simeq y_i
-\]</span> 如何确定<span class="math inline">\(w\)</span>和<span class="math inline">\(b\)</span>？这里需要引入<strong>均方误差</strong>，它可以衡量<span class="math inline">\(f(x)\)</span>和<span class="math inline">\(y\)</span>直接的差别。均方误差对应了欧氏距离，基于均方误差最小化来进行模型求解的方法称为“最小二乘法”。在线性回归中，最小二乘法就是试图找到一条直线，使所有样本到这条直线的欧氏距离之和最小。利用下式将均方误差最小化： <span class="math display">\[
-\begin{equation}
-\begin{split}
-(w^*,b^*)&amp;=arg\ \min \limits_{w,b} \sum \limits _{i=1} ^{n} (f(x_i)-y_i)^2\\
-&amp;=arg\ \min \limits_{w,b} \sum \limits _{i=1} ^{n} (wx_i+b-y_i)^2\\
-&amp;=arg\ \min \limits_{W \in \mathbb R^d,b} \sum \limits _{i=1} ^{n} (W^Tx_i+b-y_i)^2
-\end{split}
-\end{equation}
-\]</span></p>
-<h2 id="求解目标函数">2. 求解目标函数</h2>
+<h2 id="softmax简介">softmax简介</h2>
+<p>Logistic Regression是一种二分类算法，它利用后验概率最大化去计算权重<span class="math inline">\(w\)</span>，Softmax Regression是Logistic Regression的推广，能以更加紧凑的方式来处理多分类问题。Softmax函数的输入是c维的随机真值向量，输出是另一个c维的真值向量，且值的范围是<span class="math inline">\((0,1)\)</span>，和为<span class="math inline">\(1\)</span>。即映射：<span class="math inline">\(S(a)=\mathbb R^c→\mathbb R^c\)</span></p>
+<p>设<span class="math inline">\(z=[z_1,z_2,\cdots,z_c]^T\)</span>为一个<span class="math inline">\(c\)</span>维空间的一个向量，Softmax函数<span class="math inline">\(\sigma\)</span>是一个<span class="math inline">\(\mathbb R^c\)</span>到<span class="math inline">\([0,1]^c\)</span>上的<span class="math inline">\(c\)</span>维映射函数： <span class="math display">\[
+[\sigma(z)]_j=\frac{e^z_j}{\sum _{i=1} ^c e^z_i} j=1,2,\cdots,c
+\]</span> softmax函数的输出可以用来描述关于类别的分布： <span class="math display">\[
+P(y=j|\mathbf x)=\frac{e^{\mathbf w_j^T \mathbf x+b_j}}{\sum _{i=1} ^c e^{\mathbf w_i^T \mathbf x+b_i}} j=1,2,\cdots,c
+\]</span> 给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((\mathbf x_1,y_1),(\mathbf x_2,y_2),\cdots,(\mathbf x_n,y_n)\)</span>，其中<span class="math inline">\(\mathbf x_i \in \mathbb R^d,i=1,2,\cdots,n\)</span>为<span class="math inline">\(d\)</span>维空间的样本特征，<span class="math inline">\(y_i \in\{1,2,\cdots,c\}\)</span>为对应的类别标签</p>
+<p>给定测试样本<span class="math inline">\(\bf x\)</span>，期望基于所学的假设函数能对每个类别<span class="math inline">\(j\)</span>估算其概率值<span class="math inline">\(P(y=j|\bf x)\)</span>，即估计<span class="math inline">\(\bf x\)</span>的每一种分类结果出现的概率。因此，假设函数应该有能力输出一个<span class="math inline">\(c\)</span>维向量（向量元素之和为1）来表示<span class="math inline">\(c\)</span>个估计的概率值。</p>
+<h2 id="假设函数">假设函数</h2>
+<p>假设函数即为softmax函数，所有softmax函数构成假设空间。</p>
+<p>假设所有的数据<span class="math inline">\(\bf x\)</span>都是齐次坐标形式，即<span class="math inline">\(\bf x\)</span>的维度是<span class="math inline">\(d+1\)</span>维，假设函数的形式如下： $$ </p>
+<p>=  $$ 其中$_1,w_2,,w_c]R^{(d+1)c} $</p>
+<h2 id="代价函数">代价函数</h2>
+<p>采用交叉熵损失：</p>
+<h3 id="两类分类时">两类分类时</h3>
 <p><span class="math display">\[
-\begin{equation}
-\begin{split}
-E(W,b) &amp;=\sum \limits _{i=1} ^n (W^Tx_i+b-y_i)^2 \\
-&amp;=\sum \limits _{i=1} ^n |W^Tx_i+b-y_i|^2
-\end{split}
-\end{equation}
+\begin {equation}
+\begin {split}
+l(\mathbf w,\mathrm b)&amp;=-\sum \limits _{i=1} ^n (y_i log(h(\mathbf x_i|\mathbf w,b))+((1-y_i) log(1-h(\mathbf x_i|\mathbf w,b)))\\
+&amp;=\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^1\delta(y_i=j)logP(y_i=j|\mathbf x_i|\mathbf w,b)\right]
+\end {split}
+\end {equation}
 \]</span></p>
-<h3 id="hat-x齐次坐标形式">2.1 <span class="math inline">\(\hat X\)</span>：齐次坐标形式</h3>
+<p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[
+\delta(y_i=j)=
+\begin{cases} 
+1,\text y_i=j\\
+0,\text y_i≠j
+\end{cases}
+,j\in\{0,1\}
+\]</span></p>
+<h3 id="多类分类时">多类分类时</h3>
 <p><span class="math display">\[
-\begin{equation}
-\hat X=
-\begin{pmatrix}
-x_{11} \ \ x_{12}\ \ \dots \ \ x_{1d} \ \ 1 \\
-x_{21} \ \ x_{22}\ \ \dots \ \ x_{2d} \ \ 1 \\
-\vdots\\  
-x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
-\end{pmatrix}
-∈\mathbb{R}^{n \times (d+1)}
-\end{equation}
-\]</span> <a id="more"></a></p>
-<h3 id="hat-w参数">2.2 <span class="math inline">\(\hat w\)</span>：参数</h3>
+\begin {equation}
+\begin {split}
+l(\mathbf W)
+&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^c\delta(y_i=j)logP(y=j_i|\mathbf x|\mathbf w,b)\right]\\
+&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=1} ^c\delta(y_i=j)log\frac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits_{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right]
+\end {split}
+\end {equation}
+\]</span></p>
+<p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[
+\delta(y_i=j)=
+\begin{cases} 
+1,\text y_i=j\\
+0,\text y_i≠j
+\end{cases}
+,j\in\{1,2,\cdots,c\}
+\]</span></p>
+<h2 id="求解">求解</h2>
+<p>分两种情况进行求导：</p>
+<h3 id="当y_ij时">当<span class="math inline">\(y_i=j\)</span>时</h3>
 <p><span class="math display">\[
-\begin{equation}
-\hat{w}=
-\begin{pmatrix}
-w_{1}\\
-w_{2} \\
-\vdots\\  
-w_{d}\\
-b
-\end{pmatrix}
-∈\mathbb{R}^{d+1}
-\end{equation}
+\begin {equation}
+\begin {split}
+\dfrac{\partial l(\mathbf W)}{\partial \mathbf w_j}&amp;=
+-\dfrac{\partial \left( \sum \limits _{i=1} ^n \left( log\dfrac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits _{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right)\right)}{\partial \mathbf w_j}\\
+&amp;=
+\end {split}
+\end {equation}
 \]</span></p>
-<h3 id="y回归目标">2.3 <span class="math inline">\(y\)</span>：回归目标</h3>
-<p><span class="math display">\[
-\begin{equation}
-y=
-\begin{pmatrix}
-y_{1}\\
-y_{2} \\
-\vdots\\  
-y_{n}\\
-\end{pmatrix}
-∈\mathbb{R}^{n}
-\end{equation}
-\]</span></p>
-<h3 id="ewb代价函数的向量化表示">2.4 <span class="math inline">\(E(w,b)：\)</span>代价函数的向量化表示</h3>
-<p><span class="math display">\[
-\begin{equation}
-\begin{split}
-E(w,b) &amp;=E(\hat w)\\
-&amp;=(X\hat w-y)^T(X\hat w-y) \\
-&amp;=( \hat w^T X^T-y^T)(X\hat w-y) \\
-&amp;=(\hat w^T X^T X\hat w - \hat w^T X^T y-X\hat w y^T+y^Ty)\\
-&amp;=\hat w^T X^TX\hat w-2\hat w^T\hat X^Ty+y^Ty 
-\end{split}
-\end{equation}
-\]</span></p>
-<p>本数学垃圾的矩阵转置补习小课堂： <span class="math display">\[
-\begin{split}
-&amp;(1)(X\hat w-y)^T=(X\hat w)^T-y^T\\
-&amp;(2) (X\hat w)^T=\hat w^TX^T\\
-&amp;(3)X\in \mathbb R^{n \times d+1};\\
-&amp;\ \ \ \ \ \ \hat w\in \mathbb R^{d+1 \times 1};\\
-&amp;\ \ \ \ \ \ \  y\in \mathbb R^{n \times 1};\\
-&amp;\ \ X\hat w y^T是一个标量\\
-&amp;\ \ \   \hat w y^T=\hat w^T X^T y(标量转置等于自身)\\
-\end{split}
-\]</span></p>
-<h3 id="参数估计">2.5 $ $：参数估计</h3>
-<p>求解<span class="math inline">\(w\)</span>和<span class="math inline">\(b\)</span>（即<span class="math inline">\(\hat w\)</span>）使<span class="math inline">\(E(\hat w)\)</span>最小化的过程成为线性回归模型的最小二乘参数估计，对<span class="math inline">\(\hat w\)</span>求偏导数，计算如下： <span class="math display">\[
-\begin{equation}
-\begin{split}
-\frac {\partial E(\hat w)}{\partial \hat w} &amp;=\frac {\partial (X\hat w-y)^T(X\hat w-y) }{\partial \hat w} \\
-&amp;=\frac {\partial (\hat w^T X^TX\hat w-2\hat w^TX^Ty+y^Ty) }{\partial \hat w}\\
-&amp;=(X^TX\hat x)+(X^TX\hat x)-(2X^Ty)\\
-&amp;=2X^TX\hat w-2X^Ty
-\end{split}
-\end{equation}
-\]</span> 本数学垃圾的矩阵转置补习小课堂：</p>
-<h4 id="向量积对列向量的求导运算法则">向量积对列向量的求导运算法则：</h4>
-<p>$$ <span class="math display">\[\begin{equation}
-\begin{split}
-\frac {\partial X^TAX}{\partial X} &amp;=\frac {\partial X^T }{\partial X}AX+ \frac {\partial X^TA^T }{\partial X}X=(A+A^T)X\\
-
-\end{split}
-\end{equation}\]</span> $$</p>
-<h3 id="求解hat-w">2.6 求解<span class="math inline">\(\hat w^*\)</span></h3>
-<p><span class="math display">\[
-\begin{equation}
-\begin{split}
-2X^TX\hat w-2X^Ty=0\\
-\end{split}
-\end{equation}
-\]</span></p>
-<p>解得： <span class="math display">\[
-\hat w^*=(X^TX)^{-1}X^Ty
-\]</span></p>
-<ul>
-<li><p>当<span class="math inline">\(X^TX\)</span>为满秩矩阵或正定矩阵时，式<span class="math inline">\((12)\)</span>成立，其中<span class="math inline">\((X^TX)^{-1}\)</span>是<span class="math inline">\(X^TX\)</span>的逆矩阵，令<span class="math inline">\(\hat x_i=(x_i,1)=[x_1,x_2,\cdots,x_d,1]^T\in \mathbb R^{d+1}\)</span>，所学到的线性变换即为 <span class="math display">\[
-f(\hat x)=\hat x^T(X^TX)^{-1}X^Ty
-\]</span></p></li>
-<li><p>当<span class="math inline">\(X^TX\)</span>不是满秩矩阵，比如样本的特征数大于样本数时，导致<span class="math inline">\(X\)</span>的列数多于行数，此时可以解出多个<span class="math inline">\(\hat w\)</span>都能使均方误差最小化，此时常见的做法是引入正则化项。</p>
-<p>在<span class="math inline">\(X^TX\)</span>的主对角线元素上加上一个很小的正数<span class="math inline">\(\lambda\)</span> <span class="math display">\[
-\hat w^*=(X^TX+\lambda I)^{-1}X^Ty
-\]</span> 式<span class="math inline">\((14)\)</span>即为如下结构风险最小化模型（正则化模型）的最优解： <span class="math display">\[
-\min \limits _\hat w||X\hat w-y||^2_F+\lambda||\hat w||^2_F
-\]</span></p></li>
-</ul>
 
       
       <!-- reward -->
@@ -298,7 +234,7 @@ f(\hat x)=\hat x^T(X^TX)^{-1}X^Ty
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck98rxwvc0007e4vs0nv380bt/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck9fc4gms0003s0vs36bzdto5/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -320,19 +256,19 @@ f(\hat x)=\hat x^T(X^TX)^{-1}X^Ty
   
   <nav class="article-nav">
     
-      <a href="/2020/ck98rxwvp000he4vs2r5e2h56/" class="article-nav-link">
+      <a href="/2020/ck98rxww4000ve4vs15ic4p6e/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            ML-Softmax回归
+            leetcode-20-有效的括号
           
         </div>
       </a>
     
     
-      <a href="/2020/ck98rxwve0008e4vs3fqwgl6n/" class="article-nav-link">
+      <a href="/2020/ck9fc4gmd0000s0vsck0abvxu/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">ML-Logistic-Regression-对数几率回归</div>
+        <div class="article-nav-title">ML-Linear-Regression-线性回归</div>
       </a>
     
   </nav>

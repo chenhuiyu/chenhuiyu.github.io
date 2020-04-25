@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    leetcode-20-有效的括号 |  黑头呆鱼进化之旅
+    ML-谱聚类 |  黑头呆鱼进化之旅
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -38,7 +38,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-leetcode-20-有效的括号" class="article article-type-post" itemscope
+  <article id="post-ML-谱聚类" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -46,7 +46,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  leetcode-20-有效的括号
+  ML-谱聚类
 </h1>
   
 
@@ -55,12 +55,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck98rxww4000ve4vs15ic4p6e/" class="article-date">
-  <time datetime="2020-04-13T10:22:59.000Z" itemprop="datePublished">2020-04-13</time>
+      <a href="/2020/ck9fc4gmn0001s0vs29b5emdm/" class="article-date">
+  <time datetime="2020-04-22T10:24:34.000Z" itemprop="datePublished">2020-04-22</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/leetcode/">leetcode</a>
+    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
   </div>
 
       
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">625字</span>
+            <span class="post-count">1.6k字</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
+            <span class="post-count">6分钟</span>
         </span>
     </span>
 </div>
@@ -106,38 +106,89 @@
       
 
       
-      <h2 id="题目要求">题目要求</h2>
-<p><a href="https://leetcode-cn.com/problems/valid-parentheses/" target="_blank" rel="noopener">20. 有效的括号</a> 难度：简单 来源：力扣（LeetCode）</p>
-<p>给定一个只包括<code>'('</code>，<code>')'</code>，<code>'{'</code>，<code>'}'</code>，<code>'['</code>，<code>']'</code> 的字符串，判断字符串是否有效。</p>
-<p>有效字符串需满足：</p>
-<ol type="1">
-<li><p>左括号必须用相同类型的右括号闭合。</p></li>
-<li><p>左括号必须以正确的顺序闭合。</p></li>
-<li><p>注意空字符串可被认为是有效字符串。</p></li>
-</ol>
-<p>示例 1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;()&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
-<p>示例 2:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;()[]&#123;&#125;&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+      <h1 id="算法思想">算法思想</h1>
+<p>谱聚类是从图论中演化出来的算法，后来在聚类中得到了广泛的应用。它的主要思想是把所有的数据看做空间中的点，这些点之间可以用边连接起来。距离较远的两个点之间的边权重值较低，而距离较近的两个点之间的边权重值较高，通过对所有数据点组成的图进行切图，让切图后不同的子图间边权重和尽可能的低，而子图内的边权重和尽可能的高，从而达到聚类的目的。</p>
+<h2 id="无向权重图">1.无向权重图</h2>
+<p>由于谱聚类是基于图论的，对于一个图<span class="math inline">\(G\)</span>，用点的集合<span class="math inline">\(V\)</span>和边的集合<span class="math inline">\(E\)</span>来描述。即为<span class="math inline">\(G(V,E)\)</span>。其中<span class="math inline">\(V\)</span>即为我们数据集里面所有的点<span class="math inline">\((v_1,v_2,...v_n)\)</span>。对于<span class="math inline">\(V\)</span>中的任意两个点，可以有边连接，也可以没有边连接。定义权重<span class="math inline">\(w_{ij}\)</span>为点<span class="math inline">\(v_i\)</span>和点<span class="math inline">\(v_j\)</span>之间的权重。由于是无向图，所以<span class="math inline">\(w_{ij}=w_{ji}\)</span>。</p>
+<p>对于有边连接的两个点<span class="math inline">\(v_i\)</span>和<span class="math inline">\(v_j\)</span>，<span class="math inline">\(w_{ij}&gt;0\)</span>,对于没有边连接的两个点<span class="math inline">\(v_i\)</span>和<span class="math inline">\(v_j\)</span>，<span class="math inline">\(w_{ij}=0\)</span>。对于图中的任意一个点<span class="math inline">\(v_i\)</span>，它的度<span class="math inline">\(d_i\)</span>定义为和它相连的所有边的权重之和，即</p>
+<p><span class="math display">\[d_i=∑_{j=1}^nw_{ij}\]</span></p>
+<p>利用每个点度的定义，我们可以得到一个<span class="math inline">\(n\times n\)</span>的度矩阵<span class="math inline">\(D\)</span>,它是一个对角矩阵，只有主对角线有值，对应第<span class="math inline">\(i\)</span>行的第<span class="math inline">\(i\)</span>个点的度数，定义如下： <span class="math display">\[
+\left[
+\begin{matrix}
+ d_1         &amp; \cdots   &amp; \cdots       \\
+ \vdots      &amp; d_2      &amp; \cdots       \\
+ \vdots &amp; \vdots &amp; \ddots               \\
+ \cdots      &amp; \cdots      &amp; d_n     \\
+\end{matrix}
+\right]
+\]</span></p>
+<p>利用所有点之间的权重值，我们可以得到图的邻接矩阵<span class="math inline">\(W\)</span>，它也是一个<span class="math inline">\(n \times n\)</span>的矩阵，第<span class="math inline">\(i\)</span>行的第<span class="math inline">\(j\)</span>个值对应我们的权重<span class="math inline">\(wij\)</span></p>
+<p>除此之外，对于点集<span class="math inline">\(V\)</span>的一个子集<span class="math inline">\(A⊂V\)</span>，我们定义：</p>
+<p><span class="math inline">\(|A|\)</span>:=子集<span class="math inline">\(A\)</span>中点的个数</p>
+<p><span class="math inline">\(vol(A):=∑_{i∈A}d_i\)</span></p>
 <a id="more"></a>
-<p>示例 3:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;(]&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
-<p>示例 4:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;([)]&quot;</span><br><span class="line">输出: false</span><br></pre></td></tr></table></figure>
-<p>示例 5:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;&#123;[]&#125;&quot;</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
-<h2 id="算法原理">算法原理</h2>
-<p>栈先入后出特点恰好与本题括号排序特点一致，若遇到左括号入栈，遇到右括号时将对应栈顶左括号出栈，则遍历完所有括号后 stack 仍然为空；</p>
-<p>建立哈希表 <code>dicts</code> 构建左右括号对应关系：<code>key</code> 左括号，<code>value</code> 右括号；</p>
-<p>建立栈 <code>stack</code>，遍历字符串 <code>s</code> 并按照算法流程一一判断。</p>
-<h2 id="算法流程">算法流程</h2>
-<p>如果<code>i</code>是左括号，则入栈 ，使用<code>list.append()</code>实现；</p>
-<p>否则通过哈希表判断括号对应关系，若 <code>stack</code>栈顶符号 <code>stack.pop()</code>与当前遍历括号<code>i</code>不对应，则提前返回 <code>false</code>。</p>
-<h2 id="边界处理">边界处理</h2>
-<p>栈 <code>stack</code>为空： 此时 <code>stack.pop()</code>操作会报错。此处判断一次栈的长度，如果当 <code>stack</code>为空返回 <code>false</code>，如果栈不为空，但栈顶的左括号和当前<code>i</code>的右括号不匹配时，返回<code>false</code></p>
-<p>字符串 <code>s</code> 以左括号结尾： 此情况下可以正常遍历完整个 <code>s</code>，但 <code>stack</code>中遗留未出栈的左括号；因此，最后需再次判断栈是否为空，以判断是否是有效的括号组合。</p>
-<h2 id="python代码实现">python代码实现</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isValid</span><span class="params">(self, s: str)</span> -&gt; bool:</span></span><br><span class="line">        <span class="comment">#栈</span></span><br><span class="line">        stack=[]</span><br><span class="line">        <span class="comment">#匹配字典</span></span><br><span class="line">        dicts=&#123;<span class="string">"("</span>:<span class="string">")"</span>,<span class="string">"["</span>:<span class="string">"]"</span>,<span class="string">"&#123;"</span>:<span class="string">"&#125;"</span>&#125;</span><br><span class="line">        <span class="comment">#遍历s中的每一个符号</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> s:</span><br><span class="line">            <span class="comment">#如果是dicts中的key，即i是左括号</span></span><br><span class="line">            <span class="keyword">if</span> i <span class="keyword">in</span> dicts:</span><br><span class="line">                <span class="comment">#左括号入栈</span></span><br><span class="line">                stack.append(i)</span><br><span class="line">            <span class="comment">#如果当前i是右括号，而且栈不为空</span></span><br><span class="line">            <span class="keyword">elif</span> len(stack)!=<span class="number">0</span>:</span><br><span class="line">                <span class="comment">#如果栈顶的左括号和i右括号不匹配，返回false</span></span><br><span class="line">                <span class="keyword">if</span> dicts[stack.pop()]!=i:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="comment">#如果当前i是右括号，而且栈空，返回false</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="comment">#已经遍历完整个s，如果栈空表示左右括号匹配完全，返回true</span></span><br><span class="line">        <span class="keyword">if</span> len(stack)==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="comment">#如果栈不空表示栈中有剩余的左括号，返回false</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h2 id="相似矩阵">2.相似矩阵</h2>
+<p>我们可以通过样本点距离度量的相似矩阵<span class="math inline">\(s\)</span>来获得邻接矩阵<span class="math inline">\(W\)</span>。构建邻接矩阵<span class="math inline">\(W\)</span>的方法分为全连接法和局部连接法。局部连接法又包括<span class="math inline">\(ϵ\)</span>-半径法和<span class="math inline">\(K\)</span>邻近法。</p>
+<h3 id="ϵ-半径法"><span class="math inline">\(ϵ\)</span>-半径法</h3>
+<p>对于<span class="math inline">\(ϵ\)</span>-半径法，它设置了一个距离阈值<span class="math inline">\(ϵ\)</span>，然后用欧式距离<span class="math inline">\(s_{ij}\)</span>度量任意两点<span class="math inline">\(xi\)</span>和<span class="math inline">\(xj\)</span>的距离。即相似矩阵的<span class="math inline">\(s_{ij}=||xi−xj||_2^2\)</span>, 然后根据<span class="math inline">\(sij\)</span>和<span class="math inline">\(ϵ\)</span>的大小关系，来定义邻接矩阵<span class="math inline">\(W\)</span>如下： <span class="math display">\[
+w_{ij}=\left\{
+\begin{aligned}
+0 &amp;  &amp; s_{ij}&gt;ϵ \\
+ϵ &amp;  &amp; s_{ij}≤ϵ 
+\end{aligned}
+\right.
+\]</span></p>
+<h3 id="k邻近法"><span class="math inline">\(K\)</span>邻近法</h3>
+<p>第二种定义邻接矩阵<span class="math inline">\(W\)</span>的方法是<span class="math inline">\(K\)</span>邻近法，利用<span class="math inline">\(KNN\)</span>算法遍历所有的样本点，取每个样本最近的<span class="math inline">\(k\)</span>个点作为近邻，只有和样本距离最近的<span class="math inline">\(k\)</span>个点之间的<span class="math inline">\(w_{ij}&gt;0\)</span>但是这种方法会造成重构之后的邻接矩阵W非对称，我们后面的算法需要对称邻接矩阵。为了解决这种问题，一般采取下面两种方法之一：</p>
+<p>第一种K邻近法是只要一个点在另一个点的K近邻中，则保留<span class="math inline">\(s_{ij}\)</span> <span class="math display">\[
+w_{ij}=w_{ji}=\left\{
+\begin{aligned}
+&amp;0   &amp;x_i \notin KNN(x_j)\ and\ \ x_j\notin KNN(x_i) \\
+&amp;exp(-\dfrac{||x_i-x_j||^2_2}{2\sigma^2})   &amp;x_i \in KNN(x_j)\ or\ \ x_j\in KNN(x_i)
+\end{aligned}
+\right.
+\]</span> 第二种K邻近法是必须两个点互为K近邻中，才能保留<span class="math inline">\(s_{ij}\)</span> <span class="math display">\[
+w_{ij}=w_{ji}=\left\{
+\begin{aligned}
+&amp;0   &amp;x_i \notin KNN(x_j)\ or\ \ x_j\notin KNN(x_i) \\
+&amp;exp(-\dfrac{||x_i-x_j||^2_2}{2\sigma^2})   &amp;x_i \in KNN(x_j)\ and\ \ x_j\in KNN(x_i)
+\end{aligned}
+\right.
+\]</span></p>
+<h3 id="全连接法">全连接法</h3>
+<p>第三种定义邻接矩阵<span class="math inline">\(W\)</span>的方法是全连接法，相比前两种方法，第三种方法所有的点之间的权重值都大于0，因此称之为全连接法。可以选择不同的核函数来定义边权重，常用的有多项式核函数，高斯核函数和Sigmoid核函数。最常用的是高斯核函数RBF，此时相似矩阵和邻接矩阵相同： <span class="math display">\[
+w_{ij}=s_{ij}=exp(−\dfrac{||xi−xj||^2_2}{2σ^2})
+\]</span></p>
+<h2 id="拉普拉斯矩阵">3.拉普拉斯矩阵</h2>
+<p>拉普拉斯矩阵<span class="math inline">\(L=D−W\)</span>。<span class="math inline">\(D\)</span>为度矩阵，它是一个对角矩阵。<span class="math inline">\(W\)</span>为邻接矩阵。</p>
+<h2 id="无向图切图">4.无向图切图</h2>
+<p>对于无向图<span class="math inline">\(G\)</span>的切图，我们的目标是将图<span class="math inline">\(G(V,E)\)</span>切成相互没有连接的<span class="math inline">\(k\)</span>个子图，每个子图点的集合为：<span class="math inline">\(A_1,A_2,..A_k\)</span>，它们满足<span class="math inline">\(Ai∩Aj=∅\)</span>,且<span class="math inline">\(A_1∪A_2∪...∪A_k=V\)</span>.</p>
+<p>对于任意两个子图点的集合<span class="math inline">\(A,B⊂V\)</span>，$ A∩B=∅<span class="math inline">\(, 我们定义A和B之间的切图权重：\)</span>W(A,B)=∑<em>{i∈A,j∈B}w</em>{ij}$</p>
+<p>k个子图点的集合：<span class="math inline">\(A_1,A_2,...,A_k\)</span>，我们定义切图cut为：</p>
+<p><span class="math inline">\(cut(A1,A2,...Ak)=\dfrac{1}{2}∑\limits_{i=1} ^kW(A_i,\bar {A_i})\)</span></p>
+<p>其中<span class="math inline">\(\bar{A_i}\)</span>为<span class="math inline">\(A_i\)</span>的补集，意为除<span class="math inline">\(A_i\)</span>子集外其他<span class="math inline">\(V\)</span>的子集的并集。</p>
+<h2 id="ncut">5. Ncut</h2>
+<p><span class="math inline">\(Ncut(A_1,A_2,\cdots,A_k):=\dfrac{1}{2}\sum \limits _{i=1} ^k \dfrac{W(A_i,\bar{A_i})}{vol(A_i)}=\sum \limits _{i=1} ^k \dfrac{cut(A_i,\bar{A_i})}{vol(A_i)}\)</span></p>
+<h1 id="计算步骤">计算步骤</h1>
+<p>输入：样本集<span class="math inline">\(D=(x_1,x_2,...,x_n)\)</span>，相似矩阵的生成方式，降维后的维度<span class="math inline">\(k_1\)</span>, 聚类方法，聚类后的维度<span class="math inline">\(k_2\)</span></p>
+<p>输出： 簇划分<span class="math inline">\(C(c_1,c_2,...c_{k_2})\)</span>.　</p>
+<ol type="1">
+<li>根据输入的相似矩阵的生成方式构建样本的相似矩阵<span class="math inline">\(S\)</span>。</li>
+</ol>
+<p>2）根据相似矩阵<span class="math inline">\(S\)</span>构建邻接矩阵<span class="math inline">\(W\)</span>，构建度矩阵<span class="math inline">\(D\)</span></p>
+<p>3）计算出拉普拉斯矩阵<span class="math inline">\(L\)</span></p>
+<p>4）构建标准化后的拉普拉斯矩阵<span class="math inline">\(D^{−1/2}LD^{−1/2}\)</span></p>
+<p>5）计算<span class="math inline">\(D^{−1/2}LD^{−1/2}\)</span>最小的<span class="math inline">\(k_1\)</span>个特征值所各自对应的特征向量<span class="math inline">\(F\)</span></p>
+<ol start="6" type="1">
+<li>将各自对应的特征向量<span class="math inline">\(F\)</span>组成的矩阵按行标准化，最终组成<span class="math inline">\(n×k_1\)</span>维的特征矩阵<span class="math inline">\(F\)</span></li>
+</ol>
+<p>7）对<span class="math inline">\(F\)</span>中的每一行作为一个<span class="math inline">\(k_1\)</span>维的样本，共<span class="math inline">\(n\)</span>个样本，用输入的聚类方法进行聚类，聚类维数为<span class="math inline">\(k_2\)</span>。</p>
+<p>8）得到簇划分<span class="math inline">\(C(c_1,c_2,...c_{k_2})\)</span>.　　</p>
+<h1 id="影响因素">影响因素</h1>
+<ol type="1">
+<li>最终分类的维度：如果最终聚类的维度非常高，则由于降维的幅度不够，谱聚类的运行速度和最后的聚类效果均不好</li>
+<li>相似矩阵：不同的相似矩阵得到的最终聚类效果可能很不同。</li>
+</ol>
 
       
       <!-- reward -->
@@ -203,14 +254,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck98rxww4000ve4vs15ic4p6e/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck9fc4gmn0001s0vs29b5emdm/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/leetcode/" rel="tag">leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A0%88/" rel="tag">栈</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%80%E5%8D%95/" rel="tag">简单</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%81%9A%E7%B1%BB/" rel="tag">聚类</a></li></ul>
 
 	      
         <span id="busuanzi_container_page_pv" style="color: #999; margin-left: 30px">
@@ -225,19 +276,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck98rxww0000te4vs25weh1fo/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            leetcode-03.04-化栈为队
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/ck9fc4gms0003s0vs36bzdto5/" class="article-nav-link">
+      <a href="/2020/ck98rxwx8001ue4vs5632b6lk/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">ML-Softmax回归</div>
+        <div class="article-nav-title">[转载]Tensorflow加载预训练模型和保存模型</div>
       </a>
     
   </nav>

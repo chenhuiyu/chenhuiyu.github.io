@@ -77,6 +77,100 @@
     
     
     
+    <article id="post-ML-谱聚类" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ck9fc4gmn0001s0vs29b5emdm/"
+    >ML-谱聚类</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck9fc4gmn0001s0vs29b5emdm/" class="article-date">
+  <time datetime="2020-04-22T10:24:34.000Z" itemprop="datePublished">2020-04-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="算法思想">算法思想</h1>
+<p>谱聚类是从图论中演化出来的算法，后来在聚类中得到了广泛的应用。它的主要思想是把所有的数据看做空间中的点，这些点之间可以用边连接起来。距离较远的两个点之间的边权重值较低，而距离较近的两个点之间的边权重值较高，通过对所有数据点组成的图进行切图，让切图后不同的子图间边权重和尽可能的低，而子图内的边权重和尽可能的高，从而达到聚类的目的。</p>
+<h2 id="无向权重图">1.无向权重图</h2>
+<p>由于谱聚类是基于图论的，对于一个图<span class="math inline">\(G\)</span>，用点的集合<span class="math inline">\(V\)</span>和边的集合<span class="math inline">\(E\)</span>来描述。即为<span class="math inline">\(G(V,E)\)</span>。其中<span class="math inline">\(V\)</span>即为我们数据集里面所有的点<span class="math inline">\((v_1,v_2,...v_n)\)</span>。对于<span class="math inline">\(V\)</span>中的任意两个点，可以有边连接，也可以没有边连接。定义权重<span class="math inline">\(w_{ij}\)</span>为点<span class="math inline">\(v_i\)</span>和点<span class="math inline">\(v_j\)</span>之间的权重。由于是无向图，所以<span class="math inline">\(w_{ij}=w_{ji}\)</span>。</p>
+<p>对于有边连接的两个点<span class="math inline">\(v_i\)</span>和<span class="math inline">\(v_j\)</span>，<span class="math inline">\(w_{ij}&gt;0\)</span>,对于没有边连接的两个点<span class="math inline">\(v_i\)</span>和<span class="math inline">\(v_j\)</span>，<span class="math inline">\(w_{ij}=0\)</span>。对于图中的任意一个点<span class="math inline">\(v_i\)</span>，它的度<span class="math inline">\(d_i\)</span>定义为和它相连的所有边的权重之和，即</p>
+<p><span class="math display">\[d_i=∑_{j=1}^nw_{ij}\]</span></p>
+<p>利用每个点度的定义，我们可以得到一个<span class="math inline">\(n\times n\)</span>的度矩阵<span class="math inline">\(D\)</span>,它是一个对角矩阵，只有主对角线有值，对应第<span class="math inline">\(i\)</span>行的第<span class="math inline">\(i\)</span>个点的度数，定义如下： <span class="math display">\[
+\left[
+\begin{matrix}
+ d_1         &amp; \cdots   &amp; \cdots       \\
+ \vdots      &amp; d_2      &amp; \cdots       \\
+ \vdots &amp; \vdots &amp; \ddots               \\
+ \cdots      &amp; \cdots      &amp; d_n     \\
+\end{matrix}
+\right]
+\]</span></p>
+<p>利用所有点之间的权重值，我们可以得到图的邻接矩阵<span class="math inline">\(W\)</span>，它也是一个<span class="math inline">\(n \times n\)</span>的矩阵，第<span class="math inline">\(i\)</span>行的第<span class="math inline">\(j\)</span>个值对应我们的权重<span class="math inline">\(wij\)</span></p>
+<p>除此之外，对于点集<span class="math inline">\(V\)</span>的一个子集<span class="math inline">\(A⊂V\)</span>，我们定义：</p>
+<p><span class="math inline">\(|A|\)</span>:=子集<span class="math inline">\(A\)</span>中点的个数</p>
+<p><span class="math inline">\(vol(A):=∑_{i∈A}d_i\)</span></p>
+      
+      <a class="article-more-link" href="/2020/ck9fc4gmn0001s0vs29b5emdm/">More...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%81%9A%E7%B1%BB/" rel="tag">聚类</a></li></ul>
+
+	      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-转载-Tensorflow加载预训练模型和保存模型" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -502,7 +596,7 @@
 
 </article>
     
-    <article id="post-Softmax回归" class="article article-type-post" itemscope
+    <article id="post-ML-Softmax回归" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -510,7 +604,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck98rxwvp000he4vs2r5e2h56/"
+  <a class="article-title" href="/2020/ck9fc4gms0003s0vs36bzdto5/"
     >ML-Softmax回归</a
   >
 </h2>
@@ -521,7 +615,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck98rxwvp000he4vs2r5e2h56/" class="article-date">
+      <a href="/2020/ck9fc4gms0003s0vs36bzdto5/" class="article-date">
   <time datetime="2020-03-13T18:35:38.000Z" itemprop="datePublished">2020-03-14</time>
 </a>
       
@@ -637,7 +731,7 @@ l(\mathbf W)
 
 </article>
     
-    <article id="post-Linear-Regression-线性回归" class="article article-type-post" itemscope
+    <article id="post-ML-Linear-Regression-线性回归" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -645,7 +739,7 @@ l(\mathbf W)
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2020/ck98rxwvc0007e4vs0nv380bt/"
+  <a class="article-title" href="/2020/ck9fc4gmd0000s0vsck0abvxu/"
     >ML-Linear-Regression-线性回归</a
   >
 </h2>
@@ -656,7 +750,7 @@ l(\mathbf W)
 
     
     <div class="article-meta">
-      <a href="/2020/ck98rxwvc0007e4vs0nv380bt/" class="article-date">
+      <a href="/2020/ck9fc4gmd0000s0vsck0abvxu/" class="article-date">
   <time datetime="2020-03-13T18:35:38.000Z" itemprop="datePublished">2020-03-14</time>
 </a>
       
@@ -718,7 +812,7 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
 \end{equation}
 \]</span>
       
-      <a class="article-more-link" href="/2020/ck98rxwvc0007e4vs0nv380bt/">More...</a>
+      <a class="article-more-link" href="/2020/ck9fc4gmd0000s0vsck0abvxu/">More...</a>
       
       
       <!-- reward -->
@@ -889,102 +983,6 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
       
       <a class="article-more-link" href="/2020/ck98rxwx2001pe4vsa68r1ej8/">More...</a>
       
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
-
-	      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-爬虫-06-多进程的基本原理" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/ck98rxwwz001ke4vscqyj1hk7/"
-    >爬虫-06-多进程的基本原理</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/ck98rxwwz001ke4vscqyj1hk7/" class="article-date">
-  <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="爬虫-06-多进程的基本原理">爬虫-06-多进程的基本原理</h1>
-<p>[toc]</p>
-<h2 id="python多线程存在的问题">python多线程存在的问题</h2>
-<p>GIL全称为Global Interpreter Lock,即为全局解释所。</p>
-<p>在python多线程下，每个线程的执行方式如下：</p>
-<ul>
-<li>获取GIL</li>
-<li>执行对应线程的代码</li>
-<li>释放GIL</li>
-</ul>
-<p>某个线程想要执行，必须先拿到GIL，一个python进程中GIL只有一个，GIL的存在使得Python无论是在单核还是多核的条件下，同一时刻只能运行一个线程，导致python多线程无法发挥多核并行的优势。</p>
-<h2 id="python多进程的实现">python多进程的实现</h2>
-<p>进程是系统进行资源分配和调度的独立单位，各个进程之间的数据是无法共享的，多个进程无法共享一个全局变量。</p>
-<p>Python内置的multiprocessing是用来实现多进程的库。multiprocessing提供了一系列组件，如Process（进程）、Queue（队列）、Semaphore（信号量）、Pipe（管道）、Lock（锁）、Pool（进程池）</p>
-<h2 id="process类">Process类</h2>
-<p>在multiprocessing中，每个进程都用一个Process类来表示</p>
-<p><code>Process([group [, target [, name [, args [, kwargs]]]]])</code></p>
-<ul>
-<li>target 表示调用对象，可以传入方法的名字</li>
-<li>args表示被调用对象位置参数元组，比如target是函数func，他有两个参数m,n，那么args就传入[m,n]即可</li>
-<li>kwargs表示调用对象的字典</li>
-<li>name是别名，相当于给这个进程取个名字</li>
-<li>group分组</li>
-</ul>
-
       
       <!-- reward -->
       

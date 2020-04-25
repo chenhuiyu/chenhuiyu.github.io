@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenhuiyu.github.io/"/>
-  <updated>2020-04-20T17:49:12.650Z</updated>
+  <updated>2020-04-25T08:00:18.005Z</updated>
   <id>https://chenhuiyu.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ML-谱聚类</title>
+    <link href="https://chenhuiyu.github.io/2020/ck9fc4gmn0001s0vs29b5emdm/"/>
+    <id>https://chenhuiyu.github.io/2020/ck9fc4gmn0001s0vs29b5emdm/</id>
+    <published>2020-04-22T10:24:34.000Z</published>
+    <updated>2020-04-25T08:00:18.005Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="算法思想">算法思想</h1><p>谱聚类是从图论中演化出来的算法，后来在聚类中得到了广泛的应用。它的主要思想是把所有的数据看做空间中的点，这些点之间可以用边连接起来。距离较远的两个点之间的边权重值较低，而距离较近的两个点之间的边权重值较高，通过对所有数据点组成的图进行切图，让切图后不同的子图间边权重和尽可能的低，而子图内的边权重和尽可能的高，从而达到聚类的目的。</p><h2 id="无向权重图">1.无向权重图</h2><p>由于谱聚类是基于图论的，对于一个图<span class="math inline">\(G\)</span>，用点的集合<span class="math inline">\(V\)</span>和边的集合<span class="math inline">\(E\)</span>来描述。即为<span class="math inline">\(G(V,E)\)</span>。其中<span class="math inline">\(V\)</span>即为我们数据集里面所有的点<span class="math inline">\((v_1,v_2,...v_n)\)</span>。对于<span class="math inline">\(V\)</span>中的任意两个点，可以有边连接，也可以没有边连接。定义权重<span class="math inline">\(w_{ij}\)</span>为点<span class="math inline">\(v_i\)</span>和点<span class="math inline">\(v_j\)</span>之间的权重。由于是无向图，所以<span class="math inline">\(w_{ij}=w_{ji}\)</span>。</p><p>对于有边连接的两个点<span class="math inline">\(v_i\)</span>和<span class="math inline">\(v_j\)</span>，<span class="math inline">\(w_{ij}&gt;0\)</span>,对于没有边连接的两个点<span class="math inline">\(v_i\)</span>和<span class="math inline">\(v_j\)</span>，<span class="math inline">\(w_{ij}=0\)</span>。对于图中的任意一个点<span class="math inline">\(v_i\)</span>，它的度<span class="math inline">\(d_i\)</span>定义为和它相连的所有边的权重之和，即</p><p><span class="math display">\[d_i=∑_{j=1}^nw_{ij}\]</span></p><p>利用每个点度的定义，我们可以得到一个<span class="math inline">\(n\times n\)</span>的度矩阵<span class="math inline">\(D\)</span>,它是一个对角矩阵，只有主对角线有值，对应第<span class="math inline">\(i\)</span>行的第<span class="math inline">\(i\)</span>个点的度数，定义如下： <span class="math display">\[\left[\begin{matrix} d_1         &amp; \cdots   &amp; \cdots       \\ \vdots      &amp; d_2      &amp; \cdots       \\ \vdots &amp; \vdots &amp; \ddots               \\ \cdots      &amp; \cdots      &amp; d_n     \\\end{matrix}\right]\]</span></p><p>利用所有点之间的权重值，我们可以得到图的邻接矩阵<span class="math inline">\(W\)</span>，它也是一个<span class="math inline">\(n \times n\)</span>的矩阵，第<span class="math inline">\(i\)</span>行的第<span class="math inline">\(j\)</span>个值对应我们的权重<span class="math inline">\(wij\)</span></p><p>除此之外，对于点集<span class="math inline">\(V\)</span>的一个子集<span class="math inline">\(A⊂V\)</span>，我们定义：</p><p><span class="math inline">\(|A|\)</span>:=子集<span class="math inline">\(A\)</span>中点的个数</p><p><span class="math inline">\(vol(A):=∑_{i∈A}d_i\)</span></p><a id="more"></a><h2 id="相似矩阵">2.相似矩阵</h2><p>我们可以通过样本点距离度量的相似矩阵<span class="math inline">\(s\)</span>来获得邻接矩阵<span class="math inline">\(W\)</span>。构建邻接矩阵<span class="math inline">\(W\)</span>的方法分为全连接法和局部连接法。局部连接法又包括<span class="math inline">\(ϵ\)</span>-半径法和<span class="math inline">\(K\)</span>邻近法。</p><h3 id="ϵ-半径法"><span class="math inline">\(ϵ\)</span>-半径法</h3><p>对于<span class="math inline">\(ϵ\)</span>-半径法，它设置了一个距离阈值<span class="math inline">\(ϵ\)</span>，然后用欧式距离<span class="math inline">\(s_{ij}\)</span>度量任意两点<span class="math inline">\(xi\)</span>和<span class="math inline">\(xj\)</span>的距离。即相似矩阵的<span class="math inline">\(s_{ij}=||xi−xj||_2^2\)</span>, 然后根据<span class="math inline">\(sij\)</span>和<span class="math inline">\(ϵ\)</span>的大小关系，来定义邻接矩阵<span class="math inline">\(W\)</span>如下： <span class="math display">\[w_{ij}=\left\{\begin{aligned}0 &amp;  &amp; s_{ij}&gt;ϵ \\ϵ &amp;  &amp; s_{ij}≤ϵ \end{aligned}\right.\]</span></p><h3 id="k邻近法"><span class="math inline">\(K\)</span>邻近法</h3><p>第二种定义邻接矩阵<span class="math inline">\(W\)</span>的方法是<span class="math inline">\(K\)</span>邻近法，利用<span class="math inline">\(KNN\)</span>算法遍历所有的样本点，取每个样本最近的<span class="math inline">\(k\)</span>个点作为近邻，只有和样本距离最近的<span class="math inline">\(k\)</span>个点之间的<span class="math inline">\(w_{ij}&gt;0\)</span>但是这种方法会造成重构之后的邻接矩阵W非对称，我们后面的算法需要对称邻接矩阵。为了解决这种问题，一般采取下面两种方法之一：</p><p>第一种K邻近法是只要一个点在另一个点的K近邻中，则保留<span class="math inline">\(s_{ij}\)</span> <span class="math display">\[w_{ij}=w_{ji}=\left\{\begin{aligned}&amp;0   &amp;x_i \notin KNN(x_j)\ and\ \ x_j\notin KNN(x_i) \\&amp;exp(-\dfrac{||x_i-x_j||^2_2}{2\sigma^2})   &amp;x_i \in KNN(x_j)\ or\ \ x_j\in KNN(x_i)\end{aligned}\right.\]</span> 第二种K邻近法是必须两个点互为K近邻中，才能保留<span class="math inline">\(s_{ij}\)</span> <span class="math display">\[w_{ij}=w_{ji}=\left\{\begin{aligned}&amp;0   &amp;x_i \notin KNN(x_j)\ or\ \ x_j\notin KNN(x_i) \\&amp;exp(-\dfrac{||x_i-x_j||^2_2}{2\sigma^2})   &amp;x_i \in KNN(x_j)\ and\ \ x_j\in KNN(x_i)\end{aligned}\right.\]</span></p><h3 id="全连接法">全连接法</h3><p>第三种定义邻接矩阵<span class="math inline">\(W\)</span>的方法是全连接法，相比前两种方法，第三种方法所有的点之间的权重值都大于0，因此称之为全连接法。可以选择不同的核函数来定义边权重，常用的有多项式核函数，高斯核函数和Sigmoid核函数。最常用的是高斯核函数RBF，此时相似矩阵和邻接矩阵相同： <span class="math display">\[w_{ij}=s_{ij}=exp(−\dfrac{||xi−xj||^2_2}{2σ^2})\]</span></p><h2 id="拉普拉斯矩阵">3.拉普拉斯矩阵</h2><p>拉普拉斯矩阵<span class="math inline">\(L=D−W\)</span>。<span class="math inline">\(D\)</span>为度矩阵，它是一个对角矩阵。<span class="math inline">\(W\)</span>为邻接矩阵。</p><h2 id="无向图切图">4.无向图切图</h2><p>对于无向图<span class="math inline">\(G\)</span>的切图，我们的目标是将图<span class="math inline">\(G(V,E)\)</span>切成相互没有连接的<span class="math inline">\(k\)</span>个子图，每个子图点的集合为：<span class="math inline">\(A_1,A_2,..A_k\)</span>，它们满足<span class="math inline">\(Ai∩Aj=∅\)</span>,且<span class="math inline">\(A_1∪A_2∪...∪A_k=V\)</span>.</p><p>对于任意两个子图点的集合<span class="math inline">\(A,B⊂V\)</span>，$ A∩B=∅<span class="math inline">\(, 我们定义A和B之间的切图权重：\)</span>W(A,B)=∑<em>{i∈A,j∈B}w</em>{ij}$</p><p>k个子图点的集合：<span class="math inline">\(A_1,A_2,...,A_k\)</span>，我们定义切图cut为：</p><p><span class="math inline">\(cut(A1,A2,...Ak)=\dfrac{1}{2}∑\limits_{i=1} ^kW(A_i,\bar {A_i})\)</span></p><p>其中<span class="math inline">\(\bar{A_i}\)</span>为<span class="math inline">\(A_i\)</span>的补集，意为除<span class="math inline">\(A_i\)</span>子集外其他<span class="math inline">\(V\)</span>的子集的并集。</p><h2 id="ncut">5. Ncut</h2><p><span class="math inline">\(Ncut(A_1,A_2,\cdots,A_k):=\dfrac{1}{2}\sum \limits _{i=1} ^k \dfrac{W(A_i,\bar{A_i})}{vol(A_i)}=\sum \limits _{i=1} ^k \dfrac{cut(A_i,\bar{A_i})}{vol(A_i)}\)</span></p><h1 id="计算步骤">计算步骤</h1><p>输入：样本集<span class="math inline">\(D=(x_1,x_2,...,x_n)\)</span>，相似矩阵的生成方式，降维后的维度<span class="math inline">\(k_1\)</span>, 聚类方法，聚类后的维度<span class="math inline">\(k_2\)</span></p><p>输出： 簇划分<span class="math inline">\(C(c_1,c_2,...c_{k_2})\)</span>.　</p><ol type="1"><li>根据输入的相似矩阵的生成方式构建样本的相似矩阵<span class="math inline">\(S\)</span>。</li></ol><p>2）根据相似矩阵<span class="math inline">\(S\)</span>构建邻接矩阵<span class="math inline">\(W\)</span>，构建度矩阵<span class="math inline">\(D\)</span></p><p>3）计算出拉普拉斯矩阵<span class="math inline">\(L\)</span></p><p>4）构建标准化后的拉普拉斯矩阵<span class="math inline">\(D^{−1/2}LD^{−1/2}\)</span></p><p>5）计算<span class="math inline">\(D^{−1/2}LD^{−1/2}\)</span>最小的<span class="math inline">\(k_1\)</span>个特征值所各自对应的特征向量<span class="math inline">\(F\)</span></p><ol start="6" type="1"><li>将各自对应的特征向量<span class="math inline">\(F\)</span>组成的矩阵按行标准化，最终组成<span class="math inline">\(n×k_1\)</span>维的特征矩阵<span class="math inline">\(F\)</span></li></ol><p>7）对<span class="math inline">\(F\)</span>中的每一行作为一个<span class="math inline">\(k_1\)</span>维的样本，共<span class="math inline">\(n\)</span>个样本，用输入的聚类方法进行聚类，聚类维数为<span class="math inline">\(k_2\)</span>。</p><p>8）得到簇划分<span class="math inline">\(C(c_1,c_2,...c_{k_2})\)</span>.　　</p><h1 id="影响因素">影响因素</h1><ol type="1"><li>最终分类的维度：如果最终聚类的维度非常高，则由于降维的幅度不够，谱聚类的运行速度和最后的聚类效果均不好</li><li>相似矩阵：不同的相似矩阵得到的最终聚类效果可能很不同。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;算法思想&quot;&gt;算法思想&lt;/h1&gt;
+&lt;p&gt;谱聚类是从图论中演化出来的算法，后来在聚类中得到了广泛的应用。它的主要思想是把所有的数据看做空间中的点，这些点之间可以用边连接起来。距离较远的两个点之间的边权重值较低，而距离较近的两个点之间的边权重值较高，通过对所有数据点组成的图进行切图，让切图后不同的子图间边权重和尽可能的低，而子图内的边权重和尽可能的高，从而达到聚类的目的。&lt;/p&gt;
+&lt;h2 id=&quot;无向权重图&quot;&gt;1.无向权重图&lt;/h2&gt;
+&lt;p&gt;由于谱聚类是基于图论的，对于一个图&lt;span class=&quot;math inline&quot;&gt;\(G\)&lt;/span&gt;，用点的集合&lt;span class=&quot;math inline&quot;&gt;\(V\)&lt;/span&gt;和边的集合&lt;span class=&quot;math inline&quot;&gt;\(E\)&lt;/span&gt;来描述。即为&lt;span class=&quot;math inline&quot;&gt;\(G(V,E)\)&lt;/span&gt;。其中&lt;span class=&quot;math inline&quot;&gt;\(V\)&lt;/span&gt;即为我们数据集里面所有的点&lt;span class=&quot;math inline&quot;&gt;\((v_1,v_2,...v_n)\)&lt;/span&gt;。对于&lt;span class=&quot;math inline&quot;&gt;\(V\)&lt;/span&gt;中的任意两个点，可以有边连接，也可以没有边连接。定义权重&lt;span class=&quot;math inline&quot;&gt;\(w_{ij}\)&lt;/span&gt;为点&lt;span class=&quot;math inline&quot;&gt;\(v_i\)&lt;/span&gt;和点&lt;span class=&quot;math inline&quot;&gt;\(v_j\)&lt;/span&gt;之间的权重。由于是无向图，所以&lt;span class=&quot;math inline&quot;&gt;\(w_{ij}=w_{ji}\)&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;对于有边连接的两个点&lt;span class=&quot;math inline&quot;&gt;\(v_i\)&lt;/span&gt;和&lt;span class=&quot;math inline&quot;&gt;\(v_j\)&lt;/span&gt;，&lt;span class=&quot;math inline&quot;&gt;\(w_{ij}&amp;gt;0\)&lt;/span&gt;,对于没有边连接的两个点&lt;span class=&quot;math inline&quot;&gt;\(v_i\)&lt;/span&gt;和&lt;span class=&quot;math inline&quot;&gt;\(v_j\)&lt;/span&gt;，&lt;span class=&quot;math inline&quot;&gt;\(w_{ij}=0\)&lt;/span&gt;。对于图中的任意一个点&lt;span class=&quot;math inline&quot;&gt;\(v_i\)&lt;/span&gt;，它的度&lt;span class=&quot;math inline&quot;&gt;\(d_i\)&lt;/span&gt;定义为和它相连的所有边的权重之和，即&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;\[d_i=∑_{j=1}^nw_{ij}\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;利用每个点度的定义，我们可以得到一个&lt;span class=&quot;math inline&quot;&gt;\(n\times n\)&lt;/span&gt;的度矩阵&lt;span class=&quot;math inline&quot;&gt;\(D\)&lt;/span&gt;,它是一个对角矩阵，只有主对角线有值，对应第&lt;span class=&quot;math inline&quot;&gt;\(i\)&lt;/span&gt;行的第&lt;span class=&quot;math inline&quot;&gt;\(i\)&lt;/span&gt;个点的度数，定义如下： &lt;span class=&quot;math display&quot;&gt;\[
+\left[
+\begin{matrix}
+ d_1         &amp;amp; \cdots   &amp;amp; \cdots       \\
+ \vdots      &amp;amp; d_2      &amp;amp; \cdots       \\
+ \vdots &amp;amp; \vdots &amp;amp; \ddots               \\
+ \cdots      &amp;amp; \cdots      &amp;amp; d_n     \\
+\end{matrix}
+\right]
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;利用所有点之间的权重值，我们可以得到图的邻接矩阵&lt;span class=&quot;math inline&quot;&gt;\(W\)&lt;/span&gt;，它也是一个&lt;span class=&quot;math inline&quot;&gt;\(n \times n\)&lt;/span&gt;的矩阵，第&lt;span class=&quot;math inline&quot;&gt;\(i\)&lt;/span&gt;行的第&lt;span class=&quot;math inline&quot;&gt;\(j\)&lt;/span&gt;个值对应我们的权重&lt;span class=&quot;math inline&quot;&gt;\(wij\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;除此之外，对于点集&lt;span class=&quot;math inline&quot;&gt;\(V\)&lt;/span&gt;的一个子集&lt;span class=&quot;math inline&quot;&gt;\(A⊂V\)&lt;/span&gt;，我们定义：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math inline&quot;&gt;\(|A|\)&lt;/span&gt;:=子集&lt;span class=&quot;math inline&quot;&gt;\(A\)&lt;/span&gt;中点的个数&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math inline&quot;&gt;\(vol(A):=∑_{i∈A}d_i\)&lt;/span&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Machine Learning" scheme="https://chenhuiyu.github.io/categories/Machine-Learning/"/>
+    
+    
+      <category term="ML" scheme="https://chenhuiyu.github.io/tags/ML/"/>
+    
+      <category term="聚类" scheme="https://chenhuiyu.github.io/tags/%E8%81%9A%E7%B1%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>[转载]Tensorflow加载预训练模型和保存模型</title>
@@ -199,8 +243,8 @@
   
   <entry>
     <title>ML-Softmax回归</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rxwvp000he4vs2r5e2h56/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rxwvp000he4vs2r5e2h56/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck9fc4gms0003s0vs36bzdto5/"/>
+    <id>https://chenhuiyu.github.io/2020/ck9fc4gms0003s0vs36bzdto5/</id>
     <published>2020-03-13T18:35:38.000Z</published>
     <updated>2020-03-15T21:35:21.516Z</updated>
     
@@ -230,8 +274,8 @@
   
   <entry>
     <title>ML-Linear-Regression-线性回归</title>
-    <link href="https://chenhuiyu.github.io/2020/ck98rxwvc0007e4vs0nv380bt/"/>
-    <id>https://chenhuiyu.github.io/2020/ck98rxwvc0007e4vs0nv380bt/</id>
+    <link href="https://chenhuiyu.github.io/2020/ck9fc4gmd0000s0vsck0abvxu/"/>
+    <id>https://chenhuiyu.github.io/2020/ck9fc4gmd0000s0vsck0abvxu/</id>
     <published>2020-03-13T18:35:38.000Z</published>
     <updated>2020-03-15T06:23:48.738Z</updated>
     
