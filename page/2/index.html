@@ -173,6 +173,86 @@
 
 </article>
     
+    <article id="post-爬虫-07-Requests库" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ck98rxwx2001pe4vsa68r1ej8/"
+    >爬虫-07-Requests库</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck98rxwx2001pe4vsa68r1ej8/" class="article-date">
+  <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="爬虫-07-requests库">爬虫-07-Requests库</h1>
+<p>[toc]</p>
+<p>爬虫最基础的便是模拟浏览器向服务器发出请求，利用python库可以方便的对网络请求进行模拟，常见的库有urllib、requests等。借助requests库，我们只需关心请求的链接、需要传的参数以及如何设置可选的参数，无需实现底层通信和传输。</p>
+<p>当我们在浏览器中输入一个URL并回车，实际上就是让浏览器发起了一个GET类型的HTTP请求，浏览器得到源代码后，把它渲染出来就可以看到网页内容了。</p>
+<p>requests提供了一个get方法，我们调用这个方法，传入对应的URL就能得到网页的源代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
+      
+      <a class="article-more-link" href="/2020/ck98rxwx2001pe4vsa68r1ej8/">More...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+
+	      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-LaTeX符号速查" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -841,88 +921,6 @@
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NLP/" rel="tag">NLP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
-
-	      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-爬虫-04-Session和Cookies" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/ck98rxwwp001de4vsgest2gdx/"
-    >爬虫-04-Session和Cookies</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/ck98rxwwp001de4vsgest2gdx/" class="article-date">
-  <time datetime="2020-03-06T20:42:51.000Z" itemprop="datePublished">2020-03-07</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="爬虫-04-session和cookies">爬虫-04-Session和Cookies</h1>
-<p>[toc]</p>
-<p>崔庆才《52轻松搞定网络爬虫》第4讲，版权归拉勾网所有。</p>
-<h2 id="静态网页和动态网页">4.1 静态网页和动态网页</h2>
-<p>​ 最基本的HTML代码，我们将其保存为一个.html文件，然后把它放在某台具有固定公网IP的主机上，主机上装上Apache或Nginx等服务器，这样这台主机就可以作为服务器了，其他人可以通过访问服务器看到这个页面，这样就搭建了一个最简单的网站。</p>
-<p>​ 这种HTML代码编写的网页叫静态网页，其文字、图片均是通过HTML代码指定。静态网页加载速度快，编写简单，但是可维护性差，不能根据URL灵活多变的展示内容。</p>
-<p>​ 动态网页可以动态解析URL中的参数的变化，关联数据库并动态呈现不同的页面内容。现在大多数网页都是动态网页，它们不再是一个简单的HTML，而是可能有JSP、PHP、python等语言编写的。</p>
-<p>​ 动态网页还可以实现用户登录和注册功能，需要通过Session和Cookies共同作用</p>
-      
-      <a class="article-more-link" href="/2020/ck98rxwwp001de4vsgest2gdx/">More...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
 
 	      
     </footer>

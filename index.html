@@ -77,6 +77,104 @@
     
     
     
+    <article id="post-argparse命令行参数解析详解" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ckcmxhsbl0000x4vs7joq3c2o/"
+    >argparse命令行参数解析详解</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ckcmxhsbl0000x4vs7joq3c2o/" class="article-date">
+  <time datetime="2020-07-14T18:32:39.000Z" itemprop="datePublished">2020-07-15</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <p>argparse模块的作用是用于解析命令行参数，它是命令行解析的标准内置模块，无需安装。这个库可以让我们直接在命令行中就可以向程序中传入参数并让程序运行。</p>
+<p>下面举个例子，用命令行输入圆环的外圆半径和内圆半径，输出得到圆环的面积。</p>
+<h1 id="基本用法">基本用法</h1>
+<h2 id="载入argparse模块">1. 载入<strong>argparse</strong>模块</h2>
+<p>由于用到<span class="math inline">\(\pi\)</span>值，这里载入math模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> argparse</span><br></pre></td></tr></table></figure>
+<h2 id="创建argumentparser对象">2. 创建ArgumentParser对象</h2>
+<p>创建ArgumentParser对象，这是一个<strong>parser解析对象</strong>,相当于用来装载参数的容器</p>
+<p>对构造方法的调用一般会使用 <code>description=</code> 关键字参数。这个参数简要描述这个程度做什么以及怎么做。这个描述会显示在命令行帮助消息中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parser = argparse.ArgumentParser(description=<span class="string">"计算圆环的面积"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="添加命令行参数-add_argument">3. 添加命令行参数—— <code>add_argument()</code></h2>
+<p>给 ArgumentParser添加程序参数信息是通过调用 <code>add_argument()</code>方法完成的。通常，这些调用指定 <code>ArgumentParser</code>如何获取命令行字符串并将其转换为对象。这些信息在 <code>parse_args()</code> 调用时被存储和使用。</p>
+<ul>
+<li>设置传入<strong>参数的类型</strong>，此处为int，默认参数类型是str</li>
+<li><strong>help</strong>用来描述这个参数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parser.add_argument(<span class="string">'outer_radius'</span>,type = int , help = <span class="string">'外圆半径'</span>)</span><br><span class="line">parser.add_argument(<span class="string">'inner_radius'</span>,type = int ,help = <span class="string">'内圆半径'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="解析参数parse_args">4. 解析参数——<code>parse_args()</code></h2>
+<p>解析参数：<code>ArgumentParser</code>]通过 <code>parse_args()</code> 方法解析参数。它将检查命令行，把每个参数转换为适当的类型然后调用相应的操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">args = parser.parse_args()</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>主程序调用</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cal_Area</span><span class="params">(R,r)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> math.pi * (R**<span class="number">2</span> - r**<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print(cal_Area(args.outer_radius,args.inner_radius))</span><br></pre></td></tr></table></figure>
+      
+      <a class="article-more-link" href="/2020/ckcmxhsbl0000x4vs7joq3c2o/">More...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+	      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-ML-谱聚类" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -596,6 +694,117 @@
 
 </article>
     
+    <article id="post-ML-Linear-Regression-线性回归" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/ck9fc4gmd0000s0vsck0abvxu/"
+    >ML-Linear-Regression-线性回归</a
+  >
+</h2>
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/ck9fc4gmd0000s0vsck0abvxu/" class="article-date">
+  <time datetime="2020-03-13T18:35:38.000Z" itemprop="datePublished">2020-03-14</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
+  </div>
+
+      
+      
+      
+    </div>
+    
+
+    
+
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+
+
+      
+
+      
+      <h1 id="linear-regression-线性回归">Linear-Regression-线性回归</h1>
+<p>[toc]</p>
+<h2 id="线性回归">1. 线性回归</h2>
+<p>给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)\)</span>，其中<span class="math inline">\(x_i=(x_{1i};x_{2i};\dots;x_{id}),y_i \in \mathbb R\)</span>，为<span class="math inline">\(d\)</span>维样本特征，<span class="math inline">\(y_i \in \{0,1\}\)</span>为其对应的类别标签。线性回归试图学习一个线性模型尽可能使的预测实值输出标记。对于离散属性，如果属性间存在“序(order)关系”，可通过连续化将其转化为连续值；若属性间不存在序关系，假定有<span class="math inline">\(k\)</span>个属性值，通常转化为<span class="math inline">\(k\)</span>维向量。</p>
+<p>线性回归试图学得： <span class="math display">\[
+f(x_i)=wx_i+b,使得f(x_i)\simeq y_i
+\]</span> 如何确定<span class="math inline">\(w\)</span>和<span class="math inline">\(b\)</span>？这里需要引入<strong>均方误差</strong>，它可以衡量<span class="math inline">\(f(x)\)</span>和<span class="math inline">\(y\)</span>直接的差别。均方误差对应了欧氏距离，基于均方误差最小化来进行模型求解的方法称为“最小二乘法”。在线性回归中，最小二乘法就是试图找到一条直线，使所有样本到这条直线的欧氏距离之和最小。利用下式将均方误差最小化： <span class="math display">\[
+\begin{equation}
+\begin{split}
+(w^*,b^*)&amp;=arg\ \min \limits_{w,b} \sum \limits _{i=1} ^{n} (f(x_i)-y_i)^2\\
+&amp;=arg\ \min \limits_{w,b} \sum \limits _{i=1} ^{n} (wx_i+b-y_i)^2\\
+&amp;=arg\ \min \limits_{W \in \mathbb R^d,b} \sum \limits _{i=1} ^{n} (W^Tx_i+b-y_i)^2
+\end{split}
+\end{equation}
+\]</span></p>
+<h2 id="求解目标函数">2. 求解目标函数</h2>
+<p><span class="math display">\[
+\begin{equation}
+\begin{split}
+E(W,b) &amp;=\sum \limits _{i=1} ^n (W^Tx_i+b-y_i)^2 \\
+&amp;=\sum \limits _{i=1} ^n |W^Tx_i+b-y_i|^2
+\end{split}
+\end{equation}
+\]</span></p>
+<h3 id="hat-x齐次坐标形式">2.1 <span class="math inline">\(\hat X\)</span>：齐次坐标形式</h3>
+<p><span class="math display">\[
+\begin{equation}
+\hat X=
+\begin{pmatrix}
+x_{11} \ \ x_{12}\ \ \dots \ \ x_{1d} \ \ 1 \\
+x_{21} \ \ x_{22}\ \ \dots \ \ x_{2d} \ \ 1 \\
+\vdots\\  
+x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
+\end{pmatrix}
+∈\mathbb{R}^{n \times (d+1)}
+\end{equation}
+\]</span>
+      
+      <a class="article-more-link" href="/2020/ck9fc4gmd0000s0vsck0abvxu/">More...</a>
+      
+      
+      <!-- reward -->
+      
+    </div>
+    
+    
+      <!-- copyright -->
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" rel="tag">线性模型</a></li></ul>
+
+	      
+    </footer>
+
+  </div>
+
+  
+
+  
+  
+  
+
+  
+
+</article>
+    
     <article id="post-ML-Softmax回归" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -731,117 +940,6 @@ l(\mathbf W)
 
 </article>
     
-    <article id="post-ML-Linear-Regression-线性回归" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/ck9fc4gmd0000s0vsck0abvxu/"
-    >ML-Linear-Regression-线性回归</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/ck9fc4gmd0000s0vsck0abvxu/" class="article-date">
-  <time datetime="2020-03-13T18:35:38.000Z" itemprop="datePublished">2020-03-14</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="linear-regression-线性回归">Linear-Regression-线性回归</h1>
-<p>[toc]</p>
-<h2 id="线性回归">1. 线性回归</h2>
-<p>给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((x_1,y_1),(x_2,y_2),\dots,(x_n,y_n)\)</span>，其中<span class="math inline">\(x_i=(x_{1i};x_{2i};\dots;x_{id}),y_i \in \mathbb R\)</span>，为<span class="math inline">\(d\)</span>维样本特征，<span class="math inline">\(y_i \in \{0,1\}\)</span>为其对应的类别标签。线性回归试图学习一个线性模型尽可能使的预测实值输出标记。对于离散属性，如果属性间存在“序(order)关系”，可通过连续化将其转化为连续值；若属性间不存在序关系，假定有<span class="math inline">\(k\)</span>个属性值，通常转化为<span class="math inline">\(k\)</span>维向量。</p>
-<p>线性回归试图学得： <span class="math display">\[
-f(x_i)=wx_i+b,使得f(x_i)\simeq y_i
-\]</span> 如何确定<span class="math inline">\(w\)</span>和<span class="math inline">\(b\)</span>？这里需要引入<strong>均方误差</strong>，它可以衡量<span class="math inline">\(f(x)\)</span>和<span class="math inline">\(y\)</span>直接的差别。均方误差对应了欧氏距离，基于均方误差最小化来进行模型求解的方法称为“最小二乘法”。在线性回归中，最小二乘法就是试图找到一条直线，使所有样本到这条直线的欧氏距离之和最小。利用下式将均方误差最小化： <span class="math display">\[
-\begin{equation}
-\begin{split}
-(w^*,b^*)&amp;=arg\ \min \limits_{w,b} \sum \limits _{i=1} ^{n} (f(x_i)-y_i)^2\\
-&amp;=arg\ \min \limits_{w,b} \sum \limits _{i=1} ^{n} (wx_i+b-y_i)^2\\
-&amp;=arg\ \min \limits_{W \in \mathbb R^d,b} \sum \limits _{i=1} ^{n} (W^Tx_i+b-y_i)^2
-\end{split}
-\end{equation}
-\]</span></p>
-<h2 id="求解目标函数">2. 求解目标函数</h2>
-<p><span class="math display">\[
-\begin{equation}
-\begin{split}
-E(W,b) &amp;=\sum \limits _{i=1} ^n (W^Tx_i+b-y_i)^2 \\
-&amp;=\sum \limits _{i=1} ^n |W^Tx_i+b-y_i|^2
-\end{split}
-\end{equation}
-\]</span></p>
-<h3 id="hat-x齐次坐标形式">2.1 <span class="math inline">\(\hat X\)</span>：齐次坐标形式</h3>
-<p><span class="math display">\[
-\begin{equation}
-\hat X=
-\begin{pmatrix}
-x_{11} \ \ x_{12}\ \ \dots \ \ x_{1d} \ \ 1 \\
-x_{21} \ \ x_{22}\ \ \dots \ \ x_{2d} \ \ 1 \\
-\vdots\\  
-x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
-\end{pmatrix}
-∈\mathbb{R}^{n \times (d+1)}
-\end{equation}
-\]</span>
-      
-      <a class="article-more-link" href="/2020/ck9fc4gmd0000s0vsck0abvxu/">More...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" rel="tag">线性模型</a></li></ul>
-
-	      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
     <article id="post-Logistic-Regression-对数几率回归" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -915,86 +1013,6 @@ x_{n1} \ \ x_{n2}\ \ \dots \ \ x_{nd} \ \ 1 \\
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML/" rel="tag">ML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B/" rel="tag">线性模型</a></li></ul>
-
-	      
-    </footer>
-
-  </div>
-
-  
-
-  
-  
-  
-
-  
-
-</article>
-    
-    <article id="post-爬虫-07-Requests库" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/ck98rxwx2001pe4vsa68r1ej8/"
-    >爬虫-07-Requests库</a
-  >
-</h2>
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/ck98rxwx2001pe4vsa68r1ej8/" class="article-date">
-  <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
-</a>
-      
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
-  </div>
-
-      
-      
-      
-    </div>
-    
-
-    
-
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-
-
-      
-
-      
-      <h1 id="爬虫-07-requests库">爬虫-07-Requests库</h1>
-<p>[toc]</p>
-<p>爬虫最基础的便是模拟浏览器向服务器发出请求，利用python库可以方便的对网络请求进行模拟，常见的库有urllib、requests等。借助requests库，我们只需关心请求的链接、需要传的参数以及如何设置可选的参数，无需实现底层通信和传输。</p>
-<p>当我们在浏览器中输入一个URL并回车，实际上就是让浏览器发起了一个GET类型的HTTP请求，浏览器得到源代码后，把它渲染出来就可以看到网页内容了。</p>
-<p>requests提供了一个get方法，我们调用这个方法，传入对应的URL就能得到网页的源代码。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://static1.scrape.cuiqingcai.com/'</span>)</span><br><span class="line">print(r.text)</span><br></pre></td></tr></table></figure>
-      
-      <a class="article-more-link" href="/2020/ck98rxwx2001pe4vsa68r1ej8/">More...</a>
-      
-      
-      <!-- reward -->
-      
-    </div>
-    
-    
-      <!-- copyright -->
-      
-    <footer class="article-footer">
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
 
 	      
     </footer>

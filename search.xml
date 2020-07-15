@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>argparse命令行参数解析详解</title>
+    <url>/2020/ckcmxhsbl0000x4vs7joq3c2o/</url>
+    <content><![CDATA[<p>argparse模块的作用是用于解析命令行参数，它是命令行解析的标准内置模块，无需安装。这个库可以让我们直接在命令行中就可以向程序中传入参数并让程序运行。</p>
+<p>下面举个例子，用命令行输入圆环的外圆半径和内圆半径，输出得到圆环的面积。</p>
+<h1 id="基本用法">基本用法</h1>
+<h2 id="载入argparse模块">1. 载入<strong>argparse</strong>模块</h2>
+<p>由于用到<span class="math inline">\(\pi\)</span>值，这里载入math模块</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> argparse</span><br></pre></td></tr></table></figure>
+<h2 id="创建argumentparser对象">2. 创建ArgumentParser对象</h2>
+<p>创建ArgumentParser对象，这是一个<strong>parser解析对象</strong>,相当于用来装载参数的容器</p>
+<p>对构造方法的调用一般会使用 <code>description=</code> 关键字参数。这个参数简要描述这个程度做什么以及怎么做。这个描述会显示在命令行帮助消息中</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">parser = argparse.ArgumentParser(description=<span class="string">"计算圆环的面积"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="添加命令行参数-add_argument">3. 添加命令行参数—— <code>add_argument()</code></h2>
+<p>给 ArgumentParser添加程序参数信息是通过调用 <code>add_argument()</code>方法完成的。通常，这些调用指定 <code>ArgumentParser</code>如何获取命令行字符串并将其转换为对象。这些信息在 <code>parse_args()</code> 调用时被存储和使用。</p>
+<ul>
+<li>设置传入<strong>参数的类型</strong>，此处为int，默认参数类型是str</li>
+<li><strong>help</strong>用来描述这个参数</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">parser.add_argument(<span class="string">'outer_radius'</span>,type = int , help = <span class="string">'外圆半径'</span>)</span><br><span class="line">parser.add_argument(<span class="string">'inner_radius'</span>,type = int ,help = <span class="string">'内圆半径'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="解析参数parse_args">4. 解析参数——<code>parse_args()</code></h2>
+<p>解析参数：<code>ArgumentParser</code>]通过 <code>parse_args()</code> 方法解析参数。它将检查命令行，把每个参数转换为适当的类型然后调用相应的操作。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">args = parser.parse_args()</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>主程序调用</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cal_Area</span><span class="params">(R,r)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> math.pi * (R**<span class="number">2</span> - r**<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print(cal_Area(args.outer_radius,args.inner_radius))</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="运行结果">5. 运行结果</h2>
+<figure>
+<img src="C:/Users/陈惠宇宝宝/AppData/Roaming/Typora/typora-user-images/image-20200715025433224.png" alt="image-20200715025433224" /><figcaption>image-20200715025433224</figcaption>
+</figure>
+<h1 id="进阶">进阶</h1>
+<h2 id="名称对应-flags">1.名称对应—— <code>flags</code></h2>
+<p>这样写的缺点很明显，没有 - 前缀的参数叫做位置参数(positional arguments)，必须要做到位置对应，下面进行修改：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">parser.add_argument(<span class="string">'-R'</span>,<span class="string">'--outer_radius'</span>,type = int , help = <span class="string">'外圆半径'</span>)</span><br><span class="line">parser.add_argument(<span class="string">'-r'</span>,<span class="string">'--inner_radius'</span>,type = int ,help = <span class="string">'内圆半径'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>使用短杠 <strong>-</strong> 表示<strong>flags</strong>，名称对应，可以改变参数的输入顺序</p></li>
+<li><p>双杠 <strong>--</strong> 表示<strong>可选参数</strong>(optional arguments)</p></li>
+</ul>
+<figure>
+<img src="C:/Users/陈惠宇宝宝/AppData/Roaming/Typora/typora-user-images/image-20200715031313676.png" alt="image-20200715031313676" /><figcaption>image-20200715031313676</figcaption>
+</figure>
+<h2 id="简化输出metavar">2. 简化输出——<code>metavar</code></h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">parser.add_argument(<span class="string">'-R'</span>,<span class="string">'--outer_radius'</span>,type = int ,metavar = <span class="string">''</span>, help = <span class="string">'外圆半径'</span>)</span><br><span class="line">parser.add_argument(<span class="string">'-r'</span>,<span class="string">'--inner_radius'</span>,type = int ,metavar = <span class="string">''</span>, help = <span class="string">'内圆半径'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="required">3. <code>required</code></h2>
+<p>通常，argparse模块会认为 <code>-f</code> 和 <code>--bar</code> 等flags是可选的参数，它们总是可以在命令行中被忽略。 要让一个选项成为<strong>必须的</strong>，则可以将 <code>True</code> 作为 <code>required=</code> 关键字参数传给 <code>add_argument()</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">parser.add_argument(<span class="string">'-R'</span>,<span class="string">'--outer_radius'</span>,type = int ,metavar = <span class="string">''</span>,required = <span class="literal">True</span>, help = <span class="string">'外圆半径'</span>)</span><br><span class="line">parser.add_argument(<span class="string">'-r'</span>,<span class="string">'--inner_radius'</span>,type = int ,metavar = <span class="string">''</span>,required = <span class="literal">True</span>, help = <span class="string">'内圆半径'</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ML-谱聚类</title>
     <url>/2020/ck9fc4gmn0001s0vs29b5emdm/</url>
     <content><![CDATA[<h1 id="算法思想">算法思想</h1>
@@ -360,81 +416,6 @@ w_{ij}=s_{ij}=exp(−\dfrac{||xi−xj||^2_2}{2σ^2})
       </tags>
   </entry>
   <entry>
-    <title>ML-Softmax回归</title>
-    <url>/2020/ck9fc4gms0003s0vs36bzdto5/</url>
-    <content><![CDATA[<h1 id="softmax回归">Softmax回归</h1>
-<p>[toc]</p>
-<h2 id="softmax简介">softmax简介</h2>
-<p>Logistic Regression是一种二分类算法，它利用后验概率最大化去计算权重<span class="math inline">\(w\)</span>，Softmax Regression是Logistic Regression的推广，能以更加紧凑的方式来处理多分类问题。Softmax函数的输入是c维的随机真值向量，输出是另一个c维的真值向量，且值的范围是<span class="math inline">\((0,1)\)</span>，和为<span class="math inline">\(1\)</span>。即映射：<span class="math inline">\(S(a)=\mathbb R^c→\mathbb R^c\)</span></p>
-<p>设<span class="math inline">\(z=[z_1,z_2,\cdots,z_c]^T\)</span>为一个<span class="math inline">\(c\)</span>维空间的一个向量，Softmax函数<span class="math inline">\(\sigma\)</span>是一个<span class="math inline">\(\mathbb R^c\)</span>到<span class="math inline">\([0,1]^c\)</span>上的<span class="math inline">\(c\)</span>维映射函数： <span class="math display">\[
-[\sigma(z)]_j=\frac{e^z_j}{\sum _{i=1} ^c e^z_i} j=1,2,\cdots,c
-\]</span> softmax函数的输出可以用来描述关于类别的分布： <span class="math display">\[
-P(y=j|\mathbf x)=\frac{e^{\mathbf w_j^T \mathbf x+b_j}}{\sum _{i=1} ^c e^{\mathbf w_i^T \mathbf x+b_i}} j=1,2,\cdots,c
-\]</span> 给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((\mathbf x_1,y_1),(\mathbf x_2,y_2),\cdots,(\mathbf x_n,y_n)\)</span>，其中<span class="math inline">\(\mathbf x_i \in \mathbb R^d,i=1,2,\cdots,n\)</span>为<span class="math inline">\(d\)</span>维空间的样本特征，<span class="math inline">\(y_i \in\{1,2,\cdots,c\}\)</span>为对应的类别标签</p>
-<p>给定测试样本<span class="math inline">\(\bf x\)</span>，期望基于所学的假设函数能对每个类别<span class="math inline">\(j\)</span>估算其概率值<span class="math inline">\(P(y=j|\bf x)\)</span>，即估计<span class="math inline">\(\bf x\)</span>的每一种分类结果出现的概率。因此，假设函数应该有能力输出一个<span class="math inline">\(c\)</span>维向量（向量元素之和为1）来表示<span class="math inline">\(c\)</span>个估计的概率值。</p>
-<h2 id="假设函数">假设函数</h2>
-<p>假设函数即为softmax函数，所有softmax函数构成假设空间。</p>
-<p>假设所有的数据<span class="math inline">\(\bf x\)</span>都是齐次坐标形式，即<span class="math inline">\(\bf x\)</span>的维度是<span class="math inline">\(d+1\)</span>维，假设函数的形式如下： $$ </p>
-<p>=  $$ 其中$_1,w_2,,w_c]R^{(d+1)c} $</p>
-<h2 id="代价函数">代价函数</h2>
-<p>采用交叉熵损失：</p>
-<h3 id="两类分类时">两类分类时</h3>
-<p><span class="math display">\[
-\begin {equation}
-\begin {split}
-l(\mathbf w,\mathrm b)&amp;=-\sum \limits _{i=1} ^n (y_i log(h(\mathbf x_i|\mathbf w,b))+((1-y_i) log(1-h(\mathbf x_i|\mathbf w,b)))\\
-&amp;=\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^1\delta(y_i=j)logP(y_i=j|\mathbf x_i|\mathbf w,b)\right]
-\end {split}
-\end {equation}
-\]</span></p>
-<p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[
-\delta(y_i=j)=
-\begin{cases} 
-1,\text y_i=j\\
-0,\text y_i≠j
-\end{cases}
-,j\in\{0,1\}
-\]</span></p>
-<h3 id="多类分类时">多类分类时</h3>
-<p><span class="math display">\[
-\begin {equation}
-\begin {split}
-l(\mathbf W)
-&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^c\delta(y_i=j)logP(y=j_i|\mathbf x|\mathbf w,b)\right]\\
-&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=1} ^c\delta(y_i=j)log\frac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits_{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right]
-\end {split}
-\end {equation}
-\]</span></p>
-<p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[
-\delta(y_i=j)=
-\begin{cases} 
-1,\text y_i=j\\
-0,\text y_i≠j
-\end{cases}
-,j\in\{1,2,\cdots,c\}
-\]</span></p>
-<h2 id="求解">求解</h2>
-<p>分两种情况进行求导：</p>
-<h3 id="当y_ij时">当<span class="math inline">\(y_i=j\)</span>时</h3>
-<p><span class="math display">\[
-\begin {equation}
-\begin {split}
-\dfrac{\partial l(\mathbf W)}{\partial \mathbf w_j}&amp;=
--\dfrac{\partial \left( \sum \limits _{i=1} ^n \left( log\dfrac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits _{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right)\right)}{\partial \mathbf w_j}\\
-&amp;=
-\end {split}
-\end {equation}
-\]</span></p>
-]]></content>
-      <categories>
-        <category>Machine Learning</category>
-      </categories>
-      <tags>
-        <tag>ML</tag>
-        <tag>线性模型</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ML-Linear-Regression-线性回归</title>
     <url>/2020/ck9fc4gmd0000s0vsck0abvxu/</url>
     <content><![CDATA[<h1 id="linear-regression-线性回归">Linear-Regression-线性回归</h1>
@@ -564,6 +545,81 @@ f(\hat x)=\hat x^T(X^TX)^{-1}X^Ty
 \min \limits _\hat w||X\hat w-y||^2_F+\lambda||\hat w||^2_F
 \]</span></p></li>
 </ul>
+]]></content>
+      <categories>
+        <category>Machine Learning</category>
+      </categories>
+      <tags>
+        <tag>ML</tag>
+        <tag>线性模型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ML-Softmax回归</title>
+    <url>/2020/ck9fc4gms0003s0vs36bzdto5/</url>
+    <content><![CDATA[<h1 id="softmax回归">Softmax回归</h1>
+<p>[toc]</p>
+<h2 id="softmax简介">softmax简介</h2>
+<p>Logistic Regression是一种二分类算法，它利用后验概率最大化去计算权重<span class="math inline">\(w\)</span>，Softmax Regression是Logistic Regression的推广，能以更加紧凑的方式来处理多分类问题。Softmax函数的输入是c维的随机真值向量，输出是另一个c维的真值向量，且值的范围是<span class="math inline">\((0,1)\)</span>，和为<span class="math inline">\(1\)</span>。即映射：<span class="math inline">\(S(a)=\mathbb R^c→\mathbb R^c\)</span></p>
+<p>设<span class="math inline">\(z=[z_1,z_2,\cdots,z_c]^T\)</span>为一个<span class="math inline">\(c\)</span>维空间的一个向量，Softmax函数<span class="math inline">\(\sigma\)</span>是一个<span class="math inline">\(\mathbb R^c\)</span>到<span class="math inline">\([0,1]^c\)</span>上的<span class="math inline">\(c\)</span>维映射函数： <span class="math display">\[
+[\sigma(z)]_j=\frac{e^z_j}{\sum _{i=1} ^c e^z_i} j=1,2,\cdots,c
+\]</span> softmax函数的输出可以用来描述关于类别的分布： <span class="math display">\[
+P(y=j|\mathbf x)=\frac{e^{\mathbf w_j^T \mathbf x+b_j}}{\sum _{i=1} ^c e^{\mathbf w_i^T \mathbf x+b_i}} j=1,2,\cdots,c
+\]</span> 给定<span class="math inline">\(n\)</span>个训练样本<span class="math inline">\((\mathbf x_1,y_1),(\mathbf x_2,y_2),\cdots,(\mathbf x_n,y_n)\)</span>，其中<span class="math inline">\(\mathbf x_i \in \mathbb R^d,i=1,2,\cdots,n\)</span>为<span class="math inline">\(d\)</span>维空间的样本特征，<span class="math inline">\(y_i \in\{1,2,\cdots,c\}\)</span>为对应的类别标签</p>
+<p>给定测试样本<span class="math inline">\(\bf x\)</span>，期望基于所学的假设函数能对每个类别<span class="math inline">\(j\)</span>估算其概率值<span class="math inline">\(P(y=j|\bf x)\)</span>，即估计<span class="math inline">\(\bf x\)</span>的每一种分类结果出现的概率。因此，假设函数应该有能力输出一个<span class="math inline">\(c\)</span>维向量（向量元素之和为1）来表示<span class="math inline">\(c\)</span>个估计的概率值。</p>
+<h2 id="假设函数">假设函数</h2>
+<p>假设函数即为softmax函数，所有softmax函数构成假设空间。</p>
+<p>假设所有的数据<span class="math inline">\(\bf x\)</span>都是齐次坐标形式，即<span class="math inline">\(\bf x\)</span>的维度是<span class="math inline">\(d+1\)</span>维，假设函数的形式如下： $$ </p>
+<p>=  $$ 其中$_1,w_2,,w_c]R^{(d+1)c} $</p>
+<h2 id="代价函数">代价函数</h2>
+<p>采用交叉熵损失：</p>
+<h3 id="两类分类时">两类分类时</h3>
+<p><span class="math display">\[
+\begin {equation}
+\begin {split}
+l(\mathbf w,\mathrm b)&amp;=-\sum \limits _{i=1} ^n (y_i log(h(\mathbf x_i|\mathbf w,b))+((1-y_i) log(1-h(\mathbf x_i|\mathbf w,b)))\\
+&amp;=\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^1\delta(y_i=j)logP(y_i=j|\mathbf x_i|\mathbf w,b)\right]
+\end {split}
+\end {equation}
+\]</span></p>
+<p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[
+\delta(y_i=j)=
+\begin{cases} 
+1,\text y_i=j\\
+0,\text y_i≠j
+\end{cases}
+,j\in\{0,1\}
+\]</span></p>
+<h3 id="多类分类时">多类分类时</h3>
+<p><span class="math display">\[
+\begin {equation}
+\begin {split}
+l(\mathbf W)
+&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=0} ^c\delta(y_i=j)logP(y=j_i|\mathbf x|\mathbf w,b)\right]\\
+&amp;=-\sum \limits _{i=1} ^n \left[ \sum \limits _{j=1} ^c\delta(y_i=j)log\frac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits_{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right]
+\end {split}
+\end {equation}
+\]</span></p>
+<p>其中<span class="math inline">\(\delta(\cdot)\)</span>是指示函数，形式如下： <span class="math display">\[
+\delta(y_i=j)=
+\begin{cases} 
+1,\text y_i=j\\
+0,\text y_i≠j
+\end{cases}
+,j\in\{1,2,\cdots,c\}
+\]</span></p>
+<h2 id="求解">求解</h2>
+<p>分两种情况进行求导：</p>
+<h3 id="当y_ij时">当<span class="math inline">\(y_i=j\)</span>时</h3>
+<p><span class="math display">\[
+\begin {equation}
+\begin {split}
+\dfrac{\partial l(\mathbf W)}{\partial \mathbf w_j}&amp;=
+-\dfrac{\partial \left( \sum \limits _{i=1} ^n \left( log\dfrac{e^{\mathbf w_j^T \mathbf x}}{\sum \limits _{k=1} ^c e^{\mathbf w_i^T \mathbf x}}\right)\right)}{\partial \mathbf w_j}\\
+&amp;=
+\end {split}
+\end {equation}
+\]</span></p>
 ]]></content>
       <categories>
         <category>Machine Learning</category>
@@ -827,6 +883,42 @@ x_2=\frac{-w_0-w_1x_1}{w_2}
       </tags>
   </entry>
   <entry>
+    <title>爬虫-06-多进程的基本原理</title>
+    <url>/2020/ck98rxwwz001ke4vscqyj1hk7/</url>
+    <content><![CDATA[<h1 id="爬虫-06-多进程的基本原理">爬虫-06-多进程的基本原理</h1>
+<p>[toc]</p>
+<h2 id="python多线程存在的问题">python多线程存在的问题</h2>
+<p>GIL全称为Global Interpreter Lock,即为全局解释所。</p>
+<p>在python多线程下，每个线程的执行方式如下：</p>
+<ul>
+<li>获取GIL</li>
+<li>执行对应线程的代码</li>
+<li>释放GIL</li>
+</ul>
+<p>某个线程想要执行，必须先拿到GIL，一个python进程中GIL只有一个，GIL的存在使得Python无论是在单核还是多核的条件下，同一时刻只能运行一个线程，导致python多线程无法发挥多核并行的优势。</p>
+<h2 id="python多进程的实现">python多进程的实现</h2>
+<p>进程是系统进行资源分配和调度的独立单位，各个进程之间的数据是无法共享的，多个进程无法共享一个全局变量。</p>
+<p>Python内置的multiprocessing是用来实现多进程的库。multiprocessing提供了一系列组件，如Process（进程）、Queue（队列）、Semaphore（信号量）、Pipe（管道）、Lock（锁）、Pool（进程池）</p>
+<h2 id="process类">Process类</h2>
+<p>在multiprocessing中，每个进程都用一个Process类来表示</p>
+<p><code>Process([group [, target [, name [, args [, kwargs]]]]])</code></p>
+<ul>
+<li>target 表示调用对象，可以传入方法的名字</li>
+<li>args表示被调用对象位置参数元组，比如target是函数func，他有两个参数m,n，那么args就传入[m,n]即可</li>
+<li>kwargs表示调用对象的字典</li>
+<li>name是别名，相当于给这个进程取个名字</li>
+<li>group分组</li>
+</ul>
+]]></content>
+      <categories>
+        <category>爬虫</category>
+      </categories>
+      <tags>
+        <tag>tutorial</tag>
+        <tag>爬虫</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>爬虫-07-Requests库</title>
     <url>/2020/ck98rxwx2001pe4vsa68r1ej8/</url>
     <content><![CDATA[<h1 id="爬虫-07-requests库">爬虫-07-Requests库</h1>
@@ -899,42 +991,6 @@ x_2=\frac{-w_0-w_1x_1}{w_2}
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r=requests.get(<span class="string">'https://www.baidu.com'</span>)</span><br><span class="line">print(r.cookies)</span><br><span class="line"><span class="keyword">for</span> key,value <span class="keyword">in</span> r.cookies.items():</span><br><span class="line">    print(key+<span class="string">'='</span>+value)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;RequestsCookieJar[&lt;Cookie BDORZ=<span class="number">27315</span> <span class="keyword">for</span> .baidu.com/&gt;]&gt;</span><br><span class="line">BDORZ=<span class="number">27315</span></span><br></pre></td></tr></table></figure>
 <p>这里我们首先调用cookies属性即可成功得到Cookies，可以发现它是RequestCookieJar类型。然后用items方法将其转化为元组组成的列表，遍历输出每一个Cookied的名称和值，实现Cookie的遍历解析。</p>
-]]></content>
-      <categories>
-        <category>爬虫</category>
-      </categories>
-      <tags>
-        <tag>tutorial</tag>
-        <tag>爬虫</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>爬虫-06-多进程的基本原理</title>
-    <url>/2020/ck98rxwwz001ke4vscqyj1hk7/</url>
-    <content><![CDATA[<h1 id="爬虫-06-多进程的基本原理">爬虫-06-多进程的基本原理</h1>
-<p>[toc]</p>
-<h2 id="python多线程存在的问题">python多线程存在的问题</h2>
-<p>GIL全称为Global Interpreter Lock,即为全局解释所。</p>
-<p>在python多线程下，每个线程的执行方式如下：</p>
-<ul>
-<li>获取GIL</li>
-<li>执行对应线程的代码</li>
-<li>释放GIL</li>
-</ul>
-<p>某个线程想要执行，必须先拿到GIL，一个python进程中GIL只有一个，GIL的存在使得Python无论是在单核还是多核的条件下，同一时刻只能运行一个线程，导致python多线程无法发挥多核并行的优势。</p>
-<h2 id="python多进程的实现">python多进程的实现</h2>
-<p>进程是系统进行资源分配和调度的独立单位，各个进程之间的数据是无法共享的，多个进程无法共享一个全局变量。</p>
-<p>Python内置的multiprocessing是用来实现多进程的库。multiprocessing提供了一系列组件，如Process（进程）、Queue（队列）、Semaphore（信号量）、Pipe（管道）、Lock（锁）、Pool（进程池）</p>
-<h2 id="process类">Process类</h2>
-<p>在multiprocessing中，每个进程都用一个Process类来表示</p>
-<p><code>Process([group [, target [, name [, args [, kwargs]]]]])</code></p>
-<ul>
-<li>target 表示调用对象，可以传入方法的名字</li>
-<li>args表示被调用对象位置参数元组，比如target是函数func，他有两个参数m,n，那么args就传入[m,n]即可</li>
-<li>kwargs表示调用对象的字典</li>
-<li>name是别名，相当于给这个进程取个名字</li>
-<li>group分组</li>
-</ul>
 ]]></content>
       <categories>
         <category>爬虫</category>

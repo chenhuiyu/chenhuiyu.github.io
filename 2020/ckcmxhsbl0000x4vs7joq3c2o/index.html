@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    爬虫-06-多进程的基本原理 |  黑头呆鱼进化之旅
+    argparse命令行参数解析详解 |  黑头呆鱼进化之旅
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -38,7 +38,7 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="app">
     <main class="content">
       <section class="outer">
-  <article id="post-爬虫-06-多进程的基本原理" class="article article-type-post" itemscope
+  <article id="post-argparse命令行参数解析详解" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -46,7 +46,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  爬虫-06-多进程的基本原理
+  argparse命令行参数解析详解
 </h1>
   
 
@@ -55,12 +55,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/ck98rxwwz001ke4vscqyj1hk7/" class="article-date">
-  <time datetime="2020-03-11T09:11:59.000Z" itemprop="datePublished">2020-03-11</time>
+      <a href="/2020/ckcmxhsbl0000x4vs7joq3c2o/" class="article-date">
+  <time datetime="2020-07-14T18:32:39.000Z" itemprop="datePublished">2020-07-15</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E7%88%AC%E8%99%AB/">爬虫</a>
+    <a class="article-category-link" href="/categories/Python/">Python</a>
   </div>
 
       
@@ -70,7 +70,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">344字</span>
+            <span class="post-count">652字</span>
         </span>
     </span>
 
@@ -79,7 +79,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">2分钟</span>
         </span>
     </span>
 </div>
@@ -106,30 +106,51 @@
       
 
       
-      <h1 id="爬虫-06-多进程的基本原理">爬虫-06-多进程的基本原理</h1>
-<p>[toc]</p>
-<h2 id="python多线程存在的问题">python多线程存在的问题</h2>
-<p>GIL全称为Global Interpreter Lock,即为全局解释所。</p>
-<p>在python多线程下，每个线程的执行方式如下：</p>
+      <p>argparse模块的作用是用于解析命令行参数，它是命令行解析的标准内置模块，无需安装。这个库可以让我们直接在命令行中就可以向程序中传入参数并让程序运行。</p>
+<p>下面举个例子，用命令行输入圆环的外圆半径和内圆半径，输出得到圆环的面积。</p>
+<h1 id="基本用法">基本用法</h1>
+<h2 id="载入argparse模块">1. 载入<strong>argparse</strong>模块</h2>
+<p>由于用到<span class="math inline">\(\pi\)</span>值，这里载入math模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> argparse</span><br></pre></td></tr></table></figure>
+<h2 id="创建argumentparser对象">2. 创建ArgumentParser对象</h2>
+<p>创建ArgumentParser对象，这是一个<strong>parser解析对象</strong>,相当于用来装载参数的容器</p>
+<p>对构造方法的调用一般会使用 <code>description=</code> 关键字参数。这个参数简要描述这个程度做什么以及怎么做。这个描述会显示在命令行帮助消息中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parser = argparse.ArgumentParser(description=<span class="string">"计算圆环的面积"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="添加命令行参数-add_argument">3. 添加命令行参数—— <code>add_argument()</code></h2>
+<p>给 ArgumentParser添加程序参数信息是通过调用 <code>add_argument()</code>方法完成的。通常，这些调用指定 <code>ArgumentParser</code>如何获取命令行字符串并将其转换为对象。这些信息在 <code>parse_args()</code> 调用时被存储和使用。</p>
 <ul>
-<li>获取GIL</li>
-<li>执行对应线程的代码</li>
-<li>释放GIL</li>
+<li>设置传入<strong>参数的类型</strong>，此处为int，默认参数类型是str</li>
+<li><strong>help</strong>用来描述这个参数</li>
 </ul>
-<p>某个线程想要执行，必须先拿到GIL，一个python进程中GIL只有一个，GIL的存在使得Python无论是在单核还是多核的条件下，同一时刻只能运行一个线程，导致python多线程无法发挥多核并行的优势。</p>
-<h2 id="python多进程的实现">python多进程的实现</h2>
-<p>进程是系统进行资源分配和调度的独立单位，各个进程之间的数据是无法共享的，多个进程无法共享一个全局变量。</p>
-<p>Python内置的multiprocessing是用来实现多进程的库。multiprocessing提供了一系列组件，如Process（进程）、Queue（队列）、Semaphore（信号量）、Pipe（管道）、Lock（锁）、Pool（进程池）</p>
-<h2 id="process类">Process类</h2>
-<p>在multiprocessing中，每个进程都用一个Process类来表示</p>
-<p><code>Process([group [, target [, name [, args [, kwargs]]]]])</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parser.add_argument(<span class="string">'outer_radius'</span>,type = int , help = <span class="string">'外圆半径'</span>)</span><br><span class="line">parser.add_argument(<span class="string">'inner_radius'</span>,type = int ,help = <span class="string">'内圆半径'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="解析参数parse_args">4. 解析参数——<code>parse_args()</code></h2>
+<p>解析参数：<code>ArgumentParser</code>]通过 <code>parse_args()</code> 方法解析参数。它将检查命令行，把每个参数转换为适当的类型然后调用相应的操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">args = parser.parse_args()</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>主程序调用</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cal_Area</span><span class="params">(R,r)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> math.pi * (R**<span class="number">2</span> - r**<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    print(cal_Area(args.outer_radius,args.inner_radius))</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="运行结果">5. 运行结果</h2>
+<figure>
+<img src="C:/Users/陈惠宇宝宝/AppData/Roaming/Typora/typora-user-images/image-20200715025433224.png" alt="image-20200715025433224" /><figcaption>image-20200715025433224</figcaption>
+</figure>
+<h1 id="进阶">进阶</h1>
+<h2 id="名称对应-flags">1.名称对应—— <code>flags</code></h2>
+<p>这样写的缺点很明显，没有 - 前缀的参数叫做位置参数(positional arguments)，必须要做到位置对应，下面进行修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parser.add_argument(<span class="string">'-R'</span>,<span class="string">'--outer_radius'</span>,type = int , help = <span class="string">'外圆半径'</span>)</span><br><span class="line">parser.add_argument(<span class="string">'-r'</span>,<span class="string">'--inner_radius'</span>,type = int ,help = <span class="string">'内圆半径'</span>)</span><br></pre></td></tr></table></figure>
 <ul>
-<li>target 表示调用对象，可以传入方法的名字</li>
-<li>args表示被调用对象位置参数元组，比如target是函数func，他有两个参数m,n，那么args就传入[m,n]即可</li>
-<li>kwargs表示调用对象的字典</li>
-<li>name是别名，相当于给这个进程取个名字</li>
-<li>group分组</li>
+<li><p>使用短杠 <strong>-</strong> 表示<strong>flags</strong>，名称对应，可以改变参数的输入顺序</p></li>
+<li><p>双杠 <strong>--</strong> 表示<strong>可选参数</strong>(optional arguments)</p></li>
 </ul>
+<figure>
+<img src="C:/Users/陈惠宇宝宝/AppData/Roaming/Typora/typora-user-images/image-20200715031313676.png" alt="image-20200715031313676" /><figcaption>image-20200715031313676</figcaption>
+</figure>
+<h2 id="简化输出metavar">2. 简化输出——<code>metavar</code></h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parser.add_argument(<span class="string">'-R'</span>,<span class="string">'--outer_radius'</span>,type = int ,metavar = <span class="string">''</span>, help = <span class="string">'外圆半径'</span>)</span><br><span class="line">parser.add_argument(<span class="string">'-r'</span>,<span class="string">'--inner_radius'</span>,type = int ,metavar = <span class="string">''</span>, help = <span class="string">'内圆半径'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="required">3. <code>required</code></h2>
+<p>通常，argparse模块会认为 <code>-f</code> 和 <code>--bar</code> 等flags是可选的参数，它们总是可以在命令行中被忽略。 要让一个选项成为<strong>必须的</strong>，则可以将 <code>True</code> 作为 <code>required=</code> 关键字参数传给 <code>add_argument()</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">parser.add_argument(<span class="string">'-R'</span>,<span class="string">'--outer_radius'</span>,type = int ,metavar = <span class="string">''</span>,required = <span class="literal">True</span>, help = <span class="string">'外圆半径'</span>)</span><br><span class="line">parser.add_argument(<span class="string">'-r'</span>,<span class="string">'--inner_radius'</span>,type = int ,metavar = <span class="string">''</span>,required = <span class="literal">True</span>, help = <span class="string">'内圆半径'</span>)</span><br></pre></td></tr></table></figure>
 
       
       <!-- reward -->
@@ -195,14 +216,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ck98rxwwz001ke4vscqyj1hk7/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chenhuiyu.github.io/2020/ckcmxhsbl0000x4vs7joq3c2o/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tutorial/" rel="tag">tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
 
 	      
         <span id="busuanzi_container_page_pv" style="color: #999; margin-left: 30px">
@@ -217,19 +238,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/ck98rxwve0008e4vs3fqwgl6n/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            ML-Logistic-Regression-对数几率回归
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/ck98rxwx2001pe4vsa68r1ej8/" class="article-nav-link">
+      <a href="/2020/ck9fc4gmn0001s0vs29b5emdm/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">爬虫-07-Requests库</div>
+        <div class="article-nav-title">ML-谱聚类</div>
       </a>
     
   </nav>
