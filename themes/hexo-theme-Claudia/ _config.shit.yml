@@ -3,7 +3,7 @@
 # --------------------------------------
 
 nav:
-  logo:  # image
+  logo: # image
   display_title: true
   fixed: false # fixed navigation bar
 
@@ -40,7 +40,7 @@ social:
 # --------------------------------------
 
 # Favicon（網站圖標）
-favicon: /img/favicon.png
+favicon: /img/favicon.jpg
 
 # Avatar (頭像)
 avatar:
@@ -51,17 +51,18 @@ avatar:
 disable_top_img: false
 
 # The banner image of home page
-index_img: /Users/huiyu.chen/Documents/PersonalFiles/Blog/themes/butterfly/source/img/backgroud.jpeg
+index_img: themes/butterfly/source/img/backgroud.jpeg
 
 # If the banner of page not setting, it will show the top_img
-default_top_img:
+default_top_img: /img/backgroud.jpeg
 
 # The banner image of archive page
-archive_img:
+archive_img: /img/backgroud.jpeg
 
 # If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
-tag_img: /img/tag_img.jpeg
+tag_img: /img/backgroud.jpeg
+
 
 # The banner image of tag page
 # format:
@@ -231,7 +232,7 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/chenhuiyu
+      link: https://github.com/xxxxxx
   card_announcement:
     enable: true
     content: This is my Blog
@@ -264,6 +265,10 @@ aside:
     post_count: true
     last_push_date: true
     sort_order: # Don't modify the setting unless you know how it works
+  card_post_series:
+    enable: true
+    orderBy: 'date' # Order by title or date
+    order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
 
 # busuanzi count for PV / UV in site
 # 訪問人數
@@ -291,7 +296,7 @@ newest_comments:
 
 # Conversion between Traditional and Simplified Chinese (簡繁轉換)
 translate:
-  enable: true
+  enable: false
   # The text of a button
   default: 繁
   # the language of website (1 - Traditional Chinese/ 2 - Simplified Chinese）
@@ -340,13 +345,13 @@ rightside_item_order:
 
 # MathJax
 mathjax:
-  enable: true
-  per_page: true
+  enable: false
+  per_page: false
 
 # KaTeX
 katex:
-  enable: true
-  per_page: true
+  enable: false
+  per_page: false
   hide_scrollbar: true
 
 # search (搜索)
@@ -355,24 +360,24 @@ katex:
 
 # Algolia search
 algolia_search:
-  enable: true
+  enable: false
   hits:
     per_page: 6
 
 # Local search
 local_search:
-  enable: true
+  enable: false
   # Preload the search data when the page loads.
-  preload: true
+  preload: false
   # Show top n results per article, show all results by setting to -1
   top_n_per_article: 1
   # Unescape html strings to the readable one.
-  unescape: true
+  unescape: false
   CDN:
 
 # Docsearch
 docsearch:
-  enable: true
+  enable: false
   appId:
   apiKey:
   indexName:
@@ -380,12 +385,6 @@ docsearch:
 
 # Share System (分享)
 # --------------------------------------
-
-# AddThis
-# https://www.addthis.com/
-addThis:
-  enable: true
-  pubid:
 
 # Share.js
 # https://github.com/overtrue/share.js
@@ -396,7 +395,7 @@ sharejs:
 # AddToAny
 # https://www.addtoany.com/
 addtoany:
-  enable: true
+  enable: false
   item: facebook,twitter,wechat,sina_weibo,facebook_messenger,email,copy_link
 
 # Comments System
@@ -651,7 +650,7 @@ mask:
   footer: true
 
 # the position of bottom right button/default unit: px (右下角按鈕距離底部的距離/默認單位為px)
-rightside-bottom:
+rightside_bottom:
 
 # Enter transitions (開啓網頁進入效果)
 enter_transitions: true
@@ -795,6 +794,13 @@ fancybox: true
 
 # Tag Plugins settings (標籤外掛)
 # --------------------------------------
+
+# series (系列文章)
+series:
+  enable: true
+  orderBy: 'title' # Order by title or date
+  order: 1 # Sort of order. 1, asc for ascending; -1, desc for descending
+  number: true
 
 # abcjs (樂譜渲染)
 # See https://github.com/paulrosen/abcjs
