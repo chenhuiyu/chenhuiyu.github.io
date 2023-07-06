@@ -1,25 +1,31 @@
 ---
-title: Hexo 博客的创建与部署
-date: 2023-07-06 00:00:00
+title: "[Blog]-Hexo博客的创建与部署"
+date: 2023-01-11 00:00:00
 categories:
 - Tech Toolbox
 tags:
 - Blog
 ---
-
+（生活反思）
+（代码编年史）
+（流浪癖笔记）
+NLP Insights（自然语言处理洞察）
+Tech Toolbox（技术工具箱）
+Travel Tales（旅行故事）
+Debugging Diaries
 > 前言：大家好，我是博主黑头呆鱼。之前我的旧电脑退休了，这导致我之前博客的内容找不到了。所以，我决定在新博客的第一篇文章中分享如何创建博客并上传源代码到 GitHub。现在，让我们开始吧！
 
-# 1. Hexo 博客的创建与部署
+# Hexo 博客的创建与部署
 
 以下是创建新的 Hexo 博客并部署到 GitHub 的详细步骤：
 
-## 1. 安装前置软件
+## 安装前置软件
 
-### 1.1 安装 Node.js 和 npm
+### 安装 Node.js 和 npm
 
 Hexo 是基于 Node.js 构建的，所以首先你需要安装 Node.js 和 npm（Node 包管理器）。访问 [Node.js 的官方网站](https://nodejs.org/) 进行下载安装。
 
-### 1.2 安装 Hexo
+### 安装 Hexo
 
 在 Node.js 和 npm 安装完成后，通过 npm 全局安装 Hexo。在命令行中运行以下命令：
 
@@ -27,9 +33,9 @@ Hexo 是基于 Node.js 构建的，所以首先你需要安装 Node.js 和 npm�
 npm install -g hexo-cli
 ```
 
-## 2. 创建新的 Hexo 博客
+## 创建新的 Hexo 博客
 
-### 2.1 初始化新的 Hexo 博客
+### 初始化新的 Hexo 博客
 
 创建一个新的文件夹作为你的博客的根目录，然后在命令行中运行以下命令：
 
@@ -40,7 +46,7 @@ cd blog
 
 这将在 "blog" 文件夹下创建一个新的 Hexo 博客。
 
-### 2.2 安装博客依赖
+### 安装博客依赖
 
 进入你的博客目录，然后运行以下命令来安装博客所需的依赖：
 
@@ -48,15 +54,15 @@ cd blog
 npm install
 ```
 
-## 3. 配置你的博客
+## 配置你的博客
 
-### 3.1 配置 Hexo
+### 配置 Hexo
 
 使用你的文本编辑器打开 `_config.yml` 文件，这是 Hexo 博客的配置文件。你需要将 `url` 设置为你的 GitHub Pages 的 URL（通常是 `https://<username>.github.io`），并且你可能还想配置其他的一些选项，比如博客的标题、描述和作者信息。
 
-## 4. 部署到 GitHub
+## 部署到 GitHub
 
-### 4.1 安装 Hexo 部署插件
+### 安装 Hexo 部署插件
 
 首先，你需要安装 `hexo-deployer-git` 插件，这个插件可以让你直接将你的博客部署到 GitHub。在命令行中运行以下命令来安装：
 
@@ -64,7 +70,7 @@ npm install
 npm install hexo-deployer-git --save
 ```
 
-### 4.2 配置部署参数
+### 配置部署参数
 
 在 `_config.yml` 文件中添加以下配置：
 
@@ -77,7 +83,7 @@ deploy:
 
 将 `<username>` 替换为你的 GitHub 用户名。
 
-### 4.3 生成静态文件并部署
+### 生成静态文件并部署
 
 在命令行中运行以下命令来生成静态文件并将它们部署到 GitHub：
 
@@ -92,9 +98,7 @@ hexo deploy
 hexo g -d
 ```
 
-##
-
-5. 添加新文章
+## 添加新文章
 
 你可以使用 Hexo 的 `new` 命令来快速创建新的文章。在命令行中运行以下命令：
 
@@ -108,7 +112,7 @@ hexo new "文章标题"
 
 完成后，你可以重新生成并部署你的博客，新的文章就会出现在你的博客上了。
 
-## 6. 文章分类
+## 文章分类
 
 你可以在你的文章中使用 YAML 前置课（Front-matter）来为文章分配分类（categories）和标签（tags）。前置课应该放在每篇文章的顶部，举例如下：
 
@@ -131,13 +135,13 @@ tags:
 
 当你生成你的博客时，Hexo 会自动根据这些分类和标签创建索引，访问者可以通过分类和标签来查找文章。
 
-## 7. 将博客源文件保存到 GitHub
+## 将博客源文件保存到 GitHub
 
-### 7.1 创建一个新的 GitHub 仓库
+### 创建一个新的 GitHub 仓库
 
 登录到你的 GitHub 账号，然后创建一个新的仓库。你可以给这个仓库取任何你喜欢的名字，比如 `my-hexo-blog`。不需要初始化 README、.gitignore 或者许可证。
 
-### 7.2 初始化 Git
+### 初始化 Git
 
 在你的博客目录中，运行以下命令来初始化 Git：
 
@@ -145,7 +149,7 @@ tags:
 git init
 ```
 
-### 7.3 添加所有文件到 Git
+### 添加所有文件到 Git
 
 运行以下命令来添加所有文件到 Git：
 
@@ -153,7 +157,7 @@ git init
 git add .
 ```
 
-### 7.4 提交你的更改
+### 提交你的更改
 
 运行以下命令来提交你的更改：
 
@@ -161,7 +165,7 @@ git add .
 git commit -m "Initial commit"
 ```
 
-### 7.5 添加远程仓库
+### 添加远程仓库
 
 运行以下命令来添加你刚才在 GitHub 上创建的仓库作为远程仓库：
 
@@ -171,7 +175,7 @@ git remote add origin git@github.com:<username>/my-hexo-blog.git
 
 将 `<username>` 替换为你的 GitHub 用户名。
 
-### 7.6 推送到 GitHub
+### 推送到 GitHub
 
 运行以下命令来将你的博客源文件推送到 GitHub：
 
