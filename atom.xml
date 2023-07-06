@@ -6,7 +6,7 @@
   <link href="https://chenhuiyu.github.io/chenhuiyu.github.io/atom.xml" rel="self"/>
   
   <link href="https://chenhuiyu.github.io/chenhuiyu.github.io/"/>
-  <updated>2023-07-06T15:11:10.477Z</updated>
+  <updated>2023-07-06T15:29:47.711Z</updated>
   <id>https://chenhuiyu.github.io/chenhuiyu.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VS Code Remote SSH连接失败的问题解决</title>
+    <link href="https://chenhuiyu.github.io/chenhuiyu.github.io/2023/07/06/VS%20Code%20Remote%20SSH%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/"/>
+    <id>https://chenhuiyu.github.io/chenhuiyu.github.io/2023/07/06/VS%20Code%20Remote%20SSH%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/</id>
+    <published>2023-07-06T15:27:10.000Z</published>
+    <updated>2023-07-06T15:29:47.711Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="VS-Code-Remote-SSH连接失败的问题解决"><a href="#VS-Code-Remote-SSH连接失败的问题解决" class="headerlink" title="VS Code Remote SSH连接失败的问题解决"></a>VS Code Remote SSH连接失败的问题解决</h1><p>本文档针对VS Code中的Remote SSH插件在尝试连接远程服务器时出现”Failed to parse remote port from server output”错误的情况提供解决方案。作者在经过一系列的排查和尝试后，最终找到了解决的方法。</p><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在使用VS Code的Remote SSH插件尝试连接远程服务器时，遇到了错误提示”Failed to parse remote port from server output”。此错误提示可能是由于VS Code不能正确地从SSH服务器的输出中解析出远程端口。</p><h2 id="尝试的解决方法"><a href="#尝试的解决方法" class="headerlink" title="尝试的解决方法"></a>尝试的解决方法</h2><ol><li>检查SSH配置文件</li><li>更新VS Code和Remote SSH扩展</li><li>手动SSH连接</li><li>检查远程服务器的状态</li><li>重启VS Code</li></ol><p>以上常见的解决方法都未能解决问题。</p><h2 id="成功的解决方案"><a href="#成功的解决方案" class="headerlink" title="成功的解决方案"></a>成功的解决方案</h2><p>最终，作者尝试了取消勾选VS Code设置中的<code>Remote.SSH: Use Local Server</code>选项，成功连接到了远程服务器。当该选项被选中（默认）时，VS Code会在本地机器上启动一个服务器，然后通过该本地服务器连接到远程SSH服务器。当取消勾选此选项时，VS Code会直接连接到远程SSH服务器，而不通过本地服务器。</p><h3 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h3><ol><li>打开VS Code。</li><li>在左侧的活动栏点击齿轮图标打开设置。</li><li>在设置搜索框中输入<code>Remote.SSH: Use Local Server</code>。</li><li>取消选中出现的<code>Remote.SSH: Use Local Server</code>复选框。</li></ol><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>虽然直接连接到远程SSH服务器可以解决某些连接问题，但由于没有利用到本地服务器的优势，可能会导致VS Code的性能稍有下降。但只要没有遇到性能问题，这个设置就不需要过于担心。</p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>如果你在使用VS Code的Remote SSH插件连接远程服务器时遇到了类似的问题，你也可以试试这个方法，希望这个解决方案能帮助到你。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;VS-Code-Remote-SSH连接失败的问题解决&quot;&gt;&lt;a href=&quot;#VS-Code-Remote-SSH连接失败的问题解决&quot; class=&quot;headerlink&quot; title=&quot;VS Code Remote SSH连接失败的问题解决&quot;&gt;&lt;/a&gt;VS Co</summary>
+      
+    
+    
+    
+    <category term="Debugging Diaries" scheme="https://chenhuiyu.github.io/chenhuiyu.github.io/categories/Debugging-Diaries/"/>
+    
+    
+    <category term="IssueFix" scheme="https://chenhuiyu.github.io/chenhuiyu.github.io/tags/IssueFix/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo 博客的创建与部署</title>
