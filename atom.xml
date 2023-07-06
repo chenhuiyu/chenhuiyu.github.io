@@ -3,11 +3,11 @@
   <title>黑头呆鱼进化之旅</title>
   
   <subtitle>只身打码过草原</subtitle>
-  <link href="https://chenhuiyu.github.io/pages/atom.xml" rel="self"/>
+  <link href="https://chenhuiyu.github.io/chenhuiyu.github.io/atom.xml" rel="self"/>
   
-  <link href="https://chenhuiyu.github.io/pages/"/>
+  <link href="https://chenhuiyu.github.io/chenhuiyu.github.io/"/>
   <updated>2023-07-06T15:11:10.477Z</updated>
-  <id>https://chenhuiyu.github.io/pages/</id>
+  <id>https://chenhuiyu.github.io/chenhuiyu.github.io/</id>
   
   <author>
     <name>Huiyu Chen</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hexo 博客的创建与部署</title>
-    <link href="https://chenhuiyu.github.io/pages/2023/07/06/Hexo%20%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/"/>
-    <id>https://chenhuiyu.github.io/pages/2023/07/06/Hexo%20%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</id>
+    <link href="https://chenhuiyu.github.io/chenhuiyu.github.io/2023/07/06/Hexo%20%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/"/>
+    <id>https://chenhuiyu.github.io/chenhuiyu.github.io/2023/07/06/Hexo%20%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</id>
     <published>2023-07-05T16:00:00.000Z</published>
     <updated>2023-07-06T15:11:10.477Z</updated>
     
@@ -36,10 +36,10 @@
     
     
     
-    <category term="Tech Toolbox" scheme="https://chenhuiyu.github.io/pages/categories/Tech-Toolbox/"/>
+    <category term="Tech Toolbox" scheme="https://chenhuiyu.github.io/chenhuiyu.github.io/categories/Tech-Toolbox/"/>
     
     
-    <category term="Blog" scheme="https://chenhuiyu.github.io/pages/tags/Blog/"/>
+    <category term="Blog" scheme="https://chenhuiyu.github.io/chenhuiyu.github.io/tags/Blog/"/>
     
   </entry>
   
