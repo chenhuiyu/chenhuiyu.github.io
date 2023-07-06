@@ -3,11 +3,11 @@
   <title>黑头呆鱼进化之旅</title>
   
   <subtitle>只身打码过草原</subtitle>
-  <link href="https://chenhuiyu.github.io/atom.xml" rel="self"/>
+  <link href="https://github.com/chenhuiyu/chenhuiyu.github.io/atom.xml" rel="self"/>
   
-  <link href="https://chenhuiyu.github.io/"/>
+  <link href="https://github.com/chenhuiyu/chenhuiyu.github.io/"/>
   <updated>2023-07-06T12:45:37.378Z</updated>
-  <id>https://chenhuiyu.github.io/</id>
+  <id>https://github.com/chenhuiyu/chenhuiyu.github.io/</id>
   
   <author>
     <name>Huiyu Chen</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://chenhuiyu.github.io/2023/07/06/hello-world/"/>
-    <id>https://chenhuiyu.github.io/2023/07/06/hello-world/</id>
+    <link href="https://github.com/chenhuiyu/chenhuiyu.github.io/2023/07/06/hello-world/"/>
+    <id>https://github.com/chenhuiyu/chenhuiyu.github.io/2023/07/06/hello-world/</id>
     <published>2023-07-06T11:03:39.623Z</published>
     <updated>2023-07-06T12:45:37.378Z</updated>
     
@@ -38,8 +38,8 @@
   
   <entry>
     <title>Hexo 博客的创建与部署</title>
-    <link href="https://chenhuiyu.github.io/2023/07/06/Hexo%20%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/"/>
-    <id>https://chenhuiyu.github.io/2023/07/06/Hexo%20%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</id>
+    <link href="https://github.com/chenhuiyu/chenhuiyu.github.io/2023/07/06/Hexo%20%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/"/>
+    <id>https://github.com/chenhuiyu/chenhuiyu.github.io/2023/07/06/Hexo%20%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</id>
     <published>2023-07-05T16:00:00.000Z</published>
     <updated>2023-07-06T12:45:25.756Z</updated>
     
@@ -53,10 +53,10 @@
     
     
     
-    <category term="tools" scheme="https://chenhuiyu.github.io/categories/tools/"/>
+    <category term="tools" scheme="https://github.com/chenhuiyu/chenhuiyu.github.io/categories/tools/"/>
     
     
-    <category term="blog" scheme="https://chenhuiyu.github.io/tags/blog/"/>
+    <category term="blog" scheme="https://github.com/chenhuiyu/chenhuiyu.github.io/tags/blog/"/>
     
   </entry>
   
