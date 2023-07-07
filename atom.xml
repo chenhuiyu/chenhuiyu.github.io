@@ -244,7 +244,7 @@
     <link href="https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/Python%20-m%20%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/"/>
     <id>https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/Python%20-m%20%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/</id>
     <published>2023-02-01T02:02:03.000Z</published>
-    <updated>2023-07-06T17:24:25.037Z</updated>
+    <updated>2023-07-07T09:14:22.465Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Python-m-参数解释"><a href="#Python-m-参数解释" class="headerlink" title="Python -m 参数解释"></a>Python -m 参数解释</h1><h2 id="1-Python-m-参数解释"><a href="#1-Python-m-参数解释" class="headerlink" title="1. Python -m 参数解释"></a>1. Python -m 参数解释</h2><h3 id="在shell调用时，python-m的参数是什么意思？"><a href="#在shell调用时，python-m的参数是什么意思？" class="headerlink" title="在shell调用时，python -m的参数是什么意思？"></a>在shell调用时，python -m的参数是什么意思？</h3><p>当在命令行中输入 “python -m <module-name>“ 时，这表示使用Python的内置模块运行程序，其中<module-name>是要运行的模块的名称。这类似于在Python脚本中使用 “import <module-name>“ 并运行 “module-name.run()”。</module-name></module-name></module-name></p><p>例如： “python -m http.server” 将启动Python内置的HTTP服务器，可以在浏览器中访问当前目录中的文件。 “python -m unittest discover” 将在当前目录中查找并运行所有以test_*.py命名的单元测试脚本。</p><h3 id="module-name-run-需要自己在模块中编写run函数吗？"><a href="#module-name-run-需要自己在模块中编写run函数吗？" class="headerlink" title="module-name.run() 需要自己在模块中编写run函数吗？"></a>module-name.run() 需要自己在模块中编写run函数吗？</h3><p>不需要。在调用 “python -m <module-name>“ 时，Python会自动在模块中寻找并运行名为 “run()” 的函数。如果该函数不存在，则会在模块中寻找并运行名为 “main()” 的函数。</module-name></p><p>在大多数情况下，如果模块是一个可执行程序，则应该在其中编写一个名为 “main()” 的函数，并在该函数中编写程序逻辑。</p><p>如果模块是一个库，而不是可执行程序，则不需要编写 “main()” 或 “run()” 函数。这些函数不会被调用，因为模块被导入时，其中的函数和变量都可以在其他代码中调用。</p>]]></content>
     
