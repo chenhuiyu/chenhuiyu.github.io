@@ -8,7 +8,9 @@ subtitle: 只身打码过草原
 description: ''
 keywords:
 author: Huiyu Chen
-language: en
+language:
+- en
+
 timezone: ''
 
 # URL
@@ -33,7 +35,7 @@ skip_render:
 # Writing
 new_post_name: :title.md # File name of new posts
 default_layout: post
-titlecase: true # Transform title into titlecase
+titlecase: false # Transform title into titlecase
 external_link:
   enable: true # Open external links in new tab
   field: site # Apply to the whole site
