@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>GeoMapToBlog</title>
+      <link href="/2023/07/08/Tech%20Toolbox/GeoMapToBlog/"/>
+      <url>/2023/07/08/Tech%20Toolbox/GeoMapToBlog/</url>
+      
+        <content type="html"><![CDATA[<h1 id="在Blog中添加可交互式足迹地图"><a href="#在Blog中添加可交互式足迹地图" class="headerlink" title="在Blog中添加可交互式足迹地图"></a>在Blog中添加可交互式足迹地图</h1><p>这篇文章将向你展示如何在基于Hexo和Next的GitHub Pages博客中创建一个交互式的世界地图页面，这个地图将展示你曾经访问过的城市，你可以根据你对每个城市访问的频率在地图上显示不同颜色的标记，你还可以点击这些标记来显示更多关于这个城市的信息。</p><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>你需要安装以下工具：</p><ul><li>Node.js 和 NPM</li><li>Hexo</li></ul><p>确保你的博客已经被部署到GitHub Pages，并且你在本地的开发环境已经正确设置。</p><h2 id="步骤一：创建新页面"><a href="#步骤一：创建新页面" class="headerlink" title="步骤一：创建新页面"></a>步骤一：创建新页面</h2><p>在你的Hexo项目的根目录下，运行以下命令：</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page <span class="string">"travel"</span></span><br></pre></td></tr></tbody></table></figure><p>这个命令将在<code>source</code>目录下创建一个名为”travel”的文件夹，并在该文件夹下创建一个<code>index.md</code>文件。</p><h2 id="步骤二：安装-Leaflet"><a href="#步骤二：安装-Leaflet" class="headerlink" title="步骤二：安装 Leaflet"></a>步骤二：安装 Leaflet</h2><p>在你的Hexo项目的根目录下，运行以下命令：</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install leaflet</span><br></pre></td></tr></tbody></table></figure><p>然后在<code>index.md</code>文件的最顶部引入Leaflet的CSS和JS：</p><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line"><span class="section">title: Travel</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"></span><br><span class="line">&lt;!-- 引入 Leaflet 的 CSS --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/node_modules/leaflet/dist/leaflet.css"</span> /&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;!-- 引入 Leaflet 的 JavaScript 文件 --&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/node_modules/leaflet/dist/leaflet.js"</span>&gt;</span></span><span class="language-xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></tbody></table></figure><h2 id="步骤三：创建地图容器"><a href="#步骤三：创建地图容器" class="headerlink" title="步骤三：创建地图容器"></a>步骤三：创建地图容器</h2><p>在<code>index.md</code>中，创建一个用来承载地图的<code>&lt;div&gt;</code>元素，然后通过CSS给它设置一个明确的高度：</p><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span></span><br><span class="line"><span class="code">    #map {</span></span><br><span class="line"><span class="code">        height: 500px;</span></span><br><span class="line"><span class="code">        width: 100%;</span></span><br><span class="line"><span class="code">        position: relative;</span></span><br><span class="line"><span class="code">    }</span></span><br><span class="line"><span class="code">&lt;/style&gt;</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="language-xml"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"map"</span>&gt;</span></span></span><span class="language-xml"><span class="language-css">&lt;/<span class="selector-tag">div</span>&gt;</span></span></span><br></pre></td></tr></tbody></table></figure><h2 id="步骤四：初始化地图"><a href="#步骤四：初始化地图" class="headerlink" title="步骤四：初始化地图"></a>步骤四：初始化地图</h2><p>使用Leaflet的API初始化地图，并将其中心设置为经度0,纬度0（大西洋中部），并设置初始的缩放级别为2。</p><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="code">    document.addEventListener('DOMContentLoaded', function() {</span></span><br><span class="line"><span class="code">        var map = L.map('map').setView([0, 0], 2);</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {</span></span><br><span class="line"><span class="code">            maxZoom: 19,</span></span><br><span class="line"><span class="code">        }).addTo(map);</span></span><br><span class="line"><span class="code">    });</span></span><br><span class="line"><span class="code">&lt;/script&gt;</span></span><br></pre></td></tr></tbody></table></figure><h2 id="步骤五：添加城市数据"><a href="#步骤五：添加城市数据" class="headerlink" title="步骤五：添加城市数据"></a>步骤五：添加城市数据</h2><p>创建一个GeoJSON文件来存储城市的数据，包括城市的名称，经纬度，你访问的次数，以及一个图片的URL。文件的格式应该如下：</p><figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"type"</span><span class="punctuation">:</span> <span class="string">"FeatureCollection"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"features"</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">{</span></span><br><span class="line">            <span class="attr">"type"</span><span class="punctuation">:</span> <span class="string">"Feature"</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">"properties"</span><span class="punctuation">:</span> <span class="punctuation">{</span></span><br><span class="line">                <span class="attr">"name"</span><span class="punctuation">:</span> <span class="string">"北京"</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">"visits"</span><span class="punctuation">:</span> <span class="number">3</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">"image"</span><span class="punctuation">:</span> <span class="string">"https://your-image-url.com"</span></span><br><span class="line">            <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">"geometry"</span><span class="punctuation">:</span> <span class="punctuation">{</span></span><br><span class="line">                <span class="attr">"type"</span><span class="punctuation">:</span> <span class="string">"Point"</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">"coordinates"</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="number">116.4074</span><span class="punctuation">,</span> <span class="number">39.9042</span><span class="punctuation">]</span></span><br><span class="line">            <span class="punctuation">}</span></span><br><span class="line">        <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure><p>将此文件保存在你的Hexo项目的<code>source</code>目录下，例如，你可以命名为<code>cities.json</code>。</p><h2 id="步骤六：加载数据并显示在地图上"><a href="#步骤六：加载数据并显示在地图上" class="headerlink" title="步骤六：加载数据并显示在地图上"></a>步骤六：加载数据并显示在地图上</h2><p>在<code>index.md</code>文件中，添加以下代码来加载GeoJSON文件，然后在地图上显示数据：</p><figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="code">    document.addEventListener('DOMContentLoaded', function() {</span></span><br><span class="line"><span class="code">        var map = L.map('map').setView([0, 0], 2);</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {</span></span><br><span class="line"><span class="code">            maxZoom: 19,</span></span><br><span class="line"><span class="code">        }).addTo(map);</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">        fetch('/travel/cities.json')</span></span><br><span class="line"><span class="code">            .then(response =&gt; response.json())</span></span><br><span class="line"><span class="code">            .then(data =&gt; {</span></span><br><span class="line"><span class="code">                L.geoJSON(data, {</span></span><br><span class="line"><span class="code">                    pointToLayer: function (feature, latlng) {</span></span><br><span class="line"><span class="code">                        var color = getColor(feature.properties.visits);</span></span><br><span class="line"><span class="code">                        return L.circleMarker(latlng, { fillColor: color, fillOpacity: 0.5 });</span></span><br><span class="line"><span class="code">                    },</span></span><br><span class="line"><span class="code">                    onEachFeature: function (feature, layer) {</span></span><br><span class="line"><span class="code">                        layer.bindPopup(`&lt;h2&gt;${feature.properties.name}&lt;/h2&gt;&lt;img src="${feature.properties.image}" width="200"&gt;`);</span></span><br><span class="line"><span class="code">                    }</span></span><br><span class="line"><span class="code">                }).addTo(map);</span></span><br><span class="line"><span class="code">            });</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">        function getColor(visits) {</span></span><br><span class="line"><span class="code">            // 根据你访问的次数返回不同的颜色</span></span><br><span class="line"><span class="code">            return visits &gt; 10 ? '#800026' :</span></span><br><span class="line"><span class="code">                   visits &gt; 5  ? '#BD0026' :</span></span><br><span class="line"><span class="code">                   visits &gt; 2  ? '#E31A1C' :</span></span><br><span class="line"><span class="code">                   visits &gt; 1  ? '#FC4E2A' :</span></span><br><span class="line"><span class="code">                                 '#FFEDA0';</span></span><br><span class="line"><span class="code">        }</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"><span class="code">        // 强制Leaflet重新计算地图的尺寸</span></span><br><span class="line"><span class="code">        setTimeout(function() {</span></span><br><span class="line"><span class="code">            map.invalidateSize();</span></span><br><span class="line"><span class="code">        }, 100);</span></span><br><span class="line"><span class="code">    });</span></span><br><span class="line"><span class="code">&lt;/script&gt;</span></span><br></pre></td></tr></tbody></table></figure><p>以上的JavaScript代码在页面加载完成后会运行，首先初始化地图，然后加载并解析GeoJSON文件，对于每一个城市，创建一个圆形的标记，颜色根据访问次数决定。当点击标记时，弹出一个包含城市名称和图片的窗口。</p><p>至此，你的博客就成功地添加了一个交互式的足迹地图页面。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Tech Toolbox </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SUP体验</title>
       <link href="/2023/07/07/Life%20Reflections/SUP%E4%BD%93%E9%AA%8C/"/>
       <url>/2023/07/07/Life%20Reflections/SUP%E4%BD%93%E9%AA%8C/</url>
@@ -31,7 +56,7 @@
     
     
     <entry>
-      <title>[RCMD]-DSSM 模型详解</title>
+      <title>DSSM 模型详解</title>
       <link href="/2023/07/07/NLP%20Insights/DSSM%20%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/"/>
       <url>/2023/07/07/NLP%20Insights/DSSM%20%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3/</url>
       
@@ -58,7 +83,7 @@
     
     
     <entry>
-      <title>[RCMD]-推荐系统离线评估指标详解</title>
+      <title>推荐系统离线评估指标详解</title>
       <link href="/2023/07/07/NLP%20Insights/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3/"/>
       <url>/2023/07/07/NLP%20Insights/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3/</url>
       
@@ -83,7 +108,7 @@
     
     
     <entry>
-      <title>[VScode]-VS Code Remote SSH连接失败问题</title>
+      <title>VS Code Remote SSH连接失败问题</title>
       <link href="/2023/07/06/Debugging%20Diaries/VS%20Code%20Remote%20SSH%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/"/>
       <url>/2023/07/06/Debugging%20Diaries/VS%20Code%20Remote%20SSH%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98/</url>
       
@@ -108,7 +133,7 @@
     
     
     <entry>
-      <title>[K8s]-Kubernetes基础</title>
+      <title>Kubernetes基础</title>
       <link href="/2023/06/06/Tech%20Toolbox/Kubernetes%E5%9F%BA%E7%A1%80/"/>
       <url>/2023/06/06/Tech%20Toolbox/Kubernetes%E5%9F%BA%E7%A1%80/</url>
       
@@ -133,7 +158,7 @@
     
     
     <entry>
-      <title>[Git]-GitLog</title>
+      <title>GitLog</title>
       <link href="/2023/05/23/Tech%20Toolbox/GitLog/"/>
       <url>/2023/05/23/Tech%20Toolbox/GitLog/</url>
       
@@ -158,32 +183,7 @@
     
     
     <entry>
-      <title>[Git]-GitLog</title>
-      <link href="/2023/05/23/Tech%20Toolbox/HDFS%E7%AE%80%E4%BB%8B/"/>
-      <url>/2023/05/23/Tech%20Toolbox/HDFS%E7%AE%80%E4%BB%8B/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Git-Log"><a href="#Git-Log" class="headerlink" title="Git Log"></a>Git Log</h1><p>当使用Git进行版本控制时，**<code>git log</code>**命令是一个有用的工具，它可以显示提交历史记录和分支之间的关系。</p><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>在终端或命令行中使用以下命令格式来调用<code>git log</code>：</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></tbody></table></figure><p>这将显示包含所有提交历史记录的列表，最新的提交显示在最上面。</p><h3 id="限制输出"><a href="#限制输出" class="headerlink" title="限制输出"></a>限制输出</h3><p><code>git log</code>提供了一些选项来限制输出，以满足不同的需求。</p><ul><li><code>-oneline</code>：以紧凑的一行摘要形式显示提交历史记录。</li></ul><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></tbody></table></figure><ul><li><code>-decorate</code>：在输出中显示分支和标签的引用名称。</li></ul><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --decorate</span><br></pre></td></tr></tbody></table></figure><ul><li><code>-graph</code>：使用图形表示法展示分支和合并的关系。</li></ul><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph</span><br></pre></td></tr></tbody></table></figure><p>可以将这些选项组合在一起使用：</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline --decorate --graph</span><br></pre></td></tr></tbody></table></figure><p>当您行 <strong><code>git log --oneline --decorate --graph</code></strong> 命令时，输出结果会以一种紧凑、图形化的方式显示提交历史记录和分支之间的关系。下面是对输出结果中每个部分的解释：</p><ol><li>Commit Hash（提交哈希值）：每个提交的唯一标识符，通常使用短的哈希值。这些哈希值是提交的独特标识，可以用来引用和检索特定的提交。</li><li>Commit Message（提交消息）：提交时输入的描述性消息，用于说明该提交所做的更改和目的。</li><li>Branches and Tags（分支和标签）：显示当前提交所在的分支和相关标签的引用名称。这些引用名称显示在提交哈希值后的括号内，以及在分支和标签之前的装饰符 **<code>decorate</code>**。</li><li>Graphical Representation（图形表示）：使用字符（如斜线、反斜线、竖线和星号）表示分支和合并的关系。这部分使用图形表示法展示了提交历史记录中不同分支的发展和合并情况。斜线（/）和反斜线（\）表示分支的发展，竖线（|）表示分支的分叉，星号（*）表示合并点。</li></ol><p>命令的输出结果可以通过以下方式进行阅读：</p><ol><li>每行表示一个提交，包含简短的提交哈希值和提交消息。例如：**<code>579ac2d Resolved merge conflicts with master branch</code>**。</li><li>分支和标签的引用名称显示在每个提交的后面。它们用括号括起来，并在引用名称前加上 <strong><code>tag:</code></strong> 或 <strong><code>HEAD -&gt;</code></strong> 的标识符。例如：**<code>(HEAD -&gt; huiyu/product_search_similarity_test, origin/huiyu/product_search_similarity_test)</code>** 表示当前所在的分支和远程分支。</li><li>图形表示法展示了分支和合并的关系。合并提交显示为一个或多个分支合并在一起的线条。例如，**<code>\</code>** 和 <strong><code>/</code></strong> 字符表示不同的分支合并。**<code>|</code>** 字符表示分支的分叉。这种图形表示法可以帮助您理解提交历史中不同分支之间的关系。</li></ol><p>通过阅读这些输出结果，您可以了解每个提交的信息，包括提交哈希值、提交消息、分支和标签的引用名称，以及分支和合并的关系。这有助于您跟踪代码的发展历程、分支的合并情况以及不同分支之间的关系。</p><h3 id="过滤和排序提交"><a href="#过滤和排序提交" class="headerlink" title="过滤和排序提交"></a>过滤和排序提交</h3><p>您可以使用一些选项来过滤和排序提交历史记录。</p><ul><li><code>-author=&lt;author&gt;</code>：仅显示特定作者的提交历史记录。</li></ul><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --author=John</span><br></pre></td></tr></tbody></table></figure><ul><li><code>-since=&lt;date&gt;</code>：仅显示指定日期之后的提交历史记录。</li></ul><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --since=<span class="string">"2023-01-01"</span></span><br></pre></td></tr></tbody></table></figure><ul><li><code>-until=&lt;date&gt;</code>：仅显示指定日期之前的提交历史记录。</li></ul><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --<span class="keyword">until</span>=<span class="string">"2023-02-01"</span></span><br></pre></td></tr></tbody></table></figure><ul><li><code>-grep=&lt;pattern&gt;</code>：仅显示包含指定模式的提交消息。</li></ul><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --grep=<span class="string">"bug fix"</span></span><br></pre></td></tr></tbody></table></figure><ul><li><code>-follow &lt;file&gt;</code>：跟踪指定文件的改动历史记录。</li></ul><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --follow file.txt</span><br></pre></td></tr></tbody></table></figure><ul><li><code>-reverse</code>：按照提交时间的逆序显示提交历史记录。</li></ul><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --reverse</span><br></pre></td></tr></tbody></table></figure><h3 id="分支和标签"><a href="#分支和标签" class="headerlink" title="分支和标签"></a>分支和标签</h3><p>默认情况下，<code>git log</code>显示所有分支的提交历史记录。您还可以指定特定的分支或标签。</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> &lt;branch-name&gt;</span><br></pre></td></tr></tbody></table></figure><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> &lt;tag-name&gt;</span><br></pre></td></tr></tbody></table></figure><h3 id="其他选项"><a href="#其他选项" class="headerlink" title="其他选项"></a>其他选项</h3><p><code>git log</code>命令还提供其他一些有用的选项，例如：</p><ul><li><code>-stat</code>：显示每个提交的简要统计信息，包括改动的文件和插入/删除的行数。</li></ul><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --<span class="built_in">stat</span></span><br></pre></td></tr></tbody></table></figure><ul><li><code>-pretty=&lt;format&gt;</code>：使用自定义的输出格式显示提交历史记录。</li></ul><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --pretty=format:<span class="string">"%h - %an, %ar : %s"</span></span><br></pre></td></tr></tbody></table></figure><ul><li><code>-graph</code>和<code>-oneline</code>可以与其他选项组合使用。</li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> Tech Toolbox </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Git </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>[FAISS]-FAISS向量查询简介</title>
+      <title>FAISS向量查询简介</title>
       <link href="/2023/02/23/Code%20Chronicles/FAISS%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B/"/>
       <url>/2023/02/23/Code%20Chronicles/FAISS%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B/</url>
       
@@ -210,7 +210,7 @@
     
     
     <entry>
-      <title>[Python]-Intersection &amp; Union</title>
+      <title>Intersection &amp; Union</title>
       <link href="/2023/02/20/Code%20Chronicles/Python-IntersectionUnion/"/>
       <url>/2023/02/20/Code%20Chronicles/Python-IntersectionUnion/</url>
       
@@ -235,7 +235,7 @@
     
     
     <entry>
-      <title>[Python]-Python -m 参数解释</title>
+      <title>Python -m 参数解释</title>
       <link href="/2023/02/01/Code%20Chronicles/Python%20-m%20%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/"/>
       <url>/2023/02/01/Code%20Chronicles/Python%20-m%20%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/</url>
       
@@ -260,7 +260,7 @@
     
     
     <entry>
-      <title>[Python]- Python yield</title>
+      <title>Python yield</title>
       <link href="/2023/02/01/Code%20Chronicles/Python-yield/"/>
       <url>/2023/02/01/Code%20Chronicles/Python-yield/</url>
       
@@ -285,7 +285,7 @@
     
     
     <entry>
-      <title>[Blog]-Hexo博客的创建与部署</title>
+      <title>Hexo博客的创建与部署</title>
       <link href="/2023/01/11/Tech%20Toolbox/Hexo%20%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/"/>
       <url>/2023/01/11/Tech%20Toolbox/Hexo%20%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/</url>
       
