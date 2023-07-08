@@ -67,7 +67,7 @@ for i, item in enumerate(data):
     # Save the image locally
     if image_url:
         img_data = requests.get(image_url).content
-        with open(f"{item['name']}-{i}.jpg", 'wb') as handler:
+        with open(f"{item['name']}-1.jpg", 'wb') as handler:
             handler.write(img_data)
         
-    item["imageUrl"] = f"{item['name']}-{i}.jpg"
+    item["imageUrl"] = f"{item['name']}-1.jpg"
