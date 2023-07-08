@@ -1,5 +1,5 @@
 ---
-title: "[VScode]-VS Code Remote SSH连接失败问题"
+title: "VS Code Remote SSH连接失败问题"
 date: 2023-07-06 23:27:10
 categories:
 - Debugging Diaries

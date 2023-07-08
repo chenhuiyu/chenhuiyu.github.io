@@ -1,5 +1,5 @@
 ---
-title: "[RCMD]-DSSM 模型详解"
+title: "DSSM 模型详解"
 date: 2023-07-07 02:14:10
 categories:
 - NLP Insights

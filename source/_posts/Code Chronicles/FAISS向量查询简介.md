@@ -1,5 +1,5 @@
 ---
-title: "[FAISS]-FAISS向量查询简介"
+title: "FAISS向量查询简介"
 date: 2023-02-23 16:33:36
 categories:
 - Code Chronicles

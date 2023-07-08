@@ -34,6 +34,7 @@
     "hexo-server": "^3.0.0",
     "hexo-theme-landscape": "^1.0.0",
     "hexo-wordcount": "^6.0.1",
-    "jvectormap-next": "^3.1.1"
+    "jvectormap-next": "^3.1.1",
+    "leaflet": "^1.9.4"
   }
 }

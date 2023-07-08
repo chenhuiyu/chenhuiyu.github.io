@@ -1,5 +1,5 @@
 ---
-title: "[Python]-Python -m 参数解释"
+title: "Python -m 参数解释"
 date: 2023-02-01 10:02:03
 categories:
 - Code Chronicles

@@ -1,5 +1,5 @@
 ---
-title: "[K8s]-Kubernetes基础"
+title: "Kubernetes基础"
 date: 2023-06-06 14:27:00
 categories:
 - Tech Toolbox

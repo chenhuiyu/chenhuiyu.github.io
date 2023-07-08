@@ -1,0 +1,498 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Abu Dhabi - United Arab Emirates",
+          "visits": 1,
+          "image": "/travel/photo/Abu Dhabi - United Arab Emirates.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [54.38, 24.45]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Amsterdam - Netherlands",
+          "visits": 1,
+          "image": "/travel/photo/Amsterdam - Netherlands.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [4.89, 52.37]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Athens - Greece",
+          "visits": 1,
+          "image": "/travel/photo/Athens - Greece.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [23.73, 37.98]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Bali - Indonesia",
+          "visits": 1,
+          "image": "/travel/photo/Bali - Indonesia.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [115.27, -8.46]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Bangkok - Thailand",
+          "visits": 1,
+          "image": "/travel/photo/Bangkok - Thailand.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [100.49, 13.75]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Beijing - China",
+          "visits": 1,
+          "image": "/travel/photo/Beijing - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [116.39, 39.91]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Chengdu - China",
+          "visits": 1,
+          "image": "/travel/photo/Chengdu - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [104.06, 30.66]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Chongqing - China",
+          "visits": 1,
+          "image": "/travel/photo/Chongqing - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [106.55, 29.57]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Dezhou - China",
+          "visits": 1,
+          "image": "/travel/photo/Dezhou - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [116.35, 37.44]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Doha - Qatar",
+          "visits": 1,
+          "image": "/travel/photo/Doha - Qatar.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [51.53, 25.29]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Dubai - United Arab Emirates",
+          "visits": 1,
+          "image": "/travel/photo/Dubai - United Arab Emirates.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [55.19, 25.07]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Guangzhou - China",
+          "visits": 1,
+          "image": "/travel/photo/Guangzhou - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [113.26, 23.13]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Hakone - Japan",
+          "visits": 1,
+          "image": "/travel/photo/Hakone - Japan.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [139.03, 35.22]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Hangzhou - China",
+          "visits": 1,
+          "image": "/travel/photo/Hangzhou - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [120.21, 30.25]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Hefei - China",
+          "visits": 1,
+          "image": "/travel/photo/Hefei - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [117.22, 31.82]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Helsinki - Finland",
+          "visits": 1,
+          "image": "/travel/photo/Helsinki - Finland.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [24.94, 60.17]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Hong Kong - China",
+          "visits": 1,
+          "image": "/travel/photo/Hong Kong - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [114.16, 22.28]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Jinan - China",
+          "visits": 1,
+          "image": "/travel/photo/Jinan - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [117.11, 36.65]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Johor Bahru - Malaysia",
+          "visits": 1,
+          "image": "/travel/photo/Johor Bahru - Malaysia.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [103.75, 1.5]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Kuala Lumpur - Malaysia",
+          "visits": 1,
+          "image": "/travel/photo/Kuala Lumpur - Malaysia.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [101.69, 3.15]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Lianyungang - China",
+          "visits": 1,
+          "image": "/travel/photo/Lianyungang - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [119.22, 34.59]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Nanjing - China",
+          "visits": 1,
+          "image": "/travel/photo/Nanjing - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [118.79, 32.06]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Paris - France",
+          "visits": 10000,
+          "image": "/travel/photo/Paris - France.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [2.35, 48.85]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Qingdao - China",
+          "visits": 1,
+          "image": "/travel/photo/Qingdao - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [120.38, 36.06]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Rizhao - China",
+          "visits": 1,
+          "image": "/travel/photo/Rizhao - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [119.52, 35.42]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Santorini - Greece",
+          "visits": 1,
+          "image": "/travel/photo/Santorini - Greece.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [25.46, 36.41]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Shanghai - China",
+          "visits": 1,
+          "image": "/travel/photo/Shanghai - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [121.47, 31.23]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Singapore - Singapore",
+          "visits": 1,
+          "image": "/travel/photo/Singapore - Singapore.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [103.82, 1.36]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Suzhou - China",
+          "visits": 1,
+          "image": "/travel/photo/Suzhou - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [120.58, 31.3]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Tai'an - China",
+          "visits": 1,
+          "image": "/travel/photo/Tai'an - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [117.08, 36.2]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Tianjin - China",
+          "visits": 1,
+          "image": "/travel/photo/Tianjin - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [117.2, 39.08]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Tokyo - Japan",
+          "visits": 1,
+          "image": "/travel/photo/Tokyo - Japan.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [139.77, 35.68]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Versailles - France",
+          "visits": 1,
+          "image": "/travel/photo/Versailles - France.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [2.13, 48.8]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Weifang - China",
+          "visits": 1,
+          "image": "/travel/photo/Weifang - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [119.16, 36.71]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Weihai - China",
+          "visits": 1,
+          "image": "/travel/photo/Weihai - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [122.12, 37.51]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Wuxi - China",
+          "visits": 1,
+          "image": "/travel/photo/Wuxi - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [120.31, 31.49]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Xuzhou - China",
+          "visits": 1,
+          "image": "/travel/photo/Xuzhou - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [117.28, 34.21]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Yangzhou - China",
+          "visits": 1,
+          "image": "/travel/photo/Yangzhou -China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [119.41, 32.4]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Yantai - China",
+          "visits": 1,
+          "image": "/travel/photo/Yantai - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [121.44, 37.46]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Zaozhuang - China",
+          "visits": 1,
+          "image": "/travel/photo/Zaozhuang - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [117.32, 34.81]
+        }
+      },
+      {
+        "type": "Feature",
+        "properties": {
+          "name": "Zibo - China",
+          "visits": 1,
+          "image": "/travel/photo/Zibo - China.jpg"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [117.98, 36.82]
+        }
+      }
+    ]
+  }
+  

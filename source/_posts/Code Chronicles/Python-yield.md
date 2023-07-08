@@ -1,5 +1,5 @@
 ---
-title: "[Python]- Python yield"
+title: "Python yield"
 date: 2023-02-01 10:02:03
 categories:
 - Code Chronicles

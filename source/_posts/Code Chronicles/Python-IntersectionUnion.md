@@ -1,5 +1,5 @@
 ---
-title: "[Python]-Intersection & Union"
+title: "Intersection & Union"
 date: 2023-02-20 12:02:03
 categories:
 - Code Chronicles

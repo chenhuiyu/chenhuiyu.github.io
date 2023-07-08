@@ -1,5 +1,5 @@
 ---
-title: "[Blog]-Hexo博客的创建与部署"
+title: "Hexo博客的创建与部署"
 date: 2023-01-11 00:00:00
 categories:
 - Tech Toolbox
