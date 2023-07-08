@@ -6,8 +6,6 @@ from tenacity import retry, stop_after_attempt, wait_random_exponential
 
 # Set your OpenAI API key
 # openai.api_key = 'your-openai-api-key'
-openai.organization = "org-vKWF67g2KjEjw9xurInSmRjF"
-openai.api_key = "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"
 
 @retry(wait=wait_random_exponential(min=1, max=15), stop=stop_after_attempt(20))
 def translate_and_rename_file(src_path):

@@ -1,0 +1,325 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+
+	<!--引入jQuery框架-->
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<!--引入jVectorMap库-->
+	<script type="text/javascript" src="js/jquery-jvectormap-1.2.2.min.js"></script>
+	<!--引入样式表-->
+	<link href="js/jquery-jvectormap-1.2.2.css" rel="stylesheet" media="screen">
+
+
+	<!--引入中国地图数据库-->
+	<!-- <script type="text/javascript" src="js/jquery-jvectormap-cn-merc-en.js"></script> -->
+
+	<!--引入美国地图数据库-->
+	<!--script type="text/javascript" src="js/jquery-jvectormap-us-aea.js"></script-->
+	<!--引入世界地图数据库-->
+	<script type="text/javascript" src="js/jquery-jvectormap-world-mill.js"></script>
+
+</head>
+
+<body>
+	<!--background-color: 地图背景颜色-->
+	<div id="map" style="background-color:#353535"> </div>
+	<script>
+		$('#map').vectorMap({
+
+			// 此处更改地图
+			// map: 'cn_merc_en',   // 中国地图
+			//map: 'us_aea',     // 美国地图
+			map: 'world_mill', // 世界地图
+
+
+			backgroundColor: 'transparent',
+			zoomMin: 0.9, // 鼠标缩放时的最小比例
+			zoomMax: 2.4, // 鼠标缩放时的最大比例
+			focusOn: {
+				x: 0.55,
+				y: 2,
+				scale: 0.9
+			},
+			regionStyle: {
+				initial: {
+					fill: '#e5e5e5',   // 地图颜色
+					"fill-opacity": 1, // 省份（州）是否隐藏，鼠标滑动时显示; 1：显示，2：隐藏。
+					stroke: 'none',
+					"stroke-width": 0,
+					"stroke-opacity": 1
+				},
+				hover: {
+					fill: '#ccc',  // 鼠标滑动至某省份的高亮颜色。
+					"fill-opacity": 0.8
+				},
+				selected: {
+					fill: 'yellow'
+				},
+				selectedHover: {}
+			},
+			markerStyle: {
+				initial: {
+					fill: '#fd8888', // 足迹位置的填充颜色
+					stroke: '#fff'   // 足迹位置的描边颜色
+				},
+				hover: {
+					fill: '#fd2020', // 鼠标滑动至足迹位置后的填充颜色
+					stroke: '#fff',  // 鼠标滑动至足迹位置后的描边颜色
+					"fill-opacity": 0.8
+				},
+			},
+			markers: [ // 足迹位置
+				// {latLng: [经度（保留两位小数）, 纬度（保留两位小数）], name: '城市名称'},
+				// 推荐查询经纬度网站：http://www.gpsspg.com/maps.htm
+
+				{	latLng: [24.45, 54.38], 
+				name: "Abu Dhabi - United Arab Emirates", 
+				frequency: 1, 
+				imageUrl: "source/travel/photo/Abu Dhabi - United Arab Emirates.jpg"
+			},
+			{
+				latLng: [52.37, 4.89],
+				name: "Amsterdam - Netherlands",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Amsterdam - Netherlands.jpg"
+			},
+			{
+				latLng: [37.98, 23.73],
+				name: "Athens - Greece",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Athens - Greece.jpg"
+			},
+			{
+				latLng: [-8.46, 115.27],
+				name: "Bali - Indonesia",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Bali - Indonesia.jpg"
+			},
+			{
+				latLng: [13.75, 100.49],
+				name: "Bangkok - Thailand",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Bangkok - Thailand.jpg"
+			},
+			{
+				latLng: [39.91, 116.39],
+				name: "Beijing - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Beijing - China.jpg"
+			},
+			{
+				latLng: [30.66, 104.06],
+				name: "Chengdu - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Chengdu - China.jpg"
+			},
+			{
+				latLng: [29.57, 106.55],
+				name: "Chongqing - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Chongqing - China.jpg"
+			},
+			{
+				latLng: [37.44, 116.35],
+				name: "Dezhou - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Dezhou - China.jpg"
+			},
+			{
+				latLng: [25.29, 51.53],
+				name: "Doha - Qatar",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Doha - Qatar.jpg"
+			},
+			{
+				latLng: [25.07, 55.19],
+				name: "Dubai - United Arab Emirates",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Dubai - United Arab Emirates.jpg"
+			},
+			{
+				latLng: [23.13, 113.26],
+				name: "Guangzhou - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Guangzhou - China.jpg"
+			},
+			{
+				latLng: [35.22, 139.03],
+				name: "Hakone - Japan",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Hakone - Japan.jpg"
+			},
+			{
+				latLng: [30.25, 120.21],
+				name: "Hangzhou - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Hangzhou - China.jpg"
+			},
+			{
+				latLng: [31.82, 117.22],
+				name: "Hefei - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Hefei - China.jpg"
+			},
+			{
+				latLng: [60.17, 24.94],
+				name: "Helsinki - Finland",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Helsinki - Finland.jpg"
+			},
+			{
+				latLng: [22.28, 114.16],
+				name: "Hong Kong - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Hong Kong - China.jpg"
+			},
+			{
+				latLng: [36.65, 117.11],
+				name: "Jinan - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Jinan - China.jpg"
+			},
+			{
+				latLng: [1.5, 103.75],
+				name: "Johor Bahru - Malaysia",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Johor Bahru - Malaysia.jpg"
+			},
+			{
+				latLng: [3.15, 101.69],
+				name: "Kuala Lumpur - Malaysia",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Kuala Lumpur - Malaysia.jpg"
+			},
+			{
+				latLng: [34.59, 119.22],
+				name: "Lianyungang - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Lianyungang - China.jpg"
+			},
+			{
+				latLng: [32.06, 118.79],
+				name: "Nanjing - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Nanjing - China.jpg"
+			},
+			{
+				latLng: [48.85, 2.35],
+				name: "Paris - France",
+				frequency: 10000,
+				imageUrl: "source/travel/photo/Paris - France.jpg"
+			},
+			{
+				latLng: [36.06, 120.38],
+				name: "Qingdao - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Qingdao - China.jpg"
+			},
+			{
+				latLng: [35.42, 119.52],
+				name: "Rizhao - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Rizhao - China.jpg"
+			},
+			{
+				latLng: [36.41, 25.46],
+				name: "Santorini - Greece",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Santorini - Greece.jpg"
+			},
+			{
+				latLng: [31.23, 121.47],
+				name: "Shanghai - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Shanghai - China.jpg"
+			},
+			{
+				latLng: [1.36, 103.82],
+				name: "Singapore - Singapore",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Singapore - Singapore.jpg"
+			},
+			{
+				latLng: [31.3, 120.58],
+				name: "Suzhou - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Suzhou - China.jpg"
+			},
+			{
+				latLng: [36.2, 117.08],
+				name: "Tai'an - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Tai'an - China.jpg"
+			},
+			{
+				latLng: [39.08, 117.2],
+				name: "Tianjin - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Tianjin - China.jpg"
+			},
+			{
+				latLng: [35.68, 139.77],
+				name: "Tokyo - Japan",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Tokyo - Japan.jpg"
+			},
+			{
+				latLng: [48.8, 2.13],
+				name: "Versailles - France",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Versailles - France.jpg"
+			},
+			{
+				latLng: [36.71, 119.16],
+				name: "Weifang - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Weifang - China.jpg"
+			},
+			{
+				latLng: [37.51, 122.12],
+				name: "Weihai - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Weihai - China.jpg"
+			},
+			{
+				latLng: [31.49, 120.31],
+				name: "Wuxi - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Wuxi - China.jpg"
+			},
+			{
+				latLng: [34.21, 117.28],
+				name: "Xuzhou - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Xuzhou - China.jpg"
+			},
+			{
+				latLng: [32.4, 119.41],
+				name: "Yangzhou - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Yangzhou - China.jpg"
+			},
+			{
+				latLng: [37.46, 121.44],
+				name: "Yantai - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Yantai - China.jpg"
+			},
+			{
+				latLng: [34.81, 117.32],
+				name: "Zaozhuang - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Zaozhuang - China.jpg"
+			},
+			{
+				latLng: [36.82, 117.98],
+				name: "Zibo - China",
+				frequency: 1,
+				imageUrl: "source/travel/photo/Zibo - China.jpg"
+			}
+			]
+		});
+	</script>
+
+</html>

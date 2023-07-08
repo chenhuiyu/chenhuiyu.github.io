@@ -8,8 +8,6 @@ import openai
 
 # Set your OpenAI API key
 # openai.api_key = 'your-openai-api-key'
-openai.organization = "org-vKWF67g2KjEjw9xurInSmRjF"
-openai.api_key = "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"
 
 class BlogHandler(FileSystemEventHandler):
     def on_created(self, event):
