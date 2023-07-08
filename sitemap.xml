@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chenhuiyu.github.io/travel/index.html</loc>
+    
+    <lastmod>2023-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/travel/Geo.json</loc>
+    
+    <lastmod>2023-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/2023/07/08/Tech%20Toolbox/GeoMapToBlog/</loc>
     
     <lastmod>2023-07-08</lastmod>
@@ -110,24 +128,6 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/travel/Geo.json</loc>
-    
-    <lastmod>2023-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/travel/index.html</loc>
-    
-    <lastmod>2023-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/categories/index.html</loc>
     
     <lastmod>2023-07-07</lastmod>
@@ -185,13 +185,6 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/IssueFix/</loc>
-    <lastmod>2023-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/</loc>
     <lastmod>2023-07-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -206,14 +199,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/DSSM/</loc>
-    <lastmod>2023-07-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Recommendation/</loc>
+    <loc>https://chenhuiyu.github.io/tags/IssueFix/</loc>
     <lastmod>2023-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -240,17 +226,24 @@
     <priority>0.2</priority>
   </url>
   
-
-  
   <url>
-    <loc>https://chenhuiyu.github.io/categories/Code-Chronicles/</loc>
+    <loc>https://chenhuiyu.github.io/tags/DSSM/</loc>
     <lastmod>2023-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/Debugging-Diaries/</loc>
+    <loc>https://chenhuiyu.github.io/tags/Recommendation/</loc>
+    <lastmod>2023-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/categories/Code-Chronicles/</loc>
     <lastmod>2023-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -264,7 +257,14 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
+    <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
+    <lastmod>2023-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/categories/Debugging-Diaries/</loc>
     <lastmod>2023-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -278,7 +278,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
+    <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
     <lastmod>2023-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
