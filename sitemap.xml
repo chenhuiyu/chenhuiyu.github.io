@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chenhuiyu.github.io/2023/07/08/Tech%20Toolbox/GeoMapToBlog/</loc>
+    
+    <lastmod>2023-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/2022/08/09/Wanderlust%20Adventures/%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5/</loc>
+    
+    <lastmod>2023-07-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/Python-yield/</loc>
     
     <lastmod>2023-07-08</lastmod>
@@ -92,15 +110,6 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/07/08/Tech%20Toolbox/GeoMapToBlog/</loc>
-    
-    <lastmod>2023-07-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/travel/Geo.json</loc>
     
     <lastmod>2023-07-08</lastmod>
@@ -138,15 +147,6 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/2023/07/07/Life%20Reflections/SUP%E4%BD%93%E9%AA%8C/</loc>
-    
-    <lastmod>2023-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/2022/08/09/Wanderlust%20Adventures/%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5/</loc>
     
     <lastmod>2023-07-06</lastmod>
     
@@ -220,14 +220,14 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/Git/</loc>
+    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
     <lastmod>2023-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
+    <loc>https://chenhuiyu.github.io/tags/Git/</loc>
     <lastmod>2023-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -271,14 +271,14 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
+    <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
     <lastmod>2023-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
+    <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
     <lastmod>2023-07-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
