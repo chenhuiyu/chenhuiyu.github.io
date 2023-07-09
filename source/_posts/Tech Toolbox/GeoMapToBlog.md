@@ -1,5 +1,5 @@
 ---
-title: 在 Blog 中添加可交互式足迹地图
+title: Hexo博客添加可交互式足迹地图
 date: 2023-07-08 13:40:21
 categories:
 - Tech Toolbox
