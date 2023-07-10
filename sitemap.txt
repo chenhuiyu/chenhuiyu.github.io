@@ -1,3 +1,4 @@
+https://chenhuiyu.github.io/2023/07/10/Code%20Chronicles/ColoredLogger/
 https://chenhuiyu.github.io/2023/07/09/NLP%20Insights/%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95/
 https://chenhuiyu.github.io/2023/07/08/Tech%20Toolbox/GeoMapToBlog/
 https://chenhuiyu.github.io/travel/Geo.json
@@ -30,6 +31,7 @@ https://chenhuiyu.github.io/tags/Git/
 https://chenhuiyu.github.io/tags/K8s/
 https://chenhuiyu.github.io/tags/Deep-Learning/
 https://chenhuiyu.github.io/tags/Gradient-Descent/
+https://chenhuiyu.github.io/tags/Python/
 https://chenhuiyu.github.io/categories/Debugging-Diaries/
 https://chenhuiyu.github.io/categories/Life-Reflections/
 https://chenhuiyu.github.io/categories/Code-Chronicles/

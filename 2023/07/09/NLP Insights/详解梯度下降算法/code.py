@@ -28,16 +28,16 @@ for j in range(60000):
     l2 = sigmoid(np.dot(l1, w1))
 
     # 计算损失
-    l2_error = y - l2
+    l2_loss = y - l2
 
     # 打印损失值
     if j % 10000 == 0:
-        print(f'Error: {np.mean(np.abs(l2_error))}')
+        print(f'Loss: {np.mean(np.abs(l2_loss))}')
 
     # 反向传播
-    l2_delta = l2_error * sigmoid(l2, deriv=True)
-    l1_error = l2_delta.dot(w1.T)
-    l1_delta = l1_error * sigmoid(l1, deriv=True)
+    l2_delta = l2_loss * sigmoid(l2, deriv=True)
+    l1_loss = l2_delta.dot(w1.T)
+    l1_delta = l1_loss * sigmoid(l1, deriv=True)
 
     # 更新权重
     w1 += l1.T.dot(l2_delta)
