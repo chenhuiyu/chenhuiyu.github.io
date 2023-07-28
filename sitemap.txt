@@ -1,3 +1,4 @@
+https://chenhuiyu.github.io/2023/07/28/NLP%20Insights/LONGNET:%20Scaling%20Transformers%20to%201,000,000,000%20Tokens/
 https://chenhuiyu.github.io/2022/08/09/Wanderlust%20Adventures/%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5/
 https://chenhuiyu.github.io/2023/07/27/NLP%20Insights/Prompt%20Engineering/
 https://chenhuiyu.github.io/2023/07/10/Code%20Chronicles/ColoredLogger/
