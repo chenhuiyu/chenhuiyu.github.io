@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://chenhuiyu.github.io/2022/08/09/Wanderlust%20Adventures/%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5/</loc>
+    <lastmod>2023-07-28</lastmod>
+  </url>
+  <url>
     <loc>https://chenhuiyu.github.io/2023/07/27/NLP%20Insights/Prompt%20Engineering/</loc>
     <lastmod>2023-07-27</lastmod>
   </url>
@@ -15,10 +19,6 @@
   <url>
     <loc>https://chenhuiyu.github.io/2023/07/08/Tech%20Toolbox/GeoMapToBlog/</loc>
     <lastmod>2023-07-09</lastmod>
-  </url>
-  <url>
-    <loc>https://chenhuiyu.github.io/2022/08/09/Wanderlust%20Adventures/%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5/</loc>
-    <lastmod>2023-07-08</lastmod>
   </url>
   <url>
     <loc>https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/Python-yield/</loc>
