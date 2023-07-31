@@ -200,13 +200,6 @@
 
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/IssueFix/</loc>
-    <lastmod>2023-07-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/tags/Python/</loc>
     <lastmod>2023-07-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -249,6 +242,13 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/tags/IssueFix/</loc>
+    <lastmod>2023-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/tags/DSSM/</loc>
     <lastmod>2023-07-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -277,13 +277,6 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
-    <lastmod>2023-07-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/tags/Deep-Learning/</loc>
     <lastmod>2023-07-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -292,6 +285,13 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Gradient-Descent/</loc>
+    <lastmod>2023-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
     <lastmod>2023-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -314,13 +314,6 @@
 
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/Debugging-Diaries/</loc>
-    <lastmod>2023-07-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/categories/Code-Chronicles/</loc>
     <lastmod>2023-07-31</lastmod>
     <changefreq>weekly</changefreq>
@@ -335,7 +328,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
+    <loc>https://chenhuiyu.github.io/categories/Debugging-Diaries/</loc>
     <lastmod>2023-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -350,6 +343,13 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
+    <lastmod>2023-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
     <lastmod>2023-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
