@@ -6,7 +6,7 @@
   <link href="https://chenhuiyu.github.io/atom.xml" rel="self"/>
   
   <link href="https://chenhuiyu.github.io/"/>
-  <updated>2023-08-21T06:36:38.141Z</updated>
+  <updated>2023-08-22T11:07:57.751Z</updated>
   <id>https://chenhuiyu.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>超越Python的边界：`subprocess` 助你一键执行外部命令</title>
+    <link href="https://chenhuiyu.github.io/2023/08/22/Code%20Chronicles/Python-subprocess/"/>
+    <id>https://chenhuiyu.github.io/2023/08/22/Code%20Chronicles/Python-subprocess/</id>
+    <published>2023-08-22T11:06:03.000Z</published>
+    <updated>2023-08-22T11:07:57.751Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="超越Python的边界：subprocess-助你一键执行外部命令"><a href="#超越Python的边界：subprocess-助你一键执行外部命令" class="headerlink" title="超越Python的边界：subprocess 助你一键执行外部命令"></a>超越Python的边界：<code>subprocess</code> 助你一键执行外部命令</h1><p>在日常开发中，有时候我们希望能够从 Python 脚本中执行系统命令或者其他程序。Python 提供了 <code>subprocess</code> 模块，使得这一操作变得既简单又安全。</p><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><code>subprocess</code> 模块是 Python 标准库的一部分，它提供了一种简单统一的方法来执行外部命令，与进程交互，读取它的输出，并获取它的返回码。无论你是在自动化某个系统任务，还是简单地想要从另一个程序中获取数据，<code>subprocess</code> 都能助你一臂之力。</p><h2 id="功能与用途"><a href="#功能与用途" class="headerlink" title="功能与用途"></a>功能与用途</h2><ol><li><p><strong>执行外部命令</strong>：你可以轻易地从 Python 脚本中运行任何外部命令，就像在命令行中输入命令一样。这种能力使得你能够在你的 Python 程序中调用并集成其他命令行工具，扩展你的应用的功能。</p></li><li><p><strong>捕获命令的输出</strong>：如果你想获取命令的输出并在 Python 脚本中处理，<code>subprocess</code> 也能满足你。你可以将命令的输出作为字符串捕获，然后进一步分析和处理，这在需要对命令输出进行解析或者提取时非常有用。</p></li><li><p><strong>错误处理</strong>：通过捕获返回码，你可以知道命令是否成功执行，或者是否发生了错误。这使得你能够根据命令的执行结果采取不同的操作，从而提高程序的健壮性。</p></li><li><p><strong>与进程交互</strong>：<code>subprocess</code> 不仅可以启动和停止进程，还可以与它们进行双向通信。这使得你能够在运行的外部进程中发送输入，并从其输出中获取数据，从而实现更高级的交互和控制。</p></li></ol><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="基本的命令执行"><a href="#基本的命令执行" class="headerlink" title="基本的命令执行"></a>基本的命令执行</h3><p>执行命令最简单的方法是使用 <code>subprocess.run()</code> 函数，它接受一个命令及其参数的列表，并返回一个 <code>CompletedProcess</code> 对象，其中包含了命令执行的结果。这使得你能够轻松地在你的脚本中运行外部命令，例如：</p><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">result = subprocess.run([<span class="string">'ls'</span>, <span class="string">'-l'</span>])</span><br></pre></td></tr></tbody></table></figure><h3 id="捕获命令输出"><a href="#捕获命令输出" class="headerlink" title="捕获命令输出"></a>捕获命令输出</h3><p>想要捕获命令的输出到 Python 脚本中，可以设置 <code>capture_output=True</code> 参数。此外，通过设置 <code>text=True</code> 参数，你可以以文本形式获取命令的输出：</p><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">result = subprocess.run([<span class="string">'ls'</span>, <span class="string">'-l'</span>], capture_output=<span class="literal">True</span>, text=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(result.stdout)</span><br></pre></td></tr></tbody></table></figure><h3 id="使用-shell"><a href="#使用-shell" class="headerlink" title="使用 shell"></a>使用 shell</h3><p>当你需要执行包含 shell 功能（例如管道或通配符）的命令时，可以设置 <code>shell=True</code> 参数，并将命令作为字符串传递给 <code>subprocess.run()</code>。这样，你可以执行更复杂的命令，如以下示例所示：</p><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">result = subprocess.run(<span class="string">'ls -l | grep "my_file"'</span>, shell=<span class="literal">True</span>, capture_output=<span class="literal">True</span>, text=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(result.stdout)</span><br></pre></td></tr></tbody></table></figure><p><strong>警告</strong>：虽然 <code>shell=True</code> 参数很有用，但使用时必须小心，因为它可能会让你的代码暴露于命令注入攻击。确保永远不要执行包含不受信任的输入的命令。</p><h3 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h3><p>命令如果返回一个非零的退出码，可以通过 <code>check=True</code> 参数来抛出异常。这使得你能够捕获命令执行过程中的错误，从而进行适当的处理：</p><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    result = subprocess.run([<span class="string">'ls'</span>, <span class="string">'non_existent_file'</span>], check=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">except</span> subprocess.CalledProcessError:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"命令执行出错!"</span>)</span><br></pre></td></tr></tbody></table></figure><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p><code>subprocess</code> 模块是 Python 中执行外部命令的强大工具。通过它，开发者可以轻松地与操作系统及其他应用程序交互，扩展程序的功能。然而，在使用 <code>subprocess</code> 时需要注意命令的安全性，以避免潜在的安全风险。通过合理地利用 <code>subprocess</code> 模块，你可以更好地管理外部命令的执行，并将其融入到你的 Python 应用中，提升开发效率。希望本文能够帮助你更深入地理解和使用 <code>subprocess</code> 模块的种种功能。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;超越Python的边界：subprocess-助你一键执行外部命令&quot;&gt;&lt;a href=&quot;#超越Python的边界：subprocess-助你一键执行外部命令&quot; class=&quot;headerlink&quot; title=&quot;超越Python的边界：subprocess 助你一</summary>
+      
+    
+    
+    
+    <category term="Code Chronicles" scheme="https://chenhuiyu.github.io/categories/Code-Chronicles/"/>
+    
+    
+    <category term="Python Basic" scheme="https://chenhuiyu.github.io/tags/Python-Basic/"/>
+    
+  </entry>
   
   <entry>
     <title>Conver Pytorch Model to ONNX Format</title>

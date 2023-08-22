@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://chenhuiyu.github.io/2023/08/22/Code%20Chronicles/Python-subprocess/</loc>
+    <lastmod>2023-08-22</lastmod>
+  </url>
+  <url>
     <loc>https://chenhuiyu.github.io/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format/</loc>
     <lastmod>2023-08-21</lastmod>
   </url>
