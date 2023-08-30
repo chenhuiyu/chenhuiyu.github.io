@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen` | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="无断开烦恼！远程服务器后台运行程序的3种方法：nohup、tmux和screenUninterrupted Remote Program Execution: 3 Methods在数据分析或机器学习项目中，经常需要在远程服务器上运行耗时长、计算密集型的任务。通过SSH连接到远程服务器是常见的操作方式。但是，如何确保在断开SSH连接之后，远程服务器上的程序能够继续运行呢？本文详细介绍了三种方法：no">
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen` | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="无断开烦恼！远程服务器后台运行程序的3种方法：nohup、tmux和screenUninterrupted Remote Program Execution: 3 Methods在数据分析或机器学习项目中，经常需要在远程服务器上运行耗时长、计算密集型的任务。通过SSH连接到远程服务器是常见的操作方式。但是，如何确保在断开SSH连接之后，远程服务器上的程序能够继续运行呢？本文详细介绍了三种方法：no">
 <meta property="og:type" content="article">
 <meta property="og:title" content="无断开烦恼！远程服务器后台运行程序的3种方法：&#96;nohup&#96;、&#96;tmux&#96;和&#96;screen&#96;">
 <meta property="og:url" content="https://chenhuiyu.github.io/2023/08/23/Code%20Chronicles/Python-Uninterrupted%20Remote%20Program%20Execution:%203%20Methods/index.html">
@@ -166,9 +166,9 @@ gtag('config', 'G-E8VVKC5KLZ');
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
-
+    })(window)</script><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
 </head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
   const $loadingBox = document.getElementById('loading-box')
   const $body = document.body

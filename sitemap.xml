@@ -20,6 +20,15 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/2023/07/07/Life%20Reflections/SUP%E4%BD%93%E9%AA%8C/</loc>
+    
+    <lastmod>2023-08-30</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/2023/08/29/NLP%20Insights/Connect%20Tabular%20and%20Language%20Model%20for%20CTR%20Prediction/</loc>
     
     <lastmod>2023-08-30</lastmod>
@@ -253,15 +262,6 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://chenhuiyu.github.io/2023/07/07/Life%20Reflections/SUP%E4%BD%93%E9%AA%8C/</loc>
-    
-    <lastmod>2023-07-06</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
   <url>
     <loc>https://chenhuiyu.github.io/</loc>
@@ -273,13 +273,6 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/IssueFix/</loc>
-    <lastmod>2023-08-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Python/</loc>
     <lastmod>2023-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -307,7 +300,14 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/</loc>
+    <loc>https://chenhuiyu.github.io/tags/Python/</loc>
+    <lastmod>2023-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Guide-to-Living-on-Singapore-Island/</loc>
     <lastmod>2023-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -315,6 +315,13 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Sports/</loc>
+    <lastmod>2023-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/</loc>
     <lastmod>2023-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -342,6 +349,20 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/tags/LLM/</loc>
+    <lastmod>2023-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Recommendation/</loc>
+    <lastmod>2023-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/tags/Onnx/</loc>
     <lastmod>2023-08-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -356,21 +377,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/LLM/</loc>
-    <lastmod>2023-08-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/tags/DSSM/</loc>
-    <lastmod>2023-08-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Recommendation/</loc>
     <lastmod>2023-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -392,13 +399,6 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Gradient-Descent/</loc>
-    <lastmod>2023-08-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Guide-to-Living-on-Singapore-Island/</loc>
     <lastmod>2023-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -435,14 +435,14 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
+    <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
     <lastmod>2023-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
+    <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
     <lastmod>2023-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
