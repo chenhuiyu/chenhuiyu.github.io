@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://chenhuiyu.github.io/2023/07/07/Life%20Reflections/SUP%E4%BD%93%E9%AA%8C.en/</loc>
+    <lastmod>2023-08-30</lastmod>
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/2023/07/07/Life%20Reflections/SUP%E4%BD%93%E9%AA%8C.zh-CN/</loc>
+    <lastmod>2023-08-30</lastmod>
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/2023/08/29/NLP%20Insights/Connect%20Tabular%20and%20Language%20Model%20for%20CTR%20Prediction/</loc>
+    <lastmod>2023-08-30</lastmod>
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/2023/08/29/NLP%20Insights/Towards%20Open-World%20Recommendation%20with%20KnowledgeAugmentation%20from%20Large%20Language%20Models/</loc>
+    <lastmod>2023-08-29</lastmod>
+  </url>
+  <url>
     <loc>https://chenhuiyu.github.io/2023/08/23/Code%20Chronicles/Python-Uninterrupted%20Remote%20Program%20Execution:%203%20Methods/</loc>
     <lastmod>2023-08-23</lastmod>
   </url>
