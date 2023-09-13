@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chenhuiyu.github.io/2023/09/13/Debugging%20Diaries/Resolving%20Port%20Conflicts:%20Identifying%20and%20Terminating%20Processes/</loc>
+    
+    <lastmod>2023-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/2023/09/13/Debugging%20Diaries/%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E5%86%B2%E7%AA%81%EF%BC%9A%E6%9F%A5%E6%89%BE%E5%B9%B6%E7%BB%88%E6%AD%A2%E8%BF%9B%E7%A8%8B/</loc>
+    
+    <lastmod>2023-09-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/2023/07/07/Life%20Reflections/SUP%E4%BD%93%E9%AA%8C.en/</loc>
     
     <lastmod>2023-08-30</lastmod>
@@ -265,7 +283,7 @@
 
   <url>
     <loc>https://chenhuiyu.github.io/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -273,133 +291,133 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/IssueFix/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/FAISS/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Embedding/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Python-Basic/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Python/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Guide-to-Living-on-Singapore-Island/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Sports/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Git/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/K8s/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/LLM/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Recommendation/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Onnx/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Deployment/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/DSSM/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Prompt/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Deep-Learning/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Gradient-Descent/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -408,42 +426,42 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Debugging-Diaries/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Code-Chronicles/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Life-Reflections/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
-    <lastmod>2023-08-30</lastmod>
+    <lastmod>2023-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

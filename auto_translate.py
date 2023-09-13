@@ -6,7 +6,7 @@ from tenacity import retry, stop_after_attempt, wait_random_exponential
 
 # Initialize OpenAI API key (replace with your own key)
 openai.organization = "org-vKWF67g2KjEjw9xurInSmRjF"
-openai.api_key = "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"
+openai.api_key = "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"
 
 
 # Function to process a directory and its subdirectories
