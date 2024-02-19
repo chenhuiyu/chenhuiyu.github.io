@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>How to Resolve SSH Key Issues with Multiple Git Services</title>
+      <link href="/2024/02/19/Debugging%20Diaries/How%20to%20Resolve%20SSH%20Key%20Issues%20with%20Multiple%20Git%20Services/"/>
+      <url>/2024/02/19/Debugging%20Diaries/How%20to%20Resolve%20SSH%20Key%20Issues%20with%20Multiple%20Git%20Services/</url>
+      
+        <content type="html"><![CDATA[<h1 id="How-to-Resolve-SSH-Key-Issues-with-Multiple-Git-Services-🗝️"><a href="#How-to-Resolve-SSH-Key-Issues-with-Multiple-Git-Services-🗝️" class="headerlink" title="How to Resolve SSH Key Issues with Multiple Git Services 🗝️"></a>How to Resolve SSH Key Issues with Multiple Git Services 🗝️</h1><p>When using Git with different Git services such as GitHub and GitLab, you may encounter SSH key issues. This article will guide you on how to set up and configure SSH keys so that you can work smoothly with multiple services simultaneously.</p><h2 id="1-Generate-SSH-Keys-🔑"><a href="#1-Generate-SSH-Keys-🔑" class="headerlink" title="1. Generate SSH Keys 🔑"></a>1. Generate SSH Keys 🔑</h2><p>First, generate a separate SSH key for each Git service.</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C <span class="string">"your_email@example.com"</span></span><br></pre></td></tr></tbody></table></figure><p>When generating the keys, save each key with a different filename, for example, <code>id_rsa_github</code> and <code>id_rsa_gitlab</code>.</p><h2 id="2-Add-SSH-Keys-to-Git-Services-🌐"><a href="#2-Add-SSH-Keys-to-Git-Services-🌐" class="headerlink" title="2. Add SSH Keys to Git Services 🌐"></a>2. Add SSH Keys to Git Services 🌐</h2><p>Log in to your GitHub and GitLab accounts, then add the generated public keys (<code>.pub</code> files) to the SSH key sections of each respective account.</p><h2 id="3-Configure-SSH-⚙️"><a href="#3-Configure-SSH-⚙️" class="headerlink" title="3. Configure SSH ⚙️"></a>3. Configure SSH ⚙️</h2><p>Create or edit the <code>~/.ssh/config</code> file to configure different SSH keys for each service.</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GitHub</span></span><br><span class="line">Host github.com</span><br><span class="line">  HostName github.com</span><br><span class="line">  User git</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa_github</span><br><span class="line"></span><br><span class="line"><span class="comment"># GitLab</span></span><br><span class="line">Host gitlab.com</span><br><span class="line">  HostName gitlab.com</span><br><span class="line">  User git</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa_gitlab</span><br></pre></td></tr></tbody></table></figure><p>If your company uses a custom GitLab instance, add a separate configuration block for it.</p><h2 id="4-Test-SSH-Connections-🧪"><a href="#4-Test-SSH-Connections-🧪" class="headerlink" title="4. Test SSH Connections 🧪"></a>4. Test SSH Connections 🧪</h2><p>Test if you can successfully connect to each service via SSH.</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line">ssh -T git@gitlab.com</span><br></pre></td></tr></tbody></table></figure><h2 id="5-Handling-Common-Errors-❗"><a href="#5-Handling-Common-Errors-❗" class="headerlink" title="5. Handling Common Errors ❗"></a>5. Handling Common Errors ❗</h2><p>If you encounter errors such as “Permission denied (publickey)”, check the following:</p><ul><li>Ensure SSH keys are correctly added to the respective Git services.</li><li>Verify if the <code>~/.ssh/config</code> file is configured correctly.</li><li>Use the <code>ssh-add</code> command to ensure SSH keys are loaded into the SSH Agent.</li></ul><h2 id="6-Common-Issues-and-Solutions-💡"><a href="#6-Common-Issues-and-Solutions-💡" class="headerlink" title="6. Common Issues and Solutions 💡"></a>6. Common Issues and Solutions 💡</h2><ul><li><strong>Multiple GitLab Instances</strong>: If you use a custom GitLab instance along with GitLab.com, ensure they are separately configured in the SSH <code>config</code> file.</li><li><strong>Network Issues</strong>: Check if any network settings (like proxies, VPNs) might affect SSH connections.</li></ul><hr><p>By following the above steps, you should be able to resolve most SSH key-related issues, especially when dealing with multiple Git services. If you have further questions or specific scenarios, feel free to ask in the comments. 🚀✨</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Debugging Diaries 🛠️ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IssueFix 🔧 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>如何解决多个 Git 服务的 SSH 密钥问题</title>
+      <link href="/2024/02/19/Debugging%20Diaries/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%A4%9A%E4%B8%AA%20Git%20%E6%9C%8D%E5%8A%A1%E7%9A%84%20SSH%20%E5%AF%86%E9%92%A5%E9%97%AE%E9%A2%98/"/>
+      <url>/2024/02/19/Debugging%20Diaries/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%A4%9A%E4%B8%AA%20Git%20%E6%9C%8D%E5%8A%A1%E7%9A%84%20SSH%20%E5%AF%86%E9%92%A5%E9%97%AE%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<h1 id="如何解决多个-Git-服务的-SSH-密钥问题-🗝️"><a href="#如何解决多个-Git-服务的-SSH-密钥问题-🗝️" class="headerlink" title="如何解决多个 Git 服务的 SSH 密钥问题 🗝️"></a>如何解决多个 Git 服务的 SSH 密钥问题 🗝️</h1><p>在使用 Git 和不同的 Git 服务（如 GitHub 和 GitLab）时，可能会遇到 SSH 密钥的问题。本文将指导你如何设置和配置 SSH 密钥，以便可以同时与多个服务顺利工作。</p><h2 id="1-生成-SSH-密钥-🔑"><a href="#1-生成-SSH-密钥-🔑" class="headerlink" title="1. 生成 SSH 密钥 🔑"></a>1. 生成 SSH 密钥 🔑</h2><p>首先，为每个 Git 服务生成一个独立的 SSH 密钥。</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C <span class="string">"your_email@example.com"</span></span><br></pre></td></tr></tbody></table></figure><p>在生成密钥时，将每个密钥保存为不同的文件名，例如 <code>id_rsa_github</code> 和 <code>id_rsa_gitlab</code>。</p><h2 id="2-将-SSH-密钥添加到-Git-服务-🌐"><a href="#2-将-SSH-密钥添加到-Git-服务-🌐" class="headerlink" title="2. 将 SSH 密钥添加到 Git 服务 🌐"></a>2. 将 SSH 密钥添加到 Git 服务 🌐</h2><p>登录到你的 GitHub 和 GitLab 账户，然后将生成的公钥（<code>.pub</code> 文件）添加到各自账户的 SSH 密钥部分。</p><h2 id="3-配置-SSH-⚙️"><a href="#3-配置-SSH-⚙️" class="headerlink" title="3. 配置 SSH ⚙️"></a>3. 配置 SSH ⚙️</h2><p>创建或编辑 <code>~/.ssh/config</code> 文件，为每个服务配置不同的 SSH 密钥。</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GitHub</span></span><br><span class="line">Host github.com</span><br><span class="line">  HostName github.com</span><br><span class="line">  User git</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa_github</span><br><span class="line"></span><br><span class="line"><span class="comment"># GitLab</span></span><br><span class="line">Host gitlab.com</span><br><span class="line">  HostName gitlab.com</span><br><span class="line">  User git</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa_gitlab</span><br></pre></td></tr></tbody></table></figure><p>如果你的公司使用自定义的 GitLab 实例，请为其添加一个单独的配置块。</p><h2 id="4-测试-SSH-连接-🧪"><a href="#4-测试-SSH-连接-🧪" class="headerlink" title="4. 测试 SSH 连接 🧪"></a>4. 测试 SSH 连接 🧪</h2><p>测试是否能成功通过 SSH 连接到每个服务。</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br><span class="line">ssh -T git@gitlab.com</span><br></pre></td></tr></tbody></table></figure><h2 id="5-处理常见错误-❗"><a href="#5-处理常见错误-❗" class="headerlink" title="5. 处理常见错误 ❗"></a>5. 处理常见错误 ❗</h2><p>如果遇到错误，如 “Permission denied (publickey)”，请检查以下几点：</p><ul><li>确认 SSH 密钥是否已正确添加到相应的 Git 服务。</li><li>检查 <code>~/.ssh/config</code> 文件是否正确配置。</li><li>使用 <code>ssh-add</code> 命令确保 SSH 密钥已加载到 SSH Agent。</li></ul><h2 id="6-常见问题和解决方案-💡"><a href="#6-常见问题和解决方案-💡" class="headerlink" title="6. 常见问题和解决方案 💡"></a>6. 常见问题和解决方案 💡</h2><ul><li><strong>多个 GitLab 实例</strong>：如果你使用了公司的自定义 GitLab 实例和 GitLab.com，请确保 SSH <code>config</code> 文件中它们的配置是分开的。</li><li><strong>网络问题</strong>：检查是否有网络设置（如代理、VPN）可能影响 SSH 连接。</li></ul><hr><p>通过遵循以上步骤，你应该能够解决大部分与 SSH 密钥相关的问题，特别是在处理多个 Git 服务时。如果有进一步的问题或者特殊情况，欢迎在评论中提出。 🚀✨</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Debugging Diaries 🛠️ </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> IssueFix 🔧 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>理解大型语言模型中Fine-tuning和Further Pretraining的区别</title>
       <link href="/2024/02/19/NLP%20Insights/%E7%90%86%E8%A7%A3%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%ADFine-tuning%E5%92%8CFurther%20Pretraining%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
       <url>/2024/02/19/NLP%20Insights/%E7%90%86%E8%A7%A3%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%ADFine-tuning%E5%92%8CFurther%20Pretraining%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
