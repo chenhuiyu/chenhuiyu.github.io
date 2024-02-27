@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chenhuiyu.github.io/2024/02/19/Debugging%20Diaries/How%20to%20Resolve%20SSH%20Key%20Issues%20with%20Multiple%20Git%20Services/</loc>
+    
+    <lastmod>2024-02-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/2024/02/19/Debugging%20Diaries/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%A4%9A%E4%B8%AA%20Git%20%E6%9C%8D%E5%8A%A1%E7%9A%84%20SSH%20%E5%AF%86%E9%92%A5%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2024-02-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/2024/02/27/NLP%20Insights/FastChat%20%E8%AE%AD%E7%BB%83%E8%84%9A%E6%9C%AC%E4%BB%A3%E7%A0%81%E9%80%90%E8%A1%8C%E8%A7%A3%E6%9E%90-Train.py%20%E3%80%90FastChat%20%E7%B3%BB%E5%88%97%E7%AC%AC%201%20%E7%AF%87%E3%80%91/</loc>
     
     <lastmod>2024-02-27</lastmod>
@@ -66,24 +84,6 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/2024/02/19/NLP%20Insights/Understanding%20the%20Differences%20Between%20Fine-tuning%20and%20Further%20Pretraining%20in%20Large%20Language%20Models/</loc>
-    
-    <lastmod>2024-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/2024/02/19/Debugging%20Diaries/How%20to%20Resolve%20SSH%20Key%20Issues%20with%20Multiple%20Git%20Services/</loc>
-    
-    <lastmod>2024-02-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/2024/02/19/Debugging%20Diaries/%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%A4%9A%E4%B8%AA%20Git%20%E6%9C%8D%E5%8A%A1%E7%9A%84%20SSH%20%E5%AF%86%E9%92%A5%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2024-02-19</lastmod>
     
@@ -538,13 +538,6 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/IssueFix-%F0%9F%94%A7/</loc>
-    <lastmod>2024-02-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/tags/Language-Learning/</loc>
     <lastmod>2024-02-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -611,13 +604,6 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
-    <lastmod>2024-02-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/categories/Debugging-Diaries-%F0%9F%9B%A0%EF%B8%8F/</loc>
     <lastmod>2024-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
