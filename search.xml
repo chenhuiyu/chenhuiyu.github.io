@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>【Python题解】2369. 检查数组是否存在有效划分</title>
+      <link href="/2024/03/01/Code%20Chronicles/2369.%20%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86/"/>
+      <url>/2024/03/01/Code%20Chronicles/2369.%20%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="【Python-题解】2369-检查数组的有效划分方法"><a href="#【Python-题解】2369-检查数组的有效划分方法" class="headerlink" title="【Python 题解】2369. 检查数组的有效划分方法"></a>【Python 题解】2369. 检查数组的有效划分方法</h1><h2 id="题目概述"><a href="#题目概述" class="headerlink" title="题目概述"></a>题目概述</h2><p>Leetcode 的题目 2369 要求我们检查一个整数数组<code>nums</code>是否可以划分为一个或多个满足特定条件的连续子数组。有效的划分条件包括：</p><ul><li>子数组由两个相等的元素组成，如 <code>[2, 2]</code>。</li><li>子数组由三个相等的元素组成，如 <code>[3, 3, 3]</code>。</li><li>子数组由三个连续递增的元素组成，且相邻元素之间差值为 1，如 <code>[4, 5, 6]</code>。</li></ul><p>如果数组至少存在一种有效划分，则返回<code>true</code>；否则返回<code>false</code>。</p><h2 id="示例分析"><a href="#示例分析" class="headerlink" title="示例分析"></a>示例分析</h2><ul><li>示例 1：<code>nums = [4, 4, 4, 5, 6]</code>可以划分为 <code>[4, 4]</code> 和 <code>[4, 5, 6]</code>，因此返回<code>true</code>。</li><li>示例 2：<code>nums = [1, 1, 1, 2]</code>不满足任何划分条件，因此返回<code>false</code>。</li></ul><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>采用<strong>动态规划</strong>策略，我们定义一个布尔数组<code>dp</code>，其中<code>dp[i]</code>表示数组的前<code>i</code>个元素是否可以有效地划分。遍历数组，对于每个位置<code>i</code>，尝试以下三种划分方式：</p><ol><li>子数组由最后两个相等的元素组成。</li><li>子数组由最后三个相等的元素组成。</li><li>子数组由最后三个连续递增的元素组成。</li></ol><h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><ol><li>初始化 dp[0] 为 true，表示空数组可以有效划分。</li><li>对于每个 i（从 2 开始），检查是否可以通过上述三种方式之一将数组划分到 i。</li><li>最终，dp[n]（其中 n 是数组的长度）给出了整个数组是否可以有效划分的答案。</li><li>如果任何一种方式可行，则将<code>dp[i]</code>设置为<code>true</code>。</li></ol><p>具体来讲<br>初始化：</p><ol><li>初始化 dp[0]为 true，表示空数组是可以被有效划分的。</li><li>状态转移：对于数组中的每个元素 nums[i]（从第二个元素开始），考虑以下几种情况：<ul><li>如果 nums[i]与 nums[i-1]相等，检查 dp[i-2]是否为 true。如果是，表示[nums[i-1], nums[i]]可以形成有效划分，设置 dp[i]为 true。</li><li>如果 nums[i]、nums[i-1]和 nums[i-2]三者相等，同样检查 dp[i-3]。如果 dp[i-3]为 true，表示[nums[i-2], nums[i-1], nums[i]]可以形成有效划分，设置 dp[i]为 true。</li><li>如果 nums[i]、nums[i-1]和 nums[i-2]形成连续递增序列（即 nums[i]-1 == nums[i-1]且 nums[i-1]-1 == nums[i-2]），检查 dp[i-3]。若为 true，则设置 dp[i]为 true。</li></ul></li><li>结果判断：<ul><li>最终，检查 dp[n]的值（其中 n 是数组 nums 的长度）。如果 dp[n]为 true，则表示整个数组可以被有效划分；否则，不可以。</li></ul></li></ol><h2 id="动态规划实现"><a href="#动态规划实现" class="headerlink" title="动态规划实现"></a>动态规划实现</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">validPartition</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        dp = [<span class="literal">False</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="literal">True</span>  <span class="comment"># 空数组视为有效划分</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> nums[i - <span class="number">1</span>] == nums[i - <span class="number">2</span>]:</span><br><span class="line">                dp[i] = dp[i] <span class="keyword">or</span> dp[i - <span class="number">2</span>]</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">2</span> <span class="keyword">and</span> nums[i - <span class="number">1</span>] == nums[i - <span class="number">2</span>] == nums[i - <span class="number">3</span>]:</span><br><span class="line">                dp[i] = dp[i] <span class="keyword">or</span> dp[i - <span class="number">3</span>]</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">2</span> <span class="keyword">and</span> nums[i - <span class="number">1</span>] - <span class="number">1</span> == nums[i - <span class="number">2</span>] <span class="keyword">and</span> nums[i - <span class="number">2</span>] - <span class="number">1</span> == nums[i - <span class="number">3</span>]:</span><br><span class="line">                dp[i] = dp[i] <span class="keyword">or</span> dp[i - <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></tbody></table></figure><h2 id="算法复杂度分析"><a href="#算法复杂度分析" class="headerlink" title="算法复杂度分析"></a>算法复杂度分析</h2><ul><li><strong>时间复杂度</strong>：O(N)，其中 N 是数组<code>nums</code>的长度，需要遍历整个数组来填充动态规划数组。</li><li><strong>空间复杂度</strong>：O(N)，用于存储动态规划数组<code>dp</code>，记录每个位置的划分情况。</li></ul><p>通过动态规划，我们提供了一种高效且直观的解决方案，确保算法的优化性能，适用于类似的数组划分问题。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Code Chronicles </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Leetcode </tag>
+            
+            <tag> 每日一题 </tag>
+            
+            <tag> 动态规划 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Gorilla LLM 大语言模型简介</title>
       <link href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs/"/>
       <url>/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs/</url>
