@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://chenhuiyu.github.io/2024/03/08/Code%20Chronicles/2834.%20%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C/</loc>
+    
+    <lastmod>2024-03-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/2024/03/05/Life%20Reflections/%E8%B7%9F%E7%9D%80GPT%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A/</loc>
     
     <lastmod>2024-03-05</lastmod>
@@ -445,7 +454,7 @@
 
   <url>
     <loc>https://chenhuiyu.github.io/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -453,224 +462,224 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Python/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Leetcode/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/FAISS/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Embedding/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Python-Basic/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/IssueFix/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Language-Learning/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/English-Vocabulary/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Guide-to-Living-on-Singapore-Island/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Sports/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/LLM/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Recommendation/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Onnx/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Deployment/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Chatbot/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/DSSM/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/FastChat/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Train/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Agent/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Tool-Use/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Gorilla/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Prompt/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Deep-Learning/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Gradient-Descent/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Git/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/K8s/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Small-Talk/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -679,42 +688,42 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Code-Chronicles/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Debugging-Diaries/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Life-Reflections/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
-    <lastmod>2024-03-05</lastmod>
+    <lastmod>2024-03-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
