@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://chenhuiyu.github.io/2024/08/07/NLP%20Insights/%E4%BD%BF%E7%94%A8vLLM%E8%BF%90%E8%A1%8C%E5%BE%AE%E8%B0%83%E5%90%8E%E7%9A%84Gemma-2/</loc>
+    <lastmod>2024-08-07</lastmod>
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/2024/08/07/NLP%20Insights/Running%20Fine-tuned%20Gemma-2-2b-it%20with%20vLLM/</loc>
+    <lastmod>2024-08-07</lastmod>
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/2024/04/17/NLP%20Insights/%20%E5%9B%B0%E6%83%91%E5%BA%A6(PPL)/</loc>
+    <lastmod>2024-04-17</lastmod>
+  </url>
+  <url>
     <loc>https://chenhuiyu.github.io/2024/03/08/Code%20Chronicles/2834.%20%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C/</loc>
     <lastmod>2024-03-08</lastmod>
   </url>
@@ -15,10 +27,6 @@
   <url>
     <loc>https://chenhuiyu.github.io/2024/03/04/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100226.%20%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE/</loc>
     <lastmod>2024-03-05</lastmod>
-  </url>
-  <url>
-    <loc>https://chenhuiyu.github.io/2023/03/03/NLP%20Insights/Connect%20Tabular%20and%20Language%20Model%20for%20CTR%20Prediction/</loc>
-    <lastmod>2024-03-03</lastmod>
   </url>
   <url>
     <loc>https://chenhuiyu.github.io/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I/</loc>
