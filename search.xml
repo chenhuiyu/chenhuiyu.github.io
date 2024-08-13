@@ -22,7 +22,7 @@
             
             <tag> SGLang </tag>
             
-            <tag> Structrued LLM </tag>
+            <tag> Structured LLM </tag>
             
         </tags>
       
@@ -333,9 +333,9 @@
       
         <tags>
             
-            <tag> LLM </tag>
-            
             <tag> FastChat </tag>
+            
+            <tag> LLM </tag>
             
             <tag> Train </tag>
             
@@ -362,9 +362,9 @@
       
         <tags>
             
-            <tag> LLM </tag>
-            
             <tag> FastChat </tag>
+            
+            <tag> LLM </tag>
             
             <tag> Train </tag>
             
@@ -699,9 +699,9 @@
       
         <tags>
             
-            <tag> LLM </tag>
-            
             <tag> Recommendation </tag>
+            
+            <tag> LLM </tag>
             
         </tags>
       
@@ -1038,9 +1038,9 @@
       
         <tags>
             
-            <tag> Recommendation </tag>
-            
             <tag> DSSM </tag>
+            
+            <tag> Recommendation </tag>
             
         </tags>
       

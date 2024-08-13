@@ -586,14 +586,42 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/LLM/</loc>
+    <loc>https://chenhuiyu.github.io/tags/Small-Talk/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/Recommendation/</loc>
+    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Git/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/K8s/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Language-Modeling/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Perplexity/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -628,7 +656,21 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/tags/Recommendation/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/tags/FastChat/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/LLM/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -670,62 +712,6 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/Deep-Learning/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Gradient-Descent/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Git/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/K8s/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Small-Talk/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Language-Modeling/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Perplexity/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/tags/vLLM/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -747,6 +733,20 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/tags/Deep-Learning/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Gradient-Descent/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/tags/SGLang/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -754,7 +754,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/Structrued-LLM/</loc>
+    <loc>https://chenhuiyu.github.io/tags/Structured-LLM/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -784,13 +784,6 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -799,6 +792,13 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
