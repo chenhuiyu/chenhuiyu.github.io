@@ -488,62 +488,6 @@
 
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/Python/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Leetcode/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/FAISS/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Embedding/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Python-Basic/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/tags/IssueFix/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -565,7 +509,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/Guide-to-Living-on-Singapore-Island/</loc>
+    <loc>https://chenhuiyu.github.io/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -579,7 +523,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/</loc>
+    <loc>https://chenhuiyu.github.io/tags/Guide-to-Living-on-Singapore-Island/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -587,27 +531,6 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Small-Talk/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Git/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/K8s/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -733,6 +656,20 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/tags/SGLang/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Structured-LLM/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/tags/Deep-Learning/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
@@ -747,27 +684,83 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/SGLang/</loc>
+    <loc>https://chenhuiyu.github.io/tags/Python/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/Structured-LLM/</loc>
+    <loc>https://chenhuiyu.github.io/tags/Leetcode/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/FAISS/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Embedding/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Python-Basic/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Git/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/K8s/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
 
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/categories/Code-Chronicles/</loc>
-    <lastmod>2024-08-13</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Debugging-Diaries/</loc>
@@ -791,14 +784,21 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
+    <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
+    <loc>https://chenhuiyu.github.io/categories/Code-Chronicles/</loc>
+    <lastmod>2024-08-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
     <lastmod>2024-08-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
