@@ -203,8 +203,7 @@ gtag('config', 'G-E8VVKC5KLZ');
 <li>该架构与第一个Llama非常相似，增加了Groupe Query Attention（GQA）<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2305.13245.pdf">此论文</a>之后</li>
 <li>将<code>config.pretraining_tp</code>设置为不同于1的值将激活线性层的更准确但更慢的计算，这应更好地匹配原始logits。</li>
 <li>原始模型使用<code>pad_id = -1</code>，这意味着没有填充令牌。我们不能使用相同的逻辑，请确保使用<code>tokenizer.add_special_tokens({"pad_token":"&lt;pad&gt;"})</code>添加填充令牌，并相应地调整令牌嵌入大小。您还应设置<code>model.config.pad_token_id</code>。模型的embed_tokens层用<code>self.embed_tokens = nn.Embedding(config.vocab_size, config.hidden_size, self.config.padding_idx)</code>初始化，确保编码填充令牌将输出零，因此在初始化时传递它是推荐的。</li>
-<li>填写表格并获得模型检查点的访问权限后，您应该能够使用已转换的检查点。否则，如果您正在转换自己的模型，请随时使用转换脚本。可以使用以下（示例）命令调用脚本：<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python src/transformers/models/llama/convert_llama_weights_to_hf.py \</span><br><span class="line">    --input_dir /path/to/downloaded/llama/weights --model_size 7B --output_dir /output/path</span><br></pre></td></tr></tbody></table></figure>
-</li>
+<li>填写表格并获得模型检查点的访问权限后，您应该能够使用已转换的检查点。否则，如果您正在转换自己的模型，请随时使用转换脚本。可以使用以下（示例）命令调用脚本：<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python src/transformers/models/llama/convert_llama_weights_to_hf.py \</span><br><span class="line">    --input_dir /path/to/downloaded/llama/weights --model_size 7B --output_dir /output/path</span><br></pre></td></tr></tbody></table></figure></li>
 </ul>
 <h2 id="模型详情"><a href="#模型详情" class="headerlink" title="模型详情"></a>模型详情</h2><p>注意：使用该模型受 Meta 许可证的约束。为了下载模型权重和分词器，请访问网站并在请求访问之前接受许可证。</p>
 <p>Meta 开发并公开发布了 Llama 2 系列大型语言模型（LLMs），这是一系列规模从 70 亿到 700 亿参数的预训练和微调的生成式文本模型。我们的微调 LLMs，称为 Llama-2-Chat，经过优化用于对话应用场景。Llama-2-Chat 模型在我们测试的大多数基准测试中优于开源聊天模型，并在我们的人工评估中在有用性和安全性方面与一些流行的闭源模型（如ChatGPT和PaLM）持平。</p>
@@ -213,8 +212,7 @@ gtag('config', 'G-E8VVKC5KLZ');
 <h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><p>输入模型仅支持文本输入。</p>
 <p>输出模型仅生成文本。</p>
 <h2 id="模型架构"><a href="#模型架构" class="headerlink" title="模型架构"></a>模型架构</h2><p>Llama 2 是一种自回归语言模型，采用了优化的 Transformer 架构。微调版本使用有监督的微调（SFT）和基于人类反馈的强化学习（RLHF）来与人类对 helpfulness 和 safety 的偏好保持一致。</p>
-<h2 id="训练数据"><a href="#训练数据" class="headerlink" title="训练数据"></a>训练数据</h2><div class="table-container">
-<table>
+<h2 id="训练数据"><a href="#训练数据" class="headerlink" title="训练数据"></a>训练数据</h2><table>
 <thead>
 <tr>
 <th>模型名称</th>
@@ -226,8 +224,7 @@ gtag('config', 'G-E8VVKC5KLZ');
 <th>LR</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Llama 2</td>
 <td>一种新的公开可用的在线数据混合</td>
 <td>7B</td>
@@ -254,9 +251,7 @@ gtag('config', 'G-E8VVKC5KLZ');
 <td>2.0T</td>
 <td>1.5 x 10-4</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>注：Token counts 仅指预训练数据。所有模型都使用全局 batch-size 为 4M tokens 进行训练。规模更大的模型（70B）使用 Grouped-Query Attention（GQA）来提高推理可伸缩性。</p>
 <h2 id="模型训练日期"><a href="#模型训练日期" class="headerlink" title="模型训练日期"></a>模型训练日期</h2><p>Llama 2 在2023年1月至2023年7月之间进行训练。</p>
 <h2 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h2><p>这是一个在离线数据集上训练的静态模型。随着我们根据社区反馈改进模型的安全性，将发布微调版本的未来版本。</p>
@@ -271,7 +266,6 @@ gtag('config', 'G-E8VVKC5KLZ');
 </ul>
 <h2 id="硬件和软件"><a href="#硬件和软件" class="headerlink" title="硬件和软件"></a>硬件和软件</h2><h3 id="训练因素"><a href="#训练因素" class="headerlink" title="训练因素"></a>训练因素</h3><p>我们使用自定义训练库、Meta 的 Research Super Cluster 以及生产集群进行预训练。微调、标注和评估也是在第三方云计算上执行的。</p>
 <h3 id="碳足迹"><a href="#碳足迹" class="headerlink" title="碳足迹"></a>碳足迹</h3><p>预训练过程中使用了累计 330 万 GPU 小时的计算，使用的硬件类型为 A100-80GB（TDP 为 350-400W）。预计总排放量为 539 tCO2eq，其中 100% 由 Meta 的可持续性计划抵消。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -281,8 +275,7 @@ gtag('config', 'G-E8VVKC5KLZ');
 <th>排放碳量（tCO2eq）</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Llama 2 7B</td>
 <td>184,320</td>
 <td>400</td>
@@ -306,15 +299,12 @@ gtag('config', 'G-E8VVKC5KLZ');
 <td></td>
 <td>539.00</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>预训练期间的二氧化碳排放量。时间：每个模型训练所需的总 GPU 时间。功耗：用于所使用的 GPU 设备的每个 GPU 的峰值功率容量，调整后的</p>
 <p>功耗使用效率。100% 的排放直接由 Meta 的可持续性计划抵消，因为我们正在公开发布这些模型，预训练成本不需要由他人承担。</p>
 <h2 id="训练数据-1"><a href="#训练数据-1" class="headerlink" title="训练数据"></a>训练数据</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p>Llama 2 在来自公开来源的数据中预训练了 2 万亿个 tokens。微调数据包括公开可用的指导数据集，以及一百万个新的人工标注示例。预训练和微调数据集均不包含 Meta 用户数据。</p>
 <h3 id="数据新鲜度"><a href="#数据新鲜度" class="headerlink" title="数据新鲜度"></a>数据新鲜度</h3><p>预训练数据截止日期为 2022 年 9 月，但一些微调数据更近，最多至 2023 年 7 月。</p>
 <h2 id="评估结果"><a href="#评估结果" class="headerlink" title="评估结果"></a>评估结果</h2><p>在此部分，我们报告了 Llama 1 和 Llama 2 模型在标准学术基准测试上的结果。对于所有评估，我们使用我们的内部评估库。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -330,8 +320,7 @@ gtag('config', 'G-E8VVKC5KLZ');
 <th>AGI Eval</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Llama 1</td>
 <td>7B</td>
 <td>14.1</td>
@@ -415,12 +404,9 @@ gtag('config', 'G-E8VVKC5KLZ');
 <td>51.2</td>
 <td>54.2</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>模型在 grouped academic benchmarks 上的整体表现。Code：我们报告模型在 HumanEval 和 MBPP 上的平均 pass@1 分数。常识推理：我们报告 PIQA、SIQA、HellaSwag、WinoGrande、ARC easy 和 challenge、OpenBookQA 和 CommonsenseQA 的平均分数。我们对 CommonSenseQA 进行了 7-shot 结果评估，对其他所有基准测试进行了 0-shot 结果评估。世界知识：我们在 NaturalQuestions 和 TriviaQA 上进行 5-shot 性能评估并报告平均分数。阅读理解：对于阅读理解，我们报告 SQuAD、QuAC 和 BoolQ 的 0-shot 平均分数。数学：我们报告 GSM8K（8-shot）和 MATH（4-shot）基准测试的平均分数。</p>
-<h3 id="TruthfulQA-和-Toxigen"><a href="#TruthfulQA-和-Toxigen" class="headerlink" title="TruthfulQA 和 Toxigen"></a>TruthfulQA 和 Toxigen</h3><div class="table-container">
-<table>
+<h3 id="TruthfulQA-和-Toxigen"><a href="#TruthfulQA-和-Toxigen" class="headerlink" title="TruthfulQA 和 Toxigen"></a>TruthfulQA 和 Toxigen</h3><table>
 <thead>
 <tr>
 <th>模型</th>
@@ -429,8 +415,7 @@ gtag('config', 'G-E8VVKC5KLZ');
 <th>Toxigen</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Llama 1</td>
 <td>7B</td>
 <td>27.42</td>
@@ -472,12 +457,9 @@ gtag('config', 'G-E8VVKC5KLZ');
 <td>50.18</td>
 <td>24.60</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>预训练 LLMs 在自动安全基准测试上的评估结果。对于 TruthfulQA，我们呈现同时具有真实性和信息量的生成百分比（百分比越高越好）。对于 ToxiGen，我们呈现有害生成的百分比（百分比越小越好）。</p>
-<h3 id="TruthfulQA-和-Toxigen（微调版本-LLMs）"><a href="#TruthfulQA-和-Toxigen（微调版本-LLMs）" class="headerlink" title="TruthfulQA 和 Toxigen（微调版本 LLMs）"></a>TruthfulQA 和 Toxigen（微调版本 LLMs）</h3><div class="table-container">
-<table>
+<h3 id="TruthfulQA-和-Toxigen（微调版本-LLMs）"><a href="#TruthfulQA-和-Toxigen（微调版本-LLMs）" class="headerlink" title="TruthfulQA 和 Toxigen（微调版本 LLMs）"></a>TruthfulQA 和 Toxigen（微调版本 LLMs）</h3><table>
 <thead>
 <tr>
 <th>模型</th>
@@ -486,8 +468,7 @@ gtag('config', 'G-E8VVKC5KLZ');
 <th>Toxigen</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Llama-2-Chat</td>
 <td>7B</td>
 <td>57.04</td>
@@ -505,15 +486,13 @@ gtag('config', 'G-E8VVKC5KLZ');
 <td>64.14</td>
 <td>0.01</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>不同安全数据集上微调 LLMs 的评估结果。度量标准定义同上。</p>
 <h2 id="道德考虑和局限性"><a href="#道德考虑和局限性" class="headerlink" title="道德考虑和局限性"></a>道德考虑和局限性</h2><p>Llama 2 是一项具有风险的新技术。迄今为止的测试仅涵盖了英语，并且无法覆盖所有场景。因此，与所有 LLMs 一样，Llama 2 的潜在输出无法事先预测，并且在某些情况下可能会产生不准确、带偏见或其他不可取的响应。因此，在部署任何 Llama 2 应用程序之前，开发人员应根据其特定的模型应用进行安全测试和调整。</p>
 <p>请参阅“负责任使用指南”，网址为：<a target="_blank" rel="noopener" href="https://ai.meta.com/llama/responsible-use-guide/">https://ai.meta.com/llama/responsible-use-guide/</a></p>
 <h2 id="报告问题"><a href="#报告问题" class="headerlink" title="报告问题"></a>报告问题</h2><p>请通过以下方式之一报告任何软件“bug”或模型的其他问题：</p>
 <ul>
-<li>报告模型问题：[github.com/facebookresearch/llama](<a target="_blank" rel="noopener" href="https://github">https://github</a></li>
+<li>报告模型问题：[github.com/facebookresearch/llama](<a target="_blank" rel="noopener" href="https://github/">https://github</a></li>
 </ul>
 <p>.com/facebookresearch/llama)</p>
 <ul>

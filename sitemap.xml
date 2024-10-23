@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/04/17/NLP%20Insights/%20%E5%9B%B0%E6%83%91%E5%BA%A6(PPL)/</loc>
+    <loc>https://chenhuiyu.github.io/2024/10/23/NLP%20Insights/LLM%E8%AE%AD%E7%BB%83%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D%EF%BC%9ASFT%E3%80%81LoRA%E3%80%81Alignment%E3%80%81KTO%E5%92%8CDPO/</loc>
     
     <lastmod>2024-10-23</lastmod>
     
@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/10/23/NLP%20Insights/LLM%E8%AE%AD%E7%BB%83%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D%EF%BC%9ASFT%E3%80%81LoRA%E3%80%81Alignment%E3%80%81KTO%E5%92%8CDPO/</loc>
+    <loc>https://chenhuiyu.github.io/2024/04/17/NLP%20Insights/%20%E5%9B%B0%E6%83%91%E5%BA%A6(PPL)/</loc>
     
     <lastmod>2024-10-23</lastmod>
     
@@ -525,6 +525,13 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/tags/FAISS/</loc>
     <lastmod>2024-10-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -539,13 +546,6 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</loc>
-    <lastmod>2024-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/tags/Python-Basic/</loc>
     <lastmod>2024-10-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -554,27 +554,6 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/</loc>
-    <lastmod>2024-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
-    <lastmod>2024-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Git/</loc>
-    <lastmod>2024-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/K8s/</loc>
     <lastmod>2024-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -617,6 +596,27 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Small-Talk/</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Git/</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/K8s/</loc>
     <lastmod>2024-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -786,6 +786,13 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/categories/Life-Reflections/</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
     <lastmod>2024-10-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -794,13 +801,6 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
-    <lastmod>2024-10-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/categories/Life-Reflections/</loc>
     <lastmod>2024-10-23</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
