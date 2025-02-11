@@ -690,6 +690,13 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
+    <lastmod>2025-02-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/tags/Small-Talk/</loc>
     <lastmod>2025-02-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -697,7 +704,21 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
+    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
+    <lastmod>2025-02-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Git/</loc>
+    <lastmod>2025-02-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/K8s/</loc>
     <lastmod>2025-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -850,27 +871,6 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
-    <lastmod>2025-02-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Git/</loc>
-    <lastmod>2025-02-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/K8s/</loc>
-    <lastmod>2025-02-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
@@ -895,13 +895,6 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
-    <lastmod>2025-02-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
     <lastmod>2025-02-11</lastmod>
     <changefreq>weekly</changefreq>
@@ -910,6 +903,13 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
+    <lastmod>2025-02-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
     <lastmod>2025-02-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
