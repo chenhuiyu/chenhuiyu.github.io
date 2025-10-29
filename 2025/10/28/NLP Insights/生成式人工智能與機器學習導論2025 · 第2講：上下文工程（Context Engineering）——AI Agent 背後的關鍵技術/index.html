@@ -1,0 +1,1212 @@
+<!DOCTYPE html><html lang="[&quot;en&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>黑头呆鱼进化之旅 | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="生成式人工智能与机器学习导论2025 · 第2讲：上下文工程（Context Engineering）——AI Agent 背后的关键技术在生成式人工智能（Generative AI）与大型语言模型（Large Language Model, LLM）不断演进的浪潮中，上下文工程（Context Engineering）逐渐被公认为推动 AI Agent 真正具备智能行为的关键基础。它不仅是 Pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="黑头呆鱼进化之旅">
+<meta property="og:url" content="https://chenhuiyu.github.io/2025/10/28/NLP%20Insights/%E7%94%9F%E6%88%90%E5%BC%8F%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E8%88%87%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E5%B0%8E%E8%AB%962025%20%C2%B7%20%E7%AC%AC2%E8%AC%9B%EF%BC%9A%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B%EF%BC%88Context%20Engineering%EF%BC%89%E2%80%94%E2%80%94AI%20Agent%20%E8%83%8C%E5%BE%8C%E7%9A%84%E9%97%9C%E9%8D%B5%E6%8A%80%E8%A1%93/index.html">
+<meta property="og:site_name" content="黑头呆鱼进化之旅">
+<meta property="og:description" content="生成式人工智能与机器学习导论2025 · 第2讲：上下文工程（Context Engineering）——AI Agent 背后的关键技术在生成式人工智能（Generative AI）与大型语言模型（Large Language Model, LLM）不断演进的浪潮中，上下文工程（Context Engineering）逐渐被公认为推动 AI Agent 真正具备智能行为的关键基础。它不仅是 Pr">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://chenhuiyu.github.io/img/avatar.jpeg">
+<meta property="article:published_time" content="2025-10-28T10:28:04.843Z">
+<meta property="article:modified_time" content="2025-10-29T02:32:23.971Z">
+<meta property="article:author" content="Huiyu Chen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenhuiyu.github.io/img/avatar.jpeg"><link rel="shortcut icon" href="/img/favicon.svg"><link rel="canonical" href="https://chenhuiyu.github.io/2025/10/28/NLP%20Insights/%E7%94%9F%E6%88%90%E5%BC%8F%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E8%88%87%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E5%B0%8E%E8%AB%962025%20%C2%B7%20%E7%AC%AC2%E8%AC%9B%EF%BC%9A%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B%EF%BC%88Context%20Engineering%EF%BC%89%E2%80%94%E2%80%94AI%20Agent%20%E8%83%8C%E5%BE%8C%E7%9A%84%E9%97%9C%E9%8D%B5%E6%8A%80%E8%A1%93/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="CySrjlAceN5JQTPeVkDbVQrJgmS-AP_NxBrhTggcHEM"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-E8VVKC5KLZ"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-E8VVKC5KLZ');
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '黑头呆鱼进化之旅',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-10-29 10:32:23'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">Loading...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    document.addEventListener('pjax:send', () => { preloader.initLoading() })
+    document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+  }
+})()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpeg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">65</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> Books</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/travel/"><i class="fa-fw fas fa-earth"></i><span> Travel</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> About</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/sitemap.xml"><i class="fa-fw sitemap fa-sitemap"></i><span> Sitemap</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/background.jpeg')"><nav id="nav"><span id="blog-info"><a href="/" title="黑头呆鱼进化之旅"><span class="site-name">黑头呆鱼进化之旅</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> Books</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/travel/"><i class="fa-fw fas fa-earth"></i><span> Travel</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-heart"></i><span> About</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/sitemap.xml"><i class="fa-fw sitemap fa-sitemap"></i><span> Sitemap</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">No title</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-10-28T10:28:04.843Z" title="Created 2025-10-28 18:28:04">2025-10-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-10-29T02:32:23.971Z" title="Updated 2025-10-29 10:32:23">2025-10-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">12.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>39min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="生成式人工智能与机器学习导论2025-·-第2讲：上下文工程（Context-Engineering）——AI-Agent-背后的关键技术"><a href="#生成式人工智能与机器学习导论2025-·-第2讲：上下文工程（Context-Engineering）——AI-Agent-背后的关键技术" class="headerlink" title="生成式人工智能与机器学习导论2025 · 第2讲：上下文工程（Context Engineering）——AI Agent 背后的关键技术"></a>生成式人工智能与机器学习导论2025 · 第2讲：上下文工程（Context Engineering）——AI Agent 背后的关键技术</h2><p>在生成式人工智能（Generative AI）与大型语言模型（Large Language Model, LLM）不断演进的浪潮中，<strong>上下文工程（Context Engineering）</strong>逐渐被公认为推动 AI Agent 真正具备智能行为的关键基础。它不仅是 Prompt Engineering 的延伸，更是让模型能够整合世界知识、记忆、个人偏好与任务约束的系统性方法论。</p>
+<p>本文深入整理台大李宏毅教授于《生成式人工智能与机器学习导论2025》第2讲中的核心观点，并扩充理论背景与实务应用，从概念源起、技术结构到未来发展方向，全方位阐述 Context Engineering 的核心价值与挑战。我们将从语言模型的本质出发，探讨为什么在 AI Agent 时代，Context Engineering 成为了一项关键的技术。</p>
+<hr>
+
+<p>语言模型可抽象为函数 f(x)，其中 x 即为 Prompt/Context，输出由输入与模型先验共同决定。对于输出不理想的问题，工程上只有两条路：要么训练（改 f），要么设计（改 x）。在商用闭源模型难以触碰权重的现实下，优化输入成为最具性价比的控制手段。因而 Context Engineering 的核心即是”在推理时刻构造对的 x”。</p>
+
+<p>“改 f”与”改 x”的权衡并非二选一：前者需要数据、算力与风险控制；后者强调语义约束、先验引导与即时知识注入。对多数应用而言，先用 Context 把可控空间压到足够小，再评估是否值得进入训练与微调阶段，是更务实的路径。把训练预算花在”最痛点”的能力缺口上，其他由 Context 承担。</p>
+
+<p>高质量 Prompt 不只是任务描述，还应包含：目标与验收标准、边界与禁止项、语气与读者画像、长度与格式约定，以及 1–3 个覆盖边界情形的示例。示例优于口头定义，能直接对齐隐含规则。把这些元素结构化放入 Context，可显著降低模型歧义与风格漂移。</p>
+
+<p>补充前提能有效消除歧义，例如”载具是什么意思？”若缺少情境，模型可能在”交通工具/电子载具”间摇摆；一旦加入”超商结账场景”，答案会自然收敛到电子发票载具。语义前提是约束空间的重要手段，越具体的情境越能减少错误自由度。</p>
+
+<p>场景信息不仅改变术语解释，还会改变对事实的判断分布。曼谷运河中的”鳄鱼”在加入地理与文化线索后被识别为”水巨蜥”，并给出”吉祥/偏财运”的在地含义。Context 让模型”知道自己身在何处”，从而输出贴合环境的答案。</p>
+
+<p>示例对齐格式远胜抽象描述。”火星文”若无示例，模型可能做字形替换；给出”注音替换”的正例后，模型即可稳定迁移。工程实践中，应优先提供”正反 + 边界”的小样本示例，以最小 token 预算获得最大行为约束。</p>
+<h3 id="二、Prompt-Engineering-与-Context-Engineering-的关系与演进"><a href="#二、Prompt-Engineering-与-Context-Engineering-的关系与演进" class="headerlink" title="二、Prompt Engineering 与 Context Engineering 的关系与演进"></a>二、Prompt Engineering 与 Context Engineering 的关系与演进</h3><h4 id="2-1-神奇咒语时代的终结"><a href="#2-1-神奇咒语时代的终结" class="headerlink" title="2.1 神奇咒语时代的终结"></a>2.1 神奇咒语时代的终结</h4><p>在 2023 年以前，Prompt Engineering 几乎是所有开发者的”魔法技术”：</p>
+<p><strong>早期神奇咒语的效果：</strong></p>
+<ul>
+<li>加入”Let’s think step by step”能显著提升推理能力</li>
+<li>使用”You are a helpful assistant”可稳定生成风格</li>
+<li>甚至调整分隔符号或换行格式，都会改变模型行为</li>
+<li>给模型”小费”（”如果你答对就给你小费”）能提高正确率</li>
+<li>告诉模型”深呼吸再回答”也能改善表现</li>
+</ul>
+<p><strong>神奇咒语失效的原因：</strong><br>随着 GPT-4 及 Gemini 系列的能力提升，模型逐渐具备了内在的逻辑推理与自我校正能力。经验研究显示：”魔法咒语”的效果随模型能力增长而递减，提示的结构与语义关联性取代了符号与格式的魔术效应。</p>
+<table>
+<thead>
+<tr>
+<th>时期</th>
+<th>模型</th>
+<th>无咒语准确率</th>
+<th>有咒语准确率</th>
+<th>效果提升</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2023 年 6 月</td>
+<td>GPT-3.5</td>
+<td>72%</td>
+<td>88%</td>
+<td>+16%</td>
+</tr>
+<tr>
+<td>2024 年 2 月</td>
+<td>GPT-4</td>
+<td>85%</td>
+<td>89%</td>
+<td>+4%</td>
+</tr>
+</tbody></table>
+<p>由此可见，<strong>当模型”足够聪明”后，真正重要的已非提示字词，而是上下文整体的信息设计。</strong> Context Engineering 应运而生，它不再着眼于如何”说服”模型，而是如何”构建语义环境”让模型自然地做出正确推理。</p>
+<h4 id="2-2-Context-Engineering-的本质"><a href="#2-2-Context-Engineering-的本质" class="headerlink" title="2.2 Context Engineering 的本质"></a>2.2 Context Engineering 的本质</h4><p>Context Engineering 和 Prompt Engineering 在本质上没有根本性的不同，都是通过优化语言模型的输入来获得更好的输出。但它们的关注重点不同：</p>
+<p><strong>Prompt Engineering 关注：</strong></p>
+<ul>
+<li>特定的格式要求（JSON 格式、分隔符等）</li>
+<li>神奇咒语和技巧</li>
+<li>单次交互的优化</li>
+</ul>
+<p><strong>Context Engineering 关注：</strong></p>
+<ul>
+<li>整体上下文的组织和管理</li>
+<li>多轮对话的连贯性</li>
+<li>动态信息整合</li>
+<li>长期记忆管理</li>
+<li>工具和外部知识的整合</li>
+</ul>
+<h4 id="2-3-从-Prompt-到-Context-的演进"><a href="#2-3-从-Prompt-到-Context-的演进" class="headerlink" title="2.3 从 Prompt 到 Context 的演进"></a>2.3 从 Prompt 到 Context 的演进</h4><p>这一变化标志着工程焦点从”单句提示设计”转向”整体上下文组织”。Context Engineering 的核心目标是：</p>
+<ol>
+<li><strong>避免塞爆 context</strong>：只放需要的东西进入 context，清理掉不需要的内容</li>
+<li><strong>动态管理</strong>：根据任务进展实时调整上下文内容</li>
+<li><strong>层次化组织</strong>：将不同类型的信息分层管理</li>
+<li><strong>自动化处理</strong>：让语言模型自己来管理自己的输入</li>
+</ol>
+<hr>
+
+<p>神奇咒语的效应随模型能力增强而递减：早期”step-by-step””深呼吸””给小费”等提示曾显著提升正确率，如今更关键的是上下文结构化与任务约束。工程实践中，应将提示技巧沉淀为稳定的上下文模版，而非依赖临场口头”魔法”。</p>
+
+<p>有趣但不可靠的”激励偏好”实验（如”世界和平””母亲为你骄傲”）说明模型对提示语境存在非理性响应，但这类现象在强模型上影响大幅收敛。生产中应避免寄望这类”彩蛋”，将资源投入数据与上下文治理。</p>
+
+<p>实验对比（2023 vs 2024）显示：无咒语的基线能力显著提升，咒语带来的增益从两位数降至个位数。意味着”如何组织信息”比”如何措辞”更重要。将知识、记忆、工具与约束编排为可复用的上下文模板，成为新一代工程重心。</p>
+
+<p>arXiv 成为前沿工作的首发阵地（如”2206”表示 2022 年 6 月），方便快速公开与社区复核。研发团队应建立”arXiv→内部评审→复现实验→工程化落地”的快速通道，缩短从论文到产品的转化链路。</p>
+<h3 id="三、Context-Engineering-的核心概念"><a href="#三、Context-Engineering-的核心概念" class="headerlink" title="三、Context Engineering 的核心概念"></a>三、Context Engineering 的核心概念</h3><h4 id="3-1-Context-Engineering-的定义"><a href="#3-1-Context-Engineering-的定义" class="headerlink" title="3.1 Context Engineering 的定义"></a>3.1 Context Engineering 的定义</h4><p>Context Engineering 的核心理念是：</p>
+<blockquote>
+<p><strong>以系统化方式构建、维护与优化语言模型的上下文，使模型在运行阶段能即时获取任务所需的全部信息，并表现出一致、可靠与可控的智能行为。</strong></p>
+</blockquote>
+<p>不同于传统的 Prompt Engineering，Context Engineering 更强调<strong>结构化（structured）、动态化（dynamic）、层次化（hierarchical）</strong>的上下文管理。它被视为”模型外部的认知架构”，为模型临时提供一个模拟的”世界模型（world model）”与”任务记忆（task memory）”。</p>
+<h4 id="3-2-完整-Context-的七大组成要素"><a href="#3-2-完整-Context-的七大组成要素" class="headerlink" title="3.2 完整 Context 的七大组成要素"></a>3.2 完整 Context 的七大组成要素</h4><p>一个完整的 Context 应该包含以下七个核心要素：</p>
+<p><strong>1. 用户 Prompt（User Prompt）</strong></p>
+<ul>
+<li>用户对语言模型下的具体指令</li>
+<li>包含任务描述和详细指引</li>
+<li>例如：写请假信时，除了说明要请假，还要提供语气、长度、格式等具体要求</li>
+</ul>
+<p><strong>2. 系统提示（System Prompt）</strong></p>
+<ul>
+<li>开发语言模型平台的人设定的基础信息</li>
+<li>定义模型的身份、行为准则和限制</li>
+<li>例如：Claude 3 Opus 的 System Prompt 超过 2500 字，包含身份描述、使用说明、禁止事项等</li>
+</ul>
+<p><strong>3. 对话历史记录（Conversation History）</strong></p>
+<ul>
+<li>相当于语言模型的短期记忆</li>
+<li>在多轮对话中保持语义连续性</li>
+<li>让模型能够记住之前讨论的内容</li>
+</ul>
+<p><strong>4. 长期记忆（Long-term Memory）</strong></p>
+<ul>
+<li>跨越多次互动的记忆系统</li>
+<li>记录用户偏好、历史决策、个人化设定等</li>
+<li>例如：ChatGPT 的长期记忆功能，可以记住用户的写作习惯和偏好</li>
+</ul>
+<p><strong>5. 外部知识检索（External Knowledge Retrieval）</strong></p>
+<ul>
+<li>通过 RAG（Retrieval-Augmented Generation）技术</li>
+<li>整合外部文件、数据库、网络搜索等最新信息</li>
+<li>解决模型知识有限和过时的问题</li>
+</ul>
+<p><strong>6. 工具使用说明（Tool Usage Instructions）</strong></p>
+<ul>
+<li>告诉模型如何使用各种工具</li>
+<li>包括工具的功能描述、使用方法和示例</li>
+<li>让模型能够调用外部工具完成任务</li>
+</ul>
+<p><strong>7. 模型自身产生的思考过程（Model’s Own Reasoning）</strong></p>
+<ul>
+<li>模型在回答前的内部思考过程</li>
+<li>包括推理步骤、验证过程、多角度分析等</li>
+<li>例如：GPT-4o 的深度思考能力</li>
+</ul>
+<h4 id="3-3-Context-的运作原理"><a href="#3-3-Context-的运作原理" class="headerlink" title="3.3 Context 的运作原理"></a>3.3 Context 的运作原理</h4><p>Context 不只是静态文本，而是一个动态信息流：</p>
+<ol>
+<li><strong>即时组装</strong>：在每次请求中，系统会根据当前任务即时组装上下文</li>
+<li><strong>信息融合</strong>：将历史对话、知识检索结果、工具说明等整合</li>
+<li><strong>优先级管理</strong>：根据任务重要性安排不同信息的优先级</li>
+<li><strong>动态调整</strong>：根据任务进展实时调整上下文内容</li>
+</ol>
+<p>这样的”上下文拼接”过程类似于临时构建一个任务专属的脑内工作区域（working memory buffer），模型在此基础上进行概率推理与决策生成。</p>
+<h4 id="3-4-Context-Engineering-的技术挑战"><a href="#3-4-Context-Engineering-的技术挑战" class="headerlink" title="3.4 Context Engineering 的技术挑战"></a>3.4 Context Engineering 的技术挑战</h4><p>Context Engineering 涉及多个尚未完全解决的挑战：</p>
+<p><strong>1. Token 预算与压缩（Context Budgeting）</strong></p>
+<ul>
+<li>如何在有限上下文长度下选取最关键信息</li>
+<li>避免”塞爆 context”的问题</li>
+<li>实现信息的有效压缩和摘要</li>
+</ul>
+<p><strong>2. 信息优先级排序（Context Ranking）</strong></p>
+<ul>
+<li>哪些知识应放在模型的注意力焦点？</li>
+<li>如何根据任务动态调整信息重要性</li>
+<li>实现智能的信息筛选机制</li>
+</ul>
+<p><strong>3. 多来源整合（Multimodal Context Fusion）</strong></p>
+<ul>
+<li>如何融合文本、图像、代码、知识图谱等异质信息</li>
+<li>处理不同格式和结构的数据</li>
+<li>保持信息的一致性和连贯性</li>
+</ul>
+<p><strong>4. 记忆一致性（Memory Alignment）</strong></p>
+<ul>
+<li>如何在长期互动中保持角色与知识的连贯性</li>
+<li>避免记忆冲突和矛盾</li>
+<li>实现记忆的智能更新和遗忘</li>
+</ul>
+<p>随着 Context Length 延展（如 Gemini 1.5 的百万 token 规模）与动态上下文选择算法的出现，Context Engineering 正快速演变为一个结合 NLP、IR、知识工程与人机互动的新兴学科。</p>
+<hr>
+<h3 id="四、In-Context-Learning：模型”假学习”的奇迹"><a href="#四、In-Context-Learning：模型”假学习”的奇迹" class="headerlink" title="四、In-Context Learning：模型”假学习”的奇迹"></a>四、In-Context Learning：模型”假学习”的奇迹</h3><h4 id="4-1-In-Context-Learning-的核心机制"><a href="#4-1-In-Context-Learning-的核心机制" class="headerlink" title="4.1 In-Context Learning 的核心机制"></a>4.1 In-Context Learning 的核心机制</h4><p>In-Context Learning（ICL）揭示了一个令人惊讶的现象：大型语言模型在不更新权重的情况下，仅凭上下文提示就能完成类似”学习”的行为。从认知角度看，ICL 代表了一种”条件式适应（conditional adaptation）”机制——模型在观察范例后，于其潜在表征空间中临时建立对应的推理模式。</p>
+<p><strong>ICL 的工作原理：</strong></p>
+<ol>
+<li>模型接收包含示例的上下文</li>
+<li>通过注意力机制识别示例中的模式</li>
+<li>在推理时应用这些模式到新任务</li>
+<li>整个过程不改变模型参数</li>
+</ol>
+<h4 id="4-2-经典案例：Gemini-1-5-的卡拉蒙语翻译"><a href="#4-2-经典案例：Gemini-1-5-的卡拉蒙语翻译" class="headerlink" title="4.2 经典案例：Gemini 1.5 的卡拉蒙语翻译"></a>4.2 经典案例：Gemini 1.5 的卡拉蒙语翻译</h4><p>最著名的 ICL 案例来自 Gemini 1.5 的技术报告。研究人员让 Gemini 翻译一种极少人使用的语言——卡拉蒙语（Kalamang）：</p>
+<p><strong>实验设置：</strong></p>
+<ul>
+<li>卡拉蒙语全球只有数千人使用</li>
+<li>网络上几乎找不到相关学习资料</li>
+<li>模型原本完全不知道这种语言</li>
+</ul>
+<p><strong>实验过程：</strong></p>
+<ol>
+<li>直接要求翻译：模型完全无法处理</li>
+<li>提供卡拉蒙语教科书和字典：模型突然”学会”了翻译</li>
+<li>翻译质量达到人类水平（4-5.5分，满分6分）</li>
+</ol>
+<p><strong>关键发现：</strong></p>
+<ul>
+<li>真正有用的是教科书中的例句，而非语法说明</li>
+<li>模型通过例句学会了语言模式</li>
+<li>移除教科书后，模型又”忘记”了这种语言</li>
+</ul>
+<h4 id="4-3-ICL-的理论意义"><a href="#4-3-ICL-的理论意义" class="headerlink" title="4.3 ICL 的理论意义"></a>4.3 ICL 的理论意义</h4><p>这一现象的理论意涵深远：</p>
+<p><strong>1. 挑战传统学习观</strong></p>
+<ul>
+<li>传统观点：学习必须依赖权重更新</li>
+<li>ICL 显示：模型可以在推理阶段”模拟学习”</li>
+<li>参数不变，但行为发生改变</li>
+</ul>
+<p><strong>2. 内隐的元学习</strong></p>
+<ul>
+<li>模型的权重早已学会”如何从上下文中学习”</li>
+<li>这是一种内隐的元学习（implicit meta-learning）</li>
+<li>模型具备了”学会学习”的能力</li>
+</ul>
+<p><strong>3. 即时知识注入的可能性</strong></p>
+<ul>
+<li>未来 AI 可能实现”即时知识注入”</li>
+<li>不需要重新训练就能获得新能力</li>
+<li>Context Engineering 正是这一过程的设计科学</li>
+</ul>
+<h4 id="4-4-ICL-在-Context-Engineering-中的应用"><a href="#4-4-ICL-在-Context-Engineering-中的应用" class="headerlink" title="4.4 ICL 在 Context Engineering 中的应用"></a>4.4 ICL 在 Context Engineering 中的应用</h4><p>ICL 为 Context Engineering 提供了重要启示：</p>
+<p><strong>1. 示例的重要性</strong></p>
+<ul>
+<li>提供正确的示例比详细的说明更有效</li>
+<li>示例应该覆盖任务的典型情况</li>
+<li>示例的质量直接影响模型表现</li>
+</ul>
+<p><strong>2. 上下文设计原则</strong></p>
+<ul>
+<li>将关键信息放在上下文的合适位置</li>
+<li>利用模型的注意力机制引导学习</li>
+<li>通过示例传递隐含的规则和约束</li>
+</ul>
+<p><strong>3. 动态适应能力</strong></p>
+<ul>
+<li>模型可以根据上下文动态调整行为</li>
+<li>不需要重新训练就能适应新任务</li>
+<li>这为 AI Agent 的灵活性提供了基础</li>
+</ul>
+<hr>
+
+<p>ICL（In-Context Learning）指模型在不改变权重的情况下，仅凭上下文示例临时”对齐”到新任务。它依靠注意力在潜在表征空间中识别与复用模式，属于推理阶段的条件式适应，而非训练阶段的参数更新。</p>
+
+<p>ICL 的基本流程：给出高质量示例→模型在上下文中归纳出映射规则→对新样本进行迁移推断→全程不涉及参数更新。示例的覆盖面与放置位置会显著影响归纳质量。</p>
+
+<p>Kalamang（卡拉蒙语）案例：极低资源、网络几乎无资料，模型初始”不会”。直接要求翻译失败，体现纯模型先验的边界与知识缺口。</p>
+
+<p>将教科书与字典注入上下文后，模型”会了”翻译，显示 ICL 可在推理时完成能力注入。关键在于上下文内容与结构，而非参数微调。</p>
+
+<p>人工评分显示，给足上下文后，翻译质量可逼近人类（4–5.5/6）。这并非真正”学会”，而是以上下文为外部工作记忆完成模式复用。</p>
+
+<p>后续分析发现：语法说明远不如”成对例句”有用。示例是最强的结构化监督，应优先投入 token 预算于”覆盖代表性边界”的对照样例。</p>
+
+<p>“学习”需加引号：移除教科书后能力随即消散，说明模型权重并未改变。ICL 的收益完全依赖上下文在当前回合中的存在与质量。</p>
+
+<p>隐式元学习：大模型权重中早已内化”如何从上下文学习”的程序性能力。工程上应把握这一先验，侧重”示例与约束的编排”。</p>
+
+<p>ICL 设计原则：少而精的高质量示例；覆盖正反与边界情形；将关键信息放在更易被注意的位置（如开头/结尾）；配合明确的任务与验收标准。</p>
+
+<p>在 Context Engineering 中，ICL 是即时知识注入与行为对齐的主力手段，可在无训练预算下快速获得”可用的正确性”。其上限由示例质量与上下文治理决定。</p>
+<h3 id="五、System-Prompt：人格化模型的隐藏架构"><a href="#五、System-Prompt：人格化模型的隐藏架构" class="headerlink" title="五、System Prompt：人格化模型的隐藏架构"></a>五、System Prompt：人格化模型的隐藏架构</h3><h4 id="5-1-System-Prompt-的核心作用"><a href="#5-1-System-Prompt-的核心作用" class="headerlink" title="5.1 System Prompt 的核心作用"></a>5.1 System Prompt 的核心作用</h4><p>System Prompt 是每个语言模型的”人格蓝图”，是决定其性格、行为准则与思维风格的核心结构。它不仅仅是一段系统指令，而是一套<strong>语义层级极高的行为规范框架</strong>，定义模型在每次对话中该如何”存在”。</p>
+<p><strong>System Prompt 的关键特征：</strong></p>
+<ul>
+<li>在每次对话开始时就被注入</li>
+<li>用户无法直接看到或修改</li>
+<li>为模型提供基础的身份和行为准则</li>
+<li>影响模型的整体人格和回应风格</li>
+</ul>
+<h4 id="5-2-Claude-3-Opus-的-System-Prompt-分析"><a href="#5-2-Claude-3-Opus-的-System-Prompt-分析" class="headerlink" title="5.2 Claude 3 Opus 的 System Prompt 分析"></a>5.2 Claude 3 Opus 的 System Prompt 分析</h4><p>以 Claude 3 Opus 为例，其 System Prompt 超过 2500 字，包含以下核心内容：</p>
+<p><strong>1. 身份描述</strong></p>
+<ul>
+<li>明确告诉模型它是 Claude</li>
+<li>由 Anthropic 公司开发</li>
+<li>提供当前日期信息</li>
+</ul>
+<p><strong>2. 使用说明和限制</strong></p>
+<ul>
+<li>如何与用户互动</li>
+<li>禁止事项（如不提供危险信息）</li>
+<li>错误处理策略</li>
+</ul>
+<p><strong>3. 回应风格设定</strong></p>
+<ul>
+<li>避免使用”好问题”等惯用开头</li>
+<li>不要过于自信或极端化表达</li>
+<li>保持友善和专业的语调</li>
+</ul>
+<p><strong>4. 知识边界</strong></p>
+<ul>
+<li>明确知识截止日期（2025年1月）</li>
+<li>如何承认未知信息</li>
+<li>如何处理超出知识范围的问题</li>
+</ul>
+<p><strong>5. 伦理和行为准则</strong></p>
+<ul>
+<li>不要声称自己是人类</li>
+<li>不要声称有意识</li>
+<li>如何平衡帮助与诚实</li>
+</ul>
+<h4 id="5-3-System-Prompt-的工程价值"><a href="#5-3-System-Prompt-的工程价值" class="headerlink" title="5.3 System Prompt 的工程价值"></a>5.3 System Prompt 的工程价值</h4><p>从工程角度观之，System Prompt 是 Context Engineering 的基石之一：</p>
+<p><strong>1. 人格一致性</strong></p>
+<ul>
+<li>确保模型在不同对话中保持一致的个性</li>
+<li>建立用户对模型的信任和预期</li>
+<li>实现品牌差异化</li>
+</ul>
+<p><strong>2. 行为控制</strong></p>
+<ul>
+<li>通过语义约束控制模型行为</li>
+<li>防止有害或不当的回应</li>
+<li>确保符合企业价值观</li>
+</ul>
+<p><strong>3. 用户体验优化</strong></p>
+<ul>
+<li>提供一致的用户体验</li>
+<li>减少用户需要重复说明的情况</li>
+<li>提高交互效率</li>
+</ul>
+<h4 id="5-4-System-Prompt-的研究发现"><a href="#5-4-System-Prompt-的研究发现" class="headerlink" title="5.4 System Prompt 的研究发现"></a>5.4 System Prompt 的研究发现</h4><p>越来越多的实验证实 System Prompt 的内容不仅影响输出风格，还能实质影响模型的思维链深度与推理策略：</p>
+<p><strong>1. 推理能力影响</strong></p>
+<ul>
+<li>强调”多角度思考”时，Chain-of-Thought 任务表现更好</li>
+<li>加入”逻辑辩证”指令，推理一致性显著提升</li>
+<li>影响模型的思维深度和广度</li>
+</ul>
+<p><strong>2. 情感理解能力</strong></p>
+<ul>
+<li>加入”情绪共感”指令，对情绪线索的捕捉率提高</li>
+<li>影响模型的情感回应质量</li>
+<li>改善人机交互体验</li>
+</ul>
+<p><strong>3. 行为先验作用</strong></p>
+<ul>
+<li>System Prompt 实际上是行为先验的外显化</li>
+<li>为模型提供恒定的语义势场</li>
+<li>在多变上下文中维持人格稳定性</li>
+</ul>
+<h4 id="5-5-未来发展趋势"><a href="#5-5-未来发展趋势" class="headerlink" title="5.5 未来发展趋势"></a>5.5 未来发展趋势</h4><p>System Prompt 的设计趋势将朝向模组化与动态适应：</p>
+<p><strong>1. 模组化设计</strong></p>
+<ul>
+<li>不同功能模块使用不同的 System Prompt</li>
+<li>根据任务类型动态调整人格特征</li>
+<li>支持多角色切换</li>
+</ul>
+<p><strong>2. 动态适应</strong></p>
+<ul>
+<li>根据用户反馈调整 System Prompt</li>
+<li>使用强化学习优化人格特征</li>
+<li>实现个性化的 AI 助手</li>
+</ul>
+<p><strong>3. 多代理协作</strong></p>
+<ul>
+<li>不同 Agent 使用差异化的 System Prompt</li>
+<li>模拟团队协作中的角色分工</li>
+<li>实现”人格层叠式上下文设计”</li>
+</ul>
+<hr>
+
+<p>System Prompt 是”人格蓝图”：在每次对话开始前注入，决定身份、风格、边界与伦理。它像行为先验场，稳定影响后续每一步生成与决策的倾向。</p>
+
+<p>典型要素：模型自我身份、日期时间、可参考资源；这些内容解释了”模型为何知道自己是谁、今天几号”。这并非模型”推理”所得，而是被写入的现实锚点。</p>
+
+<p>使用说明与限制：指导与用户互动的方式与范围，为高风险领域（化学、武器等）设定拒答边界，避免危害性输出与法律风险。</p>
+
+<p>交互规范：当用户不满意时引导使用反馈机制；在不确定时给出澄清或请求更多信息；保持礼貌、简洁与聚焦用户目标。</p>
+
+<p>禁止事项：不提供危险配方与手段；不帮助规避法律与平台规则；不制造仇恨与歧视。通过 System Prompt 前置明确，有助于一致合规。</p>
+
+<p>回应风格：避免”好问题”等口头禅；限制过度自信与夸大语气；在不确定时承认未知，比错误自信更重要。</p>
+
+<p>知识边界：声明知识截止日期，超出范围时”说明不知道/请求检索”。这能显著降低幻觉与年代错配。</p>
+
+<p>身份定位：不得自称人类或具备意识；这既是伦理要求，也是避免用户误解的重要规范，维护人机关系的透明度。</p>
+
+<p>错误处理：被纠正时不要立刻服从，应先自检再给出更新结论；可减少”人类错误提示导致的被动跟随”。</p>
+
+<p>企业价值：System Prompt 往往超过数千字，是人格与风格的”软权重”，决定产品的品牌体验与信任边界，是 Context Engineering 的基石。</p>
+<h3 id="六、记忆体系：从短期上下文到长期人格"><a href="#六、记忆体系：从短期上下文到长期人格" class="headerlink" title="六、记忆体系：从短期上下文到长期人格"></a>六、记忆体系：从短期上下文到长期人格</h3><h4 id="6-1-短期记忆：对话中的工作记忆"><a href="#6-1-短期记忆：对话中的工作记忆" class="headerlink" title="6.1 短期记忆：对话中的工作记忆"></a>6.1 短期记忆：对话中的工作记忆</h4><p>短期记忆（Short-term Context）对应于单一会话中的历史内容，例如使用者的上一轮提问、上下文推理的连续性以及模型生成时的局部语境连接。</p>
+<p><strong>短期记忆的特征：</strong></p>
+<ul>
+<li>依赖当前上下文长度（context window）维持</li>
+<li>属于瞬时性、可挥发的信息缓存</li>
+<li>负责维持短时间内的语义焦点与思考链条</li>
+<li>使模型能进行多轮对话而不丧失语义连续性</li>
+</ul>
+<p><strong>短期记忆的作用机制：</strong></p>
+<ol>
+<li><strong>语义连续性</strong>：保持对话的逻辑连贯性</li>
+<li><strong>上下文理解</strong>：基于前面的对话理解当前问题</li>
+<li><strong>指代消解</strong>：理解代词和省略的指代关系</li>
+<li><strong>话题追踪</strong>：跟踪对话主题的变化</li>
+</ol>
+<h4 id="6-2-长期记忆：跨越时间的个性化"><a href="#6-2-长期记忆：跨越时间的个性化" class="headerlink" title="6.2 长期记忆：跨越时间的个性化"></a>6.2 长期记忆：跨越时间的个性化</h4><p>长期记忆（Long-term Memory）则跨越多次互动，能记录使用者的偏好、语言风格、专案进度、历史决策脉络与个人化设定等信息。</p>
+<p><strong>长期记忆的存储方式：</strong></p>
+<ul>
+<li>不再依赖单次 prompt</li>
+<li>通过数据库或向量储存（vector storage）长期保存</li>
+<li>在需要时被召回（retrieval）</li>
+<li>支持跨会话的信息共享</li>
+</ul>
+<p><strong>长期记忆的内容类型：</strong></p>
+<ol>
+<li><strong>用户偏好</strong>：写作风格、回答长度、专业领域等</li>
+<li><strong>历史决策</strong>：过去的选择和判断逻辑</li>
+<li><strong>项目进度</strong>：正在进行的任务和完成情况</li>
+<li><strong>知识连接</strong>：跨项目的知识关联</li>
+</ol>
+<h4 id="6-3-ChatGPT-的长期记忆功能"><a href="#6-3-ChatGPT-的长期记忆功能" class="headerlink" title="6.3 ChatGPT 的长期记忆功能"></a>6.3 ChatGPT 的长期记忆功能</h4><p>自 2024 年起，ChatGPT 引入了长期记忆功能，这是一个重要的技术突破：</p>
+<p><strong>记忆功能的特点：</strong></p>
+<ul>
+<li>用户可以明确告诉模型要记住什么</li>
+<li>模型会将这些信息存储到长期记忆中</li>
+<li>在后续对话中自动调用相关记忆</li>
+<li>支持记忆的查看、编辑和删除</li>
+</ul>
+<p><strong>记忆的两种类型：</strong></p>
+<ol>
+<li><strong>显式记忆</strong>：用户明确要求记住的信息</li>
+<li><strong>隐式记忆</strong>：模型自动学习的行为模式</li>
+</ol>
+<p><strong>实际应用示例：</strong></p>
+<ul>
+<li>记住用户的写作偏好：”我喜欢简洁的回答”</li>
+<li>记住项目背景：”我正在开发一个电商网站”</li>
+<li>记住个人信息：”我住在北京，从事软件开发”</li>
+</ul>
+<h4 id="6-4-记忆系统的技术挑战"><a href="#6-4-记忆系统的技术挑战" class="headerlink" title="6.4 记忆系统的技术挑战"></a>6.4 记忆系统的技术挑战</h4><p>长期记忆系统面临多个技术挑战：</p>
+<p><strong>1. 记忆检索机制（Memory Retrieval Policies）</strong></p>
+<ul>
+<li>如何根据当前任务动态决定召回哪些过往信息</li>
+<li>避免信息过载和无关信息干扰</li>
+<li>实现智能的信息筛选和排序</li>
+</ul>
+<p><strong>2. 记忆权重与衰减（Memory Weighting &amp; Forgetting）</strong></p>
+<ul>
+<li>如何模拟人类记忆的遗忘机制</li>
+<li>根据重要性分配记忆权重</li>
+<li>实现记忆的自动清理和更新</li>
+</ul>
+<p><strong>3. 隐私与安全（Privacy-aware Memory）</strong></p>
+<ul>
+<li>在记忆储存过程中保护用户敏感信息</li>
+<li>实现记忆的加密和访问控制</li>
+<li>支持记忆的匿名化和脱敏</li>
+</ul>
+<p><strong>4. 情境持续性（Context Continuity）</strong></p>
+<ul>
+<li>确保长期记忆与短期上下文无缝衔接</li>
+<li>避免语义冲突或人格漂移</li>
+<li>维持模型行为的一致性</li>
+</ul>
+<h4 id="6-5-记忆系统的未来发展方向"><a href="#6-5-记忆系统的未来发展方向" class="headerlink" title="6.5 记忆系统的未来发展方向"></a>6.5 记忆系统的未来发展方向</h4><p>记忆体系的演进使 LLM 不仅能”理解当下”，还能”理解历史”并”预测未来”：</p>
+<p><strong>1. 认知连续性</strong></p>
+<ul>
+<li>从一次性回应系统进化为具备认知连续性的智能体</li>
+<li>实现真正的个性化交互体验</li>
+<li>支持长期的任务规划和执行</li>
+</ul>
+<p><strong>2. 自我一致性</strong></p>
+<ul>
+<li>在长期交互中维持人格和行为的一致性</li>
+<li>避免记忆冲突和矛盾</li>
+<li>实现智能的记忆整合和更新</li>
+</ul>
+<p><strong>3. 时间维度设计</strong></p>
+<ul>
+<li>为 Context Engineering 开启真正具时间维度的设计时代</li>
+<li>支持基于历史的学习和适应</li>
+<li>实现更智能的上下文管理</li>
+</ul>
+<p>这一变革标志着 Context Engineering 已从<strong>静态设计（static context design）</strong>迈向<strong>记忆驱动（memory-driven）</strong>阶段——模型的行为不再仅取决于输入 prompt，而是建立在可持续更新的语义记忆层上。</p>
+<hr>
+
+<p>对话历史是短期记忆：维持语义连续、指代消解与话题追踪。它像”工作记忆缓冲区”，容量有限，但对多轮对话至关重要。</p>
+
+<p>长期记忆跨会话保存：记录用户偏好、项目上下文与历史决策，使模型在多次互动间保持个性化与连贯性。</p>
+
+<p>开启与管理记忆：允许显式”请记住”与隐式习惯学习；工程上需提供查看、编辑、删除接口，确保可控与可监督。</p>
+
+<p>“我是怎样的人？”是展示长期记忆利用的典型问法：基于过往交互的摘要性理解生成个性化描述，注意只应输出正当且经同意的内容。</p>
+
+<p>记忆与 RAG 的分工：记忆保存”我与你的历史”，RAG 注入”世界的新事实”。两者共同构建”个体化且最新”的上下文。</p>
+
+<p>外置记忆：将细节落盘，通过”记忆 RAG”在必要时召回；既节省上下文预算，又保留追溯能力。</p>
+
+<p>三分打分：近因（Recency）/重要性（Importance）/相关性（Relevance）共同决定召回优先级，类似人类记忆的注意力分配。</p>
+
+<p>负例注入需谨慎：盲目强调”过去错”的记忆，可能诱导错误迁移。若要使用，应连同更正过程与裁决理由一并注入。</p>
+
+<p>隐私与安全：记忆应进行最小化存储、加密与访问控制；敏感信息默认不持久化，必要时脱敏与匿名化处理。</p>
+
+<p>上下文预算：为指令、历史、知识、工具、思考笔记分别设配额；超过阈值触发递归摘要，避免”塞爆 context”。</p>
+<h3 id="七、RAG-与动态知识融合"><a href="#七、RAG-与动态知识融合" class="headerlink" title="七、RAG 与动态知识融合"></a>七、RAG 与动态知识融合</h3><h4 id="7-1-RAG-的核心机制"><a href="#7-1-RAG-的核心机制" class="headerlink" title="7.1 RAG 的核心机制"></a>7.1 RAG 的核心机制</h4><p>RAG（Retrieval-Augmented Generation）是 Context Engineering 的知识增强分支。它通过检索外部资料源（如文件、API、资料库），将即时资讯注入上下文中，使模型能跨越训练时知识的时效限制。</p>
+<p><strong>RAG 的工作流程：</strong></p>
+<ol>
+<li><strong>查询理解</strong>：将用户问题转换为搜索查询</li>
+<li><strong>信息检索</strong>：从外部资料源检索相关信息</li>
+<li><strong>上下文构建</strong>：将检索结果整合到上下文中</li>
+<li><strong>生成回答</strong>：基于增强的上下文生成回答</li>
+</ol>
+<h4 id="7-2-RAG-的优势与挑战"><a href="#7-2-RAG-的优势与挑战" class="headerlink" title="7.2 RAG 的优势与挑战"></a>7.2 RAG 的优势与挑战</h4><p><strong>RAG 的优势：</strong></p>
+<ul>
+<li>解决模型知识有限的问题</li>
+<li>提供最新、最准确的信息</li>
+<li>支持特定领域的专业知识</li>
+<li>减少幻觉和错误信息</li>
+</ul>
+<p><strong>RAG 的挑战：</strong></p>
+<ul>
+<li>信息融合的精确性：语言模型仍可能误读、误配或夸张地再叙述检索结果</li>
+<li>检索质量依赖：检索到的信息质量直接影响最终回答</li>
+<li>上下文长度限制：检索到的信息可能超出上下文长度限制</li>
+<li>引用管理：如何准确引用和验证信息来源</li>
+</ul>
+<h4 id="7-3-RAG-的实际应用案例"><a href="#7-3-RAG-的实际应用案例" class="headerlink" title="7.3 RAG 的实际应用案例"></a>7.3 RAG 的实际应用案例</h4><p><strong>Google AI Overview 的教训：</strong><br>Google 的 AI Overview 功能是一个典型的 RAG 应用，但也暴露了一些问题：</p>
+<ul>
+<li>用户问：”我的起司黏不在披萨上，怎么办？”</li>
+<li>AI 回答：”用 1/8 的无毒胶水把起司黏在披萨上”</li>
+<li>这个错误答案来自 Reddit 上的玩笑帖子</li>
+<li>说明 RAG 系统需要更好的信息筛选和验证机制</li>
+</ul>
+<p><strong>ChatGPT 的搜索功能：</strong></p>
+<ul>
+<li>用户可以开启网络搜索功能</li>
+<li>模型会先搜索相关信息，再基于搜索结果回答</li>
+<li>显著提高了回答的准确性和时效性</li>
+</ul>
+<h4 id="7-4-RAG-的技术发展方向"><a href="#7-4-RAG-的技术发展方向" class="headerlink" title="7.4 RAG 的技术发展方向"></a>7.4 RAG 的技术发展方向</h4><p><strong>1. 智能检索优化</strong></p>
+<ul>
+<li>改进查询重写和扩展技术</li>
+<li>实现多轮检索和迭代优化</li>
+<li>支持多模态信息检索</li>
+</ul>
+<p><strong>2. 信息融合改进</strong></p>
+<ul>
+<li>提高检索信息的整合质量</li>
+<li>实现更好的信息去重和排序</li>
+<li>支持多来源信息的冲突解决</li>
+</ul>
+<p><strong>3. 引用管理</strong></p>
+<ul>
+<li>实现准确的信息来源追踪</li>
+<li>支持引用验证和更新</li>
+<li>提供透明的信息溯源</li>
+</ul>
+<hr>
+<h3 id="八、工具使用与行动能力"><a href="#八、工具使用与行动能力" class="headerlink" title="八、工具使用与行动能力"></a>八、工具使用与行动能力</h3><h4 id="8-1-工具使用的核心机制"><a href="#8-1-工具使用的核心机制" class="headerlink" title="8.1 工具使用的核心机制"></a>8.1 工具使用的核心机制</h4><p>Context Engineering 不仅关乎理解，也关乎行动。现代 AI Agent 已能根据上下文呼叫工具（Tool Invocation）执行具体任务，如查询资料、发送邮件、操作电脑。</p>
+<p><strong>工具使用的工作流程：</strong></p>
+<ol>
+<li><strong>工具定义</strong>：在上下文中提供工具的使用说明</li>
+<li><strong>工具选择</strong>：模型根据任务选择合适的工具</li>
+<li><strong>工具调用</strong>：生成工具调用的指令</li>
+<li><strong>结果整合</strong>：将工具执行结果整合到上下文中</li>
+</ol>
+<h4 id="8-2-工具使用的实际案例"><a href="#8-2-工具使用的实际案例" class="headerlink" title="8.2 工具使用的实际案例"></a>8.2 工具使用的实际案例</h4><p><strong>数学计算工具：</strong></p>
+<ul>
+<li>模型可以调用计算器进行复杂运算</li>
+<li>避免数学计算错误</li>
+<li>提高计算精度和效率</li>
+</ul>
+<p><strong>邮件发送工具：</strong></p>
+<ul>
+<li>模型可以发送邮件</li>
+<li>支持邮件模板和个性化</li>
+<li>实现自动化沟通</li>
+</ul>
+<p><strong>日历管理工具：</strong></p>
+<ul>
+<li>模型可以查看和修改日历</li>
+<li>支持会议安排和提醒</li>
+<li>实现智能日程管理</li>
+</ul>
+<h4 id="8-3-工具使用的技术挑战"><a href="#8-3-工具使用的技术挑战" class="headerlink" title="8.3 工具使用的技术挑战"></a>8.3 工具使用的技术挑战</h4><p><strong>1. 工具指令生成</strong></p>
+<ul>
+<li>如何生成正确的工具调用指令</li>
+<li>处理工具参数和返回值</li>
+<li>支持复杂的工具调用链</li>
+</ul>
+<p><strong>2. 工具结果处理</strong></p>
+<ul>
+<li>如何正确解析工具执行结果</li>
+<li>处理工具执行错误和异常</li>
+<li>实现工具结果的智能整合</li>
+</ul>
+<p><strong>3. 工具选择优化</strong></p>
+<ul>
+<li>如何从多个工具中选择最合适的</li>
+<li>支持工具的组合使用</li>
+<li>实现工具使用的学习优化</li>
+</ul>
+<hr>
+
+<p>RAG 流程：查询理解→检索→上下文拼接→生成回答。它是弥补模型知识时效与覆盖的主路径，但质量取决于检索与融合。</p>
+
+<p>披萨”无毒胶水”事件提醒：若直接采信低可信来源，模型会把玩笑当事实。RAG 必须对来源进行质量控制与可信度建模。</p>
+
+<p>即便结合搜索，语言模型仍可能在叙述层面产生属性错误。应将”引用展示与冲突消解”作为默认能力，而非可选项。</p>
+
+<p>重排（Reranking）：用轻量模型对候选段落相关性重排，减少噪声注入。句子级粒度的选择能显著提升拼接有效性。</p>
+
+<p>引用与溯源：保留来源段落与链接，便于用户核验与自纠；在高风险领域强制显示关键证据。</p>
+
+<p>“倒 U 曲线”：注入越多不一定越好，超过模型吸收能力后正确率下降。应以小批次、可控预算迭代注入。</p>
+
+<p>“Lost in the Middle”：把关键信息放在上下文开头/结尾更易被命中；长文应做分段摘要，关键句前置。</p>
+
+<p>去重与结构化：标题化要点、编号列点、图表化指标可提升注意力命中率与事实对齐的稳定性。</p>
+
+<p>多来源交叉验证：对同一事实最少两路来源背书；对冲突信息进行显式合并与不确定性提示。</p>
+
+<p>产品化守则：默认开启证据显示；为敏感域增加判别器与人工复核流程；为失败路径提供可追踪日志。</p>
+<h3 id="九、电脑操作：AI-的具身化起点"><a href="#九、电脑操作：AI-的具身化起点" class="headerlink" title="九、电脑操作：AI 的具身化起点"></a>九、电脑操作：AI 的具身化起点</h3><h4 id="9-1-电脑操作的技术突破"><a href="#9-1-电脑操作的技术突破" class="headerlink" title="9.1 电脑操作的技术突破"></a>9.1 电脑操作的技术突破</h4><p>最新的 ChatGPT 和 Claude 能在虚拟环境中以滑鼠与键盘操作电脑，这象征语言模型首次跨入”具身智能（Embodied Intelligence）”领域。</p>
+<p><strong>电脑操作的核心能力：</strong></p>
+<ul>
+<li>理解屏幕画面内容</li>
+<li>生成鼠标和键盘操作指令</li>
+<li>执行复杂的电脑任务</li>
+<li>适应不同的用户界面</li>
+</ul>
+<h4 id="9-2-电脑操作的实际应用"><a href="#9-2-电脑操作的实际应用" class="headerlink" title="9.2 电脑操作的实际应用"></a>9.2 电脑操作的实际应用</h4><p><strong>订票系统操作：</strong></p>
+<ul>
+<li>模型可以自动订高铁票</li>
+<li>处理复杂的订票流程</li>
+<li>适应不同的网站界面</li>
+</ul>
+<p><strong>文件管理：</strong></p>
+<ul>
+<li>模型可以管理文件和文件夹</li>
+<li>执行文件操作任务</li>
+<li>支持批量处理</li>
+</ul>
+<p><strong>软件开发辅助：</strong></p>
+<ul>
+<li>模型可以编写和修改代码</li>
+<li>执行测试和调试</li>
+<li>管理开发环境</li>
+</ul>
+<h4 id="9-3-电脑操作的技术原理"><a href="#9-3-电脑操作的技术原理" class="headerlink" title="9.3 电脑操作的技术原理"></a>9.3 电脑操作的技术原理</h4><p><strong>Context 在电脑操作中的作用：</strong></p>
+<ul>
+<li>描述任务目标和当前状态</li>
+<li>解析屏幕画面信息</li>
+<li>生成操作指令</li>
+<li>验证操作结果</li>
+</ul>
+<p><strong>操作指令的生成：</strong></p>
+<ul>
+<li>鼠标移动：move_mouse(x, y)</li>
+<li>鼠标点击：click_mouse(button)</li>
+<li>键盘输入：type_text(text)</li>
+<li>等待操作：wait(time)</li>
+</ul>
+<h4 id="9-4-电脑操作的发展前景"><a href="#9-4-电脑操作的发展前景" class="headerlink" title="9.4 电脑操作的发展前景"></a>9.4 电脑操作的发展前景</h4><p>电脑操作代表了 AI 具身化的重要起点：</p>
+<p><strong>1. 通用性</strong></p>
+<ul>
+<li>可以操作任何电脑应用</li>
+<li>不限于特定领域或任务</li>
+<li>支持复杂的工作流程</li>
+</ul>
+<p><strong>2. 学习能力</strong></p>
+<ul>
+<li>可以从操作中学习</li>
+<li>适应新的界面和流程</li>
+<li>提高操作效率</li>
+</ul>
+<p><strong>3. 协作能力</strong></p>
+<ul>
+<li>可以与人类协作完成任务</li>
+<li>支持远程操作和协助</li>
+<li>实现人机协同工作</li>
+</ul>
+<hr>
+<h3 id="十、AI-Agent-时代的-Context-Engineering"><a href="#十、AI-Agent-时代的-Context-Engineering" class="headerlink" title="十、AI Agent 时代的 Context Engineering"></a>十、AI Agent 时代的 Context Engineering</h3><h4 id="10-1-AI-Agent-的核心特征"><a href="#10-1-AI-Agent-的核心特征" class="headerlink" title="10.1 AI Agent 的核心特征"></a>10.1 AI Agent 的核心特征</h4><p>AI Agent 是 Context Engineering 的重要应用场景，具有以下核心特征：</p>
+<p><strong>1. 自主决策</strong></p>
+<ul>
+<li>能够自主决定解决问题的步骤</li>
+<li>根据环境变化调整策略</li>
+<li>实现灵活的任务执行</li>
+</ul>
+<p><strong>2. 长期运行</strong></p>
+<ul>
+<li>支持长时间的任务执行</li>
+<li>维持状态和记忆</li>
+<li>处理复杂的多步骤任务</li>
+</ul>
+<p><strong>3. 工具使用</strong></p>
+<ul>
+<li>能够调用各种外部工具</li>
+<li>整合多种能力</li>
+<li>实现复杂的任务目标</li>
+</ul>
+<h4 id="10-2-AI-Agent-的-Context-管理挑战"><a href="#10-2-AI-Agent-的-Context-管理挑战" class="headerlink" title="10.2 AI Agent 的 Context 管理挑战"></a>10.2 AI Agent 的 Context 管理挑战</h4><p><strong>1. 上下文长度限制</strong></p>
+<ul>
+<li>长时间运行会积累大量上下文</li>
+<li>需要智能的上下文压缩和摘要</li>
+<li>避免重要信息丢失</li>
+</ul>
+<p><strong>2. 信息优先级管理</strong></p>
+<ul>
+<li>如何确定哪些信息最重要</li>
+<li>实现动态的信息筛选</li>
+<li>保持任务焦点</li>
+</ul>
+<p><strong>3. 状态一致性</strong></p>
+<ul>
+<li>在长期运行中维持状态一致性</li>
+<li>避免信息冲突和矛盾</li>
+<li>实现智能的状态更新</li>
+</ul>
+<h4 id="10-3-Context-Engineering-的三大策略"><a href="#10-3-Context-Engineering-的三大策略" class="headerlink" title="10.3 Context Engineering 的三大策略"></a>10.3 Context Engineering 的三大策略</h4><p><strong>1. 选择（Selection）</strong></p>
+<ul>
+<li>只选择相关信息进入上下文</li>
+<li>实现智能的信息筛选</li>
+<li>避免信息过载</li>
+</ul>
+<p><strong>2. 压缩（Compression）</strong></p>
+<ul>
+<li>对历史信息进行压缩和摘要</li>
+<li>保留关键信息</li>
+<li>减少上下文长度</li>
+</ul>
+<p><strong>3. 多代理（Multi-Agent）</strong></p>
+<ul>
+<li>使用多个 Agent 分工合作</li>
+<li>每个 Agent 管理部分上下文</li>
+<li>实现更高效的上下文管理</li>
+</ul>
+<hr>
+
+<p>Computer Use 两种形态：远端虚拟桌面（安全、不触本机）与本地控制（更强也更危险）。二者皆以”屏幕理解+输入控制”为核心。</p>
+
+<p>风险与权限：默认最小权限、敏感动作二次确认、操作日志与回放是必要的工程底线；必要时启用只读模式与时间盒限制。</p>
+
+<p>Agent 模式演示：根据高层目标自动分解步骤、定位 UI、填入参数、处理异常弹窗；失败后能自我修正重试。</p>
+
+<p>SOP vs Agentic：固定流程适合可预测任务；Agentic 工作流适合开放任务，能在 Observation→Action→Observation 循环中自适应调整计划。</p>
+
+<p>LLM-Agent 与传统 Agent 差异：输出空间是自然语言、近乎无限；可被人类语言直接指导与纠偏；与 AlphaGo 的”离散动作集合”截然不同。</p>
+
+<p>CLI 实操：让 Agent 真实读写文件、生成项目脚手架、运行与修改代码；需要更严格的沙箱与回滚策略。</p>
+
+<p>批准与人机协作：对关键步骤请求用户确认；人类可随时插手、修改参数或中止流程，形成可控的半自动协作。</p>
+
+<p>评测维度：目标达成率、失败可恢复性、对齐与安全事件率、成本与时延；分场景基准才有意义。</p>
+
+<p>从”会用工具”到”会用电脑”，将通用软件生态纳入能力版图；它是走向具身智能的重要台阶。</p>
+
+<p>产品建议：以代理-执行者分层封装复杂度；把不稳定长链交互下放给执行者，主代理只保策略与里程碑，降低上下文压力。</p>
+<h3 id="十一、结语：Context-Engineering-——-AI-Agent-时代的灵魂工程"><a href="#十一、结语：Context-Engineering-——-AI-Agent-时代的灵魂工程" class="headerlink" title="十一、结语：Context Engineering —— AI Agent 时代的灵魂工程"></a>十一、结语：Context Engineering —— AI Agent 时代的灵魂工程</h3><h4 id="11-1-Context-Engineering-的核心价值"><a href="#11-1-Context-Engineering-的核心价值" class="headerlink" title="11.1 Context Engineering 的核心价值"></a>11.1 Context Engineering 的核心价值</h4><p>综观全局，Context Engineering 不仅是一种提示设计技巧，更是 AI 智能体的”外部认知建筑学”。它将使用者指令、记忆、检索、工具与伦理规范统合为一体，构筑出模型的即时世界。</p>
+<p><strong>Context Engineering 的三大价值：</strong></p>
+<p><strong>1. 认知扩展</strong></p>
+<ul>
+<li>突破模型固有的知识限制</li>
+<li>整合外部知识和工具</li>
+<li>实现更智能的决策</li>
+</ul>
+<p><strong>2. 个性化体验</strong></p>
+<ul>
+<li>基于用户历史和偏好</li>
+<li>提供个性化的服务</li>
+<li>建立长期的关系</li>
+</ul>
+<p><strong>3. 任务执行能力</strong></p>
+<ul>
+<li>支持复杂的多步骤任务</li>
+<li>实现工具调用和操作</li>
+<li>提供端到端的解决方案</li>
+</ul>
+<h4 id="11-2-未来发展方向"><a href="#11-2-未来发展方向" class="headerlink" title="11.2 未来发展方向"></a>11.2 未来发展方向</h4><p><strong>1. 技术演进</strong></p>
+<ul>
+<li>更智能的上下文管理</li>
+<li>更高效的信息压缩</li>
+<li>更强大的工具集成</li>
+</ul>
+<p><strong>2. 应用拓展</strong></p>
+<ul>
+<li>更广泛的应用场景</li>
+<li>更深入的人机协作</li>
+<li>更智能的自动化</li>
+</ul>
+<p><strong>3. 研究前沿</strong></p>
+<ul>
+<li>多模态上下文融合</li>
+<li>动态上下文适应</li>
+<li>认知架构设计</li>
+</ul>
+<h4 id="11-3-对-AI-工程师的要求"><a href="#11-3-对-AI-工程师的要求" class="headerlink" title="11.3 对 AI 工程师的要求"></a>11.3 对 AI 工程师的要求</h4><p>未来的 AI 工程师，不仅要懂模型架构与训练，更要精通上下文设计与语境管理：</p>
+<p><strong>1. 技术能力</strong></p>
+<ul>
+<li>掌握 Context Engineering 的核心技术</li>
+<li>理解不同上下文组件的相互作用</li>
+<li>能够设计高效的上下文管理策略</li>
+</ul>
+<p><strong>2. 系统思维</strong></p>
+<ul>
+<li>从整体角度思考 AI 系统设计</li>
+<li>平衡不同组件之间的关系</li>
+<li>实现系统的最优配置</li>
+</ul>
+<p><strong>3. 创新意识</strong></p>
+<ul>
+<li>探索新的上下文管理模式</li>
+<li>开发创新的应用场景</li>
+<li>推动技术的前沿发展</li>
+</ul>
+<blockquote>
+<p><strong>AI 的智慧，终将不仅来自权重，而来自上下文的设计。</strong></p>
+</blockquote>
+<p>Context Engineering 正在成为 AI 时代最重要的工程技能之一。它不仅是技术问题，更是艺术问题——如何设计出既智能又可控、既强大又安全的 AI 系统，这需要工程师们具备深厚的技术功底和丰富的创造力。在 AI Agent 时代，掌握 Context Engineering 就是掌握了 AI 智能体的灵魂。</p>
+<h3 id="附录：实战案例与进阶方法（补充）"><a href="#附录：实战案例与进阶方法（补充）" class="headerlink" title="附录：实战案例与进阶方法（补充）"></a>附录：实战案例与进阶方法（补充）</h3><p>以下内容按课堂口语讲解进行系统化整理，并补充工程落地要点，便于直接用于产品与研究实践。相关原始讲解见课程视频：<a href="%60https://www.youtube.com/watch?v=lVdajtNpaGI%60">生成式人工智慧與機器學習導論2025 · 第2講：上下文工程（Context Engineering）——AI Agent 背後的關鍵技術</a>.</p>
+<h4 id="A-神奇咒语的兴衰与-arXiv-生态"><a href="#A-神奇咒语的兴衰与-arXiv-生态" class="headerlink" title="A. 神奇咒语的兴衰与 arXiv 生态"></a>A. 神奇咒语的兴衰与 arXiv 生态</h4><ul>
+<li><strong>早期”神奇咒语”有效的原因</strong>：模型较弱、输入输出关系不稳定，诸如”Let’s think step by step””请先深呼吸””答对给小费””这题对我非常重要”等提示，曾能显著提升正确率。</li>
+<li><strong>趣味实验</strong>：在 GPT-3 年代，甚至在 prompt 中加一串”位置”字样都能异常拉长输出；让模型在写 200 字故事时，”世界和平”比”母亲为你骄傲”更能让它贴合长度目标（因模型没有”母亲”概念）。</li>
+<li><strong>如今为什么逐渐失效</strong>：模型内在推理与自我校正增强后，靠”措辞魔法”获取提升的空间越来越小，取而代之的是上下文组织、检索与工具协同。</li>
+<li><strong>arXiv 说明</strong>：AI 领域节奏快，研究常先在 arXiv 公开（如 2206 即 2022 年 6 月），便于社区快速验证与复现。</li>
+</ul>
+<h4 id="B-语境构成的实例化要点"><a href="#B-语境构成的实例化要点" class="headerlink" title="B. 语境构成的实例化要点"></a>B. 语境构成的实例化要点</h4><ul>
+<li><strong>明确前提能显著减少歧义</strong>：<ul>
+<li>“载具是什么意思？”若未给出情境，模型可能解释为交通工具或电子载具；若补充”在超商结账时店员问’要用载具吗’”，模型即可聚焦到电子发票载具。</li>
+</ul>
+</li>
+<li><strong>场景信息改变答案分布</strong>：<ul>
+<li>曼谷运河照片中的”鳄鱼”在加入地理前提后被识别为”水巨蜥”，并给出文化含义（吉祥、偏财运）。</li>
+</ul>
+</li>
+<li><strong>示例胜于口头定义</strong>：<ul>
+<li>“火星文”若无示例，模型可能做字形替换；给出”要去冒险的人来找我 → 要ㄑ冒险 ㄉ人来找我”后，模型迅速对齐到注音替换规则。</li>
+</ul>
+</li>
+</ul>
+<h4 id="C-RAG-的价值与风险并存"><a href="#C-RAG-的价值与风险并存" class="headerlink" title="C. RAG 的价值与风险并存"></a>C. RAG 的价值与风险并存</h4><ul>
+<li><strong>价值</strong>：在知识时效与覆盖受限情况下，通过检索把”最新、相关”的事实注入上下文，显著提升答案可靠性。</li>
+<li><strong>典型风险</strong>：<ul>
+<li>Google AI Overview 曾因引用玩笑贴文，建议在披萨上加”1/8 无毒胶水”粘奶酪；</li>
+<li>即便是最新模型结合搜索，文本叙述仍可能出现属性错误或夸张叙述。</li>
+</ul>
+</li>
+<li><strong>工程对策</strong>：<ul>
+<li>保留引用并尽量呈现来源段落；</li>
+<li>采用 rerank/判别器过滤噪声；</li>
+<li>对高风险领域（医疗、金融）启用”多来源交叉验证 + 置信阈值”。</li>
+</ul>
+</li>
+</ul>
+<h4 id="D-工具调用的落地方法（从”文字”到”动作”）"><a href="#D-工具调用的落地方法（从”文字”到”动作”）" class="headerlink" title="D. 工具调用的落地方法（从”文字”到”动作”）"></a>D. 工具调用的落地方法（从”文字”到”动作”）</h4><p>模型只能生成文字，无法直接”执行”。因此需要在外层实现”解析—执行—回填—继续生成”的闭环：</p>
+<ol>
+<li>在上下文中提供工具说明与示例（自然语言足矣），并约定调用标记（如〈tool〉…〈/tool〉、〈result〉…〈/result〉）。</li>
+<li>让模型按约定输出工具调用指令（纯文本）。</li>
+<li>在宿主程序中解析指令并实际执行（例如在教学环境用 <code>eval()</code>，生产环境请使用白名单与参数校验的安全执行器）。</li>
+<li>将工具输出以约定格式回填到上下文中。</li>
+<li>重复上述过程直到模型不再发出调用请求，再输出用户可见的最终答复。</li>
+</ol>
+<p>要点：</p>
+<ul>
+<li>不要相信模型”自述已调用工具”的叙事，那只是接龙；必须以宿主程序的执行结果为准。</li>
+<li>将中间的调用细节对用户”可见/不可见”作为产品策略开关，默认对普通用户隐藏、对调试与审计开放。</li>
+</ul>
+<h4 id="E-Computer-Use：强能力与高风险并存"><a href="#E-Computer-Use：强能力与高风险并存" class="headerlink" title="E. Computer Use：强能力与高风险并存"></a>E. Computer Use：强能力与高风险并存</h4><ul>
+<li><strong>两种形态</strong>：<ul>
+<li>远端”虚拟桌面”（如部分 ChatGPT Agent 模式）：不直接触碰本机，安全性较高；</li>
+<li>本地控制（如 Gemini CLI）：可直接创建/修改文件、关程序，能力强但更危险。</li>
+</ul>
+</li>
+<li><strong>实践建议</strong>：<ul>
+<li>默认最小权限，操作需逐步确认；</li>
+<li>文件系统白名单与沙箱隔离；</li>
+<li>关键动作（删除、外联）强制二次确认与审计日志；</li>
+<li>为 UI 元素提供稳定锚点（坐标/语义选择器），降低定位误差。</li>
+</ul>
+</li>
+</ul>
+<h4 id="F-Agentic-Workflow-与-AI-Agent-的本质"><a href="#F-Agentic-Workflow-与-AI-Agent-的本质" class="headerlink" title="F. Agentic Workflow 与 AI Agent 的本质"></a>F. Agentic Workflow 与 AI Agent 的本质</h4><ul>
+<li><strong>工作流（有 SOP）</strong>：将复杂任务拆解为多步骤（识别攻击/评分/验证等），每步可设立输入输出契约。</li>
+<li><strong>AI Agent（自定策略）</strong>：根据 observation 循环规划 action（检索、调用工具、写程序、与人沟通等），直至目标达成。</li>
+<li><strong>与传统 Agent 的差异</strong>：输出是自然语言，表达与控制空间近乎无限；可被人类语言直接指导与反馈。</li>
+<li><strong>提示策略</strong>：与其”挤牙膏式追加要求”，更建议一次性给出完整目标、约束与验收标准（近期研究显示分步追加会降低稳定性与总体能力）。</li>
+</ul>
+<h4 id="G-长上下文的性能陷阱与对策"><a href="#G-长上下文的性能陷阱与对策" class="headerlink" title="G. 长上下文的性能陷阱与对策"></a>G. 长上下文的性能陷阱与对策</h4><ul>
+<li>**”Lost in the Middle”**：答案位于长上下文中段时最易被忽略；尽量将关键信息靠近开头或结尾。</li>
+<li>**”Context Rot”**：即便未触达上限，长度上升也会导致复制/对齐能力快速下滑。</li>
+<li>**检索注入的”倒 U 曲线”**：过多检索文本会让正确率先升后降。</li>
+<li><strong>工程对策</strong>：<ul>
+<li>预算化分配 token（指令、历史、知识、工具、思考笔记分别控额）；</li>
+<li>关键信息置顶/置底；</li>
+<li>动态裁剪与去重；</li>
+<li>对长文采用”分段摘要 + 局部细节回溯”策略；</li>
+<li>重要信息多路冗余（标题、要点、编号）以提升注意力命中率。</li>
+</ul>
+</li>
+</ul>
+<h4 id="H-三大招数：选择、压缩、Multi-Agent（工程视角）"><a href="#H-三大招数：选择、压缩、Multi-Agent（工程视角）" class="headerlink" title="H. 三大招数：选择、压缩、Multi-Agent（工程视角）"></a>H. 三大招数：选择、压缩、Multi-Agent（工程视角）</h4><ul>
+<li><strong>选择（Selection）</strong>：<ul>
+<li>RAG 前置：用 LLM 将用户任务改写成多路查询（Query Expansion），再检索；</li>
+<li>Reranking：使用轻量模型对候选段落进行重排，只保留最相关片段；</li>
+<li>句子级选择：用极小模型（&lt;300M）逐句判定相关性，显著降低噪声注入；</li>
+<li>工具版 RAG：将”工具说明”看作文档，仅检索当下相关工具注入上下文；</li>
+<li>记忆版 RAG：长期记忆外置，按”近因/重要性/相关性”打分召回（可参考 Stanford “小镇”工作流）。</li>
+</ul>
+</li>
+<li><strong>压缩（Compression）</strong>：<ul>
+<li>递归摘要：按窗口占用或交互轮次触发压缩，保留关键信息，细节落盘；</li>
+<li>摘要内置”指针”：在摘要中写入”详情见 path/to/file.txt 第 X 段”，必要时再回读原文；</li>
+<li>区分”永久笔记”（显式记忆）与”易逝记忆”（系统自管随时间衰减）。</li>
+</ul>
+</li>
+<li><strong>Multi-Agent</strong>：<ul>
+<li>以”总召—执行者”结构来分摊上下文：总召保策略与里程碑，执行者承接具体长交互（如订餐厅/订旅馆）；</li>
+<li>大规模文献综述：每篇论文由独立 Agent 阅读并生成结构化摘要，最后由汇总 Agent 进行融合与写作；</li>
+<li>单体 vs 多体权衡：任务简单时单体往往更强；任务复杂且交互链路长时，多体凭借上下文分割与职能并行具有优势。</li>
+</ul>
+</li>
+</ul>
+<h4 id="I-经验与反例：如何用好”记忆”"><a href="#I-经验与反例：如何用好”记忆”" class="headerlink" title="I. 经验与反例：如何用好”记忆”"></a>I. 经验与反例：如何用好”记忆”</h4><ul>
+<li>在”自我改进基准”中，仅注入”过去答对的例子”更稳；盲目注入”错误案例”反而可能伤害整体表现。</li>
+<li>实践建议：<ul>
+<li>错误记忆要”连同判定与更正过程”一起注入，且与当前任务强相关；</li>
+<li>对”负例记忆”设置使用门槛（置信/一致性检查），避免诱导错误迁移。</li>
+</ul>
+</li>
+</ul>
+<h4 id="J-一份可操作的-Context-Engineering-清单"><a href="#J-一份可操作的-Context-Engineering-清单" class="headerlink" title="J. 一份可操作的 Context Engineering 清单"></a>J. 一份可操作的 Context Engineering 清单</h4><ol>
+<li>明确”目标—约束—验收标准”，一次性写清楚。</li>
+<li>关键信息置顶/置底，并编号列点。</li>
+<li>提供 1–3 个覆盖典型边界的高质量示例。</li>
+<li>对检索结果进行去重、重排与句子级筛选。</li>
+<li>工具少而精；按需检索工具说明再注入。</li>
+<li>长对话每 N 轮执行一次递归摘要，细节落盘并在摘要中留”回看指针”。</li>
+<li>采用”记忆 RAG”：近因/重要性/相关性三分尺度召回。</li>
+<li>将”思考过程”与”对用户可见输出”分离，必要时只给摘要。</li>
+<li>关键动作（写档、删除、转账）二次确认并记录审计日志。</li>
+<li>对高风险答案启用”多来源交叉验证 + 引用展示”。</li>
+<li>将 Agent 任务切分为”总召—执行者”，以分摊上下文压力。</li>
+<li>固化成功的上下文模版（含占位符与预算），形成可复用 SOP。</li>
+</ol>
+<p>—— 以上补充旨在把课堂中的案例、工程套路与安全要点系统化，帮助在真实产品与研究中”以最小上下文预算获得最大可靠性”。</p>
+
+<p>工具使用是从”理解”走向”行动”的关键：通过在上下文定义工具、示例与调用协议，让模型生成可解析的调用指令。</p>
+
+<p>宿主程序负责把”文字”变”动作”：解析模型输出→执行真实工具→将返回结果回填上下文→继续生成，直到不再调用。</p>
+
+<p>数学工具示例：用外部计算器替代心算，显著提升数值稳定性。工程上应默认将可形式化的子任务交由工具完成。</p>
+
+<p>温度查询示例：通过参数化接口获取事实值，模型负责组织语言与用户交互。异常值应伴随一致性检查与反常提示。</p>
+
+<p>不要相信”我已调用工具”的自述——那只是接龙。以宿主层执行与结果为准，才能消除幻觉干扰。</p>
+
+<p>安全执行：禁止直接 eval 非受控字符串；使用白名单、Schema 校验与最小权限沙箱；记录调用日志便于审计与回放。</p>
+
+<p>对用户可见性：把中间调用细节默认隐藏，给专家模式或调试模式开放；为错误路径提供可读的诊断线索。</p>
+
+<p>调用链组合：复杂任务往往需要多次工具调用与结果聚合；要保证幂等性与错误恢复机制，避免半程失败卡死。</p>
+
+<p>协议演化：随着能力增长，工具协议可从”弱约束自然语”演进到”强约束 JSON/Schema”，提升可解析性与健壮性。</p>
+
+<p>评估指标：覆盖率（调用该调用的都调用）、正确率（参数与结果正确）、延迟与成本；对高风险路径启用强制人工复核。</p>
+
+<p>Context Window 演进：从 3 万到 10 万、100 万甚至千万级 token。更长的输入是 Agent 长时运行的必要不充分条件。</p>
+
+<p>可输入≠可理解：如同翻完哈利波特并不等于”记住全部情节”。长上下文下注意力稀释与对齐退化是工程常态。</p>
+
+<p>RAG 注入的”倒 U”：起初有益，过量反而伤害。说明需要预算化的注入、重排与去重，避免噪声淹没信号。</p>
+
+<p>“Lost in the Middle”：中段最易丢失。将关键信息前置/后置、标题化与编号化，有助于稳定命中。</p>
+
+<p>“Context Rot”：复制/对齐能力随长度迅速下降，且远未触及模型理论上限时已出现。强调”少即是多”的治理原则。</p>
+
+<p>三大策略：选择（检索/重排/句子级选择/工具与记忆版 RAG）、压缩（递归摘要+指针回溯）、多代理（总召-执行者分层）。</p>
+
+<p>实操清单：一次性明确目标与约束；关键要点置顶/置底；高质量示例；小批次注入并交叉验证；对长链交互采用多代理分摊上下文。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpeg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/06/25/Life%20Reflections/%E5%9C%A8%E4%B8%8D%E7%A1%AE%E5%AE%9A%E4%B8%AD%E9%94%9A%E5%AE%9A%E8%87%AA%E6%88%91/" title="在不确定中锚定自我"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">在不确定中锚定自我</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpeg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Huiyu Chen</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">65</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">45</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/chenhuiyu"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/chenhuiyu" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:chenhuiyu1997@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">Welcome to my blog! I'm Huiyu, a data scientist in Singapore, passionate about NLP and AI. Here, I share insights on tech and sprinkle in some travel stories from my adventures.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%BC%8F%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AF%BC%E8%AE%BA2025-%C2%B7-%E7%AC%AC2%E8%AE%B2%EF%BC%9A%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B%EF%BC%88Context-Engineering%EF%BC%89%E2%80%94%E2%80%94AI-Agent-%E8%83%8C%E5%90%8E%E7%9A%84%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">生成式人工智能与机器学习导论2025 · 第2讲：上下文工程（Context Engineering）——AI Agent 背后的关键技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Prompt-Engineering-%E4%B8%8E-Context-Engineering-%E7%9A%84%E5%85%B3%E7%B3%BB%E4%B8%8E%E6%BC%94%E8%BF%9B"><span class="toc-number">1.1.</span> <span class="toc-text">二、Prompt Engineering 与 Context Engineering 的关系与演进</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E7%A5%9E%E5%A5%87%E5%92%92%E8%AF%AD%E6%97%B6%E4%BB%A3%E7%9A%84%E7%BB%88%E7%BB%93"><span class="toc-number">1.1.1.</span> <span class="toc-text">2.1 神奇咒语时代的终结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-Context-Engineering-%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.2 Context Engineering 的本质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-%E4%BB%8E-Prompt-%E5%88%B0-Context-%E7%9A%84%E6%BC%94%E8%BF%9B"><span class="toc-number">1.1.3.</span> <span class="toc-text">2.3 从 Prompt 到 Context 的演进</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81Context-Engineering-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.</span> <span class="toc-text">三、Context Engineering 的核心概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-Context-Engineering-%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.1.</span> <span class="toc-text">3.1 Context Engineering 的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E5%AE%8C%E6%95%B4-Context-%E7%9A%84%E4%B8%83%E5%A4%A7%E7%BB%84%E6%88%90%E8%A6%81%E7%B4%A0"><span class="toc-number">1.2.2.</span> <span class="toc-text">3.2 完整 Context 的七大组成要素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-Context-%E7%9A%84%E8%BF%90%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.3 Context 的运作原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-Context-Engineering-%E7%9A%84%E6%8A%80%E6%9C%AF%E6%8C%91%E6%88%98"><span class="toc-number">1.2.4.</span> <span class="toc-text">3.4 Context Engineering 的技术挑战</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81In-Context-Learning%EF%BC%9A%E6%A8%A1%E5%9E%8B%E2%80%9D%E5%81%87%E5%AD%A6%E4%B9%A0%E2%80%9D%E7%9A%84%E5%A5%87%E8%BF%B9"><span class="toc-number">1.3.</span> <span class="toc-text">四、In-Context Learning：模型”假学习”的奇迹</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-In-Context-Learning-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6"><span class="toc-number">1.3.1.</span> <span class="toc-text">4.1 In-Context Learning 的核心机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%E7%BB%8F%E5%85%B8%E6%A1%88%E4%BE%8B%EF%BC%9AGemini-1-5-%E7%9A%84%E5%8D%A1%E6%8B%89%E8%92%99%E8%AF%AD%E7%BF%BB%E8%AF%91"><span class="toc-number">1.3.2.</span> <span class="toc-text">4.2 经典案例：Gemini 1.5 的卡拉蒙语翻译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-ICL-%E7%9A%84%E7%90%86%E8%AE%BA%E6%84%8F%E4%B9%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">4.3 ICL 的理论意义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-ICL-%E5%9C%A8-Context-Engineering-%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.3.4.</span> <span class="toc-text">4.4 ICL 在 Context Engineering 中的应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81System-Prompt%EF%BC%9A%E4%BA%BA%E6%A0%BC%E5%8C%96%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%9A%90%E8%97%8F%E6%9E%B6%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text">五、System Prompt：人格化模型的隐藏架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-System-Prompt-%E7%9A%84%E6%A0%B8%E5%BF%83%E4%BD%9C%E7%94%A8"><span class="toc-number">1.4.1.</span> <span class="toc-text">5.1 System Prompt 的核心作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-Claude-3-Opus-%E7%9A%84-System-Prompt-%E5%88%86%E6%9E%90"><span class="toc-number">1.4.2.</span> <span class="toc-text">5.2 Claude 3 Opus 的 System Prompt 分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-System-Prompt-%E7%9A%84%E5%B7%A5%E7%A8%8B%E4%BB%B7%E5%80%BC"><span class="toc-number">1.4.3.</span> <span class="toc-text">5.3 System Prompt 的工程价值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-4-System-Prompt-%E7%9A%84%E7%A0%94%E7%A9%B6%E5%8F%91%E7%8E%B0"><span class="toc-number">1.4.4.</span> <span class="toc-text">5.4 System Prompt 的研究发现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-5-%E6%9C%AA%E6%9D%A5%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF"><span class="toc-number">1.4.5.</span> <span class="toc-text">5.5 未来发展趋势</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E8%AE%B0%E5%BF%86%E4%BD%93%E7%B3%BB%EF%BC%9A%E4%BB%8E%E7%9F%AD%E6%9C%9F%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%B0%E9%95%BF%E6%9C%9F%E4%BA%BA%E6%A0%BC"><span class="toc-number">1.5.</span> <span class="toc-text">六、记忆体系：从短期上下文到长期人格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-%E7%9F%AD%E6%9C%9F%E8%AE%B0%E5%BF%86%EF%BC%9A%E5%AF%B9%E8%AF%9D%E4%B8%AD%E7%9A%84%E5%B7%A5%E4%BD%9C%E8%AE%B0%E5%BF%86"><span class="toc-number">1.5.1.</span> <span class="toc-text">6.1 短期记忆：对话中的工作记忆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86%EF%BC%9A%E8%B7%A8%E8%B6%8A%E6%97%B6%E9%97%B4%E7%9A%84%E4%B8%AA%E6%80%A7%E5%8C%96"><span class="toc-number">1.5.2.</span> <span class="toc-text">6.2 长期记忆：跨越时间的个性化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-ChatGPT-%E7%9A%84%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86%E5%8A%9F%E8%83%BD"><span class="toc-number">1.5.3.</span> <span class="toc-text">6.3 ChatGPT 的长期记忆功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%8A%80%E6%9C%AF%E6%8C%91%E6%88%98"><span class="toc-number">1.5.4.</span> <span class="toc-text">6.4 记忆系统的技术挑战</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-5-%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%AA%E6%9D%A5%E5%8F%91%E5%B1%95%E6%96%B9%E5%90%91"><span class="toc-number">1.5.5.</span> <span class="toc-text">6.5 记忆系统的未来发展方向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81RAG-%E4%B8%8E%E5%8A%A8%E6%80%81%E7%9F%A5%E8%AF%86%E8%9E%8D%E5%90%88"><span class="toc-number">1.6.</span> <span class="toc-text">七、RAG 与动态知识融合</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#7-1-RAG-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6"><span class="toc-number">1.6.1.</span> <span class="toc-text">7.1 RAG 的核心机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-2-RAG-%E7%9A%84%E4%BC%98%E5%8A%BF%E4%B8%8E%E6%8C%91%E6%88%98"><span class="toc-number">1.6.2.</span> <span class="toc-text">7.2 RAG 的优势与挑战</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-3-RAG-%E7%9A%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E6%A1%88%E4%BE%8B"><span class="toc-number">1.6.3.</span> <span class="toc-text">7.3 RAG 的实际应用案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-4-RAG-%E7%9A%84%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E6%96%B9%E5%90%91"><span class="toc-number">1.6.4.</span> <span class="toc-text">7.4 RAG 的技术发展方向</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E4%B8%8E%E8%A1%8C%E5%8A%A8%E8%83%BD%E5%8A%9B"><span class="toc-number">1.7.</span> <span class="toc-text">八、工具使用与行动能力</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#8-1-%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%9A%84%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6"><span class="toc-number">1.7.1.</span> <span class="toc-text">8.1 工具使用的核心机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-2-%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%9A%84%E5%AE%9E%E9%99%85%E6%A1%88%E4%BE%8B"><span class="toc-number">1.7.2.</span> <span class="toc-text">8.2 工具使用的实际案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-3-%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF%E6%8C%91%E6%88%98"><span class="toc-number">1.7.3.</span> <span class="toc-text">8.3 工具使用的技术挑战</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E7%94%B5%E8%84%91%E6%93%8D%E4%BD%9C%EF%BC%9AAI-%E7%9A%84%E5%85%B7%E8%BA%AB%E5%8C%96%E8%B5%B7%E7%82%B9"><span class="toc-number">1.8.</span> <span class="toc-text">九、电脑操作：AI 的具身化起点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#9-1-%E7%94%B5%E8%84%91%E6%93%8D%E4%BD%9C%E7%9A%84%E6%8A%80%E6%9C%AF%E7%AA%81%E7%A0%B4"><span class="toc-number">1.8.1.</span> <span class="toc-text">9.1 电脑操作的技术突破</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-2-%E7%94%B5%E8%84%91%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8"><span class="toc-number">1.8.2.</span> <span class="toc-text">9.2 电脑操作的实际应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-3-%E7%94%B5%E8%84%91%E6%93%8D%E4%BD%9C%E7%9A%84%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86"><span class="toc-number">1.8.3.</span> <span class="toc-text">9.3 电脑操作的技术原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-4-%E7%94%B5%E8%84%91%E6%93%8D%E4%BD%9C%E7%9A%84%E5%8F%91%E5%B1%95%E5%89%8D%E6%99%AF"><span class="toc-number">1.8.4.</span> <span class="toc-text">9.4 电脑操作的发展前景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E3%80%81AI-Agent-%E6%97%B6%E4%BB%A3%E7%9A%84-Context-Engineering"><span class="toc-number">1.9.</span> <span class="toc-text">十、AI Agent 时代的 Context Engineering</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#10-1-AI-Agent-%E7%9A%84%E6%A0%B8%E5%BF%83%E7%89%B9%E5%BE%81"><span class="toc-number">1.9.1.</span> <span class="toc-text">10.1 AI Agent 的核心特征</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-2-AI-Agent-%E7%9A%84-Context-%E7%AE%A1%E7%90%86%E6%8C%91%E6%88%98"><span class="toc-number">1.9.2.</span> <span class="toc-text">10.2 AI Agent 的 Context 管理挑战</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10-3-Context-Engineering-%E7%9A%84%E4%B8%89%E5%A4%A7%E7%AD%96%E7%95%A5"><span class="toc-number">1.9.3.</span> <span class="toc-text">10.3 Context Engineering 的三大策略</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E7%BB%93%E8%AF%AD%EF%BC%9AContext-Engineering-%E2%80%94%E2%80%94-AI-Agent-%E6%97%B6%E4%BB%A3%E7%9A%84%E7%81%B5%E9%AD%82%E5%B7%A5%E7%A8%8B"><span class="toc-number">1.10.</span> <span class="toc-text">十一、结语：Context Engineering —— AI Agent 时代的灵魂工程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#11-1-Context-Engineering-%E7%9A%84%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC"><span class="toc-number">1.10.1.</span> <span class="toc-text">11.1 Context Engineering 的核心价值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-2-%E6%9C%AA%E6%9D%A5%E5%8F%91%E5%B1%95%E6%96%B9%E5%90%91"><span class="toc-number">1.10.2.</span> <span class="toc-text">11.2 未来发展方向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-3-%E5%AF%B9-AI-%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%9A%84%E8%A6%81%E6%B1%82"><span class="toc-number">1.10.3.</span> <span class="toc-text">11.3 对 AI 工程师的要求</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%84%E5%BD%95%EF%BC%9A%E5%AE%9E%E6%88%98%E6%A1%88%E4%BE%8B%E4%B8%8E%E8%BF%9B%E9%98%B6%E6%96%B9%E6%B3%95%EF%BC%88%E8%A1%A5%E5%85%85%EF%BC%89"><span class="toc-number">1.11.</span> <span class="toc-text">附录：实战案例与进阶方法（补充）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#A-%E7%A5%9E%E5%A5%87%E5%92%92%E8%AF%AD%E7%9A%84%E5%85%B4%E8%A1%B0%E4%B8%8E-arXiv-%E7%94%9F%E6%80%81"><span class="toc-number">1.11.1.</span> <span class="toc-text">A. 神奇咒语的兴衰与 arXiv 生态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#B-%E8%AF%AD%E5%A2%83%E6%9E%84%E6%88%90%E7%9A%84%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%A6%81%E7%82%B9"><span class="toc-number">1.11.2.</span> <span class="toc-text">B. 语境构成的实例化要点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#C-RAG-%E7%9A%84%E4%BB%B7%E5%80%BC%E4%B8%8E%E9%A3%8E%E9%99%A9%E5%B9%B6%E5%AD%98"><span class="toc-number">1.11.3.</span> <span class="toc-text">C. RAG 的价值与风险并存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#D-%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8%E7%9A%84%E8%90%BD%E5%9C%B0%E6%96%B9%E6%B3%95%EF%BC%88%E4%BB%8E%E2%80%9D%E6%96%87%E5%AD%97%E2%80%9D%E5%88%B0%E2%80%9D%E5%8A%A8%E4%BD%9C%E2%80%9D%EF%BC%89"><span class="toc-number">1.11.4.</span> <span class="toc-text">D. 工具调用的落地方法（从”文字”到”动作”）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#E-Computer-Use%EF%BC%9A%E5%BC%BA%E8%83%BD%E5%8A%9B%E4%B8%8E%E9%AB%98%E9%A3%8E%E9%99%A9%E5%B9%B6%E5%AD%98"><span class="toc-number">1.11.5.</span> <span class="toc-text">E. Computer Use：强能力与高风险并存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#F-Agentic-Workflow-%E4%B8%8E-AI-Agent-%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">1.11.6.</span> <span class="toc-text">F. Agentic Workflow 与 AI Agent 的本质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#G-%E9%95%BF%E4%B8%8A%E4%B8%8B%E6%96%87%E7%9A%84%E6%80%A7%E8%83%BD%E9%99%B7%E9%98%B1%E4%B8%8E%E5%AF%B9%E7%AD%96"><span class="toc-number">1.11.7.</span> <span class="toc-text">G. 长上下文的性能陷阱与对策</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#H-%E4%B8%89%E5%A4%A7%E6%8B%9B%E6%95%B0%EF%BC%9A%E9%80%89%E6%8B%A9%E3%80%81%E5%8E%8B%E7%BC%A9%E3%80%81Multi-Agent%EF%BC%88%E5%B7%A5%E7%A8%8B%E8%A7%86%E8%A7%92%EF%BC%89"><span class="toc-number">1.11.8.</span> <span class="toc-text">H. 三大招数：选择、压缩、Multi-Agent（工程视角）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#I-%E7%BB%8F%E9%AA%8C%E4%B8%8E%E5%8F%8D%E4%BE%8B%EF%BC%9A%E5%A6%82%E4%BD%95%E7%94%A8%E5%A5%BD%E2%80%9D%E8%AE%B0%E5%BF%86%E2%80%9D"><span class="toc-number">1.11.9.</span> <span class="toc-text">I. 经验与反例：如何用好”记忆”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#J-%E4%B8%80%E4%BB%BD%E5%8F%AF%E6%93%8D%E4%BD%9C%E7%9A%84-Context-Engineering-%E6%B8%85%E5%8D%95"><span class="toc-number">1.11.10.</span> <span class="toc-text">J. 一份可操作的 Context Engineering 清单</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/10/28/NLP%20Insights/%E7%94%9F%E6%88%90%E5%BC%8F%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E8%88%87%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E5%B0%8E%E8%AB%962025%20%C2%B7%20%E7%AC%AC2%E8%AC%9B%EF%BC%9A%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B%EF%BC%88Context%20Engineering%EF%BC%89%E2%80%94%E2%80%94AI%20Agent%20%E8%83%8C%E5%BE%8C%E7%9A%84%E9%97%9C%E9%8D%B5%E6%8A%80%E8%A1%93/" title="No title">No title</a><time datetime="2025-10-28T10:28:04.843Z" title="Created 2025-10-28 18:28:04">2025-10-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/25/Life%20Reflections/%E5%9C%A8%E4%B8%8D%E7%A1%AE%E5%AE%9A%E4%B8%AD%E9%94%9A%E5%AE%9A%E8%87%AA%E6%88%91/" title="在不确定中锚定自我">在不确定中锚定自我</a><time datetime="2025-06-25T06:11:06.000Z" title="Created 2025-06-25 14:11:06">2025-06-25</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="Created 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom:%20%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%AF%9DAI%E7%9A%84%E8%AE%B0%E5%BF%86%E7%AE%A1%E7%90%86/" title="SeCom: 重新定义对话AI的记忆管理">SeCom: 重新定义对话AI的记忆管理</a><time datetime="2025-06-24T08:00:00.000Z" title="Created 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/06/NLP%20Insights/Decoder%E6%A8%A1%E5%9E%8B%E5%92%8CEncoder%E6%A8%A1%E5%9E%8B%E5%9C%A8Padding%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%90%8C/" title="Decoder-only与Encoder-only模型Padding策略的差异">Decoder-only与Encoder-only模型Padding策略的差异</a><time datetime="2025-03-06T09:43:10.000Z" title="Created 2025-03-06 17:43:10">2025-03-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Huiyu Chen</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Switch Between Traditional Chinese And Simplified Chinese">繁</button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js"></script><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
