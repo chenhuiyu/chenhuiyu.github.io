@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="[&quot;en&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>黑头呆鱼进化之旅 - 只身打码过草原</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="黑头呆鱼进化之旅">
+<meta property="og:url" content="https://chenhuiyu.github.io/page/2/index.html">
+<meta property="og:site_name" content="黑头呆鱼进化之旅">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
+<meta property="article:author" content="Huiyu Chen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '黑头呆鱼进化之旅',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+</head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">黑头呆鱼进化之旅</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/05/23/Tech%20Toolbox/GitLog/" title="GitLog">GitLog</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-22T16:59:40.000Z" title="Created 2023-05-23 00:59:40">2023-05-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tech-Toolbox/">Tech Toolbox</a></span></div><div class="content">Git Log当使用Git进行版本控制时，**git log**命令是一个有用的工具，它可以显示提交历史记录和分支之间的关系。 基本用法在终端或命令行中使用以下命令格式来调用git log： 1git log  这将显示包含所有提交历史记录的列表，最新的提交显示在最上面。 限制输出git log提供了一些选项来限制输出，以满足不同的需求。  -oneline：以紧凑的一行摘要形式显示提交历史记录。  1git log --oneline   -decorate：在输出中显示分支和标签的引用名称。  1git log --decorate   -graph：使用图形表示法展示分支和合并的关系。  1git log --graph  可以将这些选项组合在一起使用： 1git log --oneline --decorate --graph  当您行 git log --oneline --decorate --graph 命令时，输出结果会以一种紧凑、图形化的方式显示提交历史记录和分支之间的关系。下面是对输出结果中每个部分的解释：  Commit Hash（提交哈希值）：每个提交的唯...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/23/Code%20Chronicles/FAISS%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B/" title="FAISS向量查询简介">FAISS向量查询简介</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-02-23T08:33:36.000Z" title="Created 2023-02-23 16:33:36">2023-02-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Code-Chronicles/">Code Chronicles</a></span></div><div class="content">FaissInstall 支持 CUDA 的 Linux ：conda install -c pytorch faiss-gpu 其他：conda install -c pytorch faiss-cpu  IndexFlatL2IndexFlatL2测量查询向量与加载到索引中的向量之间所有给定点之间的 L2（或欧几里得）距离。它很简单，非常准确，但也不会太快。 给定一组维度为$d$的向量${ x_1,…, x_n }$，Faiss在Ram中构架一个数据结构——index ，构造完结构后，当给定一个新的维度为$d$向量$x$时，可以高效的执行以下操作： $$i = \mathrm{argmin}_i || x - x_i ||$$ 其中$||.||$表示欧氏（Euclidean distance）距离（L2） 用 Faiss 术语来说，数据结构是一个*index，index 是一个具有add方法的对象。*add可以用于添加 x_i向量。请注意，假定 x_i是固定的。   在 Python 中，我们会IndexFlatL2用我们的向量维度（768——我们句子嵌入的输出大小）初始化我...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/20/Code%20Chronicles/Python-IntersectionUnion/" title="Intersection &amp; Union">Intersection &amp; Union</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-02-20T04:02:03.000Z" title="Created 2023-02-20 12:02:03">2023-02-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Code-Chronicles/">Code Chronicles</a></span></div><div class="content">Intersection &amp; Union交集和并集 IntersectionPython中的intersection()方法是用于获取两个集合的交集。这个方法是set对象的方法，因此它只能用于set对象中。 如果您想在其他类型的容器中获取交集，可以使用Python的内置函数set()将它们转换为set对象。例如，您可以使用以下代码来获取两个列表的交集： 123a = [1, 2, 3, 4]b = [3, 4, 5, 6]intersection = set(a).intersection(set(b))  这里，我们首先使用set()将两个列表a和b转换为set对象，然后使用intersection()方法获取它们的交集。注意，由于集合是无序的，因此结果集合中的元素顺序可能与原始列表中的顺序不同。 除了set对象之外，Python的字典类型也具有类似的intersection()方法，用于获取两个字典的相同键的交集，但这与上述情况不同。 Union如果想获取两个容器的并集，可以使用Python的内置函数set()将它们转换为set对象，然后使用union()方法获取它们...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/01/Code%20Chronicles/Python%20-m%20%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A/" title="Python -m 参数解释">Python -m 参数解释</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-02-01T02:02:03.000Z" title="Created 2023-02-01 10:02:03">2023-02-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Code-Chronicles/">Code Chronicles</a></span></div><div class="content">Python -m 参数解释1. Python -m 参数解释在shell调用时，python -m的参数是什么意思？当在命令行中输入 “python -m “ 时，这表示使用Python的内置模块运行程序，其中是要运行的模块的名称。这类似于在Python脚本中使用 “import “ 并运行 “module-name.run()”。 例如： “python -m http.server” 将启动Python内置的HTTP服务器，可以在浏览器中访问当前目录中的文件。 “python -m unittest discover” 将在当前目录中查找并运行所有以test_*.py命名的单元测试脚本。 module-name.run() 需要自己在模块中编写run函数吗？不需要。在调用 “python -m “ 时，Python会自动在模块中寻找并运行名为 “run()” 的函数。如果该函数不存在，则会在模块中寻找并运行名为 “main()” 的函数。 在大多数情况下，如果模块是一个可执行程序，则应该在其中编写一个名为 “main()” 的函数，并在该函数中编写程序逻辑。 如果模块是一个...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/01/Code%20Chronicles/Python-yield/" title="Python yield">Python yield</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-02-01T02:02:03.000Z" title="Created 2023-02-01 10:02:03">2023-02-01</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Code-Chronicles/">Code Chronicles</a></span></div><div class="content">Python yield在 Python 中，**yield** 是一个关键字，它通常用于生成器函数中，用于生成序列化的值而不需要将整个序列保存在内存中。 当函数被调用并包含 yield 语句时，它并不会立即执行函数体的所有代码。相反，它将返回一个生成器对象，每次调用生成器对象的 __next__() 方法时，函数体将从上次 yield 语句停止的位置继续执行，直到遇到下一个 yield 语句或函数结束。 举个例子，下面的代码展示了一个简单的生成器函数，它使用 yield 语句产生数字序列： 1234567891011def number_generator(n):    for i in range(n):        yield i# 使用生成器对象打印数字序列my_generator = number_generator(5)print(next(my_generator))  # 0print(next(my_generator))  # 1print(next(my_generator))  # 2print(next(my_generator))  # 3print...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/01/11/Tech%20Toolbox/Hexo%20%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2/" title="Hexo博客的创建与部署">Hexo博客的创建与部署</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-01-10T16:00:00.000Z" title="Created 2023-01-11 00:00:00">2023-01-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tech-Toolbox/">Tech Toolbox</a></span></div><div class="content">（生活反思）（代码编年史）（流浪癖笔记）NLP Insights（自然语言处理洞察）Tech Toolbox（技术工具箱）Travel Tales（旅行故事）Debugging Diaries  前言：大家好，我是博主黑头呆鱼。之前我的旧电脑退休了，这导致我之前博客的内容找不到了。所以，我决定在新博客的第一篇文章中分享如何创建博客并上传源代码到 GitHub。现在，让我们开始吧！  Hexo 博客的创建与部署以下是创建新的 Hexo 博客并部署到 GitHub 的详细步骤： 安装前置软件安装 Node.js 和 npmHexo 是基于 Node.js 构建的，所以首先你需要安装 Node.js 和 npm（Node 包管理器）。访问 Node.js 的官方网站 进行下载安装。 安装 Hexo在 Node.js 和 npm 安装完成后，通过 npm 全局安装 Hexo。在命令行中运行以下命令： 1npm install -g hexo-cli  创建新的 Hexo 博客初始化新的 Hexo 博客创建一个新的文件夹作为你的博客的根目录，然后在命令行中运行以下命令： 12hexo in...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2022/08/09/Wanderlust%20Adventures/%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5/" title="南洋的椰风海韵">南洋的椰风海韵</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2022-08-09T15:27:10.000Z" title="Created 2022-08-09 23:27:10">2022-08-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Wanderlust-Adventures/">Wanderlust Adventures</a></span></div><div class="content">南洋的椰风海韵  轻柔的椰风，吹拂着南洋的海滨，翠绿的棕榈，舞动在碧蓝的天际。大海的波涛，如歌如泣，耳畔回荡。潮起潮落间，悠远涛声如诗韵鸣响， 沿着海岸线，白色浪花轻轻拥抱沙滩，细细沙粒，脚下轻轻润湿。远处礁石，静静凝望海的无尽辽阔，仿佛古老智者，守护秘密。 夜幕降临，星空如璀璨珠宝散落天穹，海风带来盈盈月光，如银河倾泻而下，椰树摇曳，带入无边诗画，梦想和希望，交织成美丽图景，永铭南洋椰风海韵，灵魂驿站。 </div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">17</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/memory-in-llm-arxiv/" title="《Mine and Refine：优化电商搜索中的分级相关性检索》">《Mine and Refine：优化电商搜索中的分级相关性检索》</a><time datetime="2026-02-20T21:26:14.000Z" title="Created 2026-02-21 05:26:14">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/27/NLP%20Insights/Prompt%20Engineering/" title="Prompt Engineering">Prompt Engineering</a><time datetime="2023-07-27T07:44:10.000Z" title="Created 2023-07-27 15:44:10">2023-07-27</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/10/Code%20Chronicles/ColoredLogger/" title="ColoredLogger-彩色打印日志到控制台并记录到文件">ColoredLogger-彩色打印日志到控制台并记录到文件</a><time datetime="2023-07-10T07:02:44.000Z" title="Created 2023-07-10 15:02:44">2023-07-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/09/NLP%20Insights/%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95/" title="详解梯度下降算法">详解梯度下降算法</a><time datetime="2023-07-09T04:59:21.000Z" title="Created 2023-07-09 12:59:21">2023-07-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/07/08/Tech%20Toolbox/GeoMapToBlog/" title="Hexo博客添加可交互式足迹地图">Hexo博客添加可交互式足迹地图</a><time datetime="2023-07-08T05:40:21.000Z" title="Created 2023-07-08 13:40:21">2023-07-08</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Code-Chronicles/"><span class="card-category-list-name">Code Chronicles</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Debugging-Diaries/"><span class="card-category-list-name">Debugging Diaries</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Life-Reflections/"><span class="card-category-list-name">Life Reflections</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/NLP-Insights/"><span class="card-category-list-name">NLP Insights</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Tech-Toolbox/"><span class="card-category-list-name">Tech Toolbox</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Wanderlust-Adventures/"><span class="card-category-list-name">Wanderlust Adventures</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Embedding/" style="font-size: 1.1em; color: #999">Embedding</a> <a href="/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/" style="font-size: 1.1em; color: #999">坡岛生活指北</a> <a href="/tags/FAISS/" style="font-size: 1.1em; color: #999">FAISS</a> <a href="/tags/Prompt/" style="font-size: 1.1em; color: #999">Prompt</a> <a href="/tags/DSSM/" style="font-size: 1.1em; color: #999">DSSM</a> <a href="/tags/Gradient-Descent/" style="font-size: 1.1em; color: #999">Gradient Descent</a> <a href="/tags/K8s/" style="font-size: 1.1em; color: #999">K8s</a> <a href="/tags/Sports/" style="font-size: 1.1em; color: #999">Sports</a> <a href="/tags/LLM/" style="font-size: 1.1em; color: #999">LLM</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Python/" style="font-size: 1.1em; color: #999">Python</a> <a href="/tags/Blog/" style="font-size: 1.3em; color: #99a1ac">Blog</a> <a href="/tags/E-commerce-Search/" style="font-size: 1.1em; color: #999">E-commerce Search</a> <a href="/tags/Python-Basic/" style="font-size: 1.5em; color: #99a9bf">Python Basic</a> <a href="/tags/arXiv/" style="font-size: 1.1em; color: #999">arXiv</a> <a href="/tags/Deep-Learning/" style="font-size: 1.1em; color: #999">Deep Learning</a> <a href="/tags/Recommendation/" style="font-size: 1.3em; color: #99a1ac">Recommendation</a> <a href="/tags/Memory-Daily/" style="font-size: 1.1em; color: #999">Memory Daily</a> <a href="/tags/IssueFix/" style="font-size: 1.1em; color: #999">IssueFix</a> <a href="/tags/Retrieval/" style="font-size: 1.1em; color: #999">Retrieval</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>Archives</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              February 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/07/">
+            <span class="card-archive-list-date">
+              July 2023
+            </span>
+            <span class="card-archive-list-count">8</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/06/">
+            <span class="card-archive-list-date">
+              June 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/05/">
+            <span class="card-archive-list-date">
+              May 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/02/">
+            <span class="card-archive-list-date">
+              February 2023
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2023/01/">
+            <span class="card-archive-list-date">
+              January 2023
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2022/08/">
+            <span class="card-archive-list-date">
+              August 2022
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">17</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-02-20T21:26:20.219Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
