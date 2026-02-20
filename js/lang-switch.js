@@ -1,42 +1,31 @@
 (function () {
-  function togglePath(path) {
-    if (path.startsWith('/en/')) return path.replace(/^\/en\//, '/');
-    if (path === '/en') return '/';
-    if (path === '/') return '/en/';
-    return '/en' + path;
+  function targetPath() {
+    var p = location.pathname;
+    if (p.startsWith('/en/')) return p.replace(/^\/en\//, '/');
+    if (p === '/en') return '/';
+    if (p === '/') return '/en/';
+    return '/en' + p;
   }
 
-  function exists(url) {
-    return fetch(url, { method: 'HEAD' }).then(r =&gt; r.ok).catch(() =&gt; false);
-  }
+  function build() {
+    if (document.getElementById('cipher-lang-switch')) return;
+    var box = document.createElement('div');
+    box.id = 'cipher-lang-switch';
+    box.style.cssText = 'position:fixed;top:16px;right:16px;z-index:2147483647;background:#111;color:#fff;border-radius:10px;padding:8px 12px;font-size:13px;box-shadow:0 6px 20px rgba(0,0,0,.25)';
 
-  function buildBtn() {
-    var wrap = document.createElement('div');
-    wrap.style.cssText = 'position:fixed;right:18px;bottom:92px;z-index:99999;background:rgba(0,0,0,.62);color:#fff;border-radius:999px;padding:6px 10px;font-size:12px;backdrop-filter:blur(4px)';
-
-    var btn = document.createElement('a');
     var isEn = location.pathname.startsWith('/en/');
-    btn.textContent = isEn ? '中文' : 'English';
-    btn.href = '#';
-    btn.style.cssText = 'color:#fff;text-decoration:none;';
-    btn.onclick = async function (e) {
-      e.preventDefault();
-      var targetPath = togglePath(location.pathname);
-      var target = location.origin + targetPath + location.search + location.hash;
-      if (await exists(target)) {
-        location.href = target;
-      } else {
-        alert('该页面暂无对应语言版本');
-      }
-    };
-
-    wrap.appendChild(btn);
-    document.body.appendChild(wrap);
+    var a = document.createElement('a');
+    a.href = targetPath();
+    a.textContent = isEn ? '切换中文' : 'Switch English';
+    a.style.cssText = 'color:#fff;text-decoration:none;font-weight:600;';
+    box.appendChild(a);
+    document.body.appendChild(box);
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildBtn);
+    document.addEventListener('DOMContentLoaded', build);
   } else {
-    buildBtn();
+    build();
   }
+  setTimeout(build, 1200);
 })();
