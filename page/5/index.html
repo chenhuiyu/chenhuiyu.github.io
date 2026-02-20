@@ -1,274 +1,237 @@
-<!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>user's blog</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
-<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/widget-post-list.css"><meta name="generator" content="Hexo 6.3.0">
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>黑头呆鱼进化之旅 - 只身打码过草原</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="黑头呆鱼进化之旅">
+<meta property="og:url" content="https://chenhuiyu.github.io/page/5/index.html">
+<meta property="og:site_name" content="黑头呆鱼进化之旅">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
+<meta property="article:author" content="Huiyu Chen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/page/5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '黑头呆鱼进化之旅',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'home'
+}</script><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
-</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">user's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98"><i class="tag post-item-tag">每日一题</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/08/Code%20Chronicles/2834.%20%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C.zh-CN/">【Python题解】2834. 找出美丽数组的最小和</a></h2><time class="has-text-grey" datetime="2024-03-08T15:31:44.000Z">2024-03-08</time><p class="is-flex-grow-2 mt-2">2834. 找出美丽数组的最小和
-Problem: 2834. 找出美丽数组的最小和
-
-题目描述给定两个正整数 n 和 target，目标是找到一个长度为 n 的数组，满足以下条件：
-
-数组由两两不同的正整数组成。
-不存在两个不同下标 i 和 j 使得 nums[i] + nums[j] == target。返回符合条件的美丽数组所可能具备的最小和，并对结果进行 10^9 + 7 取模。
-
-测试用例示例 1：
-
-输入：n = 2, target = 3
-输出：4
-
-示例 2：
-
-输入：n = 3, target = 3
-输出：8
-
-示例 3：
-
-输入：n = 1, target = 1
-输出：1
-
-原始思路方案初始方案是从最小的数字开始，逐个检查每个数字是否可以被添加到数组中，同时确保不会存在两个数字之和等..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/08/Code%20Chronicles/2834.%20%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98"><i class="tag post-item-tag">每日一题</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/08/Code%20Chronicles/2834.%20%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C.en/">【Python题解】2834. 找出美丽数组的最小和</a></h2><time class="has-text-grey" datetime="2024-03-08T15:31:44.000Z">2024-03-08</time><p class="is-flex-grow-2 mt-2">2834. 找出美丽数组的最小和
-Problem: 2834. 找出美丽数组的最小和
-
-题目描述给定两个正整数 n 和 target，目标是找到一个长度为 n 的数组，满足以下条件：
-
-数组由两两不同的正整数组成。
-不存在两个不同下标 i 和 j 使得 nums[i] + nums[j] == target。返回符合条件的美丽数组所可能具备的最小和，并对结果进行 10^9 + 7 取模。
-
-测试用例示例 1：
-
-输入：n = 2, target = 3
-输出：4
-
-示例 2：
-
-输入：n = 3, target = 3
-输出：8
-
-示例 3：
-
-输入：n = 1, target = 1
-输出：1
-
-原始思路方案初始方案是从最小的数字开始，逐个检查每个数字是否可以被添加到数组中，同时确保不会存在两个数字之和等..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/08/Code%20Chronicles/2834.%20%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Language%20Learning"><i class="tag post-item-tag">Language Learning</i></a><a href="/tags/Small%20Talk"><i class="tag post-item-tag">Small Talk</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/05/Life%20Reflections/%E8%B7%9F%E7%9D%80GPT%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A.en/">跟着GPT老师学小聊：如何做一个好的捧哏</a></h2><time class="has-text-grey" datetime="2024-03-05T14:31:00.000Z">2024-03-05</time><p class="is-flex-grow-2 mt-2">英语小聊 (small talk) 是日常生活中不可或缺的交流形式，它不仅有助于打破沉默，也能在轻松的氛围中促进理解和友谊。在这篇文章中，我们将结合 10 个主题，提供相关的词汇、短语，并分享生活故事的开场白。同时，学习如何成为一名优秀的捧哏，通过提问和接话，让对话更加流畅和有趣。
-1. 旅游体验 (Travel Experiences)
-词汇：Itinerary (行程), off the beaten path (人迹罕至), picturesque (如画的), excursion (远足), landmark (地标)。
-短语：Cultural immersion (文化沉浸), travel off the beaten path (走偏僻的路), soak up the atmosphere (..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/05/Life%20Reflections/%E8%B7%9F%E7%9D%80GPT%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Language%20Learning"><i class="tag post-item-tag">Language Learning</i></a><a href="/tags/Small%20Talk"><i class="tag post-item-tag">Small Talk</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/05/Life%20Reflections/%E8%B7%9F%E7%9D%80GPT%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A.zh-CN/">跟着GPT老师学小聊：如何做一个好的捧哏</a></h2><time class="has-text-grey" datetime="2024-03-05T14:31:00.000Z">2024-03-05</time><p class="is-flex-grow-2 mt-2">英语小聊 (small talk) 是日常生活中不可或缺的交流形式，它不仅有助于打破沉默，也能在轻松的氛围中促进理解和友谊。在这篇文章中，我们将结合 10 个主题，提供相关的词汇、短语，并分享生活故事的开场白。同时，学习如何成为一名优秀的捧哏，通过提问和接话，让对话更加流畅和有趣。
-1. 旅游体验 (Travel Experiences)
-词汇：Itinerary (行程), off the beaten path (人迹罕至), picturesque (如画的), excursion (远足), landmark (地标)。
-短语：Cultural immersion (文化沉浸), travel off the beaten path (走偏僻的路), soak up the atmosphere (..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/05/Life%20Reflections/%E8%B7%9F%E7%9D%80GPT%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/04/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100226.%20%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE.en/">【Python题解】100226. 在带权树网络中统计可连接服务器对数目</a></h2><time class="has-text-grey" datetime="2024-03-04T15:31:44.000Z">2024-03-04</time><p class="is-flex-grow-2 mt-2">题目：100226. 在带权树网络中统计可连接服务器对数目题目描述你被给定一个未定根的加权树，它有 n 个顶点，代表从 0 到 n - 1 编号的服务器，一个数组 edges，其中 edges[i] = [ai, bi, weighti] 代表顶点 ai 和 bi 之间的双向边，边的权重为 weighti。你还被给定一个整数 signalSpeed。
-如果满足以下条件，两个服务器 a 和 b 可以通过服务器 c 连接：
-
-a &amp;lt; b，a != c 且 b != c。
-从 c 到 a 的距离可被 signalSpeed 整除。
-从 c 到 b 的距离可被 signalSpeed 整除。
-从 c 到 b 和从 c 到 a 的路径不共享任何边。
-
-返回一个整数数组 count，长度为 n，其中 count[..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/04/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100226.%20%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/04/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100226.%20%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE.zh-CN/">【Python题解】100226. 在带权树网络中统计可连接服务器对数目</a></h2><time class="has-text-grey" datetime="2024-03-04T15:31:44.000Z">2024-03-04</time><p class="is-flex-grow-2 mt-2">题目：100226. 在带权树网络中统计可连接服务器对数目题目描述你被给定一个未定根的加权树，它有 n 个顶点，代表从 0 到 n - 1 编号的服务器，一个数组 edges，其中 edges[i] = [ai, bi, weighti] 代表顶点 ai 和 bi 之间的双向边，边的权重为 weighti。你还被给定一个整数 signalSpeed。
-如果满足以下条件，两个服务器 a 和 b 可以通过服务器 c 连接：
-
-a &amp;lt; b，a != c 且 b != c。
-从 c 到 a 的距离可被 signalSpeed 整除。
-从 c 到 b 的距离可被 signalSpeed 整除。
-从 c 到 b 和从 c 到 a 的路径不共享任何边。
-
-返回一个整数数组 count，长度为 n，其中 count[..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/04/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100226.%20%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/03/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100232.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20II.en/">【Python题解】100232. 超过阈值的最少操作数 II</a></h2><time class="has-text-grey" datetime="2024-03-03T15:32:44.000Z">2024-03-03</time><p class="is-flex-grow-2 mt-2">题目：100232. 超过阈值的最少操作数 II题目描述超过阈值的最少操作数 II
-给定一个从 0 开始的整数数组 nums 和一个整数 k。你可以进行如下操作：
-
-选择 nums 中最小的两个整数 x 和 y。
-将 x 和 y 从 nums 中删除。
-将 min(x, y) * 2 + max(x, y) 添加到数组中的任意位置。
-
-注意，只有当 nums 至少包含两个元素时，你才可以执行以上操作。
-目标是使数组中的所有元素都大于或等于 k。请返回实现此目标所需的最少操作次数。
-示例
-示例 1：
-
-输入：nums = [2,11,10,1,3], k = 10
-输出：2
-解释：第一次操作中，我们删除元素 1 和 2，然后添加 1 _ 2 + 2 到 nums 中，nums 变为 [4, 11, 10, 3..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/03/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100232.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20II.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/03/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100232.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20II.zh-CN/">【Python题解】100232. 超过阈值的最少操作数 II</a></h2><time class="has-text-grey" datetime="2024-03-03T15:32:44.000Z">2024-03-03</time><p class="is-flex-grow-2 mt-2">题目：100232. 超过阈值的最少操作数 II题目描述超过阈值的最少操作数 II
-给定一个从 0 开始的整数数组 nums 和一个整数 k。你可以进行如下操作：
-
-选择 nums 中最小的两个整数 x 和 y。
-将 x 和 y 从 nums 中删除。
-将 min(x, y) * 2 + max(x, y) 添加到数组中的任意位置。
-
-注意，只有当 nums 至少包含两个元素时，你才可以执行以上操作。
-目标是使数组中的所有元素都大于或等于 k。请返回实现此目标所需的最少操作次数。
-示例
-示例 1：
-
-输入：nums = [2,11,10,1,3], k = 10
-输出：2
-解释：第一次操作中，我们删除元素 1 和 2，然后添加 1 _ 2 + 2 到 nums 中，nums 变为 [4, 11, 10, 3..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/03/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100232.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20II.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I.en/">【Python题解】100231. 超过阈值的最少操作数 I</a></h2><time class="has-text-grey" datetime="2024-03-02T15:34:44.000Z">2024-03-02</time><p class="is-flex-grow-2 mt-2">超过阈值的最少操作数 I题目给定一个下标从 0 开始的整数数组 nums 和一个整数 k。在每次操作中，你可以删除 nums 中的最小元素。目标是通过最少的操作次数使数组中的所有元素都大于或等于 k。需要返回实现此目标所需的最少操作次数。
-示例示例 1:
-
-输入：nums = [2, 11, 10, 1, 3], k = 10
-输出：3
-解释：
-第一次操作后，nums 变为 [2, 11, 10, 3]。
-第二次操作后，nums 变为 [11, 10, 3]。
-第三次操作后，nums 变为 [11, 10]。
-此时，数组中的所有元素都大于等于 10，所以停止操作。
-使数组中所有元素都大于等于 10 需要的最少操作次数为 3。
-
-
-
-示例 2:
-
-输入：nums = [1, 1, 2, 4, 9], k = ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I.zh-CN/">【Python题解】100231. 超过阈值的最少操作数 I</a></h2><time class="has-text-grey" datetime="2024-03-02T15:34:44.000Z">2024-03-02</time><p class="is-flex-grow-2 mt-2">超过阈值的最少操作数 I题目给定一个下标从 0 开始的整数数组 nums 和一个整数 k。在每次操作中，你可以删除 nums 中的最小元素。目标是通过最少的操作次数使数组中的所有元素都大于或等于 k。需要返回实现此目标所需的最少操作次数。
-示例示例 1:
-
-输入：nums = [2, 11, 10, 1, 3], k = 10
-输出：3
-解释：
-第一次操作后，nums 变为 [2, 11, 10, 3]。
-第二次操作后，nums 变为 [11, 10, 3]。
-第三次操作后，nums 变为 [11, 10]。
-此时，数组中的所有元素都大于等于 10，所以停止操作。
-使数组中所有元素都大于等于 10 需要的最少操作次数为 3。
-
-
-
-示例 2:
-
-输入：nums = [1, 1, 2, 4, 9], k = ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I.zh-CN/">更多</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><a class="extend prev" rel="prev" href="/page/4/"><i class="iconfont icon-prev has-text-grey"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><style>.search-widget .search-input {
-    border: none;
-    outline: none;
-    background: transparent;
-    color: var(--second-text-color);
-}
-.search-widget .search-content {
-    position: absolute;
-    left: 0;
-    top: calc(100% - 3px);
-    z-index: 2;
-
-    width: 100%;
-    height: 0;
-    max-height: 550px;
-
-    overflow: auto;
-    box-sizing: border-box;
-
-    background: var(--top-bar-bg-color);
-    backdrop-filter: blur(var(--backdropFilter));
-    -webkit-backdrop-filter: blur(var(--backdropFilter));
-
-    border-bottom-left-radius: var(--borderRadius);
-    border-bottom-right-radius: var(--borderRadius);
-    box-shadow: 0 12px 15px rgba(0, 0, 0, 0.08);
-}
-
-.search-widget .search-content a:hover h5 {
-    color: #3273dc!important;
-}
-</style><main class="aside-card-container search-widget is-relative"><label for="searchInput"><div class="is-flex px-4" id="searchButton"><i class="iconfont icon--search1 mr-1"></i><input class="search-input is-flex-grow-1" id="searchInput" placeholder="搜索内容.."></div></label><section class="search-content content" id="searchContent"></section></main><script>var searchDatabase = []
-var searchInputEl = document.getElementById('searchInput')
-var searchButtonEl = document.getElementById('searchButton')
-var searchResultEl = document.getElementById('searchContent')
-
-searchInputEl.oninput = function (evt) {
-    var searchValue = evt.srcElement.value
-    var haveSearchValue = Boolean(searchValue.trim())
-    if (!haveSearchValue) {
-        searchResultEl.style.height = 0
-        searchResultEl.innerHTML = null
-        return
-    }
-
-    var searchResults = searching(searchValue)
-
-    if (searchResults.length > 0) {
-        renderSearchResults(searchResults)
-    }
-}
-
-function renderSearchResults(results) {
-    searchResultEl.innerHTML = null
-    var fragment = document.createDocumentFragment()
-
-    results.forEach(function (item) {
-        var link = document.createElement('a')
-        var title = document.createElement('h5')
-        var content = document.createElement('p')
-
-        title.className = 'mb-1'
-        title.innerText = item.title
-        content.innerText = item.content
-
-        link.href = item.link
-        link.appendChild(title)
-        link.appendChild(content)
-        link.className = 'p-4 is-block'
-
-        fragment.appendChild(link)
-    })
-
-    searchResultEl.appendChild(fragment)
-    searchResultEl.style.height = 'auto'
-}
-
-function searching(inputText) {
-    var inputTexts = inputText.split(' ')
-    var searchResults = []
-    inputTexts.forEach(function (searchKey) {
-        var haveSearchValue = Boolean(searchKey.trim())
-        if (!haveSearchValue) return
-
-        var key = searchKey.toLowerCase()
-
-        for (var entry of searchDatabase) {
-            var title = entry.getElementsByTagName('title')[0].textContent
-            var link = entry.getElementsByTagName('link')[0].getAttribute('href')
-            var contentWithTags = entry.getElementsByTagName('content')[0].textContent
-            var rawContent = contentWithTags.trim().replace(/<[^>]+>/g, '').toLowerCase()
-
-            var LENGTH = 80
-            var finalContent = ''
-            var contentLength = rawContent.length
-            var searchResultIdx = rawContent.indexOf(key)
-
-            var startIdx = searchResultIdx - 20,
-                endIdx = startIdx + LENGTH
-
-            if (startIdx < 0) {
-                startIdx = 0
-                endIdx = 100
-            }
-
-            endIdx > contentLength && (endIdx = contentLength)
-
-            finalContent = rawContent.substring(startIdx, endIdx)
-
-            if (title.indexOf(key) > -1 || searchResultIdx > -1) {
-                searchResults.push({
-                    link: link,
-                    title: title,
-                    content: finalContent
-                })
-            }
-        }
-    })
-    return searchResults
-}
-
-searchButtonEl.onclick = function () {
-    if (searchDatabase.length > 0) return;
-
-    fetch(window.location.href + '/search.xml').then(res => res.text()).then(res => {
-        var domparser = new DOMParser
-        var doc = domparser.parseFromString(res, 'application/xml')
-        searchDatabase = doc.getElementsByTagName('search')[0].children
-    })
-}</script><main class="aside-card-container profile-widget"><!-- todo: 使用取色工具动态阴影--><section class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center"><section class="is-flex is-justify-content-center avatar is-clipped"><div class="avatar-placeholder"></div></section><h3 class="user-name">user</h3><blockquote class="has-text-centered is-relative"><span style="margin-bottom: 5px;">May the Force be with you</span></blockquote><address class="has-text-centered has-text-grey"><i class="iconfont icon-location" style="margin-right: 5px;"></i><span class="has-text-grey">In the dust</span></address></section><section class="sns-container is-flex is-justify-content-center is-align-items-center"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section></main><main class="aside-card-container recent-widget"><h3>最近</h3><ul><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://ui-avatars.com/api/?background=f5f5f5&amp;name=【P" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2024/03/08/Code%20Chronicles/2834.%20%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C.zh-CN/">【Python题解】2834. 找出美丽数组的最小和</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2024-03-08T15:31:44.000Z">2024-03-08</time></section></li><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://ui-avatars.com/api/?background=f5f5f5&amp;name=【P" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2024/03/08/Code%20Chronicles/2834.%20%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C.en/">【Python题解】2834. 找出美丽数组的最小和</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2024-03-08T15:31:44.000Z">2024-03-08</time></section></li><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://ui-avatars.com/api/?background=f5f5f5&amp;name=跟着" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2024/03/05/Life%20Reflections/%E8%B7%9F%E7%9D%80GPT%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A.en/">跟着GPT老师学小聊：如何做一个好的捧哏</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2024-03-05T14:31:00.000Z">2024-03-05</time></section></li><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://ui-avatars.com/api/?background=f5f5f5&amp;name=跟着" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2024/03/05/Life%20Reflections/%E8%B7%9F%E7%9D%80GPT%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A.zh-CN/">跟着GPT老师学小聊：如何做一个好的捧哏</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2024-03-05T14:31:00.000Z">2024-03-05</time></section></li><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://ui-avatars.com/api/?background=f5f5f5&amp;name=【P" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2024/03/04/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100226.%20%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE.en/">【Python题解】100226. 在带权树网络中统计可连接服务器对数目</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2024-03-04T15:31:44.000Z">2024-03-04</time></section></li><li class="is-flex"><!-- change to element replace image placeholder--><img class="js-img-fadeIn" src="https://ui-avatars.com/api/?background=f5f5f5&amp;name=【P" alt="cover"><!--else--><!--    div.post-img-placeholder--><section class="is-flex-grow-2"><p class="has-text-weight-semibold" style="line-height: 20px; font-size: 14px"><a href="/2024/03/04/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100226.%20%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE.zh-CN/">【Python题解】100226. 在带权树网络中统计可连接服务器对数目</a></p><time class="has-text-weight-semibold has-text-grey" datetime="2024-03-04T15:31:44.000Z">2024-03-04</time></section></li></ul></main><main class="aside-card-container categories-widget category-page"><h3>分类</h3><section><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Code-Chronicles/">Code Chronicles</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging-Diaries/">Debugging Diaries</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life-Reflections/">Life Reflections</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP-Insights/">NLP Insights</a><span class="category-list-count">50</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech-Toolbox/">Tech Toolbox</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wanderlust-Adventures/">Wanderlust Adventures</a><span class="category-list-count">2</span></li></ul></section></main><main class="aside-card-container archives-widget"><h3>归档</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">二月 2026</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">六月 2025</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">三月 2025</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">二月 2025</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">十月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">八月 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a><span class="archive-list-count">2</span></li></ul></section></main><main class="aside-card-container tag-widget"><h3>标签</h3><section><a href="/tags/IssueFix"><span class="tag post-item-tag" style="margin-bottom: 5px;">IssueFix</span></a><a href="/tags/Blog"><span class="tag post-item-tag" style="margin-bottom: 5px;">Blog</span></a><a href="/tags/Git"><span class="tag post-item-tag" style="margin-bottom: 5px;">Git</span></a><a href="/tags/K8s"><span class="tag post-item-tag" style="margin-bottom: 5px;">K8s</span></a><a href="/tags/Language%20Modeling"><span class="tag post-item-tag" style="margin-bottom: 5px;">Language Modeling</span></a><a href="/tags/Perplexity"><span class="tag post-item-tag" style="margin-bottom: 5px;">Perplexity</span></a><a href="/tags/Onnx"><span class="tag post-item-tag" style="margin-bottom: 5px;">Onnx</span></a><a href="/tags/Deployment"><span class="tag post-item-tag" style="margin-bottom: 5px;">Deployment</span></a><a href="/tags/Chatbot"><span class="tag post-item-tag" style="margin-bottom: 5px;">Chatbot</span></a><a href="/tags/DSSM"><span class="tag post-item-tag" style="margin-bottom: 5px;">DSSM</span></a><a href="/tags/Recommendation"><span class="tag post-item-tag" style="margin-bottom: 5px;">Recommendation</span></a><a href="/tags/LLM"><span class="tag post-item-tag" style="margin-bottom: 5px;">LLM</span></a><a href="/tags/FastChat"><span class="tag post-item-tag" style="margin-bottom: 5px;">FastChat</span></a><a href="/tags/Train"><span class="tag post-item-tag" style="margin-bottom: 5px;">Train</span></a><a href="/tags/Agent"><span class="tag post-item-tag" style="margin-bottom: 5px;">Agent</span></a><a href="/tags/Tool%20Use"><span class="tag post-item-tag" style="margin-bottom: 5px;">Tool Use</span></a><a href="/tags/Gorilla"><span class="tag post-item-tag" style="margin-bottom: 5px;">Gorilla</span></a><a href="/tags/Prompt"><span class="tag post-item-tag" style="margin-bottom: 5px;">Prompt</span></a><a href="/tags/vLLM"><span class="tag post-item-tag" style="margin-bottom: 5px;">vLLM</span></a><a href="/tags/Gemma-2-2b-it"><span class="tag post-item-tag" style="margin-bottom: 5px;">Gemma-2-2b-it</span></a><a href="/tags/Conversational%20AI"><span class="tag post-item-tag" style="margin-bottom: 5px;">Conversational AI</span></a><a href="/tags/Memory%20Management"><span class="tag post-item-tag" style="margin-bottom: 5px;">Memory Management</span></a><a href="/tags/SeCom"><span class="tag post-item-tag" style="margin-bottom: 5px;">SeCom</span></a><a href="/tags/RAG"><span class="tag post-item-tag" style="margin-bottom: 5px;">RAG</span></a><a href="/tags/Gemma-2"><span class="tag post-item-tag" style="margin-bottom: 5px;">Gemma-2</span></a><a href="/tags/SGLang"><span class="tag post-item-tag" style="margin-bottom: 5px;">SGLang</span></a><a href="/tags/Structured%20LLM"><span class="tag post-item-tag" style="margin-bottom: 5px;">Structured LLM</span></a><a href="/tags/Language%20Learning"><span class="tag post-item-tag" style="margin-bottom: 5px;">Language Learning</span></a><a href="/tags/English%20Vocabulary"><span class="tag post-item-tag" style="margin-bottom: 5px;">English Vocabulary</span></a><a href="/tags/Deep%20Learning"><span class="tag post-item-tag" style="margin-bottom: 5px;">Deep Learning</span></a><a href="/tags/Gradient%20Descent"><span class="tag post-item-tag" style="margin-bottom: 5px;">Gradient Descent</span></a><a href="/tags/Living%20in%20Singapore"><span class="tag post-item-tag" style="margin-bottom: 5px;">Living in Singapore</span></a><a href="/tags/Guide%20to%20Living%20on%20Singapore%20Island"><span class="tag post-item-tag" style="margin-bottom: 5px;">Guide to Living on Singapore Island</span></a><a href="/tags/Sports"><span class="tag post-item-tag" style="margin-bottom: 5px;">Sports</span></a><a href="/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97"><span class="tag post-item-tag" style="margin-bottom: 5px;">坡岛生活指北</span></a><a href="/tags/Small%20Talk"><span class="tag post-item-tag" style="margin-bottom: 5px;">Small Talk</span></a><a href="/tags/%E6%9D%82%E8%B0%88"><span class="tag post-item-tag" style="margin-bottom: 5px;">杂谈</span></a><a href="/tags/Python"><span class="tag post-item-tag" style="margin-bottom: 5px;">Python</span></a><a href="/tags/Leetcode"><span class="tag post-item-tag" style="margin-bottom: 5px;">Leetcode</span></a><a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98"><span class="tag post-item-tag" style="margin-bottom: 5px;">每日一题</span></a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="tag post-item-tag" style="margin-bottom: 5px;">动态规划</span></a><a href="/tags/FAISS"><span class="tag post-item-tag" style="margin-bottom: 5px;">FAISS</span></a><a href="/tags/Embedding"><span class="tag post-item-tag" style="margin-bottom: 5px;">Embedding</span></a><a href="/tags/Python%20Basic"><span class="tag post-item-tag" style="margin-bottom: 5px;">Python Basic</span></a><a href="/tags/Daily%20Challenge"><span class="tag post-item-tag" style="margin-bottom: 5px;">Daily Challenge</span></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><span class="tag post-item-tag" style="margin-bottom: 5px;">双周赛</span></a></section></main><main class="aside-card-container friend-widget"><h3>友链</h3><section><a target="_blank" rel="noopener" href="https://www.google.com/"><span class="tag post-item-tag" style="margin-bottom: 5px;">Google</span></a><a target="_blank" rel="noopener" href="https://www.github.com/"><span class="tag post-item-tag" style="margin-bottom: 5px;">Github</span></a><a target="_blank" rel="noopener" href="https://v2ex.com/"><span class="tag post-item-tag" style="margin-bottom: 5px;">V2EX</span></a><a target="_blank" rel="noopener" href="https://twitter.com/"><span class="tag post-item-tag" style="margin-bottom: 5px;">Twitter</span></a></section></main></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
-
-window.addEventListener('resize', $claudia.throttle(function () {
-    var images = document.querySelectorAll('.js-img-fadeIn')
-
-    images.forEach($claudia.blurBackdropImg)
-}, 150))</script></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> user 2026</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script src="/js/lang-switch.js"></script><script async defer src="https://buttons.github.io/buttons.js"></script><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
-
-window.addEventListener('resize', $claudia.throttle(function () {
-    var images = document.querySelectorAll('.js-img-fadeIn')
-
-    images.forEach($claudia.blurBackdropImg)
-}, 150))</script></body></html>
+</head><body><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a></span><div id="menus"></div></nav><div id="site-info"><h1 id="site-title">黑头呆鱼进化之旅</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/09/13/Debugging%20Diaries/%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E5%86%B2%E7%AA%81%EF%BC%9A%E6%9F%A5%E6%89%BE%E5%B9%B6%E7%BB%88%E6%AD%A2%E8%BF%9B%E7%A8%8B.zh-CN/" title="解决端口冲突：查找并终止进程">解决端口冲突：查找并终止进程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-13T04:10:55.000Z" title="发表于 2023-09-13 12:10:55">2023-09-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Debugging-Diaries/">Debugging Diaries</a></span></div><div class="content">解决端口冲突：查找并终止进程目录 简介 在Windows上查找进程 🕵️‍♂️ 在Linux/macOS上查找进程 🐧 查看进程详细信息 📊 终止进程 ⛔️  简介有时候，当你尝试启动一个应用程序或服务时，可能会遇到”Address already in use”（地址已经在使用）的错误，这意味着指定的端口已经被另一个进程占用。为了解决这个问题，你需要确定哪个进程正在使用该端口，并可以选择终止该进程或更改应用程序的端口配置。 在Windows上查找进程 🕵️‍♂️在Windows上，你可以使用命令提示符来查找正在使用特定端口的进程。打开命令提示符，并执行以下命令： 1netstat -ano | findstr :8080  这个命令会列出所有正在使用端口8080的进程，并显示它们的进程ID（PID）。 在Linux/macOS上查找进程 🐧在Linux和macOS系统上，你可以使用终端来查找正在使用特定端口的进程。打开终端，并执行以下命令： 1sudo lsof -i :8080  这个命令会列出所有使用端口8080的进程，并显示它们的详细信息，包括PID和进程名。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/23/Code%20Chronicles/Python-Uninterrupted%20Remote%20Program%20Execution:%203%20Methods.zh-CN/" title="无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen`">无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen`</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-23T06:46:03.000Z" title="发表于 2023-08-23 14:46:03">2023-08-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Code-Chronicles/">Code Chronicles</a></span></div><div class="content">无断开烦恼！远程服务器后台运行程序的3种方法：nohup、tmux和screenUninterrupted Remote Program Execution: 3 Methods在数据分析或机器学习项目中，经常需要在远程服务器上运行耗时长、计算密集型的任务。通过SSH连接到远程服务器是常见的操作方式。但是，如何确保在断开SSH连接之后，远程服务器上的程序能够继续运行呢？本文详细介绍了三种方法：nohup、tmux和screen。 使用nohup命令开始 连接到远程机器：在本地终端中执行以下命令。  1ssh username@remote-server-address  启动后台程序：在远程机器上执行。  1nohup your-command-to-run-the-program &amp;  例如： 1nohup python train_model.py &amp;  此方法会将程序的输出重定向到一个名为nohup.out的文件中。 结束在远程机器上执行以下命令。  **查找程序的进程ID (PID)**：  1ps aux | grep your-command-to-r...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/22/Code%20Chronicles/Python-subprocess.zh-CN/" title="超越Python的边界：`subprocess` 助你一键执行外部命令">超越Python的边界：`subprocess` 助你一键执行外部命令</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-22T11:06:03.000Z" title="发表于 2023-08-22 19:06:03">2023-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Code-Chronicles/">Code Chronicles</a></span></div><div class="content">超越Python的边界：subprocess 助你一键执行外部命令在日常开发中，有时候我们希望能够从 Python 脚本中执行系统命令或者其他程序。Python 提供了 subprocess 模块，使得这一操作变得既简单又安全。 介绍subprocess 模块是 Python 标准库的一部分，它提供了一种简单统一的方法来执行外部命令，与进程交互，读取它的输出，并获取它的返回码。无论你是在自动化某个系统任务，还是简单地想要从另一个程序中获取数据，subprocess 都能助你一臂之力。 功能与用途 执行外部命令：你可以轻易地从 Python 脚本中运行任何外部命令，就像在命令行中输入命令一样。这种能力使得你能够在你的 Python 程序中调用并集成其他命令行工具，扩展你的应用的功能。  捕获命令的输出：如果你想获取命令的输出并在 Python 脚本中处理，subprocess 也能满足你。你可以将命令的输出作为字符串捕获，然后进一步分析和处理，这在需要对命令输出进行解析或者提取时非常有用。  错误处理：通过捕获返回码，你可以知道命令是否成功执行，或者是否发生了错误。这使得你能够根据...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format.zh-CN/" title="Conver Pytorch Model to ONNX Format">Conver Pytorch Model to ONNX Format</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-21T06:34:18.000Z" title="发表于 2023-08-21 14:34:18">2023-08-21</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/NLP-Insights/">NLP Insights</a></span></div><div class="content">使用 PyTorch 和 ONNX 检查模型一致性在机器学习和深度学习的开发过程中，模型的互操作性变得越来越重要。ONNX (Open Neural Network Exchange) 是一种开放格式，用于表示机器学习和深度学习模型。它允许开发者在各种深度学习框架之间轻松地共享模型，从而提高了模型的可移植性和互操作性。 本教程将指导您完成以下步骤：  将 PyTorch 模型转换为 ONNX 格式。 验证转换后的 ONNX 模型与原始 PyTorch 模型的输出是否一致。  1. 导入必要的库首先，我们导入为模型转换和验证所需的所有库。 123456import osimport sysimport torchimport onnximport onnxruntimeimport numpy as np  2. 定义模型转换函数为了将 PyTorch 模型转换为 ONNX 格式，我们定义了一个名为 convert_onnx 的函数。此函数使用 PyTorch 的内置函数 torch.onnx.export 将模型转换为 ONNX 格式。 12345678910def conver...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/08/02/NLP%20Insights/LLAMA2.zh-CN/" title="Training Llama 2 Model on Single GPU with int8 Quantization and LoRA">Training Llama 2 Model on Single GPU with int8 Quantization and LoRA</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-08-02T07:38:29.000Z" title="发表于 2023-08-02 15:38:29">2023-08-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/NLP-Insights/">NLP Insights</a></span></div><div class="content">Training Llama 2 Model on Single GPU with int8 Quantization and LoRALlama 2概述Llama 2 是一个包含预训练和微调的生成式文本模型的集合，其规模从 70 亿到 700 亿个参数不等。Llama2模型是由Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert等人在Llama 2: Open Foundation and Fine-Tuned Chat Models中提出的。 该论文的摘要如下： 在这项工作中，我们开发并发布了Llama 2，这是一组从70亿到700亿参数的预训练和微调的大型语言模型（LLMs）。我们的微调LLMs，称为Llama 2-Chat，针对对话用例进行了优化。我们的模型在我们测试的大多数基准上胜过开源聊天模型，并且基于我们对有用性和安全性的人类评估，可能是闭源模型的合适替代品。我们提供了关于微调和改进Llama 2-Chat安全性的方法的详细描述，以便社区能够在我们的工作基础上构建，并有助于LLMs的负责任发展。 在此处查看所有L...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/28/NLP%20Insights/LONGNET.zh-CN/" title="LONGNET - Scaling Transformers to 1,000,000,000 Tokens">LONGNET - Scaling Transformers to 1,000,000,000 Tokens</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-28T06:43:10.000Z" title="发表于 2023-07-28 14:43:10">2023-07-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/NLP-Insights/">NLP Insights</a></span></div><div class="content">LONGNET：将Transformer扩展到10亿个标记在本篇文章中，我们将详细讨论一个近期发布的先进模型——“LongNet”。该模型由微软亚洲研究院研发，于大约两周前正式公布。LongNet基于Transformer模型构建，其核心理念在于拓展Transformer的应用规模。值得一提的是，研究团队成功地将其扩展至处理10亿个令牌的规模。对于熟悉语言模型的人来说，会明白序列长度对模型性能的影响，因为序列长度决定了在执行注意力机制时，能够关联的令牌数量，从而影响模型可以获取的上下文信息长度。例如，我们希望像GPT这样的模型能拥有更长的上下文，使得模型可以参考更久之前的单词来预测下一个令牌。而LongNet就成功地将这个能力扩展到了10亿个令牌。以下图为例，可以清晰看出，GPT的序列长度仅为512，而Power Transformer的序列长度可扩展至12、000、64、262、000、甚至1000万，然而LongNet将序列长度扩展至惊人的10亿个令牌。试想一下，我们可以将所有维基百科的文本信息输入到模型中，模型可以利用所有这些令牌进行注意力计算。接下来，让我们首先来了解一下...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/27/NLP%20Insights/Prompt%20Engineering.zh-CN/" title="Prompt Engineering">Prompt Engineering</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-27T07:44:10.000Z" title="发表于 2023-07-27 15:44:10">2023-07-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/NLP-Insights/">NLP Insights</a></span></div><div class="content">Prompt EngineeringPrompt Engineering, 也被称为上下文提示，是指在不更新模型权重的情况下，与LLM（语言模型）进行交互以引导其产生期望输出的方法。它是一门实证科学，提示工程方法的效果在不同模型之间可能会有很大的差异，因此需要进行大量的实验和试探。 本文仅关注自回归语言模型的提示工程，不涉及填空测试、图像生成或多模态模型。在本质上，提示工程的目标是实现模型的对齐和可操控性。您可以查阅我之前关于可控文本生成的帖子。 基本提示方法zero-shot学习和few-shot学习是两种最基本的提示模型方法，这些方法由许多LLM论文首创，并且通常用于评估LLM性能。 zero-shot学习zero-shot学习是将任务文本直接输入模型并要求获得结果。 （所有情感分析示例来自于SST-2数据集） 12Text: i'll bet the video game is a lot more fun than the film.Sentiment: few-shot学习few-shot学习通过提供一组高质量的示例演示，每个示例都包含目标任务的输入和期望输出。当模型首...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/10/Code%20Chronicles/ColoredLogger.zh-CN/" title="ColoredLogger-彩色打印日志到控制台并记录到文件">ColoredLogger-彩色打印日志到控制台并记录到文件</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-10T07:02:44.000Z" title="发表于 2023-07-10 15:02:44">2023-07-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Code-Chronicles/">Code Chronicles</a></span></div><div class="content">彩色打印日志到控制台并记录到文件本文档介绍了一个名为 ColoredLogger 的日志记录器类，它可以根据不同的消息类型以不同的颜色打印日志，并将日志记录到文件中。该类使用了 colorama 库来实现在控制台中显示带颜色的文本。为了使控制台输出的日志更加易于阅读和理解，我们通常会使用彩色的输出。同时，将日志记录到文件中可以方便我们后续的调试和分析。在Python中，我们可以使用logging和colorama库来实现这样的功能。  以下是一个如何使用这两个库的详细介绍。 功能 可以根据不同的消息类型以不同的颜色打印日志消息。 将日志消息记录到文件中，使用标准的 logging 模块进行记录。 在控制台中显示带颜色的日志消息。  原理logging库提供了强大的日志记录功能，允许我们将日志记录到控制台、文件或者其他输出设备，并提供了详细的配置选项。 colorama库可以使我们在控制台输出彩色的文本。它提供了对ANSI颜色编码的支持，可以在几乎所有的平台和终端中使用。 我们先初始化colorama，然后定义了一个ColoredLogger类，它包含了各种彩色的输出样式和对应的日...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/09/NLP%20Insights/%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95.zh-CN/" title="详解梯度下降算法">详解梯度下降算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-09T04:59:21.000Z" title="发表于 2023-07-09 12:59:21">2023-07-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/NLP-Insights/">NLP Insights</a></span></div><div class="content">梯度梯度是一个在微积分中使用的重要概念，它用于衡量函数在给定点上的方向导数沿各个方向最大时的最大值。对于一个标量函数，梯度的方向是函数增长最快的方向，而梯度的反方向则是函数减小最快的方向。 定义对于在点$x \in \mathbb{R}^n$可微的函数$f: \mathbb{R}^n \rightarrow \mathbb{R}$，其梯度被定义为一个向量，其各个分量为函数在该点上的偏导数。对于函数$f(x_1, x_2, …, x_n)$，它的梯度可以表示为： $$\nabla f(x) = \left[ \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, …, \frac{\partial f}{\partial x_n} \right]^T$$ 这里，$\nabla f(x)$表示$f(x)$的梯度，$\frac{\partial f}{\partial x_i}$表示$f$关于$x_i$的偏导数，$T$表示矩阵转置。 物理含义梯度有一个重要的物理含义。在二维空间中，可以把函数$f(x, y)$看...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/07/08/Tech%20Toolbox/GeoMapToBlog.zh-CN/" title="Hexo博客添加可交互式足迹地图">Hexo博客添加可交互式足迹地图</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-08T05:40:21.000Z" title="发表于 2023-07-08 13:40:21">2023-07-08</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Tech-Toolbox/">Tech Toolbox</a></span></div><div class="content">在Blog中添加可交互式足迹地图这篇文章将向你展示如何在基于Hexo和Next的GitHub Pages博客中创建一个交互式的世界地图页面，这个地图将展示你曾经访问过的城市，你可以根据你对每个城市访问的频率在地图上显示不同颜色的标记，你还可以点击这些标记来显示更多关于这个城市的信息。 准备工作你需要安装以下工具：  Node.js 和 NPM Hexo  确保你的博客已经被部署到GitHub Pages，并且你在本地的开发环境已经正确设置。 步骤一：创建新页面在你的Hexo项目的根目录下，运行以下命令： 1hexo new page "travel"  这个命令将在source目录下创建一个名为”travel”的文件夹，并在该文件夹下创建一个index.md文件。 步骤二：安装 Leaflet在你的Hexo项目的根目录下，运行以下命令： 1npm install leaflet  然后在index.md文件的最顶部引入Leaflet的CSS和JS： 123456789---title: Travel---&lt;!-- 引入 Leaflet 的 CSS --&gt;&lt;lin...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><a class="page-number" href="/page/7/#content-inner">7</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.zh-CN/" title="Untitled">Untitled</a><time datetime="2026-02-20T22:15:00.000Z" title="发表于 2026-02-21 06:15:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.en/" title="Untitled">Untitled</a><time datetime="2026-02-20T22:15:00.000Z" title="发表于 2026-02-21 06:15:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI.en/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI.zh-CN/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom:%20%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%AF%9DAI%E7%9A%84%E8%AE%B0%E5%BF%86%E7%AE%A1%E7%90%86.en/" title="SeCom: 重新定义对话AI的记忆管理">SeCom: 重新定义对话AI的记忆管理</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Code-Chronicles/"><span class="card-category-list-name">Code Chronicles</span><span class="card-category-list-count">34</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Debugging-Diaries/"><span class="card-category-list-name">Debugging Diaries</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Life-Reflections/"><span class="card-category-list-name">Life Reflections</span><span class="card-category-list-count">19</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/NLP-Insights/"><span class="card-category-list-name">NLP Insights</span><span class="card-category-list-count">50</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Tech-Toolbox/"><span class="card-category-list-name">Tech Toolbox</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Wanderlust-Adventures/"><span class="card-category-list-name">Wanderlust Adventures</span><span class="card-category-list-count">2</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/FastChat/" style="font-size: 1.27em; color: #99a0a9">FastChat</a> <a href="/tags/Embedding/" style="font-size: 1.16em; color: #999b9e">Embedding</a> <a href="/tags/Tool-Use/" style="font-size: 1.16em; color: #999b9e">Tool Use</a> <a href="/tags/Guide-to-Living-on-Singapore-Island/" style="font-size: 1.1em; color: #999">Guide to Living on Singapore Island</a> <a href="/tags/Gemma-2-2b-it/" style="font-size: 1.16em; color: #999b9e">Gemma-2-2b-it</a> <a href="/tags/vLLM/" style="font-size: 1.27em; color: #99a0a9">vLLM</a> <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" style="font-size: 1.39em; color: #99a4b4">每日一题</a> <a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/" style="font-size: 1.33em; color: #99a2af">双周赛</a> <a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 1.16em; color: #999b9e">杂谈</a> <a href="/tags/SeCom/" style="font-size: 1.27em; color: #99a0a9">SeCom</a> <a href="/tags/Deep-Learning/" style="font-size: 1.16em; color: #999b9e">Deep Learning</a> <a href="/tags/Agent/" style="font-size: 1.16em; color: #999b9e">Agent</a> <a href="/tags/Gorilla/" style="font-size: 1.16em; color: #999b9e">Gorilla</a> <a href="/tags/Python/" style="font-size: 1.5em; color: #99a9bf">Python</a> <a href="/tags/Train/" style="font-size: 1.27em; color: #99a0a9">Train</a> <a href="/tags/Memory-Management/" style="font-size: 1.27em; color: #99a0a9">Memory Management</a> <a href="/tags/IssueFix/" style="font-size: 1.44em; color: #99a7ba">IssueFix</a> <a href="/tags/K8s/" style="font-size: 1.16em; color: #999b9e">K8s</a> <a href="/tags/Gemma-2/" style="font-size: 1.16em; color: #999b9e">Gemma-2</a> <a href="/tags/Daily-Challenge/" style="font-size: 1.16em; color: #999b9e">Daily Challenge</a> <a href="/tags/FAISS/" style="font-size: 1.16em; color: #999b9e">FAISS</a> <a href="/tags/Sports/" style="font-size: 1.21em; color: #999ea4">Sports</a> <a href="/tags/Structured-LLM/" style="font-size: 1.16em; color: #999b9e">Structured LLM</a> <a href="/tags/DSSM/" style="font-size: 1.16em; color: #999b9e">DSSM</a> <a href="/tags/Gradient-Descent/" style="font-size: 1.16em; color: #999b9e">Gradient Descent</a> <a href="/tags/Deployment/" style="font-size: 1.27em; color: #99a0a9">Deployment</a> <a href="/tags/Recommendation/" style="font-size: 1.27em; color: #99a0a9">Recommendation</a> <a href="/tags/Perplexity/" style="font-size: 1.16em; color: #999b9e">Perplexity</a> <a href="/tags/Living-in-Singapore/" style="font-size: 1.16em; color: #999b9e">Living in Singapore</a> <a href="/tags/Language-Modeling/" style="font-size: 1.16em; color: #999b9e">Language Modeling</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1.16em; color: #999b9e">动态规划</a> <a href="/tags/Python-Basic/" style="font-size: 1.44em; color: #99a7ba">Python Basic</a> <a href="/tags/Prompt/" style="font-size: 1.16em; color: #999b9e">Prompt</a> <a href="/tags/Blog/" style="font-size: 1.27em; color: #99a0a9">Blog</a> <a href="/tags/RAG/" style="font-size: 1.27em; color: #99a0a9">RAG</a> <a href="/tags/Language-Learning/" style="font-size: 1.44em; color: #99a7ba">Language Learning</a> <a href="/tags/SGLang/" style="font-size: 1.16em; color: #999b9e">SGLang</a> <a href="/tags/Onnx/" style="font-size: 1.27em; color: #99a0a9">Onnx</a> <a href="/tags/Conversational-AI/" style="font-size: 1.27em; color: #99a0a9">Conversational AI</a> <a href="/tags/Git/" style="font-size: 1.16em; color: #999b9e">Git</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              二月 2026
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/06/">
+            <span class="card-archive-list-date">
+              六月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/03/">
+            <span class="card-archive-list-date">
+              三月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              二月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              十二月 2024
+            </span>
+            <span class="card-archive-list-count">14</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/08/">
+            <span class="card-archive-list-date">
+              八月 2024
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/04/">
+            <span class="card-archive-list-date">
+              四月 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">125</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-02-20T22:14:05.788Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/lang-switch.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

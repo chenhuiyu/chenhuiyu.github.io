@@ -1,17 +1,154 @@
-<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>Conver Pytorch Model to ONNX Format</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
-<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="使用 PyTorch 和 ONNX 检查模型一致性在机器学习和深度学习的开发过程中，模型的互操作性变得越来越重要。ONNX (Open Neural Network Exchange) 是一种开放格式，用于表示机器学习和深度学习模型。它允许开发者在各种深度学习框架之间轻松地共享模型，从而提高了模型的可移植性和互操作性。
-本教程将指导您完成以下步骤：
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Conver Pytorch Model to ONNX Format | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="使用 PyTorch 和 ONNX 检查模型一致性在机器学习和深度学习的开发过程中，模型的互操作性变得越来越重要。ONNX (Open Neural Network Exchange) 是一种开放格式，用于表示机器学习和深度学习模型。它允许开发者在各种深度学习框架之间轻松地共享模型，从而提高了模型的可移植性和互操作性。 本教程将指导您完成以下步骤：  将 PyTorch 模型转换为 ONNX 格式">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Conver Pytorch Model to ONNX Format">
+<meta property="og:url" content="https://chenhuiyu.github.io/en/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format.en/index.html">
+<meta property="og:site_name" content="黑头呆鱼进化之旅">
+<meta property="og:description" content="使用 PyTorch 和 ONNX 检查模型一致性在机器学习和深度学习的开发过程中，模型的互操作性变得越来越重要。ONNX (Open Neural Network Exchange) 是一种开放格式，用于表示机器学习和深度学习模型。它允许开发者在各种深度学习框架之间轻松地共享模型，从而提高了模型的可移植性和互操作性。 本教程将指导您完成以下步骤：  将 PyTorch 模型转换为 ONNX 格式">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2023-08-21T06:34:18.000Z">
+<meta property="article:modified_time" content="2026-02-20T22:13:37.933Z">
+<meta property="article:author" content="Huiyu Chen">
+<meta property="article:tag" content="Onnx">
+<meta property="article:tag" content="Deployment">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/en/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format.en/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-将 PyTorch 模型转换为 ONNX 格式。
-验证转换后的 ONNX 模型与原始 PyTorch 模型的输出是否一致。
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
-1. 导入必要的库首先，我们导入为模型转换和验证所需的所有库。
-123456import osimport sysimport torchimport onnximport onnxruntimeimport numpy as np
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
-.."><meta name="generator" content="Hexo 6.3.0">
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Conver Pytorch Model to ONNX Format',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'convert'
+}</script><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
-</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">user's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Conver Pytorch Model to ONNX Format</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-PyTorch-%E5%92%8C-ONNX-%E6%A3%80%E6%9F%A5%E6%A8%A1%E5%9E%8B%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">使用 PyTorch 和 ONNX 检查模型一致性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%AF%BC%E5%85%A5%E5%BF%85%E8%A6%81%E7%9A%84%E5%BA%93"><span class="toc-text">1. 导入必要的库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0"><span class="toc-text">2. 定义模型转换函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AE%9A%E4%B9%89%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E6%9F%A5%E5%87%BD%E6%95%B0"><span class="toc-text">3. 定义一致性检查函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%A4%BA%E4%BE%8B%E8%B0%83%E7%94%A8"><span class="toc-text">4. 示例调用</span></a></li></ol></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/Onnx"><i class="tag post-item-tag">Onnx</i></a><a href="/tags/Deployment"><i class="tag post-item-tag">Deployment</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">Conver Pytorch Model to ONNX Format</h1><time class="has-text-grey" datetime="2023-08-21T06:34:18.000Z">2023-08-21</time><article class="mt-2 post-content"><h1 id="使用-PyTorch-和-ONNX-检查模型一致性"><a href="#使用-PyTorch-和-ONNX-检查模型一致性" class="headerlink" title="使用 PyTorch 和 ONNX 检查模型一致性"></a>使用 PyTorch 和 ONNX 检查模型一致性</h1><p>在机器学习和深度学习的开发过程中，模型的互操作性变得越来越重要。ONNX (Open Neural Network Exchange) 是一种开放格式，用于表示机器学习和深度学习模型。它允许开发者在各种深度学习框架之间轻松地共享模型，从而提高了模型的可移植性和互操作性。</p>
+</head><body><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title">Conver Pytorch Model to ONNX Format</h1></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="使用-PyTorch-和-ONNX-检查模型一致性"><a href="#使用-PyTorch-和-ONNX-检查模型一致性" class="headerlink" title="使用 PyTorch 和 ONNX 检查模型一致性"></a>使用 PyTorch 和 ONNX 检查模型一致性</h1><p>在机器学习和深度学习的开发过程中，模型的互操作性变得越来越重要。ONNX (Open Neural Network Exchange) 是一种开放格式，用于表示机器学习和深度学习模型。它允许开发者在各种深度学习框架之间轻松地共享模型，从而提高了模型的可移植性和互操作性。</p>
 <p>本教程将指导您完成以下步骤：</p>
 <ol>
 <li>将 PyTorch 模型转换为 ONNX 格式。</li>
@@ -34,4 +171,96 @@
 <p>在实际应用中，确保根据您的实际模型和数据替换 <code>YOUR_PYTORCH_MODEL</code> 和 <code>YOUR_INPUT_TENSOR</code>。</p>
 <hr>
 <p>以上就是关于如何使用 PyTorch 和 ONNX 来检查模型一致性的教程。希望这篇文章对你有所帮助，如果有任何问题，欢迎在下方留言。</p>
-</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2023/08/22/Code%20Chronicles/Python-subprocess.zh-CN/" title="超越Python的边界：`subprocess` 助你一键执行外部命令"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: 超越Python的边界：`subprocess` 助你一键执行外部命令</span></a><a class="button is-default" href="/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format.zh-CN/" title="Conver Pytorch Model to ONNX Format"><span class="has-text-weight-semibold">Next: Conver Pytorch Model to ONNX Format</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="Haojen/Claudia-theme-blog" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> user 2026</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script src="/js/lang-switch.js"></script><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io">Huiyu Chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format.en/">https://chenhuiyu.github.io/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format.en/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Onnx/">Onnx</a><a class="post-meta__tags" href="/tags/Deployment/">Deployment</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav id="pagination"><div class="pagination"></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88LLM%EF%BC%89%E8%AF%84%E4%BC%B0%EF%BC%9A%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.zh-CN/" title="基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-06</div><div class="info-item-2">基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</div></div><div class="info-2"><div class="info-item-1"> 基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战摘要人工智能（AI）与自然语言处理（NLP）领域中的评估任务长期面临挑战。传统的评估方法（如基于匹配或嵌入的技术）在判断复杂属性时效果有限。近期大语言模型（LLM）的发展催生了“LLM-as-a-Judge”范式，利用LLM对任务进行评分、排序或选择。本论文对LLM评估方法进行了全面综述，包括其定义、分类框架、评估基准，以及未来的研究方向。  1. 引言1.1 背景评估是机器学习和NLP的核心问题之一，传统评估方法如BLEU和ROUGE通常基于文本重叠，缺乏对复杂场景的适用性。随着深度学习和LLM的发展（如GPT-4），研究者提出了“LLM-as-a-Judge”模式，以解决传统评估的局限。 1.2 研究问题本论文旨在探讨以下问题：  评估内容：LLM评估什么？ 评估方法：如何进行评估？ 应用场景：LLM在哪里评估？   2. 预备知识2.1 输入格式评估输入可分为：  点对点（Point-Wise）：单个样本评估。 对/列表评估（Pair/List-Wise）：多个样本的比较评估。  2.2 输出格式评估输出包括： ...</div></div></div></a><a class="pagination-related" href="/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format.zh-CN/" title="Conver Pytorch Model to ONNX Format"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-21</div><div class="info-item-2">Conver Pytorch Model to ONNX Format</div></div><div class="info-2"><div class="info-item-1">使用 PyTorch 和 ONNX 检查模型一致性在机器学习和深度学习的开发过程中，模型的互操作性变得越来越重要。ONNX (Open Neural Network Exchange) 是一种开放格式，用于表示机器学习和深度学习模型。它允许开发者在各种深度学习框架之间轻松地共享模型，从而提高了模型的可移植性和互操作性。 本教程将指导您完成以下步骤：  将 PyTorch 模型转换为 ONNX 格式。 验证转换后的 ONNX 模型与原始 PyTorch 模型的输出是否一致。  1. 导入必要的库首先，我们导入为模型转换和验证所需的所有库。 123456import osimport sysimport torchimport onnximport onnxruntimeimport numpy as np  2. 定义模型转换函数为了将 PyTorch 模型转换为 ONNX 格式，我们定义了一个名为 convert_onnx 的函数。此函数使用 PyTorch 的内置函数 torch.onnx.export 将模型转换为 ONNX 格式。 12345678910def conver...</div></div></div></a><a class="pagination-related" href="/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format.en/" title="Conver Pytorch Model to ONNX Format"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-21</div><div class="info-item-2">Conver Pytorch Model to ONNX Format</div></div><div class="info-2"><div class="info-item-1">使用 PyTorch 和 ONNX 检查模型一致性在机器学习和深度学习的开发过程中，模型的互操作性变得越来越重要。ONNX (Open Neural Network Exchange) 是一种开放格式，用于表示机器学习和深度学习模型。它允许开发者在各种深度学习框架之间轻松地共享模型，从而提高了模型的可移植性和互操作性。 本教程将指导您完成以下步骤：  将 PyTorch 模型转换为 ONNX 格式。 验证转换后的 ONNX 模型与原始 PyTorch 模型的输出是否一致。  1. 导入必要的库首先，我们导入为模型转换和验证所需的所有库。 123456import osimport sysimport torchimport onnximport onnxruntimeimport numpy as np  2. 定义模型转换函数为了将 PyTorch 模型转换为 ONNX 格式，我们定义了一个名为 convert_onnx 的函数。此函数使用 PyTorch 的内置函数 torch.onnx.export 将模型转换为 ONNX 格式。 12345678910def conver...</div></div></div></a><a class="pagination-related" href="/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%88LLM%EF%BC%89%E8%AF%84%E4%BC%B0%EF%BC%9A%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.en/" title="基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-06</div><div class="info-item-2">基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</div></div><div class="info-2"><div class="info-item-1"> 基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战摘要人工智能（AI）与自然语言处理（NLP）领域中的评估任务长期面临挑战。传统的评估方法（如基于匹配或嵌入的技术）在判断复杂属性时效果有限。近期大语言模型（LLM）的发展催生了“LLM-as-a-Judge”范式，利用LLM对任务进行评分、排序或选择。本论文对LLM评估方法进行了全面综述，包括其定义、分类框架、评估基准，以及未来的研究方向。  1. 引言1.1 背景评估是机器学习和NLP的核心问题之一，传统评估方法如BLEU和ROUGE通常基于文本重叠，缺乏对复杂场景的适用性。随着深度学习和LLM的发展（如GPT-4），研究者提出了“LLM-as-a-Judge”模式，以解决传统评估的局限。 1.2 研究问题本论文旨在探讨以下问题：  评估内容：LLM评估什么？ 评估方法：如何进行评估？ 应用场景：LLM在哪里评估？   2. 预备知识2.1 输入格式评估输入可分为：  点对点（Point-Wise）：单个样本评估。 对/列表评估（Pair/List-Wise）：多个样本的比较评估。  2.2 输出格式评估输出包括： ...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.zh-CN/" title="Untitled">Untitled</a><time datetime="2026-02-20T22:15:00.000Z" title="发表于 2026-02-21 06:15:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.en/" title="Untitled">Untitled</a><time datetime="2026-02-20T22:15:00.000Z" title="发表于 2026-02-21 06:15:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI.en/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI.zh-CN/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom:%20%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%AF%9DAI%E7%9A%84%E8%AE%B0%E5%BF%86%E7%AE%A1%E7%90%86.en/" title="SeCom: 重新定义对话AI的记忆管理">SeCom: 重新定义对话AI的记忆管理</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Code-Chronicles/"><span class="card-category-list-name">Code Chronicles</span><span class="card-category-list-count">34</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Debugging-Diaries/"><span class="card-category-list-name">Debugging Diaries</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Life-Reflections/"><span class="card-category-list-name">Life Reflections</span><span class="card-category-list-count">19</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/NLP-Insights/"><span class="card-category-list-name">NLP Insights</span><span class="card-category-list-count">50</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Tech-Toolbox/"><span class="card-category-list-name">Tech Toolbox</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Wanderlust-Adventures/"><span class="card-category-list-name">Wanderlust Adventures</span><span class="card-category-list-count">2</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/FastChat/" style="font-size: 1.27em; color: #99a0a9">FastChat</a> <a href="/tags/Embedding/" style="font-size: 1.16em; color: #999b9e">Embedding</a> <a href="/tags/Tool-Use/" style="font-size: 1.16em; color: #999b9e">Tool Use</a> <a href="/tags/Guide-to-Living-on-Singapore-Island/" style="font-size: 1.1em; color: #999">Guide to Living on Singapore Island</a> <a href="/tags/Gemma-2-2b-it/" style="font-size: 1.16em; color: #999b9e">Gemma-2-2b-it</a> <a href="/tags/vLLM/" style="font-size: 1.27em; color: #99a0a9">vLLM</a> <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" style="font-size: 1.39em; color: #99a4b4">每日一题</a> <a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/" style="font-size: 1.33em; color: #99a2af">双周赛</a> <a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 1.16em; color: #999b9e">杂谈</a> <a href="/tags/SeCom/" style="font-size: 1.27em; color: #99a0a9">SeCom</a> <a href="/tags/Deep-Learning/" style="font-size: 1.16em; color: #999b9e">Deep Learning</a> <a href="/tags/Agent/" style="font-size: 1.16em; color: #999b9e">Agent</a> <a href="/tags/Gorilla/" style="font-size: 1.16em; color: #999b9e">Gorilla</a> <a href="/tags/Python/" style="font-size: 1.5em; color: #99a9bf">Python</a> <a href="/tags/Train/" style="font-size: 1.27em; color: #99a0a9">Train</a> <a href="/tags/Memory-Management/" style="font-size: 1.27em; color: #99a0a9">Memory Management</a> <a href="/tags/IssueFix/" style="font-size: 1.44em; color: #99a7ba">IssueFix</a> <a href="/tags/K8s/" style="font-size: 1.16em; color: #999b9e">K8s</a> <a href="/tags/Gemma-2/" style="font-size: 1.16em; color: #999b9e">Gemma-2</a> <a href="/tags/Daily-Challenge/" style="font-size: 1.16em; color: #999b9e">Daily Challenge</a> <a href="/tags/FAISS/" style="font-size: 1.16em; color: #999b9e">FAISS</a> <a href="/tags/Sports/" style="font-size: 1.21em; color: #999ea4">Sports</a> <a href="/tags/Structured-LLM/" style="font-size: 1.16em; color: #999b9e">Structured LLM</a> <a href="/tags/DSSM/" style="font-size: 1.16em; color: #999b9e">DSSM</a> <a href="/tags/Gradient-Descent/" style="font-size: 1.16em; color: #999b9e">Gradient Descent</a> <a href="/tags/Deployment/" style="font-size: 1.27em; color: #99a0a9">Deployment</a> <a href="/tags/Recommendation/" style="font-size: 1.27em; color: #99a0a9">Recommendation</a> <a href="/tags/Perplexity/" style="font-size: 1.16em; color: #999b9e">Perplexity</a> <a href="/tags/Living-in-Singapore/" style="font-size: 1.16em; color: #999b9e">Living in Singapore</a> <a href="/tags/Language-Modeling/" style="font-size: 1.16em; color: #999b9e">Language Modeling</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1.16em; color: #999b9e">动态规划</a> <a href="/tags/Python-Basic/" style="font-size: 1.44em; color: #99a7ba">Python Basic</a> <a href="/tags/Prompt/" style="font-size: 1.16em; color: #999b9e">Prompt</a> <a href="/tags/Blog/" style="font-size: 1.27em; color: #99a0a9">Blog</a> <a href="/tags/RAG/" style="font-size: 1.27em; color: #99a0a9">RAG</a> <a href="/tags/Language-Learning/" style="font-size: 1.44em; color: #99a7ba">Language Learning</a> <a href="/tags/SGLang/" style="font-size: 1.16em; color: #999b9e">SGLang</a> <a href="/tags/Onnx/" style="font-size: 1.27em; color: #99a0a9">Onnx</a> <a href="/tags/Conversational-AI/" style="font-size: 1.27em; color: #99a0a9">Conversational AI</a> <a href="/tags/Git/" style="font-size: 1.16em; color: #999b9e">Git</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              二月 2026
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/06/">
+            <span class="card-archive-list-date">
+              六月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/03/">
+            <span class="card-archive-list-date">
+              三月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              二月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              十二月 2024
+            </span>
+            <span class="card-archive-list-count">14</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/08/">
+            <span class="card-archive-list-date">
+              八月 2024
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/04/">
+            <span class="card-archive-list-date">
+              四月 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">125</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-02-20T22:14:05.788Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/lang-switch.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

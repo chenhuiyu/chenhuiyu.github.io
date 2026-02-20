@@ -1,53 +1,237 @@
-<!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>user's blog</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
-<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/widget-post-list.css"><meta name="generator" content="Hexo 6.3.0">
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>二月 2024 | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="二月 2024">
+<meta property="og:url" content="https://chenhuiyu.github.io/archives/2024/02/index.html">
+<meta property="og:site_name" content="黑头呆鱼进化之旅">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
+<meta property="article:author" content="Huiyu Chen">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/archives/2024/02/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '二月 2024',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'archive'
+}</script><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
-</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">user's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><span>归档 · 2024</span></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_8_Leaderboard.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.en/"><img class="post-cover-img js-img-fadeIn" src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_8_Leaderboard.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/LLM"><i class="tag post-item-tag">LLM</i></a><a href="/tags/Agent"><i class="tag post-item-tag">Agent</i></a><a href="/tags/Tool%20Use"><i class="tag post-item-tag">Tool Use</i></a><a href="/tags/Gorilla"><i class="tag post-item-tag">Gorilla</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.en/">Gorilla LLM 大语言模型简介</a></h2><time class="has-text-grey" datetime="2024-02-28T07:19:18.000Z">2024-02-28</time><p class="is-flex-grow-2 mt-2">Gorilla LLM 大语言模型简介🦍 Gorilla: Large Language Model Connected with Massive APIsLink: https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html
-
-Berkeley 功能调用排行榜Berkeley 功能调用排行榜
-在线体验模型：Gorilla OpenFunctions-v2 网络演示
-项目详情：GitHub
-模型（7B 参数）在 HuggingFace 上的页面：gorilla-llm/gorilla-openfunctions-v2
-
-1. 伯克利函数调用排行榜自 2022 年底以来，大语言模型（LLMs）凭借其执行通用任务的强大能力，成为众人关注的焦点。..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.en/">更多</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_8_Leaderboard.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.zh-CN/"><img class="post-cover-img js-img-fadeIn" src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_8_Leaderboard.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/LLM"><i class="tag post-item-tag">LLM</i></a><a href="/tags/Agent"><i class="tag post-item-tag">Agent</i></a><a href="/tags/Tool%20Use"><i class="tag post-item-tag">Tool Use</i></a><a href="/tags/Gorilla"><i class="tag post-item-tag">Gorilla</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.zh-CN/">Gorilla LLM 大语言模型简介</a></h2><time class="has-text-grey" datetime="2024-02-28T07:19:18.000Z">2024-02-28</time><p class="is-flex-grow-2 mt-2">Gorilla LLM 大语言模型简介🦍 Gorilla: Large Language Model Connected with Massive APIsLink: https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html
-
-Berkeley 功能调用排行榜Berkeley 功能调用排行榜
-在线体验模型：Gorilla OpenFunctions-v2 网络演示
-项目详情：GitHub
-模型（7B 参数）在 HuggingFace 上的页面：gorilla-llm/gorilla-openfunctions-v2
-
-1. 伯克利函数调用排行榜自 2022 年底以来，大语言模型（LLMs）凭借其执行通用任务的强大能力，成为众人关注的焦点。..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/LLM"><i class="tag post-item-tag">LLM</i></a><a href="/tags/FastChat"><i class="tag post-item-tag">FastChat</i></a><a href="/tags/Train"><i class="tag post-item-tag">Train</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/02/27/NLP%20Insights/FastChat%20Training%20Script%20Code%20Analysis%20-%20Train.py%20%E3%80%90FastChat%20Series%20Part%201%E3%80%91.en/">FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】</a></h2><time class="has-text-grey" datetime="2024-02-26T17:43:18.000Z">2024-02-27</time><p class="is-flex-grow-2 mt-2">FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】In this article, we delve into the train.py script of FastChat (https://github.com/lm-sys/FastChat) (https://github.com/lm-sys/FastChat/blob/main/fastchat/train/train.py), a key component for training and optimizing large language models (LLMs). FastChat is an advanced open-source pl..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/02/27/NLP%20Insights/FastChat%20Training%20Script%20Code%20Analysis%20-%20Train.py%20%E3%80%90FastChat%20Series%20Part%201%E3%80%91.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/LLM"><i class="tag post-item-tag">LLM</i></a><a href="/tags/FastChat"><i class="tag post-item-tag">FastChat</i></a><a href="/tags/Train"><i class="tag post-item-tag">Train</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/02/27/NLP%20Insights/FastChat%20Training%20Script%20Code%20Analysis%20-%20Train.py%20%E3%80%90FastChat%20Series%20Part%201%E3%80%91.zh-CN/">FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】</a></h2><time class="has-text-grey" datetime="2024-02-26T17:43:18.000Z">2024-02-27</time><p class="is-flex-grow-2 mt-2">FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】In this article, we delve into the train.py script of FastChat (https://github.com/lm-sys/FastChat) (https://github.com/lm-sys/FastChat/blob/main/fastchat/train/train.py), a key component for training and optimizing large language models (LLMs). FastChat is an advanced open-source pl..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/02/27/NLP%20Insights/FastChat%20Training%20Script%20Code%20Analysis%20-%20Train.py%20%E3%80%90FastChat%20Series%20Part%201%E3%80%91.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/LLM"><i class="tag post-item-tag">LLM</i></a><a href="/tags/FastChat"><i class="tag post-item-tag">FastChat</i></a><a href="/tags/Train"><i class="tag post-item-tag">Train</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/02/27/NLP%20Insights/FastChat%20%E8%AE%AD%E7%BB%83%E8%84%9A%E6%9C%AC%E4%BB%A3%E7%A0%81%E9%80%90%E8%A1%8C%E8%A7%A3%E6%9E%90-Train.py%20%E3%80%90FastChat%20%E7%B3%BB%E5%88%97%E7%AC%AC%201%20%E7%AF%87%E3%80%91.en/">FastChat 训练脚本代码逐行解析-Train.py 【FastChat 系列第 1 篇】</a></h2><time class="has-text-grey" datetime="2024-02-26T17:43:18.000Z">2024-02-27</time><p class="is-flex-grow-2 mt-2">FastChat 训练脚本代码逐行解析-Train.py 【FastChat 系列第 1 篇】在本文中，我们将深入探讨 FastChat 的 train.py 脚本，这是一个用于训练和优化大型语言模型的关键组件。FastChat 是一个先进的开源平台，专注于开发、部署和评估基于大型语言模型（LLM）的聊天机器人。该平台不仅提供对顶尖模型如 Vicuna 和 MT-Bench 的支持，还包括一个分布式的多模型服务系统，配备了 Web UI 和与 OpenAI 兼容的 RESTful API，使用户能够高效地训练和评估他们的模型。
-本文的深入分析将聚焦于 train.py 脚本的源代码。这个脚本是基于 transformers 库的自然语言处理模型训练脚本，涵盖了数据预处理、模型训练和保存等关键步骤。我们旨在提..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/02/27/NLP%20Insights/FastChat%20%E8%AE%AD%E7%BB%83%E8%84%9A%E6%9C%AC%E4%BB%A3%E7%A0%81%E9%80%90%E8%A1%8C%E8%A7%A3%E6%9E%90-Train.py%20%E3%80%90FastChat%20%E7%B3%BB%E5%88%97%E7%AC%AC%201%20%E7%AF%87%E3%80%91.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/LLM"><i class="tag post-item-tag">LLM</i></a><a href="/tags/FastChat"><i class="tag post-item-tag">FastChat</i></a><a href="/tags/Train"><i class="tag post-item-tag">Train</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/02/27/NLP%20Insights/FastChat%20%E8%AE%AD%E7%BB%83%E8%84%9A%E6%9C%AC%E4%BB%A3%E7%A0%81%E9%80%90%E8%A1%8C%E8%A7%A3%E6%9E%90-Train.py%20%E3%80%90FastChat%20%E7%B3%BB%E5%88%97%E7%AC%AC%201%20%E7%AF%87%E3%80%91.zh-CN/">FastChat 训练脚本代码逐行解析-Train.py 【FastChat 系列第 1 篇】</a></h2><time class="has-text-grey" datetime="2024-02-26T17:43:18.000Z">2024-02-27</time><p class="is-flex-grow-2 mt-2">FastChat 训练脚本代码逐行解析-Train.py 【FastChat 系列第 1 篇】在本文中，我们将深入探讨 FastChat 的 train.py 脚本，这是一个用于训练和优化大型语言模型的关键组件。FastChat 是一个先进的开源平台，专注于开发、部署和评估基于大型语言模型（LLM）的聊天机器人。该平台不仅提供对顶尖模型如 Vicuna 和 MT-Bench 的支持，还包括一个分布式的多模型服务系统，配备了 Web UI 和与 OpenAI 兼容的 RESTful API，使用户能够高效地训练和评估他们的模型。
-本文的深入分析将聚焦于 train.py 脚本的源代码。这个脚本是基于 transformers 库的自然语言处理模型训练脚本，涵盖了数据预处理、模型训练和保存等关键步骤。我们旨在提..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/02/27/NLP%20Insights/FastChat%20%E8%AE%AD%E7%BB%83%E8%84%9A%E6%9C%AC%E4%BB%A3%E7%A0%81%E9%80%90%E8%A1%8C%E8%A7%A3%E6%9E%90-Train.py%20%E3%80%90FastChat%20%E7%B3%BB%E5%88%97%E7%AC%AC%201%20%E7%AF%87%E3%80%91.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Language%20Learning"><i class="tag post-item-tag">Language Learning</i></a><a href="/tags/English%20Vocabulary"><i class="tag post-item-tag">English Vocabulary</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/02/26/Life%20Reflections/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%9ADe%20Facto.en/">英语学习日记：De Facto</a></h2><time class="has-text-grey" datetime="2024-02-26T06:29:00.000Z">2024-02-26</time><p class="is-flex-grow-2 mt-2">大家好！🌐 今天我们要探讨一个在英语对话和写作中常见的短语：de facto
-理解 “De Facto”
-含义：’De facto’ 这个短语用来描述一些实际上存在的事物，即使它们没有被官方认可或法律确立。就像是在说“实际上”或“实践中”，而不是“理论上”或“官方上”。
-
-词源：这个短语有着非常有趣的历史。它源自拉丁语，其中 ‘de’ 意为 ‘来自’，’facto’ 意味着 ‘事实’。随着时间的推移，它被英语采纳，并保留了从拉丁语中原始的精髓。
-
-
-例句
-🌟 In many organizations, there is a de facto leader who isn’t officially the boss but is respected and followed by the team.
-�..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/02/26/Life%20Reflections/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%9ADe%20Facto.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Language%20Learning"><i class="tag post-item-tag">Language Learning</i></a><a href="/tags/English%20Vocabulary"><i class="tag post-item-tag">English Vocabulary</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/02/26/Life%20Reflections/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%9ADe%20Facto.zh-CN/">英语学习日记：De Facto</a></h2><time class="has-text-grey" datetime="2024-02-26T06:29:00.000Z">2024-02-26</time><p class="is-flex-grow-2 mt-2">大家好！🌐 今天我们要探讨一个在英语对话和写作中常见的短语：de facto
-理解 “De Facto”
-含义：’De facto’ 这个短语用来描述一些实际上存在的事物，即使它们没有被官方认可或法律确立。就像是在说“实际上”或“实践中”，而不是“理论上”或“官方上”。
-
-词源：这个短语有着非常有趣的历史。它源自拉丁语，其中 ‘de’ 意为 ‘来自’，’facto’ 意味着 ‘事实’。随着时间的推移，它被英语采纳，并保留了从拉丁语中原始的精髓。
-
-
-例句
-🌟 In many organizations, there is a de facto leader who isn’t officially the boss but is respected and followed by the team.
-�..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/02/26/Life%20Reflections/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%9ADe%20Facto.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Language%20Learning"><i class="tag post-item-tag">Language Learning</i></a><a href="/tags/English%20Vocabulary"><i class="tag post-item-tag">English Vocabulary</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/02/26/Life%20Reflections/De%20Facto:%20Unveiling%20the%20Power%20of%20an%20Intriguing%20Phrase%20.en/">De Facto: Unveiling the Power of an Intriguing Phrase</a></h2><time class="has-text-grey" datetime="2024-02-26T06:25:00.000Z">2024-02-26</time><p class="is-flex-grow-2 mt-2">Hello, language enthusiasts! 🌐 Today, we’re diving into a fascinating phrase that often pops up in English conversations and writings: de facto. Let’s explore its meaning, origins, and how to use it effectively in sentences. Whether you’re a language learner or a word nerd, you’ll find this exploration both enlightening and fun! ✨
-Understanding “De Facto”..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/02/26/Life%20Reflections/De%20Facto:%20Unveiling%20the%20Power%20of%20an%20Intriguing%20Phrase%20.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Language%20Learning"><i class="tag post-item-tag">Language Learning</i></a><a href="/tags/English%20Vocabulary"><i class="tag post-item-tag">English Vocabulary</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/02/26/Life%20Reflections/De%20Facto:%20Unveiling%20the%20Power%20of%20an%20Intriguing%20Phrase%20.zh-CN/">De Facto: Unveiling the Power of an Intriguing Phrase</a></h2><time class="has-text-grey" datetime="2024-02-26T06:25:00.000Z">2024-02-26</time><p class="is-flex-grow-2 mt-2">Hello, language enthusiasts! 🌐 Today, we’re diving into a fascinating phrase that often pops up in English conversations and writings: de facto. Let’s explore its meaning, origins, and how to use it effectively in sentences. Whether you’re a language learner or a word nerd, you’ll find this exploration both enlightening and fun! ✨
-Understanding “De Facto”..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/02/26/Life%20Reflections/De%20Facto:%20Unveiling%20the%20Power%20of%20an%20Intriguing%20Phrase%20.zh-CN/">更多</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><span class="page-number current">1</span><a class="page-number" href="/archives/2024/02/page/2/">2</a><a class="page-number" href="/archives/2024/02/page/3/">3</a><a class="extend next" rel="next" href="/archives/2024/02/page/2/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>归档</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">二月 2026</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">六月 2025</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">三月 2025</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">二月 2025</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">十月 2024</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">八月 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">三月 2024</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">二月 2024</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">九月 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">八月 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">六月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a><span class="archive-list-count">2</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
-
-window.addEventListener('resize', $claudia.throttle(function () {
-    var images = document.querySelectorAll('.js-img-fadeIn')
-
-    images.forEach($claudia.blurBackdropImg)
-}, 150))</script></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> user 2026</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script src="/js/lang-switch.js"></script><script async defer src="https://buttons.github.io/buttons.js"></script><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
-
-window.addEventListener('resize', $claudia.throttle(function () {
-    var images = document.querySelectorAll('.js-img-fadeIn')
-
-    images.forEach($claudia.blurBackdropImg)
-}, 150))</script></body></html>
+</head><body><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title">二月 2024</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">全部文章 - 22</div><div class="article-sort"><div class="article-sort-item year">2024</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-02-28T07:19:18.000Z" title="发表于 2024-02-28 15:19:18">2024-02-28</time></div><a class="article-sort-item-title" href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.zh-CN/" title="Gorilla LLM 大语言模型简介">Gorilla LLM 大语言模型简介</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-02-28T07:19:18.000Z" title="发表于 2024-02-28 15:19:18">2024-02-28</time></div><a class="article-sort-item-title" href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.en/" title="Gorilla LLM 大语言模型简介">Gorilla LLM 大语言模型简介</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-02-26T17:43:18.000Z" title="发表于 2024-02-27 01:43:18">2024-02-27</time></div><a class="article-sort-item-title" href="/2024/02/27/NLP%20Insights/FastChat%20Training%20Script%20Code%20Analysis%20-%20Train.py%20%E3%80%90FastChat%20Series%20Part%201%E3%80%91.en/" title="FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】">FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-02-26T17:43:18.000Z" title="发表于 2024-02-27 01:43:18">2024-02-27</time></div><a class="article-sort-item-title" href="/2024/02/27/NLP%20Insights/FastChat%20Training%20Script%20Code%20Analysis%20-%20Train.py%20%E3%80%90FastChat%20Series%20Part%201%E3%80%91.zh-CN/" title="FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】">FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-02-26T17:43:18.000Z" title="发表于 2024-02-27 01:43:18">2024-02-27</time></div><a class="article-sort-item-title" href="/2024/02/27/NLP%20Insights/FastChat%20%E8%AE%AD%E7%BB%83%E8%84%9A%E6%9C%AC%E4%BB%A3%E7%A0%81%E9%80%90%E8%A1%8C%E8%A7%A3%E6%9E%90-Train.py%20%E3%80%90FastChat%20%E7%B3%BB%E5%88%97%E7%AC%AC%201%20%E7%AF%87%E3%80%91.en/" title="FastChat 训练脚本代码逐行解析-Train.py 【FastChat 系列第 1 篇】">FastChat 训练脚本代码逐行解析-Train.py 【FastChat 系列第 1 篇】</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-02-26T17:43:18.000Z" title="发表于 2024-02-27 01:43:18">2024-02-27</time></div><a class="article-sort-item-title" href="/2024/02/27/NLP%20Insights/FastChat%20%E8%AE%AD%E7%BB%83%E8%84%9A%E6%9C%AC%E4%BB%A3%E7%A0%81%E9%80%90%E8%A1%8C%E8%A7%A3%E6%9E%90-Train.py%20%E3%80%90FastChat%20%E7%B3%BB%E5%88%97%E7%AC%AC%201%20%E7%AF%87%E3%80%91.zh-CN/" title="FastChat 训练脚本代码逐行解析-Train.py 【FastChat 系列第 1 篇】">FastChat 训练脚本代码逐行解析-Train.py 【FastChat 系列第 1 篇】</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-02-26T06:29:00.000Z" title="发表于 2024-02-26 14:29:00">2024-02-26</time></div><a class="article-sort-item-title" href="/2024/02/26/Life%20Reflections/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%9ADe%20Facto.en/" title="英语学习日记：De Facto">英语学习日记：De Facto</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-02-26T06:29:00.000Z" title="发表于 2024-02-26 14:29:00">2024-02-26</time></div><a class="article-sort-item-title" href="/2024/02/26/Life%20Reflections/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0%E6%97%A5%E8%AE%B0%EF%BC%9ADe%20Facto.zh-CN/" title="英语学习日记：De Facto">英语学习日记：De Facto</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-02-26T06:25:00.000Z" title="发表于 2024-02-26 14:25:00">2024-02-26</time></div><a class="article-sort-item-title" href="/2024/02/26/Life%20Reflections/De%20Facto:%20Unveiling%20the%20Power%20of%20an%20Intriguing%20Phrase%20.en/" title="De Facto: Unveiling the Power of an Intriguing Phrase">De Facto: Unveiling the Power of an Intriguing Phrase</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-02-26T06:25:00.000Z" title="发表于 2024-02-26 14:25:00">2024-02-26</time></div><a class="article-sort-item-title" href="/2024/02/26/Life%20Reflections/De%20Facto:%20Unveiling%20the%20Power%20of%20an%20Intriguing%20Phrase%20.zh-CN/" title="De Facto: Unveiling the Power of an Intriguing Phrase">De Facto: Unveiling the Power of an Intriguing Phrase</a></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/archives/2024/02/page/2/">2</a><a class="page-number" href="/archives/2024/02/page/3/">3</a><a class="extend next" rel="next" href="/archives/2024/02/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">125</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.zh-CN/" title="Untitled">Untitled</a><time datetime="2026-02-20T22:15:00.000Z" title="发表于 2026-02-21 06:15:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.en/" title="Untitled">Untitled</a><time datetime="2026-02-20T22:15:00.000Z" title="发表于 2026-02-21 06:15:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI.en/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI.zh-CN/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom:%20%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%AF%9DAI%E7%9A%84%E8%AE%B0%E5%BF%86%E7%AE%A1%E7%90%86.en/" title="SeCom: 重新定义对话AI的记忆管理">SeCom: 重新定义对话AI的记忆管理</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Code-Chronicles/"><span class="card-category-list-name">Code Chronicles</span><span class="card-category-list-count">34</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Debugging-Diaries/"><span class="card-category-list-name">Debugging Diaries</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Life-Reflections/"><span class="card-category-list-name">Life Reflections</span><span class="card-category-list-count">19</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/NLP-Insights/"><span class="card-category-list-name">NLP Insights</span><span class="card-category-list-count">50</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Tech-Toolbox/"><span class="card-category-list-name">Tech Toolbox</span><span class="card-category-list-count">8</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Wanderlust-Adventures/"><span class="card-category-list-name">Wanderlust Adventures</span><span class="card-category-list-count">2</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/FastChat/" style="font-size: 1.27em; color: #99a0a9">FastChat</a> <a href="/tags/Embedding/" style="font-size: 1.16em; color: #999b9e">Embedding</a> <a href="/tags/Tool-Use/" style="font-size: 1.16em; color: #999b9e">Tool Use</a> <a href="/tags/Guide-to-Living-on-Singapore-Island/" style="font-size: 1.1em; color: #999">Guide to Living on Singapore Island</a> <a href="/tags/Gemma-2-2b-it/" style="font-size: 1.16em; color: #999b9e">Gemma-2-2b-it</a> <a href="/tags/vLLM/" style="font-size: 1.27em; color: #99a0a9">vLLM</a> <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" style="font-size: 1.39em; color: #99a4b4">每日一题</a> <a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/" style="font-size: 1.33em; color: #99a2af">双周赛</a> <a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 1.16em; color: #999b9e">杂谈</a> <a href="/tags/SeCom/" style="font-size: 1.27em; color: #99a0a9">SeCom</a> <a href="/tags/Deep-Learning/" style="font-size: 1.16em; color: #999b9e">Deep Learning</a> <a href="/tags/Agent/" style="font-size: 1.16em; color: #999b9e">Agent</a> <a href="/tags/Gorilla/" style="font-size: 1.16em; color: #999b9e">Gorilla</a> <a href="/tags/Python/" style="font-size: 1.5em; color: #99a9bf">Python</a> <a href="/tags/Train/" style="font-size: 1.27em; color: #99a0a9">Train</a> <a href="/tags/Memory-Management/" style="font-size: 1.27em; color: #99a0a9">Memory Management</a> <a href="/tags/IssueFix/" style="font-size: 1.44em; color: #99a7ba">IssueFix</a> <a href="/tags/K8s/" style="font-size: 1.16em; color: #999b9e">K8s</a> <a href="/tags/Gemma-2/" style="font-size: 1.16em; color: #999b9e">Gemma-2</a> <a href="/tags/Daily-Challenge/" style="font-size: 1.16em; color: #999b9e">Daily Challenge</a> <a href="/tags/FAISS/" style="font-size: 1.16em; color: #999b9e">FAISS</a> <a href="/tags/Sports/" style="font-size: 1.21em; color: #999ea4">Sports</a> <a href="/tags/Structured-LLM/" style="font-size: 1.16em; color: #999b9e">Structured LLM</a> <a href="/tags/DSSM/" style="font-size: 1.16em; color: #999b9e">DSSM</a> <a href="/tags/Gradient-Descent/" style="font-size: 1.16em; color: #999b9e">Gradient Descent</a> <a href="/tags/Deployment/" style="font-size: 1.27em; color: #99a0a9">Deployment</a> <a href="/tags/Recommendation/" style="font-size: 1.27em; color: #99a0a9">Recommendation</a> <a href="/tags/Perplexity/" style="font-size: 1.16em; color: #999b9e">Perplexity</a> <a href="/tags/Living-in-Singapore/" style="font-size: 1.16em; color: #999b9e">Living in Singapore</a> <a href="/tags/Language-Modeling/" style="font-size: 1.16em; color: #999b9e">Language Modeling</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1.16em; color: #999b9e">动态规划</a> <a href="/tags/Python-Basic/" style="font-size: 1.44em; color: #99a7ba">Python Basic</a> <a href="/tags/Prompt/" style="font-size: 1.16em; color: #999b9e">Prompt</a> <a href="/tags/Blog/" style="font-size: 1.27em; color: #99a0a9">Blog</a> <a href="/tags/RAG/" style="font-size: 1.27em; color: #99a0a9">RAG</a> <a href="/tags/Language-Learning/" style="font-size: 1.44em; color: #99a7ba">Language Learning</a> <a href="/tags/SGLang/" style="font-size: 1.16em; color: #999b9e">SGLang</a> <a href="/tags/Onnx/" style="font-size: 1.27em; color: #99a0a9">Onnx</a> <a href="/tags/Conversational-AI/" style="font-size: 1.27em; color: #99a0a9">Conversational AI</a> <a href="/tags/Git/" style="font-size: 1.16em; color: #999b9e">Git</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/"
+            title="查看更多">
+            <i class="fas fa-angle-right"></i>
+          </a>
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/02/">
+            <span class="card-archive-list-date">
+              二月 2026
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/06/">
+            <span class="card-archive-list-date">
+              六月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/03/">
+            <span class="card-archive-list-date">
+              三月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2025/02/">
+            <span class="card-archive-list-date">
+              二月 2025
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/12/">
+            <span class="card-archive-list-date">
+              十二月 2024
+            </span>
+            <span class="card-archive-list-count">14</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/10/">
+            <span class="card-archive-list-date">
+              十月 2024
+            </span>
+            <span class="card-archive-list-count">4</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/08/">
+            <span class="card-archive-list-date">
+              八月 2024
+            </span>
+            <span class="card-archive-list-count">6</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2024/04/">
+            <span class="card-archive-list-date">
+              四月 2024
+            </span>
+            <span class="card-archive-list-count">2</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">125</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-02-20T22:14:05.788Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/lang-switch.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
