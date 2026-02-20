@@ -1,237 +1,78 @@
-<!DOCTYPE html><html lang="[&quot;en&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Archives | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
-<meta property="og:title" content="Archives">
-<meta property="og:url" content="https://chenhuiyu.github.io/archives/page/5/index.html">
-<meta property="og:site_name" content="黑头呆鱼进化之旅">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
-<meta property="article:author" content="Huiyu Chen">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/archives/page/5/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
-    (() => {
-      
-    const saveToLocal = {
-      set: (key, value, ttl) => {
-        if (!ttl) return
-        const expiry = Date.now() + ttl * 86400000
-        localStorage.setItem(key, JSON.stringify({ value, expiry }))
-      },
-      get: key => {
-        const itemStr = localStorage.getItem(key)
-        if (!itemStr) return undefined
-        const { value, expiry } = JSON.parse(itemStr)
-        if (Date.now() > expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return value
-      }
-    }
-
-    window.btf = {
-      saveToLocal,
-      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
-        script.onload = script.onreadystatechange = () => {
-          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
-        }
-        script.onerror = reject
-        document.head.appendChild(script)
-      }),
-      getCSS: (url, id) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onload = link.onreadystatechange = () => {
-          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
-        }
-        link.onerror = reject
-        document.head.appendChild(link)
-      }),
-      addGlobalFn: (key, fn, name = false, parent = window) => {
-        if (!false && key.startsWith('pjax')) return
-        const globalFn = parent.globalFn || {}
-        globalFn[key] = globalFn[key] || {}
-        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
-        parent.globalFn = globalFn
-      }
-    }
-  
-      
-      const activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      const activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-
-      btf.activateDarkMode = activateDarkMode
-      btf.activateLightMode = activateLightMode
-
-      const theme = saveToLocal.get('theme')
-    
-          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
-        
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
-      }
-    
-      
-    const detectApple = () => {
-      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-  
-    })()
-  </script><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
-  copy: {
-    success: 'Copy Successful',
-    error: 'Copy Failed',
-    noSupport: 'Browser Not Supported'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: 'Just now',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: undefined,
-  lightbox: 'null',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
-    buttonText: 'Load More'
-  },
-  isPhotoFigcaption: false,
-  islazyloadPlugin: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Archives',
-  isHighlightShrink: false,
-  isToc: false,
-  pageType: 'archive'
-}</script><meta name="generator" content="Hexo 6.3.0">
+<!DOCTYPE html><html class="appearance-auto" lang="[&quot;en&quot;]"><head><meta charset="UTF-8"><title>user's blog</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/widget-post-list.css"><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
-</head><body><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title">Archives</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">All Articles - 64</div><div class="article-sort"><div class="article-sort-item year">2023</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-09-13T04:10:55.000Z" title="Created 2023-09-13 12:10:55">2023-09-13</time></div><a class="article-sort-item-title" href="/2023/09/13/Debugging%20Diaries/%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E5%86%B2%E7%AA%81%EF%BC%9A%E6%9F%A5%E6%89%BE%E5%B9%B6%E7%BB%88%E6%AD%A2%E8%BF%9B%E7%A8%8B/" title="解决端口冲突：查找并终止进程">解决端口冲突：查找并终止进程</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-08-23T06:46:03.000Z" title="Created 2023-08-23 14:46:03">2023-08-23</time></div><a class="article-sort-item-title" href="/2023/08/23/Code%20Chronicles/Python-Uninterrupted%20Remote%20Program%20Execution:%203%20Methods/" title="无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen`">无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen`</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-08-22T11:06:03.000Z" title="Created 2023-08-22 19:06:03">2023-08-22</time></div><a class="article-sort-item-title" href="/2023/08/22/Code%20Chronicles/Python-subprocess/" title="超越Python的边界：`subprocess` 助你一键执行外部命令">超越Python的边界：`subprocess` 助你一键执行外部命令</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-08-21T06:34:18.000Z" title="Created 2023-08-21 14:34:18">2023-08-21</time></div><a class="article-sort-item-title" href="/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format/" title="Conver Pytorch Model to ONNX Format">Conver Pytorch Model to ONNX Format</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-08-02T07:38:29.000Z" title="Created 2023-08-02 15:38:29">2023-08-02</time></div><a class="article-sort-item-title" href="/2023/08/02/NLP%20Insights/LLAMA2/" title="Training Llama 2 Model on Single GPU with int8 Quantization and LoRA">Training Llama 2 Model on Single GPU with int8 Quantization and LoRA</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-07-28T06:43:10.000Z" title="Created 2023-07-28 14:43:10">2023-07-28</time></div><a class="article-sort-item-title" href="/2023/07/28/NLP%20Insights/LONGNET/" title="LONGNET - Scaling Transformers to 1,000,000,000 Tokens">LONGNET - Scaling Transformers to 1,000,000,000 Tokens</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-07-27T07:44:10.000Z" title="Created 2023-07-27 15:44:10">2023-07-27</time></div><a class="article-sort-item-title" href="/2023/07/27/NLP%20Insights/Prompt%20Engineering/" title="Prompt Engineering">Prompt Engineering</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-07-10T07:02:44.000Z" title="Created 2023-07-10 15:02:44">2023-07-10</time></div><a class="article-sort-item-title" href="/2023/07/10/Code%20Chronicles/ColoredLogger/" title="ColoredLogger-彩色打印日志到控制台并记录到文件">ColoredLogger-彩色打印日志到控制台并记录到文件</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-07-09T04:59:21.000Z" title="Created 2023-07-09 12:59:21">2023-07-09</time></div><a class="article-sort-item-title" href="/2023/07/09/NLP%20Insights/%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95/" title="详解梯度下降算法">详解梯度下降算法</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-07-08T05:40:21.000Z" title="Created 2023-07-08 13:40:21">2023-07-08</time></div><a class="article-sort-item-title" href="/2023/07/08/Tech%20Toolbox/GeoMapToBlog/" title="Hexo博客添加可交互式足迹地图">Hexo博客添加可交互式足迹地图</a></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/archives/page/4/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/6/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment/" title="Untitled">Untitled</a><time datetime="2026-02-20T21:56:22.871Z" title="Created 2026-02-21 05:56:22">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="Created 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom:%20%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%AF%9DAI%E7%9A%84%E8%AE%B0%E5%BF%86%E7%AE%A1%E7%90%86/" title="SeCom: 重新定义对话AI的记忆管理">SeCom: 重新定义对话AI的记忆管理</a><time datetime="2025-06-24T08:00:00.000Z" title="Created 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/06/NLP%20Insights/Decoder%E6%A8%A1%E5%9E%8B%E5%92%8CEncoder%E6%A8%A1%E5%9E%8B%E5%9C%A8Padding%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%90%8C/" title="Decoder-only与Encoder-only模型Padding策略的差异">Decoder-only与Encoder-only模型Padding策略的差异</a><time datetime="2025-03-06T09:43:10.000Z" title="Created 2025-03-06 17:43:10">2025-03-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/06/NLP%20Insights/Differences%20in%20Padding%20Strategies%20Between%20Decoder-only%20and%20Encoder-only%20Models/" title="Differences in Padding Strategies Between Decoder-only and Encoder-only Models">Differences in Padding Strategies Between Decoder-only and Encoder-only Models</a><time datetime="2025-03-06T09:43:10.000Z" title="Created 2025-03-06 17:43:10">2025-03-06</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
-            <i class="fas fa-folder-open"></i>
-            <span>Categories</span>
-            
-          </div>
-          <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Code-Chronicles/"><span class="card-category-list-name">Code Chronicles</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Debugging-Diaries/"><span class="card-category-list-name">Debugging Diaries</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Life-Reflections/"><span class="card-category-list-name">Life Reflections</span><span class="card-category-list-count">11</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/NLP-Insights/"><span class="card-category-list-name">NLP Insights</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Tech-Toolbox/"><span class="card-category-list-name">Tech Toolbox</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Wanderlust-Adventures/"><span class="card-category-list-name">Wanderlust Adventures</span><span class="card-category-list-count">1</span></a></li>
-          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Gemma-2/" style="font-size: 1.1em; color: #999">Gemma-2</a> <a href="/tags/English-Vocabulary/" style="font-size: 1.27em; color: #99a0a9">English Vocabulary</a> <a href="/tags/Leetcode/" style="font-size: 1.39em; color: #99a4b4">Leetcode</a> <a href="/tags/Guide-to-Living-on-Singapore-Island/" style="font-size: 1.1em; color: #999">Guide to Living on Singapore Island</a> <a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 1.1em; color: #999">杂谈</a> <a href="/tags/DSSM/" style="font-size: 1.1em; color: #999">DSSM</a> <a href="/tags/Deployment/" style="font-size: 1.16em; color: #999b9e">Deployment</a> <a href="/tags/Chatbot/" style="font-size: 1.16em; color: #999b9e">Chatbot</a> <a href="/tags/Memory-Management/" style="font-size: 1.16em; color: #999b9e">Memory Management</a> <a href="/tags/FAISS/" style="font-size: 1.1em; color: #999">FAISS</a> <a href="/tags/Recommendation/" style="font-size: 1.16em; color: #999b9e">Recommendation</a> <a href="/tags/Daily-Challenge/" style="font-size: 1.1em; color: #999">Daily Challenge</a> <a href="/tags/Python/" style="font-size: 1.44em; color: #99a7ba">Python</a> <a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/" style="font-size: 1.21em; color: #999ea4">双周赛</a> <a href="/tags/Gorilla/" style="font-size: 1.1em; color: #999">Gorilla</a> <a href="/tags/Language-Learning/" style="font-size: 1.33em; color: #99a2af">Language Learning</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Small-Talk/" style="font-size: 1.1em; color: #999">Small Talk</a> <a href="/tags/Language-Modeling/" style="font-size: 1.1em; color: #999">Language Modeling</a> <a href="/tags/Gradient-Descent/" style="font-size: 1.1em; color: #999">Gradient Descent</a> <a href="/tags/LLM/" style="font-size: 1.5em; color: #99a9bf">LLM</a> <a href="/tags/Prompt/" style="font-size: 1.1em; color: #999">Prompt</a> <a href="/tags/Deep-Learning/" style="font-size: 1.1em; color: #999">Deep Learning</a> <a href="/tags/Blog/" style="font-size: 1.16em; color: #999b9e">Blog</a> <a href="/tags/Agent/" style="font-size: 1.1em; color: #999">Agent</a> <a href="/tags/Gemma-2-2b-it/" style="font-size: 1.1em; color: #999">Gemma-2-2b-it</a> <a href="/tags/Living-in-Singapore/" style="font-size: 1.1em; color: #999">Living in Singapore</a> <a href="/tags/RAG/" style="font-size: 1.16em; color: #999b9e">RAG</a> <a href="/tags/K8s/" style="font-size: 1.1em; color: #999">K8s</a> <a href="/tags/vLLM/" style="font-size: 1.16em; color: #999b9e">vLLM</a> <a href="/tags/SeCom/" style="font-size: 1.16em; color: #999b9e">SeCom</a> <a href="/tags/Embedding/" style="font-size: 1.1em; color: #999">Embedding</a> <a href="/tags/Python-Basic/" style="font-size: 1.33em; color: #99a2af">Python Basic</a> <a href="/tags/Structured-LLM/" style="font-size: 1.1em; color: #999">Structured LLM</a> <a href="/tags/Sports/" style="font-size: 1.21em; color: #999ea4">Sports</a> <a href="/tags/SGLang/" style="font-size: 1.1em; color: #999">SGLang</a> <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" style="font-size: 1.27em; color: #99a0a9">每日一题</a> <a href="/tags/Tool-Use/" style="font-size: 1.1em; color: #999">Tool Use</a> <a href="/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/" style="font-size: 1.21em; color: #999ea4">坡岛生活指北</a> <a href="/tags/Onnx/" style="font-size: 1.16em; color: #999b9e">Onnx</a></div></div><div class="card-widget card-archives">
-    <div class="item-headline">
-      <i class="fas fa-archive"></i>
-      <span>Archives</span>
-      <a class="card-more-btn" href="/archives/"
-            title="View More">
-            <i class="fas fa-angle-right"></i>
-          </a>
-    </div>
-  
-    <ul class="card-archive-list">
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2026/02/">
-            <span class="card-archive-list-date">
-              February 2026
-            </span>
-            <span class="card-archive-list-count">1</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2025/06/">
-            <span class="card-archive-list-date">
-              June 2025
-            </span>
-            <span class="card-archive-list-count">2</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2025/03/">
-            <span class="card-archive-list-date">
-              March 2025
-            </span>
-            <span class="card-archive-list-count">2</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2025/02/">
-            <span class="card-archive-list-date">
-              February 2025
-            </span>
-            <span class="card-archive-list-count">2</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2024/12/">
-            <span class="card-archive-list-date">
-              December 2024
-            </span>
-            <span class="card-archive-list-count">7</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2024/10/">
-            <span class="card-archive-list-date">
-              October 2024
-            </span>
-            <span class="card-archive-list-count">2</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2024/08/">
-            <span class="card-archive-list-date">
-              August 2024
-            </span>
-            <span class="card-archive-list-count">3</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2024/04/">
-            <span class="card-archive-list-date">
-              April 2024
-            </span>
-            <span class="card-archive-list-count">1</span>
-          </a>
-        </li>
-      
-    </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">64</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-02-20T21:56:25.717Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">user's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><span>Archives · All</span></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/IssueFix"><i class="tag post-item-tag">IssueFix</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/09/13/Debugging%20Diaries/%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E5%86%B2%E7%AA%81%EF%BC%9A%E6%9F%A5%E6%89%BE%E5%B9%B6%E7%BB%88%E6%AD%A2%E8%BF%9B%E7%A8%8B/">解决端口冲突：查找并终止进程</a></h2><time class="has-text-grey" datetime="2023-09-13T04:10:55.000Z">2023-09-13</time><p class="is-flex-grow-2 mt-2">解决端口冲突：查找并终止进程目录
+简介
+在Windows上查找进程 🕵️‍♂️
+在Linux/macOS上查找进程 🐧
+查看进程详细信息 📊
+终止进程 ⛔️
+
+简介有时候，当你尝试启动一个应用程序或服务时，可能会遇到”Address already in use”（地址已经在使用）的错误，这意味着指定的端口已经被另一个进程占用。为了解决这个问题，你需要确定哪个进程正在使用该端口，并可以选择终止该进程或更改应用程序的端口配置。
+在Windows上查找进程 🕵️‍♂️在Windows上，你可以使用命令提示符来查找正在使用特定端口的进程。打开命令提示符，并执行以下命令：
+1netstat -ano | findstr :8080
+
+这个命令会列出所有正在使用端口8080的进程，并显示它们的进程ID（PID..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/09/13/Debugging%20Diaries/%E8%A7%A3%E5%86%B3%E7%AB%AF%E5%8F%A3%E5%86%B2%E7%AA%81%EF%BC%9A%E6%9F%A5%E6%89%BE%E5%B9%B6%E7%BB%88%E6%AD%A2%E8%BF%9B%E7%A8%8B/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python%20Basic"><i class="tag post-item-tag">Python Basic</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/08/23/Code%20Chronicles/Python-Uninterrupted%20Remote%20Program%20Execution:%203%20Methods/">无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen`</a></h2><time class="has-text-grey" datetime="2023-08-23T06:46:03.000Z">2023-08-23</time><p class="is-flex-grow-2 mt-2">无断开烦恼！远程服务器后台运行程序的3种方法：nohup、tmux和screenUninterrupted Remote Program Execution: 3 Methods在数据分析或机器学习项目中，经常需要在远程服务器上运行耗时长、计算密集型的任务。通过SSH连接到远程服务器是常见的操作方式。但是，如何确保在断开SSH连接之后，远程服务器上的程序能够继续运行呢？本文详细介绍了三种方法：nohup、tmux和screen。
+使用nohup命令开始
+连接到远程机器：在本地终端中执行以下命令。
+ 1ssh username@remote-server-address
+
+启动后台程序：在远程机器上执行。
+ 1nohup your-command-to-run-the-program &amp;amp;
+
+例如：
+1..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/08/23/Code%20Chronicles/Python-Uninterrupted%20Remote%20Program%20Execution:%203%20Methods/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python%20Basic"><i class="tag post-item-tag">Python Basic</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/08/22/Code%20Chronicles/Python-subprocess/">超越Python的边界：`subprocess` 助你一键执行外部命令</a></h2><time class="has-text-grey" datetime="2023-08-22T11:06:03.000Z">2023-08-22</time><p class="is-flex-grow-2 mt-2">超越Python的边界：subprocess 助你一键执行外部命令在日常开发中，有时候我们希望能够从 Python 脚本中执行系统命令或者其他程序。Python 提供了 subprocess 模块，使得这一操作变得既简单又安全。
+介绍subprocess 模块是 Python 标准库的一部分，它提供了一种简单统一的方法来执行外部命令，与进程交互，读取它的输出，并获取它的返回码。无论你是在自动化某个系统任务，还是简单地想要从另一个程序中获取数据，subprocess 都能助你一臂之力。
+功能与用途
+执行外部命令：你可以轻易地从 Python 脚本中运行任何外部命令，就像在命令行中输入命令一样。这种能力使得你能够在你的 Python 程序中调用并集成其他命令行工具，扩展你的应用的功能。
+
+捕获命令的输出：如果你..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/08/22/Code%20Chronicles/Python-subprocess/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Onnx"><i class="tag post-item-tag">Onnx</i></a><a href="/tags/Deployment"><i class="tag post-item-tag">Deployment</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format/">Conver Pytorch Model to ONNX Format</a></h2><time class="has-text-grey" datetime="2023-08-21T06:34:18.000Z">2023-08-21</time><p class="is-flex-grow-2 mt-2">使用 PyTorch 和 ONNX 检查模型一致性在机器学习和深度学习的开发过程中，模型的互操作性变得越来越重要。ONNX (Open Neural Network Exchange) 是一种开放格式，用于表示机器学习和深度学习模型。它允许开发者在各种深度学习框架之间轻松地共享模型，从而提高了模型的可移植性和互操作性。
+本教程将指导您完成以下步骤：
+
+将 PyTorch 模型转换为 ONNX 格式。
+验证转换后的 ONNX 模型与原始 PyTorch 模型的输出是否一致。
+
+1. 导入必要的库首先，我们导入为模型转换和验证所需的所有库。
+123456import osimport sysimport torchimport onnximport onnxruntimeimport numpy as np
+
+..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/08/21/NLP%20Insights/Conver%20Pytorch%20Model%20to%20ONNX%20Format/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/LLM"><i class="tag post-item-tag">LLM</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/08/02/NLP%20Insights/LLAMA2/">Training Llama 2 Model on Single GPU with int8 Quantization and LoRA</a></h2><time class="has-text-grey" datetime="2023-08-02T07:38:29.000Z">2023-08-02</time><p class="is-flex-grow-2 mt-2">Training Llama 2 Model on Single GPU with int8 Quantization and LoRALlama 2概述Llama 2 是一个包含预训练和微调的生成式文本模型的集合，其规模从 70 亿到 700 亿个参数不等。Llama2模型是由Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert等人在Llama 2: Open Foundation and Fine-Tuned Chat Models中提出的。
+该论文的摘要如下：
+在这项工作中，我们开发并发布了Llama 2，这是一组从70亿到700亿参数的预训练和微调的大型语言模型（LLMs）。我们的微调LLMs，称为Llama 2-Chat，针对对话用例进行了优化..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/08/02/NLP%20Insights/LLAMA2/">Read more</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/2023/07/28/NLP%20Insights/LONGNET/Figure_1.png" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2023/07/28/NLP%20Insights/LONGNET/"><img class="post-cover-img js-img-fadeIn" src="/2023/07/28/NLP%20Insights/LONGNET/Figure_1.png" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/LLM"><i class="tag post-item-tag">LLM</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/07/28/NLP%20Insights/LONGNET/">LONGNET - Scaling Transformers to 1,000,000,000 Tokens</a></h2><time class="has-text-grey" datetime="2023-07-28T06:43:10.000Z">2023-07-28</time><p class="is-flex-grow-2 mt-2">LONGNET：将Transformer扩展到10亿个标记在本篇文章中，我们将详细讨论一个近期发布的先进模型——“LongNet”。该模型由微软亚洲研究院研发，于大约两周前正式公布。LongNet基于Transformer模型构建，其核心理念在于拓展Transformer的应用规模。值得一提的是，研究团队成功地将其扩展至处理10亿个令牌的规模。对于熟悉语言模型的人来说，会明白序列长度对模型性能的影响，因为序列长度决定了在执行注意力机制时，能够关联的令牌数量，从而影响模型可以获取的上下文信息长度。例如，我们希望像GPT这样的模型能拥有更长的上下文，使得模型可以参考更久之前的单词来预测下一个令牌。而LongNet就成功地将这个能力扩展到了10亿个令牌。以下图为例，可以清晰看出，GPT的序列长度仅为512，而Po..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/07/28/NLP%20Insights/LONGNET/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/LLM"><i class="tag post-item-tag">LLM</i></a><a href="/tags/Prompt"><i class="tag post-item-tag">Prompt</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/07/27/NLP%20Insights/Prompt%20Engineering/">Prompt Engineering</a></h2><time class="has-text-grey" datetime="2023-07-27T07:44:10.000Z">2023-07-27</time><p class="is-flex-grow-2 mt-2">Prompt EngineeringPrompt Engineering, 也被称为上下文提示，是指在不更新模型权重的情况下，与LLM（语言模型）进行交互以引导其产生期望输出的方法。它是一门实证科学，提示工程方法的效果在不同模型之间可能会有很大的差异，因此需要进行大量的实验和试探。
+本文仅关注自回归语言模型的提示工程，不涉及填空测试、图像生成或多模态模型。在本质上，提示工程的目标是实现模型的对齐和可操控性。您可以查阅我之前关于可控文本生成的帖子。
+基本提示方法zero-shot学习和few-shot学习是两种最基本的提示模型方法，这些方法由许多LLM论文首创，并且通常用于评估LLM性能。
+zero-shot学习zero-shot学习是将任务文本直接输入模型并要求获得结果。
+（所有情感分析示例来自于SST-2..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/07/27/NLP%20Insights/Prompt%20Engineering/">Read more</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/2023/07/10/Code%20Chronicles/ColoredLogger/image.png" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2023/07/10/Code%20Chronicles/ColoredLogger/"><img class="post-cover-img js-img-fadeIn" src="/2023/07/10/Code%20Chronicles/ColoredLogger/image.png" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/07/10/Code%20Chronicles/ColoredLogger/">ColoredLogger-彩色打印日志到控制台并记录到文件</a></h2><time class="has-text-grey" datetime="2023-07-10T07:02:44.000Z">2023-07-10</time><p class="is-flex-grow-2 mt-2">彩色打印日志到控制台并记录到文件本文档介绍了一个名为 ColoredLogger 的日志记录器类，它可以根据不同的消息类型以不同的颜色打印日志，并将日志记录到文件中。该类使用了 colorama 库来实现在控制台中显示带颜色的文本。为了使控制台输出的日志更加易于阅读和理解，我们通常会使用彩色的输出。同时，将日志记录到文件中可以方便我们后续的调试和分析。在Python中，我们可以使用logging和colorama库来实现这样的功能。
+
+以下是一个如何使用这两个库的详细介绍。
+功能
+可以根据不同的消息类型以不同的颜色打印日志消息。
+将日志消息记录到文件中，使用标准的 logging 模块进行记录。
+在控制台中显示带颜色的日志消息。
+
+原理logging库提供了强大的日志记录功能，允许我们将日志记录到控制台、文..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/07/10/Code%20Chronicles/ColoredLogger/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Deep%20Learning"><i class="tag post-item-tag">Deep Learning</i></a><a href="/tags/Gradient%20Descent"><i class="tag post-item-tag">Gradient Descent</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/07/09/NLP%20Insights/%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95/">详解梯度下降算法</a></h2><time class="has-text-grey" datetime="2023-07-09T04:59:21.000Z">2023-07-09</time><p class="is-flex-grow-2 mt-2">梯度梯度是一个在微积分中使用的重要概念，它用于衡量函数在给定点上的方向导数沿各个方向最大时的最大值。对于一个标量函数，梯度的方向是函数增长最快的方向，而梯度的反方向则是函数减小最快的方向。
+定义对于在点$x \in \mathbb{R}^n$可微的函数$f: \mathbb{R}^n \rightarrow \mathbb{R}$，其梯度被定义为一个向量，其各个分量为函数在该点上的偏导数。对于函数$f(x_1, x_2, …, x_n)$，它的梯度可以表示为：
+$$\nabla f(x) = \left[ \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, …, \frac{\partial f}{\partial x_n} \..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/07/09/NLP%20Insights/%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Blog"><i class="tag post-item-tag">Blog</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/07/08/Tech%20Toolbox/GeoMapToBlog/">Hexo博客添加可交互式足迹地图</a></h2><time class="has-text-grey" datetime="2023-07-08T05:40:21.000Z">2023-07-08</time><p class="is-flex-grow-2 mt-2">在Blog中添加可交互式足迹地图这篇文章将向你展示如何在基于Hexo和Next的GitHub Pages博客中创建一个交互式的世界地图页面，这个地图将展示你曾经访问过的城市，你可以根据你对每个城市访问的频率在地图上显示不同颜色的标记，你还可以点击这些标记来显示更多关于这个城市的信息。
+准备工作你需要安装以下工具：
+
+Node.js 和 NPM
+Hexo
+
+确保你的博客已经被部署到GitHub Pages，并且你在本地的开发环境已经正确设置。
+步骤一：创建新页面在你的Hexo项目的根目录下，运行以下命令：
+1hexo new page &quot;travel&quot;
+
+这个命令将在source目录下创建一个名为”travel”的文件夹，并在该文件夹下创建一个index.md文件。
+步骤二：安装 Leaflet在你的Hexo..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/07/08/Tech%20Toolbox/GeoMapToBlog/">Read more</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><a class="extend prev" rel="prev" href="/archives/page/4/"><i class="iconfont icon-prev has-text-grey"></i></a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/6/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container archives-widget is-in-archive-page"><h3>Archives</h3><section><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/02/">February 2026</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/06/">June 2025</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">March 2025</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">December 2024</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/10/">October 2024</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">April 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/02/">February 2024</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/09/">September 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/08/">August 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">July 2023</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/06/">June 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a><span class="archive-list-count">1</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+
+window.addEventListener('resize', $claudia.throttle(function () {
+    var images = document.querySelectorAll('.js-img-fadeIn')
+
+    images.forEach($claudia.blurBackdropImg)
+}, 150))</script></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> user 2026</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+
+window.addEventListener('resize', $claudia.throttle(function () {
+    var images = document.querySelectorAll('.js-img-fadeIn')
+
+    images.forEach($claudia.blurBackdropImg)
+}, 150))</script></body></html>

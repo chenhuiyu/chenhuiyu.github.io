@@ -1,237 +1,123 @@
-<!DOCTYPE html><html lang="[&quot;en&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Category: Code Chronicles | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
-<meta property="og:title" content="黑头呆鱼进化之旅">
-<meta property="og:url" content="https://chenhuiyu.github.io/categories/Code-Chronicles/index.html">
-<meta property="og:site_name" content="黑头呆鱼进化之旅">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
-<meta property="article:author" content="Huiyu Chen">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/categories/Code-Chronicles/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
-    (() => {
-      
-    const saveToLocal = {
-      set: (key, value, ttl) => {
-        if (!ttl) return
-        const expiry = Date.now() + ttl * 86400000
-        localStorage.setItem(key, JSON.stringify({ value, expiry }))
-      },
-      get: key => {
-        const itemStr = localStorage.getItem(key)
-        if (!itemStr) return undefined
-        const { value, expiry } = JSON.parse(itemStr)
-        if (Date.now() > expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return value
-      }
-    }
-
-    window.btf = {
-      saveToLocal,
-      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
-        script.onload = script.onreadystatechange = () => {
-          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
-        }
-        script.onerror = reject
-        document.head.appendChild(script)
-      }),
-      getCSS: (url, id) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onload = link.onreadystatechange = () => {
-          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
-        }
-        link.onerror = reject
-        document.head.appendChild(link)
-      }),
-      addGlobalFn: (key, fn, name = false, parent = window) => {
-        if (!false && key.startsWith('pjax')) return
-        const globalFn = parent.globalFn || {}
-        globalFn[key] = globalFn[key] || {}
-        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
-        parent.globalFn = globalFn
-      }
-    }
-  
-      
-      const activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      const activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-
-      btf.activateDarkMode = activateDarkMode
-      btf.activateLightMode = activateLightMode
-
-      const theme = saveToLocal.get('theme')
-    
-          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
-        
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
-      }
-    
-      
-    const detectApple = () => {
-      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-  
-    })()
-  </script><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
-  copy: {
-    success: 'Copy Successful',
-    error: 'Copy Failed',
-    noSupport: 'Browser Not Supported'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: 'Just now',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: undefined,
-  lightbox: 'null',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
-    buttonText: 'Load More'
-  },
-  isPhotoFigcaption: false,
-  islazyloadPlugin: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Category: Code Chronicles',
-  isHighlightShrink: false,
-  isToc: false,
-  pageType: 'category'
-}</script><meta name="generator" content="Hexo 6.3.0">
+<!DOCTYPE html><html class="appearance-auto" lang="[&quot;en&quot;]"><head><meta charset="UTF-8"><title>user's blog</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/widget-post-list.css"><meta name="generator" content="Hexo 6.3.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
-</head><body><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title">Code Chronicles</h1></div></header><main class="layout" id="content-inner"><div id="category"><div class="article-sort-title">Category - Code Chronicles</div><div class="article-sort"><div class="article-sort-item year">2024</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-12-01T16:00:00.000Z" title="Created 2024-12-02 00:00:00">2024-12-02</time></div><a class="article-sort-item-title" href="/2024/12/02/Code%20Chronicles/Leetcode%20Python%E9%A2%98%E8%A7%A3%E3%80%91%E3%80%8C1346.%20Check%20If%20N%20and%20Its%20Double%20Exist%E3%80%8D/" title="【Leetcode Python题解】「1346. Check If N and Its Double Exist」">【Leetcode Python题解】「1346. Check If N and Its Double Exist」</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-11-30T19:00:00.000Z" title="Created 2024-12-01 03:00:00">2024-12-01</time></div><a class="article-sort-item-title" href="/2024/12/01/Code%20Chronicles/%5BLeetcode%20Python%20Solution%5D%202097.%20Valid%20Arrangement%20of%20Pairs/" title="Leetcode Python Solution - 2097. Valid Arrangement of Pairs">Leetcode Python Solution - 2097. Valid Arrangement of Pairs</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-11-30T19:00:00.000Z" title="Created 2024-12-01 03:00:00">2024-12-01</time></div><a class="article-sort-item-title" href="/2024/12/01/Code%20Chronicles/%E3%80%90Leetcode%20Python%E9%A2%98%E8%A7%A3%E3%80%91%E3%80%8C2097.%20Valid%20Arrangement%20of%20Pairs%E3%80%8D/" title="【Leetcode Python题解】「2097. Valid Arrangement of Pairs」">【Leetcode Python题解】「2097. Valid Arrangement of Pairs」</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-03-08T15:31:44.000Z" title="Created 2024-03-08 23:31:44">2024-03-08</time></div><a class="article-sort-item-title" href="/2024/03/08/Code%20Chronicles/2834.%20%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C/" title="【Python题解】2834. 找出美丽数组的最小和">【Python题解】2834. 找出美丽数组的最小和</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-03-04T15:31:44.000Z" title="Created 2024-03-04 23:31:44">2024-03-04</time></div><a class="article-sort-item-title" href="/2024/03/04/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100226.%20%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE/" title="【Python题解】100226. 在带权树网络中统计可连接服务器对数目">【Python题解】100226. 在带权树网络中统计可连接服务器对数目</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-03-03T15:32:44.000Z" title="Created 2024-03-03 23:32:44">2024-03-03</time></div><a class="article-sort-item-title" href="/2024/03/03/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100232.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20II/" title="【Python题解】100232. 超过阈值的最少操作数 II">【Python题解】100232. 超过阈值的最少操作数 II</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-03-02T15:34:44.000Z" title="Created 2024-03-02 23:34:44">2024-03-02</time></div><a class="article-sort-item-title" href="/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I/" title="【Python题解】100231. 超过阈值的最少操作数 I">【Python题解】100231. 超过阈值的最少操作数 I</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-03-01T07:02:44.000Z" title="Created 2024-03-01 15:02:44">2024-03-01</time></div><a class="article-sort-item-title" href="/2024/03/01/Code%20Chronicles/2369.%20%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86/" title="【Python题解】2369. 检查数组是否存在有效划分">【Python题解】2369. 检查数组是否存在有效划分</a></div></div><div class="article-sort-item year">2023</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-09-23T19:13:03.000Z" title="Created 2023-09-24 03:13:03">2023-09-24</time></div><a class="article-sort-item-title" href="/2023/09/24/NLP%20Insights/Create%20a%20Telegram%20Bot%20with%20Python%20and%20OpenAI%20in%2010%20Minutes/" title="🤖 Create a Telegram Bot with Python and OpenAI in 10 Minutes! 🚀">🤖 Create a Telegram Bot with Python and OpenAI in 10 Minutes! 🚀</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2023-09-23T19:12:03.000Z" title="Created 2023-09-24 03:12:03">2023-09-24</time></div><a class="article-sort-item-title" href="/2023/09/24/NLP%20Insights/%E5%8D%81%E5%88%86%E9%92%9F%E7%94%A8%20Python%20%E5%92%8C%20OpenAI%20%E5%88%9B%E5%BB%BA%20Telegram%20%E6%9C%BA%E5%99%A8%E4%BA%BA/" title="🤖 十分钟用 Python 和 OpenAI 创建 Telegram 机器人！ 🚀">🤖 十分钟用 Python 和 OpenAI 创建 Telegram 机器人！ 🚀</a></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/categories/Code-Chronicles/page/2/">2</a><a class="extend next" rel="next" href="/categories/Code-Chronicles/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">64</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment/" title="Untitled">Untitled</a><time datetime="2026-02-20T21:56:22.871Z" title="Created 2026-02-21 05:56:22">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="Created 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom:%20%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%AF%9DAI%E7%9A%84%E8%AE%B0%E5%BF%86%E7%AE%A1%E7%90%86/" title="SeCom: 重新定义对话AI的记忆管理">SeCom: 重新定义对话AI的记忆管理</a><time datetime="2025-06-24T08:00:00.000Z" title="Created 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/06/NLP%20Insights/Decoder%E6%A8%A1%E5%9E%8B%E5%92%8CEncoder%E6%A8%A1%E5%9E%8B%E5%9C%A8Padding%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%90%8C/" title="Decoder-only与Encoder-only模型Padding策略的差异">Decoder-only与Encoder-only模型Padding策略的差异</a><time datetime="2025-03-06T09:43:10.000Z" title="Created 2025-03-06 17:43:10">2025-03-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/06/NLP%20Insights/Differences%20in%20Padding%20Strategies%20Between%20Decoder-only%20and%20Encoder-only%20Models/" title="Differences in Padding Strategies Between Decoder-only and Encoder-only Models">Differences in Padding Strategies Between Decoder-only and Encoder-only Models</a><time datetime="2025-03-06T09:43:10.000Z" title="Created 2025-03-06 17:43:10">2025-03-06</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
-            <i class="fas fa-folder-open"></i>
-            <span>Categories</span>
-            
-          </div>
-          <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Code-Chronicles/"><span class="card-category-list-name">Code Chronicles</span><span class="card-category-list-count">17</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Debugging-Diaries/"><span class="card-category-list-name">Debugging Diaries</span><span class="card-category-list-count">5</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Life-Reflections/"><span class="card-category-list-name">Life Reflections</span><span class="card-category-list-count">11</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/NLP-Insights/"><span class="card-category-list-name">NLP Insights</span><span class="card-category-list-count">25</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Tech-Toolbox/"><span class="card-category-list-name">Tech Toolbox</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Wanderlust-Adventures/"><span class="card-category-list-name">Wanderlust Adventures</span><span class="card-category-list-count">1</span></a></li>
-          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/Gemma-2/" style="font-size: 1.1em; color: #999">Gemma-2</a> <a href="/tags/English-Vocabulary/" style="font-size: 1.27em; color: #99a0a9">English Vocabulary</a> <a href="/tags/Leetcode/" style="font-size: 1.39em; color: #99a4b4">Leetcode</a> <a href="/tags/Guide-to-Living-on-Singapore-Island/" style="font-size: 1.1em; color: #999">Guide to Living on Singapore Island</a> <a href="/tags/%E6%9D%82%E8%B0%88/" style="font-size: 1.1em; color: #999">杂谈</a> <a href="/tags/DSSM/" style="font-size: 1.1em; color: #999">DSSM</a> <a href="/tags/Deployment/" style="font-size: 1.16em; color: #999b9e">Deployment</a> <a href="/tags/Chatbot/" style="font-size: 1.16em; color: #999b9e">Chatbot</a> <a href="/tags/Memory-Management/" style="font-size: 1.16em; color: #999b9e">Memory Management</a> <a href="/tags/FAISS/" style="font-size: 1.1em; color: #999">FAISS</a> <a href="/tags/Recommendation/" style="font-size: 1.16em; color: #999b9e">Recommendation</a> <a href="/tags/Daily-Challenge/" style="font-size: 1.1em; color: #999">Daily Challenge</a> <a href="/tags/Python/" style="font-size: 1.44em; color: #99a7ba">Python</a> <a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/" style="font-size: 1.21em; color: #999ea4">双周赛</a> <a href="/tags/Gorilla/" style="font-size: 1.1em; color: #999">Gorilla</a> <a href="/tags/Language-Learning/" style="font-size: 1.33em; color: #99a2af">Language Learning</a> <a href="/tags/Git/" style="font-size: 1.1em; color: #999">Git</a> <a href="/tags/Small-Talk/" style="font-size: 1.1em; color: #999">Small Talk</a> <a href="/tags/Language-Modeling/" style="font-size: 1.1em; color: #999">Language Modeling</a> <a href="/tags/Gradient-Descent/" style="font-size: 1.1em; color: #999">Gradient Descent</a> <a href="/tags/LLM/" style="font-size: 1.5em; color: #99a9bf">LLM</a> <a href="/tags/Prompt/" style="font-size: 1.1em; color: #999">Prompt</a> <a href="/tags/Deep-Learning/" style="font-size: 1.1em; color: #999">Deep Learning</a> <a href="/tags/Blog/" style="font-size: 1.16em; color: #999b9e">Blog</a> <a href="/tags/Agent/" style="font-size: 1.1em; color: #999">Agent</a> <a href="/tags/Gemma-2-2b-it/" style="font-size: 1.1em; color: #999">Gemma-2-2b-it</a> <a href="/tags/Living-in-Singapore/" style="font-size: 1.1em; color: #999">Living in Singapore</a> <a href="/tags/RAG/" style="font-size: 1.16em; color: #999b9e">RAG</a> <a href="/tags/K8s/" style="font-size: 1.1em; color: #999">K8s</a> <a href="/tags/vLLM/" style="font-size: 1.16em; color: #999b9e">vLLM</a> <a href="/tags/SeCom/" style="font-size: 1.16em; color: #999b9e">SeCom</a> <a href="/tags/Embedding/" style="font-size: 1.1em; color: #999">Embedding</a> <a href="/tags/Python-Basic/" style="font-size: 1.33em; color: #99a2af">Python Basic</a> <a href="/tags/Structured-LLM/" style="font-size: 1.1em; color: #999">Structured LLM</a> <a href="/tags/Sports/" style="font-size: 1.21em; color: #999ea4">Sports</a> <a href="/tags/SGLang/" style="font-size: 1.1em; color: #999">SGLang</a> <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" style="font-size: 1.27em; color: #99a0a9">每日一题</a> <a href="/tags/Tool-Use/" style="font-size: 1.1em; color: #999">Tool Use</a> <a href="/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/" style="font-size: 1.21em; color: #999ea4">坡岛生活指北</a> <a href="/tags/Onnx/" style="font-size: 1.16em; color: #999b9e">Onnx</a></div></div><div class="card-widget card-archives">
-    <div class="item-headline">
-      <i class="fas fa-archive"></i>
-      <span>Archives</span>
-      <a class="card-more-btn" href="/archives/"
-            title="View More">
-            <i class="fas fa-angle-right"></i>
-          </a>
-    </div>
-  
-    <ul class="card-archive-list">
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2026/02/">
-            <span class="card-archive-list-date">
-              February 2026
-            </span>
-            <span class="card-archive-list-count">1</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2025/06/">
-            <span class="card-archive-list-date">
-              June 2025
-            </span>
-            <span class="card-archive-list-count">2</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2025/03/">
-            <span class="card-archive-list-date">
-              March 2025
-            </span>
-            <span class="card-archive-list-count">2</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2025/02/">
-            <span class="card-archive-list-date">
-              February 2025
-            </span>
-            <span class="card-archive-list-count">2</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2024/12/">
-            <span class="card-archive-list-date">
-              December 2024
-            </span>
-            <span class="card-archive-list-count">7</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2024/10/">
-            <span class="card-archive-list-date">
-              October 2024
-            </span>
-            <span class="card-archive-list-count">2</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2024/08/">
-            <span class="card-archive-list-date">
-              August 2024
-            </span>
-            <span class="card-archive-list-count">3</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2024/04/">
-            <span class="card-archive-list-date">
-              April 2024
-            </span>
-            <span class="card-archive-list-count">1</span>
-          </a>
-        </li>
-      
-    </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">64</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-02-20T21:56:25.717Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">user's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><span>Categories · Code Chronicles</span></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98"><i class="tag post-item-tag">每日一题</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/12/02/Code%20Chronicles/Leetcode%20Python%E9%A2%98%E8%A7%A3%E3%80%91%E3%80%8C1346.%20Check%20If%20N%20and%20Its%20Double%20Exist%E3%80%8D/">【Leetcode Python题解】「1346. Check If N and Its Double Exist」</a></h2><time class="has-text-grey" datetime="2024-12-01T16:00:00.000Z">2024-12-02</time><p class="is-flex-grow-2 mt-2">【Leetcode Python题解】「1346. Check If N and Its Double Exist」题目：1346. Check If N and Its Double Exist题目描述给定一个整数数组 arr，检查是否存在两个不同的索引 i 和 j，满足：
+
+i != j
+0 &amp;lt;= i, j &amp;lt; arr.length
+arr[i] == 2 * arr[j]
+
+示例示例 1:
+123输入：arr = [10,2,5,3]输出：true解释：对于 i = 0 和 j = 2，arr[i] = 10 等于 2 * 5 = 2 * arr[j]
+
+示例 2:
+123输入：arr = [3,1,7,11]输出：false解释：不存在满足条件的 i 和 j。
+
+约束条件
+2 &amp;lt;=..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/12/02/Code%20Chronicles/Leetcode%20Python%E9%A2%98%E8%A7%A3%E3%80%91%E3%80%8C1346.%20Check%20If%20N%20and%20Its%20Double%20Exist%E3%80%8D/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98"><i class="tag post-item-tag">每日一题</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/12/01/Code%20Chronicles/%E3%80%90Leetcode%20Python%E9%A2%98%E8%A7%A3%E3%80%91%E3%80%8C2097.%20Valid%20Arrangement%20of%20Pairs%E3%80%8D/">【Leetcode Python题解】「2097. Valid Arrangement of Pairs」</a></h2><time class="has-text-grey" datetime="2024-11-30T19:00:00.000Z">2024-12-01</time><p class="is-flex-grow-2 mt-2">【Leetcode Python题解】「2097. Valid Arrangement of Pairs」在这篇技术博客中，我们将深入解析 LeetCode 的第 2097 题 —— Valid Arrangement of Pairs，并全面介绍如何从题意理解、图论建模到算法实现逐步解决问题。题目：2097. Valid Arrangement of Pairs问题描述给定一个二维数组 pairs，其中 pairs[i] = [start, end]，我们需要重新排列这些数字对，使得相邻的两个数字对 [start1, end1] 和 [start2, end2] 满足以下条件：
+
+end1 == start2。
+
+输入数据保证一定存在这样一种合法的排列方式。
+示例示例 1输入：
+1pairs = [[5,..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/12/01/Code%20Chronicles/%E3%80%90Leetcode%20Python%E9%A2%98%E8%A7%A3%E3%80%91%E3%80%8C2097.%20Valid%20Arrangement%20of%20Pairs%E3%80%8D/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/Daily%20Challenge"><i class="tag post-item-tag">Daily Challenge</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/12/01/Code%20Chronicles/%5BLeetcode%20Python%20Solution%5D%202097.%20Valid%20Arrangement%20of%20Pairs/">Leetcode Python Solution - 2097. Valid Arrangement of Pairs</a></h2><time class="has-text-grey" datetime="2024-11-30T19:00:00.000Z">2024-12-01</time><p class="is-flex-grow-2 mt-2">[Leetcode Python Solution] 2097. Valid Arrangement of PairsIn this technical blog, we’ll dive deep into Leetcode Problem 2097 — Valid Arrangement of Pairs. We will break down the solution step by step, from understanding the problem, modeling it as a graph theory problem, to implementing the solution.
+Problem Link: 2097. Valid Arrangement of Pairs
+
+Problem..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/12/01/Code%20Chronicles/%5BLeetcode%20Python%20Solution%5D%202097.%20Valid%20Arrangement%20of%20Pairs/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98"><i class="tag post-item-tag">每日一题</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/08/Code%20Chronicles/2834.%20%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C/">【Python题解】2834. 找出美丽数组的最小和</a></h2><time class="has-text-grey" datetime="2024-03-08T15:31:44.000Z">2024-03-08</time><p class="is-flex-grow-2 mt-2">2834. 找出美丽数组的最小和
+Problem: 2834. 找出美丽数组的最小和
+
+题目描述给定两个正整数 n 和 target，目标是找到一个长度为 n 的数组，满足以下条件：
+
+数组由两两不同的正整数组成。
+不存在两个不同下标 i 和 j 使得 nums[i] + nums[j] == target。返回符合条件的美丽数组所可能具备的最小和，并对结果进行 10^9 + 7 取模。
+
+测试用例示例 1：
+
+输入：n = 2, target = 3
+输出：4
+
+示例 2：
+
+输入：n = 3, target = 3
+输出：8
+
+示例 3：
+
+输入：n = 1, target = 1
+输出：1
+
+原始思路方案初始方案是从最小的数字开始，逐个检查每个数字是否可以被添加到数组中，同时确保不会存在两个数字之和等..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/08/Code%20Chronicles/2834.%20%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/04/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100226.%20%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE/">【Python题解】100226. 在带权树网络中统计可连接服务器对数目</a></h2><time class="has-text-grey" datetime="2024-03-04T15:31:44.000Z">2024-03-04</time><p class="is-flex-grow-2 mt-2">题目：100226. 在带权树网络中统计可连接服务器对数目题目描述你被给定一个未定根的加权树，它有 n 个顶点，代表从 0 到 n - 1 编号的服务器，一个数组 edges，其中 edges[i] = [ai, bi, weighti] 代表顶点 ai 和 bi 之间的双向边，边的权重为 weighti。你还被给定一个整数 signalSpeed。
+如果满足以下条件，两个服务器 a 和 b 可以通过服务器 c 连接：
+
+a &amp;lt; b，a != c 且 b != c。
+从 c 到 a 的距离可被 signalSpeed 整除。
+从 c 到 b 的距离可被 signalSpeed 整除。
+从 c 到 b 和从 c 到 a 的路径不共享任何边。
+
+返回一个整数数组 count，长度为 n，其中 count[..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/04/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100226.%20%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/03/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100232.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20II/">【Python题解】100232. 超过阈值的最少操作数 II</a></h2><time class="has-text-grey" datetime="2024-03-03T15:32:44.000Z">2024-03-03</time><p class="is-flex-grow-2 mt-2">题目：100232. 超过阈值的最少操作数 II题目描述超过阈值的最少操作数 II
+给定一个从 0 开始的整数数组 nums 和一个整数 k。你可以进行如下操作：
+
+选择 nums 中最小的两个整数 x 和 y。
+将 x 和 y 从 nums 中删除。
+将 min(x, y) * 2 + max(x, y) 添加到数组中的任意位置。
+
+注意，只有当 nums 至少包含两个元素时，你才可以执行以上操作。
+目标是使数组中的所有元素都大于或等于 k。请返回实现此目标所需的最少操作次数。
+示例
+示例 1：
+
+输入：nums = [2,11,10,1,3], k = 10
+输出：2
+解释：第一次操作中，我们删除元素 1 和 2，然后添加 1 _ 2 + 2 到 nums 中，nums 变为 [4, 11, 10, 3..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/03/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100232.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20II/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I/">【Python题解】100231. 超过阈值的最少操作数 I</a></h2><time class="has-text-grey" datetime="2024-03-02T15:34:44.000Z">2024-03-02</time><p class="is-flex-grow-2 mt-2">超过阈值的最少操作数 I题目给定一个下标从 0 开始的整数数组 nums 和一个整数 k。在每次操作中，你可以删除 nums 中的最小元素。目标是通过最少的操作次数使数组中的所有元素都大于或等于 k。需要返回实现此目标所需的最少操作次数。
+示例示例 1:
+
+输入：nums = [2, 11, 10, 1, 3], k = 10
+输出：3
+解释：
+第一次操作后，nums 变为 [2, 11, 10, 3]。
+第二次操作后，nums 变为 [11, 10, 3]。
+第三次操作后，nums 变为 [11, 10]。
+此时，数组中的所有元素都大于等于 10，所以停止操作。
+使数组中所有元素都大于等于 10 需要的最少操作次数为 3。
+
+
+
+示例 2:
+
+输入：nums = [1, 1, 2, 4, 9], k = ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I/">Read more</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98"><i class="tag post-item-tag">每日一题</i></a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><i class="tag post-item-tag">动态规划</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/01/Code%20Chronicles/2369.%20%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86/">【Python题解】2369. 检查数组是否存在有效划分</a></h2><time class="has-text-grey" datetime="2024-03-01T07:02:44.000Z">2024-03-01</time><p class="is-flex-grow-2 mt-2">【Python 题解】2369. 检查数组的有效划分方法题目概述Leetcode 的题目 2369 要求我们检查一个整数数组nums是否可以划分为一个或多个满足特定条件的连续子数组。有效的划分条件包括：
+
+子数组由两个相等的元素组成，如 [2, 2]。
+子数组由三个相等的元素组成，如 [3, 3, 3]。
+子数组由三个连续递增的元素组成，且相邻元素之间差值为 1，如 [4, 5, 6]。
+
+如果数组至少存在一种有效划分，则返回true；否则返回false。
+示例分析
+示例 1：nums = [4, 4, 4, 5, 6]可以划分为 [4, 4] 和 [4, 5, 6]，因此返回true。
+示例 2：nums = [1, 1, 1, 2]不满足任何划分条件，因此返回false。
+
+解题思路采用动态规划策略，我..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/01/Code%20Chronicles/2369.%20%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86/">Read more</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/2023/09/24/NLP%20Insights/Create%20a%20Telegram%20Bot%20with%20Python%20and%20OpenAI%20in%2010%20Minutes/step1.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2023/09/24/NLP%20Insights/Create%20a%20Telegram%20Bot%20with%20Python%20and%20OpenAI%20in%2010%20Minutes/"><img class="post-cover-img js-img-fadeIn" src="/2023/09/24/NLP%20Insights/Create%20a%20Telegram%20Bot%20with%20Python%20and%20OpenAI%20in%2010%20Minutes/step1.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Chatbot"><i class="tag post-item-tag">Chatbot</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/09/24/NLP%20Insights/Create%20a%20Telegram%20Bot%20with%20Python%20and%20OpenAI%20in%2010%20Minutes/">🤖 Create a Telegram Bot with Python and OpenAI in 10 Minutes! 🚀</a></h2><time class="has-text-grey" datetime="2023-09-23T19:13:03.000Z">2023-09-24</time><p class="is-flex-grow-2 mt-2">🤖 Create a Telegram Bot with Python and OpenAI in 10 Minutes! 🚀In this fun tutorial, we’ll show you how to create a Telegram bot that can chat with users and generate witty responses. We’ll explain each step in detail, making it easy for you to get started!
+Step 1: Create a Telegram Bot 🤖First, let’s create your very own Telegram bot. Here’s how:
+
+Open ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/09/24/NLP%20Insights/Create%20a%20Telegram%20Bot%20with%20Python%20and%20OpenAI%20in%2010%20Minutes/">Read more</a></section></article><article class="post-item-card"><header class="is-relative is-flex"><div class="post-cover-backdrop is-hidden"><img src="/2023/09/24/NLP%20Insights/%E5%8D%81%E5%88%86%E9%92%9F%E7%94%A8%20Python%20%E5%92%8C%20OpenAI%20%E5%88%9B%E5%BB%BA%20Telegram%20%E6%9C%BA%E5%99%A8%E4%BA%BA/step1.jpg" alt="loading.."></div><a class="post-cover-link has-text-centered skeleton" href="/2023/09/24/NLP%20Insights/%E5%8D%81%E5%88%86%E9%92%9F%E7%94%A8%20Python%20%E5%92%8C%20OpenAI%20%E5%88%9B%E5%BB%BA%20Telegram%20%E6%9C%BA%E5%99%A8%E4%BA%BA/"><img class="post-cover-img js-img-fadeIn" src="/2023/09/24/NLP%20Insights/%E5%8D%81%E5%88%86%E9%92%9F%E7%94%A8%20Python%20%E5%92%8C%20OpenAI%20%E5%88%9B%E5%BB%BA%20Telegram%20%E6%9C%BA%E5%99%A8%E4%BA%BA/step1.jpg" alt="loading.." data-backdrop="true"></a></header><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Chatbot"><i class="tag post-item-tag">Chatbot</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/09/24/NLP%20Insights/%E5%8D%81%E5%88%86%E9%92%9F%E7%94%A8%20Python%20%E5%92%8C%20OpenAI%20%E5%88%9B%E5%BB%BA%20Telegram%20%E6%9C%BA%E5%99%A8%E4%BA%BA/">🤖 十分钟用 Python 和 OpenAI 创建 Telegram 机器人！ 🚀</a></h2><time class="has-text-grey" datetime="2023-09-23T19:12:03.000Z">2023-09-24</time><p class="is-flex-grow-2 mt-2">🤖 十分钟用 Python 和 OpenAI 创建 Telegram 机器人！ 🚀在这个有趣的教程中，我们将向您展示如何创建一个具有的 Telegram 机器人，该机器人能够与用户聊天并生成幽默回复。我们将详细解释每一步，让您轻松入门！
+步骤 1：创建 Telegram 机器人 🤖首先，让我们来创建您自己的 Telegram 机器人。这是如何做的：
+
+打开 Telegram 应用并搜索 “BotFather”。
+在 BotFather 聊天中，使用 /newbot 命令创建一个新机器人。您需要为机器人取个名字，比如 “PunshineBot”。
+BotFather 会为您生成一个独一无二的 API 令牌（Token）。一定要妥善保存这个令牌，稍后我们会在代码中用到它。
+
+
+
+步骤 2：导入必要的库 �..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/09/24/NLP%20Insights/%E5%8D%81%E5%88%86%E9%92%9F%E7%94%A8%20Python%20%E5%92%8C%20OpenAI%20%E5%88%9B%E5%BB%BA%20Telegram%20%E6%9C%BA%E5%99%A8%E4%BA%BA/">Read more</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><span class="page-number current">1</span><a class="page-number" href="/categories/Code-Chronicles/page/2/">2</a><a class="extend next" rel="next" href="/categories/Code-Chronicles/page/2/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container categories-widget category-page"><h3>Categories</h3><section><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Code-Chronicles/">Code Chronicles</a><span class="category-list-count">17</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging-Diaries/">Debugging Diaries</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life-Reflections/">Life Reflections</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP-Insights/">NLP Insights</a><span class="category-list-count">25</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech-Toolbox/">Tech Toolbox</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wanderlust-Adventures/">Wanderlust Adventures</a><span class="category-list-count">1</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+
+window.addEventListener('resize', $claudia.throttle(function () {
+    var images = document.querySelectorAll('.js-img-fadeIn')
+
+    images.forEach($claudia.blurBackdropImg)
+}, 150))</script></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> user 2026</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script async defer src="https://buttons.github.io/buttons.js"></script><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+
+window.addEventListener('resize', $claudia.throttle(function () {
+    var images = document.querySelectorAll('.js-img-fadeIn')
+
+    images.forEach($claudia.blurBackdropImg)
+}, 150))</script></body></html>
