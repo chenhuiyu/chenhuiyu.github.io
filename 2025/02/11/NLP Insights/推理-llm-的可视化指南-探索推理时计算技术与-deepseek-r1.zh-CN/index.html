@@ -1,0 +1,959 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1 | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1原文地址：A Visual Guide to Reasoning LLMs 📅 作者：Maarten Grootendorst 📆 日期：2025 年 2 月 3 日  📌 引言DeepSeek-R1、OpenAI o3-mini 和 Google Gemini 2.0 Flash Thinking 是如何通过“推理”框">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1">
+<meta property="og:url" content="https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1.zh-CN/index.html">
+<meta property="og:site_name" content="黑头呆鱼进化之旅">
+<meta property="og:description" content="推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1原文地址：A Visual Guide to Reasoning LLMs 📅 作者：Maarten Grootendorst 📆 日期：2025 年 2 月 3 日  📌 引言DeepSeek-R1、OpenAI o3-mini 和 Google Gemini 2.0 Flash Thinking 是如何通过“推理”框">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-02-11T03:50:29.000Z">
+<meta property="article:modified_time" content="2026-02-20T22:19:17.273Z">
+<meta property="article:author" content="Huiyu Chen">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1",
+  "url": "https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1.zh-CN/",
+  "image": "https://chenhuiyu.github.io/img/butterfly-icon.png",
+  "datePublished": "2025-02-11T03:50:29.000Z",
+  "dateModified": "2026-02-20T22:19:17.273Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Huiyu Chen",
+      "url": "https://chenhuiyu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1.zh-CN/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a><a class="nav-page-title" href="/"><span class="site-name">推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-11T03:50:29.000Z" title="发表于 2025-02-11 11:50:29">2025-02-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-20T22:19:17.273Z" title="更新于 2026-02-21 06:19:17">2026-02-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/NLP-Insights/">NLP Insights</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="推理-LLM-的可视化指南：探索推理时计算技术与-DeepSeek-R1"><a href="#推理-LLM-的可视化指南：探索推理时计算技术与-DeepSeek-R1" class="headerlink" title="推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1"></a>推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1</h1><p><strong>原文地址</strong>：<a target="_blank" rel="noopener" href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-reasoning-llms">A Visual Guide to Reasoning LLMs</a></p>
+<p>📅 作者：Maarten Grootendorst</p>
+<p>📆 日期：2025 年 2 月 3 日</p>
+<hr>
+<h2 id="📌-引言"><a href="#📌-引言" class="headerlink" title="📌 引言"></a>📌 引言</h2><p>DeepSeek-R1、OpenAI o3-mini 和 Google Gemini 2.0 Flash Thinking 是如何通过“推理”框架将 <strong>LLM（大型语言模型, Large Language Models）</strong> 扩展到新高度的典型示例。</p>
+<p>它们标志着从 <strong>扩展训练时计算（train-time compute）</strong> 到 <strong>扩展推理时计算（test-time compute）</strong> 的范式转变。</p>
+<p>在本篇文章中，我们提供了 <strong>超过 40 张定制可视化图表</strong>，带你深入探索：</p>
+<ul>
+<li><strong>推理 LLM（Reasoning LLMs）</strong> 领域</li>
+<li><strong>推理时计算（Test-Time Compute）</strong> 机制</li>
+<li><strong>DeepSeek-R1</strong> 的核心思想</li>
+</ul>
+<p>我们将逐步介绍相关概念，帮助你建立对这一新范式的直觉理解。</p>
+
+
+<hr>
+<h2 id="📖-什么是推理-LLM？"><a href="#📖-什么是推理-LLM？" class="headerlink" title="📖 什么是推理 LLM？"></a>📖 什么是推理 LLM？</h2><p>与普通 <strong>LLM（Large Language Models，大型语言模型）</strong> 相比，<strong>推理 LLM</strong> 在回答问题之前，往往会将问题 <strong>分解为更小的步骤</strong>（通常称为 <strong>推理步骤（Reasoning Steps）</strong> 或 <strong>思考过程（Thought Process）</strong>）。</p>
+
+
+<h3 id="🧠-“推理步骤”-或-“思考过程”-是什么？"><a href="#🧠-“推理步骤”-或-“思考过程”-是什么？" class="headerlink" title="🧠 “推理步骤” 或 “思考过程” 是什么？"></a>🧠 “推理步骤” 或 “思考过程” 是什么？</h3><p>尽管我们可以哲学化地探讨 LLM 是否真的能够像人类一样思考，但这些推理步骤实际上是将推理过程 分解为更小、更结构化的推断。<strong>推理 LLM 采用的是结构化推理方式</strong>，即：</p>
+<ul>
+<li><strong>普通 LLM</strong>：直接输出答案</li>
+<li><strong>推理 LLM</strong>：通过系统性推理生成答案</li>
+</ul>
+
+
+<p>换句话说，推理 LLM 不是<strong>学习“回答什么”</strong>，而是<strong>学习“如何回答”</strong>！</p>
+<p>要理解推理 LLM 的构建原理，我们首先需要探讨 <strong>训练时计算（Train-Time Compute）</strong> 和 <strong>推理时计算（Test-Time Compute）</strong> 之间的差异。</p>
+<hr>
+<h2 id="🔍-什么是训练时计算（Train-time-Compute）？"><a href="#🔍-什么是训练时计算（Train-time-Compute）？" class="headerlink" title="🔍 什么是训练时计算（Train-time Compute）？"></a>🔍 什么是训练时计算（Train-time Compute）？</h2><p>直到 2024 年年中，为了在 <strong>预训练（Pretraining）</strong> 期间提高 LLM 的性能，研究人员通常会扩大以下规模：</p>
+<ul>
+<li><strong>模型参数数量（# of Parameters）</strong></li>
+<li><strong>数据集规模（# of Tokens）</strong></li>
+<li><strong>计算量（# of FLOPs, Floating Point Operations）</strong></li>
+</ul>
+<p>这些合称为 <strong>训练时计算（Train-time Compute）</strong>，即 <strong>“AI 的化石燃料”</strong>，指的是：</p>
+<blockquote>
+<p><strong>预训练预算越大，最终得到的模型就越好。</strong></p>
+<p>训练时计算（Train-Time Compute）包括<strong>训练（training）</strong>所需的计算，以及<strong>微调（fine-tuning）</strong>所需的计算。长期以来，一直是提高 LLM 性能的主要关注点。</p>
+</blockquote>
+
+
+
+
+<h3 id="🔢-规模定律（Scaling-Laws）"><a href="#🔢-规模定律（Scaling-Laws）" class="headerlink" title="🔢 规模定律（Scaling Laws）"></a>🔢 规模定律（Scaling Laws）</h3><p>在 <strong>LLM（大型语言模型）</strong> 研究领域，<strong>模型规模（Scale）</strong> 与 <strong>模型性能（Performance）</strong> 之间的关系被称为 <strong>规模定律（Scaling Laws）</strong>。这些定律通常用于描述 <strong>计算资源、数据规模和模型参数</strong> 如何影响模型的整体表现。</p>
+<p>这些关系通常以 <strong>对数-对数（log-log）</strong> 方式呈现，并且在图表上通常显示为一条 <strong>近似直线</strong>，以突出计算量的巨大增长。</p>
+
+
+<p>这张图片展示了<strong>不同坐标尺度（线性 vs. 对数）对计算资源（Compute）和模型性能（Performance）之间关系的影响</strong>，强调了大模型增长的幂律关系（Power Law）。</p>
+<ul>
+<li><p><strong>左图（普通线性尺度 - Normal Scale）</strong></p>
+<ul>
+<li>横轴（X 轴）：计算资源（Compute），<strong>线性刻度</strong>。</li>
+<li>纵轴（Y 轴）：性能（Performance），<strong>线性刻度</strong>。</li>
+<li>曲线显示<strong>递减收益（Diminishing Returns）</strong>，即：<strong>随着计算资源的增加，性能增长趋缓</strong>，但仍然在上升。</li>
+</ul>
+</li>
+<li><p><strong>右图（对数-对数尺度 - Log-log Scale）</strong></p>
+<ul>
+<li>横轴（X 轴）：计算资源（Compute），<strong>对数刻度</strong>。</li>
+<li>纵轴（Y 轴）：性能（Performance），<strong>对数刻度</strong>。</li>
+<li>在对数-对数尺度下，原本弯曲的曲线变成<strong>一条直线</strong>，说明计算资源和性能之间呈<strong>幂律关系（Power Law Relationship）</strong>。</li>
+</ul>
+</li>
+</ul>
+<p>这些定律通常遵循 <strong>幂律（Power Laws）</strong>，即：</p>
+<blockquote>
+<p><strong>某个变量（如计算量）增加，会导致另一个变量（如性能）按一定比例变化。</strong></p>
+</blockquote>
+<p>最著名的 <strong>规模定律</strong> 包括：</p>
+<ul>
+<li><strong>Kaplan 规模定律</strong>（Kaplan Scaling Law）：当计算资源一定时，<strong>增加模型的参数规模比增加数据规模更有效</strong>。表明模型性能与参数量、计算量和训练数据（Tokens）之间存在幂律关系，即 更多参数、更多计算资源能提升性能（GPT-3 论文提出）。</li>
+<li><strong>Chinchilla 规模定律</strong>（Chinchilla Scaling Law）：模型的大小和数据规模同样重要，二者需 <strong>同步扩展</strong> 才能实现最佳性能（DeepMind 提出）。</li>
+</ul>
+
+<p>这张图展示了<strong>大规模 AI 训练中的 Scaling Laws（缩放定律）</strong>，表明<strong>计算资源（Compute）、数据集规模（Dataset Size）和参数量（Parameters）</strong>对模型性能的影响。关键信息如下：</p>
+<hr>
+<p><strong>1. 纵轴（Y轴）：测试损失（Test Loss）</strong></p>
+<ul>
+<li><strong>目标是降低测试损失（Test Loss）</strong>，即提高模型的泛化性能。</li>
+<li><strong>损失（L）越小，模型性能越好</strong>。</li>
+</ul>
+<p><strong>2. 横轴（X轴）：三种关键变量</strong></p>
+<ul>
+<li><p><strong>左图（Compute，计算资源）</strong>：</p>
+<ul>
+<li>X 轴是计算资源（PF-days, 非 embedding）。</li>
+<li>计算资源越多，测试损失降低（性能提升）。</li>
+<li>公式：<br>$$<br>L = \left( \frac{C_{\text{min}}}{2.3 \times 10^8} \right)^{-0.050}<br>$$</li>
+<li><strong>体现计算资源的幂律关系</strong>：计算资源增加，损失减少，但收益递减（指数 -0.050）。</li>
+</ul>
+</li>
+<li><p><strong>中图（Dataset Size，数据集规模）</strong>：</p>
+<ul>
+<li>X 轴是训练数据的 Token 数量。</li>
+<li>数据规模越大，测试损失降低（性能提升）。</li>
+<li>公式：<br>$$<br>L = \left( \frac{D}{5.4 \times 10^{13}} \right)^{-0.095}<br>$$</li>
+<li><strong>数据规模对损失的影响较大</strong>（指数 -0.095）。</li>
+</ul>
+</li>
+<li><p><strong>右图（Parameters，参数量）</strong>：</p>
+<ul>
+<li>X 轴是模型参数量（非 embedding）。</li>
+<li>参数数量越大，测试损失降低（性能提升）。</li>
+<li>公式：<br>$$<br>L = \left( \frac{N}{8.8 \times 10^{13}} \right)^{-0.076}<br>$$</li>
+<li><strong>参数对损失的影响介于计算资源和数据规模之间</strong>（指数 -0.076）。</li>
+</ul>
+</li>
+</ul>
+<p>这些研究表明，<strong>模型规模、数据规模和计算资源必须协同扩展，才能最大化模型的性能</strong>。</p>
+<ul>
+<li><strong>计算资源增加 → 训练更强大模型</strong></li>
+<li><strong>更多 Tokens → 更好泛化能力</strong></li>
+<li><strong>参数增加 → 但需要与数据匹配，否则过拟合</strong></li>
+</ul>
+<p>Kaplan 规模定律认为，在 <strong>固定计算资源</strong> 的情况下，<strong>优先增加模型参数</strong> 通常比增加数据规模更有效。而 Chinchilla 规模定律则指出，<strong>模型参数和数据规模都应同步增长</strong>，以获得更优的模型性能。</p>
+
+<p>然而，在 <strong>2024 年</strong>，研究人员发现，尽管计算资源、数据规模和模型参数 <strong>持续增长</strong>，但性能提升的 <strong>边际收益（Marginal Return）</strong> 却在 <strong>逐渐降低</strong>。</p>
+<p>这引发了一个重要的问题：</p>
+<p>❓ <strong>“我们是否已经遇到了 LLM 发展的瓶颈？”</strong></p>
+<hr>
+<h2 id="🚀-什么是推理时计算（Test-time-Compute）？"><a href="#🚀-什么是推理时计算（Test-time-Compute）？" class="headerlink" title="🚀 什么是推理时计算（Test-time Compute）？"></a>🚀 什么是推理时计算（Test-time Compute）？</h2><p>由于 <strong>训练时计算的成本极其昂贵</strong>，研究人员开始关注 <strong>推理时计算（Test-time Compute）</strong>，即：</p>
+<blockquote>
+<p><strong>让 LLM 在推理时“思考更长时间”</strong>，而非单纯依赖更大的模型和数据集。</p>
+</blockquote>
+
+
+<p>对于<strong>非推理模型</strong>，它们通常 <strong>直接输出答案</strong>：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Q: 8 + 5 = ?</span><br><span class="line">A: 13</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>而<strong>推理模型</strong>则会 <strong>使用更多 token 进行推理</strong>，形成系统化的“思考”过程：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Q: 8 + 5 = ?</span><br><span class="line">A: 8 + 5 可拆解为 8 + 2 + 3 = 10 + 3 = 13</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<p>LLM 需要消耗计算资源（如显存计算）来生成答案。然而，如果所有计算资源都用于直接生成答案，那将会是低效的！</p>
+<p>相反，通过提前生成包含额外信息、关系和新思考的更多 token，模型可以在推理过程中分配更多计算资源以生成最终答案。</p>
+
+<p>这张图片展示了 <strong>大语言模型（LLM）</strong> 在计算过程中如何分配 <strong>token</strong>（标记）来优化推理能力和最终的回答质量。核心思想是：<strong>如果计算资源（如 GPU/VRAM 计算量）全部用于直接生成答案，而没有用于思考，那么效率会受到影响</strong>。相反，增加 <strong>思考过程</strong>（即生成更多的中间 token），可以提高模型的 <strong>推理能力</strong>，从而提升 <strong>最终的回答质量</strong>。</p>
+<p><strong>1. Token 的使用与计算量</strong></p>
+<ul>
+<li><strong>LLM 生成答案是按 token 逐步输出的</strong>，每个 token 都会占用计算资源。</li>
+<li><strong>分配更多的 token 进行思考</strong>，意味着模型可以在得出最终答案之前有更多的推理步骤，从而提高正确率。</li>
+</ul>
+<p> <strong>2. 三种不同的计算方式</strong></p>
+<ul>
+<li><p><strong>场景 1（1 个 token：最少计算）</strong></p>
+<ul>
+<li>直接输出 <strong>“5”</strong> 作为答案。</li>
+<li><strong>计算量最少</strong>，速度最快。</li>
+<li><strong>如果问题较复杂，可能会出错</strong>，因为模型没有足够的计算时间来思考。</li>
+</ul>
+</li>
+<li><p><strong>场景 2（6 个 token：中等计算）</strong></p>
+<ul>
+<li>模型生成一个简短的推理过程：<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Adding 3 and 2 gives 5</span><br></pre></td></tr></tbody></table></figure></li>
+<li><strong>比第一种方法多了一些计算量</strong>，但仍然较为简洁。</li>
+<li>这种方式适用于<strong>简单的数学运算或逻辑推理</strong>，但在更复杂的情况下仍可能出现错误。</li>
+</ul>
+</li>
+<li><p><strong>场景 3（15 个 token：完整推理）</strong></p>
+<ul>
+<li>模型先进行详细的逐步推理：<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3 + 1 = 4 , 4 + 1 = 5</span><br></pre></td></tr></tbody></table></figure>
+然后，模型再明确地总结：<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">the total is 5</span><br></pre></td></tr></tbody></table></figure></li>
+<li><strong>推理过程更详细，占用的计算量最大</strong>。</li>
+<li><strong>适用于需要多步推理的任务，如数学题、逻辑推理题等</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="🔢-规模定律（Scaling-Laws）-1"><a href="#🔢-规模定律（Scaling-Laws）-1" class="headerlink" title="🔢 规模定律（Scaling Laws）"></a>🔢 规模定律（Scaling Laws）</h3><p>相比于训练时计算，推理时计算的规模定律仍然较为新颖。值得注意的是，有两项研究揭示了推理时计算规模与训练时计算规模的关系。</p>
+<p>首先，OpenAI 发表的一篇文章表明，推理时计算可能遵循与训练时计算相同的扩展趋势。</p>
+
+<blockquote>
+<p><strong>来自“学习如何推理的 LLM”一文的注释图</strong>：红色虚线显示了 OpenAI 提出的新范式可能是推理时计算。<br>这张图展示了 <strong>训练时间计算（train-time compute）和测试时间计算（test-time compute）</strong> 对模型 <strong>pass@1 准确率（accuracy）</strong> 的影响，具体来说，它强调了 <strong>测试时间计算可能比训练时间计算更有利于扩展模型性能</strong>。</p>
+</blockquote>
+<ol>
+<li><p><strong>左图：训练时间计算 vs. 准确率</strong></p>
+<ul>
+<li><strong>X 轴（横轴）：训练时间计算（log scale，指数刻度）</strong>。</li>
+<li><strong>Y 轴（纵轴）：pass@1 准确率</strong>（即模型在一次尝试中得到正确答案的概率）。</li>
+<li><strong>黑色点</strong> 代表不同计算量下的模型表现，粉色虚线展示了大致的趋势。</li>
+<li>可以看到，随着 <strong>训练计算量的增加，准确率逐渐提高</strong>，但增长趋势相对平稳。</li>
+</ul>
+</li>
+<li><p><strong>右图：测试时间计算 vs. 准确率</strong></p>
+<ul>
+<li><strong>X 轴（横轴）：测试时间计算（log scale）</strong>。</li>
+<li><strong>Y 轴（纵轴）：pass@1 准确率</strong>。</li>
+<li>同样，黑色点代表不同计算量下的模型表现，粉色虚线展示了大致的趋势。</li>
+<li>这里可以看到，随着 <strong>测试时计算量增加，模型的准确率增长更显著，甚至超过了训练计算量的效果</strong>。<br>因此，他们认为，推理时计算的扩展可能代表着新的研究范式。</li>
+</ul>
+</li>
+</ol>
+<p>其次，一篇名为《Scaling Scaling Laws with Board Games》的论文研究了 AlphaZero 在不同计算量下玩 Hex 游戏的表现。</p>
+
+<blockquote>
+<p><strong>来自“Scaling Scaling Laws with Board Games”一文的注释图</strong>：该图展示了他们如何构建不同规模的训练时计算和推理时计算。- <strong>AlphaZero</strong> 是 <strong>DeepMind</strong> 开发的一个 <strong>强化学习（Reinforcement Learning, RL）</strong> 训练的 AI。</p>
+</blockquote>
+<ul>
+<li>该算法通过 <strong>自我对弈（self-play）</strong> 训练，无需人为规则输入，即可掌握<strong>围棋、国际象棋、将棋等游戏</strong>。</li>
+<li>它结合了 <strong>神经网络预测</strong> 和 <strong>蒙特卡洛树搜索（MCTS, Monte Carlo Tree Search）</strong> 来进行决策。</li>
+</ul>
+<p>这张图片展示了 <strong>AlphaZero 算法</strong> 在<strong>训练阶段（train-time compute）和测试阶段（test-time compute）</strong>计算资源的不同应用。主要强调了：</p>
+<ul>
+<li><strong>训练时</strong>：依赖于<strong>更多参数和更长的训练时间</strong>来优化模型。</li>
+<li><strong>测试时</strong>：依靠 <strong>更深入的树搜索（tree search）</strong> 来提升决策能力。</li>
+</ul>
+
+<blockquote>
+<p>来自“Scaling Scaling Laws with Board Games”一文的注释图：该图展示了训练时计算与推理时计算之间的关系。<br>研究结果表明，训练时计算和推理时计算紧密相关。每条虚线表示达到特定 ELO 分数所需的最小计算量。<br><strong>1. 坐标轴含义</strong></p>
+</blockquote>
+<ul>
+<li><strong>X 轴（横轴）：训练时计算量（Train-time Compute，FLOP-seconds）</strong></li>
+<li><strong>Y 轴（纵轴）：推理时计算量（Test-time Compute，FLOP-seconds）</strong></li>
+<li><strong>对数刻度（log scale）：计算量的增长呈指数级，而不是线性增长。</strong></li>
+</ul>
+<p><strong>2. 关键数据趋势</strong></p>
+<ul>
+<li>不同颜色的曲线分别表示<strong>不同的 ELO 分数水平</strong>（-1500、-1250、-1000、-750、-500、-250）。</li>
+<li><strong>虚线和实线</strong>：<ul>
+<li><strong>虚线</strong> 表示某个 ELO 分数下的最优计算边界。</li>
+<li><strong>实线</strong> 代表实际数据趋势。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><p><strong>训练计算和推理计算可以互相替代</strong></p>
+<ul>
+<li><strong>如果推理计算量增加（左上区域）</strong>，那么所需的训练计算量减少。</li>
+<li><strong>如果训练计算量增加（右下区域）</strong>，那么所需的推理计算量减少。</li>
+<li><strong>两者呈现负相关关系</strong>。</li>
+</ul>
+</li>
+<li><p><strong>低训练计算 vs. 高推理计算</strong></p>
+<ul>
+<li>在 <strong>训练计算较少</strong> 的情况下（如左侧的红色圈），模型仍然可以达到相同的 ELO 水平，但需要 <strong>在推理时增加计算量</strong>（如更深的搜索树、更长的思考路径）。</li>
+</ul>
+</li>
+<li><p><strong>高训练计算 vs. 低推理计算</strong></p>
+<ul>
+<li>在 <strong>训练计算充足</strong> 的情况下（如右侧的红色圈），模型可以<strong>减少推理计算需求</strong>，即 <strong>即使使用较少的搜索深度，仍然能获得较高的性能</strong>。</li>
+</ul>
+</li>
+<li><p><strong>公式解释</strong></p>
+<ul>
+<li>公式：<br>$$<br>\log_{10}(\text{test compute}) = -1.2 \cdot \log_{10}(\text{train compute}) + 0.004 \cdot \text{elo} + 29<br>$$</li>
+<li>这说明：<ul>
+<li><strong>训练计算（train compute）增加时，推理计算（test compute）减少（系数 -1.2）</strong>。</li>
+<li><strong>更高的 ELO（更强的 AI）需要额外的计算（系数 0.004）</strong>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>随着推理时计算扩展类似于训练时计算，研究范式正朝着“推理”模型利用更多推理时计算的方向发展。通过这种范式转变，这些“推理”模型不再单纯关注训练时计算（预训练和微调），而是平衡训练与推理。</p>
+
+
+<p>推理时计算甚至可以随长度扩展：</p>
+
+<p>这是我们在 DeepSeek-R1 研究中也将探讨的内容！</p>
+<h3 id="📌-推理时计算的类别（Categories-of-Test-time-Compute）"><a href="#📌-推理时计算的类别（Categories-of-Test-time-Compute）" class="headerlink" title="📌 推理时计算的类别（Categories of Test-time Compute）"></a>📌 推理时计算的类别（Categories of Test-time Compute）</h3><p>推理模型（如 <strong>DeepSeek-R1</strong> 和 <strong>OpenAI o1</strong>）的成功表明，在推理过程中，除了简单地“思考更长时间”之外，还有更多的优化技术。</p>
+<p>在本文中，我们将探讨 <strong>推理时计算（Test-time Compute）</strong> 的多种实现方式，包括：</p>
+<ul>
+<li><strong>链式思维（Chain-of-Thought）</strong></li>
+<li><strong>答案修订（Revising Answers）</strong></li>
+<li><strong>回溯推理（Backtracking）</strong></li>
+<li><strong>多样性采样（Sampling）</strong></li>
+<li><strong>其他方法</strong></li>
+</ul>
+<p>总体而言，推理时计算可归纳为以下 <strong>两大类别</strong>：</p>
+<ol>
+<li><p><strong>基于验证器的搜索（Search against Verifiers）</strong>  </p>
+<ul>
+<li>通过 <strong>采样多个答案</strong> 并 <strong>选择最佳答案</strong> 来优化推理。</li>
+</ul>
+</li>
+<li><p><strong>修改提议分布（Modifying Proposal Distribution）</strong>  </p>
+<ul>
+<li>通过训练 <strong>“思考”过程</strong> 来提高推理能力。Proposal Distribution（提议分布，指在模型生成答案时，对不同可能答案的概率分布进行调整）</li>
+</ul>
+</li>
+</ol>
+
+
+<p>从本质上讲：</p>
+<ul>
+<li><strong>基于验证器的搜索</strong> 更关注 <strong>输出质量</strong>（Output-focused）。</li>
+<li><strong>修改提议分布</strong> 关注 <strong>输入结构</strong>（Input-focused）。</li>
+</ul>
+
+
+<h3 id="🔍-两种主要验证器类型"><a href="#🔍-两种主要验证器类型" class="headerlink" title="🔍 两种主要验证器类型"></a>🔍 两种主要验证器类型</h3><p>为了更好地筛选和评估推理答案，我们引入了两种 <strong>验证器（Verifiers）</strong>：</p>
+<ol>
+<li><p><strong>结果奖励模型（Outcome Reward Models, ORM）</strong>  </p>
+<ul>
+<li>仅对最终答案进行评分，而不考虑推理过程。</li>
+</ul>
+</li>
+<li><p><strong>过程奖励模型（Process Reward Models, PRM）</strong>  </p>
+<ul>
+<li>既评估最终答案，也对推理过程进行评分。</li>
+</ul>
+</li>
+</ol>
+<p>在接下来的部分，我们将详细探讨 <strong>如何将 ORM 和 PRM 应用于不同的验证方法</strong>！</p>
+<p>顾名思义，<strong>结果奖励模型（Outcome Reward Model, ORM）</strong> 仅评估最终的答案质量，而不关注答案背后的推理过程：</p>
+
+
+<ul>
+<li>ORM 只看最终输出，而不关心模型是如何得出这个答案的。</li>
+</ul>
+<p>相比之下，<strong>过程奖励模型（Process Reward Model, PRM）</strong> 则会评估推理过程本身：</p>
+
+<ul>
+<li>PRM 既评估答案的正确性，也关注推理路径的合理性。</li>
+</ul>
+<h3 id="🧐-PRM-如何评估推理过程？"><a href="#🧐-PRM-如何评估推理过程？" class="headerlink" title="🧐 PRM 如何评估推理过程？"></a>🧐 PRM 如何评估推理过程？</h3><p>为了更清楚地说明推理步骤的重要性，让我们来看一个示例：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">问题：某个方程的解是多少？</span><br><span class="line"></span><br><span class="line">推理步骤 1：首先展开方程，得到 x = 3。</span><br><span class="line">推理步骤 2：错误地将 x = 3 改写为 x = 5。</span><br><span class="line">推理步骤 3：最终输出 x = 5。</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在上述示例中，虽然最终答案（x = 5）是错误的，但 ORM 仅评估最终输出，不会关注中间的错误推理。</p>
+
+
+<p>或者在这个例子中，PRM 会发现 <strong>推理步骤 2 是错误的</strong>，并对此步骤给予低分，从而避免错误答案的出现。</p>
+<hr>
+<h3 id="🔍-ORM-vs-PRM-在推理中的应用"><a href="#🔍-ORM-vs-PRM-在推理中的应用" class="headerlink" title="🔍 ORM vs. PRM 在推理中的应用"></a>🔍 ORM vs. PRM 在推理中的应用</h3><p>现在你已经掌握了 <strong>结果奖励模型（ORM）</strong> 和 <strong>过程奖励模型（PRM）</strong> 之间的区别，我们接下来探讨如何将它们应用于各种 <strong>验证技术（Verification Techniques）</strong>。</p>
+<h2 id="📌-基于验证器的搜索（Search-against-Verifiers）"><a href="#📌-基于验证器的搜索（Search-against-Verifiers）" class="headerlink" title="📌 基于验证器的搜索（Search against Verifiers）"></a>📌 基于验证器的搜索（Search against Verifiers）</h2><p>推理时计算的第一大类别是 <strong>基于验证器的搜索</strong>，它通常包含两个步骤：</p>
+<ol>
+<li><strong>生成多个推理过程和答案样本</strong></li>
+<li><strong>使用验证器（奖励模型）对生成的输出进行评分</strong></li>
+</ol>
+<h3 id="🤖-验证器的作用"><a href="#🤖-验证器的作用" class="headerlink" title="🤖 验证器的作用"></a>🤖 验证器的作用</h3><p>验证器通常是一个大型语言模型（LLM），经过微调以评估结果（ORM）或过程（PRM）。 使用验证器的一个主要优势是，无需重新训练或微调用于回答问题的大型语言模型（LLM），仅通过评分机制选择最佳答案。</p>
+<hr>
+<h3 id="✅-多数投票法（Majority-Voting）"><a href="#✅-多数投票法（Majority-Voting）" class="headerlink" title="✅ 多数投票法（Majority Voting）"></a>✅ 多数投票法（Majority Voting）</h3><p>最简单的方法是 <strong>不使用奖励模型或验证器</strong>，而是执行 <strong>多数投票（Majority Voting）</strong>。</p>
+<p>📌 <strong>方法：</strong> 让 LLM 生成多个答案，选择出现次数最多的答案作为最终答案。</p>
+<p>📌 <strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Q: 15 × 3 = ?</span><br><span class="line">A1: 45</span><br><span class="line">A2: 42</span><br><span class="line">A3: 45</span><br><span class="line">最终答案: 45（因其出现频率最高）</span><br></pre></td></tr></tbody></table></figure>
+
+
+<p>这种方法也称为 <strong>自一致性（Self-Consistency）</strong>，强调 <strong>生成多个答案和推理步骤</strong> 的重要性。</p>
+<hr>
+<h3 id="🔢-Best-of-N-采样法（Best-of-N-Samples）"><a href="#🔢-Best-of-N-采样法（Best-of-N-Samples）" class="headerlink" title="🔢 Best-of-N 采样法（Best-of-N Samples）"></a>🔢 Best-of-N 采样法（Best-of-N Samples）</h3><p>Best-of-N 采样是第一个涉及验证器（Verifier）的方法，它的基本思想是生成 N 个样本答案，然后使用 奖励模型（Reward Model, RM） 对这些答案进行评分，并选择得分最高的答案。</p>
+<p>📌 <strong>步骤：</strong></p>
+<ol>
+<li><strong>生成多个答案</strong>（使用较高或者不同的温度参数生成 N 个样本）。</li>
+<li><strong>结果奖励模型（ORM, Outcome Reward Model）</strong>，每个答案都会通过 ORM 进行评分。选取得分最高的答案作为最终输出。
+📌 <strong>示例：</strong></li>
+</ol>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Q: 8 + 5 = ?</span><br><span class="line">A1: 12 (得分 0.2)</span><br><span class="line">A2: 13 (得分 0.9)</span><br><span class="line">A3: 14 (得分 0.4)</span><br><span class="line">最终选择: A2（因其得分最高）</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="📌-进一步优化：-若使用-PRM，则不只评估答案，还评估整个推理过程。与仅评估最终答案的结果奖励模型（ORM）不同，过程奖励模型（PRM）会评估推理过程的质量。PRM-关注推理的每个步骤，确保推理过程合理、连贯，并最终选择总评分最高的候选答案。-加权-Best-of-N-采样（Weighted-Best-of-N-samples）-结合-ORM-和-PRM-两种验证方式，我们可以对所有候选答案进行加权评分，并选择总权重最高的答案。这种方法称为-加权-Best-of-N-采样（Weighted-Best-of-N-samples）：。"><a href="#📌-进一步优化：-若使用-PRM，则不只评估答案，还评估整个推理过程。与仅评估最终答案的结果奖励模型（ORM）不同，过程奖励模型（PRM）会评估推理过程的质量。PRM-关注推理的每个步骤，确保推理过程合理、连贯，并最终选择总评分最高的候选答案。-加权-Best-of-N-采样（Weighted-Best-of-N-samples）-结合-ORM-和-PRM-两种验证方式，我们可以对所有候选答案进行加权评分，并选择总权重最高的答案。这种方法称为-加权-Best-of-N-采样（Weighted-Best-of-N-samples）：。" class="headerlink" title="📌 进一步优化：- 若使用 PRM，则不只评估答案，还评估整个推理过程。与仅评估最终答案的结果奖励模型（ORM）不同，过程奖励模型（PRM）会评估推理过程的质量。PRM 关注推理的每个步骤，确保推理过程合理、连贯，并最终选择总评分最高的候选答案。- 加权 Best-of-N 采样（Weighted Best-of-N samples）:结合 ORM 和 PRM 两种验证方式，我们可以对所有候选答案进行加权评分，并选择总权重最高的答案。这种方法称为 加权 Best-of-N 采样（Weighted Best-of-N samples）：。"></a>📌 <strong>进一步优化：</strong><br>- 若使用 <strong>PRM</strong>，则不只评估答案，还评估整个推理过程。与仅评估最终答案的结果奖励模型（ORM）不同，过程奖励模型（PRM）会评估推理过程的质量。PRM 关注推理的每个步骤，确保推理过程合理、连贯，并最终选择总评分最高的候选答案。<br><br>- <strong>加权 Best-of-N 采样（Weighted Best-of-N samples）</strong>:结合 ORM 和 PRM 两种验证方式，我们可以对所有候选答案进行加权评分，并选择总权重最高的答案。这种方法称为 加权 Best-of-N 采样（Weighted Best-of-N samples）：。<br></h2><h3 id="🚀-使用过程奖励模型（PRM）的束搜索（Beam-Search）"><a href="#🚀-使用过程奖励模型（PRM）的束搜索（Beam-Search）" class="headerlink" title="🚀 使用过程奖励模型（PRM）的束搜索（Beam Search）"></a>🚀 使用过程奖励模型（PRM）的束搜索（Beam Search）</h3><p>在生成答案及其中间推理步骤的过程中，我们可以使用 <strong>束搜索（Beam Search）</strong> 进一步优化推理路径。</p>
+<p>📌 <strong>束搜索的核心思想：</strong></p>
+<ul>
+<li>在推理过程中，生成多个可能的推理路径（称为“束”）。</li>
+<li>使用 <strong>过程奖励模型（PRM, Process Reward Model）</strong> 对每条路径进行评分。</li>
+<li>类似于 <strong>Tree of Thought</strong> 方法，始终保留得分最高的 <strong>前 3 条推理路径</strong>，并在推理过程中持续跟踪这些路径。</li>
+<li>如果某条路径的得分较低（PRM 评分低），则提前停止该推理路径，以避免不必要的计算开销。</li>
+</ul>
+
+
+<p>📌 <strong>优化后的答案筛选方式：</strong><br>最终，生成的所有答案将使用 <strong>Best-of-N 采样</strong> 方法进行加权评分，确保选出最佳推理路径的最终答案。</p>
+<p>🚀 <strong>优势：</strong></p>
+<ul>
+<li>避免计算资源浪费，快速淘汰低质量推理路径。</li>
+<li>结合 PRM，可以确保模型的推理过程更连贯、更符合逻辑。</li>
+<li>通过 Best-of-N 方法进一步优化答案质量，使最终答案更加可靠。</li>
+</ul>
+<hr>
+<h3 id="🎲-蒙特卡洛树搜索（Monte-Carlo-Tree-Search-MCTS）"><a href="#🎲-蒙特卡洛树搜索（Monte-Carlo-Tree-Search-MCTS）" class="headerlink" title="🎲 蒙特卡洛树搜索（Monte Carlo Tree Search, MCTS）"></a>🎲 蒙特卡洛树搜索（Monte Carlo Tree Search, MCTS）</h3><p>蒙特卡洛树搜索（Monte Carlo Tree Search, <strong>MCTS</strong>）是一种常用于决策树搜索的算法，在 LLM 的推理优化中也可以采用该方法。MCTS 通过四个步骤来优化推理路径：<br>📌 <strong>主要步骤：</strong></p>
+<ol>
+<li><strong>选择（Selection）：</strong> 根据预定义的公式，从当前搜索树中选择一个叶节点 进行扩展。</li>
+<li><strong>扩展（Expand）：</strong> 在所选叶节点的基础上 创建新的子节点，以探索更多可能的推理路径。</li>
+<li><strong>模拟（Rollouts）：</strong> 通过随机生成新的推理路径，持续扩展节点，直到达到终点（即得到最终答案）。</li>
+<li><strong>回溯（Backpropagation）：</strong> 根据最终输出结果 更新父节点的评分，从而优化未来的搜索决策。</li>
+</ol>
+<p>在大语言模型（LLM）的推理过程中，我们通常希望找到最佳的推理路径，使其最终生成的答案最优。但在这个过程中，需要在 <strong>探索（Exploration）</strong> 和 <strong>利用（Exploitation）</strong> 之间取得平衡：</p>
+<ul>
+<li><strong>利用（Exploitation）</strong>：选择当前看起来最优的路径，以利用已知的高质量推理步骤。</li>
+<li><strong>探索（Exploration）</strong>：选择访问次数较少的路径，以发现可能更优的推理步骤。</li>
+</ul>
+<h4 id="选择分数（Selection-Score）"><a href="#选择分数（Selection-Score）" class="headerlink" title="选择分数（Selection Score）"></a>选择分数（Selection Score）</h4>
+<p>在选择推理路径时，我们使用 <strong>选择分数（Selection Score）</strong> 计算每个推理步骤（即树的节点）的优先级，公式如下：</p>
+<p>$$<br>\text{Selection Score} = \frac{\text{Total Node Reward}}{\text{Number of Node Visits}} + C \times \sqrt{\frac{\text{Number of Parent Node Visits}}{\text{Number of Node Visits}}}<br>$$</p>
+<p>其中：</p>
+<ul>
+<li><p><strong>第一项</strong>：$$\frac{\text{Total Node Reward}}{\text{Number of Node Visits}}$$（利用项，Exploitation Term）</p>
+<ul>
+<li><strong>Total Node Reward</strong>：该节点累计获得的奖励值（表示其历史表现）。</li>
+<li><strong>Number of Node Visits</strong>：该节点被访问的次数。</li>
+<li>这项计算的是该节点的 <strong>平均奖励值</strong>，高奖励的节点会被优先选择。</li>
+</ul>
+</li>
+<li><p><strong>第二项</strong>：$$C \times \sqrt{\frac{\text{Number of Parent Node Visits}}{\text{Number of Node Visits}}}$$（探索项，Exploration Term）</p>
+<ul>
+<li><strong># of Parent Node Visits</strong>：父节点被访问的次数。</li>
+<li><strong># of Node Visits</strong>：当前节点被访问的次数。</li>
+<li><strong>C</strong>：一个超参数，控制探索与利用的平衡。</li>
+<li>这项鼓励探索访问次数较少的节点，以防止过早陷入局部最优解。</li>
+</ul>
+</li>
+</ul>
+<p>总结：</p>
+<ul>
+<li><strong>第一项（Exploitation Term）</strong> 让算法倾向于选择 <strong>历史表现较好的路径</strong>。</li>
+<li><strong>第二项（Exploration Term）</strong> 让算法倾向于 <strong>探索访问较少的路径</strong>，避免陷入局部最优。</li>
+<li><strong>参数 C</strong> 控制这两者的平衡。</li>
+</ul>
+<h4 id="2-选择（Selection）与扩展（Expand）"><a href="#2-选择（Selection）与扩展（Expand）" class="headerlink" title="2. 选择（Selection）与扩展（Expand）"></a><strong>2. 选择（Selection）与扩展（Expand）</strong></h4>
+
+<p>这一阶段，我们使用 <strong>选择分数</strong> 来决定哪条推理路径值得继续扩展：</p>
+<p><strong>（1）选择（Selection）</strong></p>
+<ul>
+<li><strong>输入：问题（Question）</strong></li>
+<li><strong>LLM 生成多个推理步骤（Reasoning Steps）</strong><ul>
+<li>例如，在图片中，LLM 生成了 3 个推理步骤：<ul>
+<li><strong>Thought 1</strong>（评分 0.4）</li>
+<li><strong>Thought 2</strong>（评分 0.2）</li>
+<li><strong>Thought 3</strong>（评分 0.1）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>使用选择分数（Selection Score）选择最优路径</strong>（随机初始化）<ul>
+<li>在示例中，评分最高的 <strong>Thought 1（0.4）</strong> 被选中。</li>
+</ul>
+</li>
+</ul>
+<p><strong>（2）扩展（Expand）</strong></p>
+<ul>
+<li><strong>在选中的推理路径上，生成新的推理步骤</strong></li>
+<li>这些新推理步骤的初始值设为 0，表示它们还没有经过评估。</li>
+</ul>
+<p>这个过程类似于 <strong>MCTS 的拓展（Expansion）阶段</strong>，即：</p>
+<ol>
+<li>选择当前最优路径（使用 <strong>选择分数</strong>）。</li>
+<li>在该路径下，扩展新的推理步骤（未评分的子节点）。</li>
+</ol>
+<h4 id="3-Rollouts（模拟）与-Backpropagation（反向传播）"><a href="#3-Rollouts（模拟）与-Backpropagation（反向传播）" class="headerlink" title="3. Rollouts（模拟）与 Backpropagation（反向传播）"></a><strong>3. Rollouts（模拟）与 Backpropagation（反向传播）</strong></h4>
+
+<p>一旦扩展了推理步骤，我们需要继续探索，并利用 <strong>模拟（Rollouts）</strong> 和 <strong>反向传播（Backpropagation）</strong> 来优化整个搜索过程。</p>
+<h3 id="（3）Rollouts（模拟）"><a href="#（3）Rollouts（模拟）" class="headerlink" title="（3）Rollouts（模拟）"></a><strong>（3）Rollouts（模拟）</strong></h3><ul>
+<li>选定路径后，我们继续展开推理步骤，直到 <strong>生成最终答案</strong>。</li>
+<li>这个过程类似于 <strong>在 MCTS 中随机模拟游戏到结束</strong>：<ul>
+<li>我们从当前节点出发，进行一系列推理，直到模型生成最终的答案。</li>
+<li>在图片中，我们沿着 Thought 1（0.4） 继续展开推理步骤。</li>
+<li>这些推理步骤最终会 <strong>生成多个答案</strong>（图片中紫色框）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="（4）Backpropagation（反向传播）"><a href="#（4）Backpropagation（反向传播）" class="headerlink" title="（4）Backpropagation（反向传播）"></a><strong>（4）Backpropagation（反向传播）</strong></h3><ul>
+<li>通过对 <strong>最终答案</strong> 进行评分，我们可以更新前面所有参与推理的节点分数：<ul>
+<li><strong>PRM（Process Reward Model）</strong>：对推理步骤本身进行评分，衡量其合理性。</li>
+<li><strong>ORM（Output Reward Model）</strong>：对最终答案进行评分，衡量其正确性。</li>
+<li>这些评分 <strong>向上传播</strong>，更新 <strong>所有经过的节点</strong> 的奖励值。</li>
+</ul>
+</li>
+<li>例如：<ul>
+<li>在图片中，最终答案的评分导致 <strong>Thought 1</strong> 的评分从 0.4 提高到 <strong>0.8</strong>。</li>
+<li>进一步向上传播，使得 <strong>父节点的选择分数也随之更新</strong>。</li>
+</ul>
+</li>
+</ul>
+<p>这个过程保证了：</p>
+<ul>
+<li><strong>较好的推理路径会逐渐获得更高的分数</strong>，提高被选中的概率。</li>
+<li><strong>较差的推理路径会被逐渐淘汰</strong>，避免浪费计算资源。</li>
+</ul>
+<hr>
+<h2 id="📌-修改提议分布（Modifying-Proposal-Distribution）"><a href="#📌-修改提议分布（Modifying-Proposal-Distribution）" class="headerlink" title="📌 修改提议分布（Modifying Proposal Distribution）"></a>📌 修改提议分布（Modifying Proposal Distribution）</h2><p><strong>修改提议分布（Modifying Proposal Distribution）</strong></p>
+<p>在大语言模型（LLM）的推理过程中，我们可以通过修改提议分布（Modifying Proposal Distribution）来优化模型的推理能力。这种方法的核心思想是：</p>
+<ul>
+<li><strong>不再单纯依赖模型搜索正确推理步骤</strong>（基于输出的优化），</li>
+<li><strong>而是让模型主动生成更优的推理步骤</strong>（基于输入的优化）。</li>
+</ul>
+<p>换句话说，我们不是在输出结果后进行检验，而是直接修改模型在推理过程中如何选择 token，让它更倾向于选择能够引导推理的 token，而不是立即输出最终答案。修改了用于采样补全（completions）、思维（thoughts）或标记（tokens）的概率分布。这种方法可以让模型生成的答案更加准确、可解释，并且在面对复杂问题时更具有鲁棒性（robustness）。</p>
+<p><strong>1. 直接选择最高概率 Token（Greedy 选择）</strong></p>
+<p>在默认情况下，LLM 生成多个可能的 token 作为输出候选项，并根据其概率进行排序，最终选择最高概率的 token 进行输出。这种方法称为<strong>贪心选择（Greedy Selection）</strong>。</p>
+<p>你可以想象，我们有一个问题（question）和一个用于采样 token 的概率分布（distribution）。常见的策略是选择得分最高的 token。</p>
+
+<ul>
+<li>例如，给定问题 <code>What is 3 + 2?</code>，LLM 可能会生成如下候选 token：<ul>
+<li><code>5</code>（最高概率）</li>
+<li><code>3</code></li>
+<li><code>Adding</code></li>
+<li><code>4</code></li>
+<li><code>If</code></li>
+</ul>
+</li>
+<li>在贪心策略下，模型会直接选择 <code>5</code> 作为最终答案，而不会进行推理。</li>
+</ul>
+<p>这种方法虽然快速，但存在如下问题：</p>
+<ul>
+<li><strong>缺乏推理能力</strong>：模型可能直接输出错误答案，因为它没有进行推理。</li>
+<li><strong>可解释性差</strong>：对于复杂问题，用户无法理解模型是如何得出答案的。</li>
+</ul>
+<p><strong>2. 通过推理（Reasoning Before Answering）提高答案质量</strong></p>
+<p>然而，请注意上图中有一些<strong>标记（tokens</strong>被标红。这些token更有可能引导模型进入一个合理的推理过程。虽然选择贪心（greedy）策略下得分最高的 token 不一定是错误的，但选择那些能引导模型进入推理过程的 token，通常会得到更好的答案。<br>让 LLM <strong>先进行推理，再给出答案</strong>，即：</p>
+<ul>
+<li>选择推理 token（如 <code>Adding</code>）</li>
+<li>逐步生成推理过程，如：<ul>
+<li><code>Adding → 3 and 2 gives → 5</code></li>
+<li><code>If → 3 + 1 = 4, 4 + 1 = 5 → 5</code></li>
+<li><code>The total is → 5</code></li>
+</ul>
+</li>
+<li>通过推理链条逐步推导出 <code>5</code>，相比直接选择 <code>5</code>，这种方法更加可解释，并且能在复杂问题上表现更好。</li>
+</ul>
+<p><strong>3. 通过修改提议分布（Re-Ranking Token Probabilities）引导推理过程</strong></p>
+
+<p>当我们<strong>修改提议分布（proposal distribution，即 token 的概率分布）</strong>时，实际上是在<strong>重新排序（re-rank）</strong>这个分布，使得“推理相关”的 token 被选中的概率更高。<br>在这种方法下，我们调整 LLM 的提议分布，使其更倾向于选择推理 token，而非直接选择答案：</p>
+<ul>
+<li>默认情况下，<code>5</code> 具有最高概率，而 <code>Adding</code>、<code>If</code> 等推理 token 的概率较低。</li>
+<li>通过修改提议分布，我们提高 <code>Adding</code>、<code>If</code> 的概率，使模型倾向于进行推理。</li>
+</ul>
+<p><strong>4. 如何实现修改提议分布？</strong></p>
+<p>主要有两种方式：</p>
+<ol>
+<li><strong>通过 Prompt Engineering</strong><ul>
+<li>修改 Prompt，引导模型生成推理步骤。</li>
+<li>例如：<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Q: What is 3 + 2?</span><br><span class="line">A: Let's think step by step.</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+</li>
+<li><strong>训练模型更倾向于推理</strong><ul>
+<li>在微调过程中，提供更多具有推理链的训练数据，让模型习惯生成推理 token。</li>
+</ul>
+</li>
+</ol>
+<p><strong>总结</strong></p>
+<ul>
+<li><strong>贪心选择（Greedy Selection）</strong>：快速，但缺乏推理，可解释性差。</li>
+<li><strong>推理后回答（Reasoning Before Answering）</strong>：提高答案质量和可解释性。</li>
+<li><strong>修改提议分布（Modifying Proposal Distribution）</strong>：调整 token 选择的概率，使模型更倾向于选择推理 token，提高整体答案的合理性。</li>
+</ul>
+<p>这种方法在<strong>数学计算、逻辑推理、法律推理等任务</strong>上尤为重要，使得 LLM <strong>不仅能“答对”，还能“说明白”</strong>。</p>
+<h3 id="Prompting"><a href="#Prompting" class="headerlink" title="Prompting"></a><strong>Prompting</strong></h3><p>随着我们使用 <strong>prompt engineering</strong>（提示工程）来改进输出，我们会通过更新提示（prompt）来尝试提升模型的表现。这个过程也可能推动模型去展示先前我们看到的一些<strong>reasoning</strong>（推理）过程。</p>
+<p><strong>1. 改变 Proposal Distribution</strong></p>
+<p>在更改 <strong>proposal distribution</strong>时，我们可以给模型提供示例（也叫做 <strong>in-context learning</strong>），让它在生成答案时模仿类似的推理风格。下面的图就展示了一个示例的情形：</p>
+
+
+<blockquote>
+<ul>
+<li><strong>图示内容</strong>：左侧是一个简单的问题 “What is 3 + 2?”，模型内部用 “Thoughts” 表示隐藏的思考过程，比如：<ol>
+<li>First, 3 and 1 gives 4.</li>
+<li>Then, 4 and 1 gives 5.</li>
+<li>I believe the answer is 5.</li>
+</ol>
+</li>
+<li><strong>Answer</strong>（答案）：5</li>
+<li>右侧用红色、蓝色等不同颜色的条形或方块表示推理过程的不同部分，示意有一部分属于隐藏的推理过程（红色），以及输出结果或若干中间步骤（蓝色）。</li>
+</ul>
+</blockquote>
+<p>通过类似的示例，模型在推理时就可能模仿类似的格式来进行<strong>reasoning</strong>并给出最终答案。</p>
+<p><strong>2. “Let’s think step-by-step” 的影响</strong></p>
+<p>我们也可以通过在提示中直接使用 “Let’s think step-by-step” 来简化上述流程。这会改变模型的 <strong>proposal distribution</strong>，让 <strong>LLM</strong>（大型语言模型）倾向于在回答之前分步骤思考。如下图所示：</p>
+
+
+<blockquote>
+<ul>
+<li><strong>图示内容</strong>：这里将提示换成 “Let’s think step-by-step”，问题仍然是 “What is 3 + 2?”。</li>
+<li>模型产生更显式的推理过程（用红色块示意），再输出正确答案 5。</li>
+<li>整个思路类似图1，但更加突出“分步骤思考”对最终答案生成的影响。</li>
+</ul>
+</blockquote>
+<p>然而，这并不意味着模型本身已经内化了这种推理能力——它<strong>并没有从根本上学会</strong>去“反思”或“修正”错误。如果模型一开始的推理过程是错误的，那么在这种静态且线性的流程中，它往往会一直延续这个错误，而不是对自身推理进行修正。</p>
+<hr>
+<h3 id="STaR（Self-Taught-Reasoner）"><a href="#STaR（Self-Taught-Reasoner）" class="headerlink" title="STaR（Self-Taught Reasoner）"></a><strong>STaR（Self-Taught Reasoner）</strong></h3><p>除了通过 <strong>prompting</strong>（提示）让模型临时展示推理步骤，我们还可以让模型在训练中因为“产生正确推理步骤”而得到奖励，从而让它真正“学会”推理。这通常需要在<strong>大量带有推理过程的数据</strong>上进行训练，并结合 <strong>reinforcement learning</strong>（强化学习）来奖励特定的行为。</p>
+<p>一个颇受争议（“much-debated”）的技术就是 <strong>STaR</strong>，即 <strong>Self-Taught Reasoner</strong>。它是让 <strong>LLM</strong> 生成自己的推理数据，再把这些数据用于对模型进行<strong>精调</strong>（<em>fine-tuning</em>）的过程。</p>
+<p><strong>1. STaR 的流程概述</strong></p>
+
+
+
+<ul>
+<li>这幅图概括了 STaR 的工作原理：<ol>
+<li><strong>Generate reasoning + answer</strong>：模型先针对输入问题生成一段 <strong>reasoning</strong>（推理）和一个 <strong>answer</strong>（答案）；<br>2a. 如果答案正确（Correct answer），则将 <strong>Question, Reasoning, Answer</strong> 作为训练样本添加到三元组数据集中（3a）；<br>  3b. 利用这些三元组数据进行 <strong>supervised fine-tuning</strong>（监督微调），让模型学会在类似情形下产出正确推理与答案。</li>
+</ol>
+</li>
+</ul>
+<p>如果模型给出了错误答案，则会触发另一条路径：</p>
+
+
+<ul>
+<li>当 (2b) 模型答案错误时，我们提供正确答案作为 <strong>hint</strong>（提示），并让模型去思考“为什么这个答案是正确的”；</li>
+<li>也就是 <strong>Generate reasoning only</strong> (why this answer is correct?)；</li>
+<li>得到的这段新的推理依旧会被加入到三元组数据中，然后再进行 <strong>supervised fine-tuning</strong>。</li>
+</ul>
+<p>这里的关键要点是，我们可以通过这种方法<strong>显式</strong>地训练模型“应该如何进行推理”，而不仅仅是让它临时地模仿推理过程。我们要对模型的推理方式进行<strong>监督</strong>（<em>supervised fine-tuning</em>），从而把我们想要的推理模式“灌输”给模型。</p>
+<p><strong>2. 自动生成合成训练样本</strong></p>
+<p>STaR 的整个流程非常有趣，因为它会<strong>自动生成合成训练样本</strong>（<em>synthetic training examples</em>）。这些样本不仅包含问题和答案，还包含一系列推理步骤，能够帮助模型更好地学习如何“思考”。在其他研究中（例如 <strong>DeepSeek R-1</strong>），我们可以利用这些合成样本来<strong>蒸馏</strong>（<em>distill</em>，意为“提炼和保留关键信息”）推理过程到其它模型上。也就是说，一个掌握了推理能力的模型可以帮助另一个模型更快地学会类似的推理。</p>
+<hr>
+<p><strong>重点：</strong></p>
+<ul>
+<li><strong>Prompting</strong>（提示）能够影响模型的输出风格和思维过程，比如使用 “Let’s think step-by-step” 让模型显式给出推理步骤，但并不保证模型自动纠正错误。</li>
+<li><strong>STaR</strong>（<strong>Self-Taught Reasoner</strong>）等方法则通过<strong>生成推理数据、监督微调和奖励机制</strong>，帮助模型真正学会按照指定的推理方式去思考和回答问题。</li>
+<li>无论是哪一种方法，都可以视为对 <strong>proposal distribution</strong> 的调节：要么是提示时临时<strong>nudge</strong>（引导），要么是从训练根源上进行调教，让模型内化这种推理过程。</li>
+<li>利用 <strong>in-context learning</strong> 提供示例，能够让模型模仿推理风格。</li>
+<li>用 <strong>reinforcement learning</strong> 或<strong>监督微调</strong>（<strong>supervised fine-tuning</strong>）可以使模型逐渐掌握我们期望的推理模式。</li>
+<li><strong>STaR</strong> 方法会自动收集“正确推理”数据并进行训练，使得模型在后续回答中更可能产生正确且符合要求的推理步骤。</li>
+</ul>
+<hr>
+<h2 id="DeepSeek-R1"><a href="#DeepSeek-R1" class="headerlink" title="DeepSeek-R1"></a>DeepSeek-R1</h2><hr>
+<h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p><strong>DeepSeek-R1</strong> 是一个在推理（reasoning）模型领域的重大版本，其权重已经开源。它直接与 OpenAI 的 <strong>o1</strong> 推理模型展开竞争，并在这一领域产生了重大影响。</p>
+<p>DeepSeek 项目在将推理功能优雅地整合进其基础模型（<strong>DeepSeek-V3-Base</strong>）方面成就卓著，采用了多种技术来完成这一目标。</p>
+<p>有趣的是，该项目在训练过程中并未依赖额外的验证器（verifier），而且并不是单纯地依靠监督微调（supervised fine-tuning）来提炼推理行为。相反，<strong>强化学习（Reinforcement Learning, RL）</strong> 在其中扮演了重要角色。</p>
+<p>以下我们将一起探究他们是如何在模型中训练出推理行为的！</p>
+<hr>
+<h3 id="2-DeepSeek-R1-Zero：推理的关键探索"><a href="#2-DeepSeek-R1-Zero：推理的关键探索" class="headerlink" title="2. DeepSeek-R1 Zero：推理的关键探索"></a>2. DeepSeek-R1 Zero：推理的关键探索</h3><p>在通往 <strong>DeepSeek-R1</strong> 的道路上，有一个名为 <strong>DeepSeek-R1 Zero</strong> 的实验性模型为这次突破打下了基础。它从 <strong>DeepSeek-V3-Base</strong> 出发，完全不使用大规模监督微调来加入推理数据，而是只依靠 <strong>强化学习</strong> 来获得推理能力。</p>
+<h4 id="训练过程与系统提示（Prompt）"><a href="#训练过程与系统提示（Prompt）" class="headerlink" title="训练过程与系统提示（Prompt）"></a>训练过程与系统提示（Prompt）</h4><p>在此过程中，他们首先准备了一个非常直接的提示（prompt），其形式类似于系统提示（system prompt），用来作为推理管线的一部分。下文即展示了相关提示。请注意，其中明确指出了推理过程要写在 <code>&lt;think&gt;</code> 标签内、答案要写在 <code>&lt;answer&gt;</code> 标签内，但没有进一步规定推理过程应如何具体呈现或组织。</p>
+
+
+<p>在上图中，可以看到一个简化版的对话示例（System prompt 与 User prompt）以及模型如何将<strong>推理</strong>（reasoning）放在 <code>&lt;think&gt;</code> 标签内、将<strong>答案</strong>（answer）放在 <code>&lt;answer&gt;</code> 标签内。该图突出展示了在提示（prompt）中对模型的约束：</p>
+<ul>
+<li><em>“The assistant first thinks about the reasoning process in the mind and then provides the user with the answer.”</em></li>
+<li>要求使用 <code>&lt;think&gt;</code> 进行推理，使用 <code>&lt;answer&gt;</code> 进行回答。</li>
+</ul>
+<p>这里并未提供关于“推理过程”格式的其他例子或模板——完全由模型自己在训练中摸索出要如何输出“Chain-of-Thought”式的推理文字。</p>
+<h4 id="强化学习奖励"><a href="#强化学习奖励" class="headerlink" title="强化学习奖励"></a>强化学习奖励</h4><p>在训练中，采用了两个基于规则（rule-based）的奖励机制：</p>
+<ol>
+<li><strong>准确性奖励（Accuracy rewards）</strong><br>通过测试给出的答案是否正确来进行奖励。若模型输出的答案正确，就会增加奖励。</li>
+<li><strong>格式奖励（Format rewards）</strong><br>奖励模型对 <code>&lt;think&gt;</code> 和 <code>&lt;answer&gt;</code> 标签的正确使用。</li>
+</ol>
+<p>他们所使用的强化学习算法名为 <strong>Group Relative Policy Optimization（GRPO）</strong>。此算法的直观想法在于：使所有导致正确或错误答案的决策更易或更难再次出现。这些决策可能包括模型生成的某些标记（token）序列，也可能包括推理步骤本身（即思考过程）。下文给出了这一训练阶段的示意图。</p>
+
+
+<p>在图中，重点展示了在 RL（强化学习）过程中所使用的两类奖励：</p>
+<ul>
+<li>“is <code>&lt;think&gt;</code> used?” —— 为使用 <code>&lt;think&gt;</code> 标签而打分。</li>
+<li>“is <code>&lt;answer&gt;</code> used?” —— 为使用 <code>&lt;answer&gt;</code> 标签而打分。</li>
+</ul>
+<p>除此之外，还有对答案<strong>正确性</strong>的奖励（accuracy reward）。图中箭头所示的循环代表了在训练中不断迭代更新模型，使之越来越倾向于正确的推理方式并合乎格式要求。</p>
+<h4 id="自发推理行为的出现"><a href="#自发推理行为的出现" class="headerlink" title="自发推理行为的出现"></a>自发推理行为的出现</h4><p>值得一提的是，研究人员并没有向模型提供任何示例来告诉它 <code>&lt;think&gt;</code> 标签中的内容应该如何书写或展开。他们仅仅告诉模型：</p>
+<blockquote>
+<p>“It should use <code>&lt;think&gt;</code> tags, and nothing more!”</p>
+</blockquote>
+<p>通过对“Chain-of-Thought”相关行为进行<strong>间接奖励</strong>（即只要推理正确、使用正确格式，就鼓励输出更完整的推理内容），模型在训练中自发地学会了越写越长的推理过程，也更易产生正确答案。</p>
+
+
+<p>上图呈现了模型在训练过程中输出的推理长度随训练步数增加而逐渐变长的趋势。纵轴是每个响应的平均长度，横轴是训练步数。可以看到，曲线整体是向上攀升的，这表明模型不断倾向于输出更长、更详细的思考内容（Chain-of-Thought），并因此获得更高奖励。这种做法将大部分计算消耗从训练阶段（train-time compute）转移到了推理阶段（test-time compute），也就是在推理时才生成更长的思考过程。</p>
+<p>根据研究，他们发现通过这种训练策略，模型能够自行发现最优的 Chain-of-Thought 风格的思考方式，并展现出高级的推理能力，例如：<strong>自我反思（self-reflection）</strong> 和 <strong>自我验证（self-verification）</strong>。</p>
+<p>不过，DeepSeek-R1 Zero 的模型输出仍存在一些问题，比如可读性欠佳，且有时会混用多种语言。为了在产品化或发布级别进一步完善，研究人员提出了另一个选项，也就是在正式版本中使用的 <strong>DeepSeek R1</strong>。</p>
+<hr>
+<h3 id="3-深入了解-DeepSeek-R1"><a href="#3-深入了解-DeepSeek-R1" class="headerlink" title="3. 深入了解 DeepSeek-R1"></a>3. 深入了解 DeepSeek-R1</h3><p>要构建 <strong>DeepSeek-R1</strong>，作者共进行了以下五个关键步骤：</p>
+<ol>
+<li><strong>冷启动（Cold Start）</strong></li>
+<li><strong>以推理为导向的强化学习（Reasoning-oriented Reinforcement Learning）</strong></li>
+<li><strong>拒绝采样（Rejection Sampling）</strong></li>
+<li><strong>监督微调（Supervised Fine-Tuning）</strong></li>
+<li><strong>在所有场景下进行强化学习（Reinforcement Learning for all Scenarios）</strong></li>
+</ol>
+<p>接下来我们依次展开说明。</p>
+<hr>
+<h4 id="第一步：冷启动"><a href="#第一步：冷启动" class="headerlink" title="第一步：冷启动"></a>第一步：冷启动</h4><p>在第一步中，研究人员先使用了一个约 5000 个tokens的高质量推理数据集对 <strong>DeepSeek-V3-Base</strong> 进行微调，以避免产生可读性不佳的<strong>冷启动问题（cold start problem）</strong>。这个微调步骤可以让模型的输出更加可读，不至于在一开始就产生混乱的推理文本。下文展示了这一过程的示意图。</p>
+<hr>
+
+
+<p>在图中可以看到：</p>
+<ul>
+<li>“DeepSeek-V3-Base” 通过<strong>监督微调（Supervised Fine-Tuning）</strong>的方式，引入了约 5000 条高质量推理样本。</li>
+<li>这些样本包含了<strong>Reasoning</strong>（推理）和<strong>Answer</strong>（答案）两种部分。</li>
+<li>该步骤目的是“防止冷启动”，即让模型在一开始就掌握基础的可读性推理。</li>
+</ul>
+<hr>
+<h4 id="第二步：推理导向的强化学习"><a href="#第二步：推理导向的强化学习" class="headerlink" title="第二步：推理导向的强化学习"></a>第二步：推理导向的强化学习</h4><p>在得到一个初步微调后的模型后（上一步的成果），作者使用与 <strong>DeepSeek-V3-Zero</strong> 类似的强化学习流程对模型进行训练，但额外加入了<strong>目标语言一致性</strong>的奖励，以确保模型在推理和回答时不会混用多种语言。</p>
+<p>除了之前提到的准确性（accuracy reward）和格式（format reward）等，还增加了<strong>语言奖励（language reward）</strong>来保证生成的语言风格或语言类型保持一致，不至于出现“中英文混杂”或“风格不稳”的现象。</p>
+
+
+<ul>
+<li><strong>Format reward</strong>：依旧关注 <code>&lt;think&gt;</code> 和 <code>&lt;answer&gt;</code> 的使用。</li>
+<li><strong>Accuracy reward</strong>：检查答案是否正确，以及是否能通过相应的“单元测试”。</li>
+<li><strong>Language reward</strong>：检查语言是否一致、通顺以及是否符合目标语言要求。</li>
+</ul>
+<p>这些奖励综合起来，通过强化学习（RL）循环使模型的推理和答案在可读性、准确度和语言风格方面逐渐优化。</p>
+<hr>
+<h4 id="第三步：拒绝采样"><a href="#第三步：拒绝采样" class="headerlink" title="第三步：拒绝采样"></a>第三步：拒绝采样</h4><p>在这一阶段，作者用<strong>第 2 步</strong>强化学习后得到的模型，来大规模生成<strong>合成推理数据</strong>，并配合 <strong>DeepSeek-V3-Base</strong> 模型来进行“评估”和“规则过滤”，最终产生约 60 万条高质量的推理样本可用于后续监督微调。同时，他们还另外生成了约 20 万条<strong>非推理样本</strong>，包含了写作、简单问答、自我认知、翻译等多种任务数据。下文总结了这一过程。</p>
+
+
+<ul>
+<li>左边展示了<strong>DeepSeek-V3-2</strong> 如何采样到大量<strong>Reasoning</strong>（推理）和<strong>Answer</strong>（答案），再利用基于规则的筛选和 <strong>DeepSeek-V3-Base</strong> 的判断（判断生成的内容质量），保留质量更好的推理数据（约 600,000 条）。</li>
+<li>右边展示了<strong>非推理</strong>（non-reasoning）数据采样流程，来自 DeepSeek-V3-Base 所使用的一部分数据，总共约 200,000 条，这些数据主要涉及写作、事实性问答（factual QA）、自我认知、翻译等方面。</li>
+</ul>
+<p>由此，研究人员得到规模约 80 万条的“混合”数据，其中既有推理样本，也有非推理样本。</p>
+<hr>
+<h4 id="第四步：监督微调"><a href="#第四步：监督微调" class="headerlink" title="第四步：监督微调"></a>第四步：监督微调</h4><p>在得到上述 80 万条数据后，研究人员再次对 <strong>DeepSeek-V3-Base</strong> 进行监督微调，具体过程如下图所示。</p>
+
+
+<ul>
+<li>在图中，我们看到“DeepSeek-V3-Base”被用于执行<strong>监督微调（Supervised Fine-Tuning）</strong>，使用的正是前文所提到的 800,000 条<strong>高质量推理与非推理样本</strong>。</li>
+<li>这一阶段使得模型在更大规模的数据基础上，学习到更广泛、更多样的推理形式和任务形式。</li>
+</ul>
+<hr>
+<h4 id="第五步：在所有场景下的强化学习"><a href="#第五步：在所有场景下的强化学习" class="headerlink" title="第五步：在所有场景下的强化学习"></a>第五步：在所有场景下的强化学习</h4><p>在监督微调完成后，研究人员继续采用类似 <strong>DeepSeek-R1-Zero</strong> 的方法进行 <strong>RL（强化学习）</strong> 训练。但是，为了让模型更符合人类偏好，他们在这个阶段引入了更多的 <strong>“有益与无害”（helpfulness and harmlessness）</strong> 奖励信号，用来约束模型的回答。</p>
+<p>同时，模型也被要求<strong>对推理过程进行总结（summarize）</strong>，以防止在最终输出时显示出过长、难以阅读的推理文本。这一步骤解决了前述提到的可读性问题。</p>
+
+
+<ol>
+<li><strong>Format reward（格式奖励）</strong>  <ul>
+<li>是否正确使用 <code>&lt;think&gt;</code> 标签书写推理内容  </li>
+<li>是否正确使用 <code>&lt;answer&gt;</code> 标签输出答案</li>
+</ul>
+</li>
+<li><strong>Accuracy reward（准确性奖励）</strong>  <ul>
+<li>测试输出是否能编译（“does it compile?”）  </li>
+<li>是否能通过单元测试（“does it pass unit tests?”）</li>
+</ul>
+</li>
+<li><strong>Preference rewards（偏好奖励）</strong>  <ul>
+<li>关注 <strong>Helpfulness（有益）</strong>、<strong>Harmlessness（无害）</strong>、<strong>Human preference（人类偏好）</strong> 等  </li>
+<li>由 RM（Reward Model） 模块来评估这些偏好指标</li>
+</ul>
+</li>
+</ol>
+<p>图中可以看到，<strong>Reasoning</strong>（推理）阶段和 <strong>Answer</strong>（答案）阶段需要分别用 <code>&lt;think&gt;</code> 和 <code>&lt;answer&gt;</code> 标签进行明确区分。同时，为了输出更为精简、可读的内容，模型也可能产生一个 <strong>Summary</strong>（总结）片段。强化学习的迭代过程会同时考虑多种奖励信号，从而不断更新模型并得到最终版本的 <strong>DeepSeek-R1</strong>。</p>
+<p>上图中，“RM” 即 Reward Model，用于对偏好进行打分（如对话是否友善、是否符合伦理要求等），再把结果反馈给模型。</p>
+<p>“<strong>And that’s it!<strong>”这意味着 <strong>DeepSeek-R1</strong> 实际上是 <strong>DeepSeek-V3-Base</strong> 经过监督微调（Supervised Fine-Tuning）和强化学习（RL）进一步优化而成。大量的工作都用于保证</strong>高质量数据</strong>的生成与使用，进而训练出这样一个具备强大推理能力的模型。</p>
+<hr>
+<h2 id="将推理知识从-DeepSeek-R1-蒸馏到其他模型"><a href="#将推理知识从-DeepSeek-R1-蒸馏到其他模型" class="headerlink" title="将推理知识从 DeepSeek-R1 蒸馏到其他模型"></a>将推理知识从 DeepSeek-R1 蒸馏到其他模型</h2><p><strong>DeepSeek-R1</strong> 拥有 <strong>6710 亿（671B）</strong> 参数。这一规模的模型在普通消费级硬件上运行存在较大难度。出于实用性考虑，作者们研究了如何将 <strong>DeepSeek-R1</strong> 的推理能力“蒸馏（distill）”到更小的模型（如 <strong>Qwen-32B</strong>）上，以便能在消费级硬件上部署和使用。</p>
+<h3 id="蒸馏过程：Teacher-Student-框架"><a href="#蒸馏过程：Teacher-Student-框架" class="headerlink" title="蒸馏过程：Teacher-Student 框架"></a>蒸馏过程：Teacher-Student 框架</h3><p>在蒸馏过程中，<strong>DeepSeek-R1</strong> 作为教师模型（Teacher），而规模更小的模型（如 Qwen-32B）作为学生模型（Student）。二者面对相同的提示（prompt）时，分别会输出一组<strong>词元概率分布（token probability distribution）</strong>。训练时，学生模型会尽量学习并接近教师模型的输出分布。</p>
+
+
+<ul>
+<li>教师（DeepSeek-R1）给出自己的“proposal distribution”。例如在回答“What is 3 + 2?”时，教师模型可能倾向输出“Adding”“If”“5”“3”“4”等标记，并赋予各自不同的概率。  </li>
+<li>学生（Qwen-32B）则会在训练中不断更新自己的概率分布，使之更接近教师的分布。</li>
+</ul>
+<blockquote>
+<p><strong>额外解释</strong>：  </p>
+<ol>
+<li><strong>概率分布（proposal distribution）</strong>：语言模型在生成下一个词元（token）时，会输出对所有可能词元的概率估计。  </li>
+<li><strong>蒸馏（distillation）</strong>：通过比较教师和学生的分布差异，学生会逐步调整自身参数，使其输出更接近教师模型的风格和推理倾向。</li>
+</ol>
+</blockquote>
+<p>训练所使用的数据，正是之前提到的那 <strong>80 万条高质量样本</strong>——其中包含约 60 万推理样本和 20 万非推理样本。下图展示了这一数据流向： </p>
+
+
+<ul>
+<li>左侧的 <strong>Reasoning</strong>（推理）和 <strong>Answer</strong>（答案）数据，合计 80 万条。  </li>
+<li>由 <strong>DeepSeek-R1</strong>（Teacher）生成或评估，得到对应的概率分布。  </li>
+<li>学生模型 <strong>Qwen-32B</strong> 则根据教师的分布进行学习，最终得到一个蒸馏版本 <strong>DeepSeek-R1-Distill-Qwen-32B</strong>。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/your-image-url.png" alt="使用 80 万条高质量样本蒸馏的流程（图10）"></p>
+<blockquote>
+<p><strong>额外解释</strong>：  </p>
+<ul>
+<li>学生模型不仅仅学习了那 80 万条样本本身的输入-输出模式，也学习到 <strong>DeepSeek-R1</strong> 在面对这些数据时所“倾向”采用的推理策略和概率分布，从而在更小模型上复现类似的推理能力。  </li>
+<li>“Distilled” 模型往往会在推理质量与计算资源之间找到更好的平衡：虽然可能在性能上略逊色于老师模型，但依然能在大多数常见任务上达到令人满意的结果，并且所需资源更低。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="其他未成功的尝试"><a href="#其他未成功的尝试" class="headerlink" title="其他未成功的尝试"></a>其他未成功的尝试</h2><p>在研究过程中，DeepSeek 团队也曾尝试过 <strong>Process Reward Models（PRMs）</strong> 和 <strong>Monte Carlo Tree Search（MCTS）</strong> 等方法来注入推理能力，但结果并不理想：</p>
+<ol>
+<li><p><strong>使用 MCTS</strong>  </p>
+<ul>
+<li>面临的主要问题是搜索空间过于庞大，只能对节点展开进行严格限制。这样一来，效果就大打折扣。  </li>
+<li>此外，精细化训练 Reward Model 也相当困难。</li>
+</ul>
+</li>
+<li><p><strong>使用 PRMs 进行 Best-of-N 策略</strong>  </p>
+<ul>
+<li>如果不断重训练 Reward Model 以防止模型出现“投机取巧”（reward hacking）行为，会带来高昂的计算开销。</li>
+</ul>
+</li>
+</ol>
+<p>这些结果并不意味着这些技术无效，而是说明它们在当前大规模语言模型上的实践还有诸多限制与难点。<strong>DeepSeek-R1</strong> 之所以取得成功，更多依赖于<strong>强化学习 + 监督微调</strong>的组合，以及对大规模高质量数据的挖掘与利用。</p>
+<hr>
+<h2 id="总结与展望"><a href="#总结与展望" class="headerlink" title="总结与展望"></a>总结与展望</h2><p>至此，我们已经大致回顾了 <strong>DeepSeek-R1</strong> 的推理训练之旅。希望以上内容能够让你更好地理解：  </p>
+<ul>
+<li><strong>Test-time compute（推理时计算）</strong> 可以通过模型输出更长、更精细的思考过程（Chain-of-Thought）来取得更佳效果。  </li>
+<li>大规模“<strong>先监督微调，再强化学习</strong>”的训练流程，以及<strong>蒸馏</strong>到更小模型的技术路线，也展现了在硬件资源和推理性能间取得平衡的方法。</li>
+</ul>
+<p>如前所述，<strong>DeepSeek-R1</strong> 引入了多种奖励机制，尤其是针对格式和人类偏好的奖励，来保证回答既正确又易读。“总结推理过程”（Summary）的做法也在很大程度上改善了纯文本Chain-of-Thought过长而导致的可读性问题。</p>
+<hr>
+<h2 id="更多资源"><a href="#更多资源" class="headerlink" title="更多资源"></a>更多资源</h2><p>如果你对 <strong>Large Language Models（LLMs）</strong> 中的推理话题感兴趣，以下资源值得参考：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://newsletter.languagemodels.co/p/the-illustrated-deepseek-r1"><strong>The Illustrated DeepSeek-R1</strong></a>  <ul>
+<li>Jay Alammar 制作的高质量可视化指南，详细介绍了 DeepSeek-R1 模型背后的原理与实现细节。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/HuggingFaceH4/blogpost-scaling-test-time-compute"><strong>Hugging Face 的一篇博文</strong></a>  <ul>
+<li>重点讨论了在推理阶段如何对计算量进行扩展，并给出了有趣的实验。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=6PEJ96k1kiw"><strong>视频 “Speculations on Test-Time Scaling”</strong></a>  <ul>
+<li>深入探讨了在推理阶段进行各种计算扩展的常用技术细节。</li>
+</ul>
+</li>
+</ol>
+<p>此外，作者在文中也提到了一本关于大型语言模型的著作，内含更多可视化和实验结果，是想进一步研究推理 LLMs 的朋友可以深入阅读的好资料。</p>
+<ul>
+<li><strong>Official Website of the Book</strong>: <a target="_blank" rel="noopener" href="https://www.llm-book.com/">llm-book.com</a>  </li>
+<li><strong>Amazon 购买链接</strong>: <a target="_blank" rel="noopener" href="https://www.amazon.com/Hands-Large-Language-Models-Understanding/dp/1098150961">Hands-On Large Language Models: Understanding, Building, and Optimizing LLMs</a>  </li>
+<li><strong>GitHub 代码仓库</strong>: <a target="_blank" rel="noopener" href="https://github.com/handsOnLLM/Hands-On-Large-Language-Models">handsOnLLM/Hands-On-Large-Language-Models</a></li>
+</ul>
+<hr>
+<h3 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h3><p>感谢你阅读本篇关于 <strong>DeepSeek-R1</strong> 的介绍文档。通过对所有图片与文字内容的依次解读，以及对每个环节所涉及的关键技术进行了更多解释，我们希望让你对 <strong>DeepSeek-R1</strong> 的训练流程、蒸馏方法和未成功的尝试都有更加全面的了解。</p>
+<p>在未来，随着硬件性能的提升与更成熟的训练技术出现，<strong>深度推理</strong>与<strong>模型蒸馏</strong>必将在更多实际应用场景中发挥巨大作用。让我们拭目以待！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io">Huiyu Chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1.zh-CN/">https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1.zh-CN/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://chenhuiyu.github.io" target="_blank">黑头呆鱼进化之旅</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/LLM/">LLM</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/03/06/NLP%20Insights/decoder-only%E4%B8%8Eencoder-only%E6%A8%A1%E5%9E%8Bpadding%E7%AD%96%E7%95%A5%E7%9A%84%E5%B7%AE%E5%BC%82.en/" title="Decoder-only与Encoder-only模型Padding策略的差异"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Decoder-only与Encoder-only模型Padding策略的差异</div></div><div class="info-2"><div class="info-item-1">📌 Padding 的含义在大模型 (LLM) 中，padding 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (batch) 处理。 例如： 12句子1: "I love NLP"句子2: "Padding is useful in LLM training"  使用 &lt;pad&gt; token 进行对齐： 12"I love NLP &lt;pad&gt; &lt;pad&gt; &lt;pad&gt;""Padding is useful in LLM training"   📌 Padding 位置的选择：Left vs RightPadding 有两种常见方式：  Right padding（右填充）： 1"I love NLP &lt;pad&gt; &lt;pad&gt;"  Left padding（左填充）： 1"&lt;pad&gt; &lt;pad&gt; I love NLP"  通常：  Decoder-only 模型（如 GPT, Llama）：采用 Left padding Encoder-only 模型（如 BERT）：采用...</div></div></div></a><a class="pagination-related" href="/2025/02/11/NLP%20Insights/%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1.en/" title="推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1</div></div><div class="info-2"><div class="info-item-1">推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1原文地址：A Visual Guide to Reasoning LLMs 📅 作者：Maarten Grootendorst 📆 日期：2025 年 2 月 3 日  📌 引言DeepSeek-R1、OpenAI o3-mini 和 Google Gemini 2.0 Flash Thinking 是如何通过“推理”框架将 LLM（大型语言模型, Large Language Models） 扩展到新高度的典型示例。 它们标志着从 扩展训练时计算（train-time compute） 到 扩展推理时计算（test-time compute） 的范式转变。 在本篇文章中，我们提供了 超过 40 张定制可视化图表，带你深入探索：  推理 LLM（Reasoning LLMs） 领域 推理时计算（Test-Time Compute） 机制 DeepSeek-R1 的核心思想  我们将逐步介绍相关概念，帮助你建立对这一新范式的直觉理解。    📖 什么是推理 LLM？与普通 LLM（Large Langu...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/07/28/NLP%20Insights/longnet-scaling-transformers-to-1-000-000-000-tokens.zh-CN/" title="LONGNET - Scaling Transformers to 1,000,000,000 Tokens"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-28</div><div class="info-item-2">LONGNET - Scaling Transformers to 1,000,000,000 Tokens</div></div><div class="info-2"><div class="info-item-1">LONGNET：将Transformer扩展到10亿个标记在本篇文章中，我们将详细讨论一个近期发布的先进模型——“LongNet”。该模型由微软亚洲研究院研发，于大约两周前正式公布。LongNet基于Transformer模型构建，其核心理念在于拓展Transformer的应用规模。值得一提的是，研究团队成功地将其扩展至处理10亿个令牌的规模。对于熟悉语言模型的人来说，会明白序列长度对模型性能的影响，因为序列长度决定了在执行注意力机制时，能够关联的令牌数量，从而影响模型可以获取的上下文信息长度。例如，我们希望像GPT这样的模型能拥有更长的上下文，使得模型可以参考更久之前的单词来预测下一个令牌。而LongNet就成功地将这个能力扩展到了10亿个令牌。以下图为例，可以清晰看出，GPT的序列长度仅为512，而Power Transformer的序列长度可扩展至12、000、64、262、000、甚至1000万，然而LongNet将序列长度扩展至惊人的10亿个令牌。试想一下，我们可以将所有维基百科的文本信息输入到模型中，模型可以利用所有这些令牌进行注意力计算。接下来，让我们首先来了解一下...</div></div></div></a><a class="pagination-related" href="/2025/03/06/NLP%20Insights/decoder-only%E4%B8%8Eencoder-only%E6%A8%A1%E5%9E%8Bpadding%E7%AD%96%E7%95%A5%E7%9A%84%E5%B7%AE%E5%BC%82.zh-CN/" title="Decoder-only与Encoder-only模型Padding策略的差异"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-06</div><div class="info-item-2">Decoder-only与Encoder-only模型Padding策略的差异</div></div><div class="info-2"><div class="info-item-1">📌 Padding 的含义在大模型 (LLM) 中，padding 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (batch) 处理。 例如： 12句子1: "I love NLP"句子2: "Padding is useful in LLM training"  使用 &lt;pad&gt; token 进行对齐： 12"I love NLP &lt;pad&gt; &lt;pad&gt; &lt;pad&gt;""Padding is useful in LLM training"   📌 Padding 位置的选择：Left vs RightPadding 有两种常见方式：  Right padding（右填充）： 1"I love NLP &lt;pad&gt; &lt;pad&gt;"  Left padding（左填充）： 1"&lt;pad&gt; &lt;pad&gt; I love NLP"  通常：  Decoder-only 模型（如 GPT, Llama）：采用 Left padding Encoder-only 模型（如 BERT）：采用...</div></div></div></a><a class="pagination-related" href="/2024/10/23/NLP%20Insights/lora-dpo-kto-%E4%B8%8E-sft-%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3.zh-CN/" title="LoRA, DPO, KTO 与 SFT 技术详解"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-23</div><div class="info-item-2">LoRA, DPO, KTO 与 SFT 技术详解</div></div><div class="info-2"><div class="info-item-1">LoRA, DPO, KTO 与 SFT 技术详解本篇文档将详细介绍几种在大型语言模型（如 LLAMA3）微调和优化中的重要技术，包括 SFT（Supervised Fine-Tuning）、LoRA（Low-Rank Adaptation）、Alignment 技术、KTO（Kahneman-Tversky Optimization） 和 DPO（Direct Preference Optimization）。文中还将详细阐述每种技术的原理、具体实现方法以及相应的损失函数与优化器选择。  1. SFT（Supervised Fine-Tuning）1.1 原理SFT 是一种传统的微调方法，通过监督学习对预训练模型进行微调，调整模型的参数使其在特定任务上表现更好。SFT 通常用于针对特定的标注数据进行模型微调，训练的过程类似于常规的监督学习。 1.2 实现方法 选择预训练模型：如 GPT、BERT 等语言模型。 准备标注数据集：数据集包含输入和输出对。 训练模型：使用标准的交叉熵损失函数对模型进行训练，通过梯度下降优化参数。  1.3 核心代码使用 Hugging Face 的 ...</div></div></div></a><a class="pagination-related" href="/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.en/" title="MoE模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-11</div><div class="info-item-2">MoE模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色</div></div><div class="info-2"><div class="info-item-1">MoE 模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色原文地址：A Visual Guide to Mixture of Experts (MoE) 📅 作者：Maarten Grootendorst 📆 日期：2024 年 10 月 7 日  探索语言模型：混合专家模型（MoE）可视化指南目录 MoE 模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色 探索语言模型：混合专家模型（MoE）可视化指南 目录 什么是混合专家（MoE）模型？ Experts Dense Layers Sparse Layers What does an Expert Learn? 专家的架构（Architecture of Experts）      当我们查看最新发布的大型语言模型（LLMs，Large Language Models）时，常常会在标题中看到 “MoE”。这个 “MoE” 代表什么？为什么这么多 LLM 都在使用它？ 在这份可视化指南中，我们会通过 50 多个可视化图示，逐步探索这一关键组件：**Mixture of Experts (MoE)**。   图示内...</div></div></div></a><a class="pagination-related" href="/2024/02/28/NLP%20Insights/gorilla-llm-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B.en/" title="Gorilla LLM 大语言模型简介"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-28</div><div class="info-item-2">Gorilla LLM 大语言模型简介</div></div><div class="info-2"><div class="info-item-1">Gorilla LLM 大语言模型简介🦍 Gorilla: Large Language Model Connected with Massive APIsLink: https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html  Berkeley 功能调用排行榜Berkeley 功能调用排行榜 在线体验模型：Gorilla OpenFunctions-v2 网络演示 项目详情：GitHub 模型（7B 参数）在 HuggingFace 上的页面：gorilla-llm/gorilla-openfunctions-v2  1. 伯克利函数调用排行榜自 2022 年底以来，大语言模型（LLMs）凭借其执行通用任务的强大能力，成为众人关注的焦点。不仅限于聊天应用，将这些模型应用于开发各类 AI 应用和软件（如 Langchain, Llama Index, AutoGPT, Voyager）已成为一种趋势。GPT, Gemini, Llama, Mistral 等模型通过与外部世界的交互，如函数调用和执行，展现了其巨大...</div></div></div></a><a class="pagination-related" href="/2024/02/19/NLP%20Insights/%E7%90%86%E8%A7%A3%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%ADfine-tuning%E5%92%8Cfurther-pretraining%E7%9A%84%E5%8C%BA%E5%88%AB.en/" title="理解大型语言模型中Fine-tuning和Further Pretraining的区别"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-19</div><div class="info-item-2">理解大型语言模型中Fine-tuning和Further Pretraining的区别</div></div><div class="info-2"><div class="info-item-1">理解大型语言模型中 Fine-tuning 和 Further Pretraining 的区别在自然语言处理（NLP）领域，大型语言模型，如 GPT 和 BERT 的出现，彻底改变了我们处理文本分类、情感分析和问答等任务的方式。在这些模型的应用中，Fine-tuning（微调）和 Further Pretraining（进一步预训练）是两种关键技术。虽然它们看起来相似，但实际上服务于 NLP 流程中的不同需求和场景。 什么是 Fine-tuning？Fine-tuning 是指在特定任务的数据集上进一步训练（或“微调”）一个预训练好的模型的过程。这种方法在数据集相对较小但标注良好的情况下特别有效。 示例场景：情感分析假设你有一组电影评论数据，每条评论都标记了正面或负面情感。你想创建一个模型来预测评论的情感。 Python 代码示例（使用 PyTorch 和 HuggingFace 的 Transformers）This notebook demonstrates the fine-tuning of a BERT model on the IMDB dataset for sen...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">118</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A8%E7%90%86-LLM-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97%EF%BC%9A%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-DeepSeek-R1"><span class="toc-number">1.</span> <span class="toc-text">推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E5%BC%95%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">📌 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%96-%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%A8%E7%90%86-LLM%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">📖 什么是推理 LLM？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%A0-%E2%80%9C%E6%8E%A8%E7%90%86%E6%AD%A5%E9%AA%A4%E2%80%9D-%E6%88%96-%E2%80%9C%E6%80%9D%E8%80%83%E8%BF%87%E7%A8%8B%E2%80%9D-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">🧠 “推理步骤” 或 “思考过程” 是什么？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%8D-%E4%BB%80%E4%B9%88%E6%98%AF%E8%AE%AD%E7%BB%83%E6%97%B6%E8%AE%A1%E7%AE%97%EF%BC%88Train-time-Compute%EF%BC%89%EF%BC%9F"><span class="toc-number">1.3.</span> <span class="toc-text">🔍 什么是训练时计算（Train-time Compute）？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%A2-%E8%A7%84%E6%A8%A1%E5%AE%9A%E5%BE%8B%EF%BC%88Scaling-Laws%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">🔢 规模定律（Scaling Laws）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%9A%80-%E4%BB%80%E4%B9%88%E6%98%AF%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%EF%BC%88Test-time-Compute%EF%BC%89%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">🚀 什么是推理时计算（Test-time Compute）？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%A2-%E8%A7%84%E6%A8%A1%E5%AE%9A%E5%BE%8B%EF%BC%88Scaling-Laws%EF%BC%89-1"><span class="toc-number">1.4.1.</span> <span class="toc-text">🔢 规模定律（Scaling Laws）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%93%8C-%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E7%9A%84%E7%B1%BB%E5%88%AB%EF%BC%88Categories-of-Test-time-Compute%EF%BC%89"><span class="toc-number">1.4.2.</span> <span class="toc-text">📌 推理时计算的类别（Categories of Test-time Compute）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%8D-%E4%B8%A4%E7%A7%8D%E4%B8%BB%E8%A6%81%E9%AA%8C%E8%AF%81%E5%99%A8%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.4.3.</span> <span class="toc-text">🔍 两种主要验证器类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A7%90-PRM-%E5%A6%82%E4%BD%95%E8%AF%84%E4%BC%B0%E6%8E%A8%E7%90%86%E8%BF%87%E7%A8%8B%EF%BC%9F"><span class="toc-number">1.4.4.</span> <span class="toc-text">🧐 PRM 如何评估推理过程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%8D-ORM-vs-PRM-%E5%9C%A8%E6%8E%A8%E7%90%86%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.4.5.</span> <span class="toc-text">🔍 ORM vs. PRM 在推理中的应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E5%9F%BA%E4%BA%8E%E9%AA%8C%E8%AF%81%E5%99%A8%E7%9A%84%E6%90%9C%E7%B4%A2%EF%BC%88Search-against-Verifiers%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">📌 基于验证器的搜索（Search against Verifiers）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%A4%96-%E9%AA%8C%E8%AF%81%E5%99%A8%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.5.1.</span> <span class="toc-text">🤖 验证器的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%9C%85-%E5%A4%9A%E6%95%B0%E6%8A%95%E7%A5%A8%E6%B3%95%EF%BC%88Majority-Voting%EF%BC%89"><span class="toc-number">1.5.2.</span> <span class="toc-text">✅ 多数投票法（Majority Voting）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%94%A2-Best-of-N-%E9%87%87%E6%A0%B7%E6%B3%95%EF%BC%88Best-of-N-Samples%EF%BC%89"><span class="toc-number">1.5.3.</span> <span class="toc-text">🔢 Best-of-N 采样法（Best-of-N Samples）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E8%BF%9B%E4%B8%80%E6%AD%A5%E4%BC%98%E5%8C%96%EF%BC%9A-%E8%8B%A5%E4%BD%BF%E7%94%A8-PRM%EF%BC%8C%E5%88%99%E4%B8%8D%E5%8F%AA%E8%AF%84%E4%BC%B0%E7%AD%94%E6%A1%88%EF%BC%8C%E8%BF%98%E8%AF%84%E4%BC%B0%E6%95%B4%E4%B8%AA%E6%8E%A8%E7%90%86%E8%BF%87%E7%A8%8B%E3%80%82%E4%B8%8E%E4%BB%85%E8%AF%84%E4%BC%B0%E6%9C%80%E7%BB%88%E7%AD%94%E6%A1%88%E7%9A%84%E7%BB%93%E6%9E%9C%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8B%EF%BC%88ORM%EF%BC%89%E4%B8%8D%E5%90%8C%EF%BC%8C%E8%BF%87%E7%A8%8B%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8B%EF%BC%88PRM%EF%BC%89%E4%BC%9A%E8%AF%84%E4%BC%B0%E6%8E%A8%E7%90%86%E8%BF%87%E7%A8%8B%E7%9A%84%E8%B4%A8%E9%87%8F%E3%80%82PRM-%E5%85%B3%E6%B3%A8%E6%8E%A8%E7%90%86%E7%9A%84%E6%AF%8F%E4%B8%AA%E6%AD%A5%E9%AA%A4%EF%BC%8C%E7%A1%AE%E4%BF%9D%E6%8E%A8%E7%90%86%E8%BF%87%E7%A8%8B%E5%90%88%E7%90%86%E3%80%81%E8%BF%9E%E8%B4%AF%EF%BC%8C%E5%B9%B6%E6%9C%80%E7%BB%88%E9%80%89%E6%8B%A9%E6%80%BB%E8%AF%84%E5%88%86%E6%9C%80%E9%AB%98%E7%9A%84%E5%80%99%E9%80%89%E7%AD%94%E6%A1%88%E3%80%82-%E5%8A%A0%E6%9D%83-Best-of-N-%E9%87%87%E6%A0%B7%EF%BC%88Weighted-Best-of-N-samples%EF%BC%89-%E7%BB%93%E5%90%88-ORM-%E5%92%8C-PRM-%E4%B8%A4%E7%A7%8D%E9%AA%8C%E8%AF%81%E6%96%B9%E5%BC%8F%EF%BC%8C%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E5%AF%B9%E6%89%80%E6%9C%89%E5%80%99%E9%80%89%E7%AD%94%E6%A1%88%E8%BF%9B%E8%A1%8C%E5%8A%A0%E6%9D%83%E8%AF%84%E5%88%86%EF%BC%8C%E5%B9%B6%E9%80%89%E6%8B%A9%E6%80%BB%E6%9D%83%E9%87%8D%E6%9C%80%E9%AB%98%E7%9A%84%E7%AD%94%E6%A1%88%E3%80%82%E8%BF%99%E7%A7%8D%E6%96%B9%E6%B3%95%E7%A7%B0%E4%B8%BA-%E5%8A%A0%E6%9D%83-Best-of-N-%E9%87%87%E6%A0%B7%EF%BC%88Weighted-Best-of-N-samples%EF%BC%89%EF%BC%9A%E3%80%82"><span class="toc-number">1.6.</span> <span class="toc-text">📌 进一步优化：- 若使用 PRM，则不只评估答案，还评估整个推理过程。与仅评估最终答案的结果奖励模型（ORM）不同，过程奖励模型（PRM）会评估推理过程的质量。PRM 关注推理的每个步骤，确保推理过程合理、连贯，并最终选择总评分最高的候选答案。- 加权 Best-of-N 采样（Weighted Best-of-N samples）:结合 ORM 和 PRM 两种验证方式，我们可以对所有候选答案进行加权评分，并选择总权重最高的答案。这种方法称为 加权 Best-of-N 采样（Weighted Best-of-N samples）：。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%9A%80-%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E5%A5%96%E5%8A%B1%E6%A8%A1%E5%9E%8B%EF%BC%88PRM%EF%BC%89%E7%9A%84%E6%9D%9F%E6%90%9C%E7%B4%A2%EF%BC%88Beam-Search%EF%BC%89"><span class="toc-number">1.6.1.</span> <span class="toc-text">🚀 使用过程奖励模型（PRM）的束搜索（Beam Search）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%8E%B2-%E8%92%99%E7%89%B9%E5%8D%A1%E6%B4%9B%E6%A0%91%E6%90%9C%E7%B4%A2%EF%BC%88Monte-Carlo-Tree-Search-MCTS%EF%BC%89"><span class="toc-number">1.6.2.</span> <span class="toc-text">🎲 蒙特卡洛树搜索（Monte Carlo Tree Search, MCTS）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%88%86%E6%95%B0%EF%BC%88Selection-Score%EF%BC%89"><span class="toc-number">1.6.2.1.</span> <span class="toc-text">选择分数（Selection Score）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%80%89%E6%8B%A9%EF%BC%88Selection%EF%BC%89%E4%B8%8E%E6%89%A9%E5%B1%95%EF%BC%88Expand%EF%BC%89"><span class="toc-number">1.6.2.2.</span> <span class="toc-text">2. 选择（Selection）与扩展（Expand）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Rollouts%EF%BC%88%E6%A8%A1%E6%8B%9F%EF%BC%89%E4%B8%8E-Backpropagation%EF%BC%88%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%EF%BC%89"><span class="toc-number">1.6.2.3.</span> <span class="toc-text">3. Rollouts（模拟）与 Backpropagation（反向传播）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89Rollouts%EF%BC%88%E6%A8%A1%E6%8B%9F%EF%BC%89"><span class="toc-number">1.6.3.</span> <span class="toc-text">（3）Rollouts（模拟）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89Backpropagation%EF%BC%88%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%EF%BC%89"><span class="toc-number">1.6.4.</span> <span class="toc-text">（4）Backpropagation（反向传播）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E4%BF%AE%E6%94%B9%E6%8F%90%E8%AE%AE%E5%88%86%E5%B8%83%EF%BC%88Modifying-Proposal-Distribution%EF%BC%89"><span class="toc-number">1.7.</span> <span class="toc-text">📌 修改提议分布（Modifying Proposal Distribution）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Prompting"><span class="toc-number">1.7.1.</span> <span class="toc-text">Prompting</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#STaR%EF%BC%88Self-Taught-Reasoner%EF%BC%89"><span class="toc-number">1.7.2.</span> <span class="toc-text">STaR（Self-Taught Reasoner）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DeepSeek-R1"><span class="toc-number">1.8.</span> <span class="toc-text">DeepSeek-R1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.8.1.</span> <span class="toc-text">1. 简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DeepSeek-R1-Zero%EF%BC%9A%E6%8E%A8%E7%90%86%E7%9A%84%E5%85%B3%E9%94%AE%E6%8E%A2%E7%B4%A2"><span class="toc-number">1.8.2.</span> <span class="toc-text">2. DeepSeek-R1 Zero：推理的关键探索</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%AD%E7%BB%83%E8%BF%87%E7%A8%8B%E4%B8%8E%E7%B3%BB%E7%BB%9F%E6%8F%90%E7%A4%BA%EF%BC%88Prompt%EF%BC%89"><span class="toc-number">1.8.2.1.</span> <span class="toc-text">训练过程与系统提示（Prompt）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E5%A5%96%E5%8A%B1"><span class="toc-number">1.8.2.2.</span> <span class="toc-text">强化学习奖励</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%8F%91%E6%8E%A8%E7%90%86%E8%A1%8C%E4%B8%BA%E7%9A%84%E5%87%BA%E7%8E%B0"><span class="toc-number">1.8.2.3.</span> <span class="toc-text">自发推理行为的出现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3-DeepSeek-R1"><span class="toc-number">1.8.3.</span> <span class="toc-text">3. 深入了解 DeepSeek-R1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%86%B7%E5%90%AF%E5%8A%A8"><span class="toc-number">1.8.3.1.</span> <span class="toc-text">第一步：冷启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E6%8E%A8%E7%90%86%E5%AF%BC%E5%90%91%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.8.3.2.</span> <span class="toc-text">第二步：推理导向的强化学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E6%8B%92%E7%BB%9D%E9%87%87%E6%A0%B7"><span class="toc-number">1.8.3.3.</span> <span class="toc-text">第三步：拒绝采样</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E7%9B%91%E7%9D%A3%E5%BE%AE%E8%B0%83"><span class="toc-number">1.8.3.4.</span> <span class="toc-text">第四步：监督微调</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E5%9C%A8%E6%89%80%E6%9C%89%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%9A%84%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.8.3.5.</span> <span class="toc-text">第五步：在所有场景下的强化学习</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E6%8E%A8%E7%90%86%E7%9F%A5%E8%AF%86%E4%BB%8E-DeepSeek-R1-%E8%92%B8%E9%A6%8F%E5%88%B0%E5%85%B6%E4%BB%96%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.9.</span> <span class="toc-text">将推理知识从 DeepSeek-R1 蒸馏到其他模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%92%B8%E9%A6%8F%E8%BF%87%E7%A8%8B%EF%BC%9ATeacher-Student-%E6%A1%86%E6%9E%B6"><span class="toc-number">1.9.1.</span> <span class="toc-text">蒸馏过程：Teacher-Student 框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%9C%AA%E6%88%90%E5%8A%9F%E7%9A%84%E5%B0%9D%E8%AF%95"><span class="toc-number">1.10.</span> <span class="toc-text">其他未成功的尝试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E4%B8%8E%E5%B1%95%E6%9C%9B"><span class="toc-number">1.11.</span> <span class="toc-text">总结与展望</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E5%A4%9A%E8%B5%84%E6%BA%90"><span class="toc-number">1.12.</span> <span class="toc-text">更多资源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%B4%E8%B0%A2"><span class="toc-number">1.12.1.</span> <span class="toc-text">致谢</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment.en/" title="evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment">evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment</a><time datetime="2026-02-20T16:00:00.000Z" title="发表于 2026-02-21 00:00:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment.zh-CN/" title="evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment">evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment</a><time datetime="2026-02-20T16:00:00.000Z" title="发表于 2026-02-21 00:00:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.zh-CN/" title="SeCom: 重新定义对话AI的记忆管理">SeCom: 重新定义对话AI的记忆管理</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.en/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/06/NLP%20Insights/decoder-only%E4%B8%8Eencoder-only%E6%A8%A1%E5%9E%8Bpadding%E7%AD%96%E7%95%A5%E7%9A%84%E5%B7%AE%E5%BC%82.en/" title="Decoder-only与Encoder-only模型Padding策略的差异">Decoder-only与Encoder-only模型Padding策略的差异</a><time datetime="2025-03-06T09:43:10.000Z" title="发表于 2025-03-06 17:43:10">2025-03-06</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/lang-switch.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

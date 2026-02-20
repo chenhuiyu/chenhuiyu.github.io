@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ColoredLogger-彩色打印日志到控制台并记录到文件 | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="彩色打印日志到控制台并记录到文件本文档介绍了一个名为 ColoredLogger 的日志记录器类，它可以根据不同的消息类型以不同的颜色打印日志，并将日志记录到文件中。该类使用了 colorama 库来实现在控制台中显示带颜色的文本。为了使控制台输出的日志更加易于阅读和理解，我们通常会使用彩色的输出。同时，将日志记录到文件中可以方便我们后续的调试和分析。在Python中，我们可以使用logging和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ColoredLogger-彩色打印日志到控制台并记录到文件">
+<meta property="og:url" content="https://chenhuiyu.github.io/2023/07/10/Code%20Chronicles/coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6.en/index.html">
+<meta property="og:site_name" content="黑头呆鱼进化之旅">
+<meta property="og:description" content="彩色打印日志到控制台并记录到文件本文档介绍了一个名为 ColoredLogger 的日志记录器类，它可以根据不同的消息类型以不同的颜色打印日志，并将日志记录到文件中。该类使用了 colorama 库来实现在控制台中显示带颜色的文本。为了使控制台输出的日志更加易于阅读和理解，我们通常会使用彩色的输出。同时，将日志记录到文件中可以方便我们后续的调试和分析。在Python中，我们可以使用logging和">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2023-07-10T07:02:44.000Z">
+<meta property="article:modified_time" content="2026-02-20T22:19:17.278Z">
+<meta property="article:author" content="Huiyu Chen">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ColoredLogger-彩色打印日志到控制台并记录到文件",
+  "url": "https://chenhuiyu.github.io/2023/07/10/Code%20Chronicles/coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6.en/",
+  "image": "https://chenhuiyu.github.io/img/butterfly-icon.png",
+  "datePublished": "2023-07-10T07:02:44.000Z",
+  "dateModified": "2026-02-20T22:19:17.278Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Huiyu Chen",
+      "url": "https://chenhuiyu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/2023/07/10/Code%20Chronicles/coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6.en/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ColoredLogger-彩色打印日志到控制台并记录到文件',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a><a class="nav-page-title" href="/"><span class="site-name">ColoredLogger-彩色打印日志到控制台并记录到文件</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">ColoredLogger-彩色打印日志到控制台并记录到文件</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-07-10T07:02:44.000Z" title="Created 2023-07-10 15:02:44">2023-07-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-20T22:19:17.278Z" title="Updated 2026-02-21 06:19:17">2026-02-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Code-Chronicles/">Code Chronicles</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="彩色打印日志到控制台并记录到文件"><a href="#彩色打印日志到控制台并记录到文件" class="headerlink" title="彩色打印日志到控制台并记录到文件"></a>彩色打印日志到控制台并记录到文件</h1><p>本文档介绍了一个名为 ColoredLogger 的日志记录器类，它可以根据不同的消息类型以不同的颜色打印日志，并将日志记录到文件中。该类使用了 colorama 库来实现在控制台中显示带颜色的文本。为了使控制台输出的日志更加易于阅读和理解，我们通常会使用彩色的输出。同时，将日志记录到文件中可以方便我们后续的调试和分析。在Python中，我们可以使用<code>logging</code>和<code>colorama</code>库来实现这样的功能。</p>
+
+<p>以下是一个如何使用这两个库的详细介绍。</p>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
+<li>可以根据不同的消息类型以不同的颜色打印日志消息。</li>
+<li>将日志消息记录到文件中，使用标准的 <code>logging</code> 模块进行记录。</li>
+<li>在控制台中显示带颜色的日志消息。</li>
+</ul>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p><code>logging</code>库提供了强大的日志记录功能，允许我们将日志记录到控制台、文件或者其他输出设备，并提供了详细的配置选项。</p>
+<p><code>colorama</code>库可以使我们在控制台输出彩色的文本。它提供了对ANSI颜色编码的支持，可以在几乎所有的平台和终端中使用。</p>
+<p>我们先初始化<code>colorama</code>，然后定义了一个<code>ColoredLogger</code>类，它包含了各种彩色的输出样式和对应的日志级别。然后，我们设置了<code>logging</code>的配置，定义了日志的输出级别、输出文件和文件模式。最后，我们使用<code>ColoredLogger</code>的<code>log</code>方法来记录日志，它会同时将彩色的文本输出到控制台，并去除颜色控制字符后写入文件。<br><code>ColoredLogger</code> 类使用了 <code>colorama</code> 库来设置控制台中的颜色输出。它通过定义不同类型消息的颜色，并使用 <code>Fore</code> 和 <code>Style</code> 类来应用相应的颜色。</p>
+<p><code>ColoredLogger</code> 类的 <code>log</code> 方法接受两个参数：<code>msg_type</code> 和 <code>msg</code>。根据 <code>msg_type</code> 参数的值，方法将选择适当的颜色，并将带有颜色的消息打印到控制台上。然后，它使用正则表达式去除颜色控制字符，并使用 <code>logging.info</code> 方法将不带颜色的消息记录到文件中。</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
+<li><p>安装 <code>colorama</code> 库，使用以下命令：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install colorama</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>导入所需的模块和类：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> logging</span><br><span class="line"><span class="keyword">from</span> colorama <span class="keyword">import</span> init, Fore, Style</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>初始化 <code>colorama</code>：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init(autoreset=<span class="literal">True</span>)</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>定义 <code>ColoredLogger</code> 类，并设置不同类型消息的颜色。例如：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ColoredLogger</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">         self.type_A = Fore.CYAN + Style.BRIGHT</span><br><span class="line">         self.type_B = Fore.GREEN + Style.BRIGHT</span><br><span class="line">         self.type_C = Fore.YELLOW + Style.BRIGHT</span><br><span class="line">         self.type_D = Fore.MAGENTA + Style.BRIGHT</span><br><span class="line">         self.type_E = Fore.BLUE + Style.BRIGHT</span><br><span class="line">         self.RESET = Style.RESET_ALL</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>实例化 <code>ColoredLogger</code> 类，并使用 <code>log</code> 方法打印和记录日志消息。例如：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">logger = ColoredLogger()</span><br><span class="line">logger.log(<span class="string">'type_A'</span>, <span class="string">'This is a test message for type A.'</span>)</span><br><span class="line">logger.log(<span class="string">'type_B'</span>, <span class="string">'This is a test message for type B.'</span>)</span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>通过以下命令配置日志记录器，将日志消息写入文件：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logging.basicConfig(level=logging.INFO, filename=<span class="string">'example.log'</span>, filemode=<span class="string">'w'</span>)</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>运行代码，查看在控制台和文件中显示的带颜色的日志消息。</p>
+</li>
+</ol>
+<h2 id="完整代码实现"><a href="#完整代码实现" class="headerlink" title="完整代码实现"></a>完整代码实现</h2><pre><code class="python">import re
+import logging
+from colorama import init, Fore, Style
+
+# Initialize colorama
+init(autoreset=True)
+
+class ColoredLogger:
+
+    def __init__(self):
+        self.type_A = Fore.CYAN + Style.BRIGHT
+        self.type_B = Fore.GREEN + Style.BRIGHT
+        self.type_C = Fore.YELLOW + Style.BRIGHT
+        self.type_D = Fore.MAGENTA + Style.BRIGHT
+        self.type_E = Fore.BLUE + Style.BRIGHT
+        self.RESET = Style.RESET_ALL
+
+    def log(self, msg_type, msg):
+        if msg_type == "type_A":
+            self.print_and_log(self.type_A + f"type_A: {msg}" + self.RESET)
+        elif msg_type == "type_B":
+            self.print_and_log(self.type_B + f"type_B: {msg}" + self.RESET)
+        elif msg_type == "type_C":
+            self.print_and_log(self.type_C + f"type_C: {msg}" + self.RESET)
+        elif msg_type == "type_D":
+            self.print_and_log(self.type_D + f"type_D: {msg}" + self.RESET)
+        elif msg_type == "type_E":
+            self.print_and_log(self.type_E + f"type_E: {msg}" + self.RESET)
+
+    def print_and_log(self, msg):
+        # Print to console with color
+        print(msg)
+
+        # Remove color control chars for logging to file
+        msg_without_color = re.sub('\x1b\[[0-9;]*m', '', msg)
+        logging.info(msg_without_color)
+
+# Setup logging configuration
+logging.basicConfig(level=logging.INFO, filename='example.log', filemode='w')
+
+# Use the ColoredLogger
+logger = ColoredLogger()
+logger.log('type_A', 'This is a test message for type A.')
+logger.log('type_B', 'This is a test message for type B.')
+logger.log('type_C', 'This is a test message for type C.')
+logger.log('type_D', 'This is a test message for type D.')
+logger.log('type_E', 'This is a test message for type E.')
+```![Alt text](image.png)
+
+## 注意事项
+1. `colorama`库的颜色和样式可能在不同的平台和终端上有不同的效果，所以需要在目标环境上进行测试。
+2. 在写入文件时，需要去除颜色控制字符，否则会在文本中留下一些无法识别的字符。
+3. 在设置`logging`的配置时，需要注意文件模式的设置。'w'模式会在每次运行时覆盖之前的日志，而'a'模式则会在之前的日志后追加新的日志。
+4. 使用`logging`库记录日志时，需要注意日志的级别。不同级别的日志会有不同的输出效果和记录方式。
+5. 需要注意线程安全。如果在多线程环境下使用`logging`库，可能需要额外的配置来保证线程安全。
+</code></pre>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io">Huiyu Chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io/2023/07/10/Code%20Chronicles/coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6.en/">https://chenhuiyu.github.io/2023/07/10/Code%20Chronicles/coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6.en/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Python/">Python</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/07/10/Code%20Chronicles/coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6.zh-CN/" title="ColoredLogger-彩色打印日志到控制台并记录到文件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">ColoredLogger-彩色打印日志到控制台并记录到文件</div></div><div class="info-2"><div class="info-item-1">彩色打印日志到控制台并记录到文件本文档介绍了一个名为 ColoredLogger 的日志记录器类，它可以根据不同的消息类型以不同的颜色打印日志，并将日志记录到文件中。该类使用了 colorama 库来实现在控制台中显示带颜色的文本。为了使控制台输出的日志更加易于阅读和理解，我们通常会使用彩色的输出。同时，将日志记录到文件中可以方便我们后续的调试和分析。在Python中，我们可以使用logging和colorama库来实现这样的功能。  以下是一个如何使用这两个库的详细介绍。 功能 可以根据不同的消息类型以不同的颜色打印日志消息。 将日志消息记录到文件中，使用标准的 logging 模块进行记录。 在控制台中显示带颜色的日志消息。  原理logging库提供了强大的日志记录功能，允许我们将日志记录到控制台、文件或者其他输出设备，并提供了详细的配置选项。 colorama库可以使我们在控制台输出彩色的文本。它提供了对ANSI颜色编码的支持，可以在几乎所有的平台和终端中使用。 我们先初始化colorama，然后定义了一个ColoredLogger类，它包含了各种彩色的输出样式和对应的日...</div></div></div></a><a class="pagination-related" href="/2023/07/09/NLP%20Insights/%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95.zh-CN/" title="详解梯度下降算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">详解梯度下降算法</div></div><div class="info-2"><div class="info-item-1">梯度梯度是一个在微积分中使用的重要概念，它用于衡量函数在给定点上的方向导数沿各个方向最大时的最大值。对于一个标量函数，梯度的方向是函数增长最快的方向，而梯度的反方向则是函数减小最快的方向。 定义对于在点$x \in \mathbb{R}^n$可微的函数$f: \mathbb{R}^n \rightarrow \mathbb{R}$，其梯度被定义为一个向量，其各个分量为函数在该点上的偏导数。对于函数$f(x_1, x_2, …, x_n)$，它的梯度可以表示为： $$\nabla f(x) = \left[ \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, …, \frac{\partial f}{\partial x_n} \right]^T$$ 这里，$\nabla f(x)$表示$f(x)$的梯度，$\frac{\partial f}{\partial x_i}$表示$f$关于$x_i$的偏导数，$T$表示矩阵转置。 物理含义梯度有一个重要的物理含义。在二维空间中，可以把函数$f(x, y)$看...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.en/" title="【Leetcode Python题解】「1346. Check If N and Its Double Exist」"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-02</div><div class="info-item-2">【Leetcode Python题解】「1346. Check If N and Its Double Exist」</div></div><div class="info-2"><div class="info-item-1">【Leetcode Python题解】「1346. Check If N and Its Double Exist」题目：1346. Check If N and Its Double Exist题目描述给定一个整数数组 arr，检查是否存在两个不同的索引 i 和 j，满足：  i != j 0 &lt;= i, j &lt; arr.length arr[i] == 2 * arr[j]  示例示例 1: 123输入：arr = [10,2,5,3]输出：true解释：对于 i = 0 和 j = 2，arr[i] = 10 等于 2 * 5 = 2 * arr[j]  示例 2: 123输入：arr = [3,1,7,11]输出：false解释：不存在满足条件的 i 和 j。  约束条件 2 &lt;= arr.length &lt;= 500 -10³ &lt;= arr[i] &lt;= 10³  解题思路这道题可以用多种方法解决，我们来分析两种主要的解法：暴力解法和哈希表解法。 1. 暴力解法最直观的解法是使用两层循环，遍历所有可能的数对。 1234567def che...</div></div></div></a><a class="pagination-related" href="/2024/03/01/Code%20Chronicles/python%E9%A2%98%E8%A7%A3-2369-%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86.zh-CN/" title="【Python题解】2369. 检查数组是否存在有效划分"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-01</div><div class="info-item-2">【Python题解】2369. 检查数组是否存在有效划分</div></div><div class="info-2"><div class="info-item-1">【Python 题解】2369. 检查数组的有效划分方法题目概述Leetcode 的题目 2369 要求我们检查一个整数数组nums是否可以划分为一个或多个满足特定条件的连续子数组。有效的划分条件包括：  子数组由两个相等的元素组成，如 [2, 2]。 子数组由三个相等的元素组成，如 [3, 3, 3]。 子数组由三个连续递增的元素组成，且相邻元素之间差值为 1，如 [4, 5, 6]。  如果数组至少存在一种有效划分，则返回true；否则返回false。 示例分析 示例 1：nums = [4, 4, 4, 5, 6]可以划分为 [4, 4] 和 [4, 5, 6]，因此返回true。 示例 2：nums = [1, 1, 1, 2]不满足任何划分条件，因此返回false。  解题思路采用动态规划策略，我们定义一个布尔数组dp，其中dp[i]表示数组的前i个元素是否可以有效地划分。遍历数组，对于每个位置i，尝试以下三种划分方式：  子数组由最后两个相等的元素组成。 子数组由最后三个相等的元素组成。 子数组由最后三个连续递增的元素组成。  算法流程 初始化 dp[0] 为 tru...</div></div></div></a><a class="pagination-related" href="/2024/03/02/Code%20Chronicles/python%E9%A2%98%E8%A7%A3-100231-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-i.en/" title="【Python题解】100231. 超过阈值的最少操作数 I"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-02</div><div class="info-item-2">【Python题解】100231. 超过阈值的最少操作数 I</div></div><div class="info-2"><div class="info-item-1">超过阈值的最少操作数 I题目给定一个下标从 0 开始的整数数组 nums 和一个整数 k。在每次操作中，你可以删除 nums 中的最小元素。目标是通过最少的操作次数使数组中的所有元素都大于或等于 k。需要返回实现此目标所需的最少操作次数。 示例示例 1:  输入：nums = [2, 11, 10, 1, 3], k = 10 输出：3 解释： 第一次操作后，nums 变为 [2, 11, 10, 3]。 第二次操作后，nums 变为 [11, 10, 3]。 第三次操作后，nums 变为 [11, 10]。 此时，数组中的所有元素都大于等于 10，所以停止操作。 使数组中所有元素都大于等于 10 需要的最少操作次数为 3。    示例 2:  输入：nums = [1, 1, 2, 4, 9], k = 1 输出：0 解释：数组中的所有元素都大于等于 1，所以不需要对 nums 做任何操作。  示例 3:  输入：nums = [1, 1, 2, 4, 9], k = 9 输出：4 解释：nums 中只有一个元素大于等于 9，所以需要执行 4 次操作。  提示 1 &lt;= ...</div></div></div></a><a class="pagination-related" href="/2024/12/01/Code%20Chronicles/leetcode-python-solution-2097-valid-arrangement-of-pairs.en/" title="Leetcode Python Solution - 2097. Valid Arrangement of Pairs"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-01</div><div class="info-item-2">Leetcode Python Solution - 2097. Valid Arrangement of Pairs</div></div><div class="info-2"><div class="info-item-1">[Leetcode Python Solution] 2097. Valid Arrangement of PairsIn this technical blog, we’ll dive deep into Leetcode Problem 2097 — Valid Arrangement of Pairs. We will break down the solution step by step, from understanding the problem, modeling it as a graph theory problem, to implementing the solution. Problem Link: 2097. Valid Arrangement of Pairs  Problem DescriptionGiven a 2D array pairs where pairs[i] = [start, end], you need to rearrange these pairs so that for adjacent pairs [start1, end...</div></div></div></a><a class="pagination-related" href="/2024/03/04/Code%20Chronicles/python%E9%A2%98%E8%A7%A3-100226-%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE.zh-CN/" title="【Python题解】100226. 在带权树网络中统计可连接服务器对数目"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-04</div><div class="info-item-2">【Python题解】100226. 在带权树网络中统计可连接服务器对数目</div></div><div class="info-2"><div class="info-item-1">题目：100226. 在带权树网络中统计可连接服务器对数目题目描述你被给定一个未定根的加权树，它有 n 个顶点，代表从 0 到 n - 1 编号的服务器，一个数组 edges，其中 edges[i] = [ai, bi, weighti] 代表顶点 ai 和 bi 之间的双向边，边的权重为 weighti。你还被给定一个整数 signalSpeed。 如果满足以下条件，两个服务器 a 和 b 可以通过服务器 c 连接：  a &lt; b，a != c 且 b != c。 从 c 到 a 的距离可被 signalSpeed 整除。 从 c 到 b 的距离可被 signalSpeed 整除。 从 c 到 b 和从 c 到 a 的路径不共享任何边。  返回一个整数数组 count，长度为 n，其中 count[i] 是通过服务器 i 可连接的服务器对数。 示例示例 1: 输入: edges = [[0,1,1],[1,2,5],[2,3,13],[3,4,9],[4,5,2]], signalSpeed = 1输出: [0,4,6,6,4,0]解释: 由于 signalSpeed 为...</div></div></div></a><a class="pagination-related" href="/2024/03/08/Code%20Chronicles/python%E9%A2%98%E8%A7%A3-2834-%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C.en/" title="【Python题解】2834. 找出美丽数组的最小和"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-08</div><div class="info-item-2">【Python题解】2834. 找出美丽数组的最小和</div></div><div class="info-2"><div class="info-item-1">2834. 找出美丽数组的最小和 Problem: 2834. 找出美丽数组的最小和  题目描述给定两个正整数 n 和 target，目标是找到一个长度为 n 的数组，满足以下条件：  数组由两两不同的正整数组成。 不存在两个不同下标 i 和 j 使得 nums[i] + nums[j] == target。返回符合条件的美丽数组所可能具备的最小和，并对结果进行 10^9 + 7 取模。  测试用例示例 1：  输入：n = 2, target = 3 输出：4  示例 2：  输入：n = 3, target = 3 输出：8  示例 3：  输入：n = 1, target = 1 输出：1  原始思路方案初始方案是从最小的数字开始，逐个检查每个数字是否可以被添加到数组中，同时确保不会存在两个数字之和等于 target。  从 1 开始逐个尝试添加数字到数组。 对于每个数字，检查是否与数组中已有的数字相加会得到 target。 如果不会，将其添加到数组中。 继续此过程，直到数组长度达到 n。  代码123456789101112def minimumPossibleSum(n...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">118</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">彩色打印日志到控制台并记录到文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.4.</span> <span class="toc-text">完整代码实现</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment.en/" title="evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment">evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment</a><time datetime="2026-02-20T16:00:00.000Z" title="发表于 2026-02-21 00:00:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment.zh-CN/" title="evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment">evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment</a><time datetime="2026-02-20T16:00:00.000Z" title="发表于 2026-02-21 00:00:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.zh-CN/" title="SeCom: 重新定义对话AI的记忆管理">SeCom: 重新定义对话AI的记忆管理</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.en/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/06/NLP%20Insights/decoder-only%E4%B8%8Eencoder-only%E6%A8%A1%E5%9E%8Bpadding%E7%AD%96%E7%95%A5%E7%9A%84%E5%B7%AE%E5%BC%82.en/" title="Decoder-only与Encoder-only模型Padding策略的差异">Decoder-only与Encoder-only模型Padding策略的差异</a><time datetime="2025-03-06T09:43:10.000Z" title="发表于 2025-03-06 17:43:10">2025-03-06</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/lang-switch.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

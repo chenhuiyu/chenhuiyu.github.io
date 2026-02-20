@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SeCom: Redefining Memory Management in Conversational AI | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SeCom: Redefining Memory Management in Conversational AIForewordI’ve recently been diving into memory management for dialog-based AI, especially how to construct and retrieve memories in long-term con">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SeCom: Redefining Memory Management in Conversational AI">
+<meta property="og:url" content="https://chenhuiyu.github.io/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.en/index.html">
+<meta property="og:site_name" content="黑头呆鱼进化之旅">
+<meta property="og:description" content="SeCom: Redefining Memory Management in Conversational AIForewordI’ve recently been diving into memory management for dialog-based AI, especially how to construct and retrieve memories in long-term con">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2025-06-24T08:00:00.000Z">
+<meta property="article:modified_time" content="2026-02-20T22:19:17.268Z">
+<meta property="article:author" content="Huiyu Chen">
+<meta property="article:tag" content="Conversational AI">
+<meta property="article:tag" content="Memory Management">
+<meta property="article:tag" content="SeCom">
+<meta property="article:tag" content="RAG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SeCom: Redefining Memory Management in Conversational AI",
+  "url": "https://chenhuiyu.github.io/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.en/",
+  "image": "https://chenhuiyu.github.io/img/butterfly-icon.png",
+  "datePublished": "2025-06-24T08:00:00.000Z",
+  "dateModified": "2026-02-20T22:19:17.268Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Huiyu Chen",
+      "url": "https://chenhuiyu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.en/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SeCom: Redefining Memory Management in Conversational AI',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a><a class="nav-page-title" href="/"><span class="site-name">SeCom: Redefining Memory Management in Conversational AI</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">SeCom: Redefining Memory Management in Conversational AI</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-06-24T08:00:00.000Z" title="Created 2025-06-24 16:00:00">2025-06-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-20T22:19:17.268Z" title="Updated 2026-02-21 06:19:17">2026-02-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/NLP-Insights/">NLP Insights</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="SeCom-Redefining-Memory-Management-in-Conversational-AI"><a href="#SeCom-Redefining-Memory-Management-in-Conversational-AI" class="headerlink" title="SeCom: Redefining Memory Management in Conversational AI"></a>SeCom: Redefining Memory Management in Conversational AI</h1><h2 id="Foreword"><a href="#Foreword" class="headerlink" title="Foreword"></a>Foreword</h2><p>I’ve recently been diving into memory management for dialog-based AI, especially how to construct and retrieve memories in long-term conversations. During my exploration I came across an eye-opening ICLR 2025 paper—**”SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents”**—a collaboration between Microsoft and Tsinghua University.</p>
+<p>SeCom solves a core problem: <strong>How can an agent effectively manage and retrieve historical information in prolonged conversations?</strong> In this post I’ll unpack the method’s key ideas and technical innovations, hoping to spark inspiration for researchers working in this arena.</p>
+<h2 id="1-Why-Should-We-Care-About-Dialog-Memory-Management"><a href="#1-Why-Should-We-Care-About-Dialog-Memory-Management" class="headerlink" title="1. Why Should We Care About Dialog Memory Management?"></a>1. Why Should We Care About Dialog Memory Management?</h2><h3 id="1-1-Real-World-Challenges-in-Long-Conversations"><a href="#1-1-Real-World-Challenges-in-Long-Conversations" class="headerlink" title="1.1 Real-World Challenges in Long Conversations"></a>1.1 Real-World Challenges in Long Conversations</h3><p>Anyone who chats with LLMs regularly has probably experienced this: once a conversation grows long, the agent seems to “forget” earlier context or respond incoherently. That’s the memory problem in action.</p>
+<p>Even with long-context models, super-long dialogs increase compute cost and often degrade quality. Key challenges include:</p>
+<ul>
+<li><strong>Context length limits</strong>: Token budgets remain finite.</li>
+<li><strong>Information relevance</strong>: History contains plenty of facts irrelevant to the current query.</li>
+<li><strong>Semantic coherence</strong>: Related information may be scattered across non-contiguous turns.</li>
+<li><strong>Personalization</strong>: The agent must remember user preferences and interaction patterns.</li>
+</ul>
+<h3 id="1-2-A-Quick-Landscape-of-Existing-Approaches"><a href="#1-2-A-Quick-Landscape-of-Existing-Approaches" class="headerlink" title="1.2 A Quick Landscape of Existing Approaches"></a>1.2 A Quick Landscape of Existing Approaches</h3><p>The community’s strategies roughly split into three camps:</p>
+<ol>
+<li><strong>“Give Me Everything” (full history)</strong><ul>
+<li>Complete information, zero recall loss.</li>
+<li>But like moving an entire library just to find one book—computational overkill.</li>
+</ul>
+</li>
+<li><strong>“Bullet-Point Digest” (summaries)</strong><ul>
+<li>Compact and efficient.</li>
+<li>Risk of omitting crucial details during abstraction.</li>
+</ul>
+</li>
+<li><strong>“Precision Strike” (retrieval-based)</strong><ul>
+<li>Fetch only what you need, exactly when you need it.</li>
+<li>Success hinges on choosing the right retrieval granularity—precisely the issue SeCom addresses.</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-2-3-Retrieval-Augmented-Generation-RAG-in-Dialog"><a href="#1-2-3-Retrieval-Augmented-Generation-RAG-in-Dialog" class="headerlink" title="1.2.3 Retrieval-Augmented Generation (RAG) in Dialog"></a>1.2.3 Retrieval-Augmented Generation (RAG) in Dialog</h4><p>RAG faces dialog-specific hurdles:</p>
+<ul>
+<li><strong>Chunking strategy</strong>: How to segment a dialog into retrievable units.</li>
+<li><strong>Relevance estimation</strong>: Harder than in static docs due to dialog dynamics.</li>
+<li><strong>Temporal dependency</strong>: Order matters; turns refer to earlier context.</li>
+</ul>
+<h3 id="1-3-The-Granularity-Dilemma"><a href="#1-3-The-Granularity-Dilemma" class="headerlink" title="1.3 The Granularity Dilemma"></a>1.3 The Granularity Dilemma</h3><p>We often index memories at the turn-level or at the whole-conversation level. Both extremes break down:</p>
+<ul>
+<li><strong>Turn-level</strong> → fragments context, loses dependencies, retrieval recall suffers.</li>
+<li><strong>Conversation-level</strong> → topic mixture, lots of noise, retrieval becomes coarse.</li>
+<li><strong>Summaries</strong> → irreversible information loss.</li>
+</ul>
+<p>SeCom’s insight: dialog naturally contains <strong>paragraph-level thematic boundaries</strong>. Segmenting at this “just-right” granularity preserves coherence without exploding memory size.</p>
+<h2 id="2-Inside-SeCom"><a href="#2-Inside-SeCom" class="headerlink" title="2. Inside SeCom"></a>2. Inside SeCom</h2><h3 id="2-1-Two-Key-Insights"><a href="#2-1-Two-Key-Insights" class="headerlink" title="2.1 Two Key Insights"></a>2.1 Two Key Insights</h3><ol>
+<li><strong>Paragraph-like Topic Shifts</strong> exist in dialog just as in essays.</li>
+<li><strong>Natural Language Is Redundant</strong>—filler words, confirmations, small talk, etc. Removing them boosts retrieval precision.</li>
+</ol>
+<p>Hence <strong>SeCom = Segmentation + Compression</strong>.</p>
+<h3 id="2-2-System-Pipeline"><a href="#2-2-System-Pipeline" class="headerlink" title="2.2 System Pipeline"></a>2.2 System Pipeline</h3><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">History → [Segmenter] → Paragraph-level units → [Compressor] → Denoised memories → [Retriever] → Relevant context → [Generator] → Final reply</span><br></pre></td></tr></tbody></table></figure>
+
+<p>Technically:</p>
+<ol>
+<li>Segmenter $f_{\mathcal I}$ splits the dialog.</li>
+<li>Compressor $f_{comp}$ denoises each segment.</li>
+<li>Retriever $f_R$ ranks memories for the current user utterance $u^*$.</li>
+<li>LLM $f_{LLM}$ produces the answer based on top-N memories.</li>
+</ol>
+<h3 id="2-3-How-to-Segment-Without-Labels"><a href="#2-3-How-to-Segment-Without-Labels" class="headerlink" title="2.3 How to Segment Without Labels"></a>2.3 How to Segment Without Labels</h3><p>SeCom leverages GPT-4 in a <strong>zero-shot</strong> fashion: craft a prompt asking the model to mark topic boundaries and output span indices. No training data required.</p>
+<p>When limited gold data are available, a <strong>reflection-based</strong> loop iteratively refines the guidelines using WindowDiff scores and GPT-4 reasoning.</p>
+<p>An <strong>incremental segmenter</strong> decides on-the-fly whether a new turn merges into the previous segment or starts a fresh one.</p>
+<h3 id="2-4-Denoising-via-LLMLingua-2"><a href="#2-4-Denoising-via-LLMLingua-2" class="headerlink" title="2.4 Denoising via LLMLingua-2"></a>2.4 Denoising via LLMLingua-2</h3><p>LLMLingua-2 scores token importance and keeps the top $(1-r)$ fraction (e.g., 25 %) accordingly. Empirically, retaining just 25 % tokens preserves <strong>&gt;95 %</strong> key information, lifts retrieval GPT4Score by <strong>+9.46</strong>, and yields 4 × speed-up.</p>
+<h3 id="2-5-Hybrid-Retrieval"><a href="#2-5-Hybrid-Retrieval" class="headerlink" title="2.5 Hybrid Retrieval"></a>2.5 Hybrid Retrieval</h3><p>BM25 (sparse) and MPNet (dense) scores are linearly combined:</p>
+<p>$$\text{score}_{hybrid}=\alpha,\text{BM25}+(1-\alpha),\text{MPNet}, \quad \alpha=0.6$$</p>
+<h2 id="3-Final-Thoughts"><a href="#3-Final-Thoughts" class="headerlink" title="3. Final Thoughts"></a>3. Final Thoughts</h2><h3 id="3-1-What-SeCom-Teaches-Us"><a href="#3-1-What-SeCom-Teaches-Us" class="headerlink" title="3.1 What SeCom Teaches Us"></a>3.1 What SeCom Teaches Us</h3><ul>
+<li><strong>Simplicity Wins</strong>: Segment + Compress, nothing fancy, yet highly effective.</li>
+<li><strong>Understand the Problem First</strong>: The authors nailed the granularity pain-point before designing a solution.</li>
+</ul>
+<p>Future directions:</p>
+<ul>
+<li><strong>Personalized segmentation</strong> tuned to each user’s dialog style.</li>
+<li><strong>Real-time adaptation</strong> of compression and segmentation based on quality metrics.</li>
+</ul>
+<hr>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><strong>Paper</strong>: <a target="_blank" rel="noopener" href="https://www.arxiv.org/abs/2502.05589">SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents (ICLR 2025)</a></li>
+<li><strong>Project Page</strong>: <a target="_blank" rel="noopener" href="https://llmlingua.com/secom.html">https://llmlingua.com/secom.html</a></li>
+<li><strong>Code</strong>: SeCom-main</li>
+<li><strong>Datasets</strong>: LOCOMO, Long-MT-Bench+, DialSeg711, TIAGE, SuperDialSeg</li>
+</ul>
+<p><em>This post is based on Microsoft &amp; Tsinghua University’s ICLR 2025 paper. Please refer to the original publication and open-source repo for implementation details.</em> </p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io">Huiyu Chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.en/">https://chenhuiyu.github.io/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.en/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Conversational-AI/">Conversational AI</a><a class="post-meta__tags" href="/tags/Memory-Management/">Memory Management</a><a class="post-meta__tags" href="/tags/SeCom/">SeCom</a><a class="post-meta__tags" href="/tags/RAG/">RAG</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/02/21/NLP%20Insights/evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment.en/" title="evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment</div></div><div class="info-2"><div class="info-item-1">Evaluation of Generation-Based Large Language Models (LLMs): Opportunities and Challenges from Generation to JudgmentAbstractEvaluation tasks in artificial intelligence (AI) and natural language processing (NLP) have long been challenging. Traditional evaluation methods, such as those based on matching or embeddings, are limited in assessing complex attributes. The recent development of large language models (LLMs) has given rise to the “LLM-as-a-Judge” paradigm, which utilizes LLMs for scori...</div></div></div></a><a class="pagination-related" href="/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.zh-CN/" title="SeCom: 重新定义对话AI的记忆管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">SeCom: 重新定义对话AI的记忆管理</div></div><div class="info-2"><div class="info-item-1">SeCom: 重新定义对话AI的记忆管理写在前面最近笔者一直在研究对话AI中的内存管理问题，特别是长期对话场景下的记忆构建与检索技术。发现了一篇令人眼前一亮的ICLR 2025论文——《SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents》，由Microsoft和清华大学的研究团队联合发表。 这篇论文提出的SeCom方法巧妙地解决了一个核心问题：如何在长期对话中有效管理和检索历史信息？今天想和大家分享一下这个方法的技术细节和创新点，希望能为从事相关研究的朋友们提供一些启发。 1. 为什么我们需要关注对话内存管理？1.1 长期对话的现实挑战在与LLMs的日常交互中，相信大家都遇到过这样的困扰：当对话变得很长时，AI似乎”忘记”了之前讨论的内容，或者给出的回答与前面的上下文不够连贯。这背后反映的正是长期对话中的内存管理挑战。 随着大语言模型技术的成熟，基于LLM的对话代理已经深入到我们生活的方方面面。但是，当我们希望与AI进行真正的长期、个性化交互时——比如跨越数天、数周的...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.zh-CN/" title="SeCom: 重新定义对话AI的记忆管理"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-06-24</div><div class="info-item-2">SeCom: 重新定义对话AI的记忆管理</div></div><div class="info-2"><div class="info-item-1">SeCom: 重新定义对话AI的记忆管理写在前面最近笔者一直在研究对话AI中的内存管理问题，特别是长期对话场景下的记忆构建与检索技术。发现了一篇令人眼前一亮的ICLR 2025论文——《SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents》，由Microsoft和清华大学的研究团队联合发表。 这篇论文提出的SeCom方法巧妙地解决了一个核心问题：如何在长期对话中有效管理和检索历史信息？今天想和大家分享一下这个方法的技术细节和创新点，希望能为从事相关研究的朋友们提供一些启发。 1. 为什么我们需要关注对话内存管理？1.1 长期对话的现实挑战在与LLMs的日常交互中，相信大家都遇到过这样的困扰：当对话变得很长时，AI似乎”忘记”了之前讨论的内容，或者给出的回答与前面的上下文不够连贯。这背后反映的正是长期对话中的内存管理挑战。 随着大语言模型技术的成熟，基于LLM的对话代理已经深入到我们生活的方方面面。但是，当我们希望与AI进行真正的长期、个性化交互时——比如跨越数天、数周的...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">118</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SeCom-Redefining-Memory-Management-in-Conversational-AI"><span class="toc-number">1.</span> <span class="toc-text">SeCom: Redefining Memory Management in Conversational AI</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Foreword"><span class="toc-number">1.1.</span> <span class="toc-text">Foreword</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Why-Should-We-Care-About-Dialog-Memory-Management"><span class="toc-number">1.2.</span> <span class="toc-text">1. Why Should We Care About Dialog Memory Management?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Real-World-Challenges-in-Long-Conversations"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.1 Real-World Challenges in Long Conversations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-A-Quick-Landscape-of-Existing-Approaches"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2 A Quick Landscape of Existing Approaches</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-Retrieval-Augmented-Generation-RAG-in-Dialog"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">1.2.3 Retrieval-Augmented Generation (RAG) in Dialog</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-The-Granularity-Dilemma"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.3 The Granularity Dilemma</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Inside-SeCom"><span class="toc-number">1.3.</span> <span class="toc-text">2. Inside SeCom</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Two-Key-Insights"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.1 Two Key Insights</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-System-Pipeline"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.2 System Pipeline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-How-to-Segment-Without-Labels"><span class="toc-number">1.3.3.</span> <span class="toc-text">2.3 How to Segment Without Labels</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-Denoising-via-LLMLingua-2"><span class="toc-number">1.3.4.</span> <span class="toc-text">2.4 Denoising via LLMLingua-2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-Hybrid-Retrieval"><span class="toc-number">1.3.5.</span> <span class="toc-text">2.5 Hybrid Retrieval</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Final-Thoughts"><span class="toc-number">1.4.</span> <span class="toc-text">3. Final Thoughts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-What-SeCom-Teaches-Us"><span class="toc-number">1.4.1.</span> <span class="toc-text">3.1 What SeCom Teaches Us</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">1.5.</span> <span class="toc-text">References</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment.en/" title="evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment">evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment</a><time datetime="2026-02-20T16:00:00.000Z" title="发表于 2026-02-21 00:00:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment.zh-CN/" title="evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment">evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment</a><time datetime="2026-02-20T16:00:00.000Z" title="发表于 2026-02-21 00:00:00">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.zh-CN/" title="SeCom: 重新定义对话AI的记忆管理">SeCom: 重新定义对话AI的记忆管理</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/secom-redefining-memory-management-in-conversational-ai.en/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/03/06/NLP%20Insights/decoder-only%E4%B8%8Eencoder-only%E6%A8%A1%E5%9E%8Bpadding%E7%AD%96%E7%95%A5%E7%9A%84%E5%B7%AE%E5%BC%82.en/" title="Decoder-only与Encoder-only模型Padding策略的差异">Decoder-only与Encoder-only模型Padding策略的差异</a><time datetime="2025-03-06T09:43:10.000Z" title="发表于 2025-03-06 17:43:10">2025-03-06</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/lang-switch.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
