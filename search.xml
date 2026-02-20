@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>Mine and Refine: Optimizing Graded Relevance in E-commerce Search Retrieval</title>
+      <link href="/2026/02/21/memory-in-llm-arxiv-en/"/>
+      <url>/2026/02/21/memory-in-llm-arxiv-en/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Paper-Info"><a href="#Paper-Info" class="headerlink" title="Paper Info"></a>Paper Info</h2><ul><li><strong>Chinese title</strong>: 《Mine and Refine：优化电商搜索中的分级相关性检索》</li><li><strong>arXiv</strong>: <a href="https://arxiv.org/abs/2602.17654v1">https://arxiv.org/abs/2602.17654v1</a></li><li><strong>Paper ID</strong>: 2602.17654v1</li></ul><h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>This paper proposes a two-stage retrieval training pipeline, <strong>Mine and Refine</strong>, for semantic embedding retrieval in e-commerce search. Instead of treating relevance as a strict binary label, the authors model graded relevance (exact match / substitutes / complements) and enforce clear score separation across levels. The approach first builds a robust global semantic space, then mines hard examples and refines decision boundaries for better long-tail and noisy-query robustness.</p><h2 id="Core-Innovations"><a href="#Core-Innovations" class="headerlink" title="Core Innovations"></a>Core Innovations</h2><ol><li><strong>Graded relevance modeling</strong> for realistic search behavior.</li><li><strong>Two-stage training</strong>: global semantic shaping, then boundary refinement with hard negatives.</li><li><strong>Policy-aligned scalable supervision</strong> via lightweight LLM + human guideline + behavior auditing.</li><li><strong>Robustness enhancements</strong> with spelling-noise augmentation and synthetic queries.</li></ol><h2 id="Experimental-Findings"><a href="#Experimental-Findings" class="headerlink" title="Experimental Findings"></a>Experimental Findings</h2><ul><li>Better retrieval relevance offline, especially on hard/long-tail queries.</li><li>Statistically significant gains in online A/B tests.</li><li>Better score calibration for hybrid ranking/thresholding in production systems.</li></ul><h2 id="Cipher’s-Take"><a href="#Cipher’s-Take" class="headerlink" title="Cipher’s Take"></a>Cipher’s Take</h2><p>The most valuable idea is not a specific loss function, but turning business-level graded relevance into trainable objectives. For LLM-era retrieval systems, this is highly practical: measurable, iterative, and deployable.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> NLP Insights </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> arXiv </tag>
+            
+            <tag> Retrieval </tag>
+            
+            <tag> Memory Daily </tag>
+            
+            <tag> E-commerce Search </tag>
+            
+            <tag> English </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>《Mine and Refine：优化电商搜索中的分级相关性检索》</title>
       <link href="/2026/02/21/memory-in-llm-arxiv/"/>
       <url>/2026/02/21/memory-in-llm-arxiv/</url>
