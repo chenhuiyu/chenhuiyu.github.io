@@ -1,0 +1,118 @@
+<!DOCTYPE html><html class="appearance-auto" lang="en"><head><meta charset="UTF-8"><title>无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen`</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="无断开烦恼！远程服务器后台运行程序的3种方法：nohup、tmux和screenUninterrupted Remote Program Execution: 3 Methods在数据分析或机器学习项目中，经常需要在远程服务器上运行耗时长、计算密集型的任务。通过SSH连接到远程服务器是常见的操作方式。但是，如何确保在断开SSH连接之后，远程服务器上的程序能够继续运行呢？本文详细介绍了三种方法：nohup、tmux和screen。
+使用nohup命令开始
+连接到远程机器：在本地终端中执行以下命令。
+ 1ssh username@remote-server-address
+
+启动后台程序：在远程机器上执行。
+ 1nohup your-command-to-run-the-program &amp;amp;
+
+例如：
+1.."><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">user's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen`</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Click back to the top</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">Home</a></h3><h3 class="is-inline-block"><a href="/about">About</a></h3><h3 class="is-inline-block"><a href="/archives">Archives</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC%EF%BC%81%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%9Anohup%E3%80%81tmux%E5%92%8Cscreen"><span class="toc-text">无断开烦恼！远程服务器后台运行程序的3种方法：nohup、tmux和screen</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Uninterrupted-Remote-Program-Execution-3-Methods"><span class="toc-text">Uninterrupted Remote Program Execution: 3 Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8nohup%E5%91%BD%E4%BB%A4"><span class="toc-text">使用nohup命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F"><span class="toc-text">结束</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8tmux"><span class="toc-text">使用tmux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B-1"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F-1"><span class="toc-text">结束</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8screen"><span class="toc-text">使用screen</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B-2"><span class="toc-text">开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F-2"><span class="toc-text">结束</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5%EF%BC%9AmacOS%E7%94%A8%E6%88%B7"><span class="toc-text">特殊情况：macOS用户</span></a></li></ol></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/Python%20Basic"><i class="tag post-item-tag">Python Basic</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen`</h1><time class="has-text-grey" datetime="2023-08-23T06:46:03.000Z">2023-08-23</time><article class="mt-2 post-content"><h1 id="无断开烦恼！远程服务器后台运行程序的3种方法：nohup、tmux和screen"><a href="#无断开烦恼！远程服务器后台运行程序的3种方法：nohup、tmux和screen" class="headerlink" title="无断开烦恼！远程服务器后台运行程序的3种方法：nohup、tmux和screen"></a>无断开烦恼！远程服务器后台运行程序的3种方法：<code>nohup</code>、<code>tmux</code>和<code>screen</code></h1><h1 id="Uninterrupted-Remote-Program-Execution-3-Methods"><a href="#Uninterrupted-Remote-Program-Execution-3-Methods" class="headerlink" title="Uninterrupted Remote Program Execution: 3 Methods"></a>Uninterrupted Remote Program Execution: 3 Methods</h1><p>在数据分析或机器学习项目中，经常需要在远程服务器上运行耗时长、计算密集型的任务。通过SSH连接到远程服务器是常见的操作方式。但是，如何确保在断开SSH连接之后，远程服务器上的程序能够继续运行呢？本文详细介绍了三种方法：<code>nohup</code>、<code>tmux</code>和<code>screen</code>。</p>
+<h2 id="使用nohup命令"><a href="#使用nohup命令" class="headerlink" title="使用nohup命令"></a>使用<code>nohup</code>命令</h2><h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><ol>
+<li><p><strong>连接到远程机器</strong>：在本地终端中执行以下命令。</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@remote-server-address</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>启动后台程序</strong>：在远程机器上执行。</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nohup</span> your-command-to-run-the-program &amp;</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<p>例如：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nohup</span> python train_model.py &amp;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>此方法会将程序的输出重定向到一个名为<code>nohup.out</code>的文件中。</p>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>在远程机器上执行以下命令。</p>
+<ol>
+<li><p>**查找程序的进程ID (PID)**：</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep your-command-to-run-the-program</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>结束进程</strong>：</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 PID</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p><strong>输出含义</strong>:<br>当你执行如下命令：</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">nohup</span> python train_model.py &amp;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>你可能会看到这样的输出：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1] 337082</span><br><span class="line"><span class="built_in">nohup</span>: ignoring input and appending output to <span class="string">'nohup.out'</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>这里，</p>
+<ul>
+<li><strong><a href="%E8%BF%99%E6%98%AF%E8%AF%A5%E5%90%8E%E5%8F%B0%E4%BD%9C%E4%B8%9A%E7%9A%84%E4%BD%9C%E4%B8%9A%E7%BC%96%E5%8F%B7%E3%80%82%E5%A6%82%E6%9E%9C%E4%BD%A0%E5%9C%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E5%A4%9A%E4%B8%AA%E4%BD%9C%E4%B8%9A%EF%BC%8C%E6%AF%8F%E4%B8%AA%E4%BD%9C%E4%B8%9A%E9%83%BD%E4%BC%9A%E6%9C%89%E4%B8%80%E4%B8%AA%E5%94%AF%E4%B8%80%E7%9A%84%E4%BD%9C%E4%B8%9A%E7%BC%96%E5%8F%B7%E3%80%82">1</a> 337082</strong> 表示该任务现在在后台运行，PID（进程ID）为337082。<ul>
+<li></li>
+<li>337082: 这是该后台作业对应的进程ID (PID)。你可以使用这个PID来监视或结束该进程。</li>
+</ul>
+</li>
+<li><strong>nohup: ignoring input and appending output to ‘nohup.out’</strong> 表示该进程现在将忽略任何输入，并将输出追加到 <code>nohup.out</code> 文件。<ul>
+<li>这是 <code>nohup</code> 命令的标准消息，含义如下：<ul>
+<li><code>ignoring input</code>: 当你使用 <code>nohup</code> 命令，它将不会接收任何从终端输入的数据。这意味着，一旦你使用 <code>nohup</code> 启动了一个程序，你不能再向它提供任何交互式输入（除非程序有其他的输入方法）。</li>
+<li><code>appending output to 'nohup.out'</code>: 默认情况下，<code>nohup</code> 会将程序的输出重定向到一个名为 <code>nohup.out</code> 的文件中。所以，如果你的程序在执行过程中产生了任何输出（如打印语句），这些输出都会被写入到 <code>nohup.out</code> 文件中。如果该文件之前不存在，<code>nohup</code> 会自动创建它；如果文件已存在，<code>nohup</code> 会将新的输出追加到文件的末尾。</li>
+<li>如果你想查看程序的输出，你可以使用 <code>cat</code> 或 <code>tail</code> 命令来查看 <code>nohup.out</code> 文件的内容。例如，使用 <code>tail -f nohup.out</code> 可以实时查看该文件的末尾内容，这对于监视程序的运行状态很有用。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用tmux"><a href="#使用tmux" class="headerlink" title="使用tmux"></a>使用<code>tmux</code></h2><h3 id="开始-1"><a href="#开始-1" class="headerlink" title="开始"></a>开始</h3><ol>
+<li>**安装<code>tmux</code>**：在远程机器上执行以下命令。</li>
+</ol>
+<ul>
+<li>Ubuntu/Debian  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tmux <span class="comment"># Ubuntu/Debian</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>MacOS  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<ol start="2">
+<li><p><strong>连接到远程机器</strong>：在本地终端中执行。</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@remote-server-address</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>开始新的tmux会话</strong>：在远程机器上执行。</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<p>然后在tmux会话内运行您的程序。</p>
+<ol start="4">
+<li><strong>断开会话</strong>：在远程机器上按 <code>Ctrl+b d</code>。</li>
+</ol>
+<h3 id="结束-1"><a href="#结束-1" class="headerlink" title="结束"></a>结束</h3><p>在远程机器上执行以下命令。</p>
+<ol>
+<li><p><strong>重新连接到tmux会话</strong>：</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux attach</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>结束程序和会话</strong>：使用<code>Ctrl+c</code>结束程序，然后按<code>Ctrl+b</code>再按<code>x</code>结束tmux会话。</p>
+</li>
+</ol>
+<h2 id="使用screen"><a href="#使用screen" class="headerlink" title="使用screen"></a>使用<code>screen</code></h2><h3 id="开始-2"><a href="#开始-2" class="headerlink" title="开始"></a>开始</h3><ol>
+<li>**安装<code>screen</code>**：在本地终端中执行。</li>
+</ol>
+<ul>
+<li>Ubuntu/Debian  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install screen <span class="comment"># Ubuntu/Debian</span></span><br></pre></td></tr></tbody></table></figure></li>
+<li>MacOS  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install screen</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<ol>
+<li><p><strong>连接到远程机器</strong>：在本地终端中执行。</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@remote-server-address</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>开始新的screen会话</strong>：在远程机器上执行。</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<p>然后在screen会话内运行您的程序。</p>
+<ol start="4">
+<li><strong>断开会话</strong>：在远程机器上按 <code>Ctrl+a d</code>。</li>
+</ol>
+<h3 id="结束-2"><a href="#结束-2" class="headerlink" title="结束"></a>结束</h3><p>在远程机器上执行以下命令。</p>
+<ol>
+<li><p><strong>重新连接到screen会话</strong>：</p>
+ <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -r</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>结束程序和会话</strong>：使用<code>Ctrl+c</code>结束程序，然后按<code>Ctrl+a</code>再按<code>k</code>结束screen会话。</p>
+</li>
+</ol>
+<h2 id="特殊情况：macOS用户"><a href="#特殊情况：macOS用户" class="headerlink" title="特殊情况：macOS用户"></a>特殊情况：macOS用户</h2><p>macOS用户可以使用Homebrew来安装<code>tmux</code>或<code>screen</code>。</p>
+<ul>
+<li><p>安装<code>tmux</code>：</p>
+  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install tmux</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>安装<code>screen</code>：</p>
+  <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install screen</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2023/08/23/Code%20Chronicles/Python-Uninterrupted%20Remote%20Program%20Execution:%203%20Methods.en/" title="无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen`"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">Previous: 无断开烦恼！远程服务器后台运行程序的3种方法：`nohup`、`tmux`和`screen`</span></a><a class="button is-default" href="/2023/08/22/Code%20Chronicles/Python-subprocess.en/" title="超越Python的边界：`subprocess` 助你一键执行外部命令"><span class="has-text-weight-semibold">Next: 超越Python的边界：`subprocess` 助你一键执行外部命令</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="Haojen/Claudia-theme-blog" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> user 2026</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script src="/js/lang-switch.js"></script><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>

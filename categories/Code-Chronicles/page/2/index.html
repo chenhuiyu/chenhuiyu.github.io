@@ -1,0 +1,123 @@
+<!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>user's blog</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/widget-post-list.css"><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">user's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><span>分类 · Code Chronicles</span></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></header><main><article class="post-container is-flex is-justify-content-center section container is-max-widescreen pt-4 px-2"><div class="columns is-variable is-1-tablet is-3-desktop-only is-2-widescreen is-full-width"><section class="column"><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/03/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100232.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20II.en/">【Python题解】100232. 超过阈值的最少操作数 II</a></h2><time class="has-text-grey" datetime="2024-03-03T15:32:44.000Z">2024-03-03</time><p class="is-flex-grow-2 mt-2">题目：100232. 超过阈值的最少操作数 II题目描述超过阈值的最少操作数 II
+给定一个从 0 开始的整数数组 nums 和一个整数 k。你可以进行如下操作：
+
+选择 nums 中最小的两个整数 x 和 y。
+将 x 和 y 从 nums 中删除。
+将 min(x, y) * 2 + max(x, y) 添加到数组中的任意位置。
+
+注意，只有当 nums 至少包含两个元素时，你才可以执行以上操作。
+目标是使数组中的所有元素都大于或等于 k。请返回实现此目标所需的最少操作次数。
+示例
+示例 1：
+
+输入：nums = [2,11,10,1,3], k = 10
+输出：2
+解释：第一次操作中，我们删除元素 1 和 2，然后添加 1 _ 2 + 2 到 nums 中，nums 变为 [4, 11, 10, 3..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/03/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100232.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20II.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/03/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100232.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20II.zh-CN/">【Python题解】100232. 超过阈值的最少操作数 II</a></h2><time class="has-text-grey" datetime="2024-03-03T15:32:44.000Z">2024-03-03</time><p class="is-flex-grow-2 mt-2">题目：100232. 超过阈值的最少操作数 II题目描述超过阈值的最少操作数 II
+给定一个从 0 开始的整数数组 nums 和一个整数 k。你可以进行如下操作：
+
+选择 nums 中最小的两个整数 x 和 y。
+将 x 和 y 从 nums 中删除。
+将 min(x, y) * 2 + max(x, y) 添加到数组中的任意位置。
+
+注意，只有当 nums 至少包含两个元素时，你才可以执行以上操作。
+目标是使数组中的所有元素都大于或等于 k。请返回实现此目标所需的最少操作次数。
+示例
+示例 1：
+
+输入：nums = [2,11,10,1,3], k = 10
+输出：2
+解释：第一次操作中，我们删除元素 1 和 2，然后添加 1 _ 2 + 2 到 nums 中，nums 变为 [4, 11, 10, 3..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/03/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100232.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20II.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I.en/">【Python题解】100231. 超过阈值的最少操作数 I</a></h2><time class="has-text-grey" datetime="2024-03-02T15:34:44.000Z">2024-03-02</time><p class="is-flex-grow-2 mt-2">超过阈值的最少操作数 I题目给定一个下标从 0 开始的整数数组 nums 和一个整数 k。在每次操作中，你可以删除 nums 中的最小元素。目标是通过最少的操作次数使数组中的所有元素都大于或等于 k。需要返回实现此目标所需的最少操作次数。
+示例示例 1:
+
+输入：nums = [2, 11, 10, 1, 3], k = 10
+输出：3
+解释：
+第一次操作后，nums 变为 [2, 11, 10, 3]。
+第二次操作后，nums 变为 [11, 10, 3]。
+第三次操作后，nums 变为 [11, 10]。
+此时，数组中的所有元素都大于等于 10，所以停止操作。
+使数组中所有元素都大于等于 10 需要的最少操作次数为 3。
+
+
+
+示例 2:
+
+输入：nums = [1, 1, 2, 4, 9], k = ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B"><i class="tag post-item-tag">双周赛</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I.zh-CN/">【Python题解】100231. 超过阈值的最少操作数 I</a></h2><time class="has-text-grey" datetime="2024-03-02T15:34:44.000Z">2024-03-02</time><p class="is-flex-grow-2 mt-2">超过阈值的最少操作数 I题目给定一个下标从 0 开始的整数数组 nums 和一个整数 k。在每次操作中，你可以删除 nums 中的最小元素。目标是通过最少的操作次数使数组中的所有元素都大于或等于 k。需要返回实现此目标所需的最少操作次数。
+示例示例 1:
+
+输入：nums = [2, 11, 10, 1, 3], k = 10
+输出：3
+解释：
+第一次操作后，nums 变为 [2, 11, 10, 3]。
+第二次操作后，nums 变为 [11, 10, 3]。
+第三次操作后，nums 变为 [11, 10]。
+此时，数组中的所有元素都大于等于 10，所以停止操作。
+使数组中所有元素都大于等于 10 需要的最少操作次数为 3。
+
+
+
+示例 2:
+
+输入：nums = [1, 1, 2, 4, 9], k = ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/02/Code%20Chronicles/%E3%80%90Python%E9%A2%98%E8%A7%A3%E3%80%91100231.%20%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0%20I.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98"><i class="tag post-item-tag">每日一题</i></a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><i class="tag post-item-tag">动态规划</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/01/Code%20Chronicles/2369.%20%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86.en/">【Python题解】2369. 检查数组是否存在有效划分</a></h2><time class="has-text-grey" datetime="2024-03-01T07:02:44.000Z">2024-03-01</time><p class="is-flex-grow-2 mt-2">【Python 题解】2369. 检查数组的有效划分方法题目概述Leetcode 的题目 2369 要求我们检查一个整数数组nums是否可以划分为一个或多个满足特定条件的连续子数组。有效的划分条件包括：
+
+子数组由两个相等的元素组成，如 [2, 2]。
+子数组由三个相等的元素组成，如 [3, 3, 3]。
+子数组由三个连续递增的元素组成，且相邻元素之间差值为 1，如 [4, 5, 6]。
+
+如果数组至少存在一种有效划分，则返回true；否则返回false。
+示例分析
+示例 1：nums = [4, 4, 4, 5, 6]可以划分为 [4, 4] 和 [4, 5, 6]，因此返回true。
+示例 2：nums = [1, 1, 1, 2]不满足任何划分条件，因此返回false。
+
+解题思路采用动态规划策略，我..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/01/Code%20Chronicles/2369.%20%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Python"><i class="tag post-item-tag">Python</i></a><a href="/tags/Leetcode"><i class="tag post-item-tag">Leetcode</i></a><a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98"><i class="tag post-item-tag">每日一题</i></a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><i class="tag post-item-tag">动态规划</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2024/03/01/Code%20Chronicles/2369.%20%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86.zh-CN/">【Python题解】2369. 检查数组是否存在有效划分</a></h2><time class="has-text-grey" datetime="2024-03-01T07:02:44.000Z">2024-03-01</time><p class="is-flex-grow-2 mt-2">【Python 题解】2369. 检查数组的有效划分方法题目概述Leetcode 的题目 2369 要求我们检查一个整数数组nums是否可以划分为一个或多个满足特定条件的连续子数组。有效的划分条件包括：
+
+子数组由两个相等的元素组成，如 [2, 2]。
+子数组由三个相等的元素组成，如 [3, 3, 3]。
+子数组由三个连续递增的元素组成，且相邻元素之间差值为 1，如 [4, 5, 6]。
+
+如果数组至少存在一种有效划分，则返回true；否则返回false。
+示例分析
+示例 1：nums = [4, 4, 4, 5, 6]可以划分为 [4, 4] 和 [4, 5, 6]，因此返回true。
+示例 2：nums = [1, 1, 1, 2]不满足任何划分条件，因此返回false。
+
+解题思路采用动态规划策略，我..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2024/03/01/Code%20Chronicles/2369.%20%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Chatbot"><i class="tag post-item-tag">Chatbot</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/09/24/NLP%20Insights/Create%20a%20Telegram%20Bot%20with%20Python%20and%20OpenAI%20in%2010%20Minutes.en/">🤖 Create a Telegram Bot with Python and OpenAI in 10 Minutes! 🚀</a></h2><time class="has-text-grey" datetime="2023-09-23T19:13:03.000Z">2023-09-24</time><p class="is-flex-grow-2 mt-2">🤖 Create a Telegram Bot with Python and OpenAI in 10 Minutes! 🚀In this fun tutorial, we’ll show you how to create a Telegram bot that can chat with users and generate witty responses. We’ll explain each step in detail, making it easy for you to get started!
+Step 1: Create a Telegram Bot 🤖First, let’s create your very own Telegram bot. Here’s how:
+
+Open ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/09/24/NLP%20Insights/Create%20a%20Telegram%20Bot%20with%20Python%20and%20OpenAI%20in%2010%20Minutes.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Chatbot"><i class="tag post-item-tag">Chatbot</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/09/24/NLP%20Insights/Create%20a%20Telegram%20Bot%20with%20Python%20and%20OpenAI%20in%2010%20Minutes.zh-CN/">🤖 Create a Telegram Bot with Python and OpenAI in 10 Minutes! 🚀</a></h2><time class="has-text-grey" datetime="2023-09-23T19:13:03.000Z">2023-09-24</time><p class="is-flex-grow-2 mt-2">🤖 Create a Telegram Bot with Python and OpenAI in 10 Minutes! 🚀In this fun tutorial, we’ll show you how to create a Telegram bot that can chat with users and generate witty responses. We’ll explain each step in detail, making it easy for you to get started!
+Step 1: Create a Telegram Bot 🤖First, let’s create your very own Telegram bot. Here’s how:
+
+Open ..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/09/24/NLP%20Insights/Create%20a%20Telegram%20Bot%20with%20Python%20and%20OpenAI%20in%2010%20Minutes.zh-CN/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Chatbot"><i class="tag post-item-tag">Chatbot</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/09/24/NLP%20Insights/%E5%8D%81%E5%88%86%E9%92%9F%E7%94%A8%20Python%20%E5%92%8C%20OpenAI%20%E5%88%9B%E5%BB%BA%20Telegram%20%E6%9C%BA%E5%99%A8%E4%BA%BA.en/">🤖 十分钟用 Python 和 OpenAI 创建 Telegram 机器人！ 🚀</a></h2><time class="has-text-grey" datetime="2023-09-23T19:12:03.000Z">2023-09-24</time><p class="is-flex-grow-2 mt-2">🤖 十分钟用 Python 和 OpenAI 创建 Telegram 机器人！ 🚀在这个有趣的教程中，我们将向您展示如何创建一个具有的 Telegram 机器人，该机器人能够与用户聊天并生成幽默回复。我们将详细解释每一步，让您轻松入门！
+步骤 1：创建 Telegram 机器人 🤖首先，让我们来创建您自己的 Telegram 机器人。这是如何做的：
+
+打开 Telegram 应用并搜索 “BotFather”。
+在 BotFather 聊天中，使用 /newbot 命令创建一个新机器人。您需要为机器人取个名字，比如 “PunshineBot”。
+BotFather 会为您生成一个独一无二的 API 令牌（Token）。一定要妥善保存这个令牌，稍后我们会在代码中用到它。
+
+
+
+步骤 2：导入必要的库 �..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/09/24/NLP%20Insights/%E5%8D%81%E5%88%86%E9%92%9F%E7%94%A8%20Python%20%E5%92%8C%20OpenAI%20%E5%88%9B%E5%BB%BA%20Telegram%20%E6%9C%BA%E5%99%A8%E4%BA%BA.en/">更多</a></section></article><article class="post-item-card"><section class="content post-card-content p-4 pb-5"><header><a href="/tags/Chatbot"><i class="tag post-item-tag">Chatbot</i></a></header><h2 class="mt-4 mb-0 is-family-serif"><a href="/2023/09/24/NLP%20Insights/%E5%8D%81%E5%88%86%E9%92%9F%E7%94%A8%20Python%20%E5%92%8C%20OpenAI%20%E5%88%9B%E5%BB%BA%20Telegram%20%E6%9C%BA%E5%99%A8%E4%BA%BA.zh-CN/">🤖 十分钟用 Python 和 OpenAI 创建 Telegram 机器人！ 🚀</a></h2><time class="has-text-grey" datetime="2023-09-23T19:12:03.000Z">2023-09-24</time><p class="is-flex-grow-2 mt-2">🤖 十分钟用 Python 和 OpenAI 创建 Telegram 机器人！ 🚀在这个有趣的教程中，我们将向您展示如何创建一个具有的 Telegram 机器人，该机器人能够与用户聊天并生成幽默回复。我们将详细解释每一步，让您轻松入门！
+步骤 1：创建 Telegram 机器人 🤖首先，让我们来创建您自己的 Telegram 机器人。这是如何做的：
+
+打开 Telegram 应用并搜索 “BotFather”。
+在 BotFather 聊天中，使用 /newbot 命令创建一个新机器人。您需要为机器人取个名字，比如 “PunshineBot”。
+BotFather 会为您生成一个独一无二的 API 令牌（Token）。一定要妥善保存这个令牌，稍后我们会在代码中用到它。
+
+
+
+步骤 2：导入必要的库 �..</p><a class="button is-default mt-2 has-text-weight-semibold" href="/2023/09/24/NLP%20Insights/%E5%8D%81%E5%88%86%E9%92%9F%E7%94%A8%20Python%20%E5%92%8C%20OpenAI%20%E5%88%9B%E5%BB%BA%20Telegram%20%E6%9C%BA%E5%99%A8%E4%BA%BA.zh-CN/">更多</a></section></article><section class="paginator is-flex is-justify-content-flex-end is-flex-wrap-wrap mt-5"><a class="extend prev" rel="prev" href="/categories/Code-Chronicles/"><i class="iconfont icon-prev has-text-grey"></i></a><a class="page-number" href="/categories/Code-Chronicles/">1</a><span class="page-number current">2</span><a class="page-number" href="/categories/Code-Chronicles/page/3/">3</a><a class="page-number" href="/categories/Code-Chronicles/page/4/">4</a><a class="extend next" rel="next" href="/categories/Code-Chronicles/page/3/"><i class="iconfont icon-next has-text-grey"></i></a></section></section><aside class="column is-hidden-mobile is-4-tablet is-3-widescreen"><div style="position: sticky; top: 50px;"><main class="aside-card-container categories-widget category-page"><h3>分类</h3><section><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Code-Chronicles/">Code Chronicles</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Debugging-Diaries/">Debugging Diaries</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life-Reflections/">Life Reflections</a><span class="category-list-count">19</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP-Insights/">NLP Insights</a><span class="category-list-count">50</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tech-Toolbox/">Tech Toolbox</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Wanderlust-Adventures/">Wanderlust Adventures</a><span class="category-list-count">2</span></li></ul></section></main></div></aside></div></article><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+
+window.addEventListener('resize', $claudia.throttle(function () {
+    var images = document.querySelectorAll('.js-img-fadeIn')
+
+    images.forEach($claudia.blurBackdropImg)
+}, 150))</script></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> user 2026</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script src="/js/lang-switch.js"></script><script async defer src="https://buttons.github.io/buttons.js"></script><script>$claudia.fadeInImage(null, $claudia.blurBackdropImg)
+
+window.addEventListener('resize', $claudia.throttle(function () {
+    var images = document.querySelectorAll('.js-img-fadeIn')
+
+    images.forEach($claudia.blurBackdropImg)
+}, 150))</script></body></html>

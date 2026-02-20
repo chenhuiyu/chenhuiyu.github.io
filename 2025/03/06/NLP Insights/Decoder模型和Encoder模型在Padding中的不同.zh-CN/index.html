@@ -1,0 +1,157 @@
+<!DOCTYPE html><html class="appearance-auto" lang="zh-CN"><head><meta charset="UTF-8"><title>Decoder-only与Encoder-only模型Padding策略的差异</title><meta name="description" content="May the Force be with you"><meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, initial-scale=1"><!-- Google Analytics --><!-- End Google Analytics -->
+<!-- Baidu Analytics --><!-- End Baidu Analytics --><link rel="icon" href="/images/favicon.ico"><link rel="stylesheet" href="/style/common/bulma.css"><link rel="stylesheet" href="/style/base.css"><link rel="stylesheet" href="/style/common/helper.css"><script src="/js/common.js"></script><link rel="stylesheet" href="/style/post.css"><link rel="stylesheet" href="/style/themes/highlight-theme-light.css"><link rel="stylesheet" href="/style/common/jquery.fancybox.min.css"><script src="/js/highlight.pack.js"></script><meta name="description" content="📌 Padding 的含义在大模型 (LLM) 中，padding 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (batch) 处理。
+例如：
+12句子1: &quot;I love NLP&quot;句子2: &quot;Padding is useful in LLM training&quot;
+
+使用 &amp;lt;pad&amp;gt; token 进行对齐：
+12&quot;I love NLP &amp;lt;pad&amp;gt; &amp;lt;pad&amp;gt; &amp;lt;pad&amp;gt;&quot;&quot;Padding is useful in LLM training&quot;
+
+
+📌 Padding 位置的选择：Left vs RightPadding 有两种常见方式：
+
+Right padding（右填充）：
+1&quot;I love NLP &amp;lt;pad&amp;gt; &amp;lt;pad&amp;gt.."><meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+</head><body class="is-flex is-flex-direction-column"><header class="header-widget is-flex-shrink-0 is-hidden-mobile"><div class="container is-fullhd is-flex is-justify-content-space-between is-align-items-center is-full-height"><section class="is-hidden-mobile is-flex-shrink-0"><h2><a href="/">user's blog</a></h2></section><h3 class="is-hidden-mobile is-family-serif is-full-height is-flex is-align-items-center is-flex-shrink-0"><div class="is-full-height" id="postTopic"><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">Decoder-only与Encoder-only模型Padding策略的差异</p><p class="is-full-height is-flex-shrink-0 is-flex is-align-items-center is-justify-content-center">点击返回顶部</p></div></h3><aside class="is-flex-shrink-0"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></aside></div></header><header class="is-flex header-widget is-flex-shrink-0 is-align-items-center is-justify-content-center is-hidden-tablet"><h3 class="is-inline-block"><a href="/">首页</a></h3><h3 class="is-inline-block"><a href="/about">关于</a></h3><h3 class="is-inline-block"><a href="/archives">归档</a></h3></header><main><main class="container is-max-widescreen content section post-page pt-4 px-4"><div class="columns is-flex-desktop is-justify-content-center is-flex-direction-row-reverse"><div class="column is-3 is-hidden-mobile"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-Padding-%E7%9A%84%E5%90%AB%E4%B9%89"><span class="toc-text">📌 Padding 的含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-Padding-%E4%BD%8D%E7%BD%AE%E7%9A%84%E9%80%89%E6%8B%A9%EF%BC%9ALeft-vs-Right"><span class="toc-text">📌 Padding 位置的选择：Left vs Right</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E4%B8%BA%E4%BB%80%E4%B9%88-Encoder-only-%E6%A8%A1%E5%9E%8B%EF%BC%88%E5%A6%82BERT%EF%BC%89%E9%87%87%E7%94%A8-Right-padding%EF%BC%9F"><span class="toc-text">📌 为什么 Encoder-only 模型（如BERT）采用 Right padding？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E4%B8%BA%E4%BB%80%E4%B9%88-Decoder-only-LLM-%E9%87%87%E7%94%A8-Left-padding%EF%BC%9F"><span class="toc-text">📌 为什么 Decoder-only LLM 采用 Left padding？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-Padding-%E5%9C%A8%E8%AE%AD%E7%BB%83%E4%B8%8E%E6%8E%A8%E7%90%86%E9%98%B6%E6%AE%B5%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="toc-text">📌 Padding 在训练与推理阶段的差异</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8C-%E6%80%BB%E7%BB%93%E4%B8%8E%E5%85%B3%E9%94%AE%E8%A6%81%E7%82%B9%EF%BC%88TL-DR%EF%BC%89"><span class="toc-text">📌 总结与关键要点（TL;DR）</span></a></li></ol></div><div class="column is-9"><header class="my-4"><a href="/tags/LLM"><i class="tag post-item-tag">LLM</i></a></header><h1 class="mt-0 mb-1 is-family-serif" id="postTitle">Decoder-only与Encoder-only模型Padding策略的差异</h1><time class="has-text-grey" datetime="2025-03-06T09:43:10.000Z">2025-03-06</time><article class="mt-2 post-content"><h2 id="📌-Padding-的含义"><a href="#📌-Padding-的含义" class="headerlink" title="📌 Padding 的含义"></a>📌 <strong>Padding 的含义</strong></h2><p>在大模型 (<strong>LLM</strong>) 中，<strong>padding</strong> 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (<strong>batch</strong>) 处理。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">句子1: "I love NLP"</span><br><span class="line">句子2: "Padding is useful in LLM training"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>使用 <code>&lt;pad&gt;</code> token 进行对齐：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"I love NLP &lt;pad&gt; &lt;pad&gt; &lt;pad&gt;"</span><br><span class="line">"Padding is useful in LLM training"</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h2 id="📌-Padding-位置的选择：Left-vs-Right"><a href="#📌-Padding-位置的选择：Left-vs-Right" class="headerlink" title="📌 Padding 位置的选择：Left vs Right"></a>📌 <strong>Padding 位置的选择：Left vs Right</strong></h2><p>Padding 有两种常见方式：</p>
+<ul>
+<li><p><strong>Right padding</strong>（右填充）：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"I love NLP &lt;pad&gt; &lt;pad&gt;"</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>Left padding</strong>（左填充）：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"&lt;pad&gt; &lt;pad&gt; I love NLP"</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<p>通常：</p>
+<ul>
+<li><strong>Decoder-only 模型</strong>（如 GPT, Llama）：采用 <strong>Left padding</strong></li>
+<li><strong>Encoder-only 模型</strong>（如 BERT）：采用 <strong>Right padding</strong></li>
+</ul>
+<p>具体而言，Transformer 模型通常分为三类结构：</p>
+<table>
+<thead>
+<tr>
+<th>模型类型</th>
+<th>代表模型</th>
+<th>特征</th>
+<th>常见用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Encoder-only</strong></td>
+<td><strong>BERT</strong>、RoBERTa、ALBERT、ELECTRA</td>
+<td>双向注意力（Bidirectional Attention）</td>
+<td>自然语言理解（NLU），如文本分类、序列标注</td>
+</tr>
+<tr>
+<td><strong>Decoder-only</strong></td>
+<td>GPT、GPT-2、GPT-3、GPT-4、LLaMA、Mistral</td>
+<td>单向自回归注意力（Causal Attention）</td>
+<td>文本生成、聊天、写作</td>
+</tr>
+<tr>
+<td><strong>Encoder-Decoder</strong></td>
+<td>Transformer原始论文中的模型、T5、BART、mT5、PEGASUS</td>
+<td>Encoder为双向注意力，Decoder为单向自回归注意力</td>
+<td>机器翻译、摘要生成、对话</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📌-为什么-Encoder-only-模型（如BERT）采用-Right-padding？"><a href="#📌-为什么-Encoder-only-模型（如BERT）采用-Right-padding？" class="headerlink" title="📌 为什么 Encoder-only 模型（如BERT）采用 Right padding？"></a>📌 为什么 Encoder-only 模型（如BERT）采用 Right padding？</h2><ul>
+<li><strong>Encoder-only 模型</strong>（如 BERT）的核心目标是获得<strong>每个 token 的嵌入表示</strong>（Embedding representation）。</li>
+<li>此类模型为<strong>双向注意力（Bidirectional Attention）</strong>，每个 token 可同时关注上下文，因此<strong>位置的轻微变化不会对结果造成严重干扰</strong>。</li>
+<li>此外，encoder-only 模型中通常有特殊 token（如 <code>[CLS]</code>），位置相对稳定，用于句子分类或表示，因此采用 <strong>right padding</strong> 更自然，也更合理。</li>
+</ul>
+<p>示例说明：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[CLS] Hello I love NLP [SEP] &lt;pad&gt; &lt;pad&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>右填充后，<code>[CLS]</code> 和 <code>[SEP]</code> token 位置稳定，且便于模型专注于前面的有效信息。</li>
+</ul>
+<hr>
+<h2 id="📌-为什么-Decoder-only-LLM-采用-Left-padding？"><a href="#📌-为什么-Decoder-only-LLM-采用-Left-padding？" class="headerlink" title="📌 为什么 Decoder-only LLM 采用 Left padding？"></a>📌 为什么 Decoder-only LLM 采用 Left padding？</h2><p>以 GPT 为代表的 <strong>Decoder-only 模型</strong> 是自回归（<strong>Autoregressive</strong>）模型，每个词的生成仅依赖于当前及之前的词，未来词不可见。因此：</p>
+<ul>
+<li><strong>位置编码的稳定性</strong>：<br>左填充确保真实 token 的相对位置稳定，模型生成新 token 时位置编码始终稳定于序列末尾。<ul>
+<li>当采用<strong>绝对位置编码</strong>（Absolute Positional Encoding）时，每个 token（包括 <code>&lt;pad&gt;</code>）都有对应的位置编号。</li>
+<li>对于左填充的 padding tokens，虽然它们占据了位置编号（如 1、2），但模型通过<strong>掩码机制</strong>忽略其对注意力和输出结果的影响。<br>示例：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">位置编码: [ 1      2      3      4      5      6 ]</span><br><span class="line">Token:   [ &lt;pad&gt;, &lt;pad&gt;, Hello,  I,   love,  NLP ]</span><br><span class="line">掩码:     [  0,     0,     1,     1,     1,    1 ]</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>模型只关注掩码为 1 的有效 token，而忽略掩码为 0 的 padding tokens。</li>
+<li><strong>注意力掩码（Attention Mask）</strong>：<br>左侧的 <code>&lt;pad&gt;</code> 会被<strong>注意力掩码（attention mask）忽略</strong>，从而避免 padding token 干扰有效 token 的位置编码和注意力计算。</li>
+</ul>
+<p>示例说明：</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Left</td>
+<td><code>&lt;pad&gt;</code></td>
+<td><code>&lt;pad&gt;</code></td>
+<td>Hello</td>
+<td>I</td>
+<td>love</td>
+<td>NLP</td>
+</tr>
+<tr>
+<td>Right</td>
+<td>Hello</td>
+<td>I</td>
+<td>love</td>
+<td>NLP</td>
+<td><code>&lt;pad&gt;</code></td>
+<td><code>&lt;pad&gt;</code></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Left padding</strong> 下，最后有效 token 始终在同一位置（6）。</li>
+<li><strong>Right padding</strong> 下，token 的位置随序列长度变化，影响位置编码的稳定性。</li>
+</ul>
+<hr>
+<h2 id="📌-Padding-在训练与推理阶段的差异"><a href="#📌-Padding-在训练与推理阶段的差异" class="headerlink" title="📌 Padding 在训练与推理阶段的差异"></a>📌 <strong>Padding 在训练与推理阶段的差异</strong></h2><table>
+<thead>
+<tr>
+<th>阶段 (Phase)</th>
+<th>Padding 策略</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>训练 (Training)</strong></td>
+<td>批量处理时，Decoder-only 常用左填充；Encoder-only 模型则常用右填充</td>
+<td>批量处理，加快计算效率</td>
+</tr>
+<tr>
+<td><strong>推理 (Inference)</strong></td>
+<td>通常单条序列，无需 padding；若需要批量推理，仍采用左填充</td>
+<td>稳定位置编码</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📌-总结与关键要点（TL-DR）"><a href="#📌-总结与关键要点（TL-DR）" class="headerlink" title="📌 总结与关键要点（TL;DR）"></a>📌 <strong>总结与关键要点（TL;DR）</strong></h2><ul>
+<li><strong>Padding</strong> 用于序列长度标准化。</li>
+<li><strong>Decoder-only LLMs (GPT, Llama)</strong> 通常采用<strong>左填充（Left padding）</strong>，目的是<strong>稳定位置编码并避免未来信息泄漏</strong>；左侧 padding 会被掩码忽略，不干扰模型预测。</li>
+<li><strong>Encoder-only 模型（如BERT系列）</strong>通常采用<strong>右填充（Right padding）</strong>，因为模型为双向注意力，且特殊token（如<code>[CLS]</code>）位置需要保持稳定。</li>
+<li>位置编码中虽然 padding token 占位，但会被<strong>注意力掩码</strong>有效屏蔽，不影响模型的最终输出。</li>
+</ul>
+<hr>
+</article><section class="jump-container is-flex is-justify-content-space-between my-6"><!-- em is empty placeholder--><a class="button is-default" href="/2025/06/24/NLP%20Insights/SeCom:%20%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%AF%9DAI%E7%9A%84%E8%AE%B0%E5%BF%86%E7%AE%A1%E7%90%86.zh-CN/" title="SeCom: 重新定义对话AI的记忆管理"><i class="iconfont icon-prev mr-2 has-text-grey"></i><span class="has-text-weight-semibold">上一页: SeCom: 重新定义对话AI的记忆管理</span></a><a class="button is-default" href="/2025/03/06/NLP%20Insights/Differences%20in%20Padding%20Strategies%20Between%20Decoder-only%20and%20Encoder-only%20Models.en/" title="Differences in Padding Strategies Between Decoder-only and Encoder-only Models"><span class="has-text-weight-semibold">下一页: Differences in Padding Strategies Between Decoder-only and Encoder-only Models</span><i class="iconfont icon-next ml-2 has-text-grey"></i></a></section><article class="mt-6 comment-container"><script async repo="Haojen/Claudia-theme-blog" src="https://utteranc.es/client.js" issue-term="pathname" theme="preferred-color-scheme"></script></article></div></div></main></main><footer class="is-flex is-flex-direction-column is-align-items-center is-flex-shrink-0 is-family-serif"><section class="sns-container"><a title="twitter" target="_blank" rel="noopener nofollow" href="//twitter.com//"><i class="iconfont icon-twitter"></i></a><!-- Github--><a title="github" target="_blank" rel="noopener nofollow" href="//github.com/haojen"><i class="iconfont icon-github"></i></a><!-- Ins--><a title="instagram" target="_blank" rel="noopener nofollow" href="//www.instagram.com//"><i class="iconfont icon-ins"></i></a><!-- RSS--><!-- 知乎--><!-- 领英--><!-- 脸书--><a title="facebook" target="_blank" rel="noopener nofollow" href="//www.facebook.com//"><i class="iconfont icon-tian7_facebook"></i></a></section><p><span>Copyright ©</span><span> user 2026</span></p><div class="is-flex is-justify-content-center is-flex-wrap-wrap"><p>Powered by Hexo &verbar;&nbsp;</p><p class="is-flex is-justify-content-center"><a title="Hexo theme author" target="_blank" rel="noopener" href="//github.com/haojen">Theme by Haojen&nbsp;</a></p><div style="margin-top: 2px"><a class="github-button" title="github-button" target="_blank" rel="noopener" href="https://github.com/haojen/hexo-theme-Claudia" data-color-scheme="no-preference: light; light: light; dark: dark;" data-show-count="true"></a></div></div><div><span></span></div></footer><script src="/js/lang-switch.js"></script><script async defer src="https://buttons.github.io/buttons.js"></script><script src="/js/jquery-3.6.1.min.js"></script><script src="/js/jquery-fancybox.min.js"></script><script src="/js/img_zoom.js"></script><script src="/js/post.js"></script></body></html>
