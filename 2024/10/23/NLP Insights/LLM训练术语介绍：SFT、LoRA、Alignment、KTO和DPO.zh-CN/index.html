@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LoRA, DPO, KTO 与 SFT 技术详解 | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="LoRA, DPO, KTO 与 SFT 技术详解本篇文档将详细介绍几种在大型语言模型（如 LLAMA3）微调和优化中的重要技术，包括 SFT（Supervised Fine-Tuning）、LoRA（Low-Rank Adaptation）、Alignment 技术、KTO（Kahneman-Tversky Optimization） 和 DPO（Direct Preference Optimi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LoRA, DPO, KTO 与 SFT 技术详解">
+<meta property="og:url" content="https://chenhuiyu.github.io/2024/10/23/NLP%20Insights/LLM%E8%AE%AD%E7%BB%83%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D%EF%BC%9ASFT%E3%80%81LoRA%E3%80%81Alignment%E3%80%81KTO%E5%92%8CDPO.zh-CN/index.html">
+<meta property="og:site_name" content="黑头呆鱼进化之旅">
+<meta property="og:description" content="LoRA, DPO, KTO 与 SFT 技术详解本篇文档将详细介绍几种在大型语言模型（如 LLAMA3）微调和优化中的重要技术，包括 SFT（Supervised Fine-Tuning）、LoRA（Low-Rank Adaptation）、Alignment 技术、KTO（Kahneman-Tversky Optimization） 和 DPO（Direct Preference Optimi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2024-10-23T08:26:29.000Z">
+<meta property="article:modified_time" content="2026-02-20T21:47:32.620Z">
+<meta property="article:author" content="Huiyu Chen">
+<meta property="article:tag" content="LLM">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LoRA, DPO, KTO 与 SFT 技术详解",
+  "url": "https://chenhuiyu.github.io/2024/10/23/NLP%20Insights/LLM%E8%AE%AD%E7%BB%83%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D%EF%BC%9ASFT%E3%80%81LoRA%E3%80%81Alignment%E3%80%81KTO%E5%92%8CDPO.zh-CN/",
+  "image": "https://chenhuiyu.github.io/img/butterfly-icon.png",
+  "datePublished": "2024-10-23T08:26:29.000Z",
+  "dateModified": "2026-02-20T21:47:32.620Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Huiyu Chen",
+      "url": "https://chenhuiyu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/2024/10/23/NLP%20Insights/LLM%E8%AE%AD%E7%BB%83%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D%EF%BC%9ASFT%E3%80%81LoRA%E3%80%81Alignment%E3%80%81KTO%E5%92%8CDPO.zh-CN/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LoRA, DPO, KTO 与 SFT 技术详解',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/site-bg.jpg);"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a><a class="nav-page-title" href="/"><span class="site-name">LoRA, DPO, KTO 与 SFT 技术详解</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">LoRA, DPO, KTO 与 SFT 技术详解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-10-23T08:26:29.000Z" title="发表于 2024-10-23 16:26:29">2024-10-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-20T21:47:32.620Z" title="更新于 2026-02-21 05:47:32">2026-02-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/NLP-Insights/">NLP Insights</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h3 id="LoRA-DPO-KTO-与-SFT-技术详解"><a href="#LoRA-DPO-KTO-与-SFT-技术详解" class="headerlink" title="LoRA, DPO, KTO 与 SFT 技术详解"></a><strong>LoRA, DPO, KTO 与 SFT 技术详解</strong></h3><p>本篇文档将详细介绍几种在大型语言模型（如 LLAMA3）微调和优化中的重要技术，包括 <strong>SFT（Supervised Fine-Tuning）</strong>、<strong>LoRA（Low-Rank Adaptation）</strong>、<strong>Alignment</strong> 技术、<strong>KTO（Kahneman-Tversky Optimization）</strong> 和 <strong>DPO（Direct Preference Optimization）</strong>。文中还将详细阐述每种技术的原理、具体实现方法以及相应的损失函数与优化器选择。</p>
+<hr>
+<h2 id="1-SFT（Supervised-Fine-Tuning）"><a href="#1-SFT（Supervised-Fine-Tuning）" class="headerlink" title="1. SFT（Supervised Fine-Tuning）"></a>1. <strong>SFT（Supervised Fine-Tuning）</strong></h2><h3 id="1-1-原理"><a href="#1-1-原理" class="headerlink" title="1.1 原理"></a>1.1 <strong>原理</strong></h3><p>SFT 是一种传统的微调方法，通过监督学习对预训练模型进行微调，调整模型的参数使其在特定任务上表现更好。SFT 通常用于针对特定的标注数据进行模型微调，训练的过程类似于常规的监督学习。</p>
+<h3 id="1-2-实现方法"><a href="#1-2-实现方法" class="headerlink" title="1.2 实现方法"></a>1.2 <strong>实现方法</strong></h3><ul>
+<li><strong>选择预训练模型</strong>：如 GPT、BERT 等语言模型。</li>
+<li><strong>准备标注数据集</strong>：数据集包含输入和输出对。</li>
+<li><strong>训练模型</strong>：使用标准的交叉熵损失函数对模型进行训练，通过梯度下降优化参数。</li>
+</ul>
+<h3 id="1-3-核心代码"><a href="#1-3-核心代码" class="headerlink" title="1.3 核心代码"></a>1.3 <strong>核心代码</strong></h3><p>使用 Hugging Face 的 <code>Trainer</code> 接口进行 SFT：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> Trainer, TrainingArguments, AutoModelForSeq2SeqLM, AutoTokenizer</span><br><span class="line"></span><br><span class="line">model_name = <span class="string">"gpt2"</span></span><br><span class="line">model = AutoModelForSeq2SeqLM.from_pretrained(model_name)</span><br><span class="line">tokenizer = AutoTokenizer.from_pretrained(model_name)</span><br><span class="line"></span><br><span class="line">train_dataset = load_dataset(<span class="string">"my_dataset"</span>, split=<span class="string">"train"</span>)</span><br><span class="line"></span><br><span class="line">training_args = TrainingArguments(</span><br><span class="line">    output_dir=<span class="string">"./results"</span>,</span><br><span class="line">    evaluation_strategy=<span class="string">"epoch"</span>,</span><br><span class="line">    learning_rate=<span class="number">2e-5</span>,</span><br><span class="line">    per_device_train_batch_size=<span class="number">16</span>,</span><br><span class="line">    num_train_epochs=<span class="number">3</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">trainer = Trainer(</span><br><span class="line">    model=model,</span><br><span class="line">    args=training_args,</span><br><span class="line">    train_dataset=train_dataset,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">trainer.train()</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h2 id="2-LoRA（Low-Rank-Adaptation）"><a href="#2-LoRA（Low-Rank-Adaptation）" class="headerlink" title="2. LoRA（Low-Rank Adaptation）"></a>2. <strong>LoRA（Low-Rank Adaptation）</strong></h2><h3 id="2-1-原理"><a href="#2-1-原理" class="headerlink" title="2.1 原理"></a>2.1 <strong>原理</strong></h3><p>LoRA 是一种参数高效的微调技术，通过对大模型中的权重矩阵进行低秩分解，将原始权重矩阵 $W$ 分解为两个低秩矩阵 $B$ 和 $A$，并仅对这些低秩矩阵进行微调。LoRA 的设计目标是减少微调参数的数量，在保留预训练模型权重的同时，通过调整低秩矩阵来优化模型表现。</p>
+<h3 id="2-2-实现方法"><a href="#2-2-实现方法" class="headerlink" title="2.2 实现方法"></a>2.2 <strong>实现方法</strong></h3><ul>
+<li><strong>权重分解</strong>：对于模型的线性层（如注意力机制中的 <code>q_proj</code> 和 <code>v_proj</code> 层），将权重矩阵分解为两个低秩矩阵 $B$ 和 $A$。</li>
+<li><strong>微调特定层</strong>：仅对这些特定的线性层应用 LoRA，而模型中的其他层保持不变。</li>
+</ul>
+<h3 id="2-3-可微调的层与不变的层"><a href="#2-3-可微调的层与不变的层" class="headerlink" title="2.3 可微调的层与不变的层"></a>2.3 <strong>可微调的层与不变的层</strong></h3><h4 id="可微调的层"><a href="#可微调的层" class="headerlink" title="可微调的层"></a><strong>可微调的层</strong></h4><p>LoRA 通常应用于 Transformer 模型中的线性投影层，尤其是多头注意力机制中的几个关键层：</p>
+<ul>
+<li><strong>q_proj</strong>（Query 投影层）</li>
+<li><strong>k_proj</strong>（Key 投影层）</li>
+<li><strong>v_proj</strong>（Value 投影层）</li>
+<li><strong>o_proj</strong>（Output 投影层）</li>
+<li><strong>ffn_up_proj</strong> 和 <strong>ffn_down_proj</strong>（前馈神经网络的上下投影层）</li>
+</ul>
+<h4 id="不变的层"><a href="#不变的层" class="headerlink" title="不变的层"></a><strong>不变的层</strong></h4><ul>
+<li><strong>Embedding 层</strong>：负责输入和输出的编码，通常不需要微调。</li>
+<li><strong>LayerNorm 层</strong>：这些层主要用于归一化，不含大量参数，通常保持不变。</li>
+<li><strong>激活函数层</strong>：如 ReLU 或 GELU 等非线性激活函数不涉及参数，不需要进行微调。</li>
+</ul>
+<h3 id="2-4-损失函数"><a href="#2-4-损失函数" class="headerlink" title="2.4 损失函数"></a>2.4 <strong>损失函数</strong></h3><p>LoRA 的损失函数通常与具体任务相关。在语言生成任务中，LoRA 使用<strong>交叉熵损失</strong>来度量生成文本和目标文本之间的差异：</p>
+<p>$$<br>\mathcal{L}<em>{\text{LoRA}} = - \sum</em>{i} y_i \log(\hat{y}_i)<br>$$</p>
+<p>其中 $y_i$ 是真实标签，$\hat{y}_i$ 是模型的输出概率。</p>
+<h3 id="2-5-优化器"><a href="#2-5-优化器" class="headerlink" title="2.5 优化器"></a>2.5 <strong>优化器</strong></h3><p>LoRA 微调通常使用 <strong>AdamW</strong> 优化器，具体代码如下：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = torch.optim.AdamW(lora_model.parameters(), lr=<span class="number">5e-5</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-6-核心代码"><a href="#2-6-核心代码" class="headerlink" title="2.6 核心代码"></a>2.6 <strong>核心代码</strong></h3><p>使用 <code>peft</code> 库实现 LoRA：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> peft <span class="keyword">import</span> LoraConfig, get_peft_model</span><br><span class="line"><span class="keyword">from</span> transformers <span class="keyword">import</span> AutoModelForSeq2SeqLM</span><br><span class="line"></span><br><span class="line">model_name = <span class="string">"gpt2"</span></span><br><span class="line">model = AutoModelForSeq2SeqLM.from_pretrained(model_name)</span><br><span class="line"></span><br><span class="line">lora_config = LoraConfig(</span><br><span class="line">    r=<span class="number">8</span>,                </span><br><span class="line">    lora_alpha=<span class="number">32</span>,      </span><br><span class="line">    target_modules=[<span class="string">"q_proj"</span>, <span class="string">"v_proj"</span>],  </span><br><span class="line">    lora_dropout=<span class="number">0.1</span>,   </span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">lora_model = get_peft_model(model, lora_config)</span><br><span class="line">lora_model.train()</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h2 id="3-Alignment（对齐技术）"><a href="#3-Alignment（对齐技术）" class="headerlink" title="3. Alignment（对齐技术）"></a>3. <strong>Alignment（对齐技术）</strong></h2><p>在引入KL散度之前，我们首先需要明确LLM对齐（Alignment）是如何实现的，以及背后的原理和数学公式。</p>
+<h3 id="1-什么是模型对齐（Alignment）？"><a href="#1-什么是模型对齐（Alignment）？" class="headerlink" title="1. 什么是模型对齐（Alignment）？"></a><strong>1. 什么是模型对齐（Alignment）？</strong></h3><p>模型对齐的核心目标是让语言模型的输出符合人类的期望或偏好。通常，模型最初通过大规模监督学习（SFT，Supervised Fine-Tuning）训练，生成具有基础能力的模型。接下来，通过对齐技术，进一步调整模型，使其生成的内容更符合人类偏好或避免产生有害、错误的信息。</p>
+<p><strong>对齐的核心机制</strong>：</p>
+<ul>
+<li><strong>正样本</strong>：符合人类预期的输出（如正确回答）。</li>
+<li><strong>负样本</strong>：不符合人类预期的输出（如错误回答）。</li>
+</ul>
+<p>通过使用成对偏好数据或标签（正确/错误），对模型的输出进行进一步微调，使模型能够生成更多的正样本，同时减少负样本的生成概率。</p>
+<hr>
+<h3 id="2-模型对齐的数学原理"><a href="#2-模型对齐的数学原理" class="headerlink" title="2. 模型对齐的数学原理"></a><strong>2. 模型对齐的数学原理</strong></h3><p>在对齐过程中，模型会通过<strong>策略模型</strong>（Policy Model）来生成输出，策略模型通常是经过SFT训练的语言模型，用来在给定输入下生成输出。为了优化模型的输出，使其更加符合人类偏好，常常使用以下损失函数和优化方法：</p>
+<h4 id="2-1-策略模型"><a href="#2-1-策略模型" class="headerlink" title="2.1 策略模型"></a><strong>2.1 策略模型</strong></h4><p>假设当前模型的策略为 $\pi_\theta$，它表示在给定输入 $x$ 时，模型生成输出 $y$ 的概率：<br>$$<br>\pi_\theta(y|x)<br>$$<br>策略模型的目标是通过调整参数 $\theta$，提高生成正确输出（正样本）的概率，降低生成错误输出（负样本）的概率。</p>
+<h4 id="2-2-提高正样本概率与降低负样本概率的机制"><a href="#2-2-提高正样本概率与降低负样本概率的机制" class="headerlink" title="2.2 提高正样本概率与降低负样本概率的机制"></a><strong>2.2 提高正样本概率与降低负样本概率的机制</strong></h4><p>为了实现这个目标，通常使用带有偏好比较或标签的损失函数进行优化：</p>
+<ol>
+<li><p><strong>正样本的优化</strong>：通过增加正样本的损失权重，使得模型生成正样本的概率更高。</p>
+<ul>
+<li>正样本的损失函数会引导模型在面对相同问题时，生成更多符合人类期望的答案。</li>
+</ul>
+</li>
+<li><p><strong>负样本的惩罚</strong>：对负样本施加更高的损失权重，模型会学习到减少这些错误输出的概率。</p>
+<ul>
+<li>负样本的损失函数旨在让模型在生成错误答案时感知到更大的惩罚，从而减少这些输出的生成。</li>
+</ul>
+</li>
+</ol>
+<p>在某些方法中，例如DPO和KTO，还会通过计算当前策略模型与参考模型之间的<strong>KL散度</strong>，来防止模型在优化过程中过度偏离原始预训练模型。</p>
+<hr>
+<h3 id="3-损失函数与KL散度的作用"><a href="#3-损失函数与KL散度的作用" class="headerlink" title="3. 损失函数与KL散度的作用"></a><strong>3. 损失函数与KL散度的作用</strong></h3><p>在模型对齐的过程中，损失函数通常包含两部分：</p>
+<ol>
+<li><strong>偏好损失</strong>或<strong>标签损失</strong>，用于优化模型生成符合人类期望的输出。</li>
+<li><strong>KL散度</strong>，用于约束模型不要偏离参考模型。</li>
+</ol>
+<h4 id="3-1-KL散度的作用"><a href="#3-1-KL散度的作用" class="headerlink" title="3.1 KL散度的作用"></a><strong>3.1 KL散度的作用</strong></h4><p>KL散度（Kullback-Leibler Divergence）衡量的是两个概率分布之间的差异。在模型对齐中，KL散度用于限制当前模型 \(\pi_\theta\) 和参考模型 \(\pi_{\text{ref}}\) 的分布差异，确保在优化过程中模型的输出不会过度偏离预训练模型。具体公式为：<br>$$<br>\text{KL}(\pi_\theta(y|x) | \pi_{\text{ref}}(y|x)) = \sum_y \pi_\theta(y|x) \log \frac{\pi_\theta(y|x)}{\pi_{\text{ref}}(y|x)}<br>$$</p>
+<ul>
+<li>如果KL散度较大，表示当前模型生成的分布与参考模型有较大的差异，这可能意味着模型生成了不合理的输出。</li>
+<li>通过最小化KL散度，模型能够在保证输出合理性的基础上，进行进一步的优化。</li>
+</ul>
+<h4 id="3-2-损失函数公式"><a href="#3-2-损失函数公式" class="headerlink" title="3.2 损失函数公式"></a><strong>3.2 损失函数公式</strong></h4><p>根据偏好或标签，模型的损失函数可以表达为以下形式：</p>
+<h5 id="DPO中的损失函数："><a href="#DPO中的损失函数：" class="headerlink" title="DPO中的损失函数："></a><strong>DPO中的损失函数</strong>：</h5><p>$$<br>L_{DPO} = -\mathbb{E}_{x, y_w, y_l \sim D} [\log \sigma(\beta (\log(\pi_\theta(y_w|x)) - \log(\pi_\theta(y_l|x))))]<br>$$</p>
+<ul>
+<li>$y_w$：偏好较高的答案。</li>
+<li>$y_l$：偏好较低的答案。</li>
+</ul>
+<p>DPO中可以引入KL散度作为正则化项：<br>$$<br>L_{DPO} = -\log \sigma(\log(\pi_\theta(y_w|x)) - \log(\pi_\theta(y_l|x)) + \beta \cdot \text{KL}(\pi_\theta | \pi_{\text{ref}}))<br>$$<br>通过控制KL散度，模型的输出不会偏离参考模型太多。</p>
+<h5 id="KTO中的损失函数："><a href="#KTO中的损失函数：" class="headerlink" title="KTO中的损失函数："></a><strong>KTO中的损失函数</strong>：</h5><p>KTO的损失函数基于前景理论，并将KL散度作为核心部分，表达为：<br>$$<br>L_{KTO} = \lambda_U \cdot \sigma(\beta \cdot (\text{KL}(\pi_\theta(\text{Answer 2}) | \pi_{\text{ref}}) - r_{\theta}(\text{Answer 2})))<br>$$</p>
+<ul>
+<li>$r_{\theta}(x, y)$：当前策略对负样本（错误答案）的置信度。</li>
+<li>KL散度用于衡量当前模型与参考模型的差异，确保模型在减少负样本生成的同时，不偏离原始参考模型。</li>
+</ul>
+<p>通过增加负样本的损失（即增加 $\lambda_U$ 的值），模型会降低负样本的置信度，使未来生成类似错误答案的概率变小。</p>
+<hr>
+<h3 id="4-如何优化模型"><a href="#4-如何优化模型" class="headerlink" title="4. 如何优化模型"></a><strong>4. 如何优化模型</strong></h3><p>通过上面介绍的损失函数，模型的优化通常是通过<strong>梯度下降</strong>（Gradient Descent）来完成的。损失函数的梯度反映了模型输出与期望输出之间的差异，优化目标是最小化损失函数。</p>
+<p><strong>梯度更新公式</strong>：<br>$$<br>\theta_{\text{new}} = \theta_{\text{old}} - \eta \nabla_{\theta} L<br>$$<br>其中：</p>
+<ul>
+<li>$\eta$ 是学习率，决定每次参数更新的步长。</li>
+<li>$\nabla_{\theta} L$ 是损失函数对模型参数的梯度，表示当前参数对损失的贡献。</li>
+</ul>
+<p>通过不断迭代，模型会逐渐提高生成正样本的概率，减少负样本的生成概率，最终实现模型对齐。</p>
+<ul>
+<li>模型对齐（Alignment）的核心目标是通过偏好或标签数据，优化模型的输出，使其符合人类期望。</li>
+<li><strong>策略模型</strong>（$\pi_\theta$）生成输出，KL散度用于控制模型与参考模型的偏离程度，避免模型在优化过程中产生不合理的偏差。</li>
+<li><strong>正样本的概率</strong>通过损失函数的优化逐步提升，<strong>负样本的概率</strong>通过增加损失权重和降低置信度来减少。</li>
+<li>梯度下降用于更新模型参数，最终实现模型对齐</li>
+</ul>
+<hr>
+<h2 id="4-DPO（Direct-Preference-Optimization）"><a href="#4-DPO（Direct-Preference-Optimization）" class="headerlink" title="4. DPO（Direct Preference Optimization）"></a>4. <strong>DPO（Direct Preference Optimization）</strong></h2><h3 id="4-1-原理"><a href="#4-1-原理" class="headerlink" title="4.1 原理"></a>4.1 <strong>原理</strong></h3><p>DPO 通过直接优化模型输出的偏好函数，使模型的输出更加符合人类偏好。它比较模型的不同输出，并通过偏好函数评估这两个输出哪个更好，从而指导模型参数的优化。</p>
+<h3 id="4-2-损失函数"><a href="#4-2-损失函数" class="headerlink" title="4.2 损失函数"></a>4.2 <strong>损失函数</strong></h3><p>DPO 使用偏好损失函数（Preference Loss），用于比较两个输出的优劣：</p>
+<p>$$<br>\mathcal{L}_{\text{DPO}} = \log(1 + \exp(-\sigma \cdot (\hat{y}_a - \hat{y}_b) \cdot p))<br>$$</p>
+<ul>
+<li>$ \hat{y}_a $ 和 $ \hat{y}_b $ 是模型对两个样本的预测值。</li>
+<li>$ p $ 是人类偏好（1 表示偏好 $a$，-1 表示偏好 $b$）。</li>
+<li>$ \sigma $ 是平滑参数。</li>
+</ul>
+<h3 id="4-3-优化器"><a href="#4-3-优化器" class="headerlink" title="4.3 优化器"></a>4.3 <strong>优化器</strong></h3><p>DPO 通常使用 <strong>AdamW</strong> 优化器，适用于大规模参数模型的优化，代码如下：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = torch.optim.AdamW(model.parameters(), lr=<span class="number">1e-5</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="4-4-核心代码"><a href="#4-4-核心代码" class="headerlink" title="4.4 核心代码"></a>4.4 <strong>核心代码</strong></h3><p>以下是 DPO 的训练步骤：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">preference_loss</span>(<span class="params">output_a, output_b, human_preference</span>):</span><br><span class="line">    preference = human_preference(output_a, output_b)</span><br><span class="line">    loss = torch.log(<span class="number">1</span> + torch.exp(-preference * (output_a - output_b)))</span><br><span class="line">    <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">dpo_training_step</span>(<span class="params">model, data_a, data_b, human_preference</span>):</span><br><span class="line">    output_a = model(data_a)</span><br><span class="line">    output_b = model(data_b)</span><br><span class="line">    </span><br><span class="line">    loss = preference_loss(output_a, output_b, human_preference)</span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> batch_a, batch_b <span class="keyword">in</span> training_data:</span><br><span class="line">    dpo_training_step(model, batch_a, batch_b, human_preference_function)</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h2 id="5-KTO（Kahneman-Tversky-Optimization）"><a href="#5-KTO（Kahneman-Tversky-Optimization）" class="headerlink" title="5. KTO（Kahneman-Tversky Optimization）"></a>5. <strong>KTO（Kahneman-Tversky Optimization）</strong></h2><h3 id="5-1-原理"><a href="#5-1-原理" class="headerlink" title="5.1 原理"></a>5.1 <strong>原理</strong></h3><p>KTO 基于 Kahneman 和 Tversky 的前景理论（Prospect Theory），通过非对称效用函数衡量模型的增益和损失，旨在优化模型的表现，尤其在风险和收益不对称的场景下。效用函数定义如下：</p>
+<p>$$<br>\mathcal{U}(x) =<br>\begin{cases}<br>x^{\alpha}, &amp; x \geq 0 \<br>-\lambda (-x)^{\alpha}, &amp; x &lt; 0<br>\end{cases}<br>$$</p>
+<ul>
+<li>$x$ 是模型预测与真实值的差异。</li>
+<li>$\alpha$ 是非线性系数，通常为 0</li>
+</ul>
+<p>.88。</p>
+<ul>
+<li>$\lambda$ 是损失的惩罚权重，通常为 2.25。</li>
+</ul>
+<h3 id="5-2-损失函数"><a href="#5-2-损失函数" class="headerlink" title="5.2 损失函数"></a>5.2 <strong>损失函数</strong></h3><p>KTO 的损失函数基于前景理论的效用函数，用于惩罚模型的预测误差：</p>
+<p>$$<br>\mathcal{L}<em>{\text{KTO}} = -\mathbb{E}[\mathcal{U}(y</em>{\text{pred}} - y_{\text{true}})]<br>$$</p>
+<h3 id="5-3-优化器"><a href="#5-3-优化器" class="headerlink" title="5.3 优化器"></a>5.3 <strong>优化器</strong></h3><p>KTO 常使用 <strong>AdamW</strong> 优化器，以确保训练过程的稳定性：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = torch.optim.AdamW(model.parameters(), lr=<span class="number">3e-5</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="5-4-核心代码"><a href="#5-4-核心代码" class="headerlink" title="5.4 核心代码"></a>5.4 <strong>核心代码</strong></h3><p>以下是 KTO 损失函数的计算代码：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">prospect_utility</span>(<span class="params">value, alpha=<span class="number">0.88</span>, lambda_=<span class="number">2.25</span></span>):</span><br><span class="line">    <span class="keyword">if</span> value &gt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> torch.<span class="built_in">pow</span>(value, alpha)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> -lambda_ * torch.<span class="built_in">pow</span>(-value, alpha)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">kto_loss</span>(<span class="params">predictions, targets</span>):</span><br><span class="line">    value = predictions - targets</span><br><span class="line">    utility = prospect_utility(value)</span><br><span class="line">    loss = -torch.mean(utility)</span><br><span class="line">    <span class="keyword">return</span> loss</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> dataloader:</span><br><span class="line">    predictions = model(data)</span><br><span class="line">    loss = kto_loss(predictions, targets)</span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>损失函数</th>
+<th>优化器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SFT</strong></td>
+<td>交叉熵损失</td>
+<td>AdamW，RMSprop，SGD</td>
+</tr>
+<tr>
+<td><strong>LoRA</strong></td>
+<td>交叉熵损失</td>
+<td>AdamW，RMSprop，SGD</td>
+</tr>
+<tr>
+<td><strong>DPO</strong></td>
+<td>偏好损失函数： $\log(1 + \exp(-\sigma (\hat{y}_a - \hat{y}_b)p))$</td>
+<td>AdamW</td>
+</tr>
+<tr>
+<td><strong>KTO</strong></td>
+<td>前景理论效用函数： $-\mathbb{E}[\mathcal{U}(y_{\text{pred}} - y_{\text{true}})]$</td>
+<td>AdamW</td>
+</tr>
+</tbody></table>
+<p>通过本文档的整理，读者能够清晰理解 SFT、LoRA、DPO 和 KTO 等技术的原理、具体实现步骤、损失函数设计和优化器选择，特别是在 LLAMA3 这种大规模预训练模型的微调场景下的实际应用。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io">Huiyu Chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io/2024/10/23/NLP%20Insights/LLM%E8%AE%AD%E7%BB%83%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D%EF%BC%9ASFT%E3%80%81LoRA%E3%80%81Alignment%E3%80%81KTO%E5%92%8CDPO.zh-CN/">https://chenhuiyu.github.io/2024/10/23/NLP%20Insights/LLM%E8%AE%AD%E7%BB%83%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D%EF%BC%9ASFT%E3%80%81LoRA%E3%80%81Alignment%E3%80%81KTO%E5%92%8CDPO.zh-CN/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://chenhuiyu.github.io" target="_blank">黑头呆鱼进化之旅</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/LLM/">LLM</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/10/23/NLP%20Insights/LLM%E8%AE%AD%E7%BB%83%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D%EF%BC%9ASFT%E3%80%81LoRA%E3%80%81Alignment%E3%80%81KTO%E5%92%8CDPO.en/" title="LoRA, DPO, KTO 与 SFT 技术详解"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">LoRA, DPO, KTO 与 SFT 技术详解</div></div><div class="info-2"><div class="info-item-1">LoRA, DPO, KTO 与 SFT 技术详解本篇文档将详细介绍几种在大型语言模型（如 LLAMA3）微调和优化中的重要技术，包括 SFT（Supervised Fine-Tuning）、LoRA（Low-Rank Adaptation）、Alignment 技术、KTO（Kahneman-Tversky Optimization） 和 DPO（Direct Preference Optimization）。文中还将详细阐述每种技术的原理、具体实现方法以及相应的损失函数与优化器选择。  1. SFT（Supervised Fine-Tuning）1.1 原理SFT 是一种传统的微调方法，通过监督学习对预训练模型进行微调，调整模型的参数使其在特定任务上表现更好。SFT 通常用于针对特定的标注数据进行模型微调，训练的过程类似于常规的监督学习。 1.2 实现方法 选择预训练模型：如 GPT、BERT 等语言模型。 准备标注数据集：数据集包含输入和输出对。 训练模型：使用标准的交叉熵损失函数对模型进行训练，通过梯度下降优化参数。  1.3 核心代码使用 Hugging Face 的 ...</div></div></div></a><a class="pagination-related" href="/2024/10/23/NLP%20Insights/LLM%E8%AE%AD%E7%BB%83%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D%EF%BC%9ASFT%E3%80%81LoRA%E3%80%81Alignment%E3%80%81KTO%E5%92%8CDPO/" title="LoRA, DPO, KTO 与 SFT 技术详解"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">LoRA, DPO, KTO 与 SFT 技术详解</div></div><div class="info-2"><div class="info-item-1">LoRA, DPO, KTO 与 SFT 技术详解本篇文档将详细介绍几种在大型语言模型（如 LLAMA3）微调和优化中的重要技术，包括 SFT（Supervised Fine-Tuning）、LoRA（Low-Rank Adaptation）、Alignment 技术、KTO（Kahneman-Tversky Optimization） 和 DPO（Direct Preference Optimization）。文中还将详细阐述每种技术的原理、具体实现方法以及相应的损失函数与优化器选择。  1. SFT（Supervised Fine-Tuning）1.1 原理SFT 是一种传统的微调方法，通过监督学习对预训练模型进行微调，调整模型的参数使其在特定任务上表现更好。SFT 通常用于针对特定的标注数据进行模型微调，训练的过程类似于常规的监督学习。 1.2 实现方法 选择预训练模型：如 GPT、BERT 等语言模型。 准备标注数据集：数据集包含输入和输出对。 训练模型：使用标准的交叉熵损失函数对模型进行训练，通过梯度下降优化参数。  1.3 核心代码使用 Hugging Face 的 ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2025/02/11/NLP%20Insights/MoE%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97%EF%BC%9A%E6%8F%AD%E7%A7%98%20MoE%20%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.en/" title="MoE模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-11</div><div class="info-item-2">MoE模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色</div></div><div class="info-2"><div class="info-item-1">MoE 模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色原文地址：A Visual Guide to Mixture of Experts (MoE) 📅 作者：Maarten Grootendorst 📆 日期：2024 年 10 月 7 日  探索语言模型：混合专家模型（MoE）可视化指南目录 MoE 模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色 探索语言模型：混合专家模型（MoE）可视化指南 目录 什么是混合专家（MoE）模型？ Experts Dense Layers Sparse Layers What does an Expert Learn? 专家的架构（Architecture of Experts）      当我们查看最新发布的大型语言模型（LLMs，Large Language Models）时，常常会在标题中看到 “MoE”。这个 “MoE” 代表什么？为什么这么多 LLM 都在使用它？ 在这份可视化指南中，我们会通过 50 多个可视化图示，逐步探索这一关键组件：**Mixture of Experts (MoE)**。   图示内...</div></div></div></a><a class="pagination-related" href="/2023/07/28/NLP%20Insights/LONGNET.en/" title="LONGNET - Scaling Transformers to 1,000,000,000 Tokens"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-28</div><div class="info-item-2">LONGNET - Scaling Transformers to 1,000,000,000 Tokens</div></div><div class="info-2"><div class="info-item-1">LONGNET：将Transformer扩展到10亿个标记在本篇文章中，我们将详细讨论一个近期发布的先进模型——“LongNet”。该模型由微软亚洲研究院研发，于大约两周前正式公布。LongNet基于Transformer模型构建，其核心理念在于拓展Transformer的应用规模。值得一提的是，研究团队成功地将其扩展至处理10亿个令牌的规模。对于熟悉语言模型的人来说，会明白序列长度对模型性能的影响，因为序列长度决定了在执行注意力机制时，能够关联的令牌数量，从而影响模型可以获取的上下文信息长度。例如，我们希望像GPT这样的模型能拥有更长的上下文，使得模型可以参考更久之前的单词来预测下一个令牌。而LongNet就成功地将这个能力扩展到了10亿个令牌。以下图为例，可以清晰看出，GPT的序列长度仅为512，而Power Transformer的序列长度可扩展至12、000、64、262、000、甚至1000万，然而LongNet将序列长度扩展至惊人的10亿个令牌。试想一下，我们可以将所有维基百科的文本信息输入到模型中，模型可以利用所有这些令牌进行注意力计算。接下来，让我们首先来了解一下...</div></div></div></a><a class="pagination-related" href="/2025/03/06/NLP%20Insights/Decoder%E6%A8%A1%E5%9E%8B%E5%92%8CEncoder%E6%A8%A1%E5%9E%8B%E5%9C%A8Padding%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%90%8C/" title="Decoder-only与Encoder-only模型Padding策略的差异"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-06</div><div class="info-item-2">Decoder-only与Encoder-only模型Padding策略的差异</div></div><div class="info-2"><div class="info-item-1">📌 Padding 的含义在大模型 (LLM) 中，padding 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (batch) 处理。 例如： 12句子1: "I love NLP"句子2: "Padding is useful in LLM training"  使用 &lt;pad&gt; token 进行对齐： 12"I love NLP &lt;pad&gt; &lt;pad&gt; &lt;pad&gt;""Padding is useful in LLM training"   📌 Padding 位置的选择：Left vs RightPadding 有两种常见方式：  Right padding（右填充）： 1"I love NLP &lt;pad&gt; &lt;pad&gt;"  Left padding（左填充）： 1"&lt;pad&gt; &lt;pad&gt; I love NLP"  通常：  Decoder-only 模型（如 GPT, Llama）：采用 Left padding Encoder-only 模型（如 BERT）：采用...</div></div></div></a><a class="pagination-related" href="/2024/02/27/NLP%20Insights/FastChat%20Training%20Script%20Code%20Analysis%20-%20Train.py%20%E3%80%90FastChat%20Series%20Part%201%E3%80%91.zh-CN/" title="FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-27</div><div class="info-item-2">FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】</div></div><div class="info-2"><div class="info-item-1">FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】In this article, we delve into the train.py script of FastChat (https://github.com/lm-sys/FastChat) (https://github.com/lm-sys/FastChat/blob/main/fastchat/train/train.py), a key component for training and optimizing large language models (LLMs). FastChat is an advanced open-source platform focused on developing, deploying, and evaluating chatbots based on LLMs. The platform not only supports top-tier models like Vicuna ...</div></div></div></a><a class="pagination-related" href="/2025/03/06/NLP%20Insights/Differences%20in%20Padding%20Strategies%20Between%20Decoder-only%20and%20Encoder-only%20Models.en/" title="Differences in Padding Strategies Between Decoder-only and Encoder-only Models"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-06</div><div class="info-item-2">Differences in Padding Strategies Between Decoder-only and Encoder-only Models</div></div><div class="info-2"><div class="info-item-1">📌 What is Padding?In Large Language Models (LLMs), padding is a method used to standardize sequence lengths for batch processing. For example: 12Sentence 1: "I love NLP"Sentence 2: "Padding is useful in LLM training"  Using the &lt;pad&gt; token for alignment: 12"I love NLP &lt;pad&gt; &lt;pad&gt; &lt;pad&gt;""Padding is useful in LLM training"   📌 Padding Positioning: Left vs RightThere are two common padding strategies:  Right padding: 1"I love NLP &lt;pad&gt; &lt;pad&gt;"  Left padding: ...</div></div></div></a><a class="pagination-related" href="/2023/08/02/NLP%20Insights/LLAMA2.zh-CN/" title="Training Llama 2 Model on Single GPU with int8 Quantization and LoRA"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-02</div><div class="info-item-2">Training Llama 2 Model on Single GPU with int8 Quantization and LoRA</div></div><div class="info-2"><div class="info-item-1">Training Llama 2 Model on Single GPU with int8 Quantization and LoRALlama 2概述Llama 2 是一个包含预训练和微调的生成式文本模型的集合，其规模从 70 亿到 700 亿个参数不等。Llama2模型是由Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert等人在Llama 2: Open Foundation and Fine-Tuned Chat Models中提出的。 该论文的摘要如下： 在这项工作中，我们开发并发布了Llama 2，这是一组从70亿到700亿参数的预训练和微调的大型语言模型（LLMs）。我们的微调LLMs，称为Llama 2-Chat，针对对话用例进行了优化。我们的模型在我们测试的大多数基准上胜过开源聊天模型，并且基于我们对有用性和安全性的人类评估，可能是闭源模型的合适替代品。我们提供了关于微调和改进Llama 2-Chat安全性的方法的详细描述，以便社区能够在我们的工作基础上构建，并有助于LLMs的负责任发展。 在此处查看所有L...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">186</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#LoRA-DPO-KTO-%E4%B8%8E-SFT-%E6%8A%80%E6%9C%AF%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">LoRA, DPO, KTO 与 SFT 技术详解</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-SFT%EF%BC%88Supervised-Fine-Tuning%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">1. SFT（Supervised Fine-Tuning）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">1.1 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">1.2 实现方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="toc-number">3.</span> <span class="toc-text">1.3 核心代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-LoRA%EF%BC%88Low-Rank-Adaptation%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">2. LoRA（Low-Rank Adaptation）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">2.1 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">2.2 实现方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%8F%AF%E5%BE%AE%E8%B0%83%E7%9A%84%E5%B1%82%E4%B8%8E%E4%B8%8D%E5%8F%98%E7%9A%84%E5%B1%82"><span class="toc-number">3.</span> <span class="toc-text">2.3 可微调的层与不变的层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%AF%E5%BE%AE%E8%B0%83%E7%9A%84%E5%B1%82"><span class="toc-number">3.1.</span> <span class="toc-text">可微调的层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8D%E5%8F%98%E7%9A%84%E5%B1%82"><span class="toc-number">3.2.</span> <span class="toc-text">不变的层</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">2.4 损失函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">5.</span> <span class="toc-text">2.5 优化器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="toc-number">6.</span> <span class="toc-text">2.6 核心代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Alignment%EF%BC%88%E5%AF%B9%E9%BD%90%E6%8A%80%E6%9C%AF%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">3. Alignment（对齐技术）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E6%A8%A1%E5%9E%8B%E5%AF%B9%E9%BD%90%EF%BC%88Alignment%EF%BC%89%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">1. 什么是模型对齐（Alignment）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%A8%A1%E5%9E%8B%E5%AF%B9%E9%BD%90%E7%9A%84%E6%95%B0%E5%AD%A6%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">2. 模型对齐的数学原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 策略模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-%E6%8F%90%E9%AB%98%E6%AD%A3%E6%A0%B7%E6%9C%AC%E6%A6%82%E7%8E%87%E4%B8%8E%E9%99%8D%E4%BD%8E%E8%B4%9F%E6%A0%B7%E6%9C%AC%E6%A6%82%E7%8E%87%E7%9A%84%E6%9C%BA%E5%88%B6"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 提高正样本概率与降低负样本概率的机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E4%B8%8EKL%E6%95%A3%E5%BA%A6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">3. 损失函数与KL散度的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-KL%E6%95%A3%E5%BA%A6%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 KL散度的作用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%85%AC%E5%BC%8F"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 损失函数公式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DPO%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-number">3.2.1.</span> <span class="toc-text">DPO中的损失函数：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#KTO%E4%B8%AD%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-number">3.2.2.</span> <span class="toc-text">KTO中的损失函数：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96%E6%A8%A1%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">4. 如何优化模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-DPO%EF%BC%88Direct-Preference-Optimization%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">4. DPO（Direct Preference Optimization）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">4.1 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">4.2 损失函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">4.3 优化器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">4.4 核心代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-KTO%EF%BC%88Kahneman-Tversky-Optimization%EF%BC%89"><span class="toc-number"></span> <span class="toc-text">5. KTO（Kahneman-Tversky Optimization）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">5.1 原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text">5.2 损失函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E4%BC%98%E5%8C%96%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">5.3 优化器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E6%A0%B8%E5%BF%83%E4%BB%A3%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">5.4 核心代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.en/" title="无标题">无标题</a><time datetime="2026-02-20T21:47:32.623Z" title="发表于 2026-02-21 05:47:32">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.zh-CN/" title="无标题">无标题</a><time datetime="2026-02-20T21:47:32.623Z" title="发表于 2026-02-21 05:47:32">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment/" title="无标题">无标题</a><time datetime="2026-02-20T21:46:38.687Z" title="发表于 2026-02-21 05:46:38">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI.en/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/lang-switch.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

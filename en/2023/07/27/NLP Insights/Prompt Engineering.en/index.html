@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Prompt Engineering | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Prompt EngineeringPrompt Engineering, 也被称为上下文提示，是指在不更新模型权重的情况下，与LLM（语言模型）进行交互以引导其产生期望输出的方法。它是一门实证科学，提示工程方法的效果在不同模型之间可能会有很大的差异，因此需要进行大量的实验和试探。 本文仅关注自回归语言模型的提示工程，不涉及填空测试、图像生成或多模态模型。在本质上，提示工程的目标是实现模型的对齐和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Prompt Engineering">
+<meta property="og:url" content="https://chenhuiyu.github.io/en/2023/07/27/NLP%20Insights/Prompt%20Engineering.en/index.html">
+<meta property="og:site_name" content="黑头呆鱼进化之旅">
+<meta property="og:description" content="Prompt EngineeringPrompt Engineering, 也被称为上下文提示，是指在不更新模型权重的情况下，与LLM（语言模型）进行交互以引导其产生期望输出的方法。它是一门实证科学，提示工程方法的效果在不同模型之间可能会有很大的差异，因此需要进行大量的实验和试探。 本文仅关注自回归语言模型的提示工程，不涉及填空测试、图像生成或多模态模型。在本质上，提示工程的目标是实现模型的对齐和">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2023-07-27T07:44:10.000Z">
+<meta property="article:modified_time" content="2026-02-20T21:47:32.630Z">
+<meta property="article:author" content="Huiyu Chen">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="Prompt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Prompt Engineering",
+  "url": "https://chenhuiyu.github.io/2023/07/27/NLP%20Insights/Prompt%20Engineering.en/",
+  "image": "https://chenhuiyu.github.io/img/butterfly-icon.png",
+  "datePublished": "2023-07-27T07:44:10.000Z",
+  "dateModified": "2026-02-20T21:47:32.630Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Huiyu Chen",
+      "url": "https://chenhuiyu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/en/2023/07/27/NLP%20Insights/Prompt%20Engineering.en/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Prompt Engineering',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/site-bg.jpg);"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a><a class="nav-page-title" href="/"><span class="site-name">Prompt Engineering</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Prompt Engineering</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-07-27T07:44:10.000Z" title="Created 2023-07-27 15:44:10">2023-07-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-20T21:47:32.630Z" title="Updated 2026-02-21 05:47:32">2026-02-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/NLP-Insights/">NLP Insights</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Prompt-Engineering"><a href="#Prompt-Engineering" class="headerlink" title="Prompt Engineering"></a>Prompt Engineering</h1><p>Prompt Engineering, 也被称为上下文提示，是指在不更新模型权重的情况下，与LLM（语言模型）进行交互以引导其产生期望输出的方法。它是一门实证科学，提示工程方法的效果在不同模型之间可能会有很大的差异，因此需要进行大量的实验和试探。</p>
+<p>本文仅关注自回归语言模型的提示工程，不涉及填空测试、图像生成或多模态模型。在本质上，提示工程的目标是实现模型的对齐和可操控性。您可以查阅我之前关于可控文本生成的帖子。</p>
+<h2 id="基本提示方法"><a href="#基本提示方法" class="headerlink" title="基本提示方法"></a>基本提示方法</h2><p>zero-shot学习和few-shot学习是两种最基本的提示模型方法，这些方法由许多LLM论文首创，并且通常用于评估LLM性能。</p>
+<h3 id="zero-shot学习"><a href="#zero-shot学习" class="headerlink" title="zero-shot学习"></a>zero-shot学习</h3><p>zero-shot学习是将任务文本直接输入模型并要求获得结果。</p>
+<p>（所有情感分析示例来自于SST-2数据集）</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Text: i'll bet the video game is a lot more fun than the film.</span><br><span class="line">Sentiment:</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="few-shot学习"><a href="#few-shot学习" class="headerlink" title="few-shot学习"></a>few-shot学习</h3><p>few-shot学习通过提供一组高质量的示例演示，每个示例都包含目标任务的输入和期望输出。当模型首先看到好的示例时，它可以更好地理解人类的意图和期望的答案类型。因此，few-shot学习通常比zero-shot学习表现更好。然而，这样做的代价是更多的记号消耗，并且在输入和输出文本较长时可能会达到上下文长度限制。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Text: (lawrence bounces) all over the stage, dancing, running, sweating, mopping his face and generally displaying the wacky talent that brought him fame in the first place.</span><br><span class="line">Sentiment: positive</span><br><span class="line"></span><br><span class="line">Text: despite all evidence to the contrary, this clunker has somehow managed to pose as an actual feature movie, the kind that charges full admission and gets hyped on tv and purports to amuse small children and ostensible adults.</span><br><span class="line">Sentiment: negative</span><br><span class="line"></span><br><span class="line">Text: for the first time in years, de niro digs deep emotionally, perhaps because he's been stirred by the powerful work of his co-stars.</span><br><span class="line">Sentiment: positive</span><br><span class="line"></span><br><span class="line">Text: i'll bet the video game is a lot more fun than the film.</span><br><span class="line">Sentiment:</span><br></pre></td></tr></tbody></table></figure>
+<p>许多研究都探讨了如何构建上下文示例以最大化性能，并观察到提示格式、训练示例和示例的顺序选择可能会导致截然不同的性能，从几乎随机猜测到接近SOTA（State-of-the-Art）。</p>
+<p>赵等人（2021年）研究了few-shot分类的情况，并提出了一些与LLM（他们在实验中使用了GPT-3）相关的偏差，这些偏差导致了高方差的情况：</p>
+<ul>
+<li>（1）多数类别偏差存在于示例的标签分布不平衡的情况下；</li>
+<li>（2）最近偏差是指模型可能在结尾重复标签；</li>
+<li>（3）常见记号偏差表明LLM倾向于更频繁地生成常见的记号而不是罕见的记号。为了克服这些偏差，他们提出了一种方法，通过对模型输出的标签概率进行校准，使其在输入字符串为N/A时保持均匀。</li>
+</ul>
+<h2 id="提示工程技巧"><a href="#提示工程技巧" class="headerlink" title="提示工程技巧"></a>提示工程技巧</h2><h3 id="示例选择的建议"><a href="#示例选择的建议" class="headerlink" title="示例选择的建议"></a>示例选择的建议</h3><ul>
+<li><p>使用嵌入空间中的NN聚类（Liu等人，2021年）来选择与测试示例在语义上相似的示例。</p>
+</li>
+<li><p>Su等人（2022年）提出了一种基于图的方法来选择多样且代表性的示例：</p>
+<ol>
+<li>首先，根据样本之间的嵌入（例如SBERT或其他嵌入模型）余弦相似性构建一个有向图，其中每个节点指向其最近的邻居；</li>
+<li>开始时有一组已选择的示例和一组剩余示例。每个示例都通过得分函数进行评分，其中得分函数的目标是保持低值，以鼓励选择多样化的示例。具体得分函数的计算公式未提供。</li>
+</ol>
+</li>
+<li><p>Rubin等人（2022年）提出了针对上下文学习示例选择的对比学习方法。对于每个训练对（格式化的输入-输出对），可以通过LM分配的条件概率来衡量一个示例的质量。然后，可以根据得分对训练对进行排名，选择得分较高和得分较低的示例作为对比学习的正样本和负样本集。</p>
+</li>
+<li><p>有些研究人员尝试使用Q-Learning进行示例选择（Zhang等人，2022年）。</p>
+</li>
+<li><p>受不确定性主导的主动学习的启发，Diao等人（2023年）建议确定具有多次采样试验中高度不一致或熵值较高的示例，并注释这些示例以在few-shot提示中使用。</p>
+</li>
+</ul>
+<h3 id="示例排序的建议"><a href="#示例排序的建议" class="headerlink" title="示例排序的建议"></a>示例排序的建议</h3><ul>
+<li><p>一般建议保持示例选择的多样性，与测试示例相关，并以随机顺序进行排列，以避免多数类别偏差和最近偏差。</p>
+</li>
+<li><p>增加模型大小或包含更多训练示例并不能减少上下文示例不同排列之间的方差。同一顺序对一个模型可能有效，但对另一个模型可能无效。当验证集有限时，可以考虑选择顺序，以使模型不会产生极端不平衡的预测或对其预测过于自信（Lu等人，2022年）。</p>
+</li>
+</ul>
+<h2 id="指令提示"><a href="#指令提示" class="headerlink" title="指令提示"></a>指令提示</h2><ul>
+<li><p>在提示中展示few-shot示例的目的是向模型解释我们的意图；换句话说，用示例来描述任务指令，以便模型能够理解用户意图并遵循指令。然而，few-shot的使用可能会消耗较多的记号，并限制输入长度，因为上下文长度有限。所以，为什么不直接给出指令呢？</p>
+</li>
+<li><p>Instructed LM（例如InstructGPT，自然语言指令）使用高质量的（任务指令，输入，真实输出）元组对预训练模型进行微调，以使LM更好地理解用户意图并遵循指令。RLHF（人类反馈的强化学习）是一种常见的方法。采用指令遵循风格的微调使得模型更加符合人类意图，并极大地降低了通信成本。</p>
+</li>
+<li><p>在与指令模型进行交互时，我们应该详细描述任务要求，尽量具体和准确，并避免使用”不做某事”的表述，而是要明确指定要做什么。</p>
+</li>
+</ul>
+<h1 id="Chain-of-Thought-CoT-Prompting"><a href="#Chain-of-Thought-CoT-Prompting" class="headerlink" title="Chain-of-Thought (CoT) Prompting"></a>Chain-of-Thought (CoT) Prompting</h1><p>Chain-of-Thought (CoT) Prompting（Wei等人，2022年）通过生成一系列简短的句子，逐步描述推理逻辑，即所谓的推理链或理由链，最终引导出最终答案。CoT在复杂的推理任务中效果更显著，特别是在使用大型模型（例如超过50亿参数的模型）时。对于简单的任务，CoT提示的受益较小。</p>
+<p>CoT提示的两种主要类型：</p>
+<h2 id="few-shot-CoT"><a href="#few-shot-CoT" class="headerlink" title="few-shot CoT"></a>few-shot CoT</h2><p>few-shot CoT是使用少量演示来引导模型，每个演示包含人工编写（或模型生成）的高质量推理链。</p>
+<p>（以下所有数学推理示例来自GSM8k数据集）</p>
+<p>问题：Tom和Elizabeth比赛爬山。Elizabeth花了30分钟爬上山。Tom花费的时间是Elizabeth的四倍。Tom爬上山需要多少小时？</p>
+<p>答案：Tom需要30 * 4 = 120分钟爬上山。<br>Tom需要120/60 = 2小时爬上山。<br>所以答案是2。</p>
+<p>===</p>
+<p>问题：Jack是个足球运动员。他需要买两双袜子和一双足球鞋。每双袜子的价格是9.50美元，鞋子的价格是92美元。Jack有40美元。Jack还需要多少钱？</p>
+<p>答案：两双袜子的总费用是9.50美元 x 2 = 19美元。<br>袜子和鞋子的总费用是19美元 + 92美元 = 111美元。<br>Jack还需要111美元 - 40美元 = 71美元。<br>所以答案是71。</p>
+<p>===</p>
+<p>问题：Marty有100厘米的缎带，他必须将其分成4等份。每个切割部分必须再分成5等份。每个最终切割部分将有多长？</p>
+<p>答案：（待填写）</p>
+<h2 id="zero-shot-CoT"><a href="#zero-shot-CoT" class="headerlink" title="zero-shot CoT"></a>zero-shot CoT</h2><p>zero-shot CoT是使用自然语言陈述，例如“让我们逐步思考”，明确地鼓励模型首先生成推理链，然后再通过“因此，答案是”等提示来产生答案（Kojima等人，2022年）。或者使用类似的语句“让我们一步一步来计算，确保我们得到正确的答案”（Zhou等人，2022年）。</p>
+<p>问题：Marty有100厘米的缎带，他必须将其分成4等份。每个切割部分必须再分成5等份。每个最终切割部分将有多长？</p>
+<p>答案：让我们逐步思考。</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@article{weng2023prompt,</span><br><span class="line">  title   = "Prompt Engineering",</span><br><span class="line">  author  = "Weng, Lilian",</span><br><span class="line">  journal = "lilianweng.github.io",</span><br><span class="line">  year    = "2023",</span><br><span class="line">  month   = "Mar",</span><br><span class="line">  url     = "https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/"</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io">Huiyu Chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io/2023/07/27/NLP%20Insights/Prompt%20Engineering.en/">https://chenhuiyu.github.io/2023/07/27/NLP%20Insights/Prompt%20Engineering.en/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/LLM/">LLM</a><a class="post-meta__tags" href="/tags/Prompt/">Prompt</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2023/07/27/NLP%20Insights/Prompt%20Engineering/" title="Prompt Engineering"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Prompt Engineering</div></div><div class="info-2"><div class="info-item-1">Prompt EngineeringPrompt Engineering, 也被称为上下文提示，是指在不更新模型权重的情况下，与LLM（语言模型）进行交互以引导其产生期望输出的方法。它是一门实证科学，提示工程方法的效果在不同模型之间可能会有很大的差异，因此需要进行大量的实验和试探。 本文仅关注自回归语言模型的提示工程，不涉及填空测试、图像生成或多模态模型。在本质上，提示工程的目标是实现模型的对齐和可操控性。您可以查阅我之前关于可控文本生成的帖子。 基本提示方法zero-shot学习和few-shot学习是两种最基本的提示模型方法，这些方法由许多LLM论文首创，并且通常用于评估LLM性能。 zero-shot学习zero-shot学习是将任务文本直接输入模型并要求获得结果。 （所有情感分析示例来自于SST-2数据集） 12Text: i'll bet the video game is a lot more fun than the film.Sentiment: few-shot学习few-shot学习通过提供一组高质量的示例演示，每个示例都包含目标任务的输入和期望输出。当模型首...</div></div></div></a><a class="pagination-related" href="/2023/07/10/Code%20Chronicles/ColoredLogger.zh-CN/" title="ColoredLogger-彩色打印日志到控制台并记录到文件"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">ColoredLogger-彩色打印日志到控制台并记录到文件</div></div><div class="info-2"><div class="info-item-1">彩色打印日志到控制台并记录到文件本文档介绍了一个名为 ColoredLogger 的日志记录器类，它可以根据不同的消息类型以不同的颜色打印日志，并将日志记录到文件中。该类使用了 colorama 库来实现在控制台中显示带颜色的文本。为了使控制台输出的日志更加易于阅读和理解，我们通常会使用彩色的输出。同时，将日志记录到文件中可以方便我们后续的调试和分析。在Python中，我们可以使用logging和colorama库来实现这样的功能。  以下是一个如何使用这两个库的详细介绍。 功能 可以根据不同的消息类型以不同的颜色打印日志消息。 将日志消息记录到文件中，使用标准的 logging 模块进行记录。 在控制台中显示带颜色的日志消息。  原理logging库提供了强大的日志记录功能，允许我们将日志记录到控制台、文件或者其他输出设备，并提供了详细的配置选项。 colorama库可以使我们在控制台输出彩色的文本。它提供了对ANSI颜色编码的支持，可以在几乎所有的平台和终端中使用。 我们先初始化colorama，然后定义了一个ColoredLogger类，它包含了各种彩色的输出样式和对应的日...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2023/07/27/NLP%20Insights/Prompt%20Engineering/" title="Prompt Engineering"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-27</div><div class="info-item-2">Prompt Engineering</div></div><div class="info-2"><div class="info-item-1">Prompt EngineeringPrompt Engineering, 也被称为上下文提示，是指在不更新模型权重的情况下，与LLM（语言模型）进行交互以引导其产生期望输出的方法。它是一门实证科学，提示工程方法的效果在不同模型之间可能会有很大的差异，因此需要进行大量的实验和试探。 本文仅关注自回归语言模型的提示工程，不涉及填空测试、图像生成或多模态模型。在本质上，提示工程的目标是实现模型的对齐和可操控性。您可以查阅我之前关于可控文本生成的帖子。 基本提示方法zero-shot学习和few-shot学习是两种最基本的提示模型方法，这些方法由许多LLM论文首创，并且通常用于评估LLM性能。 zero-shot学习zero-shot学习是将任务文本直接输入模型并要求获得结果。 （所有情感分析示例来自于SST-2数据集） 12Text: i'll bet the video game is a lot more fun than the film.Sentiment: few-shot学习few-shot学习通过提供一组高质量的示例演示，每个示例都包含目标任务的输入和期望输出。当模型首...</div></div></div></a><a class="pagination-related" href="/2023/07/27/NLP%20Insights/Prompt%20Engineering.zh-CN/" title="Prompt Engineering"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-27</div><div class="info-item-2">Prompt Engineering</div></div><div class="info-2"><div class="info-item-1">Prompt EngineeringPrompt Engineering, 也被称为上下文提示，是指在不更新模型权重的情况下，与LLM（语言模型）进行交互以引导其产生期望输出的方法。它是一门实证科学，提示工程方法的效果在不同模型之间可能会有很大的差异，因此需要进行大量的实验和试探。 本文仅关注自回归语言模型的提示工程，不涉及填空测试、图像生成或多模态模型。在本质上，提示工程的目标是实现模型的对齐和可操控性。您可以查阅我之前关于可控文本生成的帖子。 基本提示方法zero-shot学习和few-shot学习是两种最基本的提示模型方法，这些方法由许多LLM论文首创，并且通常用于评估LLM性能。 zero-shot学习zero-shot学习是将任务文本直接输入模型并要求获得结果。 （所有情感分析示例来自于SST-2数据集） 12Text: i'll bet the video game is a lot more fun than the film.Sentiment: few-shot学习few-shot学习通过提供一组高质量的示例演示，每个示例都包含目标任务的输入和期望输出。当模型首...</div></div></div></a><a class="pagination-related" href="/2023/07/27/NLP%20Insights/Prompt%20Engineering.en/" title="Prompt Engineering"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-27</div><div class="info-item-2">Prompt Engineering</div></div><div class="info-2"><div class="info-item-1">Prompt EngineeringPrompt Engineering, 也被称为上下文提示，是指在不更新模型权重的情况下，与LLM（语言模型）进行交互以引导其产生期望输出的方法。它是一门实证科学，提示工程方法的效果在不同模型之间可能会有很大的差异，因此需要进行大量的实验和试探。 本文仅关注自回归语言模型的提示工程，不涉及填空测试、图像生成或多模态模型。在本质上，提示工程的目标是实现模型的对齐和可操控性。您可以查阅我之前关于可控文本生成的帖子。 基本提示方法zero-shot学习和few-shot学习是两种最基本的提示模型方法，这些方法由许多LLM论文首创，并且通常用于评估LLM性能。 zero-shot学习zero-shot学习是将任务文本直接输入模型并要求获得结果。 （所有情感分析示例来自于SST-2数据集） 12Text: i'll bet the video game is a lot more fun than the film.Sentiment: few-shot学习few-shot学习通过提供一组高质量的示例演示，每个示例都包含目标任务的输入和期望输出。当模型首...</div></div></div></a><a class="pagination-related" href="/2024/02/27/NLP%20Insights/FastChat%20Training%20Script%20Code%20Analysis%20-%20Train.py%20%E3%80%90FastChat%20Series%20Part%201%E3%80%91/" title="FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-27</div><div class="info-item-2">FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】</div></div><div class="info-2"><div class="info-item-1">FastChat Training Script Code Analysis - Train.py 【FastChat Series Part 1】In this article, we delve into the train.py script of FastChat (https://github.com/lm-sys/FastChat) (https://github.com/lm-sys/FastChat/blob/main/fastchat/train/train.py), a key component for training and optimizing large language models (LLMs). FastChat is an advanced open-source platform focused on developing, deploying, and evaluating chatbots based on LLMs. The platform not only supports top-tier models like Vicuna ...</div></div></div></a><a class="pagination-related" href="/2025/03/06/NLP%20Insights/Decoder%E6%A8%A1%E5%9E%8B%E5%92%8CEncoder%E6%A8%A1%E5%9E%8B%E5%9C%A8Padding%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%90%8C/" title="Decoder-only与Encoder-only模型Padding策略的差异"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-06</div><div class="info-item-2">Decoder-only与Encoder-only模型Padding策略的差异</div></div><div class="info-2"><div class="info-item-1">📌 Padding 的含义在大模型 (LLM) 中，padding 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (batch) 处理。 例如： 12句子1: "I love NLP"句子2: "Padding is useful in LLM training"  使用 &lt;pad&gt; token 进行对齐： 12"I love NLP &lt;pad&gt; &lt;pad&gt; &lt;pad&gt;""Padding is useful in LLM training"   📌 Padding 位置的选择：Left vs RightPadding 有两种常见方式：  Right padding（右填充）： 1"I love NLP &lt;pad&gt; &lt;pad&gt;"  Left padding（左填充）： 1"&lt;pad&gt; &lt;pad&gt; I love NLP"  通常：  Decoder-only 模型（如 GPT, Llama）：采用 Left padding Encoder-only 模型（如 BERT）：采用...</div></div></div></a><a class="pagination-related" href="/2024/10/23/NLP%20Insights/LLM%E8%AE%AD%E7%BB%83%E6%9C%AF%E8%AF%AD%E4%BB%8B%E7%BB%8D%EF%BC%9ASFT%E3%80%81LoRA%E3%80%81Alignment%E3%80%81KTO%E5%92%8CDPO.zh-CN/" title="LoRA, DPO, KTO 与 SFT 技术详解"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-10-23</div><div class="info-item-2">LoRA, DPO, KTO 与 SFT 技术详解</div></div><div class="info-2"><div class="info-item-1">LoRA, DPO, KTO 与 SFT 技术详解本篇文档将详细介绍几种在大型语言模型（如 LLAMA3）微调和优化中的重要技术，包括 SFT（Supervised Fine-Tuning）、LoRA（Low-Rank Adaptation）、Alignment 技术、KTO（Kahneman-Tversky Optimization） 和 DPO（Direct Preference Optimization）。文中还将详细阐述每种技术的原理、具体实现方法以及相应的损失函数与优化器选择。  1. SFT（Supervised Fine-Tuning）1.1 原理SFT 是一种传统的微调方法，通过监督学习对预训练模型进行微调，调整模型的参数使其在特定任务上表现更好。SFT 通常用于针对特定的标注数据进行模型微调，训练的过程类似于常规的监督学习。 1.2 实现方法 选择预训练模型：如 GPT、BERT 等语言模型。 准备标注数据集：数据集包含输入和输出对。 训练模型：使用标准的交叉熵损失函数对模型进行训练，通过梯度下降优化参数。  1.3 核心代码使用 Hugging Face 的 ...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">186</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Prompt-Engineering"><span class="toc-number">1.</span> <span class="toc-text">Prompt Engineering</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%8F%90%E7%A4%BA%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">基本提示方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#zero-shot%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.1.1.</span> <span class="toc-text">zero-shot学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#few-shot%E5%AD%A6%E4%B9%A0"><span class="toc-number">1.1.2.</span> <span class="toc-text">few-shot学习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%E5%B7%A5%E7%A8%8B%E6%8A%80%E5%B7%A7"><span class="toc-number">1.2.</span> <span class="toc-text">提示工程技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E9%80%89%E6%8B%A9%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.2.1.</span> <span class="toc-text">示例选择的建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.2.2.</span> <span class="toc-text">示例排序的建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E6%8F%90%E7%A4%BA"><span class="toc-number">1.3.</span> <span class="toc-text">指令提示</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Chain-of-Thought-CoT-Prompting"><span class="toc-number">2.</span> <span class="toc-text">Chain-of-Thought (CoT) Prompting</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#few-shot-CoT"><span class="toc-number">2.1.</span> <span class="toc-text">few-shot CoT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zero-shot-CoT"><span class="toc-number">2.2.</span> <span class="toc-text">zero-shot CoT</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.en/" title="无标题">无标题</a><time datetime="2026-02-20T21:47:32.623Z" title="发表于 2026-02-21 05:47:32">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.zh-CN/" title="无标题">无标题</a><time datetime="2026-02-20T21:47:32.623Z" title="发表于 2026-02-21 05:47:32">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment/" title="无标题">无标题</a><time datetime="2026-02-20T21:46:38.687Z" title="发表于 2026-02-21 05:46:38">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI.en/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/lang-switch.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

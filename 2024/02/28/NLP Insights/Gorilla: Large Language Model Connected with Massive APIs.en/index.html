@@ -1,0 +1,359 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;]" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Gorilla LLM 大语言模型简介 | 黑头呆鱼进化之旅</title><meta name="author" content="Huiyu Chen"><meta name="copyright" content="Huiyu Chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Gorilla LLM 大语言模型简介🦍 Gorilla: Large Language Model Connected with Massive APIsLink: https:&#x2F;&#x2F;gorilla.cs.berkeley.edu&#x2F;blogs&#x2F;7_open_functions_v2.html  Berkeley 功能调用排行榜Berkeley 功能调用排行榜 在线体验模型：Gorilla Ope">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gorilla LLM 大语言模型简介">
+<meta property="og:url" content="https://chenhuiyu.github.io/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.en/index.html">
+<meta property="og:site_name" content="黑头呆鱼进化之旅">
+<meta property="og:description" content="Gorilla LLM 大语言模型简介🦍 Gorilla: Large Language Model Connected with Massive APIsLink: https:&#x2F;&#x2F;gorilla.cs.berkeley.edu&#x2F;blogs&#x2F;7_open_functions_v2.html  Berkeley 功能调用排行榜Berkeley 功能调用排行榜 在线体验模型：Gorilla Ope">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2024-02-28T07:19:18.000Z">
+<meta property="article:modified_time" content="2026-02-20T21:47:32.618Z">
+<meta property="article:author" content="Huiyu Chen">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="Agent">
+<meta property="article:tag" content="Tool Use">
+<meta property="article:tag" content="Gorilla">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://chenhuiyu.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Gorilla LLM 大语言模型简介",
+  "url": "https://chenhuiyu.github.io/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.en/",
+  "image": "https://chenhuiyu.github.io/img/butterfly-icon.png",
+  "datePublished": "2024-02-28T07:19:18.000Z",
+  "dateModified": "2026-02-20T21:47:32.618Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Huiyu Chen",
+      "url": "https://chenhuiyu.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://chenhuiyu.github.io/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.en/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Gorilla LLM 大语言模型简介',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="黑头呆鱼进化之旅" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/site-bg.jpg);"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">黑头呆鱼进化之旅</span></a><a class="nav-page-title" href="/"><span class="site-name">Gorilla LLM 大语言模型简介</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Gorilla LLM 大语言模型简介</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2024-02-28T07:19:18.000Z" title="Created 2024-02-28 15:19:18">2024-02-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-02-20T21:47:32.618Z" title="Updated 2026-02-21 05:47:32">2026-02-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/NLP-Insights/">NLP Insights</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Gorilla-LLM-大语言模型简介"><a href="#Gorilla-LLM-大语言模型简介" class="headerlink" title="Gorilla LLM 大语言模型简介"></a>Gorilla LLM 大语言模型简介</h1><p>🦍 Gorilla: Large Language Model Connected with Massive APIs<br>Link: <a target="_blank" rel="noopener" href="https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html">https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html</a></p>
+<ul>
+<li>Berkeley 功能调用排行榜<a target="_blank" rel="noopener" href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley 功能调用排行榜</a></li>
+<li>在线体验模型：<a target="_blank" rel="noopener" href="https://gorilla.cs.berkeley.edu/leaderboard.html">Gorilla OpenFunctions-v2 网络演示</a></li>
+<li>项目详情：<a target="_blank" rel="noopener" href="https://github.com/ShishirPatil/gorilla/tree/main/openfunctions">GitHub</a></li>
+<li>模型（7B 参数）在 HuggingFace 上的页面：<a target="_blank" rel="noopener" href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2">gorilla-llm/gorilla-openfunctions-v2</a></li>
+</ul>
+<h2 id="1-伯克利函数调用排行榜"><a href="#1-伯克利函数调用排行榜" class="headerlink" title="1. 伯克利函数调用排行榜"></a>1. 伯克利函数调用排行榜</h2><p>自 2022 年底以来，大语言模型（LLMs）凭借其执行通用任务的强大能力，成为众人关注的焦点。不仅限于聊天应用，将这些模型应用于开发各类 AI 应用和软件（如 Langchain, Llama Index, AutoGPT, Voyager）已成为一种趋势。GPT, Gemini, Llama, Mistral 等模型通过与外部世界的交互，如函数调用和执行，展现了其巨大潜力。</p>
+<p>我们推出了<strong>伯克利函数调用排行榜（BFCL）</strong>，这是首个全面且可执行的 LLMs 函数调用评估。与之前的评估如 Anyscale 函数调用数据集不同，我们考虑了更多形式的函数调用、不同场景下的调用，以及函数调用的可执行性。我们根据实际应用场景构建了这个数据集，涵盖了大多数用户可能遇到的函数调用用例，例如在 AI 智能体或企业工作流程中的应用。为此，我们的评估数据集包含了丰富的类别，覆盖了多种语言。同时，我们还发布了 Gorilla-Openfunctions-v2 模型，这是目前最先进的开源模型，能够处理多种编程语言的函数调用，包括并行和多重函数调用。此外，我们还提供了一项特殊的调试功能，即当提供的函数不符合任务要求时，模型会输出“错误消息”。</p>
+<p><a target="_blank" rel="noopener" href="https://gorilla.cs.berkeley.edu/leaderboard#api-explorer">https://gorilla.cs.berkeley.edu/leaderboard#api-explorer</a></p>
+<h3 id="伯克利函数调用排行榜-🏆"><a href="#伯克利函数调用排行榜-🏆" class="headerlink" title="伯克利函数调用排行榜 🏆"></a>伯克利函数调用排行榜 🏆</h3><p>伯克利函数调用</p>
+<p>排行榜（BFCL）旨在全面研究不同 LLMs 在函数调用能力上的表现。它包含了 2000 个包含多种编程语言（Python, Java, JavaScript, REST API）的问题-函数-答案对，覆盖了多样化的应用领域和复杂的用例（如多重函数调用和并行函数调用）。我们还研究了函数相关性检测，以确定模型对不适合的函数如何作出反应（在这种情况下会提供“错误消息”）。具体来说，BFCL 包括了 100 个 Java、50 个 JavaScript、70 个 REST API、100 个 SQL 和 1680 个 Python 的各种简单、并行、多重、可执行函数调用场景以及函数相关性检测。</p>
+<p>排行榜显示，OpenAI 的 GPT-4 在函数调用评估中仍领先，而 Gorilla OpenFunctions-v2（来自 Gorilla LLM）的表现几乎与之媲美。其后是 Mistral-medium 模型（来自 Mistral AI）和 Claude-2.1（来自 Anthropic）。这说明，一个经过微调的开源模型在函数调用任务上也可以达到与专有模型相近的水平，而无需进行复杂的链接。</p>
+<p>我们致力于涵盖真实世界的用例和多样的语言。未来，我们将继续扩展测试领域，并探索更多创新用例。</p>
+<p><img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_8_Leaderboard.jpg" alt="https://gorilla.cs.berkeley.edu/assets/img/blog_post_8_Leaderboard.jpg"></p>
+<p><em>LLMs 在伯克利函数调用排行榜（BFCL）上的表现</em></p>
+<p>为了更深入地分析和可视化结果，我们提供了一个交互式的六边形工具，供用户比较不同模型的性能。我们将测试分为 9 个类别，包括函数不相关性检测、AST 树检查和执行函数调用检查，用于简单、多重、并行多功能场景。通过这个工具，我们可以清楚地看到各个测试中模型的表现。在简单单一函数调用方面，专有模型和开源模型表现类似。但在涉及多重和并行函数调用时，GPT 系列模型的表现超过了开源模型。</p>
+<p><img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_8_Wagon.gif" alt="https://gorilla.cs.berkeley.edu/assets/img/blog_post_8_Wagon.gif"></p>
+<p><em>使用伯克利函数调用排行榜（BFCL）六边形图进行的详细分析</em></p>
+<h3 id="数据集组成"><a href="#数据集组成" class="headerlink" title="数据集组成"></a>数据集组成</h3><p>Gorilla OpenFunctions 的评估数据集已从最初的 100 个条目扩展到 1900 个。评估数据集在以下方面展现了多样性：</p>
+<ul>
+<li>函数文档领域</li>
+<li>函数文档和函数调用问答对的数量</li>
+<li>不同编程语言的数据类型</li>
+</ul>
+<p>我们的评估 JSON 函数是从不同网站来源抓取和生成的。我们特意包含了像数学代数、体育足球、金融抵押等领域。我们在评估中包括了 40 个子领域的函数，这使我们能够了解模型性能在数据丰富的领域（如计算和云）以及体育、法律等小众领域的表现。</p>
+<p><img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_8_data_composition.png" alt="https://gorilla.cs.berkeley.edu/assets/img/blog_post_8_data_composition.png"></p>
+<p><em>伯克利函数调用排行榜（BFCL）数据组成</em></p>
+<h3 id="评估类别-📊"><a href="#评估类别-📊" class="headerlink" title="评估类别 📊"></a>评估类别 📊</h3><p>我们将评估主要分为两大类：</p>
+<ul>
+<li>Python：简单函数、多重函数、并行函数、并行多重函数</li>
+<li>非 Python：函数相关性检测、REST API、SQL、Java、JavaScript</li>
+</ul>
+<h3 id="Python-评估"><a href="#Python-评估" class="headerlink" title="Python 评估"></a>Python 评估</h3><ul>
+<li><strong>简单函数：</strong>这一类别包含了最常见的格式：用户提供一个 JSON 函数文档，模型只调用其中一个函数。</li>
+<li><strong>多重函数：</strong>这一类别包含了需要从 2-4 个 JSON 函数文档中选择并调用一个函数的用户问题。模型需要根据用户提供的上下文选择最合适的函数。</li>
+<li><strong>并行函数：</strong>并行函数定义为使用一个用户查询同时调用多个函数。模型需要判断需要调用多少个函数，问题可以是单个或多个句子。</li>
+<li><strong>并行多重函数：</strong>并行多重函数是并行函数和多重函数的结合，即模型被提供了多个函数文档，每个文档中的函数可能被调用一次或多次。</li>
+</ul>
+<p>每个类别都有相应的可执行类别。在这部分，我们根据一些免费的 REST API 端点（例如获取天气）和直接计算的函数（例如线性回归）编写了函数代码。可执行类别旨在判断函数调用生成是否能够在实际应用中使用。</p>
+<h3 id="非-Python-评估"><a href="#非-Python-评估" class="headerlink" title="非 Python 评估"></a>非 Python 评估</h3><p>除了上述主要类别外，我们还包含了更具体的类别来评估模型在不同场景下的表现，并测试其对不相关问题和函数文档的应对能力。</p>
+<ul>
+<li>函数相关性检测：这一类别设计了一个场景，其中提供的任何函数都不相关，也不应该被调用。我们期望模型的输出是没有函数调用。这个场景帮助我们了解模型是否会在缺乏生成函数代码的信息时产生错误。</li>
+<li><strong>REST API</strong>：现实世界中的大多数 API 调用都是 REST API 调用。Python 主要通过 requests.get(), requests.post(), requests.delete()等方法在 python requests 库中完成 REST API 调用。</li>
+<li><strong>GET 请求：</strong>GET 请求是现实世界中最常用的。因此，我们包括了真实世界的 GET 请求来测试模型生成可执行 REST API 调用的能力。我们的评估包括两种变体：一种是需要在 URL 中传递参数的，另一种是需要将参数作为键/值对放入 requests.get()的 params 和/或 headers 中。模型需要根据情况决定如何调用。</li>
+<li><strong>SQL：</strong>SQL 评估数据包括我们定制的 sql.execute 函数，其中包含 sql_keyword, table_name, columns 和 conditions。这些参数提供了构建简单 SQL 查询的必要信息。我们希望通过函数调用可靠地构建和使用 SQL 查询，而不是专门训练一个 SQL 模型。我们的评估数据集限制了场景，仅支持简单的关键词，如“SELECT”, “INSERT INTO”, “UPDATE”, “DELETE”, “CREATE”。</li>
+<li><strong>Java + JavaScript：</strong>尽管大多数编程语言的函数调用格式相同，但每种编程语言都有其特有的类型。例如，C 有指针类型，Java 有 HashMap 类型。这个测试类别的目的是了解函数调用模型如何扩展到不仅仅是 JSON 和 Python 类型，还包括所有特定于语言的类型。</li>
+</ul>
+<p>这些类别使我们能够看到不同模型在 API 调用的流行用例中的表现，并为我们提供了关于函数调用模型潜力的洞察。</p>
+<h3 id="评估指标-📈"><a href="#评估指标-📈" class="headerlink" title="评估指标 📈"></a>评估指标 📈</h3><p>我们使用两种流行的方法来评估模型生成答案的准确性：AST 检查器和执行检查器。理想情况下，应使用执行检查器，但由于并非所有结果都容易执行（如 Java 函数），我们使用 AST 作为执行检查器的补充。</p>
+<ul>
+<li>抽象语法树（AST）检查器</li>
+<li>执行检查器</li>
+</ul>
+<p>AST 检查：对于可执行的函数调用答案，我们使用 AST 树进行解析。</p>
+<p>示例：<code>[calculate_triangle_area(base=10, height=5)]</code></p>
+<p>解析：<code>Module(body=[Expr(value=List(elts=[Call(func=Name(id='calculate_triangle_area', ctx=Load()), args=[], keywords=[keyword(arg='base', value=Constant(value=10)), keyword(arg='height', value=Constant(value=5))])], ctx=Load()))], type_ignores=[]) [calculate_triangle_area(base=10, height=5)]</code></p>
+<p>我们从 AST 中提取变量，并检查每个参数是否在可能的答案中找到并精确匹配。对于每个可能的答案，应接受的答案包括：</p>
+<ul>
+<li>布尔值：<ul>
+<li>我们检查布尔值的直接匹配，不允许对布尔值的字符串版本有宽容。</li>
+</ul>
+</li>
+<li>整数、浮点数：<ul>
+<li>答案应该是唯一的，例如 [1]</li>
+</ul>
+</li>
+<li>列表：<ul>
+<li>我们检查精确匹配，因此任何顺序的列表都应匹配。[1,2,3]==[2,3,1]</li>
+</ul>
+</li>
+<li>字典：<ul>
+<li>为简化，我们跳过检查递归 AST 字典结构。</li>
+</ul>
+</li>
+<li>字符串：<ul>
+<li>可能的日期 “20th June”, “2023-06-20”, “06/20/2023”, “Jun.20,2023”</li>
+<li>可能的位置 [“New York City”, “NYC”]</li>
+<li>可能的任何东西 [“Manchester United”, “Man United”, “Man U”, “MUFC”]</li>
+</ul>
+</li>
+</ul>
+<p>以下是一些可能的答案示例：</p>
+<ul>
+<li><code>{"calculate_triangle_area": {"base": [10], "height": [5], "unit": ["units", "unit"]}}</code></li>
+<li><code>{"predict_house_price": {"bedrooms": [3], "bathrooms": [2], "area": [1800], "location": ["San Francisco", "San Francisco, CA"]}}</code></li>
+</ul>
+<p>这种检查机制适用于除了 executable_*和 REST 之外的所有内容。</p>
+<p>可执行检查：对于 executable_*和 REST，我们有相应的函数，可以为每个问题执行。因此，在模型生成答案后，我们将直接执行这些答案。有两种类型的匹配：</p>
+<ul>
+<li>确定性的可执行输出：我们根据我们人类执行的结果检查精确匹配。</li>
+<li>非确定性和现实世界相关的可执行输出：我们检查其响应类型和响应 JSON 键的一致性，看看值是否是我们期望看到的。</li>
+</ul>
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><p>我们提供了用于评估我们的专有和开源模型的所有提示。对于函数调用模型，我们没有提供任何系统提示，而是直接启用函数调用模式并放置函数定义。对于聊天模型，我们提供了明确的系统消息。</p>
+<ol>
+<li><p>对于所有函数调用模型，我们直接启用函数调用模式并放置函数定义。</p>
+</li>
+<li><p>对于聊天模型，我们提供了明确的系统消息：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SYSTEM_PROMPT_FOR_CHAT_MODEL = """"</span><br><span class="line">你是一个编写函数的专家。你会收到一个问题和一系列可能的函数。</span><br><span class="line">根据问题，你需要进行一个或多个函数/工具调用来实现目的。</span><br><span class="line">如果没有一个函数可以使用，请指出。如果给定问题缺少函数所需的参数，</span><br><span class="line">也请指出。你应该只在工具调用部分返回函数调用。</span><br><span class="line">"""</span><br><span class="line"></span><br><span class="line">SYSTEM_PROMPT_FOR_CHAT_MODEL = """"</span><br><span class="line">You are an expert in composing functions. You are given a question and a set of possible functions.</span><br><span class="line">Based on the question, you will need to make one or more function/tool calls to achieve the purpose.</span><br><span class="line">If none of the function can be used, point it out. If the given question lacks the parameters required by the function,</span><br><span class="line">also point it out. You should only return the function call in tools call sections.</span><br><span class="line">"""</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\\n这里是一系列你可以调用的JSON格式函数列表:\\n{functions}. 如果你决定返回函数调用，不得包含其他文本。"</span><br><span class="line">USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functions in JSON format that you can invoke:\n{functions}. Should you decide to return the function call(s), NO other text MUST be included."</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h3 id="常见错误"><a href="#常见错误" class="headerlink" title="常见错误"></a>常见错误</h3><p>通过我们的基准测试 BFCL，我们能够识别 LLMs 在生成函数调用时所犯的一些常见错误。这些错误揭示了当前模型的局限性，并为如何改进</p>
+<p>它们提供了洞察。</p>
+<ol>
+<li><p>GPT 的函数文档难以格式化，其类型在现实世界场景中受到限制。例如，我们需要将 float 手动转换为 number，以使函数与 OpenAI 兼容。此外，数字相比 float 在精度和类型一致性方面信息传递较少。</p>
+<p>在 Gorilla Openfunctions-v2 中，我们通过不限制参数类型来提高函数文档的灵活性。换言之，用户可以提供 Tuple、Float，甚至 Java 中的特定类型，如 HashMap 和 LinkedList。</p>
+</li>
+<li><p>GPT 在需要某种隐式转换的参数场景中表现不佳。例如，当参数不是直接在用户问题中给出时。</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">"Function"</span><span class="punctuation">:</span></span><br><span class="line"><span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"name"</span><span class="punctuation">:</span> <span class="string">"finance.predict_future_value"</span><span class="punctuation">,</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="attr">"parameters"</span><span class="punctuation">:</span></span><br><span class="line">    <span class="punctuation">{</span></span><br><span class="line">        <span class="attr">"type"</span><span class="punctuation">:</span> <span class="string">"object"</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"properties"</span><span class="punctuation">:</span></span><br><span class="line">        <span class="punctuation">{</span></span><br><span class="line">            <span class="attr">"present_value"</span><span class="punctuation">:</span></span><br><span class="line">            <span class="punctuation">{</span></span><br><span class="line">                <span class="attr">"type"</span><span class="punctuation">:</span> <span class="string">"number"</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">"description"</span><span class="punctuation">:</span> <span class="string">"The present value of the investment."</span></span><br><span class="line">            <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">            <span class="attr">"annual_interest_rate"</span><span class="punctuation">:</span></span><br><span class="line">            <span class="punctuation">{</span></span><br><span class="line">                <span class="attr">"type"</span><span class="punctuation">:</span> <span class="string">"number"</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">"description"</span><span class="punctuation">:</span> <span class="string">"The annual interest rate of the investment."</span></span><br><span class="line">            <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">            <span class="attr">"compounding_periods_per_year"</span><span class="punctuation">:</span></span><br><span class="line">            <span class="punctuation">{</span></span><br><span class="line">                <span class="attr">"type"</span><span class="punctuation">:</span> <span class="string">"integer"</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">"description"</span><span class="punctuation">:</span> <span class="string">"The number of times that interest is compounded per year."</span><span class="punctuation">,</span></span><br><span class="line">            <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">"time_years"</span><span class="punctuation">:</span></span><br><span class="line">            <span class="punctuation">{</span></span><br><span class="line">                <span class="attr">"type"</span><span class="punctuation">:</span> <span class="string">"integer"</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">"description"</span><span class="punctuation">:</span> <span class="string">"The investment horizon in years."</span></span><br><span class="line">            <span class="punctuation">}</span></span><br><span class="line">            ...</span><br><span class="line">        <span class="punctuation">}</span></span><br><span class="line">        <span class="attr">"required"</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">"present_value"</span><span class="punctuation">,</span> <span class="string">"annual_interest_rate"</span><span class="punctuation">,</span> <span class="string">"time_years"</span><span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">}</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>Questions : Predict the future value of a $5000 investment with an annual interest rate of 5% in 3 years with monthly compounding.</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GPT<span class="number">-4</span> output<span class="punctuation">:</span></span><br><span class="line"><span class="punctuation">[</span><span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"name"</span><span class="punctuation">:</span> <span class="string">"finance.predict_future_value"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"parameters"</span><span class="punctuation">:</span></span><br><span class="line">    <span class="punctuation">{</span></span><br><span class="line">        <span class="attr">"present_value"</span><span class="punctuation">:</span> <span class="number">5000</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"annual_interest_rate"</span><span class="punctuation">:</span> <span class="number">5</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"compounding_periods_per_year"</span><span class="punctuation">:</span> <span class="number">12</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"time_years"</span><span class="punctuation">:</span> <span class="number">3</span></span><br><span class="line">    <span class="punctuation">}</span></span><br><span class="line"><span class="punctuation">}</span><span class="punctuation">]</span></span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Gorilla-openfunctions-v2 output<span class="punctuation">:</span></span><br><span class="line"><span class="punctuation">[</span><span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"name"</span><span class="punctuation">:</span> <span class="string">"finance.predict_future_value"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"parameters"</span><span class="punctuation">:</span></span><br><span class="line">    <span class="punctuation">{</span></span><br><span class="line">        <span class="attr">"present_value"</span><span class="punctuation">:</span> <span class="number">5000</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"annual_interest_rate"</span><span class="punctuation">:</span> <span class="number">0.05</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"compounding_periods_per_year"</span><span class="punctuation">:</span> <span class="number">12</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">"time_years"</span><span class="punctuation">:</span> <span class="number">3</span></span><br><span class="line">    <span class="punctuation">}</span></span><br><span class="line"><span class="punctuation">}</span><span class="punctuation">]</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>聊天模型倾向于生成格式错误的函数调用，其中参数可以提取但无法执行。</p>
+<p>mistral-medium 生成的结果示例如下：<code>solve_quadratic_equation(a=2, b=6, c=5)</code>。通过 gorilla-openfunctions-v2，我们能够直接输出<code>solve_quadratic_equation(a=3, b=2, c=1)</code>，该结果在接收后即可执行。</p>
+</li>
+<li><p>REST API 调用不一致：例如，某些情况下模型可能无法正确生成 API 调用的 URL 或参数。</p>
+</li>
+</ol>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>我们通过 Gorilla Open Functions 排行榜对 LLMs 函数调用进行了全面和系统性的评估。研究表明，在不涉及复杂规划和链式函数调用的简单函数调用方面，经过微调的开源模型可以与专有模型相媲美。此外，我们还推出了 Gorilla Open Functions v2，这是一个开源模型，可以帮助用户通过函数调用构建 AI 应用，并实现与 json 兼容的输出交互。</p>
+<p>我们希望您喜欢这篇博客文章。欢迎您在<a target="_blank" rel="noopener" href="https://discord.gg/SwTyuTAxX3">Discord</a>、<a target="_blank" rel="noopener" href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>和<a target="_blank" rel="noopener" href="https://github.com/ShishirPatil/gorilla/">GitHub</a>上分享您的想法。</p>
+<p>如果您想引用 Gorilla：</p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@misc<span class="punctuation">{</span>berkeley-function-calling-leaderboard<span class="punctuation">,</span></span><br><span class="line">  title=<span class="punctuation">{</span>Berkeley Function Calling Leaderboard<span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">  author=<span class="punctuation">{</span>Fanjia Yan and Huanzhi Mao and Charlie Cheng-Jie Ji and Tianjun Zhang and Shishir G. Patil and Ion Stoica and Joseph E. Gonzalez<span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">  howpublished=<span class="punctuation">{</span>\url<span class="punctuation">{</span>https<span class="punctuation">:</span><span class="comment">//gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}},</span></span><br><span class="line">  year=<span class="punctuation">{</span><span class="number">2024</span><span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="2-Gorilla-OpenFunctions-v2"><a href="#2-Gorilla-OpenFunctions-v2" class="headerlink" title="2. Gorilla OpenFunctions v2"></a>2. Gorilla OpenFunctions v2</h2><p><img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_7_demo.gif" alt="https://gorilla.cs.berkeley.edu/assets/img/blog_post_7_demo.gif"></p>
+<p><em>Gorilla OpenFunctions-v2！在开源模型中技术领先（SoTA），与商业模型媲美。</em></p>
+<p>Gorilla OpenFunctions 的最新版本——版本 2，带来了大语言模型（LLM）在开源社区中函数调用方面的重大进展。作为前一版本的升级替代，Gorilla OpenFunctions-v2 不仅保持了开源精神，还引入了令人兴奋的新功能。这包括支持 Python、Java、JavaScript 和 REST API 等</p>
+<p>多种编程语言——这在开源和闭源模型中都是首次；同时具备处理多个和并行函数调用的能力，以及判断函数相关性的能力。这次更新巩固了 gorilla-openfunctions-v2 在 LLM 领域中函数调用能力的领先地位。而且，这种即插即用的更新方式使得 OpenFunctions 可以轻松集成到各种应用中，从社交媒体平台如 Instagram 到送货服务如 Doordash，还有包括 Google Calendar 和 Stripe 等实用工具。</p>
+<h3 id="新功能速览-🚀"><a href="#新功能速览-🚀" class="headerlink" title="新功能速览!! 🚀"></a>新功能速览!! 🚀</h3><p>我们在 OpenFunctions-v2 中推出的五个激动人心的新功能包括：</p>
+<p><img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_7_open_function_v2_features.png" alt="https://gorilla.cs.berkeley.edu/assets/img/blog_post_7_open_function_v2_features.png"></p>
+<ul>
+<li><strong>支持更多数据类型：</strong> Gorilla Open Functions v2 现在能支持多种语言，并扩展了对函数调用中参数类型的支持。例如，对于 Python，支持的类型包括<code>[string, number, boolean, list, tuple, dict, any]</code>；Java 和 Javascript 同样支持丰富的类型。相比之下，OpenAI 和许多其他公司仅支持 JSON 模式，即<code>[string, number, integer, object, array, boolean]</code>。这种对类型的原生支持意味着您现在可以更方便地使用 openfunctions-v2。</li>
+<li><strong>支持并行和多功能：</strong> 可以处理并行和多功能调用。在多功能场景中，用户可以在不确定哪个功能最合适时输入多个功能；Gorilla 模型将从中选择一个或多个（或不选择）来响应用户的请求。在并行功能中，可以通过多次调用同一功能来响应用户的提示。Gorilla 模型不仅同时支持这两种模式，还能将它们的优势结合起来。</li>
+<li><strong>功能相关性检测：</strong> 在没有提供功能或相关功能的情况下减少错误响应。Gorilla openfunctions v2 现在能自动判断提供给模型的功能是否能够解决用户的问题。识别到这一点后，LLM 会向用户展示一个错误信息，提供更多帮助。</li>
+<li><strong>增强的 RESTful API 能力：</strong> 提升了格式化 RESTful API 调用的能力。RESTful API 广泛应用于网络中，为许多流行的软件服务（如 Slack、PayPal 等）提供支持。我们的模型经过特殊训练，能够高质量地处理 RESTful API 调用。</li>
+</ul>
+<p>快速链接：</p>
+<ul>
+<li>其他功能调用模型的表现：<a target="_blank" rel="noopener" href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley 功能调用排行榜</a></li>
+<li>在线体验模型：<a target="_blank" rel="noopener" href="https://gorilla.cs.berkeley.edu/leaderboard.html">Gorilla OpenFunctions-v2 网络演示</a></li>
+<li>项目详情：<a target="_blank" rel="noopener" href="https://github.com/ShishirPatil/gorilla/tree/main/openfunctions">GitHub</a></li>
+<li>模型（7B 参数）在 HuggingFace 上的页面：<a target="_blank" rel="noopener" href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2">gorilla-llm/gorilla-openfunctions-v2</a></li>
+</ul>
+<h3 id="在您的应用中集成-OpenFunctions-v2-🔨"><a href="#在您的应用中集成-OpenFunctions-v2-🔨" class="headerlink" title="在您的应用中集成 OpenFunctions-v2 🔨"></a>在您的应用中集成 OpenFunctions-v2 🔨</h3><p>使用 Gorilla OpenFunctions-v2 非常简单：</p>
+<ol>
+<li>为了便于快速原型开发，我们提供了一个托管的 Gorilla Openfunctions-v2 模型供推理使用。您也可以在本地运行它，或通过 HuggingFace 的页面自行托管。以下示例展示了如何调用托管的 gorilla openfunctions v2 模型：</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> openai</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get_gorilla_response</span>(<span class="params">prompt=<span class="string">""</span>, model=<span class="string">"gorilla-openfunctions-v2"</span>, functions=[]</span>):</span><br><span class="line">    openai.api_key = <span class="string">"EMPTY"</span>  <span class="comment"># 由UC Berkeley免费托管 ❤️</span></span><br><span class="line">    openai.api_base = <span class="string">"&lt;http://luigi.millennium.berkeley.edu:8000/v1&gt;"</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">    completion = openai.ChatCompletion.create(</span><br><span class="line">        model=<span class="string">"gorilla-openfunctions-v2"</span>,</span><br><span class="line">        temperature=<span class="number">0.0</span>,</span><br><span class="line">        messages=[{<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: prompt}],</span><br><span class="line">        functions=functions,</span><br><span class="line">    )</span><br><span class="line">    <span class="comment"># completion.choices[0].message.content, 函数调用的字符串格式</span></span><br><span class="line">    <span class="comment"># completion.choices[0].message.functionsl, 函数调用的Json格式</span></span><br><span class="line">    <span class="keyword">return</span> completion.choices[<span class="number">0</span>]</span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li>向模型提问：<br><code>波士顿和旧金山的天气怎么样？</code></li>
+<li>格式化您的功能调用：模型将根据您的请求返回功能调用。</li>
+</ol>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">query = <span class="string">"波士顿和旧金山的天气怎么样？"</span></span><br><span class="line">functions = [</span><br><span class="line">    {</span><br><span class="line">        <span class="string">"name"</span>: <span class="string">"get_current_weather"</span>,</span><br><span class="line">        <span class="string">"description"</span>: <span class="string">"获取指定地点的当前天气"</span>,</span><br><span class="line">        <span class="string">"parameters"</span>: {</span><br><span class="line">            <span class="string">"type"</span>: <span class="string">"object"</span>,</span><br><span class="line">            <span class="string">"properties"</span>: {</span><br><span class="line">                <span class="string">"location"</span>: {</span><br><span class="line">                    <span class="string">"type"</span>: <span class="string">"string"</span>,</span><br><span class="line">                    <span class="string">"description"</span>: <span class="string">"城市和州，比如旧金山，CA"</span>,</span><br><span class="line">                },</span><br><span class="line">                <span class="string">"unit"</span>: {<span class="string">"type"</span>: <span class="string">"string"</span>, <span class="string">"enum"</span>: [<span class="string">"celsius"</span>, <span class="string">"fahrenheit"</span>]},</span><br><span class="line">            },</span><br><span class="line">            <span class="string">"required"</span>: [<span class="string">"location"</span>],</span><br><span class="line">        },</span><br><span class="line">    }</span><br><span class="line">]</span><br></pre></td></tr></tbody></table></figure>
+
+<ol>
+<li>获取您的功能调用：模型将根据您的请求返回一个 Python 功能调用。<br>这为开发人员和非开发人员提供了便利，使他们能够利用复杂功能而无需编写大量代码。</li>
+</ol>
+<p>输入：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get_gorilla_response(prompt=query, functions=[functions])</span><br></pre></td></tr></tbody></table></figure>
+
+<p>输出：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[get_current_weather(location=<span class="string">'Boston, MA'</span>), get_current_weather(location=<span class="string">'San Francisco, CA'</span>)]</span><br></pre></td></tr></tbody></table></figure>
+
+<p>通过上面的示例，您可以利用 Gorilla OpenFunctions-v2 生成格式良好的输出，或用您自己的定义调用函数！然后，您可以在您的应用程序和聊天机器人中自由地使用这些功能！</p>
+<p>注意：Gorilla 目前仅支持<code>openai==0.28.1</code>版本的托管端点。我们很快将升级以支持<code>openai==1.xx</code>版本，届时<code>functions</code>将被<code>tool_calls</code>替换。</p>
+<h3 id="Berkeley-功能调用排行榜上的表现-🔥"><a href="#Berkeley-功能调用排行榜上的表现-🔥" class="headerlink" title="Berkeley 功能调用排行榜上的表现 🔥"></a>Berkeley 功能调用排行榜上的表现 🔥</h3><p><img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_7_open_function_v2_summary.png" alt="https://gorilla.cs.berkeley.edu/assets/img/blog_post_7_open_function_v2_summary.png"></p>
+<p><em>我们在 Berkeley 功能调用排行榜上进行了全面和详尽的评估，我们的模型与目前技术最先进的 GPT-4-1106 预览版以及 GPT-4 和 GPT-3.5-turbo 功能调用特性进行了对比。此外，我们还将我们的模型与其他开源模型进行了比较，展示了其优越性能。我们的评估涵盖了来自不同领域（包括旅游、金融、安排会议等）和语言（java、javascript、python、restAPI）的 2000 多个不同的查询和 API 文档对。</em></p>
+<p>要深入了解我们的模型在每个类别中的表现，请参阅下面 Berkeley 功能调用排行榜中的详细表格。与目前技术最先进的 GPT-4 功能调用相比，Gorilla OpenFunctions-v2 在 Python 中的简单功能调用类别表现更优，但在涉及多个和并行功能的功能调用上表现不如 GPT-4。这一新特性对我们和整个开源社区来说仍是一个令人兴奋的研究领域。值得一提的是，我们的模型提供了非常稳定的可执行功能调用 - 这些功能调用是通过实际执行来评估的，无需任何干预。不出所料，经过训练的 Gorilla 模型在除 Python 以外的编程语言（如 Java、Javascript 和 REST API）上的功能调用上胜过了 GPT-4。对于 REST API，我们的模型提供了更稳定的输出，其中包括了所有必需的字段，包括<strong>url</strong>、<strong>params</strong>和<strong>header</strong>，使我们的模型非常适合立即采用。</p>
+<p><img src="https://gorilla.cs.berkeley.edu/assets/img/blog_post_7_open_function_v2_leaderboard.png" alt="https://gorilla.cs.berkeley.edu/assets/img/blog_post_7_open_function_v2_leaderboard.png"></p>
+<p><em>左侧是 GPT-4 生成的，右侧是 openfunctions-v2 生成的。从上面的错误中可以看出，当 GPT-4 功能调用处理涉及复杂参数结构（例如字典中的字典）并带有默认值的功能时，该模型往往会遇到麻烦，尤其是在解析默认值方面。与其说是一种边缘情况，不如说上面的示例是 REST API 的一个常见范例。</em></p>
+<h3 id="OpenFunctions-数据组成与训练-🍕"><a href="#OpenFunctions-数据组成与训练-🍕" class="headerlink" title="OpenFunctions 数据组成与训练 🍕"></a>OpenFunctions 数据组成与训练 🍕</h3><p>Gorilla openfunctions v2 是一个基于\[deepseek-coder-7b-instruct-v1.5\]大语言模型进一步训练的 7B 参数模型。为了训练该模型，我们从三个不同来源收集了共计 65,283 个问题-功能-答案对：Python 包（19,353）、Java 存储库（16,586）、Javascript 存储库（4,245）、公共 API（6,009）以及来自各种云提供商的命令行工具（19,090）。数据组成如下图所示。</p>
+<p>在数据收集之后，我们进行了四次数据增强，以提高我们的训练数据集的多样性。首先，我们更改了函数名称，这对于确保模型不会“记住”API 映射至关重要。其次，我们添加了随机选择的、数量不等的函数，使我们的数据集与并行函数兼容。这样我们就可以从简单的函数中生成多功能数据集。第三，我们采用扰动提示的策略来生成并行功能的场景，并将其扩展到同时包括多功能和并行功能。最后，我们还包含了一些功能在输入时不足以解决任务的数据集部分，我们将这些标记为“相关性检测”场景。与大多数 LLM 训练一样，我们对每种数据增强的程度进行了广泛的变化，以训练出一个健壮的模型。</p>
+<ul>
+<li><strong>函数名称变换：</strong> 我们通过使用不同的函数名称来增强原始的问题-功能-答案对，避免模型记住函数名称和问题之间的相关性（例如，“uber”API 用于交通）。<br><code>query + [{'name': 'func1', 'description': 'order takeout'}] -&gt; ans1 =&gt; query + [{'name': 'func2', 'description': 'order takeout'}] -&gt; [ans2]</code></li>
+<li><strong>并行功能变换：</strong> 为了处理选择多个功能来回答用户请求的更复杂情况，我们更改了原始问题以要求多个输出。<br><code>query + [{'name': 'func1', 'description': 'order takeout'}] -&gt; ans1 =&gt; query + [{'name': 'func1', 'description': 'order takeout'}, {'name': 'func2', 'description': 'get weather'}] -&gt; [ans1]</code></li>
+<li><strong>多功能变换：</strong> 在训练中包含多个功能调用的原始功能变换，使模型学习选择使用哪个功能调用。<br><code>query1 + [{'name': 'func1', 'description': 'order takeout'}] -&gt; ans1 =&gt; query2 + [{'name': 'func1', 'description': 'order takeout'}] -&gt; [ans1, ans2]</code></li>
+<li><strong>并行多功能变换：</strong> 上述并行和多功能变换的结合。<br><code>query1 + [{'name': 'func1', 'description': 'order takeout'}] -&gt; ans1 =&gt; query2 + [{'name': 'func1', 'description': 'order takeout'}, {'name': 'func2', 'description': 'get weather'}] -&gt; [ans1, ans2]</code></li>
+<li><strong>功能相关性检测变换：</strong> 我们还包含了一些在输入时提供的功能无法解决任务的数据集部分。我们称之为“相关性检测”。<br><code>query1 + [{'name': 'func1', 'description': 'order takeout'}] -&gt; ans1 =&gt; query2 + [{'name': 'func1', 'description': 'order takeout'}] -&gt; [Error, the function cannot solve the question.]</code></li>
+</ul>
+<p>在整个数据增强之后，我们还使用 Rouge 得分进行了数据去重，这已经成为标准做法。</p>
+<h3 id="结论-1"><a href="#结论-1" class="headerlink" title="结论"></a>结论</h3><p>我们很高兴发布<code>gorilla-openfunctions-v2</code>，这是一个在 Deepseek-Coder-7B-Instruct-v1.5 大语言模型基础上训练的 7B 参数模型。它接收用户的提示和多个 API 调用，并返回带有正确参数的功能。OpenFunctions 扩展了对 Python、Java 和 JavaScript 以及 RESTful API 中参数类型的原生支持。欲了解更多信息，请查看我们在 Berkeley 功能调用排行榜上的博客评估，以及我们 GitHub 页面上的模型。博客中的所有结果都是使用<code>gorilla-openfunctions-v2</code>生成的。</p>
+<p>Licensing:</p>
+<p>Gorilla OpenFunctions v2 is distributed under the Apache 2.0 license. This software incorporates elements from the Deepseek model. Consequently, the licensing of Gorilla OpenFunctions v2 adheres to the Apache 2.0 license, with additional terms as outlined in Appendix A of the Deepseek license.</p>
+<hr>
+<p>我们希望您喜欢这篇博客文章。欢迎您在<a target="_blank" rel="noopener" href="https://discord.gg/3apqwwME">Discord</a>、Twitter (#GorillaLLM)和<a target="_blank" rel="noopener" href="https://github.com/ShishirPatil/gorilla/">GitHub</a>上与我们分享您的想法。</p>
+<p>如果您想引用 Gorilla：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@inproceedings{gorilla-openfunctions-v2,</span></span><br><span class="line">  title={Gorilla OpenFunctions v2},</span><br><span class="line">  author={Charlie Cheng-Jie Ji, Huanzhi Mao, Fanjia Yan, Shishir G. Patil, Tianjun Zhang, Ion Stoica, Joseph E. Gonzalez},</span><br><span class="line">  year={<span class="number">2024</span>},</span><br><span class="line">  howpublished={\url{https://gorilla.cs.berkeley.edu//blogs/7_open_functions_v2.html}},</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io">Huiyu Chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://chenhuiyu.github.io/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.en/">https://chenhuiyu.github.io/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.en/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/LLM/">LLM</a><a class="post-meta__tags" href="/tags/Agent/">Agent</a><a class="post-meta__tags" href="/tags/Tool-Use/">Tool Use</a><a class="post-meta__tags" href="/tags/Gorilla/">Gorilla</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.zh-CN/" title="Gorilla LLM 大语言模型简介"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">Gorilla LLM 大语言模型简介</div></div><div class="info-2"><div class="info-item-1">Gorilla LLM 大语言模型简介🦍 Gorilla: Large Language Model Connected with Massive APIsLink: https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html  Berkeley 功能调用排行榜Berkeley 功能调用排行榜 在线体验模型：Gorilla OpenFunctions-v2 网络演示 项目详情：GitHub 模型（7B 参数）在 HuggingFace 上的页面：gorilla-llm/gorilla-openfunctions-v2  1. 伯克利函数调用排行榜自 2022 年底以来，大语言模型（LLMs）凭借其执行通用任务的强大能力，成为众人关注的焦点。不仅限于聊天应用，将这些模型应用于开发各类 AI 应用和软件（如 Langchain, Llama Index, AutoGPT, Voyager）已成为一种趋势。GPT, Gemini, Llama, Mistral 等模型通过与外部世界的交互，如函数调用和执行，展现了其巨大...</div></div></div></a><a class="pagination-related" href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs/" title="Gorilla LLM 大语言模型简介"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">Gorilla LLM 大语言模型简介</div></div><div class="info-2"><div class="info-item-1">Gorilla LLM 大语言模型简介🦍 Gorilla: Large Language Model Connected with Massive APIsLink: https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html  Berkeley 功能调用排行榜Berkeley 功能调用排行榜 在线体验模型：Gorilla OpenFunctions-v2 网络演示 项目详情：GitHub 模型（7B 参数）在 HuggingFace 上的页面：gorilla-llm/gorilla-openfunctions-v2  1. 伯克利函数调用排行榜自 2022 年底以来，大语言模型（LLMs）凭借其执行通用任务的强大能力，成为众人关注的焦点。不仅限于聊天应用，将这些模型应用于开发各类 AI 应用和软件（如 Langchain, Llama Index, AutoGPT, Voyager）已成为一种趋势。GPT, Gemini, Llama, Mistral 等模型通过与外部世界的交互，如函数调用和执行，展现了其巨大...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs/" title="Gorilla LLM 大语言模型简介"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-28</div><div class="info-item-2">Gorilla LLM 大语言模型简介</div></div><div class="info-2"><div class="info-item-1">Gorilla LLM 大语言模型简介🦍 Gorilla: Large Language Model Connected with Massive APIsLink: https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html  Berkeley 功能调用排行榜Berkeley 功能调用排行榜 在线体验模型：Gorilla OpenFunctions-v2 网络演示 项目详情：GitHub 模型（7B 参数）在 HuggingFace 上的页面：gorilla-llm/gorilla-openfunctions-v2  1. 伯克利函数调用排行榜自 2022 年底以来，大语言模型（LLMs）凭借其执行通用任务的强大能力，成为众人关注的焦点。不仅限于聊天应用，将这些模型应用于开发各类 AI 应用和软件（如 Langchain, Llama Index, AutoGPT, Voyager）已成为一种趋势。GPT, Gemini, Llama, Mistral 等模型通过与外部世界的交互，如函数调用和执行，展现了其巨大...</div></div></div></a><a class="pagination-related" href="/2024/02/28/NLP%20Insights/Gorilla:%20Large%20Language%20Model%20Connected%20with%20Massive%20APIs.zh-CN/" title="Gorilla LLM 大语言模型简介"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-28</div><div class="info-item-2">Gorilla LLM 大语言模型简介</div></div><div class="info-2"><div class="info-item-1">Gorilla LLM 大语言模型简介🦍 Gorilla: Large Language Model Connected with Massive APIsLink: https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html  Berkeley 功能调用排行榜Berkeley 功能调用排行榜 在线体验模型：Gorilla OpenFunctions-v2 网络演示 项目详情：GitHub 模型（7B 参数）在 HuggingFace 上的页面：gorilla-llm/gorilla-openfunctions-v2  1. 伯克利函数调用排行榜自 2022 年底以来，大语言模型（LLMs）凭借其执行通用任务的强大能力，成为众人关注的焦点。不仅限于聊天应用，将这些模型应用于开发各类 AI 应用和软件（如 Langchain, Llama Index, AutoGPT, Voyager）已成为一种趋势。GPT, Gemini, Llama, Mistral 等模型通过与外部世界的交互，如函数调用和执行，展现了其巨大...</div></div></div></a><a class="pagination-related" href="/2025/02/11/NLP%20Insights/MoE%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97%EF%BC%9A%E6%8F%AD%E7%A7%98%20MoE%20%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.zh-CN/" title="MoE模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-02-11</div><div class="info-item-2">MoE模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色</div></div><div class="info-2"><div class="info-item-1">MoE 模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色原文地址：A Visual Guide to Mixture of Experts (MoE) 📅 作者：Maarten Grootendorst 📆 日期：2024 年 10 月 7 日  探索语言模型：混合专家模型（MoE）可视化指南目录 MoE 模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色 探索语言模型：混合专家模型（MoE）可视化指南 目录 什么是混合专家（MoE）模型？ Experts Dense Layers Sparse Layers What does an Expert Learn? 专家的架构（Architecture of Experts）      当我们查看最新发布的大型语言模型（LLMs，Large Language Models）时，常常会在标题中看到 “MoE”。这个 “MoE” 代表什么？为什么这么多 LLM 都在使用它？ 在这份可视化指南中，我们会通过 50 多个可视化图示，逐步探索这一关键组件：**Mixture of Experts (MoE)**。   图示内...</div></div></div></a><a class="pagination-related" href="/2023/08/02/NLP%20Insights/LLAMA2.zh-CN/" title="Training Llama 2 Model on Single GPU with int8 Quantization and LoRA"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-02</div><div class="info-item-2">Training Llama 2 Model on Single GPU with int8 Quantization and LoRA</div></div><div class="info-2"><div class="info-item-1">Training Llama 2 Model on Single GPU with int8 Quantization and LoRALlama 2概述Llama 2 是一个包含预训练和微调的生成式文本模型的集合，其规模从 70 亿到 700 亿个参数不等。Llama2模型是由Hugo Touvron, Louis Martin, Kevin Stone, Peter Albert等人在Llama 2: Open Foundation and Fine-Tuned Chat Models中提出的。 该论文的摘要如下： 在这项工作中，我们开发并发布了Llama 2，这是一组从70亿到700亿参数的预训练和微调的大型语言模型（LLMs）。我们的微调LLMs，称为Llama 2-Chat，针对对话用例进行了优化。我们的模型在我们测试的大多数基准上胜过开源聊天模型，并且基于我们对有用性和安全性的人类评估，可能是闭源模型的合适替代品。我们提供了关于微调和改进Llama 2-Chat安全性的方法的详细描述，以便社区能够在我们的工作基础上构建，并有助于LLMs的负责任发展。 在此处查看所有L...</div></div></div></a><a class="pagination-related" href="/2024/02/19/NLP%20Insights/%E7%90%86%E8%A7%A3%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%ADFine-tuning%E5%92%8CFurther%20Pretraining%E7%9A%84%E5%8C%BA%E5%88%AB.zh-CN/" title="理解大型语言模型中Fine-tuning和Further Pretraining的区别"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-02-19</div><div class="info-item-2">理解大型语言模型中Fine-tuning和Further Pretraining的区别</div></div><div class="info-2"><div class="info-item-1">理解大型语言模型中 Fine-tuning 和 Further Pretraining 的区别在自然语言处理（NLP）领域，大型语言模型，如 GPT 和 BERT 的出现，彻底改变了我们处理文本分类、情感分析和问答等任务的方式。在这些模型的应用中，Fine-tuning（微调）和 Further Pretraining（进一步预训练）是两种关键技术。虽然它们看起来相似，但实际上服务于 NLP 流程中的不同需求和场景。 什么是 Fine-tuning？Fine-tuning 是指在特定任务的数据集上进一步训练（或“微调”）一个预训练好的模型的过程。这种方法在数据集相对较小但标注良好的情况下特别有效。 示例场景：情感分析假设你有一组电影评论数据，每条评论都标记了正面或负面情感。你想创建一个模型来预测评论的情感。 Python 代码示例（使用 PyTorch 和 HuggingFace 的 Transformers）This notebook demonstrates the fine-tuning of a BERT model on the IMDB dataset for sen...</div></div></div></a><a class="pagination-related" href="/2025/03/06/NLP%20Insights/Decoder%E6%A8%A1%E5%9E%8B%E5%92%8CEncoder%E6%A8%A1%E5%9E%8B%E5%9C%A8Padding%E4%B8%AD%E7%9A%84%E4%B8%8D%E5%90%8C.zh-CN/" title="Decoder-only与Encoder-only模型Padding策略的差异"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-03-06</div><div class="info-item-2">Decoder-only与Encoder-only模型Padding策略的差异</div></div><div class="info-2"><div class="info-item-1">📌 Padding 的含义在大模型 (LLM) 中，padding 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (batch) 处理。 例如： 12句子1: "I love NLP"句子2: "Padding is useful in LLM training"  使用 &lt;pad&gt; token 进行对齐： 12"I love NLP &lt;pad&gt; &lt;pad&gt; &lt;pad&gt;""Padding is useful in LLM training"   📌 Padding 位置的选择：Left vs RightPadding 有两种常见方式：  Right padding（右填充）： 1"I love NLP &lt;pad&gt; &lt;pad&gt;"  Left padding（左填充）： 1"&lt;pad&gt; &lt;pad&gt; I love NLP"  通常：  Decoder-only 模型（如 GPT, Llama）：采用 Left padding Encoder-only 模型（如 BERT）：采用...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Huiyu Chen</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">186</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Gorilla-LLM-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">Gorilla LLM 大语言模型简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BC%AF%E5%85%8B%E5%88%A9%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%8E%92%E8%A1%8C%E6%A6%9C"><span class="toc-number">1.1.</span> <span class="toc-text">1. 伯克利函数调用排行榜</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%AF%E5%85%8B%E5%88%A9%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%8E%92%E8%A1%8C%E6%A6%9C-%F0%9F%8F%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">伯克利函数调用排行榜 🏆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86%E7%BB%84%E6%88%90"><span class="toc-number">1.1.2.</span> <span class="toc-text">数据集组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0%E7%B1%BB%E5%88%AB-%F0%9F%93%8A"><span class="toc-number">1.1.3.</span> <span class="toc-text">评估类别 📊</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python-%E8%AF%84%E4%BC%B0"><span class="toc-number">1.1.4.</span> <span class="toc-text">Python 评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E-Python-%E8%AF%84%E4%BC%B0"><span class="toc-number">1.1.5.</span> <span class="toc-text">非 Python 评估</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87-%F0%9F%93%88"><span class="toc-number">1.1.6.</span> <span class="toc-text">评估指标 📈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA"><span class="toc-number">1.1.7.</span> <span class="toc-text">提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF"><span class="toc-number">1.1.8.</span> <span class="toc-text">常见错误</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.1.9.</span> <span class="toc-text">结论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Gorilla-OpenFunctions-v2"><span class="toc-number">1.2.</span> <span class="toc-text">2. Gorilla OpenFunctions v2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E5%8A%9F%E8%83%BD%E9%80%9F%E8%A7%88-%F0%9F%9A%80"><span class="toc-number">1.2.1.</span> <span class="toc-text">新功能速览!! 🚀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E6%82%A8%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%AD%E9%9B%86%E6%88%90-OpenFunctions-v2-%F0%9F%94%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">在您的应用中集成 OpenFunctions-v2 🔨</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Berkeley-%E5%8A%9F%E8%83%BD%E8%B0%83%E7%94%A8%E6%8E%92%E8%A1%8C%E6%A6%9C%E4%B8%8A%E7%9A%84%E8%A1%A8%E7%8E%B0-%F0%9F%94%A5"><span class="toc-number">1.2.3.</span> <span class="toc-text">Berkeley 功能调用排行榜上的表现 🔥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenFunctions-%E6%95%B0%E6%8D%AE%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%AD%E7%BB%83-%F0%9F%8D%95"><span class="toc-number">1.2.4.</span> <span class="toc-text">OpenFunctions 数据组成与训练 🍕</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA-1"><span class="toc-number">1.2.5.</span> <span class="toc-text">结论</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.en/" title="无标题">无标题</a><time datetime="2026-02-20T21:47:32.623Z" title="发表于 2026-02-21 05:47:32">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment.zh-CN/" title="无标题">无标题</a><time datetime="2026-02-20T21:47:32.623Z" title="发表于 2026-02-21 05:47:32">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment/" title="无标题">无标题</a><time datetime="2026-02-20T21:46:38.687Z" title="发表于 2026-02-21 05:46:38">2026-02-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI.en/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/24/NLP%20Insights/SeCom%20Redefining%20Memory%20Management%20in%20Conversational%20AI/" title="SeCom: Redefining Memory Management in Conversational AI">SeCom: Redefining Memory Management in Conversational AI</a><time datetime="2025-06-24T08:00:00.000Z" title="发表于 2025-06-24 16:00:00">2025-06-24</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Huiyu Chen</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 6.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"></div><script src="/js/lang-switch.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
