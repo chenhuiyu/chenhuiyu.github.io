@@ -389,7 +389,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment/</loc>
+    <loc>https://chenhuiyu.github.io/2025/03/06/NLP%20Insights/Differences%20in%20Padding%20Strategies%20Between%20Decoder-only%20and%20Encoder-only%20Models/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -398,7 +398,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2025/03/06/NLP%20Insights/Differences%20in%20Padding%20Strategies%20Between%20Decoder-only%20and%20Encoder-only%20Models/</loc>
+    <loc>https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/Evaluation%20of%20Generation-Based%20Large%20Language%20Models%20(LLMs):%20Opportunities%20and%20Challenges%20from%20Generation%20to%20Judgment/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -1028,7 +1028,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/07/07/NLP%20Insights/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3.en/</loc>
+    <loc>https://chenhuiyu.github.io/2024/12/03/Life%20Reflections/Reflections%20on%20Identity%20and%20Subjectivity.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -1037,7 +1037,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/12/03/Life%20Reflections/Reflections%20on%20Identity%20and%20Subjectivity.en/</loc>
+    <loc>https://chenhuiyu.github.io/2023/07/07/NLP%20Insights/%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -1220,6 +1220,62 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Language-Learning/</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/English-Vocabulary/</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Living-in-Singapore/</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Guide-to-Living-on-Singapore-Island/</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Sports/</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Small-Talk/</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
     <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1428,66 +1484,17 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Language-Learning/</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/English-Vocabulary/</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Living-in-Singapore/</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Guide-to-Living-on-Singapore-Island/</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Sports/</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Small-Talk/</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Code-Chronicles/</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/categories/Life-Reflections/</loc>
     <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1516,13 +1523,6 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
-    <lastmod>2026-02-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/categories/Life-Reflections/</loc>
     <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
