@@ -6,7 +6,7 @@
   <link href="https://chenhuiyu.github.io/atom.xml" rel="self"/>
   
   <link href="https://chenhuiyu.github.io/"/>
-  <updated>2026-02-21T04:22:01.466Z</updated>
+  <updated>2026-02-21T04:28:29.120Z</updated>
   <id>https://chenhuiyu.github.io/</id>
   
   <author>
@@ -20,8 +20,8 @@
     <title>Paper Deep Dive | SLA2: Sparse-Linear Attention with Learnable Routing and QAT</title>
     <link href="https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/paper-deep-dive-2026-02-21.en/"/>
     <id>https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/paper-deep-dive-2026-02-21.en/</id>
-    <published>2026-02-21T04:22:01.000Z</published>
-    <updated>2026-02-21T04:22:01.466Z</updated>
+    <published>2026-02-21T04:28:28.000Z</published>
+    <updated>2026-02-21T04:28:29.120Z</updated>
     
     <content type="html"><![CDATA[<p>Today we skip paper lists and do <strong>one deep dive</strong>.</p><ul><li>Paper: SLA2: Sparse-Linear Attention with Learnable Routing and QAT</li><li>arXiv: <a href="https://arxiv.org/abs/2602.12675">https://arxiv.org/abs/2602.12675</a></li><li>Recency: within 7 days</li><li>Attention: 47 upvotes on HF Daily Papers</li></ul><h2 id="Why-this-paper-matters"><a href="#Why-this-paper-matters" class="headerlink" title="Why this paper matters"></a>Why this paper matters</h2><ul><li>SLA2 improves sparse-linear attention in diffusion models by introducing a learnable router, direct attention formulation, and quantization-aware fine-tuning for enhanced efficiency and quality.</li></ul><h2 id="Problem-framing"><a href="#Problem-framing" class="headerlink" title="Problem framing"></a>Problem framing</h2><p>Sparse-Linear Attention (SLA) combines sparse and linear attention to accelerate diffusion models and has shown strong performance in video generation. However, (i) SLA relies on a heuristic split that assigns computations to the sparse or linear branch based on attention-weight magnitude, which can be suboptimal. Additionally, (ii) after formally analyzing the attention error in SLA, we identify a mismatch between SLA and a direct decomposition into sparse and linear attention. We propose SLA2, which introduces (I) a learnable router that dynamically selects whether each attention computation should use sparse or linear attention, (II) a more faithful and direct sparse-linear attention formulation that uses a learnable ratio to combine the sparse and linear attention branches, and (III) a sparse + low-bit attention design, where low-bit attention is introduced via quantization-aware fine-tuning to reduce quantization error. Experiments show that on video diffusion models, SLA2 can achieve 97% attention sparsity and deliver an 18.6x attention speedup while preserving generation quality.</p><h2 id="Practical-implementation-checklist"><a href="#Practical-implementation-checklist" class="headerlink" title="Practical implementation checklist"></a>Practical implementation checklist</h2><ul><li>Reproduce minimal path first.</li><li>Lock environment + seeds.</li><li>Run one-variable ablations.</li><li>Track quality/latency/cost together.</li><li>Document failure modes explicitly.</li></ul>]]></content>
     
@@ -50,18 +50,18 @@
     <title>论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT</title>
     <link href="https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/paper-deep-dive-2026-02-21.zh-CN/"/>
     <id>https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/paper-deep-dive-2026-02-21.zh-CN/</id>
-    <published>2026-02-21T04:22:01.000Z</published>
-    <updated>2026-02-21T04:22:01.466Z</updated>
+    <published>2026-02-21T04:28:28.000Z</published>
+    <updated>2026-02-21T04:28:29.120Z</updated>
     
-    <content type="html"><![CDATA[<p>今天不做“论文清单”，只做<strong>一篇深度解析</strong>。</p><ul><li>论文：SLA2: Sparse-Linear Attention with Learnable Routing and QAT</li><li>arXiv：<a href="https://arxiv.org/abs/2602.12675">https://arxiv.org/abs/2602.12675</a></li><li>新鲜度：7 天内</li><li>关注度：Hugging Face Daily Papers 点赞 47</li></ul><h2 id="一、这篇论文为什么值得看"><a href="#一、这篇论文为什么值得看" class="headerlink" title="一、这篇论文为什么值得看"></a>一、这篇论文为什么值得看</h2><ul><li>SLA2 improves sparse-linear attention in diffusion models by introducing a learnable router, direct attention formulation, and quantization-aware fine-tuning for enhanced efficiency and quality.</li></ul><h2 id="二、论文核心问题（Problem-Framing）"><a href="#二、论文核心问题（Problem-Framing）" class="headerlink" title="二、论文核心问题（Problem Framing）"></a>二、论文核心问题（Problem Framing）</h2><p>Sparse-Linear Attention (SLA) combines sparse and linear attention to accelerate diffusion models and has shown strong performance in video generation. However, (i) SLA relies on a heuristic split that assigns computations to the sparse or linear branch based on attention-weight magnitude, which can be suboptimal. Additionally, (ii) after formally analyzing the attention error in SLA, we identify a mismatch between SLA and a direct decomposition into sparse and linear attention. We propose SLA2, which introduces (I) a learnable router that dynamically selects whether each attention computation should use sparse or linear attention, (II) a more faithful and direct sparse-linear attention formulation that uses a learnable ratio to combine the sparse and linear attention branches, and (III) a sparse + low-bit attention design, where low-bit attention is introduced via quantization-aware fine-tuning to reduce quantization error. Experiments show that on video diffusion models, SLA2 can achieve 97% attention sparsity and deliver an 18.6x attention speedup while preserving generation quality.</p><h2 id="三、方法拆解（Method-Breakdown）"><a href="#三、方法拆解（Method-Breakdown）" class="headerlink" title="三、方法拆解（Method Breakdown）"></a>三、方法拆解（Method Breakdown）</h2><p>我把方法拆成 4 层去理解：</p><ol><li><strong>目标层</strong>：作者要优化什么（质量、速度、成本、可扩展性）？</li><li><strong>机制层</strong>：关键技术模块是什么，模块之间如何协同？</li><li><strong>训练/推理层</strong>：在哪个阶段生效，是否引入额外算力与数据约束？</li><li><strong>系统层</strong>：能否落地到真实工程（部署、监控、故障恢复）？</li></ol><ul><li>机制线索 1：SLA2 improves sparse-linear attention in diffusion models by introducing a learnable router, direct attention formulation, and quantization-aware fine-tuning for enhanced efficiency and quality.</li></ul><h2 id="四、实验结果怎么读才不被“数字幻觉”误导"><a href="#四、实验结果怎么读才不被“数字幻觉”误导" class="headerlink" title="四、实验结果怎么读才不被“数字幻觉”误导"></a>四、实验结果怎么读才不被“数字幻觉”误导</h2><p>建议按这三个维度复核：</p><ul><li><strong>对比对象是否公平</strong>：baseline 是否同规模、同预算、同数据清洗口径。</li><li><strong>指标是否完整</strong>：不仅看主榜单，还要看延迟、吞吐、显存、稳定性。</li><li><strong>泛化是否成立</strong>：是否跨任务、跨域、跨数据分布仍有效。</li></ul><h2 id="五、工程落地清单（可以直接开工）"><a href="#五、工程落地清单（可以直接开工）" class="headerlink" title="五、工程落地清单（可以直接开工）"></a>五、工程落地清单（可以直接开工）</h2><ul><li>第 1 步：先复现最小可运行 demo，验证论文关键路径。</li><li>第 2 步：记录环境、依赖、随机种子，形成可复现实验脚本。</li><li>第 3 步：只替换一项变量（数据或模块）做 ablation。</li><li>第 4 步：把线上指标（时延、成本、质量）接入统一看板。</li><li>第 5 步：写“失败复盘”而不是只写成功结果。</li></ul><h2 id="六、我对这篇论文的判断"><a href="#六、我对这篇论文的判断" class="headerlink" title="六、我对这篇论文的判断"></a>六、我对这篇论文的判断</h2><p>这篇工作最大的价值不是“又一个 SOTA”，而是把<strong>研究假设 -&gt; 可验证机制 -&gt; 可迁移工程实践</strong>串成闭环。</p><p>如果你今天只做一件事：我建议把它的核心方法抽象成 1 页设计文档，然后做一次 2 小时快速复现。</p><hr><blockquote><p>数据来源：Hugging Face Daily Papers（近 30 天内高关注度）+ arXiv 原文链接。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<p>今天这篇按“口试级精读模板”来拆。</p><ul><li>论文：SLA2: Sparse-Linear Attention with Learnable Routing and QAT</li><li>arXiv：<a href="https://arxiv.org/abs/2602.12675">https://arxiv.org/abs/2602.12675</a></li><li>新鲜度：7 天内</li><li>关注度：Hugging Face Daily Papers 点赞 47</li></ul><h2 id="0-先归类：这篇论文属于哪一类？"><a href="#0-先归类：这篇论文属于哪一类？" class="headerlink" title="0) 先归类：这篇论文属于哪一类？"></a>0) 先归类：这篇论文属于哪一类？</h2><p>我先把它归为：<strong>系统/推理优化 + 架构改进（偏 attention 机制）</strong>。</p><p>这类论文的读法重点：</p><ul><li>结构图与信息流是否真的更简洁</li><li>复杂度与推理成本是否可量化下降</li><li>吞吐/延迟/显存是否同时受益，而不是只优化一个指标</li></ul><h2 id="1-10分钟快读：先拿主结论"><a href="#1-10分钟快读：先拿主结论" class="headerlink" title="1) 10分钟快读：先拿主结论"></a>1) 10分钟快读：先拿主结论</h2><p>按顺序只读四块：Abstract → Method Overview 图 → Contributions → 主实验表。</p><h3 id="What-x2F-Why-x2F-How-x2F-How-much"><a href="#What-x2F-Why-x2F-How-x2F-How-much" class="headerlink" title="What / Why / How / How much"></a>What / Why / How / How much</h3><ul><li><strong>What</strong>：提出 SLA2，对稀疏-线性注意力做可学习路由与更直接的组合方式。</li><li><strong>Why</strong>：原始 SLA 的启发式分流可能次优，且分解形式与目标存在误差。</li><li><strong>How（一句话）</strong>：用可学习 router 决定稀疏或线性分支，并结合低比特量化感知微调降低误差。</li><li><strong>How much</strong>：文中报告可达 97% attention sparsity，attention speedup 约 18.6×，同时尽量保持生成质量。</li></ul><h2 id="2-10分钟方法精读：翻译成“可复现配方”"><a href="#2-10分钟方法精读：翻译成“可复现配方”" class="headerlink" title="2) 10分钟方法精读：翻译成“可复现配方”"></a>2) 10分钟方法精读：翻译成“可复现配方”</h2><h3 id="A-输入输出定义"><a href="#A-输入输出定义" class="headerlink" title="A. 输入输出定义"></a>A. 输入输出定义</h3><ul><li>输入：扩散模型中的 attention 计算单元（query/key/value 与时空上下文）。</li><li>输出：经 router 分流并重组后的 attention 结果，供后续生成步骤使用。</li></ul><h3 id="B-训练-x2F-推理流程（关键）"><a href="#B-训练-x2F-推理流程（关键）" class="headerlink" title="B. 训练/推理流程（关键）"></a>B. 训练/推理流程（关键）</h3><ul><li>训练目标：在保持生成质量的前提下最小化注意力近似误差与量化误差。</li><li>数据来源：沿用视频扩散训练数据分布（论文未在摘要里展开，需正文/附录确认）。</li><li>推理过程：router 决策 -&gt; 稀疏/线性分支计算 -&gt; 按可学习比例融合 -&gt; 输出 attention。</li></ul><h3 id="C-复杂度与成本"><a href="#C-复杂度与成本" class="headerlink" title="C. 复杂度与成本"></a>C. 复杂度与成本</h3><ul><li>训练成本：新增 router 与 QAT 阶段，理论上会增加训练侧工程复杂度。</li><li>推理成本：目标是降低 attention 计算开销，提升吞吐并压低时延。</li><li>隐藏成本：量化校准、部署算子支持、不同硬件后端的一致性。</li></ul><h3 id="三行伪代码（检验是否真的懂）"><a href="#三行伪代码（检验是否真的懂）" class="headerlink" title="三行伪代码（检验是否真的懂）"></a>三行伪代码（检验是否真的懂）</h3><figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data -&gt; sparse_linear_routing_transform -&gt; objective(loss_quality + loss_quant) -&gt; optimize</span><br><span class="line">input_tokens -&gt; model(attn_router + sparse/linear branches) -&gt; decode -&gt; output</span><br></pre></td></tr></tbody></table></figure><h2 id="3-10分钟实验审查：公平性-vs-扎实性"><a href="#3-10分钟实验审查：公平性-vs-扎实性" class="headerlink" title="3) 10分钟实验审查：公平性 vs 扎实性"></a>3) 10分钟实验审查：公平性 vs 扎实性</h2><h3 id="公平性检查（红灯）"><a href="#公平性检查（红灯）" class="headerlink" title="公平性检查（红灯）"></a>公平性检查（红灯）</h3><ul><li>baseline 是否同等算力/同等训练预算？</li><li>是否只挑对自身有利的任务设置？</li><li>提升是否来自更大模型或更久训练而非方法本身？</li><li>是否存在评测泄漏风险？</li></ul><h3 id="扎实性检查（绿灯）"><a href="#扎实性检查（绿灯）" class="headerlink" title="扎实性检查（绿灯）"></a>扎实性检查（绿灯）</h3><ul><li>Ablation：router、直接分解、QAT 分别贡献多少？</li><li>Scaling：不同模型规模下趋势是否一致？</li><li>统计可靠性：是否多次运行给方差/置信区间？</li><li>失败案例：是否诚实说明退化场景？</li></ul><h2 id="4-六句话复述（口试模板）"><a href="#4-六句话复述（口试模板）" class="headerlink" title="4) 六句话复述（口试模板）"></a>4) 六句话复述（口试模板）</h2><ol><li>这篇论文要解决的核心问题是：稀疏-线性注意力在效率与精度间的次优权衡。</li><li>他们的关键想法是：让分流策略可学习，并把量化误差纳入训练闭环。</li><li>方法上新增了：learnable router + 更直接分解 + QAT。</li><li>相比 baseline 的本质差异是：从启发式规则改为可学习决策与联合优化。</li><li>最有说服力的证据是：高 sparsity 下仍保质量，并带来显著 attention 侧加速。</li><li>最大风险/疑点是：跨硬件泛化、训练额外复杂度、真实线上收益与论文环境差距。</li></ol><h2 id="5-抓手问题（你下次可直接复用）"><a href="#5-抓手问题（你下次可直接复用）" class="headerlink" title="5) 抓手问题（你下次可直接复用）"></a>5) 抓手问题（你下次可直接复用）</h2><ul><li>Intro：这是不是“真痛点”？</li><li>Related Work：它到底新在哪，不是换名词吗？</li><li>Method：新增项能否被更简单策略替代？</li><li>Experiments：提升来自方法还是数据/规模/调参？</li><li>Appendix：超参与过滤细节是否支持复现？</li></ul><h2 id="附：原始摘要提炼"><a href="#附：原始摘要提炼" class="headerlink" title="附：原始摘要提炼"></a>附：原始摘要提炼</h2><ul><li>SLA2 improves sparse-linear attention in diffusion models by introducing a learnable router, direct attention formulation, and quantization-aware fine-tuning for enhanced efficiency and quality.</li></ul><hr><blockquote><p>数据来源：Hugging Face Daily Papers（近30天高关注）与 arXiv。</p></blockquote>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;今天不做“论文清单”，只做&lt;strong&gt;一篇深度解析&lt;/strong&gt;。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;今天这篇按“口试级精读模板”来拆。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;论文：SLA2: Sparse-Linear Attention with Learnable Routing and QAT&lt;/li&gt;
-&lt;li&gt;arXiv：&lt;a href</summary>
+&lt;li&gt;arXiv：&lt;a href=&quot;https://arxiv.org/</summary>
       
     
     
@@ -227,8 +227,8 @@
   
   <entry>
     <title>MoE模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色</title>
-    <link href="https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.zh-CN/"/>
-    <id>https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.zh-CN/</id>
+    <link href="https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.en/"/>
+    <id>https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.en/</id>
     <published>2025-02-11T03:50:29.000Z</published>
     <updated>2026-02-20T22:19:17.273Z</updated>
     
@@ -251,8 +251,8 @@
   
   <entry>
     <title>MoE模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色</title>
-    <link href="https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.en/"/>
-    <id>https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.en/</id>
+    <link href="https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.zh-CN/"/>
+    <id>https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.zh-CN/</id>
     <published>2025-02-11T03:50:29.000Z</published>
     <updated>2026-02-20T22:19:17.273Z</updated>
     
@@ -371,8 +371,8 @@
   
   <entry>
     <title>基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</title>
-    <link href="https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.zh-CN/"/>
-    <id>https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.zh-CN/</id>
+    <link href="https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.en/"/>
+    <id>https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.en/</id>
     <published>2024-12-06T06:34:18.000Z</published>
     <updated>2026-02-20T22:19:17.272Z</updated>
     
@@ -398,8 +398,8 @@
   
   <entry>
     <title>基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</title>
-    <link href="https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.en/"/>
-    <id>https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.en/</id>
+    <link href="https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.zh-CN/"/>
+    <id>https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.zh-CN/</id>
     <published>2024-12-06T06:34:18.000Z</published>
     <updated>2026-02-20T22:19:17.272Z</updated>
     
@@ -473,8 +473,8 @@
   
   <entry>
     <title>【Leetcode Python题解】「1346. Check If N and Its Double Exist」</title>
-    <link href="https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.zh-CN/"/>
-    <id>https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.zh-CN/</id>
+    <link href="https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.en/"/>
+    <id>https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.en/</id>
     <published>2024-12-01T16:00:00.000Z</published>
     <updated>2026-02-20T22:19:17.277Z</updated>
     
@@ -501,8 +501,8 @@
   
   <entry>
     <title>【Leetcode Python题解】「1346. Check If N and Its Double Exist」</title>
-    <link href="https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.en/"/>
-    <id>https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.en/</id>
+    <link href="https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.zh-CN/"/>
+    <id>https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.zh-CN/</id>
     <published>2024-12-01T16:00:00.000Z</published>
     <updated>2026-02-20T22:19:17.277Z</updated>
     
