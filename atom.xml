@@ -6,7 +6,7 @@
   <link href="https://chenhuiyu.github.io/atom.xml" rel="self"/>
   
   <link href="https://chenhuiyu.github.io/"/>
-  <updated>2026-02-21T04:17:30.299Z</updated>
+  <updated>2026-02-21T04:22:01.466Z</updated>
   <id>https://chenhuiyu.github.io/</id>
   
   <author>
@@ -17,20 +17,20 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Memory Daily Open-Source Paper &amp; Code Picks (2026-02-21)</title>
-    <link href="https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/memory-daily-2026-02-21.en/"/>
-    <id>https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/memory-daily-2026-02-21.en/</id>
-    <published>2026-02-21T04:17:21.000Z</published>
-    <updated>2026-02-21T04:17:30.299Z</updated>
+    <title>Paper Deep Dive | SLA2: Sparse-Linear Attention with Learnable Routing and QAT</title>
+    <link href="https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/paper-deep-dive-2026-02-21.en/"/>
+    <id>https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/paper-deep-dive-2026-02-21.en/</id>
+    <published>2026-02-21T04:22:01.000Z</published>
+    <updated>2026-02-21T04:22:01.466Z</updated>
     
-    <content type="html"><![CDATA[<p>Today we focus on one thing: <strong>big-tech repos, open-source code, and paper traceability</strong>.</p><ul><li>Scope: Google / Microsoft / Meta / NVIDIA / Hugging Face / DeepSeek / Qwen</li><li>Filter: actively maintained repos + arXiv links discoverable from README</li><li>Output: paper links + GitHub repos + practical code-reading paths</li></ul><h2 id="1-Selected-Today-Paper-Code"><a href="#1-Selected-Today-Paper-Code" class="headerlink" title="1) Selected Today (Paper + Code)"></a>1) Selected Today (Paper + Code)</h2><h3 id="1-QwenLM-x2F-Qwen3"><a href="#1-QwenLM-x2F-Qwen3" class="headerlink" title="1) QwenLM/Qwen3"></a>1) QwenLM/Qwen3</h3><ul><li>GitHub: <a href="https://github.com/QwenLM/Qwen3">https://github.com/QwenLM/Qwen3</a></li><li>Paper: <a href="https://arxiv.org/abs/2505.09388">https://arxiv.org/abs/2505.09388</a></li><li>Stars: 0 (updated: 2026-02-21)</li><li>Highlights:<ul><li>Provides inference, deployment, and quantization guides in one repo.</li></ul></li></ul><h3 id="2-openai-x2F-CLIP"><a href="#2-openai-x2F-CLIP" class="headerlink" title="2) openai/CLIP"></a>2) openai/CLIP</h3><ul><li>GitHub: <a href="https://github.com/openai/CLIP">https://github.com/openai/CLIP</a></li><li>Paper: <a href="https://arxiv.org/abs/2103.00020">https://arxiv.org/abs/2103.00020</a></li><li>Stars: 0 (updated: 2026-02-21)</li><li>Highlights:<ul><li>Classic vision-language pretraining baseline with clean implementation.</li></ul></li></ul><h3 id="3-bytedance-x2F-UI-TARS-desktop"><a href="#3-bytedance-x2F-UI-TARS-desktop" class="headerlink" title="3) bytedance/UI-TARS-desktop"></a>3) bytedance/UI-TARS-desktop</h3><ul><li>GitHub: <a href="https://github.com/bytedance/UI-TARS-desktop">https://github.com/bytedance/UI-TARS-desktop</a></li><li>Paper: <a href="https://arxiv.org/abs/2501.12326">https://arxiv.org/abs/2501.12326</a></li><li>Stars: 0 (updated: 2026-02-21)</li><li>Highlights:<ul><li>Multimodal agent stack with practical desktop automation flavor.</li></ul></li></ul><h3 id="4-facebookresearch-x2F-faiss"><a href="#4-facebookresearch-x2F-faiss" class="headerlink" title="4) facebookresearch/faiss"></a>4) facebookresearch/faiss</h3><ul><li>GitHub: <a href="https://github.com/facebookresearch/faiss">https://github.com/facebookresearch/faiss</a></li><li>Paper: <a href="https://arxiv.org/abs/1702.08734">https://arxiv.org/abs/1702.08734</a> ; <a href="https://arxiv.org/abs/1609.01882">https://arxiv.org/abs/1609.01882</a></li><li>Stars: 0 (updated: 2026-02-21)</li><li>Highlights:<ul><li>Industry-standard ANN library for dense retrieval and vector search.</li></ul></li></ul><h2 id="2-GitHub-Code-Reading-Notes"><a href="#2-GitHub-Code-Reading-Notes" class="headerlink" title="2) GitHub Code Reading Notes"></a>2) GitHub Code Reading Notes</h2><h3 id="1-QwenLM-x2F-Qwen3-suggested-reading-order"><a href="#1-QwenLM-x2F-Qwen3-suggested-reading-order" class="headerlink" title="1) QwenLM/Qwen3: suggested reading order"></a>1) QwenLM/Qwen3: suggested reading order</h3><ul><li>先看 deployment/inference 文档，快速确认端到端可运行路径。</li><li>再看量化与评测脚本，理解模型落地成本。</li><li>Goal: run the smallest demo first, map implementation to paper metrics, then test transferability on your own data.</li></ul><h3 id="2-openai-x2F-CLIP-suggested-reading-order"><a href="#2-openai-x2F-CLIP-suggested-reading-order" class="headerlink" title="2) openai/CLIP: suggested reading order"></a>2) openai/CLIP: suggested reading order</h3><ul><li>先跑零样本分类示例，再追踪文本/图像编码器与对比学习目标。</li><li>Goal: run the smallest demo first, map implementation to paper metrics, then test transferability on your own data.</li></ul><h3 id="3-bytedance-x2F-UI-TARS-desktop-suggested-reading-order"><a href="#3-bytedance-x2F-UI-TARS-desktop-suggested-reading-order" class="headerlink" title="3) bytedance/UI-TARS-desktop: suggested reading order"></a>3) bytedance/UI-TARS-desktop: suggested reading order</h3><ul><li>从 agent 执行循环切入：感知-&gt;决策-&gt;动作，再看工具调用封装。</li><li>Goal: run the smallest demo first, map implementation to paper metrics, then test transferability on your own data.</li></ul><h3 id="4-facebookresearch-x2F-faiss-suggested-reading-order"><a href="#4-facebookresearch-x2F-faiss-suggested-reading-order" class="headerlink" title="4) facebookresearch/faiss: suggested reading order"></a>4) facebookresearch/faiss: suggested reading order</h3><ul><li>先看索引类型与构建参数，再看 GPU 路径和 benchmark 对齐方式。</li><li>Goal: run the smallest demo first, map implementation to paper metrics, then test transferability on your own data.</li></ul><h2 id="3-Action-Plan"><a href="#3-Action-Plan" class="headerlink" title="3) Action Plan"></a>3) Action Plan</h2><ol><li>Pick one repo and spend 2 hours reproducing the minimal path.</li><li>Read training entry points only after inference is stable.</li><li>Keep a fixed template: “paper claim → code implementation → reproducibility check”.</li></ol>]]></content>
+    <content type="html"><![CDATA[<p>Today we skip paper lists and do <strong>one deep dive</strong>.</p><ul><li>Paper: SLA2: Sparse-Linear Attention with Learnable Routing and QAT</li><li>arXiv: <a href="https://arxiv.org/abs/2602.12675">https://arxiv.org/abs/2602.12675</a></li><li>Recency: within 7 days</li><li>Attention: 47 upvotes on HF Daily Papers</li></ul><h2 id="Why-this-paper-matters"><a href="#Why-this-paper-matters" class="headerlink" title="Why this paper matters"></a>Why this paper matters</h2><ul><li>SLA2 improves sparse-linear attention in diffusion models by introducing a learnable router, direct attention formulation, and quantization-aware fine-tuning for enhanced efficiency and quality.</li></ul><h2 id="Problem-framing"><a href="#Problem-framing" class="headerlink" title="Problem framing"></a>Problem framing</h2><p>Sparse-Linear Attention (SLA) combines sparse and linear attention to accelerate diffusion models and has shown strong performance in video generation. However, (i) SLA relies on a heuristic split that assigns computations to the sparse or linear branch based on attention-weight magnitude, which can be suboptimal. Additionally, (ii) after formally analyzing the attention error in SLA, we identify a mismatch between SLA and a direct decomposition into sparse and linear attention. We propose SLA2, which introduces (I) a learnable router that dynamically selects whether each attention computation should use sparse or linear attention, (II) a more faithful and direct sparse-linear attention formulation that uses a learnable ratio to combine the sparse and linear attention branches, and (III) a sparse + low-bit attention design, where low-bit attention is introduced via quantization-aware fine-tuning to reduce quantization error. Experiments show that on video diffusion models, SLA2 can achieve 97% attention sparsity and deliver an 18.6x attention speedup while preserving generation quality.</p><h2 id="Practical-implementation-checklist"><a href="#Practical-implementation-checklist" class="headerlink" title="Practical implementation checklist"></a>Practical implementation checklist</h2><ul><li>Reproduce minimal path first.</li><li>Lock environment + seeds.</li><li>Run one-variable ablations.</li><li>Track quality/latency/cost together.</li><li>Document failure modes explicitly.</li></ul>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;Today we focus on one thing: &lt;strong&gt;big-tech repos, open-source code, and paper traceability&lt;/strong&gt;.&lt;/p&gt;
+    <summary type="html">&lt;p&gt;Today we skip paper lists and do &lt;strong&gt;one deep dive&lt;/strong&gt;.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Scope: Google / Micr</summary>
+&lt;li&gt;Paper: SLA2: Sparse-Linear Attention with Learnable Routing</summary>
       
     
     
@@ -38,30 +38,30 @@
     <category term="NLP Insights" scheme="https://chenhuiyu.github.io/categories/NLP-Insights/"/>
     
     
-    <category term="Memory Daily" scheme="https://chenhuiyu.github.io/tags/Memory-Daily/"/>
+    <category term="Paper Deep Dive" scheme="https://chenhuiyu.github.io/tags/Paper-Deep-Dive/"/>
     
-    <category term="GitHub" scheme="https://chenhuiyu.github.io/tags/GitHub/"/>
+    <category term="arXiv" scheme="https://chenhuiyu.github.io/tags/arXiv/"/>
     
-    <category term="Paper Reading" scheme="https://chenhuiyu.github.io/tags/Paper-Reading/"/>
+    <category term="Research" scheme="https://chenhuiyu.github.io/tags/Research/"/>
     
   </entry>
   
   <entry>
-    <title>Memory Daily｜大厂开源论文代码精选（2026-02-21）</title>
-    <link href="https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/memory-daily-2026-02-21.zh-CN/"/>
-    <id>https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/memory-daily-2026-02-21.zh-CN/</id>
-    <published>2026-02-21T04:17:21.000Z</published>
-    <updated>2026-02-21T04:17:30.299Z</updated>
+    <title>论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT</title>
+    <link href="https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/paper-deep-dive-2026-02-21.zh-CN/"/>
+    <id>https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/paper-deep-dive-2026-02-21.zh-CN/</id>
+    <published>2026-02-21T04:22:01.000Z</published>
+    <updated>2026-02-21T04:22:01.466Z</updated>
     
-    <content type="html"><![CDATA[<p>今天这期只做一件事：<strong>筛大厂、筛开源、筛可读代码</strong>。</p><ul><li>筛选范围：Google / Microsoft / Meta / NVIDIA / Hugging Face / DeepSeek / Qwen 等</li><li>条件：近期活跃仓库 + README 可定位论文链接（arXiv）</li><li>输出：论文线索 + GitHub 地址 + 代码阅读路径</li></ul><h2 id="一、今日入选（含论文与代码）"><a href="#一、今日入选（含论文与代码）" class="headerlink" title="一、今日入选（含论文与代码）"></a>一、今日入选（含论文与代码）</h2><h3 id="1-QwenLM-x2F-Qwen3"><a href="#1-QwenLM-x2F-Qwen3" class="headerlink" title="1) QwenLM/Qwen3"></a>1) QwenLM/Qwen3</h3><ul><li>GitHub：<a href="https://github.com/QwenLM/Qwen3">https://github.com/QwenLM/Qwen3</a></li><li>论文：<a href="https://arxiv.org/abs/2505.09388">https://arxiv.org/abs/2505.09388</a></li><li>Stars：0（更新时间：2026-02-21）</li><li>亮点：<ul><li>Provides inference, deployment, and quantization guides in one repo.</li></ul></li></ul><h3 id="2-openai-x2F-CLIP"><a href="#2-openai-x2F-CLIP" class="headerlink" title="2) openai/CLIP"></a>2) openai/CLIP</h3><ul><li>GitHub：<a href="https://github.com/openai/CLIP">https://github.com/openai/CLIP</a></li><li>论文：<a href="https://arxiv.org/abs/2103.00020">https://arxiv.org/abs/2103.00020</a></li><li>Stars：0（更新时间：2026-02-21）</li><li>亮点：<ul><li>Classic vision-language pretraining baseline with clean implementation.</li></ul></li></ul><h3 id="3-bytedance-x2F-UI-TARS-desktop"><a href="#3-bytedance-x2F-UI-TARS-desktop" class="headerlink" title="3) bytedance/UI-TARS-desktop"></a>3) bytedance/UI-TARS-desktop</h3><ul><li>GitHub：<a href="https://github.com/bytedance/UI-TARS-desktop">https://github.com/bytedance/UI-TARS-desktop</a></li><li>论文：<a href="https://arxiv.org/abs/2501.12326">https://arxiv.org/abs/2501.12326</a></li><li>Stars：0（更新时间：2026-02-21）</li><li>亮点：<ul><li>Multimodal agent stack with practical desktop automation flavor.</li></ul></li></ul><h3 id="4-facebookresearch-x2F-faiss"><a href="#4-facebookresearch-x2F-faiss" class="headerlink" title="4) facebookresearch/faiss"></a>4) facebookresearch/faiss</h3><ul><li>GitHub：<a href="https://github.com/facebookresearch/faiss">https://github.com/facebookresearch/faiss</a></li><li>论文：<a href="https://arxiv.org/abs/1702.08734%EF%BC%9Bhttps://arxiv.org/abs/1609.01882">https://arxiv.org/abs/1702.08734；https://arxiv.org/abs/1609.01882</a></li><li>Stars：0（更新时间：2026-02-21）</li><li>亮点：<ul><li>Industry-standard ANN library for dense retrieval and vector search.</li></ul></li></ul><h2 id="二、GitHub-代码解读（实操视角）"><a href="#二、GitHub-代码解读（实操视角）" class="headerlink" title="二、GitHub 代码解读（实操视角）"></a>二、GitHub 代码解读（实操视角）</h2><h3 id="1-QwenLM-x2F-Qwen3：建议阅读顺序"><a href="#1-QwenLM-x2F-Qwen3：建议阅读顺序" class="headerlink" title="1) QwenLM/Qwen3：建议阅读顺序"></a>1) QwenLM/Qwen3：建议阅读顺序</h3><ul><li>先看 deployment/inference 文档，快速确认端到端可运行路径。</li><li>再看量化与评测脚本，理解模型落地成本。</li><li>目标：先跑通最小 demo，再对齐论文指标，最后替换数据集做迁移验证。</li></ul><h3 id="2-openai-x2F-CLIP：建议阅读顺序"><a href="#2-openai-x2F-CLIP：建议阅读顺序" class="headerlink" title="2) openai/CLIP：建议阅读顺序"></a>2) openai/CLIP：建议阅读顺序</h3><ul><li>先跑零样本分类示例，再追踪文本/图像编码器与对比学习目标。</li><li>目标：先跑通最小 demo，再对齐论文指标，最后替换数据集做迁移验证。</li></ul><h3 id="3-bytedance-x2F-UI-TARS-desktop：建议阅读顺序"><a href="#3-bytedance-x2F-UI-TARS-desktop：建议阅读顺序" class="headerlink" title="3) bytedance/UI-TARS-desktop：建议阅读顺序"></a>3) bytedance/UI-TARS-desktop：建议阅读顺序</h3><ul><li>从 agent 执行循环切入：感知-&gt;决策-&gt;动作，再看工具调用封装。</li><li>目标：先跑通最小 demo，再对齐论文指标，最后替换数据集做迁移验证。</li></ul><h3 id="4-facebookresearch-x2F-faiss：建议阅读顺序"><a href="#4-facebookresearch-x2F-faiss：建议阅读顺序" class="headerlink" title="4) facebookresearch/faiss：建议阅读顺序"></a>4) facebookresearch/faiss：建议阅读顺序</h3><ul><li>先看索引类型与构建参数，再看 GPU 路径和 benchmark 对齐方式。</li><li>目标：先跑通最小 demo，再对齐论文指标，最后替换数据集做迁移验证。</li></ul><h2 id="三、我给你的落地建议"><a href="#三、我给你的落地建议" class="headerlink" title="三、我给你的落地建议"></a>三、我给你的落地建议</h2><ol><li>优先挑 1 个仓库做 2 小时快速复现，验证环境与推理脚本。</li><li>第二步再看训练入口，避免一开始陷入大规模训练细节。</li><li>把“论文结论—代码实现—可复现性”做成固定模板，后续日更会非常稳。</li></ol><blockquote><p>注：本期为自动筛选，明天可加入“你指定赛道（Agent / RAG / 多模态）”做更细颗粒度追踪。</p></blockquote>]]></content>
+    <content type="html"><![CDATA[<p>今天不做“论文清单”，只做<strong>一篇深度解析</strong>。</p><ul><li>论文：SLA2: Sparse-Linear Attention with Learnable Routing and QAT</li><li>arXiv：<a href="https://arxiv.org/abs/2602.12675">https://arxiv.org/abs/2602.12675</a></li><li>新鲜度：7 天内</li><li>关注度：Hugging Face Daily Papers 点赞 47</li></ul><h2 id="一、这篇论文为什么值得看"><a href="#一、这篇论文为什么值得看" class="headerlink" title="一、这篇论文为什么值得看"></a>一、这篇论文为什么值得看</h2><ul><li>SLA2 improves sparse-linear attention in diffusion models by introducing a learnable router, direct attention formulation, and quantization-aware fine-tuning for enhanced efficiency and quality.</li></ul><h2 id="二、论文核心问题（Problem-Framing）"><a href="#二、论文核心问题（Problem-Framing）" class="headerlink" title="二、论文核心问题（Problem Framing）"></a>二、论文核心问题（Problem Framing）</h2><p>Sparse-Linear Attention (SLA) combines sparse and linear attention to accelerate diffusion models and has shown strong performance in video generation. However, (i) SLA relies on a heuristic split that assigns computations to the sparse or linear branch based on attention-weight magnitude, which can be suboptimal. Additionally, (ii) after formally analyzing the attention error in SLA, we identify a mismatch between SLA and a direct decomposition into sparse and linear attention. We propose SLA2, which introduces (I) a learnable router that dynamically selects whether each attention computation should use sparse or linear attention, (II) a more faithful and direct sparse-linear attention formulation that uses a learnable ratio to combine the sparse and linear attention branches, and (III) a sparse + low-bit attention design, where low-bit attention is introduced via quantization-aware fine-tuning to reduce quantization error. Experiments show that on video diffusion models, SLA2 can achieve 97% attention sparsity and deliver an 18.6x attention speedup while preserving generation quality.</p><h2 id="三、方法拆解（Method-Breakdown）"><a href="#三、方法拆解（Method-Breakdown）" class="headerlink" title="三、方法拆解（Method Breakdown）"></a>三、方法拆解（Method Breakdown）</h2><p>我把方法拆成 4 层去理解：</p><ol><li><strong>目标层</strong>：作者要优化什么（质量、速度、成本、可扩展性）？</li><li><strong>机制层</strong>：关键技术模块是什么，模块之间如何协同？</li><li><strong>训练/推理层</strong>：在哪个阶段生效，是否引入额外算力与数据约束？</li><li><strong>系统层</strong>：能否落地到真实工程（部署、监控、故障恢复）？</li></ol><ul><li>机制线索 1：SLA2 improves sparse-linear attention in diffusion models by introducing a learnable router, direct attention formulation, and quantization-aware fine-tuning for enhanced efficiency and quality.</li></ul><h2 id="四、实验结果怎么读才不被“数字幻觉”误导"><a href="#四、实验结果怎么读才不被“数字幻觉”误导" class="headerlink" title="四、实验结果怎么读才不被“数字幻觉”误导"></a>四、实验结果怎么读才不被“数字幻觉”误导</h2><p>建议按这三个维度复核：</p><ul><li><strong>对比对象是否公平</strong>：baseline 是否同规模、同预算、同数据清洗口径。</li><li><strong>指标是否完整</strong>：不仅看主榜单，还要看延迟、吞吐、显存、稳定性。</li><li><strong>泛化是否成立</strong>：是否跨任务、跨域、跨数据分布仍有效。</li></ul><h2 id="五、工程落地清单（可以直接开工）"><a href="#五、工程落地清单（可以直接开工）" class="headerlink" title="五、工程落地清单（可以直接开工）"></a>五、工程落地清单（可以直接开工）</h2><ul><li>第 1 步：先复现最小可运行 demo，验证论文关键路径。</li><li>第 2 步：记录环境、依赖、随机种子，形成可复现实验脚本。</li><li>第 3 步：只替换一项变量（数据或模块）做 ablation。</li><li>第 4 步：把线上指标（时延、成本、质量）接入统一看板。</li><li>第 5 步：写“失败复盘”而不是只写成功结果。</li></ul><h2 id="六、我对这篇论文的判断"><a href="#六、我对这篇论文的判断" class="headerlink" title="六、我对这篇论文的判断"></a>六、我对这篇论文的判断</h2><p>这篇工作最大的价值不是“又一个 SOTA”，而是把<strong>研究假设 -&gt; 可验证机制 -&gt; 可迁移工程实践</strong>串成闭环。</p><p>如果你今天只做一件事：我建议把它的核心方法抽象成 1 页设计文档，然后做一次 2 小时快速复现。</p><hr><blockquote><p>数据来源：Hugging Face Daily Papers（近 30 天内高关注度）+ arXiv 原文链接。</p></blockquote>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;今天这期只做一件事：&lt;strong&gt;筛大厂、筛开源、筛可读代码&lt;/strong&gt;。&lt;/p&gt;
+    <summary type="html">&lt;p&gt;今天不做“论文清单”，只做&lt;strong&gt;一篇深度解析&lt;/strong&gt;。&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;筛选范围：Google / Microsoft / Meta / NVIDIA / Hugging Face / DeepSeek / Qwen 等&lt;/li&gt;
-&lt;l</summary>
+&lt;li&gt;论文：SLA2: Sparse-Linear Attention with Learnable Routing and QAT&lt;/li&gt;
+&lt;li&gt;arXiv：&lt;a href</summary>
       
     
     
@@ -69,11 +69,11 @@
     <category term="NLP Insights" scheme="https://chenhuiyu.github.io/categories/NLP-Insights/"/>
     
     
-    <category term="Memory Daily" scheme="https://chenhuiyu.github.io/tags/Memory-Daily/"/>
+    <category term="Paper Deep Dive" scheme="https://chenhuiyu.github.io/tags/Paper-Deep-Dive/"/>
     
-    <category term="GitHub" scheme="https://chenhuiyu.github.io/tags/GitHub/"/>
+    <category term="arXiv" scheme="https://chenhuiyu.github.io/tags/arXiv/"/>
     
-    <category term="Paper Reading" scheme="https://chenhuiyu.github.io/tags/Paper-Reading/"/>
+    <category term="Research" scheme="https://chenhuiyu.github.io/tags/Research/"/>
     
   </entry>
   
@@ -227,8 +227,8 @@
   
   <entry>
     <title>MoE模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色</title>
-    <link href="https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.en/"/>
-    <id>https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.en/</id>
+    <link href="https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.zh-CN/"/>
+    <id>https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.zh-CN/</id>
     <published>2025-02-11T03:50:29.000Z</published>
     <updated>2026-02-20T22:19:17.273Z</updated>
     
@@ -251,8 +251,8 @@
   
   <entry>
     <title>MoE模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色</title>
-    <link href="https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.zh-CN/"/>
-    <id>https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.zh-CN/</id>
+    <link href="https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.en/"/>
+    <id>https://chenhuiyu.github.io/2025/02/11/NLP%20Insights/moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2.en/</id>
     <published>2025-02-11T03:50:29.000Z</published>
     <updated>2026-02-20T22:19:17.273Z</updated>
     
@@ -371,8 +371,8 @@
   
   <entry>
     <title>基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</title>
-    <link href="https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.en/"/>
-    <id>https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.en/</id>
+    <link href="https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.zh-CN/"/>
+    <id>https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.zh-CN/</id>
     <published>2024-12-06T06:34:18.000Z</published>
     <updated>2026-02-20T22:19:17.272Z</updated>
     
@@ -398,8 +398,8 @@
   
   <entry>
     <title>基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</title>
-    <link href="https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.zh-CN/"/>
-    <id>https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.zh-CN/</id>
+    <link href="https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.en/"/>
+    <id>https://chenhuiyu.github.io/2024/12/06/NLP%20Insights/%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98.en/</id>
     <published>2024-12-06T06:34:18.000Z</published>
     <updated>2026-02-20T22:19:17.272Z</updated>
     
@@ -473,8 +473,8 @@
   
   <entry>
     <title>【Leetcode Python题解】「1346. Check If N and Its Double Exist」</title>
-    <link href="https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.en/"/>
-    <id>https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.en/</id>
+    <link href="https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.zh-CN/"/>
+    <id>https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.zh-CN/</id>
     <published>2024-12-01T16:00:00.000Z</published>
     <updated>2026-02-20T22:19:17.277Z</updated>
     
@@ -501,8 +501,8 @@
   
   <entry>
     <title>【Leetcode Python题解】「1346. Check If N and Its Double Exist」</title>
-    <link href="https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.zh-CN/"/>
-    <id>https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.zh-CN/</id>
+    <link href="https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.en/"/>
+    <id>https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.en/</id>
     <published>2024-12-01T16:00:00.000Z</published>
     <updated>2026-02-20T22:19:17.277Z</updated>
     
