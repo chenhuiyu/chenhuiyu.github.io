@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/02/19/Debugging%20Diaries/how-to-resolve-ssh-key-issues-with-multiple-git-services.en/</loc>
+    <loc>https://chenhuiyu.github.io/2024/02/19/Debugging%20Diaries/how-to-resolve-ssh-key-issues-with-multiple-git-services.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/02/19/Debugging%20Diaries/how-to-resolve-ssh-key-issues-with-multiple-git-services.zh-CN/</loc>
+    <loc>https://chenhuiyu.github.io/2024/02/19/Debugging%20Diaries/how-to-resolve-ssh-key-issues-with-multiple-git-services.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -101,6 +101,15 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/2024/10/23/NLP%20Insights/detailed-explanation-of-lora-dpo-kto-and-sft-technologies.en/</loc>
+    
+    <lastmod>2026-02-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/2023/09/24/NLP%20Insights/create-a-telegram-bot-with-python-and-openai-in-10-minutes.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
@@ -110,7 +119,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/10/23/NLP%20Insights/detailed-explanation-of-lora-dpo-kto-and-sft-technologies.en/</loc>
+    <loc>https://chenhuiyu.github.io/2024/08/07/NLP%20Insights/detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -129,15 +138,6 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/2024/08/07/NLP%20Insights/detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm.zh-CN/</loc>
-    
-    <lastmod>2026-02-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/2024/08/07/NLP%20Insights/detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -218,7 +218,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/python-yield.zh-CN/</loc>
+    <loc>https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/python-yield.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -227,7 +227,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/python-yield.en/</loc>
+    <loc>https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/python-yield.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -245,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/03/02/Code%20Chronicles/python%E9%A2%98%E8%A7%A3-100231-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-i.zh-CN/</loc>
+    <loc>https://chenhuiyu.github.io/2024/03/01/Code%20Chronicles/python%E9%A2%98%E8%A7%A3-2369-%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -254,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/03/01/Code%20Chronicles/python%E9%A2%98%E8%A7%A3-2369-%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86.en/</loc>
+    <loc>https://chenhuiyu.github.io/2024/03/02/Code%20Chronicles/python%E9%A2%98%E8%A7%A3-100231-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-i.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -308,7 +308,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/02/20/Code%20Chronicles/intersection-union.en/</loc>
+    <loc>https://chenhuiyu.github.io/2023/02/20/Code%20Chronicles/intersection-union.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -317,7 +317,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/02/20/Code%20Chronicles/intersection-union.zh-CN/</loc>
+    <loc>https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -335,7 +335,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/12/02/Code%20Chronicles/leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist.zh-CN/</loc>
+    <loc>https://chenhuiyu.github.io/2023/02/20/Code%20Chronicles/intersection-union.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -362,15 +362,6 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/08/23/Code%20Chronicles/%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95-nohup-tmux-%E5%92%8C-screen.en/</loc>
-    
-    <lastmod>2026-02-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/2023/08/23/Code%20Chronicles/%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95-nohup-tmux-%E5%92%8C-screen.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
@@ -380,52 +371,16 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/2023/08/23/Code%20Chronicles/%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95-nohup-tmux-%E5%92%8C-screen.en/</loc>
+    
+    <lastmod>2026-02-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/2023/07/06/Debugging%20Diaries/vs-code-remote-ssh%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98.en/</loc>
-    
-    <lastmod>2026-02-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/2023/07/06/Debugging%20Diaries/vs-code-remote-ssh%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98.zh-CN/</loc>
-    
-    <lastmod>2026-02-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/2023/02/23/Code%20Chronicles/faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B.en/</loc>
-    
-    <lastmod>2026-02-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/2023/02/23/Code%20Chronicles/faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B.zh-CN/</loc>
-    
-    <lastmod>2026-02-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A.en/</loc>
-    
-    <lastmod>2026-02-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -452,7 +407,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/05/23/Tech%20Toolbox/gitlog.en/</loc>
+    <loc>https://chenhuiyu.github.io/2023/07/06/Debugging%20Diaries/vs-code-remote-ssh%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -461,7 +416,43 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/07/08/Tech%20Toolbox/hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%8F%AF%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%B6%B3%E8%BF%B9%E5%9C%B0%E5%9B%BE.en/</loc>
+    <loc>https://chenhuiyu.github.io/2023/02/23/Code%20Chronicles/faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B.zh-CN/</loc>
+    
+    <lastmod>2026-02-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/2023/02/23/Code%20Chronicles/faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B.en/</loc>
+    
+    <lastmod>2026-02-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A.en/</loc>
+    
+    <lastmod>2026-02-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/2023/02/01/Code%20Chronicles/python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A.zh-CN/</loc>
+    
+    <lastmod>2026-02-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/2023/05/23/Tech%20Toolbox/gitlog.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -488,6 +479,15 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/2023/07/08/Tech%20Toolbox/hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%8F%AF%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%B6%B3%E8%BF%B9%E5%9C%B0%E5%9B%BE.en/</loc>
+    
+    <lastmod>2026-02-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/2023/01/11/Tech%20Toolbox/hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
@@ -506,7 +506,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/06/06/Tech%20Toolbox/kubernetes%E5%9F%BA%E7%A1%80.zh-CN/</loc>
+    <loc>https://chenhuiyu.github.io/2023/06/06/Tech%20Toolbox/kubernetes%E5%9F%BA%E7%A1%80.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -515,7 +515,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/06/06/Tech%20Toolbox/kubernetes%E5%9F%BA%E7%A1%80.en/</loc>
+    <loc>https://chenhuiyu.github.io/2023/06/06/Tech%20Toolbox/kubernetes%E5%9F%BA%E7%A1%80.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -542,7 +542,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/07/27/NLP%20Insights/prompt-engineering.en/</loc>
+    <loc>https://chenhuiyu.github.io/2023/07/27/NLP%20Insights/prompt-engineering.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -551,7 +551,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/07/27/NLP%20Insights/prompt-engineering.zh-CN/</loc>
+    <loc>https://chenhuiyu.github.io/2023/07/27/NLP%20Insights/prompt-engineering.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -632,7 +632,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/07/09/NLP%20Insights/%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95.zh-CN/</loc>
+    <loc>https://chenhuiyu.github.io/2023/07/09/NLP%20Insights/%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -641,7 +641,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/07/09/NLP%20Insights/%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95.en/</loc>
+    <loc>https://chenhuiyu.github.io/2023/07/09/NLP%20Insights/%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -686,15 +686,6 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/07/07/NLP%20Insights/dssm-%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3.en/</loc>
-    
-    <lastmod>2026-02-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/2023/07/07/NLP%20Insights/dssm-%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
@@ -704,7 +695,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment.en/</loc>
+    <loc>https://chenhuiyu.github.io/2023/07/07/NLP%20Insights/dssm-%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -714,6 +705,15 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment.zh-CN/</loc>
+    
+    <lastmod>2026-02-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/2026/02/21/NLP%20Insights/evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -758,7 +758,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/12/11/Life%20Reflections/%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1.en/</loc>
+    <loc>https://chenhuiyu.github.io/2024/12/11/Life%20Reflections/%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -767,7 +767,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/12/11/Life%20Reflections/%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1.zh-CN/</loc>
+    <loc>https://chenhuiyu.github.io/2024/12/11/Life%20Reflections/%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -812,7 +812,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/09/13/Debugging%20Diaries/resolving-port-conflicts-identifying-and-terminating-processes.en/</loc>
+    <loc>https://chenhuiyu.github.io/2023/09/13/Debugging%20Diaries/resolving-port-conflicts-identifying-and-terminating-processes.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -821,7 +821,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2023/09/13/Debugging%20Diaries/resolving-port-conflicts-identifying-and-terminating-processes.zh-CN/</loc>
+    <loc>https://chenhuiyu.github.io/2023/09/13/Debugging%20Diaries/resolving-port-conflicts-identifying-and-terminating-processes.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -866,6 +866,15 @@
   </url>
   
   <url>
+    <loc>https://chenhuiyu.github.io/2024/02/21/Life%20Reflections/english-learning-journey-unraveling-the-term-giro-date.zh-CN/</loc>
+    
+    <lastmod>2026-02-20</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://chenhuiyu.github.io/2024/02/21/Life%20Reflections/english-learning-journey-unraveling-the-term-giro-date.en/</loc>
     
     <lastmod>2026-02-20</lastmod>
@@ -875,7 +884,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/02/21/Life%20Reflections/english-learning-journey-unraveling-the-term-giro-date.zh-CN/</loc>
+    <loc>https://chenhuiyu.github.io/2024/12/03/Life%20Reflections/reflections-on-identity-and-subjectivity.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
     
@@ -902,27 +911,9 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/2024/12/03/Life%20Reflections/reflections-on-identity-and-subjectivity.zh-CN/</loc>
-    
-    <lastmod>2026-02-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://chenhuiyu.github.io/2023/07/07/Life%20Reflections/sup-experience.zh-CN/</loc>
     
     <lastmod>2026-02-20</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/categories/index.html</loc>
-    
-    <lastmod>2025-01-18</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -938,7 +929,7 @@
   </url>
   
   <url>
-    <loc>https://chenhuiyu.github.io/travel/Geo.json</loc>
+    <loc>https://chenhuiyu.github.io/categories/index.html</loc>
     
     <lastmod>2025-01-18</lastmod>
     
@@ -955,10 +946,19 @@
     <priority>0.6</priority>
   </url>
   
+  <url>
+    <loc>https://chenhuiyu.github.io/travel/Geo.json</loc>
+    
+    <lastmod>2025-01-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
 
   <url>
     <loc>https://chenhuiyu.github.io/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -966,343 +966,343 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/IssueFix/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Language-Learning/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/English-Vocabulary/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Living-in-Singapore/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Guide-to-Living-on-Singapore-Island/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Sports/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Small-Talk/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Python/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/FAISS/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Embedding/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Python-Basic/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Leetcode/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Daily-Challenge/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Git/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Blog/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/K8s/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Python/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/FAISS/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Embedding/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Python-Basic/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Leetcode/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Daily-Challenge/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/%E5%8F%8C%E5%91%A8%E8%B5%9B/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Language-Learning/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/English-Vocabulary/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/%E5%9D%A1%E5%B2%9B%E7%94%9F%E6%B4%BB%E6%8C%87%E5%8C%97/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Living-in-Singapore/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Guide-to-Living-on-Singapore-Island/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Sports/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Small-Talk/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/%E6%9D%82%E8%B0%88/</loc>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Onnx/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Deployment/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Chatbot/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/LLM/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/vLLM/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/tags/Gemma-2/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Gemma-2-2b-it/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/DSSM/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Recommendation/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/tags/Gemma-2/</loc>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/FastChat/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Train/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Agent/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Tool-Use/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Gorilla/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Paper-Deep-Dive/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/arXiv/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Research/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Prompt/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Conversational-AI/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Memory-Management/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/SeCom/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/RAG/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/SGLang/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Structured-LLM/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Language-Modeling/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Perplexity/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Deep-Learning/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/tags/Gradient-Descent/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -1311,42 +1311,42 @@
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Debugging-Diaries/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/categories/Life-Reflections/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/categories/Code-Chronicles/</loc>
-    <lastmod>2026-02-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/Wanderlust-Adventures/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/categories/Tech-Toolbox/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/categories/Code-Chronicles/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://chenhuiyu.github.io/categories/Life-Reflections/</loc>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://chenhuiyu.github.io/categories/NLP-Insights/</loc>
-    <lastmod>2026-02-21</lastmod>
+    <lastmod>2026-02-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
