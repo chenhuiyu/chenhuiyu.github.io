@@ -10,6 +10,15 @@
     if (p === '/' || p === '') return '/en/';
     if (p === '/en' || p === '/en/') return '/';
 
+    // these sections don't have /en/* routes in current Hexo setup
+    // avoid sending users to guaranteed 404 pages
+    var noEnPrefixes = ['/categories', '/tags', '/archives', '/travel'];
+    for (var i = 0; i &lt; noEnPrefixes.length; i++) {
+      var prefix = noEnPrefixes[i];
+      if (p === prefix || p.indexOf(prefix + '/') === 0) return '/en/';
+      if (p === '/en' + prefix || p.indexOf('/en' + prefix + '/') === 0) return '/';
+    }
+
     // post/page with explicit language suffix
     if (p.indexOf('.zh-CN/') !== -1) return p.replace('.zh-CN/', '.en/');
     if (p.indexOf('.en/') !== -1) return p.replace('.en/', '.zh-CN/');
