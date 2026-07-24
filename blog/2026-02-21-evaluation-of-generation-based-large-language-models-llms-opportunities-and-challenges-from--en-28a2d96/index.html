@@ -1,0 +1,297 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-CRAaP1Wd.css" data-rsc-css-href="/assets/index-CRAaP1Wd.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-B6vTT0Sl.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-of5-WiJ_.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment — Huiyu Chen</title><meta name="description" content="Evaluation tasks in artificial intelligence (AI) and natural language processing (NLP) have long been challenging. Traditional evaluation methods, such as those based on matching or embeddings, are limited in assessing c…"/><link rel="shortcut icon" href="/favicon.svg"/><link rel="icon" href="/favicon.svg"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-of5-WiJ_.js" />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0tvmz3h { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0tvmz3h { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_1diim1n { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_1diim1n { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_1vhuncr { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_1vhuncr { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased"><main class="site-shell article-shell" id="top"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><div class="article-meta"><span>LLM &amp; NLP</span><time>2026-02-20</time><span>English</span></div><h1>evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment</h1><p class="article-deck">Evaluation tasks in artificial intelligence (AI) and natural language processing (NLP) have long been challenging. Traditional evaluation methods, such as those based on matching or embeddings, are limited in assessing c…</p><a class="language-switch" href="/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe">阅读中文版 →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#Abstract">Abstract</a><a class="" href="#1-Introduction">1. Introduction</a><a class="toc-subitem" href="#1-1-Background">1.1 Background</a><a class="toc-subitem" href="#1-2-Research-Questions">1.2 Research Questions</a><a class="" href="#2-Preliminary-Knowledge">2. Preliminary Knowledge</a><a class="toc-subitem" href="#2-1-Input-Formats">2.1 Input Formats</a><a class="toc-subitem" href="#2-2-Output-Formats">2.2 Output Formats</a><a class="" href="#3-Evaluation-Attributes">3. Evaluation Attributes</a><a class="toc-subitem" href="#3-1-Helpfulness">3.1 Helpfulness</a><a class="toc-subitem" href="#3-2-Harmlessness">3.2 Harmlessness</a><a class="toc-subitem" href="#3-3-Reliability">3.3 Reliability</a><a class="toc-subitem" href="#3-4-Relevance">3.4 Relevance</a><a class="toc-subitem" href="#3-5-Feasibility">3.5 Feasibility</a><a class="toc-subitem" href="#3-6-Overall-Quality">3.6 Overall Quality</a><a class="toc-subitem" href="#4-Methodology">4. Methodology</a><a class="toc-subitem" href="#5-Applications">5. Applications</a></nav></aside><div class="prose"><h1 id="Evaluation-of-Generation-Based-Large-Language-Models-LLMs-Opportunities-and-Challenges-from-Generation-to-Judgment">Evaluation of Generation-Based Large Language Models (LLMs): Opportunities and Challenges from Generation to Judgment</h1><h2 id="Abstract">Abstract</h2><p>Evaluation tasks in artificial intelligence (AI) and natural language processing (NLP) have long been challenging. Traditional evaluation methods, such as those based on matching or embeddings, are limited in assessing complex attributes. The recent development of large language models (LLMs) has given rise to the “LLM-as-a-Judge” paradigm, which utilizes LLMs for scoring, ranking, or selection tasks. This paper provides a comprehensive review of LLM evaluation methodologies, including their definitions, classification frameworks, benchmarks, and future research directions.</p>
+<hr>
+<h2 id="1-Introduction">1. Introduction</h2><h3 id="1-1-Background">1.1 Background</h3><p>Evaluation is one of the core issues in machine learning and NLP. Traditional evaluation methods such as BLEU and ROUGE often rely on text overlap and lack applicability in complex scenarios. With the development of deep learning and LLMs (e.g., GPT-4), researchers have proposed the “LLM-as-a-Judge” paradigm to address the limitations of traditional evaluation methods.</p>
+<h3 id="1-2-Research-Questions">1.2 Research Questions</h3><p>This paper aims to explore the following questions:</p>
+<ul>
+<li><strong>What do LLMs evaluate?</strong></li>
+<li><strong>How is evaluation conducted?</strong></li>
+<li><strong>Where are LLMs applied for evaluation?</strong></li>
+</ul>
+<hr>
+<h2 id="2-Preliminary-Knowledge">2. Preliminary Knowledge</h2><h3 id="2-1-Input-Formats">2.1 Input Formats</h3><p>Evaluation inputs can be categorized as follows:</p>
+<ul>
+<li><strong>Point-Wise</strong>: Evaluation of a single sample.</li>
+<li><strong>Pair/List-Wise</strong>: Comparative evaluation of multiple samples.</li>
+</ul>
+<h3 id="2-2-Output-Formats">2.2 Output Formats</h3><p>Evaluation outputs include:</p>
+<ul>
+<li><strong>Scores</strong>: Quantitative scoring of samples.</li>
+<li><strong>Ranking</strong>: Ordering based on merit.</li>
+<li><strong>Selection</strong>: Choosing the best option among candidates.</li>
+</ul>
+<hr>
+<h2 id="3-Evaluation-Attributes">3. Evaluation Attributes</h2><h3 id="3-1-Helpfulness">3.1 Helpfulness</h3><p>LLMs evaluate the helpfulness of responses by guiding user tasks and generating feedback, which is crucial in AI alignment.</p>
+<h3 id="3-2-Harmlessness">3.2 Harmlessness</h3><p>Evaluating the harmlessness of text is key to generating safe content. LLMs assist in data labeling or directly assess potential harmful content.</p>
+<h3 id="3-3-Reliability">3.3 Reliability</h3><p>LLMs detect factual accuracy and consistency, e.g., generating supporting evidence or conducting conversation-level reliability evaluations.</p>
+<h3 id="3-4-Relevance">3.4 Relevance</h3><p>LLMs assess the relevance of generated or retrieved content, applicable in scenarios like conversations and retrieval-augmented generation (RAG).</p>
+<h3 id="3-5-Feasibility">3.5 Feasibility</h3><p>In complex tasks, LLMs judge the feasibility of candidate steps or actions to optimize decision paths.</p>
+<h3 id="3-6-Overall-Quality">3.6 Overall Quality</h3><p>By scoring across multiple dimensions, LLMs provide an overall evaluation, suitable for comprehensive comparisons in generation tasks.</p>
+<hr>
+<h3 id="4-Methodology">4. Methodology</h3><h4 id="Overview">Overview</h4><p>The methodology section focuses on optimizing the capabilities of LLMs as evaluators (LLM-as-a-Judge) through two approaches: fine-tuning and prompt engineering.</p>
+<ol>
+<li><strong>Fine-Tuning Techniques</strong>: Enhancing LLM judgment capabilities using supervised fine-tuning (SFT) and preference learning with labeled or synthetic feedback.</li>
+<li><strong>Prompt Engineering</strong>: Designing effective prompt strategies, such as operation swapping, rule enhancement, and multi-agent collaboration, to improve inference and evaluation accuracy and reliability.</li>
+</ol>
+<hr>
+<h4 id="4-1-Fine-Tuning-Techniques">4.1 Fine-Tuning Techniques</h4><h5 id="Data-Sources">Data Sources</h5><h6 id="1-Human-Labeled-Data">1. <strong>Human-Labeled Data</strong></h6><p>Human-labeled data provides high-quality training samples that help LLMs learn human preferences. Key studies and innovations include:</p>
+<ol>
+<li><p><strong>PandaLM</strong> [Wang et al., 2024h]:</p>
+<ul>
+<li>Collected a diverse dataset with 300,000 samples for instruction-generation tasks.</li>
+<li>Enhanced generalization by integrating data sources like open-domain QA and dialogue generation.</li>
+<li>Introduced standardized annotation workflows for consistency and emphasized multilingual support.</li>
+</ul>
+</li>
+<li><p><strong>AspectInstruct</strong> [Liu et al., 2024a]:</p>
+<ul>
+<li>Introduced a dataset tailored for multi-dimensional evaluation, covering 65 tasks and 27 evaluation dimensions.</li>
+<li>Designed a unique task segmentation mechanism for contextual understanding and dimension prioritization.</li>
+</ul>
+</li>
+</ol>
+<h6 id="2-Synthetic-Data">2. <strong>Synthetic Data</strong></h6><p>Synthetic data generated by LLMs reduces dependency on human labeling and expands data coverage. Key studies and innovations include:</p>
+<ol>
+<li><p><strong>JudgeLM</strong> [Zhu et al., 2023]:</p>
+<ul>
+<li>Generated a dataset with 100,000 samples, covering various instruction-generation scenarios.</li>
+<li>Introduced task-seeding methods to ensure diversity and specificity.</li>
+</ul>
+</li>
+<li><p><strong>Meta-Rewarding</strong> [Wu et al., 2024]:</p>
+<ul>
+<li>Proposed “meta-rewarding,” using LLM self-evaluation signals to enhance training effectiveness.</li>
+</ul>
+</li>
+</ol>
+<h5 id="Fine-Tuning-Methods">Fine-Tuning Methods</h5><h6 id="1-Supervised-Fine-Tuning-SFT">1. <strong>Supervised Fine-Tuning (SFT)</strong></h6><p>SFT trains LLMs using human-labeled or synthetic data to learn evaluation criteria. Key studies include:</p>
+<ol>
+<li><p><strong>FLAMe</strong> [Vu et al., 2024]:</p>
+<ul>
+<li>Leveraged a multi-task learning framework with 5 million samples for multi-task SFT.</li>
+<li>Unified evaluation standards across diverse tasks.</li>
+</ul>
+</li>
+<li><p><strong>JSFT</strong> [Lee et al., 2024]:</p>
+<ul>
+<li>Combined SFT with preference learning to optimize performance on diverse evaluation tasks.</li>
+</ul>
+</li>
+</ol>
+<h6 id="2-Preference-Learning">2. <strong>Preference Learning</strong></h6><p>Preference learning optimizes LLM comparison and ranking capabilities for complex evaluations. Key studies include:</p>
+<ol>
+<li><p><strong>HALU-J</strong> [Wang et al., 2024a]:</p>
+<ul>
+<li>Employed directed preference optimization (DPO) with multi-evidence selection mechanisms.</li>
+</ul>
+</li>
+<li><p><strong>Self-Taught Evaluators</strong> [Wang et al., 2024f]:</p>
+<ul>
+<li>Used self-generated suboptimal responses as negative samples for dynamic improvement.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="5-Applications">5. Applications</h3><h4 id="Overview-1">Overview</h4><p>The applications of LLM-as-a-Judge have expanded from generation evaluation to alignment, retrieval, and reasoning. This section systematically introduces these applications, their specific tasks, and representative studies.</p>
+<hr>
+<h4 id="5-1-Evaluation">5.1 Evaluation</h4><h5 id="Overview-2">Overview</h5><p>LLM-as-a-Judge was initially applied to evaluation tasks like dialogue generation and summarization. Key studies include:</p>
+<ol>
+<li><p><strong>MD-Judge</strong> [Li et al., 2024f]:</p>
+<ul>
+<li>Evaluated safety-related Q&amp;A frameworks, focusing on harmfulness and ethical risks.</li>
+</ul>
+</li>
+<li><p><strong>Chan Framework</strong> [Chan et al., 2023]:</p>
+<ul>
+<li>Introduced a multi-agent debate framework for improved evaluation quality.</li>
+</ul>
+</li>
+<li><p><strong>ICE</strong> [Jain et al., 2023b]:</p>
+<ul>
+<li>Used few-shot examples for interactive multi-dimensional evaluation.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="7-Challenges-and-Future-Directions">7. Challenges and Future Directions</h3><h4 id="Overview-3">Overview</h4><p>Despite its powerful capabilities, LLM-as-a-Judge faces challenges such as evaluation bias, adaptability to dynamic tasks, and the potential of human-AI collaborative evaluation. This section explores these challenges and outlines future research directions.</p>
+<h5 id="7-1-Bias-and-Vulnerabilities">7.1 Bias and Vulnerabilities</h5><ol>
+<li><strong>OffsetBias</strong> [Park et al., 2024]:<ul>
+<li>Proposed a de-biasing framework to mitigate positional and content biases.</li>
+</ul>
+</li>
+</ol>
+<h5 id="7-2-Dynamic-and-Complex-Evaluations">7.2 Dynamic and Complex Evaluations</h5><ol>
+<li><strong>Tree of Thought (ToT)</strong> [Yao et al., 2023a]:<ul>
+<li>Enhanced multi-step reasoning with dynamic state evaluation mechanisms.</li>
+</ul>
+</li>
+</ol>
+<h5 id="7-3-Self-Evaluation-and-Human-AI-Collaboration">7.3 Self-Evaluation and Human-AI Collaboration</h5><ol>
+<li><p><strong>Self-Taught Evaluators</strong> [Wang et al., 2024f]:</p>
+<ul>
+<li>Highlighted the potential for models to improve through self-learning mechanisms.</li>
+</ul>
+</li>
+<li><p><strong>Meta-Rewarding</strong> [Wu et al., 2024]:</p>
+<ul>
+<li>Demonstrated the advantages of integrating self-evaluation signals into optimization.</li>
+</ul>
+</li>
+</ol>
+<hr>
+</div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43"><span>LLM &amp; NLP</span><h2>Paper Deep Dive | SLA2: Sparse-Linear Attention with Learnable Routing and QAT</h2><p>2026-02-21</p></a><a href="/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896"><span>LLM &amp; NLP</span><h2>SeCom: Redefining Memory Management in Conversational AI</h2><p>2025-06-24</p></a><a href="/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3"><span>LLM &amp; NLP</span><h2>Differences in Padding Strategies Between Decoder-only and Encoder-only Models</h2><p>2025-03-06</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script id="_R_">import("/assets/index-of5-WiJ_.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-CRAaP1Wd.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-CRAaP1Wd.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-CRAaP1Wd.css\",\"data-rsc-css-href\":\"/assets/index-CRAaP1Wd.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased\",\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Evaluation tasks in artificial intelligence (AI) and natural language processing (NLP) have long been challenging. Traditional evaluation methods, such as those based on matching or embeddings, are limited in assessing c…\"}],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"development\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[\"blog\",\"2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96\"]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"9896fa1f-a6e1-437f-8abe-129c26c198e8\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"time\",null,{\"children\":\"2026-02-20\"}],[\"$\",\"span\",null,{\"children\":\"English\"}]]}],[\"$\",\"h1\",null,{\"children\":\"evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"Evaluation tasks in artificial intelligence (AI) and natural language processing (NLP) have long been challenging. Traditional evaluation methods, such as those based on matching or embeddings, are limited in assessing c…\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe\",\"children\":\"阅读中文版 →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"Abstract-Abstract\",{\"className\":\"\",\"href\":\"#Abstract\",\"children\":\"Abstract\"}],[\"$\",\"a\",\"1-Introduction-1. Introduction\",{\"className\":\"\",\"href\":\"#1-Introduction\",\"children\":\"1. Introduction\"}],[\"$\",\"a\",\"1-1-Background-1.1 Background\",{\"className\":\"toc-subitem\",\"href\":\"#1-1-Background\",\"children\":\"1.1 Background\"}],[\"$\",\"a\",\"1-2-Research-Questions-1.2 Research Questions\",{\"className\":\"toc-subitem\",\"href\":\"#1-2-Research-Questions\",\"children\":\"1.2 Research Questions\"}],[\"$\",\"a\",\"2-Preliminary-Knowledge-2. Preliminary Knowledge\",{\"className\":\"\",\"href\":\"#2-Preliminary-Knowledge\",\"children\":\"2. Preliminary Knowledge\"}],[\"$\",\"a\",\"2-1-Input-Formats-2.1 Input Formats\",{\"className\":\"toc-subitem\",\"href\":\"#2-1-Input-Formats\",\"children\":\"2.1 Input Formats\"}],[\"$\",\"a\",\"2-2-Output-Formats-2.2 Output Formats\",{\"className\":\"toc-subitem\",\"href\":\"#2-2-Output-Formats\",\"children\":\"2.2 Output Formats\"}],[\"$\",\"a\",\"3-Evaluation-Attributes-3. Evaluation Attributes\",{\"className\":\"\",\"href\":\"#3-Evaluation-Attributes\",\"children\":\"3. Evaluation Attributes\"}],[\"$\",\"a\",\"3-1-Helpfulness-3.1 Helpfulness\",{\"className\":\"toc-subitem\",\"href\":\"#3-1-Helpfulness\",\"children\":\"3.1 Helpfulness\"}],[\"$\",\"a\",\"3-2-Harmlessness-3.2 Harmlessness\",{\"className\":\"toc-subitem\",\"href\":\"#3-2-Harmlessness\",\"children\":\"3.2 Harmlessness\"}],[\"$\",\"a\",\"3-3-Reliability-3.3 Reliability\",{\"className\":\"toc-subitem\",\"href\":\"#3-3-Reliability\",\"children\":\"3.3 Reliability\"}],[\"$\",\"a\",\"3-4-Relevance-3.4 Relevance\",{\"className\":\"toc-subitem\",\"href\":\"#3-4-Relevance\",\"children\":\"3.4 Relevance\"}],[\"$\",\"a\",\"3-5-Feasibility-3.5 Feasibility\",{\"className\":\"toc-subitem\",\"href\":\"#3-5-Feasibility\",\"children\":\"3.5 Feasibility\"}],[\"$\",\"a\",\"3-6-Overall-Quality-3.6 Overall Quality\",{\"className\":\"toc-subitem\",\"href\":\"#3-6-Overall-Quality\",\"children\":\"3.6 Overall Quality\"}],[\"$\",\"a\",\"4-Methodology-4. Methodology\",{\"className\":\"toc-subitem\",\"href\":\"#4-Methodology\",\"children\":\"4. Methodology\"}],[\"$\",\"a\",\"5-Applications-5. Applications\",{\"className\":\"toc-subitem\",\"href\":\"#5-Applications\",\"children\":\"5. Applications\"}]]}]]}],\"$L6\"]}]]}],\"$L7\",\"$L8\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("9:T24d0,\u003ch1 id=\"Evaluation-of-Generation-Based-Large-Language-Models-LLMs-Opportunities-and-Challenges-from-Generation-to-Judgment\"\u003eEvaluation of Generation-Based Large Language Models (LLMs): Opportunities and Challenges from Generation to Judgment\u003c/h1\u003e\u003ch2 id=\"Abstract\"\u003eAbstract\u003c/h2\u003e\u003cp\u003eEvaluation tasks in artificial intelligence (AI) and natural language processing (NLP) have long been challenging. Traditional evaluation methods, such as those based on matching or embeddings, are limited in assessing complex attributes. The recent development of large language models (LLMs) has given rise to the “LLM-as-a-Judge” paradigm, which utilizes LLMs for scoring, ranking, or selection tasks. This paper provides a comprehensive review of LLM evaluation methodologies, including their definitions, classification frameworks, benchmarks, and future research directions.\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"1-Introduction\"\u003e1. Introduction\u003c/h2\u003e\u003ch3 id=\"1-1-Background\"\u003e1.1 Background\u003c/h3\u003e\u003cp\u003eEvaluation is one of the core issues in machine learning and NLP. Traditional evaluation methods such as BLEU and ROUGE often rely on text overlap and lack applicability in complex scenarios. With the development of deep learning and LLMs (e.g., GPT-4), researchers have proposed the “LLM-as-a-Judge” paradigm to address the limitations of traditional evaluation methods.\u003c/p\u003e\n\u003ch3 id=\"1-2-Research-Questions\"\u003e1.2 Research Questions\u003c/h3\u003e\u003cp\u003eThis paper aims to explore the following questions:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eWhat do LLMs evaluate?\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eHow is evaluation conducted?\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eWhere are LLMs applied for evaluation?\u003c/strong\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n\u003ch2 id=\"2-Preliminary-Knowledge\"\u003e2. Preliminary Knowledge\u003c/h2\u003e\u003ch3 id=\"2-1-Input-Formats\"\u003e2.1 Input Formats\u003c/h3\u003e\u003cp\u003eEvaluation inputs can be categorized as follows:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003ePoint-Wise\u003c/strong\u003e: Evaluation of a single sample.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003ePair/List-Wise\u003c/strong\u003e: Comparative evaluation of multiple samples.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"2-2-Output-Formats\"\u003e2.2 Output Formats\u003c/h3\u003e\u003cp\u003eEvaluation outputs include:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eScores\u003c/strong\u003e: Quantitative scoring of samples.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eRanking\u003c/strong\u003e: Ordering based on merit.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eSelection\u003c/strong\u003e: Choosing the best option among candidates.\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n\u003ch2 id=\"3-Evaluation-Attributes\"\u003e3. Evaluation Attributes\u003c/h2\u003e\u003ch3 id=\"3-1-Helpfulness\"\u003e3.1 Helpfulness\u003c/h3\u003e\u003cp\u003eLLMs evaluate the helpfulness of responses by guiding user tasks and generating feedback, which is crucial in AI alignment.\u003c/p\u003e\n\u003ch3 id=\"3-2-Harmlessness\"\u003e3.2 Harmlessness\u003c/h3\u003e\u003cp\u003eEvaluating the harmlessness of text is key to generating safe content. LLMs assist in data labeling or directly assess potential harmful content.\u003c/p\u003e\n\u003ch3 id=\"3-3-Reliability\"\u003e3.3 Reliability\u003c/h3\u003e\u003cp\u003eLLMs detect factual accuracy and consistency, e.g., generating supporting evidence or conducting conversation-level reliability evaluations.\u003c/p\u003e\n\u003ch3 id=\"3-4-Relevance\"\u003e3.4 Relevance\u003c/h3\u003e\u003cp\u003eLLMs assess the relevance of generated or retrieved content, applicable in scenarios like conversations and retrieval-augmented generation (RAG).\u003c/p\u003e\n\u003ch3 id=\"3-5-Feasibility\"\u003e3.5 Feasibility\u003c/h3\u003e\u003cp\u003eIn complex tasks, LLMs judge the feasibility of candidate steps or actions to optimize decision paths.\u003c/p\u003e\n\u003ch3 id=\"3-6-Overall-Quality\"\u003e3.6 Overall Quality\u003c/h3\u003e\u003cp\u003eBy scoring across multiple dimensions, LLMs provide an overall evaluation, suitable for comprehensive comparisons in generation tasks.\u003c/p\u003e\n\u003chr\u003e\n\u003ch3 id=\"4-Methodology\"\u003e4. Methodology\u003c/h3\u003e\u003ch4 id=\"Overview\"\u003eOverview\u003c/h4\u003e\u003cp\u003eThe methodology section focuses on optimizing the capabilities of LLMs as evaluators (LLM-as-a-Judge) through two approaches: fine-tuning and prompt engineering.\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eFine-Tuning Techniques\u003c/strong\u003e: Enhancing LLM judgment capabilities using supervised fine-tuning (SFT) and preference learning with labeled or synthetic feedback.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003ePrompt Engineering\u003c/strong\u003e: Designing effective prompt strategies, such as operation swapping, rule enhancement, and multi-agent collaboration, to improve inference and evaluation accuracy and reliability.\u003c/li\u003e\n\u003c/ol\u003e\n\u003chr\u003e\n\u003ch4 id=\"4-1-Fine-Tuning-Techniques\"\u003e4.1 Fine-Tuning Techniques\u003c/h4\u003e\u003ch5 id=\"Data-Sources\"\u003eData Sources\u003c/h5\u003e\u003ch6 id=\"1-Human-Labeled-Data\"\u003e1. \u003cstrong\u003eHuman-Labeled Data\u003c/strong\u003e\u003c/h6\u003e\u003cp\u003eHuman-labeled data provides high-quality training samples that help LLMs learn human preferences. Key studies and innovations include:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003ePandaLM\u003c/strong\u003e [Wang et al., 2024h]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eCollected a diverse dataset with 300,000 samples for instruction-generation tasks.\u003c/li\u003e\n\u003cli\u003eEnhanced generalization by integrating data sources like open-domain QA and dialogue generation.\u003c/li\u003e\n\u003cli\u003eIntroduced standardized annotation workflows for consistency and emphasized multilingual support.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eAspectInstruct\u003c/strong\u003e [Liu et al., 2024a]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eIntroduced a dataset tailored for multi-dimensional evaluation, covering 65 tasks and 27 evaluation dimensions.\u003c/li\u003e\n\u003cli\u003eDesigned a unique task segmentation mechanism for contextual understanding and dimension prioritization.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch6 id=\"2-Synthetic-Data\"\u003e2. \u003cstrong\u003eSynthetic Data\u003c/strong\u003e\u003c/h6\u003e\u003cp\u003eSynthetic data generated by LLMs reduces dependency on human labeling and expands data coverage. Key studies and innovations include:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eJudgeLM\u003c/strong\u003e [Zhu et al., 2023]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eGenerated a dataset with 100,000 samples, covering various instruction-generation scenarios.\u003c/li\u003e\n\u003cli\u003eIntroduced task-seeding methods to ensure diversity and specificity.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eMeta-Rewarding\u003c/strong\u003e [Wu et al., 2024]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eProposed “meta-rewarding,” using LLM self-evaluation signals to enhance training effectiveness.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch5 id=\"Fine-Tuning-Methods\"\u003eFine-Tuning Methods\u003c/h5\u003e\u003ch6 id=\"1-Supervised-Fine-Tuning-SFT\"\u003e1. \u003cstrong\u003eSupervised Fine-Tuning (SFT)\u003c/strong\u003e\u003c/h6\u003e\u003cp\u003eSFT trains LLMs using human-labeled or synthetic data to learn evaluation criteria. Key studies include:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eFLAMe\u003c/strong\u003e [Vu et al., 2024]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eLeveraged a multi-task learning framework with 5 million samples for multi-task SFT.\u003c/li\u003e\n\u003cli\u003eUnified evaluation standards across diverse tasks.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eJSFT\u003c/strong\u003e [Lee et al., 2024]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eCombined SFT with preference learning to optimize performance on diverse evaluation tasks.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch6 id=\"2-Preference-Learning\"\u003e2. \u003cstrong\u003ePreference Learning\u003c/strong\u003e\u003c/h6\u003e\u003cp\u003ePreference learning optimizes LLM comparison and ranking capabilities for complex evaluations. Key studies include:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eHALU-J\u003c/strong\u003e [Wang et al., 2024a]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eEmployed directed preference optimization (DPO) with multi-evidence selection mechanisms.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eSelf-Taught Evaluators\u003c/strong\u003e [Wang et al., 2024f]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eUsed self-generated suboptimal responses as negative samples for dynamic improvement.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003chr\u003e\n\u003ch3 id=\"5-Applications\"\u003e5. Applications\u003c/h3\u003e\u003ch4 id=\"Overview-1\"\u003eOverview\u003c/h4\u003e\u003cp\u003eThe applications of LLM-as-a-Judge have expanded from generation evaluation to alignment, retrieval, and reasoning. This section systematically introduces these applications, their specific tasks, and representative studies.\u003c/p\u003e\n\u003chr\u003e\n\u003ch4 id=\"5-1-Evaluation\"\u003e5.1 Evaluation\u003c/h4\u003e\u003ch5 id=\"Overview-2\"\u003eOverview\u003c/h5\u003e\u003cp\u003eLLM-as-a-Judge was initially applied to evaluation tasks like dialogue generation and summarization. Key studies include:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eMD-Judge\u003c/strong\u003e [Li et al., 2024f]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eEvaluated safety-related Q\u0026amp;A frameworks, focusing on harmfulness and ethical risks.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eChan Framework\u003c/strong\u003e [Chan et al., 2023]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eIntroduced a multi-agent debate framework for improved evaluation quality.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eICE\u003c/strong\u003e [Jain et al., 2023b]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eUsed few-shot examples for interactive multi-dimensional evaluation.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003chr\u003e\n\u003ch3 id=\"7-Challenges-and-Future-Directions\"\u003e7. Challenges and Future Directions\u003c/h3\u003e\u003ch4 id=\"Overview-3\"\u003eOverview\u003c/h4\u003e\u003cp\u003eDespite its powerful capabilities, LLM-as-a-Judge faces challenges such as evaluation bias, adaptability to dynamic tasks, and the potential of human-AI collaborative evaluation. This section explores these challenges and outlines future research directions.\u003c/p\u003e\n\u003ch5 id=\"7-1-Bias-and-Vulnerabilities\"\u003e7.1 Bias and Vulnerabilities\u003c/h5\u003e\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eOffsetBias\u003c/strong\u003e [Park et al., 2024]:\u003cul\u003e\n\u003cli\u003eProposed a de-biasing framework to mitigate positional and content biases.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch5 id=\"7-2-Dynamic-and-Complex-Evaluations\"\u003e7.2 Dynamic and Complex Evaluations\u003c/h5\u003e\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eTree of Thought (ToT)\u003c/strong\u003e [Yao et al., 2023a]:\u003cul\u003e\n\u003cli\u003eEnhanced multi-step reasoning with dynamic state evaluation mechanisms.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch5 id=\"7-3-Self-Evaluation-and-Human-AI-Collaboration\"\u003e7.3 Self-Evaluation and Human-AI Collaboration\u003c/h5\u003e\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eSelf-Taught Evaluators\u003c/strong\u003e [Wang et al., 2024f]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eHighlighted the potential for models to improve through self-learning mechanisms.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eMeta-Rewarding\u003c/strong\u003e [Wu et al., 2024]:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eDemonstrated the advantages of integrating self-evaluation signals into optimization.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003chr\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$9\"}}]\n7:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43\",{\"href\":\"/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"Paper Deep Dive | SLA2: Sparse-Linear Attention with Learnable Routing and QAT\"}],[\"$\",\"p\",null,{\"children\":\"2026-02-21\"}]]}],[\"$\",\"a\",\"2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896\",{\"href\":\"/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"SeCom: Redefining Memory Management in Conversational AI\"}],[\"$\",\"p\",null,{\"children\":\"2025-06-24\"}]]}],[\"$\",\"a\",\"2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3\",{\"href\":\"/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"Differences in Padding Strategies Between Decoder-only and Encoder-only Models\"}],[\"$\",\"p\",null,{\"children\":\"2025-03-06\"}]]}]]}]]}]\n8:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

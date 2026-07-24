@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-CRAaP1Wd.css" data-rsc-css-href="/assets/index-CRAaP1Wd.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-B6vTT0Sl.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-of5-WiJ_.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>SeCom: 重新定义对话AI的记忆管理 — Huiyu Chen</title><meta name="description" content="最近笔者一直在研究对话AI中的内存管理问题，特别是长期对话场景下的记忆构建与检索技术。发现了一篇令人眼前一亮的ICLR 2025论文——《SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents》，由Microsoft和清华大学的研究团队联合发表。"/><link rel="shortcut icon" href="/favicon.svg"/><link rel="icon" href="/favicon.svg"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-of5-WiJ_.js" />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0tvmz3h { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0tvmz3h { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_1diim1n { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_1diim1n { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_1vhuncr { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_1vhuncr { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased"><main class="site-shell article-shell" id="top"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><div class="article-meta"><span>LLM &amp; NLP</span><time>2025-06-24</time><span>中文</span></div><h1>SeCom: 重新定义对话AI的记忆管理</h1><p class="article-deck">最近笔者一直在研究对话AI中的内存管理问题，特别是长期对话场景下的记忆构建与检索技术。发现了一篇令人眼前一亮的ICLR 2025论文——《SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents》，由Microsoft和清华大学的研究团队联合发表。</p><a class="language-switch" href="/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896">Read the English edition →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#写在前面">写在前面</a><a class="" href="#1-为什么我们需要关注对话内存管理？">1. 为什么我们需要关注对话内存管理？</a><a class="toc-subitem" href="#1-1-长期对话的现实挑战">1.1 长期对话的现实挑战</a><a class="toc-subitem" href="#1-2-笔者对Memory管理领域的观察">1.2 笔者对Memory管理领域的观察</a><a class="toc-subitem" href="#1-3-内存粒度问题的深层分析">1.3 内存粒度问题的深层分析</a><a class="" href="#2-SeCom的设计">2. SeCom的设计</a><a class="toc-subitem" href="#2-1-核心发现">2.1 核心发现</a><a class="toc-subitem" href="#2-2-系统设计">2.2 系统设计</a><a class="toc-subitem" href="#2-3-分段算法：教AI学会”断句”">2.3 分段算法：教AI学会”断句”</a><a class="toc-subitem" href="#2-4-压缩式内存去噪">2.4 压缩式内存去噪</a><a class="toc-subitem" href="#2-5-多模态检索系统">2.5 多模态检索系统</a><a class="" href="#3-写在最后：一些思考">3. 写在最后：一些思考</a><a class="toc-subitem" href="#3-1-SeCom给我们的启发">3.1 SeCom给我们的启发</a><a class="" href="#参考资源">参考资源</a></nav></aside><div class="prose"><h2 id="写在前面">写在前面</h2><p>最近笔者一直在研究对话AI中的内存管理问题，特别是长期对话场景下的记忆构建与检索技术。发现了一篇令人眼前一亮的ICLR 2025论文——<strong>《SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents》</strong>，由Microsoft和清华大学的研究团队联合发表。</p>
+<p>这篇论文提出的SeCom方法巧妙地解决了一个核心问题：<strong>如何在长期对话中有效管理和检索历史信息</strong>？今天想和大家分享一下这个方法的技术细节和创新点，希望能为从事相关研究的朋友们提供一些启发。</p>
+<h2 id="1-为什么我们需要关注对话内存管理？">1. 为什么我们需要关注对话内存管理？</h2><h3 id="1-1-长期对话的现实挑战">1.1 长期对话的现实挑战</h3><p>在与LLMs的日常交互中，相信大家都遇到过这样的困扰：当对话变得很长时，AI似乎”忘记”了之前讨论的内容，或者给出的回答与前面的上下文不够连贯。这背后反映的正是长期对话中的内存管理挑战。</p>
+<p>随着大语言模型技术的成熟，基于LLM的对话代理已经深入到我们生活的方方面面。但是，当我们希望与AI进行真正的长期、个性化交互时——比如跨越数天、数周的项目讨论，现有的技术就显得力不从心了。</p>
+<p>长期对话面临的主要技术挑战包括：</p>
+<ul>
+<li><strong>上下文长度限制</strong>：即使是支持长上下文的模型，在处理超长对话时也面临计算成本和性能下降的问题</li>
+<li><strong>信息相关性</strong>：历史对话中可能包含大量与当前查询无关的信息</li>
+<li><strong>语义连贯性</strong>：相关信息可能分散在多个不连续的对话轮次中</li>
+<li><strong>个性化记忆</strong>：需要记住用户的偏好、习惯和历史交互模式</li>
+</ul>
+<h3 id="1-2-笔者对Memory管理领域的观察">1.2 笔者对Memory管理领域的观察</h3><p>在深入研究这个领域的过程中，笔者发现对话内存管理其实是一个相当复杂的系统工程。它的核心目标听起来很简单：从历史对话中提取、存储和检索相关信息，以支持当前对话的生成。但实际实现起来，需要解决三个关键问题：</p>
+<ol>
+<li><strong>内存构建（Memory Construction）</strong>：如何将自然语言对话转换为结构化的内存单元？</li>
+<li><strong>内存检索（Memory Retrieval）</strong>：面对海量历史信息，如何快速准确地找到相关内容？</li>
+<li><strong>响应生成（Response Generation）</strong>：如何基于检索到的记忆生成连贯、个性化的回复？</li>
+</ol>
+<p>听起来是不是很像人类的记忆机制？确实如此，这也是为什么这个问题如此有趣和具有挑战性。</p>
+<h4 id="1-2-2-现有方法的”三国演义”">1.2.2 现有方法的”三国演义”</h4><p>在研究过程中，笔者发现现有的方法大致可以分为三大流派，每个都有自己的”哲学”：</p>
+<p><strong>“全盘托出”派（基于完整历史）</strong>：</p>
+<ul>
+<li><strong>核心思想</strong>：既然不知道什么重要，那就全部给你！</li>
+<li><strong>优势</strong>：信息完整，绝不遗漏</li>
+<li><strong>问题</strong>：就像把整个图书馆搬给你找一本书，效率可想而知</li>
+</ul>
+<p><strong>“提纲挈领”派（基于摘要）</strong>：</p>
+<ul>
+<li><strong>核心思想</strong>：重要的信息浓缩成摘要就够了</li>
+<li><strong>优势</strong>：信息压缩，计算高效</li>
+<li><strong>问题</strong>：摘要过程中重要细节可能”意外失踪”</li>
+</ul>
+<p><strong>“精准打击”派（基于检索）</strong>：</p>
+<ul>
+<li><strong>代表方法</strong>：轮次级检索、会话级检索</li>
+<li><strong>核心思想</strong>：需要什么就检索什么，按需取用</li>
+<li><strong>优势</strong>：计算效率高，定位精确</li>
+<li><strong>问题</strong>：关键在于如何确定检索的”粒度”——这正是SeCom要解决的核心问题！</li>
+</ul>
+<h4 id="1-2-3-检索增强生成（RAG）在对话中的应用">1.2.3 检索增强生成（RAG）在对话中的应用</h4><p>检索增强生成技术在对话系统中的应用日益广泛，主要包括：</p>
+<ul>
+<li>**Dense Passage Retrieval (DPR)**：使用预训练的密集检索模型</li>
+<li><strong>BM25</strong>：基于词频统计的稀疏检索方法</li>
+<li><strong>Hybrid Retrieval</strong>：结合密集检索和稀疏检索的优势</li>
+</ul>
+<p>然而，现有RAG方法在对话场景中面临独特挑战：</p>
+<ul>
+<li><strong>分块策略（Chunking Strategy）</strong>：如何将对话分割为检索单元</li>
+<li><strong>相关性判断</strong>：对话的相关性判断比文档检索更复杂</li>
+<li><strong>时序依赖</strong>：对话具有强时序性，前后文关系重要</li>
+</ul>
+<h3 id="1-3-内存粒度问题的深层分析">1.3 内存粒度问题的深层分析</h3><h4 id="1-3-1-轮次级内存的局限性">1.3.1 轮次级内存的局限性</h4><p>轮次级内存将每个用户-代理交互（turn）作为独立的内存单元：</p>
+<p><strong>数学表示</strong>：<br>设对话历史 $\mathcal{H} = {\mathbf{c}<em>i}</em>{i=1}^C$，其中每个会话 $\mathbf{c}<em>i = {\mathbf{t}<em>j}</em>{j=1}^{T_i}$<br>轮次级内存：$|\mathcal{M}| = \sum</em>{i=1}^C T_i$，每个 $\mathbf{m} \in \mathcal{M}$ 对应一个轮次 $\mathbf{t}$</p>
+<p><strong>主要问题</strong>：</p>
+<ul>
+<li><strong>信息碎片化</strong>：相关信息分散在多个轮次中，单个轮次可能缺乏完整语义</li>
+<li><strong>上下文缺失</strong>：轮次间的依赖关系丢失</li>
+<li><strong>检索精度低</strong>：查询词汇可能不直接出现在相关轮次中</li>
+</ul>
+<p><strong>具体示例</strong>：<br>用户在第3轮询问”什么是机器学习”，第5轮询问”监督学习的例子”，第8轮询问”如何选择算法”。当用户在第10轮询问”之前提到的分类算法性能如何评估”时，轮次级检索可能无法找到完整的上下文。</p>
+<h4 id="1-3-2-会话级内存的局限性">1.3.2 会话级内存的局限性</h4><p>会话级内存将整个对话会话作为内存单元：</p>
+<p><strong>数学表示</strong>：<br>会话级内存：$|\mathcal{M}| = C$，每个 $\mathbf{m} \in \mathcal{M}$ 对应一个会话 $\mathbf{c}$</p>
+<p><strong>主要问题</strong>：</p>
+<ul>
+<li><strong>主题混杂</strong>：单个会话可能包含多个不相关主题</li>
+<li><strong>噪声干扰</strong>：大量无关信息影响检索和生成质量</li>
+<li><strong>检索粗糙</strong>：无法精确定位到具体相关内容</li>
+</ul>
+<p><strong>具体示例</strong>：<br>一个会话中用户讨论了机器学习、烹饪食谱、旅行计划和电影推荐。当查询机器学习相关问题时，检索到的会话包含大量无关的烹饪和旅行信息。</p>
+<h4 id="1-3-3-摘要化方法的信息损失">1.3.3 摘要化方法的信息损失</h4><p>摘要化方法通过压缩对话内容来减少信息量：</p>
+<p><strong>主要问题</strong>：</p>
+<ul>
+<li><strong>细节丢失</strong>：摘要过程中重要细节可能被省略</li>
+<li><strong>主观性</strong>：摘要质量依赖于模型的理解能力</li>
+<li><strong>不可逆性</strong>：一旦信息被摘要，原始细节无法恢复</li>
+</ul>
+<h2 id="2-SeCom的设计">2. SeCom的设计</h2><h3 id="2-1-核心发现">2.1 核心发现</h3><p>SeCom（<strong>Se</strong>gmentation + <strong>Com</strong>pression）的两个核心发现：</p>
+<p><strong>洞察一：对话天然具有”段落”结构</strong><br>就像我们写文章会分段一样，人类的对话其实也有天然的主题边界。比如在一次长对话中，我们可能先讨论工作项目，然后转到周末计划，再聊到最近看的电影。每个主题就是一个天然的”段落”。</p>
+<p>传统方法要么把每句话当作独立单元（太碎片化），要么把整个对话当作一个整体（太粗糙），而SeCom找到了中间的最佳平衡点——<strong>段落级的语义单元</strong>。</p>
+<p><strong>洞察二：自然语言充满”废话”</strong><br>这听起来有点刻薄，但确实如此。我们日常对话中充满了”嗯”、”那个”、”你知道的”这样的冗余表达，还有大量的重复、确认、客套话。这些在人际交流中很重要，但对机器检索来说就是噪声。</p>
+<p>SeCom通过智能压缩，保留关键信息的同时去除这些”噪声”，让检索更加精准。</p>
+<h3 id="2-2-系统设计">2.2 系统设计</h3><p>SeCom的整体架构设计非常优雅，就像一条高效的流水线：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">历史对话 → [分段器] → 段落级内存单元 → [压缩器] → 去噪内存单元 → [检索器] → 相关上下文 → [生成器] → 最终回复</span><br></pre></td></tr></tbody></table></figure>
+
+<p>用更直观的话来解释这个流程：</p>
+<ol>
+<li><strong>分段器</strong>：将杂乱的对话历史按主题”切块”</li>
+<li><strong>压缩器</strong>：将每个”块”中的废话去掉，保留精华</li>
+<li><strong>检索器</strong>：根据当前问题找到最相关的”块”</li>
+<li><strong>生成器</strong>：基于相关信息生成回答</li>
+</ol>
+<p><strong>技术表示</strong>（没什么用，写给喜欢数学的朋友）：<br>设 $f_{\mathcal{I}}$ 为分段器，$f_{Comp}$ 为压缩器，$f_R$ 为检索器，$f_{LLM}$ 为生成器</p>
+<p>完整流程：</p>
+<ol>
+<li>${\mathbf{s}<em>k}</em>{k=1}^K \leftarrow f_{\mathcal{I}}(\mathcal{H})$ （对话分段）</li>
+<li>${\mathbf{m}<em>k}</em>{k=1}^K \leftarrow f_{Comp}({\mathbf{s}<em>k}</em>{k=1}^K)$ （压缩去噪）</li>
+<li>${\mathbf{m}<em>n}</em>{n=1}^N \leftarrow f_R(u^*, {\mathbf{m}<em>k}</em>{k=1}^K, N)$ （内存检索）</li>
+<li>$r^* = f_{LLM}(u^*, {\mathbf{m}<em>n}</em>{n=1}^N)$ （响应生成）</li>
+</ol>
+<h3 id="2-3-分段算法：教AI学会”断句”">2.3 分段算法：教AI学会”断句”</h3><h4 id="2-3-1-零样本分段">2.3.1 零样本分段</h4><p>如何让AI自动识别对话中的主题边界？传统方法需要大量标注数据训练专门的分段模型，而SeCom采用了一个非常聪明的”零样本”方法。</p>
+<p><strong>核心思路</strong>：<br>既然GPT-4这样的大模型已经具备了强大的文本理解能力，为什么不直接让它来判断对话的主题边界呢？就像让一个文学老师来给文章分段一样。</p>
+<p><strong>输入预处理</strong>：<br>将对话会话增强为结构化格式：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Turn j: </span><br><span class="line">[user]: u_j</span><br><span class="line">[agent]: r_j</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>分段提示设计</strong>：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">分析以下对话，识别主题边界，将对话分割为语义连贯的段落。</span><br><span class="line">每个段落应该：</span><br><span class="line">1. 围绕单一主题或相关主题</span><br><span class="line">2. 包含完整的交互序列</span><br><span class="line">3. 具有明确的开始和结束边界</span><br><span class="line"></span><br><span class="line">对话内容：</span><br><span class="line">[对话内容]</span><br><span class="line"></span><br><span class="line">请输出每个段落的起始和结束轮次编号。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>优势</strong>：</p>
+<ul>
+<li>无需训练数据，适用于开放域对话</li>
+<li>利用LLM的强大理解能力</li>
+<li>可处理复杂的主题转换模式</li>
+</ul>
+<h4 id="2-3-2-基于反思的分段优化">2.3.2 基于反思的分段优化</h4><p>当有少量标注数据时，采用反思机制优化分段效果：</p>
+<p><strong>算法步骤</strong>：</p>
+<ol>
+<li><strong>初始分段</strong>：使用零样本方法对批量数据进行分段</li>
+<li><strong>错误识别</strong>：基于WindowDiff指标选择top-K个分段错误最大的样本</li>
+<li><strong>反思学习</strong>：让LLM分析分段错误，更新分段指导原则</li>
+<li><strong>迭代优化</strong>：重复上述过程直到收敛</li>
+</ol>
+<p><strong>反思提示设计</strong>：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">分析以下分段错误，并更新分段指导原则：</span><br><span class="line"></span><br><span class="line">错误案例：</span><br><span class="line">[分段结果] vs [标准答案]</span><br><span class="line"></span><br><span class="line">请分析错误原因并提供改进的分段指导原则。</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>数学表示</strong>：<br>设 $\boldsymbol{G}<em>m$ 为第m轮的分段指导原则，更新公式为：<br>$$\boldsymbol{G}</em>{m+1} = \boldsymbol{G}_m - \eta \nabla \mathcal{L}(\boldsymbol{G}_m)$$</p>
+<p>其中 $\nabla \mathcal{L}(\boldsymbol{G}_m)$ 为LLM隐式估计的分段损失梯度。</p>
+<h4 id="2-3-3-增量分段算法">2.3.3 增量分段算法</h4><p>对于新增的对话轮次，设计增量分段算法：</p>
+<p><strong>算法流程</strong>：</p>
+<ol>
+<li>输入新轮次 $\mathbf{t}<em>{new}$ 和前一段落 $\mathbf{s}</em>{prev}$</li>
+<li>判断是否应该合并：$binary = f_{judge}(\mathbf{t}<em>{new}, \mathbf{s}</em>{prev})$</li>
+<li>如果合并：$\mathbf{s}<em>{prev} \leftarrow \mathbf{s}</em>{prev} \cup {\mathbf{t}_{new}}$</li>
+<li>否则：创建新段落 $\mathbf{s}<em>{new} = {\mathbf{t}</em>{new}}$</li>
+</ol>
+<p><strong>判断提示</strong>：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">判断新的用户-机器人轮次是否应该与前一段落合并：</span><br><span class="line"></span><br><span class="line">新轮次：[新轮次内容]</span><br><span class="line">前一段落：[前一段落内容]</span><br><span class="line"></span><br><span class="line">如果属于同一主题，回答"Yes"，否则回答"No"。</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-4-压缩式内存去噪">2.4 压缩式内存去噪</h3><h4 id="2-4-1-自然语言冗余性分析">2.4.1 自然语言冗余性分析</h4><p><strong>理论基础</strong>：<br>根据Shannon信息论，自然语言具有高度冗余性，冗余率约为50-75%。这种冗余在人类交流中有助于错误纠正和理解，但在机器检索中构成噪声。</p>
+<p><strong>冗余类型</strong>：</p>
+<ol>
+<li><strong>词汇冗余</strong>：同义词、重复表达</li>
+<li><strong>语法冗余</strong>：冗余的语法结构</li>
+<li><strong>语义冗余</strong>：重复的语义信息</li>
+<li><strong>对话冗余</strong>：客套话、确认性回复</li>
+</ol>
+<h4 id="2-4-2-LLMLingua-2压缩原理">2.4.2 LLMLingua-2压缩原理</h4><p><strong>算法核心</strong>：<br>LLMLingua-2基于token重要性评分进行压缩：</p>
+<ol>
+<li><p><strong>重要性评分</strong>：<br>$$s_i = f_{score}(x_i | x_{&lt;i}, x_{&gt;i})$$<br>其中 $x_i$ 为第i个token，$x_{&lt;i}$ 和 $x_{&gt;i}$ 为上下文</p>
+</li>
+<li><p><strong>动态压缩</strong>：<br>根据目标压缩率 $r$，保留top $(1-r) \times N$ 个重要token</p>
+</li>
+<li><p><strong>语义保持</strong>：<br>通过双向上下文建模确保关键语义信息不丢失</p>
+</li>
+</ol>
+<p><strong>压缩效果分析</strong>：<br>实验表明，75%压缩率下：</p>
+<ul>
+<li>关键信息保留率 &gt; 95%</li>
+<li>检索相关性提升 9.46分（GPT4Score）</li>
+<li>计算效率提升 4倍</li>
+</ul>
+<h4 id="2-4-3-压缩对检索性能的影响">2.4.3 压缩对检索性能的影响</h4><p><strong>相似性变化分析</strong>：<br>设 $sim(q, s)$ 为查询q与段落s的相似性</p>
+<p>压缩前：$sim_{before}(q, s_{relevant})$，$sim_{before}(q, s_{irrelevant})$<br>压缩后：$sim_{after}(q, s’<em>{relevant})$，$sim</em>{after}(q, s’_{irrelevant})$</p>
+<p>实验结果显示：</p>
+<ul>
+<li>$sim_{after}(q, s’<em>{relevant}) &gt; sim</em>{before}(q, s_{relevant})$ （相关段落相似性提升）</li>
+<li>$sim_{after}(q, s’<em>{irrelevant}) &lt; sim</em>{before}(q, s_{irrelevant})$ （无关段落相似性降低）</li>
+</ul>
+<h3 id="2-5-多模态检索系统">2.5 多模态检索系统</h3><h4 id="2-5-1-检索器选择与配置">2.5.1 检索器选择与配置</h4><p><strong>BM25检索器</strong>：<br>$$BM25(q, d) = \sum_{i=1}^{|q|} IDF(q_i) \cdot \frac{tf(q_i, d) \cdot (k_1 + 1)}{tf(q_i, d) + k_1 \cdot (1 - b + b \cdot \frac{|d|}{avgdl})}$$</p>
+<p>参数设置：$k_1 = 1.2$，$b = 0.75$</p>
+<p><strong>MPNet检索器</strong>：<br>基于MPNet模型的密集检索：<br>$$score = \cos(\mathbf{e}_q, \mathbf{e}_d)$$<br>其中 $\mathbf{e}_q$ 和 $\mathbf{e}_d$ 分别为查询和文档的向量表示</p>
+<h4 id="2-5-2-混合检索策略">2.5.2 混合检索策略</h4><p>结合稀疏检索和密集检索的优势：<br>$$score_{hybrid} = \alpha \cdot score_{BM25} + (1-\alpha) \cdot score_{MPNet}$$</p>
+<p>通过实验确定最优权重 $\alpha = 0.6$</p>
+<h2 id="3-写在最后：一些思考">3. 写在最后：一些思考</h2><h3 id="3-1-SeCom给我们的启发">3.1 SeCom给我们的启发</h3><p>研读这篇论文后，笔者有几点深刻的感悟：</p>
+<p><strong>简单往往是最有效的</strong>：SeCom的核心思想其实很简单——分段+压缩，但正是这种简单的组合解决了复杂的问题。这提醒我们，在面对技术挑战时，有时候最朴素的想法反而是最有效的。</p>
+<p><strong>理解问题比解决问题更重要</strong>：作者团队深入分析了内存粒度问题的本质，发现了段落级内存的最优性。这种对问题本质的深刻理解是技术创新的基础。</p>
+<p>笔者认为未来可能的发展方向包括：</p>
+<ul>
+<li><strong>个性化分段策略</strong>：不同用户的对话模式不同，能否学习个性化的分段方式？</li>
+<li><strong>实时优化机制</strong>：能否根据对话质量动态调整压缩率和分段策略？</li>
+</ul>
+<hr>
+<h2 id="参考资源">参考资源</h2><ul>
+<li><strong>论文链接</strong>：<a target="_blank" rel="noreferrer noopener" href="https://www.arxiv.org/abs/2502.05589">SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents (ICLR 2025)</a></li>
+<li><strong>项目主页</strong>：<a target="_blank" rel="noreferrer noopener" href="https://llmlingua.com/secom.html">https://llmlingua.com/secom.html</a></li>
+<li><strong>代码仓库</strong>：SeCom-main项目</li>
+<li><strong>数据集</strong>：LOCOMO、Long-MT-Bench+、DialSeg711、TIAGE、SuperDialSeg</li>
+</ul>
+<p><em>本文基于Microsoft和清华大学联合研究团队在ICLR 2025发表的论文撰写，详细技术实现请参考原始论文和开源代码。</em> </p>
+</div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86"><span>LLM &amp; NLP</span><h2>论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT</h2><p>2026-02-21</p></a><a href="/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe"><span>LLM &amp; NLP</span><h2>基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</h2><p>2026-02-20</p></a><a href="/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7"><span>LLM &amp; NLP</span><h2>Decoder-only与Encoder-only模型Padding策略的差异</h2><p>2025-03-06</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script id="_R_">import("/assets/index-of5-WiJ_.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-CRAaP1Wd.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-CRAaP1Wd.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-CRAaP1Wd.css\",\"data-rsc-css-href\":\"/assets/index-CRAaP1Wd.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased\",\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"SeCom: 重新定义对话AI的记忆管理 — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"最近笔者一直在研究对话AI中的内存管理问题，特别是长期对话场景下的记忆构建与检索技术。发现了一篇令人眼前一亮的ICLR 2025论文——《SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents》，由Microsoft和清华大学的研究团队联合发表。\"}],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"development\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[\"blog\",\"2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07\"]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"9896fa1f-a6e1-437f-8abe-129c26c198e8\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:T4f61,\u003ch2 id=\"写在前面\"\u003e写在前面\u003c/h2\u003e\u003cp\u003e最近笔者一直在研究对话AI中的内存管理问题，特别是长期对话场景下的记忆构建与检索技术。发现了一篇令人眼前一亮的ICLR 2025论文——\u003cstrong\u003e《SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents》\u003c/strong\u003e，由Microsoft和清华大学的研究团队联合发表。\u003c/p\u003e\n\u003cp\u003e这篇论文提出的SeCom方法巧妙地解决了一个核心问题：\u003cstrong\u003e如何在长期对话中有效管理和检索历史信息\u003c/strong\u003e？今天想和大家分享一下这个方法的技术细节和创新点，希望能为从事相关研究的朋友们提供一些启发。\u003c/p\u003e\n\u003ch2 id=\"1-为什么我们需要关注对话内存管理？\"\u003e1. 为什么我们需要关注对话内存管理？\u003c/h2\u003e\u003ch3 id=\"1-1-长期对话的现实挑战\"\u003e1.1 长期对话的现实挑战\u003c/h3\u003e\u003cp\u003e在与LLMs的日常交互中，相信大家都遇到过这样的困扰：当对话变得很长时，AI似乎”忘记”了之前讨论的内容，或者给出的回答与前面的上下文不够连贯。这背后反映的正是长期对话中的内存管理挑战。\u003c/p\u003e\n\u003cp\u003e随着大语言模型技术的成熟，基于LLM的对话代理已经深入到我们生活的方方面面。但是，当我们希望与AI进行真正的长期、个性化交互时——比如跨越数天、数周的项目讨论，现有的技术就显得力不从心了。\u003c/p\u003e\n\u003cp\u003e长期对话面临的主要技术挑战包括：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e上下文长度限制\u003c/strong\u003e：即使是支持长上下文的模型，在处理超长对话时也面临计算成本和性能下降的问题\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e信息相关性\u003c/strong\u003e：历史对话中可能包含大量与当前查询无关的信息\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e语义连贯性\u003c/strong\u003e：相关信息可能分散在多个不连续的对话轮次中\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e个性化记忆\u003c/strong\u003e：需要记住用户的偏好、习惯和历史交互模式\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"1-2-笔者对Memory管理领域的观察\"\u003e1.2 笔者对Memory管理领域的观察\u003c/h3\u003e\u003cp\u003e在深入研究这个领域的过程中，笔者发现对话内存管理其实是一个相当复杂的系统工程。它的核心目标听起来很简单：从历史对话中提取、存储和检索相关信息，以支持当前对话的生成。但实际实现起来，需要解决三个关键问题：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003e内存构建（Memory Construction）\u003c/strong\u003e：如何将自然语言对话转换为结构化的内存单元？\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e内存检索（Memory Retrieval）\u003c/strong\u003e：面对海量历史信息，如何快速准确地找到相关内容？\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e响应生成（Response Generation）\u003c/strong\u003e：如何基于检索到的记忆生成连贯、个性化的回复？\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e听起来是不是很像人类的记忆机制？确实如此，这也是为什么这个问题如此有趣和具有挑战性。\u003c/p\u003e\n\u003ch4 id=\"1-2-2-现有方法的”三国演义”\"\u003e1.2.2 现有方法的”三国演义”\u003c/h4\u003e\u003cp\u003e在研究过程中，笔者发现现有的方法大致可以分为三大流派，每个都有自己的”哲学”：\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e“全盘托出”派（基于完整历史）\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e核心思想\u003c/strong\u003e：既然不知道什么重要，那就全部给你！\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e优势\u003c/strong\u003e：信息完整，绝不遗漏\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e问题\u003c/strong\u003e：就像把整个图书馆搬给你找一本书，效率可想而知\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cstrong\u003e“提纲挈领”派（基于摘要）\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e核心思想\u003c/strong\u003e：重要的信息浓缩成摘要就够了\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e优势\u003c/strong\u003e：信息压缩，计算高效\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e问题\u003c/strong\u003e：摘要过程中重要细节可能”意外失踪”\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cstrong\u003e“精准打击”派（基于检索）\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e代表方法\u003c/strong\u003e：轮次级检索、会话级检索\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e核心思想\u003c/strong\u003e：需要什么就检索什么，按需取用\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e优势\u003c/strong\u003e：计算效率高，定位精确\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e问题\u003c/strong\u003e：关键在于如何确定检索的”粒度”——这正是SeCom要解决的核心问题！\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4 id=\"1-2-3-检索增强生成（RAG）在对话中的应用\"\u003e1.2.3 检索增强生成（RAG）在对话中的应用\u003c/h4\u003e\u003cp\u003e检索增强生成技术在对话系统中的应用日益广泛，主要包括：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e**Dense Passage Retrieval (DPR)**：使用预训练的密集检索模型\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eBM25\u003c/strong\u003e：基于词频统计的稀疏检索方法\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eHybrid Retrieval\u003c/strong\u003e：结合密集检索和稀疏检索的优势\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e然而，现有RAG方法在对话场景中面临独特挑战：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e分块策略（Chunking Strategy）\u003c/strong\u003e：如何将对话分割为检索单元\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e相关性判断\u003c/strong\u003e：对话的相关性判断比文档检索更复杂\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e时序依赖\u003c/strong\u003e：对话具有强时序性，前后文关系重要\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"1-3-内存粒度问题的深层分析\"\u003e1.3 内存粒度问题的深层分析\u003c/h3\u003e\u003ch4 id=\"1-3-1-轮次级内存的局限性\"\u003e1.3.1 轮次级内存的局限性\u003c/h4\u003e\u003cp\u003e轮次级内存将每个用户-代理交互（turn）作为独立的内存单元：\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e数学表示\u003c/strong\u003e：\u003cbr\u003e设对话历史 $\\mathcal{H} = {\\mathbf{c}\u003cem\u003ei}\u003c/em\u003e{i=1}^C$，其中每个会话 $\\mathbf{c}\u003cem\u003ei = {\\mathbf{t}\u003cem\u003ej}\u003c/em\u003e{j=1}^{T_i}$\u003cbr\u003e轮次级内存：$|\\mathcal{M}| = \\sum\u003c/em\u003e{i=1}^C T_i$，每个 $\\mathbf{m} \\in \\mathcal{M}$ 对应一个轮次 $\\mathbf{t}$\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e主要问题\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e信息碎片化\u003c/strong\u003e：相关信息分散在多个轮次中，单个轮次可能缺乏完整语义\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e上下文缺失\u003c/strong\u003e：轮次间的依赖关系丢失\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e检索精度低\u003c/strong\u003e：查询词汇可能不直接出现在相关轮次中\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cstrong\u003e具体示例\u003c/strong\u003e：\u003cbr\u003e用户在第3轮询问”什么是机器学习”，第5轮询问”监督学习的例子”，第8轮询问”如何选择算法”。当用户在第10轮询问”之前提到的分类算法性能如何评估”时，轮次级检索可能无法找到完整的上下文。\u003c/p\u003e\n\u003ch4 id=\"1-3-2-会话级内存的局限性\"\u003e1.3.2 会话级内存的局限性\u003c/h4\u003e\u003cp\u003e会话级内存将整个对话会话作为内存单元：\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e数学表示\u003c/strong\u003e：\u003cbr\u003e会话级内存：$|\\mathcal{M}| = C$，每个 $\\mathbf{m} \\in \\mathcal{M}$ 对应一个会话 $\\mathbf{c}$\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e主要问题\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e主题混杂\u003c/strong\u003e：单个会话可能包含多个不相关主题\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e噪声干扰\u003c/strong\u003e：大量无关信息影响检索和生成质量\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e检索粗糙\u003c/strong\u003e：无法精确定位到具体相关内容\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cstrong\u003e具体示例\u003c/strong\u003e：\u003cbr\u003e一个会话中用户讨论了机器学习、烹饪食谱、旅行计划和电影推荐。当查询机器学习相关问题时，检索到的会话包含大量无关的烹饪和旅行信息。\u003c/p\u003e\n\u003ch4 id=\"1-3-3-摘要化方法的信息损失\"\u003e1.3.3 摘要化方法的信息损失\u003c/h4\u003e\u003cp\u003e摘要化方法通过压缩对话内容来减少信息量：\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e主要问题\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e细节丢失\u003c/strong\u003e：摘要过程中重要细节可能被省略\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e主观性\u003c/strong\u003e：摘要质量依赖于模型的理解能力\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e不可逆性\u003c/strong\u003e：一旦信息被摘要，原始细节无法恢复\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"2-SeCom的设计\"\u003e2. SeCom的设计\u003c/h2\u003e\u003ch3 id=\"2-1-核心发现\"\u003e2.1 核心发现\u003c/h3\u003e\u003cp\u003eSeCom（\u003cstrong\u003eSe\u003c/strong\u003egmentation + \u003cstrong\u003eCom\u003c/strong\u003epression）的两个核心发现：\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e洞察一：对话天然具有”段落”结构\u003c/strong\u003e\u003cbr\u003e就像我们写文章会分段一样，人类的对话其实也有天然的主题边界。比如在一次长对话中，我们可能先讨论工作项目，然后转到周末计划，再聊到最近看的电影。每个主题就是一个天然的”段落”。\u003c/p\u003e\n\u003cp\u003e传统方法要么把每句话当作独立单元（太碎片化），要么把整个对话当作一个整体（太粗糙），而SeCom找到了中间的最佳平衡点——\u003cstrong\u003e段落级的语义单元\u003c/strong\u003e。\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e洞察二：自然语言充满”废话”\u003c/strong\u003e\u003cbr\u003e这听起来有点刻薄，但确实如此。我们日常对话中充满了”嗯”、”那个”、”你知道的”这样的冗余表达，还有大量的重复、确认、客套话。这些在人际交流中很重要，但对机器检索来说就是噪声。\u003c/p\u003e\n\u003cp\u003eSeCom通过智能压缩，保留关键信息的同时去除这些”噪声”，让检索更加精准。\u003c/p\u003e\n\u003ch3 id=\"2-2-系统设计\"\u003e2.2 系统设计\u003c/h3\u003e\u003cp\u003eSeCom的整体架构设计非常优雅，就像一条高效的流水线：\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e历史对话 → [分段器] → 段落级内存单元 → [压缩器] → 去噪内存单元 → [检索器] → 相关上下文 → [生成器] → 最终回复\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cp\u003e用更直观的话来解释这个流程：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003e分段器\u003c/strong\u003e：将杂乱的对话历史按主题”切块”\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e压缩器\u003c/strong\u003e：将每个”块”中的废话去掉，保留精华\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e检索器\u003c/strong\u003e：根据当前问题找到最相关的”块”\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e生成器\u003c/strong\u003e：基于相关信息生成回答\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e\u003cstrong\u003e技术表示\u003c/strong\u003e（没什么用，写给喜欢数学的朋友）：\u003cbr\u003e设 $f_{\\mathcal{I}}$ 为分段器，$f_{Comp}$ 为压缩器，$f_R$ 为检索器，$f_{LLM}$ 为生成器\u003c/p\u003e\n\u003cp\u003e完整流程：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e${\\mathbf{s}\u003cem\u003ek}\u003c/em\u003e{k=1}^K \\leftarrow f_{\\mathcal{I}}(\\mathcal{H})$ （对话分段）\u003c/li\u003e\n\u003cli\u003e${\\mathbf{m}\u003cem\u003ek}\u003c/em\u003e{k=1}^K \\leftarrow f_{Comp}({\\mathbf{s}\u003cem\u003ek}\u003c/em\u003e{k=1}^K)$ （压缩去噪）\u003c/li\u003e\n\u003cli\u003e${\\mathbf{m}\u003cem\u003en}\u003c/em\u003e{n=1}^N \\leftarrow f_R(u^*, {\\mathbf{m}\u003cem\u003ek}\u003c/em\u003e{k=1}^K, N)$ （内存检索）\u003c/li\u003e\n\u003cli\u003e$r^* = f_{LLM}(u^*, {\\mathbf{m}\u003cem\u003en}\u003c/em\u003e{n=1}^N)$ （响应生成）\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3 id=\"2-3-分段算法：教AI学会”断句”\"\u003e2.3 分段算法：教AI学会”断句”\u003c/h3\u003e\u003ch4 id=\"2-3-1-零样本分段\"\u003e2.3.1 零样本分段\u003c/h4\u003e\u003cp\u003e如何让AI自动识别对话中的主题边界？传统方法需要大量标注数据训练专门的分段模型，而SeCom采用了一个非常聪明的”零样本”方法。\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e核心思路\u003c/strong\u003e：\u003cbr\u003e既然GPT-4这样的大模型已经具备了强大的文本理解能力，为什么不直接让它来判断对话的主题边界呢？就像让一个文学老师来给文章分段一样。\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e输入预处理\u003c/strong\u003e：\u003cbr\u003e将对话会话增强为结构化格式：\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003eTurn j: \u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e[user]: u_j\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e[agent]: r_j\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cp\u003e\u003cstrong\u003e分段提示设计\u003c/strong\u003e：\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e8\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e9\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e10\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e分析以下对话，识别主题边界，将对话分割为语义连贯的段落。\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e每个段落应该：\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e1. 围绕单一主题或相关主题\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2. 包含完整的交互序列\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3. 具有明确的开始和结束边界\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e对话内容：\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e[对话内容]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e请输出每个段落的起始和结束轮次编号。\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cp\u003e\u003cstrong\u003e优势\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e无需训练数据，适用于开放域对话\u003c/li\u003e\n\u003cli\u003e利用LLM的强大理解能力\u003c/li\u003e\n\u003cli\u003e可处理复杂的主题转换模式\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4 id=\"2-3-2-基于反思的分段优化\"\u003e2.3.2 基于反思的分段优化\u003c/h4\u003e\u003cp\u003e当有少量标注数据时，采用反思机制优化分段效果：\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e算法步骤\u003c/strong\u003e：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003e初始分段\u003c/strong\u003e：使用零样本方法对批量数据进行分段\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e错误识别\u003c/strong\u003e：基于WindowDiff指标选择top-K个分段错误最大的样本\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e反思学习\u003c/strong\u003e：让LLM分析分段错误，更新分段指导原则\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e迭代优化\u003c/strong\u003e：重复上述过程直到收敛\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e\u003cstrong\u003e反思提示设计\u003c/strong\u003e：\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e分析以下分段错误，并更新分段指导原则：\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e错误案例：\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e[分段结果] vs [标准答案]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e请分析错误原因并提供改进的分段指导原则。\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cp\u003e\u003cstrong\u003e数学表示\u003c/strong\u003e：\u003cbr\u003e设 $\\boldsymbol{G}\u003cem\u003em$ 为第m轮的分段指导原则，更新公式为：\u003cbr\u003e$$\\boldsymbol{G}\u003c/em\u003e{m+1} = \\boldsymbol{G}_m - \\eta \\nabla \\mathcal{L}(\\boldsymbol{G}_m)$$\u003c/p\u003e\n\u003cp\u003e其中 $\\nabla \\mathcal{L}(\\boldsymbol{G}_m)$ 为LLM隐式估计的分段损失梯度。\u003c/p\u003e\n\u003ch4 id=\"2-3-3-增量分段算法\"\u003e2.3.3 增量分段算法\u003c/h4\u003e\u003cp\u003e对于新增的对话轮次，设计增量分段算法：\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e算法流程\u003c/strong\u003e：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e输入新轮次 $\\mathbf{t}\u003cem\u003e{new}$ 和前一段落 $\\mathbf{s}\u003c/em\u003e{prev}$\u003c/li\u003e\n\u003cli\u003e判断是否应该合并：$binary = f_{judge}(\\mathbf{t}\u003cem\u003e{new}, \\mathbf{s}\u003c/em\u003e{prev})$\u003c/li\u003e\n\u003cli\u003e如果合并：$\\mathbf{s}\u003cem\u003e{prev} \\leftarrow \\mathbf{s}\u003c/em\u003e{prev} \\cup {\\mathbf{t}_{new}}$\u003c/li\u003e\n\u003cli\u003e否则：创建新段落 $\\mathbf{s}\u003cem\u003e{new} = {\\mathbf{t}\u003c/em\u003e{new}}$\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e\u003cstrong\u003e判断提示\u003c/strong\u003e：\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e判断新的用户-机器人轮次是否应该与前一段落合并：\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e新轮次：[新轮次内容]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e前一段落：[前一段落内容]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e如果属于同一主题，回答\"Yes\"，否则回答\"No\"。\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch3 id=\"2-4-压缩式内存去噪\"\u003e2.4 压缩式内存去噪\u003c/h3\u003e\u003ch4 id=\"2-4-1-自然语言冗余性分析\"\u003e2.4.1 自然语言冗余性分析\u003c/h4\u003e\u003cp\u003e\u003cstrong\u003e理论基础\u003c/strong\u003e：\u003cbr\u003e根据Shannon信息论，自然语言具有高度冗余性，冗余率约为50-75%。这种冗余在人类交流中有助于错误纠正和理解，但在机器检索中构成噪声。\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e冗余类型\u003c/strong\u003e：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003e词汇冗余\u003c/strong\u003e：同义词、重复表达\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e语法冗余\u003c/strong\u003e：冗余的语法结构\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e语义冗余\u003c/strong\u003e：重复的语义信息\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e对话冗余\u003c/strong\u003e：客套话、确认性回复\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch4 id=\"2-4-2-LLMLingua-2压缩原理\"\u003e2.4.2 LLMLingua-2压缩原理\u003c/h4\u003e\u003cp\u003e\u003cstrong\u003e算法核心\u003c/strong\u003e：\u003cbr\u003eLLMLingua-2基于token重要性评分进行压缩：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e重要性评分\u003c/strong\u003e：\u003cbr\u003e$$s_i = f_{score}(x_i | x_{\u0026lt;i}, x_{\u0026gt;i})$$\u003cbr\u003e其中 $x_i$ 为第i个token，$x_{\u0026lt;i}$ 和 $x_{\u0026gt;i}$ 为上下文\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e动态压缩\u003c/strong\u003e：\u003cbr\u003e根据目标压缩率 $r$，保留top $(1-r) \\times N$ 个重要token\u003c/p\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e语义保持\u003c/strong\u003e：\u003cbr\u003e通过双向上下文建模确保关键语义信息不丢失\u003c/p\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e\u003cstrong\u003e压缩效果分析\u003c/strong\u003e：\u003cbr\u003e实验表明，75%压缩率下：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e关键信息保留率 \u0026gt; 95%\u003c/li\u003e\n\u003cli\u003e检索相关性提升 9.46分（GPT4Score）\u003c/li\u003e\n\u003cli\u003e计算效率提升 4倍\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch4 id=\"2-4-3-压缩对检索性能的影响\"\u003e2.4.3 压缩对检索性能的影响\u003c/h4\u003e\u003cp\u003e\u003cstrong\u003e相似性变化分析\u003c/strong\u003e：\u003cbr\u003e设 $sim(q, s)$ 为查询q与段落s的相似性\u003c/p\u003e\n\u003cp\u003e压缩前：$sim_{before}(q, s_{relevant})$，$sim_{before}(q, s_{irrelevant})$\u003cbr\u003e压缩后：$sim_{after}(q, s’\u003cem\u003e{relevant})$，$sim\u003c/em\u003e{after}(q, s’_{irrelevant})$\u003c/p\u003e\n\u003cp\u003e实验结果显示：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e$sim_{after}(q, s’\u003cem\u003e{relevant}) \u0026gt; sim\u003c/em\u003e{before}(q, s_{relevant})$ （相关段落相似性提升）\u003c/li\u003e\n\u003cli\u003e$sim_{after}(q, s’\u003cem\u003e{irrelevant}) \u0026lt; sim\u003c/em\u003e{before}(q, s_{irrelevant})$ （无关段落相似性降低）\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"2-5-多模态检索系统\"\u003e2.5 多模态检索系统\u003c/h3\u003e\u003ch4 id=\"2-5-1-检索器选择与配置\"\u003e2.5.1 检索器选择与配置\u003c/h4\u003e\u003cp\u003e\u003cstrong\u003eBM25检索器\u003c/strong\u003e：\u003cbr\u003e$$BM25(q, d) = \\sum_{i=1}^{|q|} IDF(q_i) \\cdot \\frac{tf(q_i, d) \\cdot (k_1 + 1)}{tf(q_i, d) + k_1 \\cdot (1 - b + b \\cdot \\frac{|d|}{avgdl})}$$\u003c/p\u003e\n\u003cp\u003e参数设置：$k_1 = 1.2$，$b = 0.75$\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003eMPNet检索器\u003c/strong\u003e：\u003cbr\u003e基于MPNet模型的密集检索：\u003cbr\u003e$$score = \\cos(\\mathbf{e}_q, \\mathbf{e}_d)$$\u003cbr\u003e其中 $\\mathbf{e}_q$ 和 $\\mathbf{e}_d$ 分别为查询和文档的向量表示\u003c/p\u003e\n\u003ch4 id=\"2-5-2-混合检索策略\"\u003e2.5.2 混合检索策略\u003c/h4\u003e\u003cp\u003e结合稀疏检索和密集检索的优势：\u003cbr\u003e$$score_{hybrid} = \\alpha \\cdot score_{BM25} + (1-\\alpha) \\cdot score_{MPNet}$$\u003c/p\u003e\n\u003cp\u003e通过实验确定最优权重 $\\alpha = 0.6$\u003c/p\u003e\n\u003ch2 id=\"3-写在最后：一些思考\"\u003e3. 写在最后：一些思考\u003c/h2\u003e\u003ch3 id=\"3-1-SeCom给我们的启发\"\u003e3.1 SeCom给我们的启发\u003c/h3\u003e\u003cp\u003e研读这篇论文后，笔者有几点深刻的感悟：\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e简单往往是最有效的\u003c/strong\u003e：SeCom的核心思想其实很简单——分段+压缩，但正是这种简单的组合解决了复杂的问题。这提醒我们，在面对技术挑战时，有时候最朴素的想法反而是最有效的。\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e理解问题比解决问题更重要\u003c/strong\u003e：作者团队深入分析了内存粒度问题的本质，发现了段落级内存的最优性。这种对问题本质的深刻理解是技术创新的基础。\u003c/p\u003e\n\u003cp\u003e笔者认为未来可能的发展方向包括：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e个性化分段策略\u003c/strong\u003e：不同用户的对话模式不同，能否学习个性化的分段方式？\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e实时优化机制\u003c/strong\u003e：能否根据对话质量动态调整压缩率和分段策略？\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n\u003ch2 id=\"参考资源\"\u003e参考资源\u003c/h2\u003e\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e论文链接\u003c/strong\u003e：\u003ca target=\"_blank\" rel=\"noreferrer noopener\" href=\"https://www.arxiv.org/abs/2502.05589\"\u003eSeCom: On Memory Construction and Retrieval for Personalized Conversational Agents (ICLR 2025)\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e项目主页\u003c/strong\u003e：\u003ca target=\"_blank\" rel=\"noreferrer noopener\" href=\"https://llmlingua.com/secom.html\"\u003ehttps://llmlingua.com/secom.html\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e代码仓库\u003c/strong\u003e：SeCom-main项目\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e数据集\u003c/strong\u003e：LOCOMO、Long-MT-Bench+、DialSeg711、TIAGE、SuperDialSeg\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e\u003cem\u003e本文基于Microsoft和清华大学联合研究团队在ICLR 2025发表的论文撰写，详细技术实现请参考原始论文和开源代码。\u003c/em\u003e \u003c/p\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"time\",null,{\"children\":\"2025-06-24\"}],[\"$\",\"span\",null,{\"children\":\"中文\"}]]}],[\"$\",\"h1\",null,{\"children\":\"SeCom: 重新定义对话AI的记忆管理\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"最近笔者一直在研究对话AI中的内存管理问题，特别是长期对话场景下的记忆构建与检索技术。发现了一篇令人眼前一亮的ICLR 2025论文——《SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents》，由Microsoft和清华大学的研究团队联合发表。\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896\",\"children\":\"Read the English edition →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"写在前面-写在前面\",{\"className\":\"\",\"href\":\"#写在前面\",\"children\":\"写在前面\"}],[\"$\",\"a\",\"1-为什么我们需要关注对话内存管理？-1. 为什么我们需要关注对话内存管理？\",{\"className\":\"\",\"href\":\"#1-为什么我们需要关注对话内存管理？\",\"children\":\"1. 为什么我们需要关注对话内存管理？\"}],[\"$\",\"a\",\"1-1-长期对话的现实挑战-1.1 长期对话的现实挑战\",{\"className\":\"toc-subitem\",\"href\":\"#1-1-长期对话的现实挑战\",\"children\":\"1.1 长期对话的现实挑战\"}],[\"$\",\"a\",\"1-2-笔者对Memory管理领域的观察-1.2 笔者对Memory管理领域的观察\",{\"className\":\"toc-subitem\",\"href\":\"#1-2-笔者对Memory管理领域的观察\",\"children\":\"1.2 笔者对Memory管理领域的观察\"}],[\"$\",\"a\",\"1-3-内存粒度问题的深层分析-1.3 内存粒度问题的深层分析\",{\"className\":\"toc-subitem\",\"href\":\"#1-3-内存粒度问题的深层分析\",\"children\":\"1.3 内存粒度问题的深层分析\"}],[\"$\",\"a\",\"2-SeCom的设计-2. SeCom的设计\",{\"className\":\"\",\"href\":\"#2-SeCom的设计\",\"children\":\"2. SeCom的设计\"}],[\"$\",\"a\",\"2-1-核心发现-2.1 核心发现\",{\"className\":\"toc-subitem\",\"href\":\"#2-1-核心发现\",\"children\":\"2.1 核心发现\"}],[\"$\",\"a\",\"2-2-系统设计-2.2 系统设计\",{\"className\":\"toc-subitem\",\"href\":\"#2-2-系统设计\",\"children\":\"2.2 系统设计\"}],[\"$\",\"a\",\"2-3-分段算法：教AI学会”断句”-2.3 分段算法：教AI学会”断句”\",{\"className\":\"toc-subitem\",\"href\":\"#2-3-分段算法：教AI学会”断句”\",\"children\":\"2.3 分段算法：教AI学会”断句”\"}],[\"$\",\"a\",\"2-4-压缩式内存去噪-2.4 压缩式内存去噪\",{\"className\":\"toc-subitem\",\"href\":\"#2-4-压缩式内存去噪\",\"children\":\"2.4 压缩式内存去噪\"}],[\"$\",\"a\",\"2-5-多模态检索系统-2.5 多模态检索系统\",{\"className\":\"toc-subitem\",\"href\":\"#2-5-多模态检索系统\",\"children\":\"2.5 多模态检索系统\"}],[\"$\",\"a\",\"3-写在最后：一些思考-3. 写在最后：一些思考\",{\"className\":\"\",\"href\":\"#3-写在最后：一些思考\",\"children\":\"3. 写在最后：一些思考\"}],[\"$\",\"a\",\"3-1-SeCom给我们的启发-3.1 SeCom给我们的启发\",{\"className\":\"toc-subitem\",\"href\":\"#3-1-SeCom给我们的启发\",\"children\":\"3.1 SeCom给我们的启发\"}],[\"$\",\"a\",\"参考资源-参考资源\",{\"className\":\"\",\"href\":\"#参考资源\",\"children\":\"参考资源\"}]]}]]}],[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$6\"}}]]}]]}],\"$L7\",\"$L8\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("7:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86\",{\"href\":\"/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT\"}],[\"$\",\"p\",null,{\"children\":\"2026-02-21\"}]]}],[\"$\",\"a\",\"2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe\",{\"href\":\"/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战\"}],[\"$\",\"p\",null,{\"children\":\"2026-02-20\"}]]}],[\"$\",\"a\",\"2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7\",{\"href\":\"/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"Decoder-only与Encoder-only模型Padding策略的差异\"}],[\"$\",\"p\",null,{\"children\":\"2025-03-06\"}]]}]]}]]}]\n8:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

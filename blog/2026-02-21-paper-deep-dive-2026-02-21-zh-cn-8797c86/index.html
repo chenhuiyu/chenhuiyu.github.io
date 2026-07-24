@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-CRAaP1Wd.css" data-rsc-css-href="/assets/index-CRAaP1Wd.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-B6vTT0Sl.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-of5-WiJ_.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT — Huiyu Chen</title><meta name="description" content="按顺序只读四块：Abstract → Method Overview 图 → Contributions → 主实验表。"/><link rel="shortcut icon" href="/favicon.svg"/><link rel="icon" href="/favicon.svg"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-of5-WiJ_.js" />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0tvmz3h { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0tvmz3h { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_1diim1n { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_1diim1n { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_1vhuncr { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_1vhuncr { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased"><main class="site-shell article-shell" id="top"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><div class="article-meta"><span>LLM &amp; NLP</span><time>2026-02-21</time><span>中文</span></div><h1>论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT</h1><p class="article-deck">按顺序只读四块：Abstract → Method Overview 图 → Contributions → 主实验表。</p><a class="language-switch" href="/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43">Read the English edition →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#0-先归类：这篇论文属于哪一类？">0) 先归类：这篇论文属于哪一类？</a><a class="" href="#1-10分钟快读：先拿主结论">1) 10分钟快读：先拿主结论</a><a class="toc-subitem" href="#What-x2F-Why-x2F-How-x2F-How-much">What / Why / How / How much</a><a class="" href="#2-10分钟方法精读：翻译成“可复现配方”">2) 10分钟方法精读：翻译成“可复现配方”</a><a class="toc-subitem" href="#A-输入输出定义">A. 输入输出定义</a><a class="toc-subitem" href="#B-训练-x2F-推理流程（关键）">B. 训练/推理流程（关键）</a><a class="toc-subitem" href="#C-复杂度与成本">C. 复杂度与成本</a><a class="toc-subitem" href="#三行伪代码（检验是否真的懂）">三行伪代码（检验是否真的懂）</a><a class="" href="#3-10分钟实验审查：公平性-vs-扎实性">3) 10分钟实验审查：公平性 vs 扎实性</a><a class="toc-subitem" href="#公平性检查（红灯）">公平性检查（红灯）</a><a class="toc-subitem" href="#扎实性检查（绿灯）">扎实性检查（绿灯）</a><a class="" href="#4-六句话复述（口试模板）">4) 六句话复述（口试模板）</a><a class="" href="#5-抓手问题（你下次可直接复用）">5) 抓手问题（你下次可直接复用）</a><a class="" href="#附：原始摘要提炼">附：原始摘要提炼</a></nav></aside><div class="prose"><p>今天这篇按“口试级精读模板”来拆。</p>
+<ul>
+<li>论文：SLA2: Sparse-Linear Attention with Learnable Routing and QAT</li>
+<li>arXiv：<a target="_blank" rel="noreferrer noopener" href="https://arxiv.org/abs/2602.12675">https://arxiv.org/abs/2602.12675</a></li>
+<li>新鲜度：7 天内</li>
+<li>关注度：Hugging Face Daily Papers 点赞 47</li>
+</ul>
+<h2 id="0-先归类：这篇论文属于哪一类？">0) 先归类：这篇论文属于哪一类？</h2><p>我先把它归为：<strong>系统/推理优化 + 架构改进（偏 attention 机制）</strong>。</p>
+<p>这类论文的读法重点：</p>
+<ul>
+<li>结构图与信息流是否真的更简洁</li>
+<li>复杂度与推理成本是否可量化下降</li>
+<li>吞吐/延迟/显存是否同时受益，而不是只优化一个指标</li>
+</ul>
+<h2 id="1-10分钟快读：先拿主结论">1) 10分钟快读：先拿主结论</h2><p>按顺序只读四块：Abstract → Method Overview 图 → Contributions → 主实验表。</p>
+<h3 id="What-x2F-Why-x2F-How-x2F-How-much">What / Why / How / How much</h3><ul>
+<li><strong>What</strong>：提出 SLA2，对稀疏-线性注意力做可学习路由与更直接的组合方式。</li>
+<li><strong>Why</strong>：原始 SLA 的启发式分流可能次优，且分解形式与目标存在误差。</li>
+<li><strong>How（一句话）</strong>：用可学习 router 决定稀疏或线性分支，并结合低比特量化感知微调降低误差。</li>
+<li><strong>How much</strong>：文中报告可达 97% attention sparsity，attention speedup 约 18.6×，同时尽量保持生成质量。</li>
+</ul>
+<h2 id="2-10分钟方法精读：翻译成“可复现配方”">2) 10分钟方法精读：翻译成“可复现配方”</h2><h3 id="A-输入输出定义">A. 输入输出定义</h3><ul>
+<li>输入：扩散模型中的 attention 计算单元（query/key/value 与时空上下文）。</li>
+<li>输出：经 router 分流并重组后的 attention 结果，供后续生成步骤使用。</li>
+</ul>
+<h3 id="B-训练-x2F-推理流程（关键）">B. 训练/推理流程（关键）</h3><ul>
+<li>训练目标：在保持生成质量的前提下最小化注意力近似误差与量化误差。</li>
+<li>数据来源：沿用视频扩散训练数据分布（论文未在摘要里展开，需正文/附录确认）。</li>
+<li>推理过程：router 决策 -&gt; 稀疏/线性分支计算 -&gt; 按可学习比例融合 -&gt; 输出 attention。</li>
+</ul>
+<h3 id="C-复杂度与成本">C. 复杂度与成本</h3><ul>
+<li>训练成本：新增 router 与 QAT 阶段，理论上会增加训练侧工程复杂度。</li>
+<li>推理成本：目标是降低 attention 计算开销，提升吞吐并压低时延。</li>
+<li>隐藏成本：量化校准、部署算子支持、不同硬件后端的一致性。</li>
+</ul>
+<h3 id="三行伪代码（检验是否真的懂）">三行伪代码（检验是否真的懂）</h3><figure class="highlight text"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data -&gt; sparse_linear_routing_transform -&gt; objective(loss_quality + loss_quant) -&gt; optimize</span><br><span class="line">input_tokens -&gt; model(attn_router + sparse/linear branches) -&gt; decode -&gt; output</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="3-10分钟实验审查：公平性-vs-扎实性">3) 10分钟实验审查：公平性 vs 扎实性</h2><h3 id="公平性检查（红灯）">公平性检查（红灯）</h3><ul>
+<li>baseline 是否同等算力/同等训练预算？</li>
+<li>是否只挑对自身有利的任务设置？</li>
+<li>提升是否来自更大模型或更久训练而非方法本身？</li>
+<li>是否存在评测泄漏风险？</li>
+</ul>
+<h3 id="扎实性检查（绿灯）">扎实性检查（绿灯）</h3><ul>
+<li>Ablation：router、直接分解、QAT 分别贡献多少？</li>
+<li>Scaling：不同模型规模下趋势是否一致？</li>
+<li>统计可靠性：是否多次运行给方差/置信区间？</li>
+<li>失败案例：是否诚实说明退化场景？</li>
+</ul>
+<h2 id="4-六句话复述（口试模板）">4) 六句话复述（口试模板）</h2><ol>
+<li>这篇论文要解决的核心问题是：稀疏-线性注意力在效率与精度间的次优权衡。</li>
+<li>他们的关键想法是：让分流策略可学习，并把量化误差纳入训练闭环。</li>
+<li>方法上新增了：learnable router + 更直接分解 + QAT。</li>
+<li>相比 baseline 的本质差异是：从启发式规则改为可学习决策与联合优化。</li>
+<li>最有说服力的证据是：高 sparsity 下仍保质量，并带来显著 attention 侧加速。</li>
+<li>最大风险/疑点是：跨硬件泛化、训练额外复杂度、真实线上收益与论文环境差距。</li>
+</ol>
+<h2 id="5-抓手问题（你下次可直接复用）">5) 抓手问题（你下次可直接复用）</h2><ul>
+<li>Intro：这是不是“真痛点”？</li>
+<li>Related Work：它到底新在哪，不是换名词吗？</li>
+<li>Method：新增项能否被更简单策略替代？</li>
+<li>Experiments：提升来自方法还是数据/规模/调参？</li>
+<li>Appendix：超参与过滤细节是否支持复现？</li>
+</ul>
+<h2 id="附：原始摘要提炼">附：原始摘要提炼</h2><ul>
+<li>SLA2 improves sparse-linear attention in diffusion models by introducing a learnable router, direct attention formulation, and quantization-aware fine-tuning for enhanced efficiency and quality.</li>
+</ul>
+<hr>
+<blockquote>
+<p>数据来源：Hugging Face Daily Papers（近30天高关注）与 arXiv。</p>
+</blockquote>
+</div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe"><span>LLM &amp; NLP</span><h2>基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</h2><p>2026-02-20</p></a><a href="/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07"><span>LLM &amp; NLP</span><h2>SeCom: 重新定义对话AI的记忆管理</h2><p>2025-06-24</p></a><a href="/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7"><span>LLM &amp; NLP</span><h2>Decoder-only与Encoder-only模型Padding策略的差异</h2><p>2025-03-06</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script id="_R_">import("/assets/index-of5-WiJ_.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-CRAaP1Wd.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-CRAaP1Wd.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-CRAaP1Wd.css\",\"data-rsc-css-href\":\"/assets/index-CRAaP1Wd.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased\",\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"按顺序只读四块：Abstract → Method Overview 图 → Contributions → 主实验表。\"}],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"development\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[\"blog\",\"2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86\"]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"9896fa1f-a6e1-437f-8abe-129c26c198e8\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:T163f,\u003cp\u003e今天这篇按“口试级精读模板”来拆。\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e论文：SLA2: Sparse-Linear Attention with Learnable Routing and QAT\u003c/li\u003e\n\u003cli\u003earXiv：\u003ca target=\"_blank\" rel=\"noreferrer noopener\" href=\"https://arxiv.org/abs/2602.12675\"\u003ehttps://arxiv.org/abs/2602.12675\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e新鲜度：7 天内\u003c/li\u003e\n\u003cli\u003e关注度：Hugging Face Daily Papers 点赞 47\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"0-先归类：这篇论文属于哪一类？\"\u003e0) 先归类：这篇论文属于哪一类？\u003c/h2\u003e\u003cp\u003e我先把它归为：\u003cstrong\u003e系统/推理优化 + 架构改进（偏 attention 机制）\u003c/strong\u003e。\u003c/p\u003e\n\u003cp\u003e这类论文的读法重点：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e结构图与信息流是否真的更简洁\u003c/li\u003e\n\u003cli\u003e复杂度与推理成本是否可量化下降\u003c/li\u003e\n\u003cli\u003e吞吐/延迟/显存是否同时受益，而不是只优化一个指标\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"1-10分钟快读：先拿主结论\"\u003e1) 10分钟快读：先拿主结论\u003c/h2\u003e\u003cp\u003e按顺序只读四块：Abstract → Method Overview 图 → Contributions → 主实验表。\u003c/p\u003e\n\u003ch3 id=\"What-x2F-Why-x2F-How-x2F-How-much\"\u003eWhat / Why / How / How much\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eWhat\u003c/strong\u003e：提出 SLA2，对稀疏-线性注意力做可学习路由与更直接的组合方式。\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eWhy\u003c/strong\u003e：原始 SLA 的启发式分流可能次优，且分解形式与目标存在误差。\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eHow（一句话）\u003c/strong\u003e：用可学习 router 决定稀疏或线性分支，并结合低比特量化感知微调降低误差。\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eHow much\u003c/strong\u003e：文中报告可达 97% attention sparsity，attention speedup 约 18.6×，同时尽量保持生成质量。\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"2-10分钟方法精读：翻译成“可复现配方”\"\u003e2) 10分钟方法精读：翻译成“可复现配方”\u003c/h2\u003e\u003ch3 id=\"A-输入输出定义\"\u003eA. 输入输出定义\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003e输入：扩散模型中的 attention 计算单元（query/key/value 与时空上下文）。\u003c/li\u003e\n\u003cli\u003e输出：经 router 分流并重组后的 attention 结果，供后续生成步骤使用。\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"B-训练-x2F-推理流程（关键）\"\u003eB. 训练/推理流程（关键）\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003e训练目标：在保持生成质量的前提下最小化注意力近似误差与量化误差。\u003c/li\u003e\n\u003cli\u003e数据来源：沿用视频扩散训练数据分布（论文未在摘要里展开，需正文/附录确认）。\u003c/li\u003e\n\u003cli\u003e推理过程：router 决策 -\u0026gt; 稀疏/线性分支计算 -\u0026gt; 按可学习比例融合 -\u0026gt; 输出 attention。\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"C-复杂度与成本\"\u003eC. 复杂度与成本\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003e训练成本：新增 router 与 QAT 阶段，理论上会增加训练侧工程复杂度。\u003c/li\u003e\n\u003cli\u003e推理成本：目标是降低 attention 计算开销，提升吞吐并压低时延。\u003c/li\u003e\n\u003cli\u003e隐藏成本：量化校准、部署算子支持、不同硬件后端的一致性。\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"三行伪代码（检验是否真的懂）\"\u003e三行伪代码（检验是否真的懂）\u003c/h3\u003e\u003cfigure class=\"highlight text\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003edata -\u0026gt; sparse_linear_routing_transform -\u0026gt; objective(loss_quality + loss_quant) -\u0026gt; optimize\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003einput_tokens -\u0026gt; model(attn_router + sparse/linear branches) -\u0026gt; decode -\u0026gt; output\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch2 id=\"3-10分钟实验审查：公平性-vs-扎实性\"\u003e3) 10分钟实验审查：公平性 vs 扎实性\u003c/h2\u003e\u003ch3 id=\"公平性检查（红灯）\"\u003e公平性检查（红灯）\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003ebaseline 是否同等算力/同等训练预算？\u003c/li\u003e\n\u003cli\u003e是否只挑对自身有利的任务设置？\u003c/li\u003e\n\u003cli\u003e提升是否来自更大模型或更久训练而非方法本身？\u003c/li\u003e\n\u003cli\u003e是否存在评测泄漏风险？\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"扎实性检查（绿灯）\"\u003e扎实性检查（绿灯）\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003eAblation：router、直接分解、QAT 分别贡献多少？\u003c/li\u003e\n\u003cli\u003eScaling：不同模型规模下趋势是否一致？\u003c/li\u003e\n\u003cli\u003e统计可靠性：是否多次运行给方差/置信区间？\u003c/li\u003e\n\u003cli\u003e失败案例：是否诚实说明退化场景？\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"4-六句话复述（口试模板）\"\u003e4) 六句话复述（口试模板）\u003c/h2\u003e\u003col\u003e\n\u003cli\u003e这篇论文要解决的核心问题是：稀疏-线性注意力在效率与精度间的次优权衡。\u003c/li\u003e\n\u003cli\u003e他们的关键想法是：让分流策略可学习，并把量化误差纳入训练闭环。\u003c/li\u003e\n\u003cli\u003e方法上新增了：learnable router + 更直接分解 + QAT。\u003c/li\u003e\n\u003cli\u003e相比 baseline 的本质差异是：从启发式规则改为可学习决策与联合优化。\u003c/li\u003e\n\u003cli\u003e最有说服力的证据是：高 sparsity 下仍保质量，并带来显著 attention 侧加速。\u003c/li\u003e\n\u003cli\u003e最大风险/疑点是：跨硬件泛化、训练额外复杂度、真实线上收益与论文环境差距。\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2 id=\"5-抓手问题（你下次可直接复用）\"\u003e5) 抓手问题（你下次可直接复用）\u003c/h2\u003e\u003cul\u003e\n\u003cli\u003eIntro：这是不是“真痛点”？\u003c/li\u003e\n\u003cli\u003eRelated Work：它到底新在哪，不是换名词吗？\u003c/li\u003e\n\u003cli\u003eMethod：新增项能否被更简单策略替代？\u003c/li\u003e\n\u003cli\u003eExperiments：提升来自方法还是数据/规模/调参？\u003c/li\u003e\n\u003cli\u003eAppendix：超参与过滤细节是否支持复现？\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"附：原始摘要提炼\"\u003e附：原始摘要提炼\u003c/h2\u003e\u003cul\u003e\n\u003cli\u003eSLA2 improves sparse-linear attention in diffusion models by introducing a learnable router, direct attention formulation, and quantization-aware fine-tuning for enhanced efficiency and quality.\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n\u003cblockquote\u003e\n\u003cp\u003e数据来源：Hugging Face Daily Papers（近30天高关注）与 arXiv。\u003c/p\u003e\n\u003c/blockquote\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"time\",null,{\"children\":\"2026-02-21\"}],[\"$\",\"span\",null,{\"children\":\"中文\"}]]}],[\"$\",\"h1\",null,{\"children\":\"论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"按顺序只读四块：Abstract → Method Overview 图 → Contributions → 主实验表。\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43\",\"children\":\"Read the English edition →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"0-先归类：这篇论文属于哪一类？-0) 先归类：这篇论文属于哪一类？\",{\"className\":\"\",\"href\":\"#0-先归类：这篇论文属于哪一类？\",\"children\":\"0) 先归类：这篇论文属于哪一类？\"}],[\"$\",\"a\",\"1-10分钟快读：先拿主结论-1) 10分钟快读：先拿主结论\",{\"className\":\"\",\"href\":\"#1-10分钟快读：先拿主结论\",\"children\":\"1) 10分钟快读：先拿主结论\"}],[\"$\",\"a\",\"What-x2F-Why-x2F-How-x2F-How-much-What / Why / How / How much\",{\"className\":\"toc-subitem\",\"href\":\"#What-x2F-Why-x2F-How-x2F-How-much\",\"children\":\"What / Why / How / How much\"}],[\"$\",\"a\",\"2-10分钟方法精读：翻译成“可复现配方”-2) 10分钟方法精读：翻译成“可复现配方”\",{\"className\":\"\",\"href\":\"#2-10分钟方法精读：翻译成“可复现配方”\",\"children\":\"2) 10分钟方法精读：翻译成“可复现配方”\"}],[\"$\",\"a\",\"A-输入输出定义-A. 输入输出定义\",{\"className\":\"toc-subitem\",\"href\":\"#A-输入输出定义\",\"children\":\"A. 输入输出定义\"}],[\"$\",\"a\",\"B-训练-x2F-推理流程（关键）-B. 训练/推理流程（关键）\",{\"className\":\"toc-subitem\",\"href\":\"#B-训练-x2F-推理流程（关键）\",\"children\":\"B. 训练/推理流程（关键）\"}],[\"$\",\"a\",\"C-复杂度与成本-C. 复杂度与成本\",{\"className\":\"toc-subitem\",\"href\":\"#C-复杂度与成本\",\"children\":\"C. 复杂度与成本\"}],[\"$\",\"a\",\"三行伪代码（检验是否真的懂）-三行伪代码（检验是否真的懂）\",{\"className\":\"toc-subitem\",\"href\":\"#三行伪代码（检验是否真的懂）\",\"children\":\"三行伪代码（检验是否真的懂）\"}],[\"$\",\"a\",\"3-10分钟实验审查：公平性-vs-扎实性-3) 10分钟实验审查：公平性 vs 扎实性\",{\"className\":\"\",\"href\":\"#3-10分钟实验审查：公平性-vs-扎实性\",\"children\":\"3) 10分钟实验审查：公平性 vs 扎实性\"}],[\"$\",\"a\",\"公平性检查（红灯）-公平性检查（红灯）\",{\"className\":\"toc-subitem\",\"href\":\"#公平性检查（红灯）\",\"children\":\"公平性检查（红灯）\"}],[\"$\",\"a\",\"扎实性检查（绿灯）-扎实性检查（绿灯）\",{\"className\":\"toc-subitem\",\"href\":\"#扎实性检查（绿灯）\",\"children\":\"扎实性检查（绿灯）\"}],[\"$\",\"a\",\"4-六句话复述（口试模板）-4) 六句话复述（口试模板）\",{\"className\":\"\",\"href\":\"#4-六句话复述（口试模板）\",\"children\":\"4) 六句话复述（口试模板）\"}],[\"$\",\"a\",\"5-抓手问题（你下次可直接复用）-5) 抓手问题（你下次可直接复用）\",{\"className\":\"\",\"href\":\"#5-抓手问题（你下次可直接复用）\",\"children\":\"5) 抓手问题（你下次可直接复用）\"}],[\"$\",\"a\",\"附：原始摘要提炼-附：原始摘要提炼\",{\"className\":\"\",\"href\":\"#附：原始摘要提炼\",\"children\":\"附：原始摘要提炼\"}]]}]]}],[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$6\"}}]]}]]}],\"$L7\",\"$L8\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("7:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe\",{\"href\":\"/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战\"}],[\"$\",\"p\",null,{\"children\":\"2026-02-20\"}]]}],[\"$\",\"a\",\"2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07\",{\"href\":\"/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"SeCom: 重新定义对话AI的记忆管理\"}],[\"$\",\"p\",null,{\"children\":\"2025-06-24\"}]]}],[\"$\",\"a\",\"2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7\",{\"href\":\"/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"Decoder-only与Encoder-only模型Padding策略的差异\"}],[\"$\",\"p\",null,{\"children\":\"2025-03-06\"}]]}]]}]]}]\n8:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

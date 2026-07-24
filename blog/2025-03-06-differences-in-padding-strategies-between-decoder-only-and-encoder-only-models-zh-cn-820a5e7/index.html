@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-CRAaP1Wd.css" data-rsc-css-href="/assets/index-CRAaP1Wd.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-B6vTT0Sl.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-of5-WiJ_.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>Decoder-only与Encoder-only模型Padding策略的差异 — Huiyu Chen</title><meta name="description" content="在大模型 (LLM) 中，padding 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (batch) 处理。"/><link rel="shortcut icon" href="/favicon.svg"/><link rel="icon" href="/favicon.svg"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-of5-WiJ_.js" />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0tvmz3h { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0tvmz3h { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_1diim1n { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_1diim1n { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_1vhuncr { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_1vhuncr { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased"><main class="site-shell article-shell" id="top"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><div class="article-meta"><span>LLM &amp; NLP</span><time>2025-03-06</time><span>中文</span></div><h1>Decoder-only与Encoder-only模型Padding策略的差异</h1><p class="article-deck">在大模型 (LLM) 中，padding 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (batch) 处理。</p><a class="language-switch" href="/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3">Read the English edition →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#📌-Padding-的含义">📌 Padding 的含义</a><a class="" href="#📌-Padding-位置的选择：Left-vs-Right">📌 Padding 位置的选择：Left vs Right</a><a class="" href="#📌-为什么-Encoder-only-模型（如BERT）采用-Right-padding？">📌 为什么 Encoder-only 模型（如BERT）采用 Right padding？</a><a class="" href="#📌-为什么-Decoder-only-LLM-采用-Left-padding？">📌 为什么 Decoder-only LLM 采用 Left padding？</a><a class="" href="#📌-Padding-在训练与推理阶段的差异">📌 Padding 在训练与推理阶段的差异</a><a class="" href="#📌-总结与关键要点（TL-DR）">📌 总结与关键要点（TL;DR）</a></nav></aside><div class="prose"><h2 id="📌-Padding-的含义">📌 <strong>Padding 的含义</strong></h2><p>在大模型 (<strong>LLM</strong>) 中，<strong>padding</strong> 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (<strong>batch</strong>) 处理。</p>
+<p>例如：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">句子1: "I love NLP"</span><br><span class="line">句子2: "Padding is useful in LLM training"</span><br></pre></td></tr></tbody></table></figure>
+
+<p>使用 <code>&lt;pad&gt;</code> token 进行对齐：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"I love NLP &lt;pad&gt; &lt;pad&gt; &lt;pad&gt;"</span><br><span class="line">"Padding is useful in LLM training"</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h2 id="📌-Padding-位置的选择：Left-vs-Right">📌 <strong>Padding 位置的选择：Left vs Right</strong></h2><p>Padding 有两种常见方式：</p>
+<ul>
+<li><p><strong>Right padding</strong>（右填充）：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"I love NLP &lt;pad&gt; &lt;pad&gt;"</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p><strong>Left padding</strong>（左填充）：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"&lt;pad&gt; &lt;pad&gt; I love NLP"</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<p>通常：</p>
+<ul>
+<li><strong>Decoder-only 模型</strong>（如 GPT, Llama）：采用 <strong>Left padding</strong></li>
+<li><strong>Encoder-only 模型</strong>（如 BERT）：采用 <strong>Right padding</strong></li>
+</ul>
+<p>具体而言，Transformer 模型通常分为三类结构：</p>
+<table>
+<thead>
+<tr>
+<th>模型类型</th>
+<th>代表模型</th>
+<th>特征</th>
+<th>常见用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Encoder-only</strong></td>
+<td><strong>BERT</strong>、RoBERTa、ALBERT、ELECTRA</td>
+<td>双向注意力（Bidirectional Attention）</td>
+<td>自然语言理解（NLU），如文本分类、序列标注</td>
+</tr>
+<tr>
+<td><strong>Decoder-only</strong></td>
+<td>GPT、GPT-2、GPT-3、GPT-4、LLaMA、Mistral</td>
+<td>单向自回归注意力（Causal Attention）</td>
+<td>文本生成、聊天、写作</td>
+</tr>
+<tr>
+<td><strong>Encoder-Decoder</strong></td>
+<td>Transformer原始论文中的模型、T5、BART、mT5、PEGASUS</td>
+<td>Encoder为双向注意力，Decoder为单向自回归注意力</td>
+<td>机器翻译、摘要生成、对话</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📌-为什么-Encoder-only-模型（如BERT）采用-Right-padding？">📌 为什么 Encoder-only 模型（如BERT）采用 Right padding？</h2><ul>
+<li><strong>Encoder-only 模型</strong>（如 BERT）的核心目标是获得<strong>每个 token 的嵌入表示</strong>（Embedding representation）。</li>
+<li>此类模型为<strong>双向注意力（Bidirectional Attention）</strong>，每个 token 可同时关注上下文，因此<strong>位置的轻微变化不会对结果造成严重干扰</strong>。</li>
+<li>此外，encoder-only 模型中通常有特殊 token（如 <code>[CLS]</code>），位置相对稳定，用于句子分类或表示，因此采用 <strong>right padding</strong> 更自然，也更合理。</li>
+</ul>
+<p>示例说明：</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[CLS] Hello I love NLP [SEP] &lt;pad&gt; &lt;pad&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>右填充后，<code>[CLS]</code> 和 <code>[SEP]</code> token 位置稳定，且便于模型专注于前面的有效信息。</li>
+</ul>
+<hr>
+<h2 id="📌-为什么-Decoder-only-LLM-采用-Left-padding？">📌 为什么 Decoder-only LLM 采用 Left padding？</h2><p>以 GPT 为代表的 <strong>Decoder-only 模型</strong> 是自回归（<strong>Autoregressive</strong>）模型，每个词的生成仅依赖于当前及之前的词，未来词不可见。因此：</p>
+<ul>
+<li><strong>位置编码的稳定性</strong>：<br>左填充确保真实 token 的相对位置稳定，模型生成新 token 时位置编码始终稳定于序列末尾。<ul>
+<li>当采用<strong>绝对位置编码</strong>（Absolute Positional Encoding）时，每个 token（包括 <code>&lt;pad&gt;</code>）都有对应的位置编号。</li>
+<li>对于左填充的 padding tokens，虽然它们占据了位置编号（如 1、2），但模型通过<strong>掩码机制</strong>忽略其对注意力和输出结果的影响。<br>示例：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">位置编码: [ 1      2      3      4      5      6 ]</span><br><span class="line">Token:   [ &lt;pad&gt;, &lt;pad&gt;, Hello,  I,   love,  NLP ]</span><br><span class="line">掩码:     [  0,     0,     1,     1,     1,    1 ]</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>模型只关注掩码为 1 的有效 token，而忽略掩码为 0 的 padding tokens。</li>
+<li><strong>注意力掩码（Attention Mask）</strong>：<br>左侧的 <code>&lt;pad&gt;</code> 会被<strong>注意力掩码（attention mask）忽略</strong>，从而避免 padding token 干扰有效 token 的位置编码和注意力计算。</li>
+</ul>
+<p>示例说明：</p>
+<table>
+<thead>
+<tr>
+<th>Token</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Left</td>
+<td><code>&lt;pad&gt;</code></td>
+<td><code>&lt;pad&gt;</code></td>
+<td>Hello</td>
+<td>I</td>
+<td>love</td>
+<td>NLP</td>
+</tr>
+<tr>
+<td>Right</td>
+<td>Hello</td>
+<td>I</td>
+<td>love</td>
+<td>NLP</td>
+<td><code>&lt;pad&gt;</code></td>
+<td><code>&lt;pad&gt;</code></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>Left padding</strong> 下，最后有效 token 始终在同一位置（6）。</li>
+<li><strong>Right padding</strong> 下，token 的位置随序列长度变化，影响位置编码的稳定性。</li>
+</ul>
+<hr>
+<h2 id="📌-Padding-在训练与推理阶段的差异">📌 <strong>Padding 在训练与推理阶段的差异</strong></h2><table>
+<thead>
+<tr>
+<th>阶段 (Phase)</th>
+<th>Padding 策略</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>训练 (Training)</strong></td>
+<td>批量处理时，Decoder-only 常用左填充；Encoder-only 模型则常用右填充</td>
+<td>批量处理，加快计算效率</td>
+</tr>
+<tr>
+<td><strong>推理 (Inference)</strong></td>
+<td>通常单条序列，无需 padding；若需要批量推理，仍采用左填充</td>
+<td>稳定位置编码</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📌-总结与关键要点（TL-DR）">📌 <strong>总结与关键要点（TL;DR）</strong></h2><ul>
+<li><strong>Padding</strong> 用于序列长度标准化。</li>
+<li><strong>Decoder-only LLMs (GPT, Llama)</strong> 通常采用<strong>左填充（Left padding）</strong>，目的是<strong>稳定位置编码并避免未来信息泄漏</strong>；左侧 padding 会被掩码忽略，不干扰模型预测。</li>
+<li><strong>Encoder-only 模型（如BERT系列）</strong>通常采用<strong>右填充（Right padding）</strong>，因为模型为双向注意力，且特殊token（如<code>[CLS]</code>）位置需要保持稳定。</li>
+<li>位置编码中虽然 padding token 占位，但会被<strong>注意力掩码</strong>有效屏蔽，不影响模型的最终输出。</li>
+</ul>
+<hr>
+</div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86"><span>LLM &amp; NLP</span><h2>论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT</h2><p>2026-02-21</p></a><a href="/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe"><span>LLM &amp; NLP</span><h2>基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</h2><p>2026-02-20</p></a><a href="/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07"><span>LLM &amp; NLP</span><h2>SeCom: 重新定义对话AI的记忆管理</h2><p>2025-06-24</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script id="_R_">import("/assets/index-of5-WiJ_.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-CRAaP1Wd.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-CRAaP1Wd.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-CRAaP1Wd.css\",\"data-rsc-css-href\":\"/assets/index-CRAaP1Wd.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased\",\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"Decoder-only与Encoder-only模型Padding策略的差异 — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"在大模型 (LLM) 中，padding 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (batch) 处理。\"}],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"development\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[\"blog\",\"2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7\"]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"9896fa1f-a6e1-437f-8abe-129c26c198e8\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:T1f7c,\u003ch2 id=\"📌-Padding-的含义\"\u003e📌 \u003cstrong\u003ePadding 的含义\u003c/strong\u003e\u003c/h2\u003e\u003cp\u003e在大模型 (\u003cstrong\u003eLLM\u003c/strong\u003e) 中，\u003cstrong\u003epadding\u003c/strong\u003e 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (\u003cstrong\u003ebatch\u003c/strong\u003e) 处理。\u003c/p\u003e\n\u003cp\u003e例如：\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e句子1: \"I love NLP\"\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e句子2: \"Padding is useful in LLM training\"\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cp\u003e使用 \u003ccode\u003e\u0026lt;pad\u0026gt;\u003c/code\u003e token 进行对齐：\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\"I love NLP \u0026lt;pad\u0026gt; \u0026lt;pad\u0026gt; \u0026lt;pad\u0026gt;\"\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\"Padding is useful in LLM training\"\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003chr\u003e\n\u003ch2 id=\"📌-Padding-位置的选择：Left-vs-Right\"\u003e📌 \u003cstrong\u003ePadding 位置的选择：Left vs Right\u003c/strong\u003e\u003c/h2\u003e\u003cp\u003ePadding 有两种常见方式：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eRight padding\u003c/strong\u003e（右填充）：\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\"I love NLP \u0026lt;pad\u0026gt; \u0026lt;pad\u0026gt;\"\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eLeft padding\u003c/strong\u003e（左填充）：\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\"\u0026lt;pad\u0026gt; \u0026lt;pad\u0026gt; I love NLP\"\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e通常：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eDecoder-only 模型\u003c/strong\u003e（如 GPT, Llama）：采用 \u003cstrong\u003eLeft padding\u003c/strong\u003e\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eEncoder-only 模型\u003c/strong\u003e（如 BERT）：采用 \u003cstrong\u003eRight padding\u003c/strong\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e具体而言，Transformer 模型通常分为三类结构：\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e模型类型\u003c/th\u003e\n\u003cth\u003e代表模型\u003c/th\u003e\n\u003cth\u003e特征\u003c/th\u003e\n\u003cth\u003e常见用途\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003eEncoder-only\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e\u003cstrong\u003eBERT\u003c/strong\u003e、RoBERTa、ALBERT、ELECTRA\u003c/td\u003e\n\u003ctd\u003e双向注意力（Bidirectional Attention）\u003c/td\u003e\n\u003ctd\u003e自然语言理解（NLU），如文本分类、序列标注\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003eDecoder-only\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003eGPT、GPT-2、GPT-3、GPT-4、LLaMA、Mistral\u003c/td\u003e\n\u003ctd\u003e单向自回归注意力（Causal Attention）\u003c/td\u003e\n\u003ctd\u003e文本生成、聊天、写作\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003eEncoder-Decoder\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003eTransformer原始论文中的模型、T5、BART、mT5、PEGASUS\u003c/td\u003e\n\u003ctd\u003eEncoder为双向注意力，Decoder为单向自回归注意力\u003c/td\u003e\n\u003ctd\u003e机器翻译、摘要生成、对话\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\u003c/table\u003e\n\u003chr\u003e\n\u003ch2 id=\"📌-为什么-Encoder-only-模型（如BERT）采用-Right-padding？\"\u003e📌 为什么 Encoder-only 模型（如BERT）采用 Right padding？\u003c/h2\u003e\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eEncoder-only 模型\u003c/strong\u003e（如 BERT）的核心目标是获得\u003cstrong\u003e每个 token 的嵌入表示\u003c/strong\u003e（Embedding representation）。\u003c/li\u003e\n\u003cli\u003e此类模型为\u003cstrong\u003e双向注意力（Bidirectional Attention）\u003c/strong\u003e，每个 token 可同时关注上下文，因此\u003cstrong\u003e位置的轻微变化不会对结果造成严重干扰\u003c/strong\u003e。\u003c/li\u003e\n\u003cli\u003e此外，encoder-only 模型中通常有特殊 token（如 \u003ccode\u003e[CLS]\u003c/code\u003e），位置相对稳定，用于句子分类或表示，因此采用 \u003cstrong\u003eright padding\u003c/strong\u003e 更自然，也更合理。\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e示例说明：\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e[CLS] Hello I love NLP [SEP] \u0026lt;pad\u0026gt; \u0026lt;pad\u0026gt;\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cul\u003e\n\u003cli\u003e右填充后，\u003ccode\u003e[CLS]\u003c/code\u003e 和 \u003ccode\u003e[SEP]\u003c/code\u003e token 位置稳定，且便于模型专注于前面的有效信息。\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n\u003ch2 id=\"📌-为什么-Decoder-only-LLM-采用-Left-padding？\"\u003e📌 为什么 Decoder-only LLM 采用 Left padding？\u003c/h2\u003e\u003cp\u003e以 GPT 为代表的 \u003cstrong\u003eDecoder-only 模型\u003c/strong\u003e 是自回归（\u003cstrong\u003eAutoregressive\u003c/strong\u003e）模型，每个词的生成仅依赖于当前及之前的词，未来词不可见。因此：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e位置编码的稳定性\u003c/strong\u003e：\u003cbr\u003e左填充确保真实 token 的相对位置稳定，模型生成新 token 时位置编码始终稳定于序列末尾。\u003cul\u003e\n\u003cli\u003e当采用\u003cstrong\u003e绝对位置编码\u003c/strong\u003e（Absolute Positional Encoding）时，每个 token（包括 \u003ccode\u003e\u0026lt;pad\u0026gt;\u003c/code\u003e）都有对应的位置编号。\u003c/li\u003e\n\u003cli\u003e对于左填充的 padding tokens，虽然它们占据了位置编号（如 1、2），但模型通过\u003cstrong\u003e掩码机制\u003c/strong\u003e忽略其对注意力和输出结果的影响。\u003cbr\u003e示例：\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e位置编码: [ 1      2      3      4      5      6 ]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003eToken:   [ \u0026lt;pad\u0026gt;, \u0026lt;pad\u0026gt;, Hello,  I,   love,  NLP ]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e掩码:     [  0,     0,     1,     1,     1,    1 ]\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cul\u003e\n\u003cli\u003e模型只关注掩码为 1 的有效 token，而忽略掩码为 0 的 padding tokens。\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e注意力掩码（Attention Mask）\u003c/strong\u003e：\u003cbr\u003e左侧的 \u003ccode\u003e\u0026lt;pad\u0026gt;\u003c/code\u003e 会被\u003cstrong\u003e注意力掩码（attention mask）忽略\u003c/strong\u003e，从而避免 padding token 干扰有效 token 的位置编码和注意力计算。\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e示例说明：\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003eToken\u003c/th\u003e\n\u003cth\u003e1\u003c/th\u003e\n\u003cth\u003e2\u003c/th\u003e\n\u003cth\u003e3\u003c/th\u003e\n\u003cth\u003e4\u003c/th\u003e\n\u003cth\u003e5\u003c/th\u003e\n\u003cth\u003e6\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\u003ctr\u003e\n\u003ctd\u003eLeft\u003c/td\u003e\n\u003ctd\u003e\u003ccode\u003e\u0026lt;pad\u0026gt;\u003c/code\u003e\u003c/td\u003e\n\u003ctd\u003e\u003ccode\u003e\u0026lt;pad\u0026gt;\u003c/code\u003e\u003c/td\u003e\n\u003ctd\u003eHello\u003c/td\u003e\n\u003ctd\u003eI\u003c/td\u003e\n\u003ctd\u003elove\u003c/td\u003e\n\u003ctd\u003eNLP\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eRight\u003c/td\u003e\n\u003ctd\u003eHello\u003c/td\u003e\n\u003ctd\u003eI\u003c/td\u003e\n\u003ctd\u003elove\u003c/td\u003e\n\u003ctd\u003eNLP\u003c/td\u003e\n\u003ctd\u003e\u003ccode\u003e\u0026lt;pad\u0026gt;\u003c/code\u003e\u003c/td\u003e\n\u003ctd\u003e\u003ccode\u003e\u0026lt;pad\u0026gt;\u003c/code\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\u003c/table\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eLeft padding\u003c/strong\u003e 下，最后有效 token 始终在同一位置（6）。\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eRight padding\u003c/strong\u003e 下，token 的位置随序列长度变化，影响位置编码的稳定性。\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n\u003ch2 id=\"📌-Padding-在训练与推理阶段的差异\"\u003e📌 \u003cstrong\u003ePadding 在训练与推理阶段的差异\u003c/strong\u003e\u003c/h2\u003e\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003e阶段 (Phase)\u003c/th\u003e\n\u003cth\u003ePadding 策略\u003c/th\u003e\n\u003cth\u003e原因\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e训练 (Training)\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e批量处理时，Decoder-only 常用左填充；Encoder-only 模型则常用右填充\u003c/td\u003e\n\u003ctd\u003e批量处理，加快计算效率\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e\u003cstrong\u003e推理 (Inference)\u003c/strong\u003e\u003c/td\u003e\n\u003ctd\u003e通常单条序列，无需 padding；若需要批量推理，仍采用左填充\u003c/td\u003e\n\u003ctd\u003e稳定位置编码\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\u003c/table\u003e\n\u003chr\u003e\n\u003ch2 id=\"📌-总结与关键要点（TL-DR）\"\u003e📌 \u003cstrong\u003e总结与关键要点（TL;DR）\u003c/strong\u003e\u003c/h2\u003e\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003ePadding\u003c/strong\u003e 用于序列长度标准化。\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDecoder-only LLMs (GPT, Llama)\u003c/strong\u003e 通常采用\u003cstrong\u003e左填充（Left padding）\u003c/strong\u003e，目的是\u003cstrong\u003e稳定位置编码并避免未来信息泄漏\u003c/strong\u003e；左侧 padding 会被掩码忽略，不干扰模型预测。\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eEncoder-only 模型（如BERT系列）\u003c/strong\u003e通常采用\u003cstrong\u003e右填充（Right padding）\u003c/strong\u003e，因为模型为双向注意力，且特殊token（如\u003ccode\u003e[CLS]\u003c/code\u003e）位置需要保持稳定。\u003c/li\u003e\n\u003cli\u003e位置编码中虽然 padding token 占位，但会被\u003cstrong\u003e注意力掩码\u003c/strong\u003e有效屏蔽，不影响模型的最终输出。\u003c/li\u003e\n\u003c/ul\u003e\n\u003chr\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"time\",null,{\"children\":\"2025-03-06\"}],[\"$\",\"span\",null,{\"children\":\"中文\"}]]}],[\"$\",\"h1\",null,{\"children\":\"Decoder-only与Encoder-only模型Padding策略的差异\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"在大模型 (LLM) 中，padding 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (batch) 处理。\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3\",\"children\":\"Read the English edition →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"📌-Padding-的含义-📌 Padding 的含义\",{\"className\":\"\",\"href\":\"#📌-Padding-的含义\",\"children\":\"📌 Padding 的含义\"}],[\"$\",\"a\",\"📌-Padding-位置的选择：Left-vs-Right-📌 Padding 位置的选择：Left vs Right\",{\"className\":\"\",\"href\":\"#📌-Padding-位置的选择：Left-vs-Right\",\"children\":\"📌 Padding 位置的选择：Left vs Right\"}],[\"$\",\"a\",\"📌-为什么-Encoder-only-模型（如BERT）采用-Right-padding？-📌 为什么 Encoder-only 模型（如BERT）采用 Right padding？\",{\"className\":\"\",\"href\":\"#📌-为什么-Encoder-only-模型（如BERT）采用-Right-padding？\",\"children\":\"📌 为什么 Encoder-only 模型（如BERT）采用 Right padding？\"}],[\"$\",\"a\",\"📌-为什么-Decoder-only-LLM-采用-Left-padding？-📌 为什么 Decoder-only LLM 采用 Left padding？\",{\"className\":\"\",\"href\":\"#📌-为什么-Decoder-only-LLM-采用-Left-padding？\",\"children\":\"📌 为什么 Decoder-only LLM 采用 Left padding？\"}],[\"$\",\"a\",\"📌-Padding-在训练与推理阶段的差异-📌 Padding 在训练与推理阶段的差异\",{\"className\":\"\",\"href\":\"#📌-Padding-在训练与推理阶段的差异\",\"children\":\"📌 Padding 在训练与推理阶段的差异\"}],[\"$\",\"a\",\"📌-总结与关键要点（TL-DR）-📌 总结与关键要点（TL;DR）\",{\"className\":\"\",\"href\":\"#📌-总结与关键要点（TL-DR）\",\"children\":\"📌 总结与关键要点（TL;DR）\"}]]}]]}],[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$6\"}}]]}]]}],\"$L7\",\"$L8\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("7:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86\",{\"href\":\"/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT\"}],[\"$\",\"p\",null,{\"children\":\"2026-02-21\"}]]}],[\"$\",\"a\",\"2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe\",{\"href\":\"/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战\"}],[\"$\",\"p\",null,{\"children\":\"2026-02-20\"}]]}],[\"$\",\"a\",\"2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07\",{\"href\":\"/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"SeCom: 重新定义对话AI的记忆管理\"}],[\"$\",\"p\",null,{\"children\":\"2025-06-24\"}]]}]]}]]}]\n8:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

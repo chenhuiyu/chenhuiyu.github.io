@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-CRAaP1Wd.css" data-rsc-css-href="/assets/index-CRAaP1Wd.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-B6vTT0Sl.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-of5-WiJ_.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>使用vLLM运行微调后的Gemma-2 — Huiyu Chen</title><meta name="description" content="在这里分享一下我运行微调后的Gemma-2-2b-it模型并使用vLLM的步骤，希望对其他人有所帮助。本文将详细介绍安装过程、环境配置以及常见问题的解决方法。"/><link rel="shortcut icon" href="/favicon.svg"/><link rel="icon" href="/favicon.svg"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-of5-WiJ_.js" />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0tvmz3h { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0tvmz3h { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_1diim1n { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_1diim1n { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_1vhuncr { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_1vhuncr { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased"><main class="site-shell article-shell" id="top"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><div class="article-meta"><span>LLM &amp; NLP</span><time>2024-08-07</time><span>中文</span></div><h1>使用vLLM运行微调后的Gemma-2</h1><p class="article-deck">在这里分享一下我运行微调后的Gemma-2-2b-it模型并使用vLLM的步骤，希望对其他人有所帮助。本文将详细介绍安装过程、环境配置以及常见问题的解决方法。</p><a class="language-switch" href="/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-en-d317a79">Read the English edition →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#安装和验证vLLM">安装和验证vLLM</a><a class="" href="#安装Flashinfer">安装Flashinfer</a><a class="" href="#更新环境中的VLLM后端变量">更新环境中的VLLM后端变量</a><a class="" href="#测试vLLM">测试vLLM</a><a class="" href="#常见错误及解决方法">常见错误及解决方法</a></nav></aside><div class="prose"><h1 id="使用vLLM运行微调后的Gemma-2-2b-it的详细步骤">使用vLLM运行微调后的Gemma-2-2b-it的详细步骤</h1><p>在这里分享一下我运行微调后的Gemma-2-2b-it模型并使用vLLM的步骤，希望对其他人有所帮助。本文将详细介绍安装过程、环境配置以及常见问题的解决方法。</p>
+<h2 id="安装和验证vLLM">安装和验证vLLM</h2><p>首先，确保安装并验证vLLM的版本是0.5.3。</p>
+<ol>
+<li><p>安装vLLM：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install vllm==0.5.3</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>验证安装：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> vllm</span><br><span class="line"><span class="built_in">print</span>(vllm.__version__)</span><br><span class="line"><span class="comment"># 输出: 0.5.3</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="安装Flashinfer">安装Flashinfer</h2><p>按照以下步骤安装Flashinfer，并确保您的torch版本和CUDA兼容性。</p>
+<ol>
+<li><p>检查torch版本和CUDA兼容性：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="built_in">print</span>(torch.__version__)  <span class="comment"># 应输出: 2.3.1+cu121</span></span><br><span class="line"><span class="built_in">print</span>(torch.version.cuda) <span class="comment"># 应输出: 12.1</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>安装Flashinfer：<br>根据文档，Gemma运行在版本0.08。vLLM需要FlashInfer v0.0.8（请参阅<a target="_blank" rel="noreferrer noopener" href="https://github.com/vllm-project/vllm/issues/7060">vLLM版本和Flashinfer文档</a>中关于Gemma 2的部分）。</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!pip install flashinfer==0.0.8 -i https://flashinfer.ai/whl/cu121/torch2.3/</span><br></pre></td></tr></tbody></table></figure></li>
+</ol>
+<h2 id="更新环境中的VLLM后端变量">更新环境中的VLLM后端变量</h2><p>确保设置Flashinfer为vLLM的注意力机制后端：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">"VLLM_ATTENTION_BACKEND"</span>] = <span class="string">"FLASHINFER"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="测试vLLM">测试vLLM</h2><p>以下是使用vLLM生成文本的测试代码：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> vllm <span class="keyword">import</span> LLM, SamplingParams</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">llm = LLM(model=<span class="string">"gemma-2-2b-model"</span>, trust_remote_code=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">sampling_params = SamplingParams(</span><br><span class="line">    temperature=<span class="number">0.8</span>,</span><br><span class="line">    max_tokens=<span class="number">512</span>,</span><br><span class="line">    top_p=<span class="number">0.95</span>,</span><br><span class="line">    top_k=<span class="number">1</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 示例测试数据</span></span><br><span class="line">test_data = [{<span class="string">"text"</span>: <span class="string">"输入测试文本1"</span>}, {<span class="string">"text"</span>: <span class="string">"输入测试文本2"</span>}]</span><br><span class="line"></span><br><span class="line">prompts = [</span><br><span class="line">    test_data[random.randint(<span class="number">0</span>, <span class="built_in">len</span>(test_data) - <span class="number">1</span>)][<span class="string">"text"</span>],</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">outputs = llm.generate(</span><br><span class="line">    prompts,</span><br><span class="line">    sampling_params</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 预期输出:</span></span><br><span class="line"><span class="comment"># Processed prompts: 100%|██████████| 1/1 [00:01&lt;00:00,  1.24s/it, est. speed input: 991.44 toks/s, output: 87.79 toks/s]</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>通过上述步骤，您应该能够成功运行微调后的Gemma-2-2b-it模型。</p>
+<h2 id="常见错误及解决方法">常见错误及解决方法</h2><p>在运行过程中，可能会遇到以下常见错误：</p>
+<ol>
+<li><p><strong>RuntimeError: <code>CHECK_EQ(paged_kv_indptr.size(0), batch_size + 1) failed. 1 vs 257</code></strong></p>
+<ul>
+<li><strong>原因</strong>：Flashinfer版本错误。</li>
+<li><strong>解决方法</strong>：请确保安装了正确版本的Flashinfer。</li>
+</ul>
+</li>
+<li><p><strong>TypeError: <code>'NoneType' object is not callable</code></strong></p>
+<ul>
+<li><strong>原因</strong>：没有安装Flashinfer。</li>
+<li><strong>解决方法</strong>：按照上述步骤安装Flashinfer。</li>
+</ul>
+</li>
+<li><p><strong>ValueError: <code>Please use Flashinfer backend for models with logits_soft_cap (i.e., Gemma-2). Otherwise, the output might be wrong. Set Flashinfer backend by export VLLM_ATTENTION_BACKEND=FLASHINFER.</code></strong></p>
+<ul>
+<li><strong>原因</strong>：未设置Flashinfer后端。</li>
+<li><strong>解决方法</strong>：设置环境变量<code>VLLM_ATTENTION_BACKEND</code>为<code>FLASHINFER</code>。</li>
+</ul>
+</li>
+</ol>
+<p>通过上述详细步骤和解决方法，您应该能够成功运行并调试微调后的Gemma-2-2b-it模型。如果您在任何一步遇到问题，请参考相应的文档或在社区中寻求帮助。</p>
+</div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86"><span>LLM &amp; NLP</span><h2>论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT</h2><p>2026-02-21</p></a><a href="/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe"><span>LLM &amp; NLP</span><h2>基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</h2><p>2026-02-20</p></a><a href="/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07"><span>LLM &amp; NLP</span><h2>SeCom: 重新定义对话AI的记忆管理</h2><p>2025-06-24</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script id="_R_">import("/assets/index-of5-WiJ_.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-CRAaP1Wd.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-CRAaP1Wd.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-CRAaP1Wd.css\",\"data-rsc-css-href\":\"/assets/index-CRAaP1Wd.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased\",\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"使用vLLM运行微调后的Gemma-2 — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"在这里分享一下我运行微调后的Gemma-2-2b-it模型并使用vLLM的步骤，希望对其他人有所帮助。本文将详细介绍安装过程、环境配置以及常见问题的解决方法。\"}],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"development\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[\"blog\",\"2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076\"]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"9896fa1f-a6e1-437f-8abe-129c26c198e8\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:T1d9d,\u003ch1 id=\"使用vLLM运行微调后的Gemma-2-2b-it的详细步骤\"\u003e使用vLLM运行微调后的Gemma-2-2b-it的详细步骤\u003c/h1\u003e\u003cp\u003e在这里分享一下我运行微调后的Gemma-2-2b-it模型并使用vLLM的步骤，希望对其他人有所帮助。本文将详细介绍安装过程、环境配置以及常见问题的解决方法。\u003c/p\u003e\n\u003ch2 id=\"安装和验证vLLM\"\u003e安装和验证vLLM\u003c/h2\u003e\u003cp\u003e首先，确保安装并验证vLLM的版本是0.5.3。\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e安装vLLM：\u003c/p\u003e\n\u003cfigure class=\"highlight bash\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003epip install vllm==0.5.3\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e验证安装：\u003c/p\u003e\n\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003eimport\u003c/span\u003e vllm\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"built_in\"\u003eprint\u003c/span\u003e(vllm.__version__)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"comment\"\u003e# 输出: 0.5.3\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2 id=\"安装Flashinfer\"\u003e安装Flashinfer\u003c/h2\u003e\u003cp\u003e按照以下步骤安装Flashinfer，并确保您的torch版本和CUDA兼容性。\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e检查torch版本和CUDA兼容性：\u003c/p\u003e\n\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003eimport\u003c/span\u003e torch\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"built_in\"\u003eprint\u003c/span\u003e(torch.__version__)  \u003cspan class=\"comment\"\u003e# 应输出: 2.3.1+cu121\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"built_in\"\u003eprint\u003c/span\u003e(torch.version.cuda) \u003cspan class=\"comment\"\u003e# 应输出: 12.1\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e安装Flashinfer：\u003cbr\u003e根据文档，Gemma运行在版本0.08。vLLM需要FlashInfer v0.0.8（请参阅\u003ca target=\"_blank\" rel=\"noreferrer noopener\" href=\"https://github.com/vllm-project/vllm/issues/7060\"\u003evLLM版本和Flashinfer文档\u003c/a\u003e中关于Gemma 2的部分）。\u003c/p\u003e\n\u003cfigure class=\"highlight bash\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e!pip install flashinfer==0.0.8 -i https://flashinfer.ai/whl/cu121/torch2.3/\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2 id=\"更新环境中的VLLM后端变量\"\u003e更新环境中的VLLM后端变量\u003c/h2\u003e\u003cp\u003e确保设置Flashinfer为vLLM的注意力机制后端：\u003c/p\u003e\n\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003eimport\u003c/span\u003e os\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003eos.environ[\u003cspan class=\"string\"\u003e\"VLLM_ATTENTION_BACKEND\"\u003c/span\u003e] = \u003cspan class=\"string\"\u003e\"FLASHINFER\"\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch2 id=\"测试vLLM\"\u003e测试vLLM\u003c/h2\u003e\u003cp\u003e以下是使用vLLM生成文本的测试代码：\u003c/p\u003e\n\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e8\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e9\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e10\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e11\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e12\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e13\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e14\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e15\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e16\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e17\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e18\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e19\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e20\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e21\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e22\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e23\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e24\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e25\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e26\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003efrom\u003c/span\u003e vllm \u003cspan class=\"keyword\"\u003eimport\u003c/span\u003e LLM, SamplingParams\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003eimport\u003c/span\u003e random\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003ellm = LLM(model=\u003cspan class=\"string\"\u003e\"gemma-2-2b-model\"\u003c/span\u003e, trust_remote_code=\u003cspan class=\"literal\"\u003eTrue\u003c/span\u003e)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003esampling_params = SamplingParams(\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    temperature=\u003cspan class=\"number\"\u003e0.8\u003c/span\u003e,\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    max_tokens=\u003cspan class=\"number\"\u003e512\u003c/span\u003e,\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    top_p=\u003cspan class=\"number\"\u003e0.95\u003c/span\u003e,\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    top_k=\u003cspan class=\"number\"\u003e1\u003c/span\u003e,\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"comment\"\u003e# 示例测试数据\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003etest_data = [{\u003cspan class=\"string\"\u003e\"text\"\u003c/span\u003e: \u003cspan class=\"string\"\u003e\"输入测试文本1\"\u003c/span\u003e}, {\u003cspan class=\"string\"\u003e\"text\"\u003c/span\u003e: \u003cspan class=\"string\"\u003e\"输入测试文本2\"\u003c/span\u003e}]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003eprompts = [\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    test_data[random.randint(\u003cspan class=\"number\"\u003e0\u003c/span\u003e, \u003cspan class=\"built_in\"\u003elen\u003c/span\u003e(test_data) - \u003cspan class=\"number\"\u003e1\u003c/span\u003e)][\u003cspan class=\"string\"\u003e\"text\"\u003c/span\u003e],\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003eoutputs = llm.generate(\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    prompts,\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    sampling_params\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"comment\"\u003e# 预期输出:\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"comment\"\u003e# Processed prompts: 100%|██████████| 1/1 [00:01\u0026lt;00:00,  1.24s/it, est. speed input: 991.44 toks/s, output: 87.79 toks/s]\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cp\u003e通过上述步骤，您应该能够成功运行微调后的Gemma-2-2b-it模型。\u003c/p\u003e\n\u003ch2 id=\"常见错误及解决方法\"\u003e常见错误及解决方法\u003c/h2\u003e\u003cp\u003e在运行过程中，可能会遇到以下常见错误：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eRuntimeError: \u003ccode\u003eCHECK_EQ(paged_kv_indptr.size(0), batch_size + 1) failed. 1 vs 257\u003c/code\u003e\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e原因\u003c/strong\u003e：Flashinfer版本错误。\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e解决方法\u003c/strong\u003e：请确保安装了正确版本的Flashinfer。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eTypeError: \u003ccode\u003e'NoneType' object is not callable\u003c/code\u003e\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e原因\u003c/strong\u003e：没有安装Flashinfer。\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e解决方法\u003c/strong\u003e：按照上述步骤安装Flashinfer。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eValueError: \u003ccode\u003ePlease use Flashinfer backend for models with logits_soft_cap (i.e., Gemma-2). Otherwise, the output might be wrong. Set Flashinfer backend by export VLLM_ATTENTION_BACKEND=FLASHINFER.\u003c/code\u003e\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e原因\u003c/strong\u003e：未设置Flashinfer后端。\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e解决方法\u003c/strong\u003e：设置环境变量\u003ccode\u003eVLLM_ATTENTION_BACKEND\u003c/code\u003e为\u003ccode\u003eFLASHINFER\u003c/code\u003e。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e通过上述详细步骤和解决方法，您应该能够成功运行并调试微调后的Gemma-2-2b-it模型。如果您在任何一步遇到问题，请参考相应的文档或在社区中寻求帮助。\u003c/p\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"time\",null,{\"children\":\"2024-08-07\"}],[\"$\",\"span\",null,{\"children\":\"中文\"}]]}],[\"$\",\"h1\",null,{\"children\":\"使用vLLM运行微调后的Gemma-2\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"在这里分享一下我运行微调后的Gemma-2-2b-it模型并使用vLLM的步骤，希望对其他人有所帮助。本文将详细介绍安装过程、环境配置以及常见问题的解决方法。\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-en-d317a79\",\"children\":\"Read the English edition →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"安装和验证vLLM-安装和验证vLLM\",{\"className\":\"\",\"href\":\"#安装和验证vLLM\",\"children\":\"安装和验证vLLM\"}],[\"$\",\"a\",\"安装Flashinfer-安装Flashinfer\",{\"className\":\"\",\"href\":\"#安装Flashinfer\",\"children\":\"安装Flashinfer\"}],[\"$\",\"a\",\"更新环境中的VLLM后端变量-更新环境中的VLLM后端变量\",{\"className\":\"\",\"href\":\"#更新环境中的VLLM后端变量\",\"children\":\"更新环境中的VLLM后端变量\"}],[\"$\",\"a\",\"测试vLLM-测试vLLM\",{\"className\":\"\",\"href\":\"#测试vLLM\",\"children\":\"测试vLLM\"}],[\"$\",\"a\",\"常见错误及解决方法-常见错误及解决方法\",{\"className\":\"\",\"href\":\"#常见错误及解决方法\",\"children\":\"常见错误及解决方法\"}]]}]]}],[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$6\"}}]]}]]}],\"$L7\",\"$L8\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("7:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86\",{\"href\":\"/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT\"}],[\"$\",\"p\",null,{\"children\":\"2026-02-21\"}]]}],[\"$\",\"a\",\"2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe\",{\"href\":\"/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战\"}],[\"$\",\"p\",null,{\"children\":\"2026-02-20\"}]]}],[\"$\",\"a\",\"2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07\",{\"href\":\"/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"SeCom: 重新定义对话AI的记忆管理\"}],[\"$\",\"p\",null,{\"children\":\"2025-06-24\"}]]}]]}]]}]\n8:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>
