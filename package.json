@@ -1,40 +1,57 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "site-creator-vinext-starter",
+  "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "build": "hexo generate",
-    "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+  "engines": {
+    "node": ">=22.13.0"
   },
-  "hexo": {
-    "version": "6.3.0"
+  "scripts": {
+    "install:ci": "bash scripts/install-ci.sh",
+    "content:build": "node scripts/build-posts.mjs",
+    "content:scaffold-series": "node scripts/scaffold-generative-recommendation.mjs",
+    "post:new": "node scripts/new-post.mjs",
+    "dev": "npm run content:build && WRANGLER_LOG_PATH=.wrangler/wrangler.log vite",
+    "build": "bash scripts/build-verified.sh",
+    "export:static": "npm run build && node scripts/export-static.mjs",
+    "publish:github-pages": "bash scripts/publish-github-pages.sh",
+    "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
+    "test": "npm run build && node --test tests/rendered-html.test.mjs",
+    "validate:artifact": "bash scripts/validate-artifact.sh",
+    "lint": "bash scripts/sites-env.sh -- eslint . --ignore-pattern dist --ignore-pattern .next",
+    "db:generate": "bash scripts/sites-env.sh -- drizzle-kit generate"
   },
   "dependencies": {
-    "hexo": "^6.3.0",
-    "hexo-deployer-git": "^4.0.0",
-    "hexo-filter-flowchart": "^1.0.4",
-    "hexo-filter-github-emojis": "^3.0.5",
-    "hexo-generator-archive": "^2.0.0",
-    "hexo-generator-baidu-sitemap": "^0.1.9",
-    "hexo-generator-category": "^2.0.0",
-    "hexo-generator-feed": "^3.0.0",
-    "hexo-generator-i18n": "^0.0.10",
-    "hexo-generator-index": "^3.0.0",
-    "hexo-generator-search": "^2.4.3",
-    "hexo-generator-sitemap": "^3.0.1",
-    "hexo-generator-tag": "^2.0.0",
-    "hexo-renderer-ejs": "^2.0.0",
-    "hexo-renderer-marked": "^6.0.0",
-    "hexo-renderer-mathjax": "^0.6.0",
-    "hexo-renderer-pug": "^3.0.0",
-    "hexo-renderer-sass": "^0.5.0",
-    "hexo-renderer-stylus": "^3.0.0",
-    "hexo-server": "^3.0.0",
-    "hexo-theme-landscape": "^1.0.0",
-    "hexo-wordcount": "^6.0.1",
-    "jvectormap-next": "^3.1.1",
-    "leaflet": "^1.9.4"
-  }
+    "d3-geo": "^3.1.1",
+    "drizzle-orm": "0.45.2",
+    "gray-matter": "^4.0.3",
+    "katex": "^0.17.0",
+    "marked": "^18.0.7",
+    "marked-katex-extension": "^5.1.10",
+    "next": "16.2.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "topojson-client": "^3.1.0",
+    "world-atlas": "^2.0.2"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.37.1",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/d3-geo": "^3.1.0",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@types/topojson-client": "^3.1.5",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.26",
+    "drizzle-kit": "0.31.10",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.2.6",
+    "react-server-dom-webpack": "19.2.6",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "vinext": "0.0.50",
+    "vite": "8.0.13",
+    "wrangler": "4.92.0"
+  },
+  "type": "module"
 }

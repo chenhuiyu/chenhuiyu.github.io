@@ -1,0 +1,327 @@
+{
+  "id": "generative-recommendation",
+  "title": {
+    "zh-CN": "推荐系统如何学会“说出答案”：20 篇论文读懂生成式推荐",
+    "en": "How Recommender Systems Learned to Say the Answer: Generative Recommendation in 20 Papers"
+  },
+  "subtitle": {
+    "zh-CN": "从 BPR 的打分器，到 OneReason 的推荐推理",
+    "en": "From BPR’s scoring function to OneReason’s recommendation reasoning"
+  },
+  "question": {
+    "zh-CN": "推荐系统从“给所有商品打分”，是怎样一步步变成“直接生成商品、列表，甚至推荐理由与思考过程”的？",
+    "en": "How did recommender systems evolve from scoring every item to directly generating items, lists, explanations, and even an explicit reasoning process?"
+  },
+  "arcs": [
+    {
+      "id": "foundations",
+      "range": "01–04",
+      "label": {
+        "zh-CN": "前世：从打分到序列",
+        "en": "Prehistory: from scoring to sequences"
+      },
+      "description": {
+        "zh-CN": "先学会比较商品，再学会理解行为发生的顺序。",
+        "en": "First learn to compare items, then learn that behavior has an order."
+      }
+    },
+    {
+      "id": "language",
+      "range": "05–09",
+      "label": {
+        "zh-CN": "LLM 支线：把推荐写成语言任务",
+        "en": "The LLM branch: recommendation as language"
+      },
+      "description": {
+        "zh-CN": "统一任务、迁移知识，也暴露语言能力与偏好理解之间的鸿沟。",
+        "en": "Unify tasks and transfer knowledge—while exposing the gap between language fluency and preference understanding."
+      }
+    },
+    {
+      "id": "semantic-id",
+      "range": "10–15",
+      "label": {
+        "zh-CN": "Semantic ID 支线：直接生成商品",
+        "en": "The Semantic ID branch: generate the item itself"
+      },
+      "description": {
+        "zh-CN": "从生成文档 ID 到设计推荐 tokenizer，商品第一次真正成为可解码的 token。",
+        "en": "From generating document IDs to designing recommendation tokenizers, items become decodable tokens."
+      }
+    },
+    {
+      "id": "convergence",
+      "range": "16–20",
+      "label": {
+        "zh-CN": "工业汇合：统一、规模化与推理",
+        "en": "Industrial convergence: unification, scale, and reasoning"
+      },
+      "description": {
+        "zh-CN": "两条路线在超长序列、统一召排、工程约束和推荐推理中汇合。",
+        "en": "The two branches meet in long histories, unified retrieval-ranking, deployment constraints, and recommendation reasoning."
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "order": 1,
+      "paper": "BPR",
+      "arc": "foundations",
+      "title": {
+        "zh-CN": "推荐系统原本是一台打分机",
+        "en": "Recommender Systems Began as Scoring Machines"
+      },
+      "role": {
+        "zh-CN": "从隐式反馈、正负样本和 pairwise loss 开始，建立传统推荐的基本范式：学习 s(u,i)，然后排序。",
+        "en": "Start with implicit feedback, positive–negative pairs, and pairwise loss to establish the classical paradigm: learn s(u,i), then rank."
+      }
+    },
+    {
+      "order": 2,
+      "paper": "GRU4Rec",
+      "arc": "foundations",
+      "title": {
+        "zh-CN": "用户不是一个点，而是一段正在发生的故事",
+        "en": "A User Is Not a Point, but a Story in Motion"
+      },
+      "role": {
+        "zh-CN": "用户兴趣会变化，于是推荐第一次认真建模行为顺序。",
+        "en": "Preferences change, so recommendation begins to model the order in which behavior unfolds."
+      }
+    },
+    {
+      "order": 3,
+      "paper": "SASRec",
+      "arc": "foundations",
+      "title": {
+        "zh-CN": "历史很长，真正相关的可能只有几步",
+        "en": "History Is Long, but Only a Few Steps May Matter"
+      },
+      "role": {
+        "zh-CN": "用 causal self-attention 代替 RNN，解释注意力如何寻找与下一次行为相关的历史。",
+        "en": "Replace recurrence with causal self-attention and let the model find which past actions matter for the next one."
+      }
+    },
+    {
+      "order": 4,
+      "paper": "BERT4Rec",
+      "arc": "foundations",
+      "title": {
+        "zh-CN": "把商品当成词，把购物记录当成句子",
+        "en": "Treat Items as Words and Shopping Histories as Sentences"
+      },
+      "role": {
+        "zh-CN": "Item ID 变成 token，行为序列变成句子，Cloze/MLM 正式进入推荐系统。",
+        "en": "Item IDs become tokens, histories become sentences, and Cloze-style masked modeling enters recommendation."
+      }
+    },
+    {
+      "order": 5,
+      "paper": "P5",
+      "arc": "language",
+      "title": {
+        "zh-CN": "所有推荐任务都能改写成一句话吗？",
+        "en": "Can Every Recommendation Task Be Rewritten as a Sentence?"
+      },
+      "role": {
+        "zh-CN": "把评分、序列推荐、解释生成统一成 text-to-text，推荐不再只有一个任务头。",
+        "en": "Unify rating, sequential recommendation, and explanation as text-to-text instead of separate task heads."
+      }
+    },
+    {
+      "order": 6,
+      "paper": "M6-Rec",
+      "arc": "language",
+      "title": {
+        "zh-CN": "一个模型承包召回、排序、解释和创作",
+        "en": "One Model for Retrieval, Ranking, Explanation, and Creation"
+      },
+      "role": {
+        "zh-CN": "从学术统一走向工业 foundation model：prompt tuning、开放任务与推理效率。",
+        "en": "Move from academic unification toward an industrial foundation model through prompt tuning, open tasks, and efficient inference."
+      }
+    },
+    {
+      "order": 7,
+      "paper": "TALLRec",
+      "arc": "language",
+      "title": {
+        "zh-CN": "通用 LLM 并不天然懂“喜欢”",
+        "en": "A General-Purpose LLM Does Not Naturally Understand “Preference”"
+      },
+      "role": {
+        "zh-CN": "解释语言能力与推荐能力之间的 domain gap，以及 LoRA/SFT 为什么有用。",
+        "en": "Expose the domain gap between language competence and recommendation competence, and explain why LoRA/SFT helps."
+      }
+    },
+    {
+      "order": 8,
+      "paper": "ReLLa",
+      "arc": "language",
+      "title": {
+        "zh-CN": "上下文放得下，不等于模型看得懂",
+        "en": "Fitting in Context Does Not Mean the Model Understands It"
+      },
+      "role": {
+        "zh-CN": "长行为序列直接塞进 prompt 反而可能更差；引出行为检索和相关历史筛选。",
+        "en": "Long histories placed directly in a prompt may hurt, motivating behavioral retrieval and relevant-history selection."
+      }
+    },
+    {
+      "order": 9,
+      "paper": "LLaRA",
+      "arc": "language",
+      "title": {
+        "zh-CN": "世界知识与协同行为怎样合体？",
+        "en": "How Do World Knowledge and Collaborative Behavior Meet?"
+      },
+      "role": {
+        "zh-CN": "传统推荐器懂共现，LLM 懂商品语义；这一篇讲两种表示空间如何对齐。",
+        "en": "Classical recommenders know co-occurrence and LLMs know semantics; this paper aligns the two representation spaces."
+      }
+    },
+    {
+      "order": 10,
+      "paper": "DSI",
+      "arc": "semantic-id",
+      "title": {
+        "zh-CN": "如果检索不再查索引，而是直接生成 ID",
+        "en": "What If Retrieval Generated IDs Instead of Looking Them Up?"
+      },
+      "role": {
+        "zh-CN": "生成式检索的祖先：把 doc ID 当成输出 token，直接学习 P(ID|query)。",
+        "en": "The ancestor of generative retrieval: make document IDs output tokens and learn P(ID|query) directly."
+      }
+    },
+    {
+      "order": 11,
+      "paper": "TIGER",
+      "arc": "semantic-id",
+      "title": {
+        "zh-CN": "给每件商品一串有语义的门牌号",
+        "en": "Give Every Item a Semantic Address"
+      },
+      "role": {
+        "zh-CN": "RQ-VAE、Semantic ID、逐 token 解码，以及语义 ID 为什么有利于大规模检索和冷启动。",
+        "en": "Introduce RQ-VAE, Semantic IDs, token-by-token decoding, and their benefits for retrieval scale and cold start."
+      }
+    },
+    {
+      "order": 12,
+      "paper": "GPTRec",
+      "arc": "semantic-id",
+      "title": {
+        "zh-CN": "Top-K 不是唯一答案，推荐列表也能逐个写出来",
+        "en": "Top-K Is Not the Only Answer: A List Can Be Written Item by Item"
+      },
+      "role": {
+        "zh-CN": "SVD 子 ID、Next-K generation，以及生成整个列表为什么能优化多样性等整体目标。",
+        "en": "Use SVD sub-IDs and Next-K generation to optimize list-level objectives such as diversity."
+      }
+    },
+    {
+      "order": 13,
+      "paper": "LC-Rec",
+      "arc": "semantic-id",
+      "title": {
+        "zh-CN": "语义上相似，不代表同一群人喜欢",
+        "en": "Semantically Similar Does Not Mean Liked by the Same People"
+      },
+      "role": {
+        "zh-CN": "区分 language semantics 和 collaborative semantics，并介绍量化编码与对齐任务。",
+        "en": "Separate language semantics from collaborative semantics through quantized codes and alignment objectives."
+      }
+    },
+    {
+      "order": 14,
+      "paper": "LETTER",
+      "arc": "semantic-id",
+      "title": {
+        "zh-CN": "一个好 ID，必须懂内容、共现和均衡",
+        "en": "A Good ID Must Understand Content, Co-occurrence, and Balance"
+      },
+      "role": {
+        "zh-CN": "深挖生成式推荐最核心的 tokenizer 问题：层次语义、协同正则和 codebook 塌缩。",
+        "en": "Examine the tokenizer problem through hierarchical semantics, collaborative regularization, and codebook collapse."
+      }
+    },
+    {
+      "order": 15,
+      "paper": "ETEGRec",
+      "arc": "semantic-id",
+      "title": {
+        "zh-CN": "Tokenizer 不该只是离线前处理",
+        "en": "The Tokenizer Should Not Be Merely Offline Preprocessing"
+      },
+      "role": {
+        "zh-CN": "Tokenizer 与推荐模型联合优化，讲清双重对齐目标和 alternating optimization。",
+        "en": "Jointly optimize the tokenizer and recommender through dual alignment objectives and alternating optimization."
+      }
+    },
+    {
+      "order": 16,
+      "paper": "HSTU",
+      "arc": "convergence",
+      "title": {
+        "zh-CN": "推荐模型也存在 Scaling Law 吗？",
+        "en": "Do Recommender Models Have Scaling Laws?"
+      },
+      "role": {
+        "zh-CN": "Meta 将推荐重写为 sequential transduction，讨论超长行为、工业效率与规模化。",
+        "en": "Meta reframes recommendation as sequential transduction and studies long histories, industrial efficiency, and scale."
+      }
+    },
+    {
+      "order": 17,
+      "paper": "OneRec",
+      "arc": "convergence",
+      "title": {
+        "zh-CN": "召回和排序，能否由一个模型一次完成？",
+        "en": "Can One Model Retrieve and Rank in a Single Pass?"
+      },
+      "role": {
+        "zh-CN": "Session-wise generation、Sparse MoE、DPO，把 retrieve–rank 多阶段管线统一起来。",
+        "en": "Use session-wise generation, Sparse MoE, and DPO to unify the multi-stage retrieve–rank pipeline."
+      }
+    },
+    {
+      "order": 18,
+      "paper": "MTGR",
+      "arc": "convergence",
+      "title": {
+        "zh-CN": "传统交叉特征真的应该全部扔掉吗？",
+        "en": "Should We Really Throw Away Every Traditional Cross Feature?"
+      },
+      "role": {
+        "zh-CN": "对纯序列生成路线提出工程反思：保留 DLRM cross features、用户级压缩与部署成本。",
+        "en": "Challenge the pure generation route with DLRM cross features, user-level compression, and deployment cost."
+      }
+    },
+    {
+      "order": 19,
+      "paper": "OneRec-Think",
+      "arc": "convergence",
+      "title": {
+        "zh-CN": "推荐也需要先想后答吗？",
+        "en": "Should Recommenders Think Before They Answer?"
+      },
+      "role": {
+        "zh-CN": "Item–text alignment、推荐 CoT、偏好奖励，推荐开始尝试显式、可控的推理。",
+        "en": "Combine item–text alignment, recommendation CoT, and preference rewards to pursue explicit, controllable reasoning."
+      }
+    },
+    {
+      "order": 20,
+      "paper": "OneReason",
+      "arc": "convergence",
+      "title": {
+        "zh-CN": "看起来会思考，不代表真的懂偏好",
+        "en": "Looking Like Reasoning Does Not Mean Understanding Preference"
+      },
+      "role": {
+        "zh-CN": "用 perception 与 cognition 重新审视推荐推理，为系列留下真正开放的问题。",
+        "en": "Reframe recommendation reasoning as perception plus cognition and leave the series with a genuinely open question."
+      }
+    }
+  ]
+}

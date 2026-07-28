@@ -1,0 +1,96 @@
+[
+  {
+    "slug": "generative-recommendation-preface-zh",
+    "pairKey": "generative-recommendation-preface",
+    "title": "生成式推荐到底在生成什么？",
+    "date": "2026-07-24",
+    "updated": "2026-07-24",
+    "category": "Generative Recommendation",
+    "language": "zh-CN",
+    "tags": [
+      "Generative Recommendation",
+      "Recommender Systems",
+      "LLM"
+    ],
+    "oldPath": "",
+    "content": "<p>推荐系统原本并不会“回答问题”。</p>\n<p>它更像一台安静的打分机：给定用户 <span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.4306em;\"></span><span class=\"mord mathnormal\">u</span></span></span></span> 和商品 <span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.6595em;\"></span><span class=\"mord mathnormal\">i</span></span></span></span>，学习一个分数\n$s(u,i)$，再把分数最高的商品排在前面。</p>\n<span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.923em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.923em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">i</span></span><span style=\"top:-3.2285em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.25em;\"><span class=\"mord\">^</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.4777em;vertical-align:-0.7277em;\"></span><span class=\"mop\">ar<span style=\"margin-right:0.0139em;\">g</span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mop op-limits\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4306em;\"><span style=\"top:-2.3723em;margin-left:0em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span><span class=\"mop\">max</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7277em;\"><span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">s</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">u</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">i</span><span class=\"mclose\">)</span></span></span></span></span>\n<p>今天的生成式推荐却开始做一件看起来完全不同的事：它可以逐 token\n生成商品 ID、一次写出整张推荐列表、解释为什么推荐，甚至在输出答案前先生成一段“思考”。</p>\n<p>这个系列只追问一个问题：</p>\n<blockquote>\n<p>推荐系统从“给所有商品打分”，是怎样一步步变成“直接说出答案”的？</p>\n</blockquote>\n<h2 id=\"同名但不同宗\">同名但不同宗</h2>\n<p>VAE、GAN 和 Diffusion 很早就被用于推荐，也常被称为“生成式推荐”。它们会生成潜变量、用户表示或数据分布，但并不是这套故事的直接主线。</p>\n<p>这里关注的是另一条更具体的路线：<strong>把推荐重新表述成一个自回归生成问题</strong>。模型不再只计算候选商品的分数，而是学习\n$P(\\text{output tokens}\\mid\\text{user history})$。</p>\n<p>真正关键的区别不是模型能不能生成，而是它究竟生成什么：</p>\n<ul>\n<li><strong>语言答案</strong>：评分、解释、偏好判断都写成 text-to-text。</li>\n<li><strong>商品标识</strong>：把 Item ID 编码为一串可解码 token。</li>\n<li><strong>完整列表</strong>：后一个推荐结果可以依赖前面已经生成的结果。</li>\n<li><strong>推荐理由与推理过程</strong>：模型不仅输出“选什么”，还尝试表达“为什么”。</li>\n</ul>\n<h2 id=\"故事从一台打分机开始\">故事从一台打分机开始</h2>\n<p>前四篇是这场变化的“前世”。</p>\n<p>BPR 建立隐式反馈下的 pairwise 排序范式；GRU4Rec 发现用户不是一个静态向量，而是一段按顺序发生的行为；SASRec 用注意力寻找真正相关的历史；BERT4Rec 再把 Item ID 当成 token，把行为序列当成句子。</p>\n<p>到这里，推荐系统虽然还没有真正“生成商品”，但语言模型式的表示方法已经进入了推荐。</p>\n<h2 id=\"两条支线在这里分开\">两条支线在这里分开</h2>\n<p>第一条是 <strong>LLM 支线</strong>。</p>\n<p>P5 尝试把不同推荐任务统一成 text-to-text；M6-Rec 把这种统一推向工业 foundation model；TALLRec、ReLLa 和 LLaRA 则逐步暴露问题：通用 LLM 会说话，不代表它天然理解协同偏好；上下文放得下，也不代表模型知道哪些历史真正相关。</p>\n<p>第二条是 <strong>Semantic ID 与生成式检索支线</strong>。</p>\n<p>DSI 先证明检索可以不查索引，而是直接生成文档 ID。TIGER、GPTRec、LC-Rec、LETTER 和 ETEGRec 随后把问题推进到推荐系统最核心的部件：怎样给每件商品设计一串既有语义、又懂协同行为、还不会发生 codebook 塌缩的 token。</p>\n<h2 id=\"最后-它们在工业系统里汇合\">最后，它们在工业系统里汇合</h2>\n<p>HSTU 把超长用户行为重写为 sequential transduction；OneRec 尝试用一个模型统一召回与排序；MTGR 提醒我们，漂亮的生成范式仍要面对传统交叉特征、延迟和成本；OneRec-Think 与 OneReason 则把问题推向更危险也更有趣的地方：</p>\n<blockquote>\n<p>推荐模型看起来会思考，是否真的意味着它理解了偏好？</p>\n</blockquote>\n<p>这不是一个已经有结论的问题，也正是整个系列最后要留下的开放问题。</p>\n<h2 id=\"我们会怎样读这-20-篇论文\">我们会怎样读这 20 篇论文</h2>\n<p>每篇文章都分三层：</p>\n<ol>\n<li><strong>零基础层</strong>：用同一个玩具用户和八件商品解释上一代模型遇到的困难。</li>\n<li><strong>工程层</strong>：明确输入输出、tensor shape、训练数据、推理路径和复杂度。</li>\n<li><strong>论文层</strong>：只保留一个核心公式、一张关键实验、一个重要 ablation，以及论文没有证明什么。</li>\n</ol>\n<p>固定的玩具行为序列是：</p>\n<pre><code class=\"language-text\">网球 → 攀岩 → 羽毛球 → 游泳\n</code></pre>\n<p>读者会看到同一份历史如何依次被打分模型、RNN、Transformer、LLM、Semantic ID tokenizer 和生成式推荐模型处理。</p>\n<p>下一篇，我们回到一切开始的地方：<strong>BPR，以及推荐系统为什么最初只需要学会“谁应该排在谁前面”。</strong></p>\n<p><a href=\"/series/generative-recommendation\">查看完整的 20 篇路线图 →</a></p>\n",
+    "excerpt": "在进入 20 篇论文之前，先分清推荐系统究竟在生成文本、商品 ID、整张列表，还是一个看起来像推理的过程。",
+    "toc": [
+      {
+        "id": "同名但不同宗",
+        "text": "同名但不同宗",
+        "level": "h2"
+      },
+      {
+        "id": "故事从一台打分机开始",
+        "text": "故事从一台打分机开始",
+        "level": "h2"
+      },
+      {
+        "id": "两条支线在这里分开",
+        "text": "两条支线在这里分开",
+        "level": "h2"
+      },
+      {
+        "id": "最后-它们在工业系统里汇合",
+        "text": "最后，它们在工业系统里汇合",
+        "level": "h2"
+      },
+      {
+        "id": "我们会怎样读这-20-篇论文",
+        "text": "我们会怎样读这 20 篇论文",
+        "level": "h2"
+      }
+    ],
+    "alternateSlug": "generative-recommendation-preface-en",
+    "series": "generative-recommendation",
+    "seriesOrder": 0
+  },
+  {
+    "slug": "generative-recommendation-preface-en",
+    "pairKey": "generative-recommendation-preface",
+    "title": "What Does Generative Recommendation Actually Generate?",
+    "date": "2026-07-24",
+    "updated": "2026-07-24",
+    "category": "Generative Recommendation",
+    "language": "en",
+    "tags": [
+      "Generative Recommendation",
+      "Recommender Systems",
+      "LLM"
+    ],
+    "oldPath": "",
+    "content": "<p>Recommender systems did not begin by “answering” anything.</p>\n<p>They behaved more like quiet scoring machines. Given a user <span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.4306em;\"></span><span class=\"mord mathnormal\">u</span></span></span></span> and an item\n$i$, the model learned a score <span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:1em;vertical-align:-0.25em;\"></span><span class=\"mord mathnormal\">s</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">u</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">i</span><span class=\"mclose\">)</span></span></span></span> and ranked the items with the largest\nscores first.</p>\n<span class=\"katex-display\"><span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.923em;\"></span><span class=\"mord accent\"><span class=\"vlist-t\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.923em;\"><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"mord mathnormal\">i</span></span><span style=\"top:-3.2285em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"accent-body\" style=\"left:-0.25em;\"><span class=\"mord\">^</span></span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span><span class=\"mrel\">=</span><span class=\"mspace\" style=\"margin-right:0.2778em;\"></span></span><span class=\"base\"><span class=\"strut\" style=\"height:1.4777em;vertical-align:-0.7277em;\"></span><span class=\"mop\">ar<span style=\"margin-right:0.0139em;\">g</span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mop op-limits\"><span class=\"vlist-t vlist-t2\"><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.4306em;\"><span style=\"top:-2.3723em;margin-left:0em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span class=\"sizing reset-size6 size3 mtight\"><span class=\"mord mathnormal mtight\">i</span></span></span><span style=\"top:-3em;\"><span class=\"pstrut\" style=\"height:3em;\"></span><span><span class=\"mop\">max</span></span></span></span><span class=\"vlist-s\">​</span></span><span class=\"vlist-r\"><span class=\"vlist\" style=\"height:0.7277em;\"><span></span></span></span></span></span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">s</span><span class=\"mopen\">(</span><span class=\"mord mathnormal\">u</span><span class=\"mpunct\">,</span><span class=\"mspace\" style=\"margin-right:0.1667em;\"></span><span class=\"mord mathnormal\">i</span><span class=\"mclose\">)</span></span></span></span></span>\n<p>Generative recommenders now appear to do something fundamentally different.\nThey can decode item IDs token by token, write an entire recommendation list,\nexplain a choice, and even produce an explicit “thinking” trace before the\nanswer.</p>\n<p>This series keeps returning to one question:</p>\n<blockquote>\n<p>How did recommendation move from scoring every item to directly saying the answer?</p>\n</blockquote>\n<h2 id=\"the-same-name-can-describe-different-lineages\">The same name can describe different lineages</h2>\n<p>VAEs, GANs, and diffusion models have long been used in recommendation, and\nthat work is also called “generative recommendation.” Those models may generate\nlatent variables, user representations, or samples from a learned\ndistribution, but they are not the direct lineage followed here.</p>\n<p>This series focuses on a more specific transformation: <strong>recasting\nrecommendation as autoregressive generation</strong>. Instead of only evaluating\ncandidate scores, the model learns\n$P(\\text{output tokens}\\mid\\text{user history})$.</p>\n<p>The decisive question is not whether the model generates, but what it\ngenerates:</p>\n<ul>\n<li><strong>Language answers:</strong> ratings, explanations, and preference decisions become text-to-text tasks.</li>\n<li><strong>Item identifiers:</strong> each Item ID becomes a sequence of decodable tokens.</li>\n<li><strong>Complete lists:</strong> every generated recommendation can depend on earlier items in the list.</li>\n<li><strong>Reasons and reasoning traces:</strong> the model attempts to express both what to choose and why.</li>\n</ul>\n<h2 id=\"the-story-begins-with-a-scoring-machine\">The story begins with a scoring machine</h2>\n<p>The first four papers form the prehistory.</p>\n<p>BPR establishes pairwise ranking for implicit feedback. GRU4Rec recognizes\nthat a user is not a static vector but a sequence of actions. SASRec uses\nattention to find the history that matters for the next action. BERT4Rec then\ntreats Item IDs as tokens and behavioral histories as sentences.</p>\n<p>Recommendation is not yet generating items, but language-model-style\nrepresentations have entered the field.</p>\n<h2 id=\"two-branches-separate\">Two branches separate</h2>\n<p>The first is the <strong>LLM branch</strong>.</p>\n<p>P5 casts multiple recommendation tasks as text-to-text. M6-Rec pushes that\nunification toward an industrial foundation model. TALLRec, ReLLa, and LLaRA\nthen expose the limits: a general-purpose LLM can be fluent without\nunderstanding collaborative preference, and a history fitting inside the\ncontext window does not mean the model knows which actions matter.</p>\n<p>The second is the <strong>Semantic ID and generative retrieval branch</strong>.</p>\n<p>DSI first shows that retrieval can generate document IDs instead of looking\nthem up. TIGER, GPTRec, LC-Rec, LETTER, and ETEGRec move the problem toward the\ncentral component of a generative recommender: an item tokenizer whose codes\ncapture semantics and collaborative behavior without collapsing its codebook.</p>\n<h2 id=\"the-branches-converge-in-industrial-systems\">The branches converge in industrial systems</h2>\n<p>HSTU rewrites long user histories as sequential transduction. OneRec attempts\nto unify retrieval and ranking in one model. MTGR reminds us that an elegant\ngenerative formulation still faces cross features, latency, and cost.\nOneRec-Think and OneReason then push the question into more provocative\nterritory:</p>\n<blockquote>\n<p>If a recommender looks as though it is reasoning, does it actually understand preference?</p>\n</blockquote>\n<p>There is no settled answer. That open problem is where this series is heading.</p>\n<h2 id=\"how-the-20-papers-will-be-read\">How the 20 papers will be read</h2>\n<p>Every article has three layers:</p>\n<ol>\n<li><strong>Beginner layer:</strong> one recurring toy user and eight items reveal the problem left by the previous model.</li>\n<li><strong>Engineering layer:</strong> inputs, outputs, tensor shapes, training data, inference steps, and complexity.</li>\n<li><strong>Paper layer:</strong> one central equation, one decisive experiment, one important ablation, and what the paper did not prove.</li>\n</ol>\n<p>The recurring toy sequence is:</p>\n<pre><code class=\"language-text\">tennis → climbing → badminton → swimming\n</code></pre>\n<p>The same history will pass through a scoring model, an RNN, a Transformer, an\nLLM, a Semantic ID tokenizer, and finally a generative recommender.</p>\n<p>Next, we return to the beginning: <strong>BPR, and why recommendation originally only\nneeded to learn which item should rank above another.</strong></p>\n<p><a href=\"/series/generative-recommendation/en\">Explore the complete 20-paper roadmap →</a></p>\n",
+    "excerpt": "Before reading 20 papers, distinguish whether a recommender is generating language, item IDs, an entire list, or something that merely looks like reasoning.",
+    "toc": [
+      {
+        "id": "the-same-name-can-describe-different-lineages",
+        "text": "The same name can describe different lineages",
+        "level": "h2"
+      },
+      {
+        "id": "the-story-begins-with-a-scoring-machine",
+        "text": "The story begins with a scoring machine",
+        "level": "h2"
+      },
+      {
+        "id": "two-branches-separate",
+        "text": "Two branches separate",
+        "level": "h2"
+      },
+      {
+        "id": "the-branches-converge-in-industrial-systems",
+        "text": "The branches converge in industrial systems",
+        "level": "h2"
+      },
+      {
+        "id": "how-the-20-papers-will-be-read",
+        "text": "How the 20 papers will be read",
+        "level": "h2"
+      }
+    ],
+    "alternateSlug": "generative-recommendation-preface-zh",
+    "series": "generative-recommendation",
+    "seriesOrder": 0
+  }
+]
