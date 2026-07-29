@@ -29,6 +29,8 @@ Never implement features or blog edits directly on `master`.
   structured data, RSS, and sitemap behavior together when routes change.
 - Preserve the Vercount element IDs. They are filled by the shared deferred
   script in `app/layout.tsx`.
+- Preserve `public/google749d44204d33a3f0.html`; Google Search Console requires
+  the exact root-level file even after verification succeeds.
 
 Use:
 
