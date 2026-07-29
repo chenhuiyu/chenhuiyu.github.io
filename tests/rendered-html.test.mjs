@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const developmentPreviewMeta =
@@ -40,7 +41,7 @@ test("renders development preview metadata", async () => {
   assert.match(await response.text(), developmentPreviewMeta);
 });
 
-test("renders the homepage series, automatic latest story, and site counter", async () => {
+test("renders the homepage series, latest story, and transparent traffic scopes", async () => {
   const response = await render("/");
   const html = await response.text();
 
@@ -54,11 +55,31 @@ test("renders the homepage series, automatic latest story, and site counter", as
     html,
     /href="\/blog\/generative-recommendation-20-onereason-zh"/,
   );
+  assert.match(html, /class="visitor-pulse-section"/);
+  assert.match(html, /id="busuanzi_value_site_pv"/);
+  assert.match(html, /id="busuanzi_value_site_uv"/);
   assert.match(html, /id="vercount_value_site_pv"/);
+  assert.match(html, /id="vercount_value_site_uv"/);
+  assert.match(
+    html,
+    /src="https:\/\/busuanzi\.ibruce\.info\/busuanzi\/2\.3\/busuanzi\.pure\.mini\.js"/,
+  );
   assert.match(html, /src="https:\/\/events\.vercount\.one\/js"/);
   assert.match(
     html,
     /<link rel="canonical" href="https:\/\/chenhuiyu\.github\.io\/"/,
+  );
+});
+
+test("keeps the Google Search Console verification file at the site root", async () => {
+  const verification = await readFile(
+    new URL("../public/google749d44204d33a3f0.html", import.meta.url),
+    "utf8",
+  );
+
+  assert.equal(
+    verification.trim(),
+    "google-site-verification: google749d44204d33a3f0.html",
   );
 });
 
