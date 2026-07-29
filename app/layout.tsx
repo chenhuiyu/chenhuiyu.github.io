@@ -139,6 +139,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(identityJsonLd) }}
         />
         {children}
+        <script
+          async
+          src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+        />
         <script defer src="https://events.vercount.one/js" />
       </body>
     </html>
