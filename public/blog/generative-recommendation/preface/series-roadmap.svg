@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Twenty-paper generative recommendation roadmap</title>
+  <desc id="desc">The series moves from ranking to sequential recommendation, splits into an LLM branch and a generative retrieval branch, and converges in industrial generative systems and reasoning.</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="600">20 篇论文，只讲一条问题链 / The roadmap</text>
+    <text x="80" y="125" fill="#6f6a61" font-size="22">顺序按技术矛盾组织，而不是机械地按发表年份排列。</text>
+
+    <rect x="80" y="340" width="245" height="180" rx="28" fill="#eff6ff" stroke="#3b82f6" stroke-width="3"/>
+    <text x="115" y="390" fill="#1d4ed8" font-size="20" font-weight="700">01–04 · 前世</text>
+    <text x="115" y="432" fill="#171612" font-size="27" font-weight="600">打分 → 序列</text>
+    <text x="115" y="472" fill="#6f6a61" font-size="18">BPR · GRU4Rec</text>
+    <text x="115" y="500" fill="#6f6a61" font-size="18">SASRec · BERT4Rec</text>
+    <path d="M340 430 H435" stroke="#3b82f6" stroke-width="5"/>
+    <path d="M420 417 L440 430 L420 443" fill="none" stroke="#3b82f6" stroke-width="5"/>
+
+    <circle cx="500" cy="430" r="58" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+    <text x="462" y="420" fill="#171612" font-size="19" font-weight="600">生成</text>
+    <text x="452" y="450" fill="#171612" font-size="19" font-weight="600">什么？</text>
+
+    <path d="M555 405 C620 330 655 250 730 235" fill="none" stroke="#8b5cf6" stroke-width="5"/>
+    <path d="M713 226 L735 235 L718 250" fill="none" stroke="#8b5cf6" stroke-width="5"/>
+    <rect x="750" y="155" width="340" height="190" rx="28" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="3"/>
+    <text x="790" y="205" fill="#6d28d9" font-size="20" font-weight="700">05–09 · LLM 支线</text>
+    <text x="790" y="247" fill="#171612" font-size="27" font-weight="600">语言统一任务</text>
+    <text x="790" y="287" fill="#6f6a61" font-size="18">P5 · M6-Rec · TALLRec</text>
+    <text x="790" y="315" fill="#6f6a61" font-size="18">ReLLa · LLaRA</text>
+
+    <path d="M555 455 C620 530 655 610 730 625" fill="none" stroke="#f59e0b" stroke-width="5"/>
+    <path d="M713 610 L735 625 L713 638" fill="none" stroke="#f59e0b" stroke-width="5"/>
+    <rect x="750" y="535" width="340" height="205" rx="28" fill="#fff7ed" stroke="#f59e0b" stroke-width="3"/>
+    <text x="790" y="585" fill="#92400e" font-size="20" font-weight="700">10–15 · ID 支线</text>
+    <text x="790" y="627" fill="#171612" font-size="27" font-weight="600">商品成为 token</text>
+    <text x="790" y="667" fill="#6f6a61" font-size="18">DSI · TIGER · GPTRec</text>
+    <text x="790" y="695" fill="#6f6a61" font-size="18">LC-Rec · LETTER · ETEGRec</text>
+
+    <path d="M1110 250 C1180 270 1195 350 1240 405" fill="none" stroke="#10b981" stroke-width="5"/>
+    <path d="M1110 635 C1180 610 1195 510 1240 455" fill="none" stroke="#10b981" stroke-width="5"/>
+    <rect x="1255" y="325" width="270" height="215" rx="28" fill="#ecfdf5" stroke="#10b981" stroke-width="3"/>
+    <text x="1290" y="375" fill="#047857" font-size="20" font-weight="700">16–20 · 汇合</text>
+    <text x="1290" y="417" fill="#171612" font-size="27" font-weight="600">系统与推理</text>
+    <text x="1290" y="458" fill="#6f6a61" font-size="18">HSTU · OneRec · MTGR</text>
+    <text x="1290" y="486" fill="#6f6a61" font-size="18">OneRec-Think</text>
+    <text x="1290" y="514" fill="#6f6a61" font-size="18">OneReason</text>
+
+    <text x="80" y="820" fill="#171612" font-size="25" font-weight="600">主问题：</text>
+    <text x="195" y="820" fill="#6f6a61" font-size="25">推荐如何从“评估候选”走向“生成可执行、可对齐的选择”？</text>
+  </g>
+</svg>

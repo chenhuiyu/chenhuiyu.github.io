@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Atomic, textual, and semantic item identifiers</title>
+  <desc id="desc">Three ways to represent items for generative recommendation, with their strengths and weaknesses.</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="600">商品怎样变成 token？ / Three item identifiers</text>
+    <text x="80" y="125" fill="#6f6a61" font-size="22">表示方法决定模型是在记忆商品、理解商品，还是复用商品之间的结构。</text>
+
+    <rect x="70" y="185" width="450" height="620" rx="30" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <text x="110" y="245" fill="#171612" font-size="31" font-weight="600">Atomic ID</text>
+    <text x="110" y="280" fill="#6f6a61" font-size="19">一件商品，一个不可拆 token</text>
+    <rect x="205" y="340" width="180" height="98" rx="22" fill="#dbeafe" stroke="#3b82f6" stroke-width="3"/>
+    <text x="253" y="400" fill="#1d4ed8" font-size="34" font-weight="700">&lt;I03&gt;</text>
+    <text x="110" y="495" fill="#166534" font-size="20" font-weight="700">优点 / Strength</text>
+    <text x="110" y="532" fill="#302e29" font-size="19">唯一、精确、容易映射回目录</text>
+    <text x="110" y="583" fill="#b91c1c" font-size="20" font-weight="700">代价 / Cost</text>
+    <text x="110" y="620" fill="#302e29" font-size="19">词表随商品数线性增长</text>
+    <text x="110" y="654" fill="#302e29" font-size="19">编号之间没有共享结构</text>
+    <text x="110" y="688" fill="#302e29" font-size="19">新商品几乎没有可迁移信息</text>
+    <text x="110" y="750" fill="#6f6a61" font-size="18">擅长记忆 · strong memorization</text>
+
+    <rect x="575" y="185" width="450" height="620" rx="30" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <text x="615" y="245" fill="#171612" font-size="31" font-weight="600">Textual ID</text>
+    <text x="615" y="280" fill="#6f6a61" font-size="19">用名称或属性描述商品</text>
+    <rect x="640" y="330" width="320" height="120" rx="22" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="3"/>
+    <text x="678" y="380" fill="#6d28d9" font-size="24" font-weight="600">“indoor climbing shoes”</text>
+    <text x="704" y="417" fill="#6d28d9" font-size="21">“室内攀岩鞋”</text>
+    <text x="615" y="495" fill="#166534" font-size="20" font-weight="700">优点 / Strength</text>
+    <text x="615" y="532" fill="#302e29" font-size="19">可继承语言模型的世界知识</text>
+    <text x="615" y="566" fill="#302e29" font-size="19">对冷启动更友好</text>
+    <text x="615" y="617" fill="#b91c1c" font-size="20" font-weight="700">代价 / Cost</text>
+    <text x="615" y="654" fill="#302e29" font-size="19">名称不保证唯一或稳定</text>
+    <text x="615" y="688" fill="#302e29" font-size="19">生成文本不一定落在真实目录</text>
+    <text x="615" y="750" fill="#6f6a61" font-size="18">擅长语义 · strong semantics</text>
+
+    <rect x="1080" y="185" width="450" height="620" rx="30" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <text x="1120" y="245" fill="#171612" font-size="31" font-weight="600">Semantic ID</text>
+    <text x="1120" y="280" fill="#6f6a61" font-size="19">共享 codebook 的短 token 序列</text>
+    <g font-size="21" font-weight="600">
+      <rect x="1125" y="340" width="108" height="62" rx="14" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="1143" y="379" fill="#92400e">&lt;sport&gt;</text>
+      <rect x="1245" y="340" width="112" height="62" rx="14" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="1262" y="379" fill="#92400e">&lt;climb&gt;</text>
+      <rect x="1369" y="340" width="112" height="62" rx="14" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="1388" y="379" fill="#92400e">&lt;shoe&gt;</text>
+    </g>
+    <path d="M1179 425 V452 H1425 V425" fill="none" stroke="#f59e0b" stroke-width="3"/>
+    <text x="1190" y="485" fill="#6f6a61" font-size="18">共享前缀，逐层缩小商品空间</text>
+    <text x="1120" y="535" fill="#166534" font-size="20" font-weight="700">优点 / Strength</text>
+    <text x="1120" y="572" fill="#302e29" font-size="19">词表可控、可共享层次结构</text>
+    <text x="1120" y="606" fill="#302e29" font-size="19">可融合内容与协同信号</text>
+    <text x="1120" y="657" fill="#b91c1c" font-size="20" font-weight="700">代价 / Cost</text>
+    <text x="1120" y="694" fill="#302e29" font-size="19">量化损失、碰撞、codebook 塌缩</text>
+    <text x="1120" y="728" fill="#302e29" font-size="19">目录变化时需要维护编码</text>
+    <text x="1120" y="770" fill="#6f6a61" font-size="18">在记忆与泛化之间折中</text>
+  </g>
+</svg>
