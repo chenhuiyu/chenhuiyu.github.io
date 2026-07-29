@@ -42,6 +42,8 @@ npm run lint
 
 - For Sites work, follow the Sites lifecycle and preview instructions.
 - For GitHub Pages, run `npm run export:static` and inspect the result.
+- Pushing `source` triggers `.github/workflows/publish-github-pages.yml`, which
+  builds the source and safely updates generated `master`.
 - `npm run publish:github-pages` replaces production `master`; run it only
   after the user explicitly approves publishing.
 - Preserve unrelated user changes and all existing photos/content.
