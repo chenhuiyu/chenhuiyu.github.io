@@ -57,22 +57,17 @@ npm run export:static   # generate static-export/ for GitHub Pages
 
 See [content/posts/README.md](content/posts/README.md) for the full post format.
 
-## Homepage, views, and SEO
+## Homepage, search performance, and SEO
 
 The homepage reads the published post index directly. It shows the three newest
 story pairs, preferring the Chinese edition for each pair, so a newly published
 bilingual post appears automatically. Drafts never enter the generated index
 and therefore never appear on the homepage.
 
-Traffic has two deliberately separate scopes:
-
-- the homepage lifetime totals use the same [Busuanzi](https://busuanzi.ibruce.info/)
-  counter as the old Hexo site, so `chenhuiyu.github.io` resumes its existing
-  same-domain history;
-- the homepage also shows post-redesign totals and each article's current-route
-  views through [Vercount](https://www.vercount.one/);
-- both services separate counts by hostname, so GitHub Pages and the Sites
-  deployment remain independent.
+Google Search performance belongs in Search Console: clicks, impressions, CTR,
+and average position are private reporting metrics and are intentionally not
+rendered as public homepage counters. Individual article pages retain their
+current-route view count through [Vercount](https://www.vercount.one/).
 
 The permanent Google Search Console verification file is
 `public/google749d44204d33a3f0.html`. Keep it at that exact root path after
@@ -80,8 +75,10 @@ verification succeeds.
 
 Page metadata includes canonical URLs, Open Graph and Twitter cards, bilingual
 `hreflang`, and Schema.org structured data. `npm run export:static` also
-regenerates `robots.txt`, `sitemap.xml`, and `feed.xml`. The canonical public
-origin is `https://chenhuiyu.github.io`.
+regenerates `robots.txt`, `sitemap.xml`, `legacy-sitemap.xml`, and `feed.xml`.
+Every imported Hexo article keeps a one-to-one instant redirect from its old
+URL to its new `/blog/...` URL. The canonical public origin is
+`https://chenhuiyu.github.io`.
 
 ## Publish to GitHub Pages
 
