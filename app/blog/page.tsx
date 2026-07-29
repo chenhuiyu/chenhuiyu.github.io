@@ -1,16 +1,36 @@
 import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "@/app/components/SiteHeader";
 import { posts } from "@/lib/posts";
+import { RSS_ALTERNATE, SITE_SOCIAL_IMAGE } from "@/lib/site";
 import { BlogExplorer } from "./BlogExplorer";
+
+const storyCount = new Set(posts.map((post) => post.pairKey)).size;
+const blogDescription = `${storyCount} stories in complete English and Chinese editions, covering LLMs, NLP, engineering, code, life, and travel.`;
 
 export const metadata: Metadata = {
   title: "Blog — Huiyu Chen",
-  description:
-    "51 stories in complete English and Chinese editions, covering LLMs, NLP, engineering, code, life, and travel.",
+  description: blogDescription,
+  alternates: {
+    canonical: "/blog",
+    types: RSS_ALTERNATE,
+  },
+  openGraph: {
+    type: "website",
+    url: "/blog",
+    title: "Writing Archive — Huiyu Chen",
+    description: blogDescription,
+    images: [SITE_SOCIAL_IMAGE],
+  },
+  twitter: {
+    card: "summary",
+    title: "Writing Archive — Huiyu Chen",
+    description: blogDescription,
+    images: [SITE_SOCIAL_IMAGE],
+  },
 };
 
 export default function BlogPage() {
-  const pairCount = new Set(posts.map((post) => post.pairKey)).size;
+  const pairCount = storyCount;
   const categoryCount = new Set(posts.map((post) => post.category)).size;
   const cards = posts.map(
     ({ slug, title, date, category, language, excerpt, tags }) => ({
@@ -40,9 +60,9 @@ export default function BlogPage() {
           systems, and <span className="word-mark">being human</span>.
         </h1>
         <p>
-          Every story from my original archive now has a complete English and
-          Chinese edition—not just a bilingual label—and they all wear the same
-          warm editorial outfit.
+          Every story has a complete English and Chinese edition—not just a
+          bilingual label. New published notes join this archive and the
+          homepage automatically.
         </p>
         <div className="blog-stats" aria-label="Blog archive summary">
           <span>
