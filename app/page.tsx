@@ -1,6 +1,30 @@
+import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "@/app/components/SiteHeader";
+import { SiteTrafficCounter } from "@/app/components/ViewCounter";
 import { countryOrder, travelLocations } from "@/content/travel-data";
 import { posts } from "@/lib/posts";
+import {
+  RSS_ALTERNATE,
+  SITE_DESCRIPTION,
+  SITE_SOCIAL_IMAGE,
+  SITE_TITLE,
+} from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+    types: RSS_ALTERNATE,
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [SITE_SOCIAL_IMAGE],
+  },
+};
 
 const focusAreas = [
   {
@@ -23,22 +47,23 @@ const focusAreas = [
   },
 ];
 
-const featuredPosts = [
-  posts.find(
-    (post) =>
-      post.language === "en" && post.title.includes("Sparse-Linear Attention"),
-  ),
-  posts.find(
-    (post) =>
-      post.language === "en" &&
-      post.title.includes("Redefining Memory Management"),
-  ),
-  posts.find(
-    (post) =>
-      post.language === "zh-CN" &&
-      post.title.includes("推理 LLM 的可视化指南"),
-  ),
-].filter((post) => post !== undefined);
+const storyKeys = [...new Set(posts.map((post) => post.pairKey))];
+const latestStories = storyKeys
+  .map(
+    (pairKey) =>
+      posts.find(
+        (post) => post.pairKey === pairKey && post.language === "zh-CN",
+      ) ?? posts.find((post) => post.pairKey === pairKey),
+  )
+  .filter((post) => post !== undefined)
+  .slice(0, 3);
+
+const seriesPrologue = posts.find(
+  (post) =>
+    post.series === "generative-recommendation" &&
+    post.seriesOrder === 0 &&
+    post.language === "zh-CN",
+);
 
 export default function Home() {
   return (
@@ -286,19 +311,77 @@ export default function Home() {
         </article>
       </section>
 
+      <section className="home-series-section" id="generative-recommendation">
+        <div className="home-series-copy">
+          <p className="section-kicker">Featured series · 重点专题</p>
+          <h2>
+            二十篇论文，看懂生成式推荐的
+            <span>前世今生。</span>
+          </h2>
+          <p className="home-series-lede">
+            从 BPR 的打分器，到 OneReason
+            的推荐推理。每篇论文都回答上一篇留下的问题，把排序、序列建模、语言任务、Semantic
+            ID 与推理串成一条能跟下来的故事线。
+          </p>
+          <div className="home-series-actions">
+            <a
+              className="text-link text-link-primary"
+              href="/series/generative-recommendation"
+            >
+              打开完整路线图 <span aria-hidden="true">→</span>
+            </a>
+            {seriesPrologue ? (
+              <a className="text-link" href={`/blog/${seriesPrologue.slug}`}>
+                从序章开始 <span aria-hidden="true">↗︎</span>
+              </a>
+            ) : null}
+          </div>
+          <div className="home-series-status">
+            <p>
+              <strong>00</strong>
+              序章已发布
+            </p>
+            <p>
+              <strong>20</strong>
+              篇论文主线
+            </p>
+            <SiteTrafficCounter locale="zh-CN" />
+          </div>
+        </div>
+
+        <a
+          className="home-series-visual"
+          href="/series/generative-recommendation"
+          aria-label="查看二十篇生成式推荐论文路线图"
+        >
+          <img
+            alt="从排序、序列推荐到生成式推荐与推理的二十篇论文路线图"
+            src="/blog/generative-recommendation/preface/series-roadmap.svg"
+          />
+          <span>
+            一张图看懂主线
+            <small aria-hidden="true">↗︎</small>
+          </span>
+        </a>
+      </section>
+
       <section className="writing-section" id="writing">
         <div className="section-intro writing-intro">
-          <p className="section-kicker">Writing · 写作</p>
+          <p className="section-kicker">Latest writing · 最新文章</p>
           <div>
-            <h2>All the old notes, now in one much better-dressed archive.</h2>
+            <h2>New stories arrive here automatically.</h2>
+            <p className="section-summary">
+              新发布的文章会自动出现在首页；每个故事都有完整的中英双语版本。
+            </p>
             <a className="text-link text-link-primary" href="/blog">
-              Browse all 102 posts <span aria-hidden="true">→</span>
+              Browse all {storyKeys.length} stories · {posts.length} editions{" "}
+              <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
 
         <div className="writing-list">
-          {featuredPosts.map((article, index) => (
+          {latestStories.map((article, index) => (
             <a
               className="writing-card"
               href={`/blog/${article.slug}`}
