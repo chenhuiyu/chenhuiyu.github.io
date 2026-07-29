@@ -23,6 +23,12 @@ Never implement features or blog edits directly on `master`.
 - Keep both files at `draft: true` until both editions are complete.
 - Do not hand-edit `content/authored-posts.json`; it is generated.
 - Do not hand-edit files in `static-export/` or `master`.
+- Do not maintain a hard-coded homepage article list. The homepage derives the
+  newest published story pairs from `lib/posts.ts`.
+- Keep canonical URLs on `https://chenhuiyu.github.io`; update page metadata,
+  structured data, RSS, and sitemap behavior together when routes change.
+- Preserve the Vercount element IDs. They are filled by the shared deferred
+  script in `app/layout.tsx`.
 
 Use:
 
