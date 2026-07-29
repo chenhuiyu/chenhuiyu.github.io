@@ -1,6 +1,7 @@
 import { SiteFooter, SiteHeader } from "@/app/components/SiteHeader";
 import seriesData from "@/content/generative-recommendation-series.json";
 import { posts } from "@/lib/posts";
+import { absoluteUrl, serializeJsonLd, SITE_URL } from "@/lib/site";
 
 type Locale = "zh-CN" | "en";
 
@@ -143,9 +144,57 @@ export function SeriesPage({ locale }: { locale: Locale }) {
       .map((post) => [post.seriesOrder as number, post]),
   );
   const prologue = publishedByOrder.get(0);
+  const seriesPath =
+    locale === "zh-CN"
+      ? "/series/generative-recommendation"
+      : "/series/generative-recommendation/en";
+  const seriesUrl = absoluteUrl(seriesPath);
+  const seriesJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${seriesUrl}#series`,
+    url: seriesUrl,
+    name: series.title[locale],
+    description: series.subtitle[locale],
+    inLanguage: locale,
+    author: {
+      "@id": `${SITE_URL}/#person`,
+    },
+    isPartOf: {
+      "@id": `${SITE_URL}/#website`,
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: series.episodes.length,
+      itemListOrder: "https://schema.org/ItemListOrderAscending",
+      itemListElement: series.episodes.map((episode) => {
+        const post = publishedByOrder.get(episode.order);
+        return {
+          "@type": "ListItem",
+          position: episode.order,
+          item: {
+            "@type": "Article",
+            name: episode.title[locale],
+            headline: episode.title[locale],
+            ...(post
+              ? {
+                  url: absoluteUrl(`/blog/${post.slug}`),
+                  datePublished: post.date,
+                  dateModified: post.updated || post.date,
+                }
+              : {}),
+          },
+        };
+      }),
+    },
+  };
 
   return (
     <main className="site-shell series-shell" id="top">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(seriesJsonLd) }}
+      />
       <SiteHeader />
 
       <section className="series-hero">
