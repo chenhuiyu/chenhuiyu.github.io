@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">八件商品也可以是一座可生成的索引 / DSI toy</title><desc id="desc">把商品描述当作 document，把商品 ID 当作 docid；查询只需要生成正确门牌号。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"><text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">八件商品也可以是一座可生成的索引 / DSI toy</text><text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">把商品描述当作 document，把商品 ID 当作 docid；查询只需要生成正确门牌号。</text><rect x="77" y="220" width="335" height="420" rx="28" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="111" y="270" fill="#1d4ed8" font-size="17" font-weight="750" text-anchor="start">01</text>
+      <text x="111" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">索引样本</text>
+      <text x="111" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">“防雾游泳护目镜”</text>
+<text x="111" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">→ I06 / 4-2-1</text>
+<text x="111" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">教模型记住文档</text>
+<rect x="447" y="220" width="335" height="420" rx="28" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="481" y="270" fill="#6d28d9" font-size="17" font-weight="750" text-anchor="start">02</text>
+      <text x="481" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">检索样本</text>
+      <text x="481" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">“游泳时保护眼睛”</text>
+<text x="481" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">→ I06 / 4-2-1</text>
+<text x="481" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">教模型关联查询</text>
+<rect x="817" y="220" width="335" height="420" rx="28" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="851" y="270" fill="#92400e" font-size="17" font-weight="750" text-anchor="start">03</text>
+      <text x="851" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">三种 ID</text>
+      <text x="851" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">atomic: [I06]</text>
+<text x="851" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">naive: [0,0,6]</text>
+<text x="851" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">semantic: [4,2,1]</text>
+<rect x="1187" y="220" width="335" height="420" rx="28" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="1221" y="270" fill="#166534" font-size="17" font-weight="750" text-anchor="start">04</text>
+      <text x="1221" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">推理</text>
+      <text x="1221" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">query → decoder</text>
+<text x="1221" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">beam search</text>
+<text x="1221" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">返回 ID 对应商品</text>
+    <rect x="235" y="705" width="1130" height="100" rx="25" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <text x="800" y="765" fill="#171612" font-size="22" font-weight="650" text-anchor="middle">同一个 NLL 同时承担 indexing 与 retrieval；没有 indexing，任意 ID 对模型毫无意义。</text></g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">从查索引到生成标识符 / DSI</title><desc id="desc">传统检索把文档存进外部索引；DSI 把文档—ID 关联写进 Transformer 参数。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"><text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">从查索引到生成标识符 / DSI</text><text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">传统检索把文档存进外部索引；DSI 把文档—ID 关联写进 Transformer 参数。</text>
+    <rect x="90" y="225" width="575" height="420" rx="30" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="135" y="285" fill="#1d4ed8" font-size="18" font-weight="750" text-anchor="start">DUAL ENCODER + ANN</text>
+    <text x="135" y="342" fill="#171612" font-size="34" font-weight="650" text-anchor="start">查询向量去索引里找</text>
+    <text x="135" y="408" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">q → embedding</text>
+<text x="135" y="458" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">documents → embeddings</text>
+<text x="135" y="508" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">ANN / MIPS</text>
+<text x="135" y="558" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">索引与模型分离</text>
+    <line x1="695" y1="435" x2="887" y2="435" stroke="#8b5cf6" stroke-width="5"/>
+  <path d="M881 422 L905 435 L881 448" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="708" y="365" width="174" height="62" rx="31" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="795" y="405" fill="#6d28d9" font-size="20" font-weight="750" text-anchor="middle">generate</text>
+    <rect x="935" y="225" width="575" height="420" rx="30" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+    <text x="980" y="285" fill="#166534" font-size="18" font-weight="750" text-anchor="start">DIFFERENTIABLE INDEX</text>
+    <text x="980" y="342" fill="#171612" font-size="34" font-weight="650" text-anchor="start">查询直接生成 docid</text>
+    <text x="980" y="408" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">document → docid 训练</text>
+<text x="980" y="458" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">query → docid 训练</text>
+<text x="980" y="508" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">beam search 输出</text>
+<text x="980" y="558" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">参数就是索引</text>
+    <line x1="90" y1="710" x2="1510" y2="710" stroke="#c9c0b3" stroke-width="2" stroke-dasharray="10 10"/>
+    <text x="800" y="785" fill="#92400e" font-size="24" font-weight="650" text-anchor="middle">检索从“比较所有候选”变成“在 ID 树上逐 token 导航”。</text></g>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">融合后，行为与世界知识都能贡献 / SIGIR 2024 Table 2</title>
+  <desc id="desc">HitRatio@1；LLaRA 取各数据集最佳变体，对比最强传统或 LLM-based baseline。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">融合后，行为与世界知识都能贡献 / SIGIR 2024 Table 2</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">HitRatio@1；LLaRA 取各数据集最佳变体，对比最强传统或 LLM-based baseline。</text>
+    <text x="90" y="217" fill="#171612" font-size="20" font-weight="700" text-anchor="start">MovieLens</text>
+      <rect x="335" y="230" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="230" width="750.6727272727272" height="29" rx="15" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="251" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">TALLRec</text>
+          <text x="1098.6727272727271" y="251" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.3895</text>
+<rect x="335" y="273" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="273" width="912.9490909090908" height="29" rx="15" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="294" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">LLaRA</text>
+          <text x="1260.949090909091" y="294" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.4737</text>
+<text x="90" y="359" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Steam</text>
+      <rect x="335" y="372" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="372" width="893.6763636363636" height="29" rx="15" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="393" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">TALLRec</text>
+          <text x="1241.6763636363635" y="393" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.4637</text>
+<rect x="335" y="415" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="415" width="953.8072727272727" height="29" rx="15" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="436" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">LLaRA</text>
+          <text x="1301.8072727272727" y="436" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.4949</text>
+<text x="90" y="501" fill="#171612" font-size="20" font-weight="700" text-anchor="start">LastFM</text>
+      <rect x="335" y="514" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="514" width="805.5999999999999" height="29" rx="15" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="535" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">TALLRec</text>
+          <text x="1153.6" y="535" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.418</text>
+<rect x="335" y="557" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="557" width="868.8145454545453" height="29" rx="15" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="578" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">LLaRA</text>
+          <text x="1216.8145454545452" y="578" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.4508</text>
+    <text x="1510" y="850" fill="#6f6a61" font-size="15" font-weight="500" text-anchor="end">Source: original paper tables; values redrawn</text>
+  </g>
+</svg>

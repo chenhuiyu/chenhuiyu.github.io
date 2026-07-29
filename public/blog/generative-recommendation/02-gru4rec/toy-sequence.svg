@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">把一次逛店过程展开成监督信号 / Session toy example</title>
+  <desc id="desc">一条四步 session 可以产生三组 next-item 训练目标。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">把一次逛店过程展开成监督信号 / Session toy example</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">一条四步 session 可以产生三组 next-item 训练目标。</text><rect x="80" y="180" width="160" height="105" rx="18" fill="#eff6ff" stroke="#3b82f6" stroke-width="3"/>
+      <text x="160" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I01</text>
+      <text x="160" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">网球拍</text>
+      <text x="160" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">racket</text>
+<rect x="265" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="345" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I02</text>
+      <text x="345" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">吸汗带</text>
+      <text x="345" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">sweatband</text>
+<rect x="450" y="180" width="160" height="105" rx="18" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="3"/>
+      <text x="530" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I03</text>
+      <text x="530" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">攀岩鞋</text>
+      <text x="530" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">climbing shoes</text>
+<rect x="635" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="715" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I04</text>
+      <text x="715" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">粉袋</text>
+      <text x="715" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">chalk bag</text>
+<rect x="820" y="180" width="160" height="105" rx="18" fill="#fff7ed" stroke="#f59e0b" stroke-width="3"/>
+      <text x="900" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I05</text>
+      <text x="900" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">羽毛球</text>
+      <text x="900" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">shuttlecock</text>
+<rect x="1005" y="180" width="160" height="105" rx="18" fill="#ecfdf5" stroke="#10b981" stroke-width="3"/>
+      <text x="1085" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I06</text>
+      <text x="1085" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">泳镜</text>
+      <text x="1085" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">goggles</text>
+<rect x="1190" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="1270" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I07</text>
+      <text x="1270" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">瑜伽垫</text>
+      <text x="1270" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">yoga mat</text>
+<rect x="1375" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="1455" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I08</text>
+      <text x="1455" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">蛋白棒</text>
+      <text x="1455" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">protein bar</text><rect x="135" y="430" width="240" height="100" rx="24" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+        <text x="255" y="475" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="middle">t=1</text>
+        <text x="255" y="508" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">I01 网球拍</text>
+        <path d="M380 480 H444" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M440 467 L460 480 L440 493" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="465" y="430" width="240" height="100" rx="24" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+        <text x="585" y="475" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="middle">t=2</text>
+        <text x="585" y="508" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">I03 攀岩鞋</text>
+        <path d="M710 480 H774" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M770 467 L790 480 L770 493" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="795" y="430" width="240" height="100" rx="24" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+        <text x="915" y="475" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="middle">t=3</text>
+        <text x="915" y="508" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">I05 羽毛球</text>
+        <path d="M1040 480 H1104" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1100 467 L1120 480 L1100 493" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1125" y="430" width="240" height="100" rx="24" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+        <text x="1245" y="475" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="middle">t=4</text>
+        <text x="1245" y="508" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">I06 泳镜</text>
+        <rect x="275" y="665" width="1050" height="105" rx="24" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+      <text x="800" y="708" fill="#6f6a61" font-size="20" font-weight="650" text-anchor="middle">训练标签 / shifted targets</text>
+      <text x="800" y="750" fill="#171612" font-size="29" font-weight="700" text-anchor="middle">I01 → I03　　I03 → I05　　I05 → I06</text>
+  </g>
+</svg>

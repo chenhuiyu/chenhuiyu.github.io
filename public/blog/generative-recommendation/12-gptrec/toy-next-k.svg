@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">同一份历史，两种生成列表的方法 / GPTRec toy</title><desc id="desc">小林历史为网球拍 → 攀岩鞋 → 羽毛球；目标输出三件。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"><text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">同一份历史，两种生成列表的方法 / GPTRec toy</text><text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">小林历史为网球拍 → 攀岩鞋 → 羽毛球；目标输出三件。</text><rect x="77" y="220" width="335" height="420" rx="28" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="111" y="270" fill="#1d4ed8" font-size="17" font-weight="750" text-anchor="start">01</text>
+      <text x="111" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">Top-K 分数</text>
+      <text x="111" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">I06 0.82</text>
+<text x="111" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">I02 0.79</text>
+<text x="111" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">I04 0.77</text>
+<text x="111" y="520" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">一次排序完成</text>
+<rect x="447" y="220" width="335" height="420" rx="28" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="481" y="270" fill="#6d28d9" font-size="17" font-weight="750" text-anchor="start">02</text>
+      <text x="481" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">Next-1</text>
+      <text x="481" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">history → I06</text>
+<text x="481" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">列表：[泳镜]</text>
+<text x="481" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">把 I06 追加输入</text>
+<rect x="817" y="220" width="335" height="420" rx="28" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="851" y="270" fill="#92400e" font-size="17" font-weight="750" text-anchor="start">03</text>
+      <text x="851" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">Next-2</text>
+      <text x="851" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">history + I06 → I04</text>
+<text x="851" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">列表：[泳镜,粉袋]</text>
+<text x="851" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">条件已经改变</text>
+<rect x="1187" y="220" width="335" height="420" rx="28" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="1221" y="270" fill="#166534" font-size="17" font-weight="750" text-anchor="start">04</text>
+      <text x="1221" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">Next-3</text>
+      <text x="1221" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">再生成 I02</text>
+<text x="1221" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">可加入多样性 reward</text>
+<text x="1221" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">论文尚未这样训练</text>
+    <rect x="235" y="705" width="1130" height="100" rx="25" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <text x="800" y="765" fill="#171612" font-size="22" font-weight="650" text-anchor="middle">Next-K 的表达力来自条件化；若训练仍只做 next-item，训练目标与列表解码并不对齐。</text></g>
+</svg>

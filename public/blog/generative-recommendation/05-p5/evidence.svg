@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">统一生成并未牺牲下一项推荐 / RecSys 2022 Table 3</title>
+  <desc id="desc">NDCG@5；P5-B 使用 Prompt 2-3，与论文中此前最强结果比较。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">统一生成并未牺牲下一项推荐 / RecSys 2022 Table 3</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">NDCG@5；P5-B 使用 Prompt 2-3，与论文中此前最强结果比较。</text>
+    <text x="90" y="217" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Sports</text>
+      <rect x="335" y="230" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="230" width="262.55384615384617" height="29" rx="15" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="251" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">S³-Rec</text>
+          <text x="610.5538461538462" y="251" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0161</text>
+<rect x="335" y="273" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="273" width="482.7076923076923" height="29" rx="15" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="294" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">P5-B</text>
+          <text x="830.7076923076922" y="294" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0296</text>
+<text x="90" y="359" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Beauty</text>
+      <rect x="335" y="372" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="372" width="406.0615384615384" height="29" rx="15" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="393" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">SASRec</text>
+          <text x="754.0615384615385" y="393" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0249</text>
+<rect x="335" y="415" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="415" width="618.0615384615386" height="29" rx="15" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="436" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">P5-B</text>
+          <text x="966.0615384615386" y="436" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0379</text>
+<text x="90" y="501" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Toys</text>
+      <rect x="335" y="514" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="514" width="499.01538461538456" height="29" rx="15" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="535" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">SASRec</text>
+          <text x="847.0153846153846" y="535" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0306</text>
+<rect x="335" y="557" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="557" width="924.6461538461539" height="29" rx="15" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="578" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">P5-S</text>
+          <text x="1272.646153846154" y="578" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0567</text>
+    <text x="1510" y="850" fill="#6f6a61" font-size="15" font-weight="500" text-anchor="end">Source: original paper tables; values redrawn</text>
+  </g>
+</svg>

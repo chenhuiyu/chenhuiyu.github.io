@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Itemic Alignment 打地基，Reasoning 再增益 / Beauty</title>
+  <desc id="desc">Ablation on Recall and NDCG；Base 使用原始 itemic sequence 调优。</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#172033" flood-opacity=".08"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#C8D2E1"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="720" fill="#FCFAF5"/>
+  <circle cx="1110" cy="70" r="160" fill="#E8F0FF" opacity=".55"/>
+  <circle cx="85" cy="675" r="145" fill="#F1EAFE" opacity=".55"/>
+  <text x="64" y="62" font-size="31" font-weight="760" fill="#172033">Itemic Alignment 打地基，Reasoning 再增益 / Beauty</text>
+  <text x="64" y="95" font-size="17" font-weight="500" fill="#667085">Ablation on Recall and NDCG；Base 使用原始 itemic sequence 调优。</text>
+  <rect x="64" y="125" width="1072" height="500" rx="22" fill="#FFFFFF" stroke="#C8D2E1" stroke-width="2"/><line x1="92" y1="485" x2="1108" y2="485" stroke="#C8D2E1" stroke-dasharray="5 7"/>
+        <text x="80" y="490" text-anchor="end" font-size="13" fill="#667085">0.000</text><line x1="92" y1="410" x2="1108" y2="410" stroke="#C8D2E1" stroke-dasharray="5 7"/>
+        <text x="80" y="415" text-anchor="end" font-size="13" fill="#667085">0.022</text><line x1="92" y1="335" x2="1108" y2="335" stroke="#C8D2E1" stroke-dasharray="5 7"/>
+        <text x="80" y="340" text-anchor="end" font-size="13" fill="#667085">0.045</text><line x1="92" y1="260" x2="1108" y2="260" stroke="#C8D2E1" stroke-dasharray="5 7"/>
+        <text x="80" y="265" text-anchor="end" font-size="13" fill="#667085">0.068</text><line x1="92" y1="185" x2="1108" y2="185" stroke="#C8D2E1" stroke-dasharray="5 7"/>
+        <text x="80" y="190" text-anchor="end" font-size="13" fill="#667085">0.090</text><rect x="173.33333333333337" y="331.6666666666667" width="52" height="153.33333333333331" rx="8" fill="#C8D2E1"/>
+            <text x="199.33333333333337" y="321.6666666666667" text-anchor="middle" font-size="13" font-weight="700" fill="#C8D2E1">0.046</text>
+            <text x="199.33333333333337" y="509" text-anchor="middle" font-size="12" font-weight="650" fill="#667085">Base</text><rect x="235.33333333333337" y="307.66666666666663" width="52" height="177.33333333333334" rx="8" fill="#2563EB"/>
+            <text x="261.33333333333337" y="297.66666666666663" text-anchor="middle" font-size="13" font-weight="700" fill="#2563EB">0.0532</text>
+            <text x="261.33333333333337" y="509" text-anchor="middle" font-size="12" font-weight="650" fill="#667085">+IA</text><rect x="297.33333333333337" y="297.3333333333333" width="52" height="187.66666666666669" rx="8" fill="#7C3AED"/>
+            <text x="323.33333333333337" y="287.3333333333333" text-anchor="middle" font-size="13" font-weight="700" fill="#7C3AED">0.0563</text>
+            <text x="323.33333333333337" y="509" text-anchor="middle" font-size="12" font-weight="650" fill="#667085">+R</text>
+        <text x="261.33333333333337" y="550" text-anchor="middle" font-size="16" font-weight="760" fill="#172033">Recall@5</text><rect x="512" y="267" width="52" height="218" rx="8" fill="#C8D2E1"/>
+            <text x="538" y="257" text-anchor="middle" font-size="13" font-weight="700" fill="#C8D2E1">0.0654</text>
+            <text x="538" y="509" text-anchor="middle" font-size="12" font-weight="650" fill="#667085">Base</text><rect x="574" y="240" width="52" height="245" rx="8" fill="#2563EB"/>
+            <text x="600" y="230" text-anchor="middle" font-size="13" font-weight="700" fill="#2563EB">0.0735</text>
+            <text x="600" y="509" text-anchor="middle" font-size="12" font-weight="650" fill="#667085">+IA</text><rect x="636" y="221.33333333333331" width="52" height="263.6666666666667" rx="8" fill="#7C3AED"/>
+            <text x="662" y="211.33333333333331" text-anchor="middle" font-size="13" font-weight="700" fill="#7C3AED">0.0791</text>
+            <text x="662" y="509" text-anchor="middle" font-size="12" font-weight="650" fill="#667085">+R</text>
+        <text x="600" y="550" text-anchor="middle" font-size="16" font-weight="760" fill="#172033">Recall@10</text><rect x="850.6666666666667" y="359.33333333333337" width="52" height="125.66666666666666" rx="8" fill="#C8D2E1"/>
+            <text x="876.6666666666667" y="349.33333333333337" text-anchor="middle" font-size="13" font-weight="700" fill="#C8D2E1">0.0377</text>
+            <text x="876.6666666666667" y="509" text-anchor="middle" font-size="12" font-weight="650" fill="#667085">Base</text><rect x="912.6666666666667" y="351" width="52" height="134" rx="8" fill="#2563EB"/>
+            <text x="938.6666666666667" y="341" text-anchor="middle" font-size="13" font-weight="700" fill="#2563EB">0.0402</text>
+            <text x="938.6666666666667" y="509" text-anchor="middle" font-size="12" font-weight="650" fill="#667085">+IA</text><rect x="974.6666666666667" y="328" width="52" height="157.00000000000003" rx="8" fill="#7C3AED"/>
+            <text x="1000.6666666666667" y="318" text-anchor="middle" font-size="13" font-weight="700" fill="#7C3AED">0.0471</text>
+            <text x="1000.6666666666667" y="509" text-anchor="middle" font-size="12" font-weight="650" fill="#667085">+R</text>
+        <text x="938.6666666666667" y="550" text-anchor="middle" font-size="16" font-weight="760" fill="#172033">NDCG@10</text>
+  <line x1="64" y1="665" x2="1136" y2="665" stroke="#C8D2E1"/>
+         <text x="64" y="696" font-size="15" fill="#667085">Source: OneRec-Think Table 2. Kuaishou 线上 App Stay Time +0.159%，Watch Time +0.169%。</text>
+</svg>

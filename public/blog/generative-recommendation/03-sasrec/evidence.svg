@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">SASRec 在稀疏与稠密数据上都有效 / ICDM 2018 Table III</title>
+  <desc id="desc">NDCG@10；灰色为论文中最强神经基线，紫色为 SASRec。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">SASRec 在稀疏与稠密数据上都有效 / ICDM 2018 Table III</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">NDCG@10；灰色为论文中最强神经基线，紫色为 SASRec。</text>
+    <text x="90" y="229" fill="#171612" font-size="21" font-weight="700" text-anchor="start">Amazon Beauty</text>
+      <rect x="310" y="243" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="243" width="408.96000000000004" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="290" y="264" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">best neural</text>
+          <text x="732.96" y="264" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.2556</text>
+<rect x="310" y="285" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="285" width="515.0400000000001" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="290" y="306" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">SASRec</text>
+          <text x="839.0400000000001" y="306" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.3219</text>
+<text x="90" y="364" fill="#171612" font-size="21" font-weight="700" text-anchor="start">Amazon Games</text>
+      <rect x="310" y="378" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="378" width="761.44" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="290" y="399" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">best neural</text>
+          <text x="1085.44" y="399" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.4759</text>
+<rect x="310" y="420" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="420" width="857.6000000000001" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="290" y="441" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">SASRec</text>
+          <text x="1181.6000000000001" y="441" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.536</text>
+<text x="90" y="499" fill="#171612" font-size="21" font-weight="700" text-anchor="start">Steam</text>
+      <rect x="310" y="513" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="513" width="895.2" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="290" y="534" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">best neural</text>
+          <text x="1219.2" y="534" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.5595</text>
+<rect x="310" y="555" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="555" width="1008.9600000000002" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="290" y="576" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">SASRec</text>
+          <text x="1332.96" y="576" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.6306</text>
+<text x="90" y="634" fill="#171612" font-size="21" font-weight="700" text-anchor="start">MovieLens-1M</text>
+      <rect x="310" y="648" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="648" width="886.08" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="290" y="669" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">best neural</text>
+          <text x="1210.08" y="669" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.5538</text>
+<rect x="310" y="690" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="690" width="944.8000000000001" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="290" y="711" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">SASRec</text>
+          <text x="1268.8000000000002" y="711" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.5905</text>
+    <text x="1510" y="842" fill="#6f6a61" font-size="16" font-weight="500" text-anchor="end">Source: original paper tables; values redrawn</text>
+  </g>
+</svg>

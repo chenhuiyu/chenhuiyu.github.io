@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">一条推荐日志怎样变成 instruction / Toy sample</title>
+  <desc id="desc">标签必须来自行为或评分，模型不能自己编“喜欢”。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">一条推荐日志怎样变成 instruction / Toy sample</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">标签必须来自行为或评分，模型不能自己编“喜欢”。</text>
+    <rect x="77" y="220" width="335" height="420" rx="28" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="111" y="270" fill="#1d4ed8" font-size="17" font-weight="750" text-anchor="start">01</text>
+      <text x="111" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">历史分组</text>
+      <text x="111" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">喜欢：I01 网球拍</text>
+<text x="111" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">喜欢：I03 攀岩鞋</text>
+<text x="111" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">不喜欢：I07 瑜伽垫</text>
+<rect x="447" y="220" width="335" height="420" rx="28" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="481" y="270" fill="#6d28d9" font-size="17" font-weight="750" text-anchor="start">02</text>
+      <text x="481" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">目标商品</text>
+      <text x="481" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">Target: I06 泳镜</text>
+<text x="481" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">标题 + 简介</text>
+<text x="481" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">用户尚未见过</text>
+<rect x="817" y="220" width="335" height="420" rx="28" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="851" y="270" fill="#92400e" font-size="17" font-weight="750" text-anchor="start">03</text>
+      <text x="851" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">指令输入</text>
+      <text x="851" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">根据历史判断</text>
+<text x="851" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">会不会喜欢 I06？</text>
+<text x="851" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">只回答 Yes / No</text>
+<rect x="1187" y="220" width="335" height="420" rx="28" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="1221" y="270" fill="#166534" font-size="17" font-weight="750" text-anchor="start">04</text>
+      <text x="1221" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">监督输出</text>
+      <text x="1221" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">真实行为：点击</text>
+<text x="1221" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">Target = “Yes”</text>
+<text x="1221" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">token NLL 训练</text>
+    <rect x="235" y="705" width="1130" height="100" rx="25" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <text x="800" y="765" fill="#171612" font-size="22" font-weight="650" text-anchor="middle">输入是自然语言，但监督仍是推荐数据；这正是 language–recommendation gap 的落点。</text>
+  </g>
+</svg>

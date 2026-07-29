@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">从“有语义的 ID”到“LLM 真懂这个 ID” / LC-Rec</title><desc id="desc">RQ-VAE 只让代码来自文本；LC-Rec 再用多种任务显式连接 index、语言与偏好。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"><text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">从“有语义的 ID”到“LLM 真懂这个 ID” / LC-Rec</text><text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">RQ-VAE 只让代码来自文本；LC-Rec 再用多种任务显式连接 index、语言与偏好。</text>
+    <rect x="90" y="225" width="575" height="420" rx="30" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="135" y="285" fill="#1d4ed8" font-size="18" font-weight="750" text-anchor="start">TOKENIZE ONLY</text>
+    <text x="135" y="342" fill="#171612" font-size="34" font-weight="650" text-anchor="start">代码树有内容语义</text>
+    <text x="135" y="408" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">title → RQ-VAE codes</text>
+<text x="135" y="458" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">相似商品共享前缀</text>
+<text x="135" y="508" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">新 tokens 对 LLM 仍是 OOV</text>
+<text x="135" y="558" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">推荐只教 index → index</text>
+    <line x1="695" y1="435" x2="887" y2="435" stroke="#8b5cf6" stroke-width="5"/>
+  <path d="M881 422 L905 435 L881 448" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="708" y="365" width="174" height="62" rx="31" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="795" y="405" fill="#6d28d9" font-size="20" font-weight="750" text-anchor="middle">align</text>
+    <rect x="935" y="225" width="575" height="420" rx="30" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+    <text x="980" y="285" fill="#166534" font-size="18" font-weight="750" text-anchor="start">ALIGNMENT TUNING</text>
+    <text x="980" y="342" fill="#171612" font-size="34" font-weight="650" text-anchor="start">代码与语言互相翻译</text>
+    <text x="980" y="408" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">title ↔ index</text>
+<text x="980" y="458" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">history index → title</text>
+<text x="980" y="508" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">intention → index</text>
+<text x="980" y="558" fill="#6f6a61" font-size="22" font-weight="400" text-anchor="start">index history → preference</text>
+    <line x1="90" y1="710" x2="1510" y2="710" stroke="#c9c0b3" stroke-width="2" stroke-dasharray="10 10"/>
+    <text x="800" y="785" fill="#92400e" font-size="24" font-weight="650" text-anchor="middle">一个好地址不仅要相似，还要能被预训练 LLM 的语言知识读懂和写出。</text></g>
+</svg>

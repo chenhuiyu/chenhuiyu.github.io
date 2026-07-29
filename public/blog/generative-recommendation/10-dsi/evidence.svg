@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">在 228K 文档上，semantic docid 的 Hits@1 提升明显 / NQ320K</title><desc id="desc">监督检索；选择各方法论文表中的 XXL / 最强语义配置。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"><text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">在 228K 文档上，semantic docid 的 Hits@1 提升明显 / NQ320K</text><text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">监督检索；选择各方法论文表中的 XXL / 最强语义配置。</text><text x="90" y="212" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Hits@1</text>
+      <rect x="335" y="225" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="225" width="163.9466666666667" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="246" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">BM25</text>
+          <text x="511.9466666666667" y="246" fill="#171612" font-size="16" font-weight="700" text-anchor="start">11.6</text>
+<rect x="335" y="267" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="267" width="343.44" height="28" rx="14" fill="#3b82f6" stroke="none" stroke-width="2"/>
+          <text x="317" y="288" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">T5 dual</text>
+          <text x="691.44" y="288" fill="#171612" font-size="16" font-weight="700" text-anchor="start">24.3</text>
+<rect x="335" y="309" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="309" width="570.9866666666667" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="330" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">DSI semantic</text>
+          <text x="918.9866666666667" y="330" fill="#171612" font-size="16" font-weight="700" text-anchor="start">40.4</text>
+<text x="90" y="387" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Hits@10</text>
+      <rect x="335" y="400" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="400" width="486.18666666666667" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="421" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">BM25</text>
+          <text x="834.1866666666667" y="421" fill="#171612" font-size="16" font-weight="700" text-anchor="start">34.4</text>
+<rect x="335" y="442" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="442" width="951.1733333333333" height="28" rx="14" fill="#3b82f6" stroke="none" stroke-width="2"/>
+          <text x="317" y="463" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">T5 dual</text>
+          <text x="1299.1733333333332" y="463" fill="#171612" font-size="16" font-weight="700" text-anchor="start">67.3</text>
+<rect x="335" y="484" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="484" width="993.5733333333333" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="505" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">DSI semantic</text>
+          <text x="1341.5733333333333" y="505" fill="#171612" font-size="16" font-weight="700" text-anchor="start">70.3</text>
+    <text x="1510" y="850" fill="#6f6a61" font-size="15" font-weight="500" text-anchor="end">Source: DSI Table 2; NQ320K contains 228K unique documents</text></g>
+</svg>

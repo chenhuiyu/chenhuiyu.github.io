@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">同一个生成后端，换 tokenizer 就能提升 / CIKM 2024</title><desc id="desc">NDCG@10；分别比较 TIGER 与 LC-Rec 在原 tokenizer 和 LETTER 下的结果。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"><text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">同一个生成后端，换 tokenizer 就能提升 / CIKM 2024</text><text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">NDCG@10；分别比较 TIGER 与 LC-Rec 在原 tokenizer 和 LETTER 下的结果。</text><text x="90" y="212" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Instruments · TIGER</text>
+      <rect x="335" y="225" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="225" width="889.2842105263157" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="246" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">base</text>
+          <text x="1237.2842105263157" y="246" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0797</text>
+<rect x="335" y="267" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="267" width="927.2210526315788" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="288" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">LETTER</text>
+          <text x="1275.221052631579" y="288" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0831</text>
+<text x="90" y="346" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Instruments · LC</text>
+      <rect x="335" y="359" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="359" width="861.3894736842105" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="380" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">base</text>
+          <text x="1209.3894736842105" y="380" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0772</text>
+<rect x="335" y="401" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="401" width="952.8842105263158" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="422" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">LETTER</text>
+          <text x="1300.8842105263157" y="422" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0854</text>
+<text x="90" y="480" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Beauty · TIGER</text>
+      <rect x="335" y="493" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="493" width="369.32631578947365" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="514" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">base</text>
+          <text x="717.3263157894737" y="514" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0331</text>
+<rect x="335" y="535" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="535" width="406.14736842105265" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="556" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">LETTER</text>
+          <text x="754.1473684210526" y="556" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0364</text>
+<text x="90" y="614" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Beauty · LC</text>
+      <rect x="335" y="627" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="627" width="417.30526315789473" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="648" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">base</text>
+          <text x="765.3052631578947" y="648" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0374</text>
+<rect x="335" y="669" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="669" width="466.3999999999999" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="690" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">LETTER</text>
+          <text x="814.3999999999999" y="690" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0418</text>
+    <text x="1510" y="850" fill="#6f6a61" font-size="15" font-weight="500" text-anchor="end">Source: LETTER Table 1</text></g>
+</svg>

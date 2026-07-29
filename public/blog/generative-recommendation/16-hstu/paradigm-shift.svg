@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">工业推荐不只是“更大的 SASRec” / Sequential Transduction</title>
+  <desc id="desc">HSTU 先重写数据与任务，再重写注意力；规模化来自表示、训练与服务的共同改变。</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#172033" flood-opacity=".08"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#C8D2E1"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="720" fill="#FCFAF5"/>
+  <circle cx="1110" cy="70" r="160" fill="#E8F0FF" opacity=".55"/>
+  <circle cx="85" cy="675" r="145" fill="#F1EAFE" opacity=".55"/>
+  <text x="64" y="62" font-size="31" font-weight="760" fill="#172033">工业推荐不只是“更大的 SASRec” / Sequential Transduction</text>
+  <text x="64" y="95" font-size="17" font-weight="500" fill="#667085">HSTU 先重写数据与任务，再重写注意力；规模化来自表示、训练与服务的共同改变。</text>
+  <rect x="64" y="145" width="430" height="430" rx="22" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+      <rect x="92" y="170" width="88" height="34" rx="17" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+    <text x="136" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#D97706">DLRM</text>
+      <text x="92" y="235" text-anchor="start" font-size="26" font-weight="760" fill="#172033"><tspan x="92" dy="0">一条曝光一个样本</tspan></text>
+      <rect x="92" y="290" width="374" height="50" rx="14" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+            <circle cx="116" cy="315" r="7" fill="#D97706"/>
+            <text x="134" y="321" font-size="17" font-weight="600" fill="#172033">千级手工特征</text><rect x="92" y="360" width="374" height="50" rx="14" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+            <circle cx="116" cy="385" r="7" fill="#D97706"/>
+            <text x="134" y="391" font-size="17" font-weight="600" fill="#172033">候选逐个交叉</text><rect x="92" y="430" width="374" height="50" rx="14" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+            <circle cx="116" cy="455" r="7" fill="#D97706"/>
+            <text x="134" y="461" font-size="17" font-weight="600" fill="#172033">计算随候选数增长</text><rect x="92" y="500" width="374" height="50" rx="14" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+            <circle cx="116" cy="525" r="7" fill="#D97706"/>
+            <text x="134" y="531" font-size="17" font-weight="600" fill="#172033">扩模型后质量易饱和</text>
+      <line x1="520" y1="360" x2="680" y2="360" stroke="#7C3AED" stroke-width="3" marker-end="url(#arrow)"/>
+      <rect x="535" y="314" width="130" height="92" rx="46" fill="#F1EAFE" stroke="#7C3AED" stroke-width="2"/>
+      <text x="600" y="348" text-anchor="middle" font-size="16" font-weight="760" fill="#7C3AED"><tspan x="600" dy="0">重排数据</tspan><tspan x="600" dy="22">重写任务</tspan></text>
+      <rect x="706" y="145" width="430" height="430" rx="22" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+      <rect x="734" y="170" width="358" height="34" rx="17" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+    <text x="913" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#2563EB">Generative Recommender</text>
+      <text x="734" y="235" text-anchor="start" font-size="26" font-weight="760" fill="#172033"><tspan x="734" dy="0">一位用户一条时间线</tspan></text>
+      <rect x="734" y="290" width="374" height="50" rx="14" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+            <circle cx="758" cy="315" r="7" fill="#2563EB"/>
+            <text x="776" y="321" font-size="17" font-weight="600" fill="#172033">行为与类别特征序列化</text><rect x="734" y="360" width="374" height="50" rx="14" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+            <circle cx="758" cy="385" r="7" fill="#2563EB"/>
+            <text x="776" y="391" font-size="17" font-weight="600" fill="#172033">一次编码监督多个位置</text><rect x="734" y="430" width="374" height="50" rx="14" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+            <circle cx="758" cy="455" r="7" fill="#2563EB"/>
+            <text x="776" y="461" font-size="17" font-weight="600" fill="#172033">ranking / retrieval 同一骨干</text><rect x="734" y="500" width="374" height="50" rx="14" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+            <circle cx="758" cy="525" r="7" fill="#2563EB"/>
+            <text x="776" y="531" font-size="17" font-weight="600" fill="#172033">质量随 compute 继续增长</text>
+  <line x1="64" y1="665" x2="1136" y2="665" stroke="#C8D2E1"/>
+         <text x="64" y="696" font-size="15" fill="#667085">关键变化：用户 action 被视为一种生成建模模态，而不是把商品标题改写成自然语言。</text>
+</svg>

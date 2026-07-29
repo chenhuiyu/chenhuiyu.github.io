@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">SASRec 从 Item ID 到下一件商品 / Causal Transformer</title>
+  <desc id="desc">n 为最大序列长度，d 为表示维度；每个位置都预测它后面的真实商品。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">SASRec 从 Item ID 到下一件商品 / Causal Transformer</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">n 为最大序列长度，d 为表示维度；每个位置都预测它后面的真实商品。</text>
+    <rect x="85" y="235" width="275" height="245" rx="28" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="113" y="278" fill="#1d4ed8" font-size="18" font-weight="750" text-anchor="start">01</text>
+      <text x="113" y="327" fill="#171612" font-size="28" font-weight="650" text-anchor="start">序列嵌入</text>
+      <text x="113" y="374" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">Item ID → M</text>
+<text x="113" y="411" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">加 learned position</text>
+<text x="113" y="448" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">E ∈ Rⁿˣᵈ</text>
+      <path d="M368 355 H391" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M387 342 L407 355 L387 368" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="415" y="235" width="275" height="245" rx="28" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="443" y="278" fill="#6d28d9" font-size="18" font-weight="750" text-anchor="start">02</text>
+      <text x="443" y="327" fill="#171612" font-size="28" font-weight="650" text-anchor="start">因果注意力</text>
+      <text x="443" y="374" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">Q,K,V ∈ Rⁿˣᵈ</text>
+<text x="443" y="411" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">遮住 j &gt; t</text>
+<text x="443" y="448" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">A ∈ Rⁿˣⁿ</text>
+      <path d="M698 355 H721" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+  <path d="M717 342 L737 355 L717 368" fill="none" stroke="#f59e0b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="745" y="235" width="275" height="245" rx="28" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="773" y="278" fill="#92400e" font-size="18" font-weight="750" text-anchor="start">03</text>
+      <text x="773" y="327" fill="#171612" font-size="28" font-weight="650" text-anchor="start">残差 + FFN</text>
+      <text x="773" y="374" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">逐位置非线性</text>
+<text x="773" y="411" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">LayerNorm</text>
+<text x="773" y="448" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">堆叠 2 blocks</text>
+      <path d="M1028 355 H1051" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1047 342 L1067 355 L1047 368" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1075" y="235" width="275" height="245" rx="28" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="1103" y="278" fill="#166534" font-size="18" font-weight="750" text-anchor="start">04</text>
+      <text x="1103" y="327" fill="#171612" font-size="28" font-weight="650" text-anchor="start">下一项打分</text>
+      <text x="1103" y="374" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">hₜ·mᵢ</text>
+<text x="1103" y="411" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">正项 + sampled negative</text>
+<text x="1103" y="448" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">BCE 训练</text>
+      
+    <rect x="130" y="570" width="1340" height="135" rx="26" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <text x="800" y="618" fill="#6f6a61" font-size="19" font-weight="650" text-anchor="middle">核心公式 / central equation</text>
+    <text x="800" y="670" fill="#171612" font-size="31" font-weight="650" text-anchor="middle">Attention(Q,K,V) = softmax(QKᵀ / √d + causal mask) V</text>
+    <rect x="230" y="755" width="1140" height="68" rx="22" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+    <text x="800" y="798" fill="#92400e" font-size="20" font-weight="650" text-anchor="middle">时间复杂度含 O(n²d)，但所有位置可并行；从任意历史到当前输出的路径长度是 O(1)。</text>
+  </g>
+</svg>

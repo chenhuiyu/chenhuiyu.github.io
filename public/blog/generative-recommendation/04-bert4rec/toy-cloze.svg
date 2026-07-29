@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">购物记录变成一道完形填空 / Cloze toy example</title>
+  <desc id="desc">模型必须从左右上下文恢复被遮住的 Item ID。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">购物记录变成一道完形填空 / Cloze toy example</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">模型必须从左右上下文恢复被遮住的 Item ID。</text><rect x="80" y="180" width="160" height="105" rx="18" fill="#eff6ff" stroke="#3b82f6" stroke-width="3"/>
+      <text x="160" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I01</text>
+      <text x="160" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">网球拍</text>
+      <text x="160" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">racket</text>
+<rect x="265" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="345" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I02</text>
+      <text x="345" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">吸汗带</text>
+      <text x="345" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">sweatband</text>
+<rect x="450" y="180" width="160" height="105" rx="18" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="3"/>
+      <text x="530" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I03</text>
+      <text x="530" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">攀岩鞋</text>
+      <text x="530" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">climbing shoes</text>
+<rect x="635" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="715" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I04</text>
+      <text x="715" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">粉袋</text>
+      <text x="715" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">chalk bag</text>
+<rect x="820" y="180" width="160" height="105" rx="18" fill="#fff7ed" stroke="#f59e0b" stroke-width="3"/>
+      <text x="900" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I05</text>
+      <text x="900" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">羽毛球</text>
+      <text x="900" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">shuttlecock</text>
+<rect x="1005" y="180" width="160" height="105" rx="18" fill="#ecfdf5" stroke="#10b981" stroke-width="3"/>
+      <text x="1085" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I06</text>
+      <text x="1085" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">泳镜</text>
+      <text x="1085" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">goggles</text>
+<rect x="1190" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="1270" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I07</text>
+      <text x="1270" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">瑜伽垫</text>
+      <text x="1270" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">yoga mat</text>
+<rect x="1375" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="1455" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I08</text>
+      <text x="1455" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">蛋白棒</text>
+      <text x="1455" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">protein bar</text><text x="800" y="385" fill="#171612" font-size="24" font-weight="650" text-anchor="middle">随机遮住历史中的两个位置 / randomly mask two positions</text>
+      <rect x="160" y="440" width="260" height="105" rx="24" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="290" y="500" fill="#171612" font-size="26" font-weight="650" text-anchor="middle">I01 网球拍</text>
+      <path d="M430 493 H519" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M515 480 L535 493 L515 506" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="545" y="440" width="260" height="105" rx="24" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="675" y="500" fill="#6d28d9" font-size="27" font-weight="700" text-anchor="middle">[MASK]₁</text>
+      <path d="M815 493 H904" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M900 480 L920 493 L900 506" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="930" y="440" width="260" height="105" rx="24" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="1060" y="500" fill="#171612" font-size="26" font-weight="650" text-anchor="middle">I05 羽毛球</text>
+      <path d="M1200 493 H1289" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1285 480 L1305 493 L1285 506" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="1315" y="440" width="190" height="105" rx="24" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="1410" y="500" fill="#166534" font-size="27" font-weight="700" text-anchor="middle">[MASK]₂</text>
+      <rect x="310" y="655" width="980" height="125" rx="28" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+      <text x="800" y="703" fill="#6f6a61" font-size="20" font-weight="650" text-anchor="middle">监督信号 / labels</text>
+      <text x="800" y="751" fill="#171612" font-size="28" font-weight="700" text-anchor="middle">[MASK]₁ = I03 攀岩鞋　　[MASK]₂ = I06 泳镜</text>
+  </g>
+</svg>

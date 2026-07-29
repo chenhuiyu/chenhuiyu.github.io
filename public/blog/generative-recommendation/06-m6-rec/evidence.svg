@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">性能与延迟必须一起看 / M6-Rec Tables 2, 3, 6</title>
+  <desc id="desc">上两组为效果；最后一组为毫秒延迟，刻度仅用于同图比较。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">性能与延迟必须一起看 / M6-Rec Tables 2, 3, 6</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">上两组为效果；最后一组为毫秒延迟，刻度仅用于同图比较。</text>
+    <text x="90" y="217" fill="#171612" font-size="20" font-weight="700" text-anchor="start">TaoProduct AUC</text>
+      <rect x="335" y="230" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="230" width="983.8609756097561" height="29" rx="15" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="251" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">DIN</text>
+          <text x="1331.8609756097562" y="251" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.7611</text>
+<rect x="335" y="273" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="273" width="1033.5" height="29" rx="15" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="294" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">M6-Rec</text>
+          <text x="1381.5" y="294" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.7995</text>
+<text x="90" y="359" fill="#171612" font-size="20" font-weight="700" text-anchor="start">MiniApp HR@100</text>
+      <rect x="335" y="372" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="372" width="899.7073170731707" height="29" rx="15" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="393" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">TwinBERT</text>
+          <text x="1247.7073170731705" y="393" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.696</text>
+<rect x="335" y="415" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="415" width="957.8780487804878" height="29" rx="15" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="436" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">M6-Rec</text>
+          <text x="1305.878048780488" y="436" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.741</text>
+<text x="90" y="501" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Latency / 70 ms</text>
+      <rect x="335" y="514" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="514" width="736.8292682926829" height="29" rx="15" fill="#3b82f6" stroke="none" stroke-width="2"/>
+          <text x="317" y="535" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">full 57ms</text>
+          <text x="1084.8292682926829" y="535" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.57</text>
+<rect x="335" y="557" width="1060" height="29" rx="15" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="557" width="206.82926829268294" height="29" rx="15" fill="#10b981" stroke="none" stroke-width="2"/>
+          <text x="317" y="578" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">late 16ms</text>
+          <text x="554.829268292683" y="578" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.16</text>
+    <text x="1510" y="850" fill="#6f6a61" font-size="15" font-weight="500" text-anchor="end">Source: original paper Tables 2, 3, 6; latency normalized by 100 for plotting</text>
+  </g>
+</svg>

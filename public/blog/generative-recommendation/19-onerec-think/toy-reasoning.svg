@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">八件商品 + 一句实时意图 / Dialogue-aware recommendation</title>
+  <desc id="desc">模型需要在历史兴趣和当前约束冲突时，先重组证据再生成商品地址。</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#172033" flood-opacity=".08"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#C8D2E1"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="720" fill="#FCFAF5"/>
+  <circle cx="1110" cy="70" r="160" fill="#E8F0FF" opacity=".55"/>
+  <circle cx="85" cy="675" r="145" fill="#F1EAFE" opacity=".55"/>
+  <text x="64" y="62" font-size="31" font-weight="760" fill="#172033">八件商品 + 一句实时意图 / Dialogue-aware recommendation</text>
+  <text x="64" y="95" font-size="17" font-weight="500" fill="#667085">模型需要在历史兴趣和当前约束冲突时，先重组证据再生成商品地址。</text>
+  <rect x="64" y="155" width="252" height="445" rx="22" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+          <rect x="82" y="179" width="82" height="34" rx="17" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+    <text x="123" y="202" text-anchor="middle" font-size="15" font-weight="700" fill="#2563EB">历史</text>
+          <text x="82" y="245" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="82" dy="0">Mixed interests</tspan></text>
+          <rect x="80" y="303" width="220" height="48" rx="12" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+                <text x="190" y="333" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">网球 / 羽毛球</text><rect x="80" y="368" width="220" height="48" rx="12" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+                <text x="190" y="398" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">攀岩</text><rect x="80" y="433" width="220" height="48" rx="12" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+                <text x="190" y="463" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">游泳</text><rect x="80" y="498" width="220" height="48" rx="12" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+                <text x="190" y="528" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">近期收藏泳帽</text><rect x="334" y="155" width="252" height="445" rx="22" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+          <rect x="352" y="179" width="82" height="34" rx="17" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+    <text x="393" y="202" text-anchor="middle" font-size="15" font-weight="700" fill="#7C3AED">用户说</text>
+          <text x="352" y="245" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="352" dy="0">Current request</tspan></text>
+          <rect x="350" y="303" width="220" height="48" rx="12" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+                <text x="460" y="333" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">“今天肩膀不舒服”</text><rect x="350" y="368" width="220" height="48" rx="12" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+                <text x="460" y="398" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">“想要轻松恢复”</text><rect x="350" y="433" width="220" height="48" rx="12" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+                <text x="460" y="463" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">自然语言优先约束</text><rect x="350" y="498" width="220" height="48" rx="12" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+                <text x="460" y="528" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">覆盖旧的激烈运动偏好</text><rect x="604" y="155" width="252" height="445" rx="22" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+          <rect x="622" y="179" width="103" height="34" rx="17" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+    <text x="673.5" y="202" text-anchor="middle" font-size="15" font-weight="700" fill="#D97706">Think</text>
+          <text x="622" y="245" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="622" dy="0">Reasoning trace</tspan></text>
+          <rect x="620" y="303" width="220" height="48" rx="12" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+                <text x="730" y="333" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">近期水上兴趣</text><rect x="620" y="368" width="220" height="48" rx="12" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+                <text x="730" y="398" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">排除高冲击运动</text><rect x="620" y="433" width="220" height="48" rx="12" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+                <text x="730" y="463" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">补充训练后恢复</text><rect x="620" y="498" width="220" height="48" rx="12" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+                <text x="730" y="528" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">选择速干毛巾</text><rect x="874" y="155" width="252" height="445" rx="22" fill="#FFFFFF" stroke="#16856B" stroke-width="2"/>
+          <rect x="892" y="179" width="118" height="34" rx="17" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+    <text x="951" y="202" text-anchor="middle" font-size="15" font-weight="700" fill="#16856B">Answer</text>
+          <text x="892" y="245" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="892" dy="0">Itemic tokens</tspan></text>
+          <rect x="890" y="303" width="220" height="48" rx="12" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+                <text x="1000" y="333" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">&lt;item_begin&gt;</text><rect x="890" y="368" width="220" height="48" rx="12" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+                <text x="1000" y="398" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">&lt;a_…&gt;&lt;b_…&gt;&lt;c_…&gt;</text><rect x="890" y="433" width="220" height="48" rx="12" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+                <text x="1000" y="463" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">映射 I08</text><rect x="890" y="498" width="220" height="48" rx="12" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+                <text x="1000" y="528" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">合法目录解码</text>
+  <line x1="64" y1="665" x2="1136" y2="665" stroke="#C8D2E1"/>
+         <text x="64" y="696" font-size="15" fill="#667085">训练 trace 必须引用历史证据而不能泄露 target；否则模型只是在答案后补一个故事。</text>
+</svg>

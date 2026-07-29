@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">一份用户文本，贯穿推荐漏斗 / M6-Rec toy tasks</title>
+  <desc id="desc">小林的体育行为被写成普通文本；任务改变，底座不变。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">一份用户文本，贯穿推荐漏斗 / M6-Rec toy tasks</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">小林的体育行为被写成普通文本；任务改变，底座不变。</text>
+    <rect x="77" y="220" width="335" height="420" rx="28" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="111" y="270" fill="#1d4ed8" font-size="17" font-weight="750" text-anchor="start">01</text>
+      <text x="111" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">召回</text>
+      <text x="111" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">用户文本 → 向量 x</text>
+<text x="111" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">商品文本 → 向量 y</text>
+<text x="111" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">kNN 找候选</text>
+<rect x="447" y="220" width="335" height="420" rx="28" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="481" y="270" fill="#6d28d9" font-size="17" font-weight="750" text-anchor="start">02</text>
+      <text x="481" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">排序</text>
+      <text x="481" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">历史 + 候选 I06</text>
+<text x="481" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">输出点击概率</text>
+<text x="481" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">Yes / No option</text>
+<rect x="817" y="220" width="335" height="420" rx="28" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="851" y="270" fill="#92400e" font-size="17" font-weight="750" text-anchor="start">03</text>
+      <text x="851" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">解释</text>
+      <text x="851" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">推荐泳镜，因为…</text>
+<text x="851" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">生成个性化理由</text>
+<text x="851" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">语言质量可评估</text>
+<rect x="1187" y="220" width="335" height="420" rx="28" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="1221" y="270" fill="#166534" font-size="17" font-weight="750" text-anchor="start">04</text>
+      <text x="1221" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">创作</text>
+      <text x="1221" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">根据小众兴趣</text>
+<text x="1221" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">生成搜索词 / 标题</text>
+<text x="1221" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">甚至接图像生成</text>
+    <rect x="235" y="705" width="1130" height="100" rx="25" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <text x="800" y="765" fill="#171612" font-size="22" font-weight="650" text-anchor="middle">同一个底座并不意味着同一种头部：检索用向量，CTR 用分类，开放任务用生成。</text>
+  </g>
+</svg>

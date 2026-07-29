@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">八件商品中的两种转导任务 / Ranking &amp; Retrieval</title>
+  <desc id="desc">商品 Φ 与动作 a 交错，既能预测用户怎样响应候选，也能预测下一次正向互动。</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#172033" flood-opacity=".08"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#C8D2E1"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="720" fill="#FCFAF5"/>
+  <circle cx="1110" cy="70" r="160" fill="#E8F0FF" opacity=".55"/>
+  <circle cx="85" cy="675" r="145" fill="#F1EAFE" opacity=".55"/>
+  <text x="64" y="62" font-size="31" font-weight="760" fill="#172033">八件商品中的两种转导任务 / Ranking &amp; Retrieval</text>
+  <text x="64" y="95" font-size="17" font-weight="500" fill="#667085">商品 Φ 与动作 a 交错，既能预测用户怎样响应候选，也能预测下一次正向互动。</text>
+  <rect x="64" y="155" width="252" height="445" rx="22" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+          <rect x="82" y="179" width="82" height="34" rx="17" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+    <text x="123" y="202" text-anchor="middle" font-size="15" font-weight="700" fill="#2563EB">输入</text>
+          <text x="82" y="245" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="82" dy="0">历史时间线</tspan></text>
+          <rect x="80" y="303" width="220" height="48" rx="12" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+                <text x="190" y="333" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">I01 网球拍 + 点击</text><rect x="80" y="368" width="220" height="48" rx="12" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+                <text x="190" y="398" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">I03 攀岩鞋 + 完播</text><rect x="80" y="433" width="220" height="48" rx="12" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+                <text x="190" y="463" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">I05 羽毛球拍 + 跳过</text><rect x="80" y="498" width="220" height="48" rx="12" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+                <text x="190" y="528" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">I07 泳帽 + 收藏</text><rect x="334" y="155" width="252" height="445" rx="22" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+          <rect x="352" y="179" width="133" height="34" rx="17" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+    <text x="418.5" y="202" text-anchor="middle" font-size="15" font-weight="700" fill="#7C3AED">Ranking</text>
+          <text x="352" y="245" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="352" dy="0">预测动作</tspan></text>
+          <rect x="350" y="303" width="220" height="48" rx="12" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+                <text x="460" y="333" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">给定候选 I06</text><rect x="350" y="368" width="220" height="48" rx="12" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+                <text x="460" y="398" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">读取完整历史</text><rect x="350" y="433" width="220" height="48" rx="12" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+                <text x="460" y="463" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">输出点击 / 完播 / 时长</text><rect x="350" y="498" width="220" height="48" rx="12" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+                <text x="460" y="528" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">target-aware 一次完成</text><rect x="604" y="155" width="252" height="445" rx="22" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+          <rect x="622" y="179" width="163" height="34" rx="17" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+    <text x="703.5" y="202" text-anchor="middle" font-size="15" font-weight="700" fill="#D97706">Retrieval</text>
+          <text x="622" y="245" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="622" dy="0">预测内容</tspan></text>
+          <rect x="620" y="303" width="220" height="48" rx="12" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+                <text x="730" y="333" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">只在正反馈处监督</text><rect x="620" y="368" width="220" height="48" rx="12" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+                <text x="730" y="398" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">历史状态 uᵢ</text><rect x="620" y="433" width="220" height="48" rx="12" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+                <text x="730" y="463" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">输出下一正向商品</text><rect x="620" y="498" width="220" height="48" rx="12" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+                <text x="730" y="528" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">I06 泳镜</text><rect x="874" y="155" width="252" height="445" rx="22" fill="#FFFFFF" stroke="#16856B" stroke-width="2"/>
+          <rect x="892" y="179" width="82" height="34" rx="17" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+    <text x="933" y="202" text-anchor="middle" font-size="15" font-weight="700" fill="#16856B">时间</text>
+          <text x="892" y="245" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="892" dy="0">相对偏置</tspan></text>
+          <rect x="890" y="303" width="220" height="48" rx="12" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+                <text x="1000" y="333" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">位置距离</text><rect x="890" y="368" width="220" height="48" rx="12" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+                <text x="1000" y="398" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">真实时间间隔</text><rect x="890" y="433" width="220" height="48" rx="12" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+                <text x="1000" y="463" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">近期与周期兴趣</text><rect x="890" y="498" width="220" height="48" rx="12" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+                <text x="1000" y="528" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">进入 rabᵖ,ᵗ</text>
+  <line x1="64" y1="665" x2="1136" y2="665" stroke="#C8D2E1"/>
+         <text x="64" y="696" font-size="15" fill="#667085">同一 token 流可在不同位置发出不同监督；“生成式”首先指训练范式，而不必输出自然语言。</text>
+</svg>

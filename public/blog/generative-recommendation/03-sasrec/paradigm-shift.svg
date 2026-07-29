@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">从逐步传话到直接回看历史 / SASRec</title>
+  <desc id="desc">RNN 把过去压进一个状态；self-attention 让当前位置直接选择相关历史。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">从逐步传话到直接回看历史 / SASRec</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">RNN 把过去压进一个状态；self-attention 让当前位置直接选择相关历史。</text>
+    <rect x="90" y="235" width="570" height="400" rx="30" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="135" y="295" fill="#1d4ed8" font-size="19" font-weight="700" text-anchor="start">RNN · RECURRENCE</text>
+    <text x="135" y="350" fill="#171612" font-size="35" font-weight="650" text-anchor="start">信息沿时间逐步传递</text>
+    <text x="135" y="410" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">h₁ → h₂ → … → hₜ</text>
+<text x="135" y="458" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">最长依赖路径 O(n)</text>
+<text x="135" y="506" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">训练难以在时间维并行</text>
+    <path d="M690 435 H879" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M875 422 L895 435 L875 448" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="705" y="360" width="170" height="70" rx="35" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="790" y="404" fill="#6d28d9" font-size="21" font-weight="700" text-anchor="middle">QKᵀ</text>
+    <rect x="925" y="235" width="585" height="400" rx="30" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+    <text x="970" y="295" fill="#166534" font-size="19" font-weight="700" text-anchor="start">SELF-ATTENTION</text>
+    <text x="970" y="350" fill="#171612" font-size="35" font-weight="650" text-anchor="start">每一步直接查看过去</text>
+    <text x="970" y="410" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">query 与所有历史 key 比较</text>
+<text x="970" y="458" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">因果 mask 遮住未来</text>
+<text x="970" y="506" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">相关动作获得更大权重</text>
+    <line x1="90" y1="710" x2="1510" y2="710" stroke="#c9c0b3" stroke-width="2" stroke-dasharray="10 10"/>
+    <text x="800" y="786" fill="#92400e" font-size="25" font-weight="650" text-anchor="middle">SASRec 不假设“越近越重要”；它让数据决定哪些过去与下一步有关。</text>
+  </g>
+</svg>

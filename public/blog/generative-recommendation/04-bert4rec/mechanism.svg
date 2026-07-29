@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">BERT4Rec 的训练与推理并不完全相同 / Train–serve flow</title>
+  <desc id="desc">训练随机 mask 多个历史位置；推理只在序列末尾添加 [MASK] 预测下一项。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">BERT4Rec 的训练与推理并不完全相同 / Train–serve flow</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">训练随机 mask 多个历史位置；推理只在序列末尾添加 [MASK] 预测下一项。</text>
+    <rect x="85" y="235" width="275" height="245" rx="28" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="113" y="278" fill="#1d4ed8" font-size="18" font-weight="750" text-anchor="start">01</text>
+      <text x="113" y="327" fill="#171612" font-size="28" font-weight="650" text-anchor="start">构造输入</text>
+      <text x="113" y="374" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">随机 mask 比例 ρ</text>
+<text x="113" y="411" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">保留左右上下文</text>
+<text x="113" y="448" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">S′ ∈ Rⁿ</text>
+      <path d="M368 355 H391" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M387 342 L407 355 L387 368" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="415" y="235" width="275" height="245" rx="28" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="443" y="278" fill="#6d28d9" font-size="18" font-weight="750" text-anchor="start">02</text>
+      <text x="443" y="327" fill="#171612" font-size="28" font-weight="650" text-anchor="start">双向编码</text>
+      <text x="443" y="374" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">L 层 Transformer</text>
+<text x="443" y="411" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">multi-head attention</text>
+<text x="443" y="448" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">Hᴸ ∈ Rⁿˣᵈ</text>
+      <path d="M698 355 H721" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+  <path d="M717 342 L737 355 L717 368" fill="none" stroke="#f59e0b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="745" y="235" width="275" height="245" rx="28" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="773" y="278" fill="#92400e" font-size="18" font-weight="750" text-anchor="start">03</text>
+      <text x="773" y="327" fill="#171612" font-size="28" font-weight="650" text-anchor="start">恢复目标</text>
+      <text x="773" y="374" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">只读取 mask 位置</text>
+<text x="773" y="411" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">softmax over items</text>
+<text x="773" y="448" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">多位置 NLL</text>
+      <path d="M1028 355 H1051" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1047 342 L1067 355 L1047 368" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1075" y="235" width="275" height="245" rx="28" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="1103" y="278" fill="#166534" font-size="18" font-weight="750" text-anchor="start">04</text>
+      <text x="1103" y="327" fill="#171612" font-size="28" font-weight="650" text-anchor="start">线上推荐</text>
+      <text x="1103" y="374" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">历史末尾加 [MASK]</text>
+<text x="1103" y="411" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">读取最后 hidden</text>
+<text x="1103" y="448" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">Top-K item logits</text>
+      
+    <rect x="130" y="570" width="1340" height="135" rx="26" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <text x="800" y="618" fill="#6f6a61" font-size="19" font-weight="650" text-anchor="middle">核心公式 / central equation</text>
+    <text x="800" y="670" fill="#171612" font-size="31" font-weight="650" text-anchor="middle">L = − Σₘ∈masked log P(vₘ* | S′)</text>
+    <rect x="230" y="755" width="1140" height="68" rx="22" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+    <text x="800" y="798" fill="#92400e" font-size="20" font-weight="650" text-anchor="middle">ρ 太小监督不足，太大上下文被破坏；论文在四个数据集上分别调节最佳 mask 比例。</text>
+  </g>
+</svg>
