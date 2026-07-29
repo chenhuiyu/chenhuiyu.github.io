@@ -80,7 +80,8 @@ origin is `https://chenhuiyu.github.io`.
 ## Publish to GitHub Pages
 
 Commit and push source changes to `source` first. When the result is ready for
-production, run:
+production, the `Publish GitHub Pages` workflow automatically runs the same
+publisher. To publish manually, run:
 
 ```bash
 npm run publish:github-pages
@@ -93,6 +94,10 @@ The command:
 3. opens `master` in an isolated Git worktree;
 4. replaces only the generated Pages files;
 5. asks for confirmation before pushing production.
+
+The workflow has `contents: write` permission and runs only for `source`
+updates (or a manual dispatch), so changes to generated `master` do not trigger
+a publishing loop.
 
 For an already-approved non-interactive agent run:
 
