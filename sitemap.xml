@@ -1,113 +1,979 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://chenhuiyu.github.io/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/travel/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/xiaohongshu/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/series/generative-recommendation/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/series/generative-recommendation/en/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/generative-recommendation-preface-zh/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/generative-recommendation-preface-en/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2025-02-11-moe模型的的可视化指南-揭秘-moe-在大型语言模型中的角色-zh-cn-e2ed5d7/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2025-02-11-推理-llm-的可视化指南-探索推理时计算技术与-deepseek-r1-zh-cn-9db9902/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2025-02-11-moe模型的的可视化指南-揭秘-moe-在大型语言模型中的角色-en-2a76ffb/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2025-02-11-推理-llm-的可视化指南-探索推理时计算技术与-deepseek-r1-en-ea27877/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-12-11-追逐与倒影-zh-cn-90b7ded/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-12-11-追逐与倒影-en-2c0d3b0/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-12-06-基于生成的大语言模型-llm-评估-从生成到判断的机遇与挑战-zh-cn-21ebeaa/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-12-06-基于生成的大语言模型-llm-评估-从生成到判断的机遇与挑战-en-5c25ed4/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-zh-cn-2d0236a/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-en-cd63f76/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-en-19191bd/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-zh-cn-150d599/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-en-f151e65/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-08-13-使用压缩有限状态机进行本地-llm-的快速-json-解码-zh-cn-af33df0/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-08-13-使用压缩有限状态机进行本地-llm-的快速-json-解码-en-d8dc6af/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-en-d317a79/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-04-17-如何准确计算固定长度模型的困惑度-ppl-zh-cn-bf0c18d/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-04-17-如何准确计算固定长度模型的困惑度-ppl-en-c6c07b6/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-05-跟着gpt老师学小聊-如何做一个好的捧哏-zh-cn-359c1d3/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-05-跟着gpt老师学小聊-如何做一个好的捧哏-en-ee074c2/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-04-python题解-100226-在带权树网络中统计可连接服务器对数目-zh-cn-b3d6806/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-04-python题解-100226-在带权树网络中统计可连接服务器对数目-en-3bd098b/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-03-python题解-100232-超过阈值的最少操作数-ii-zh-cn-ed6f0da/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-03-python题解-100232-超过阈值的最少操作数-ii-en-4100d9a/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-02-python题解-100231-超过阈值的最少操作数-i-zh-cn-fe65177/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-02-python题解-100231-超过阈值的最少操作数-i-en-9407c7e/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-01-python题解-2369-检查数组是否存在有效划分-zh-cn-246ae83/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-03-01-python题解-2369-检查数组是否存在有效划分-en-46cd327/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-28-gorilla-llm-大语言模型简介-zh-cn-adaf3ab/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-28-gorilla-llm-大语言模型简介-en-4521fea/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-26-de-facto-unveiling-the-power-of-an-intriguing-phrase-zh-cn-e37b857/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-27-fastchat-training-script-code-analysis-train-py-fastchat-series-part-1-zh-cn-b1e0c14/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-26-de-facto-unveiling-the-power-of-an-intriguing-phrase-en-bc1bde6/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-27-fastchat-training-script-code-analysis-train-py-fastchat-series-part-1-en-c942bef/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-21-english-learning-journey-unraveling-the-term-giro-date-zh-cn-0f1a1a7/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-21-english-learning-journey-unraveling-the-term-giro-date-en-2a3ff2e/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-19-how-to-resolve-ssh-key-issues-with-multiple-git-services-zh-cn-ab40eb2/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-19-understanding-the-differences-between-fine-tuning-and-further-pretraining-in-large-language--zh-cn-04f30fc/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-19-how-to-resolve-ssh-key-issues-with-multiple-git-services-en-89f5029/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2024-02-19-understanding-the-differences-between-fine-tuning-and-further-pretraining-in-large-language--en-14addef/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-09-24-create-a-telegram-bot-with-python-and-openai-in-10-minutes-zh-cn-e19cc1d/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-09-24-create-a-telegram-bot-with-python-and-openai-in-10-minutes-en-8c95502/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-09-13-resolving-port-conflicts-identifying-and-terminating-processes-zh-cn-d5010db/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-09-13-resolving-port-conflicts-identifying-and-terminating-processes-en-c2e05f4/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-08-23-无断开烦恼-远程服务器后台运行程序的3种方法-nohup-tmux-和-screen-zh-cn-71871a8/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-08-23-无断开烦恼-远程服务器后台运行程序的3种方法-nohup-tmux-和-screen-en-0286cdd/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-08-22-超越python的边界-subprocess-助你一键执行外部命令-zh-cn-ee00dc2/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-08-22-超越python的边界-subprocess-助你一键执行外部命令-en-2673710/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-08-21-conver-pytorch-model-to-onnx-format-zh-cn-16fa233/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-08-21-conver-pytorch-model-to-onnx-format-en-846cc12/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-08-02-training-llama-2-model-on-single-gpu-with-int8-quantization-and-lora-zh-cn-b5fb97c/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-08-02-training-llama-2-model-on-single-gpu-with-int8-quantization-and-lora-en-a0cb379/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-28-longnet-scaling-transformers-to-1-000-000-000-tokens-zh-cn-f9d0aad/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-28-longnet-scaling-transformers-to-1-000-000-000-tokens-en-a221bcc/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-27-prompt-engineering-zh-cn-1657621/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-27-prompt-engineering-en-2ac2955/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-10-coloredlogger-彩色打印日志到控制台并记录到文件-zh-cn-6aadb51/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-10-coloredlogger-彩色打印日志到控制台并记录到文件-en-3c2e3af/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-09-详解梯度下降算法-zh-cn-c66fa2f/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-09-详解梯度下降算法-en-9daf6ca/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-08-hexo博客添加可交互式足迹地图-zh-cn-909af85/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-08-hexo博客添加可交互式足迹地图-en-c9640aa/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-06-vs-code-remote-ssh连接失败问题-zh-cn-f8c2e39/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-07-sup体验-zh-cn-ffbd946/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-07-sup-experience-zh-cn-8af2e03/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-07-dssm-模型详解-zh-cn-78d71ae/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-07-推荐系统离线评估指标详解-zh-cn-da63820/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-06-vs-code-remote-ssh连接失败问题-en-14b2d42/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-07-sup体验-en-50e93c4/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-07-sup-experience-en-e2fd6c7/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-07-dssm-模型详解-en-cf59c9b/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-07-07-推荐系统离线评估指标详解-en-44df0ac/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-06-06-kubernetes基础-zh-cn-c296447/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-06-06-kubernetes基础-en-f8343d7/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-05-23-gitlog-zh-cn-4080e8c/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-05-23-gitlog-en-43a61ae/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-02-23-faiss向量查询简介-zh-cn-609892f/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-02-23-faiss向量查询简介-en-be5966f/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-02-20-intersection-union-zh-cn-8de2b5e/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-02-20-intersection-union-en-24021c9/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-02-01-python-yield-zh-cn-1726cae/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-02-01-python-m-参数解释-zh-cn-be617d0/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-02-01-python-yield-en-e605989/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-02-01-python-m-参数解释-en-729810b/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-01-11-hexo博客的创建与部署-zh-cn-38da36d/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2023-01-11-hexo博客的创建与部署-en-ce6af59/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2022-08-09-南洋的椰风海韵-zh-cn-6596574/</loc></url>
-  <url><loc>https://chenhuiyu.github.io/blog/2022-08-09-南洋的椰风海韵-en-31b048a/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://chenhuiyu.github.io/</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/travel</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/xiaohongshu</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/series/generative-recommendation</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/series/generative-recommendation" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/series/generative-recommendation/en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/series/generative-recommendation/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/series/generative-recommendation/en</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/series/generative-recommendation/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/series/generative-recommendation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/series/generative-recommendation/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-preface-zh</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-preface-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-preface-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-preface-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-preface-en</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-preface-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-preface-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-preface-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86</loc>
+    <lastmod>2026-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43</loc>
+    <lastmod>2026-02-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-zh-cn-e2ed5d7</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-zh-cn-e2ed5d7" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-en-2a76ffb" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-en-2a76ffb" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-zh-cn-9db9902</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-zh-cn-9db9902" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-en-ea27877" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-en-ea27877" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-en-2a76ffb</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-en-2a76ffb" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-zh-cn-e2ed5d7" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-en-2a76ffb" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-en-ea27877</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-en-ea27877" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-zh-cn-9db9902" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-en-ea27877" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-zh-cn-90b7ded</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-zh-cn-90b7ded" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-en-2c0d3b0" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-en-2c0d3b0" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-en-2c0d3b0</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-en-2c0d3b0" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-zh-cn-90b7ded" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-en-2c0d3b0" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-zh-cn-21ebeaa</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-zh-cn-21ebeaa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-en-5c25ed4" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-en-5c25ed4" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-en-5c25ed4</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-en-5c25ed4" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-zh-cn-21ebeaa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-en-5c25ed4" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-zh-cn-2d0236a</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-zh-cn-2d0236a" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-en-cd63f76" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-en-cd63f76" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-en-cd63f76</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-en-cd63f76" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-zh-cn-2d0236a" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-en-cd63f76" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-en-19191bd" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-en-19191bd" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-en-19191bd</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-en-19191bd" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-en-19191bd" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-zh-cn-150d599</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-zh-cn-150d599" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-en-f151e65" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-en-f151e65" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-en-f151e65</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-en-f151e65" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-zh-cn-150d599" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-en-f151e65" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-zh-cn-af33df0</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-zh-cn-af33df0" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-en-d8dc6af" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-en-d8dc6af" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-en-d8dc6af</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-en-d8dc6af" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-zh-cn-af33df0" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-en-d8dc6af" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-en-d317a79" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-en-d317a79" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-en-d317a79</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-en-d317a79" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-en-d317a79" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-04-17-%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E8%AE%A1%E7%AE%97%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%B0%E6%83%91%E5%BA%A6-ppl-zh-cn-bf0c18d</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-04-17-%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E8%AE%A1%E7%AE%97%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%B0%E6%83%91%E5%BA%A6-ppl-zh-cn-bf0c18d" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-04-17-%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E8%AE%A1%E7%AE%97%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%B0%E6%83%91%E5%BA%A6-ppl-en-c6c07b6" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-04-17-%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E8%AE%A1%E7%AE%97%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%B0%E6%83%91%E5%BA%A6-ppl-en-c6c07b6" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-04-17-%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E8%AE%A1%E7%AE%97%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%B0%E6%83%91%E5%BA%A6-ppl-en-c6c07b6</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-04-17-%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E8%AE%A1%E7%AE%97%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%B0%E6%83%91%E5%BA%A6-ppl-en-c6c07b6" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-04-17-%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E8%AE%A1%E7%AE%97%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%B0%E6%83%91%E5%BA%A6-ppl-zh-cn-bf0c18d" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-04-17-%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E8%AE%A1%E7%AE%97%E5%9B%BA%E5%AE%9A%E9%95%BF%E5%BA%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%9B%B0%E6%83%91%E5%BA%A6-ppl-en-c6c07b6" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-08-python%E9%A2%98%E8%A7%A3-2834-%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C-zh-cn-2b91d20</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-08-python%E9%A2%98%E8%A7%A3-2834-%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C-zh-cn-2b91d20" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-08-python%E9%A2%98%E8%A7%A3-2834-%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C-en-4cfa423" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-08-python%E9%A2%98%E8%A7%A3-2834-%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C-en-4cfa423" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-08-python%E9%A2%98%E8%A7%A3-2834-%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C-en-4cfa423</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-08-python%E9%A2%98%E8%A7%A3-2834-%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C-en-4cfa423" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-08-python%E9%A2%98%E8%A7%A3-2834-%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C-zh-cn-2b91d20" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-08-python%E9%A2%98%E8%A7%A3-2834-%E6%89%BE%E5%87%BA%E7%BE%8E%E4%B8%BD%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E5%92%8C-en-4cfa423" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-05-%E8%B7%9F%E7%9D%80gpt%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A-%E5%A6%82%E4%BD%95%E5%81%9A%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%8D%A7%E5%93%8F-zh-cn-359c1d3</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-05-%E8%B7%9F%E7%9D%80gpt%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A-%E5%A6%82%E4%BD%95%E5%81%9A%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%8D%A7%E5%93%8F-zh-cn-359c1d3" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-05-%E8%B7%9F%E7%9D%80gpt%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A-%E5%A6%82%E4%BD%95%E5%81%9A%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%8D%A7%E5%93%8F-en-ee074c2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-05-%E8%B7%9F%E7%9D%80gpt%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A-%E5%A6%82%E4%BD%95%E5%81%9A%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%8D%A7%E5%93%8F-en-ee074c2" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-05-%E8%B7%9F%E7%9D%80gpt%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A-%E5%A6%82%E4%BD%95%E5%81%9A%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%8D%A7%E5%93%8F-en-ee074c2</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-05-%E8%B7%9F%E7%9D%80gpt%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A-%E5%A6%82%E4%BD%95%E5%81%9A%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%8D%A7%E5%93%8F-en-ee074c2" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-05-%E8%B7%9F%E7%9D%80gpt%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A-%E5%A6%82%E4%BD%95%E5%81%9A%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%8D%A7%E5%93%8F-zh-cn-359c1d3" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-05-%E8%B7%9F%E7%9D%80gpt%E8%80%81%E5%B8%88%E5%AD%A6%E5%B0%8F%E8%81%8A-%E5%A6%82%E4%BD%95%E5%81%9A%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E6%8D%A7%E5%93%8F-en-ee074c2" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-04-python%E9%A2%98%E8%A7%A3-100226-%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE-zh-cn-b3d6806</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-04-python%E9%A2%98%E8%A7%A3-100226-%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE-zh-cn-b3d6806" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-04-python%E9%A2%98%E8%A7%A3-100226-%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE-en-3bd098b" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-04-python%E9%A2%98%E8%A7%A3-100226-%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE-en-3bd098b" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-04-python%E9%A2%98%E8%A7%A3-100226-%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE-en-3bd098b</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-04-python%E9%A2%98%E8%A7%A3-100226-%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE-en-3bd098b" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-04-python%E9%A2%98%E8%A7%A3-100226-%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE-zh-cn-b3d6806" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-04-python%E9%A2%98%E8%A7%A3-100226-%E5%9C%A8%E5%B8%A6%E6%9D%83%E6%A0%91%E7%BD%91%E7%BB%9C%E4%B8%AD%E7%BB%9F%E8%AE%A1%E5%8F%AF%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AF%B9%E6%95%B0%E7%9B%AE-en-3bd098b" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-03-python%E9%A2%98%E8%A7%A3-100232-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-ii-zh-cn-ed6f0da</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-03-python%E9%A2%98%E8%A7%A3-100232-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-ii-zh-cn-ed6f0da" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-03-python%E9%A2%98%E8%A7%A3-100232-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-ii-en-4100d9a" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-03-python%E9%A2%98%E8%A7%A3-100232-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-ii-en-4100d9a" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-03-python%E9%A2%98%E8%A7%A3-100232-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-ii-en-4100d9a</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-03-python%E9%A2%98%E8%A7%A3-100232-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-ii-en-4100d9a" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-03-python%E9%A2%98%E8%A7%A3-100232-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-ii-zh-cn-ed6f0da" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-03-python%E9%A2%98%E8%A7%A3-100232-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-ii-en-4100d9a" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-02-python%E9%A2%98%E8%A7%A3-100231-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-i-zh-cn-fe65177</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-02-python%E9%A2%98%E8%A7%A3-100231-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-i-zh-cn-fe65177" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-02-python%E9%A2%98%E8%A7%A3-100231-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-i-en-9407c7e" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-02-python%E9%A2%98%E8%A7%A3-100231-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-i-en-9407c7e" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-02-python%E9%A2%98%E8%A7%A3-100231-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-i-en-9407c7e</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-02-python%E9%A2%98%E8%A7%A3-100231-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-i-en-9407c7e" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-02-python%E9%A2%98%E8%A7%A3-100231-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-i-zh-cn-fe65177" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-02-python%E9%A2%98%E8%A7%A3-100231-%E8%B6%85%E8%BF%87%E9%98%88%E5%80%BC%E7%9A%84%E6%9C%80%E5%B0%91%E6%93%8D%E4%BD%9C%E6%95%B0-i-en-9407c7e" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-01-python%E9%A2%98%E8%A7%A3-2369-%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86-zh-cn-246ae83</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-01-python%E9%A2%98%E8%A7%A3-2369-%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86-zh-cn-246ae83" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-01-python%E9%A2%98%E8%A7%A3-2369-%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86-en-46cd327" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-01-python%E9%A2%98%E8%A7%A3-2369-%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86-en-46cd327" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-03-01-python%E9%A2%98%E8%A7%A3-2369-%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86-en-46cd327</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-03-01-python%E9%A2%98%E8%A7%A3-2369-%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86-en-46cd327" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-03-01-python%E9%A2%98%E8%A7%A3-2369-%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86-zh-cn-246ae83" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-03-01-python%E9%A2%98%E8%A7%A3-2369-%E6%A3%80%E6%9F%A5%E6%95%B0%E7%BB%84%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9C%89%E6%95%88%E5%88%92%E5%88%86-en-46cd327" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-28-gorilla-llm-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B-zh-cn-adaf3ab</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-28-gorilla-llm-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B-zh-cn-adaf3ab" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-28-gorilla-llm-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B-en-4521fea" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-28-gorilla-llm-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B-en-4521fea" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-28-gorilla-llm-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B-en-4521fea</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-28-gorilla-llm-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B-en-4521fea" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-28-gorilla-llm-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B-zh-cn-adaf3ab" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-28-gorilla-llm-%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%AE%80%E4%BB%8B-en-4521fea" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-26-de-facto-unveiling-the-power-of-an-intriguing-phrase-zh-cn-e37b857</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-26-de-facto-unveiling-the-power-of-an-intriguing-phrase-zh-cn-e37b857" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-26-de-facto-unveiling-the-power-of-an-intriguing-phrase-en-bc1bde6" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-26-de-facto-unveiling-the-power-of-an-intriguing-phrase-en-bc1bde6" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-27-fastchat-training-script-code-analysis-train-py-fastchat-series-part-1-zh-cn-b1e0c14</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-27-fastchat-training-script-code-analysis-train-py-fastchat-series-part-1-zh-cn-b1e0c14" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-27-fastchat-training-script-code-analysis-train-py-fastchat-series-part-1-en-c942bef" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-27-fastchat-training-script-code-analysis-train-py-fastchat-series-part-1-en-c942bef" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-26-de-facto-unveiling-the-power-of-an-intriguing-phrase-en-bc1bde6</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-26-de-facto-unveiling-the-power-of-an-intriguing-phrase-en-bc1bde6" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-26-de-facto-unveiling-the-power-of-an-intriguing-phrase-zh-cn-e37b857" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-26-de-facto-unveiling-the-power-of-an-intriguing-phrase-en-bc1bde6" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-27-fastchat-training-script-code-analysis-train-py-fastchat-series-part-1-en-c942bef</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-27-fastchat-training-script-code-analysis-train-py-fastchat-series-part-1-en-c942bef" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-27-fastchat-training-script-code-analysis-train-py-fastchat-series-part-1-zh-cn-b1e0c14" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-27-fastchat-training-script-code-analysis-train-py-fastchat-series-part-1-en-c942bef" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-21-english-learning-journey-unraveling-the-term-giro-date-zh-cn-0f1a1a7</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-21-english-learning-journey-unraveling-the-term-giro-date-zh-cn-0f1a1a7" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-21-english-learning-journey-unraveling-the-term-giro-date-en-2a3ff2e" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-21-english-learning-journey-unraveling-the-term-giro-date-en-2a3ff2e" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-21-english-learning-journey-unraveling-the-term-giro-date-en-2a3ff2e</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-21-english-learning-journey-unraveling-the-term-giro-date-en-2a3ff2e" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-21-english-learning-journey-unraveling-the-term-giro-date-zh-cn-0f1a1a7" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-21-english-learning-journey-unraveling-the-term-giro-date-en-2a3ff2e" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-19-how-to-resolve-ssh-key-issues-with-multiple-git-services-zh-cn-ab40eb2</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-19-how-to-resolve-ssh-key-issues-with-multiple-git-services-zh-cn-ab40eb2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-19-how-to-resolve-ssh-key-issues-with-multiple-git-services-en-89f5029" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-19-how-to-resolve-ssh-key-issues-with-multiple-git-services-en-89f5029" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-19-understanding-the-differences-between-fine-tuning-and-further-pretraining-in-large-language--zh-cn-04f30fc</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-19-understanding-the-differences-between-fine-tuning-and-further-pretraining-in-large-language--zh-cn-04f30fc" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-19-understanding-the-differences-between-fine-tuning-and-further-pretraining-in-large-language--en-14addef" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-19-understanding-the-differences-between-fine-tuning-and-further-pretraining-in-large-language--en-14addef" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-19-how-to-resolve-ssh-key-issues-with-multiple-git-services-en-89f5029</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-19-how-to-resolve-ssh-key-issues-with-multiple-git-services-en-89f5029" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-19-how-to-resolve-ssh-key-issues-with-multiple-git-services-zh-cn-ab40eb2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-19-how-to-resolve-ssh-key-issues-with-multiple-git-services-en-89f5029" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2024-02-19-understanding-the-differences-between-fine-tuning-and-further-pretraining-in-large-language--en-14addef</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2024-02-19-understanding-the-differences-between-fine-tuning-and-further-pretraining-in-large-language--en-14addef" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2024-02-19-understanding-the-differences-between-fine-tuning-and-further-pretraining-in-large-language--zh-cn-04f30fc" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2024-02-19-understanding-the-differences-between-fine-tuning-and-further-pretraining-in-large-language--en-14addef" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-09-24-create-a-telegram-bot-with-python-and-openai-in-10-minutes-zh-cn-e19cc1d</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-09-24-create-a-telegram-bot-with-python-and-openai-in-10-minutes-zh-cn-e19cc1d" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-09-24-create-a-telegram-bot-with-python-and-openai-in-10-minutes-en-8c95502" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-09-24-create-a-telegram-bot-with-python-and-openai-in-10-minutes-en-8c95502" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-09-24-create-a-telegram-bot-with-python-and-openai-in-10-minutes-en-8c95502</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-09-24-create-a-telegram-bot-with-python-and-openai-in-10-minutes-en-8c95502" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-09-24-create-a-telegram-bot-with-python-and-openai-in-10-minutes-zh-cn-e19cc1d" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-09-24-create-a-telegram-bot-with-python-and-openai-in-10-minutes-en-8c95502" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-09-13-resolving-port-conflicts-identifying-and-terminating-processes-zh-cn-d5010db</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-09-13-resolving-port-conflicts-identifying-and-terminating-processes-zh-cn-d5010db" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-09-13-resolving-port-conflicts-identifying-and-terminating-processes-en-c2e05f4" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-09-13-resolving-port-conflicts-identifying-and-terminating-processes-en-c2e05f4" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-09-13-resolving-port-conflicts-identifying-and-terminating-processes-en-c2e05f4</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-09-13-resolving-port-conflicts-identifying-and-terminating-processes-en-c2e05f4" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-09-13-resolving-port-conflicts-identifying-and-terminating-processes-zh-cn-d5010db" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-09-13-resolving-port-conflicts-identifying-and-terminating-processes-en-c2e05f4" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-08-23-%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95-nohup-tmux-%E5%92%8C-screen-zh-cn-71871a8</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-08-23-%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95-nohup-tmux-%E5%92%8C-screen-zh-cn-71871a8" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-08-23-%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95-nohup-tmux-%E5%92%8C-screen-en-0286cdd" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-08-23-%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95-nohup-tmux-%E5%92%8C-screen-en-0286cdd" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-08-23-%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95-nohup-tmux-%E5%92%8C-screen-en-0286cdd</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-08-23-%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95-nohup-tmux-%E5%92%8C-screen-en-0286cdd" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-08-23-%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95-nohup-tmux-%E5%92%8C-screen-zh-cn-71871a8" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-08-23-%E6%97%A0%E6%96%AD%E5%BC%80%E7%83%A6%E6%81%BC-%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F%E7%9A%843%E7%A7%8D%E6%96%B9%E6%B3%95-nohup-tmux-%E5%92%8C-screen-en-0286cdd" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-08-22-%E8%B6%85%E8%B6%8Apython%E7%9A%84%E8%BE%B9%E7%95%8C-subprocess-%E5%8A%A9%E4%BD%A0%E4%B8%80%E9%94%AE%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4-zh-cn-ee00dc2</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-08-22-%E8%B6%85%E8%B6%8Apython%E7%9A%84%E8%BE%B9%E7%95%8C-subprocess-%E5%8A%A9%E4%BD%A0%E4%B8%80%E9%94%AE%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4-zh-cn-ee00dc2" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-08-22-%E8%B6%85%E8%B6%8Apython%E7%9A%84%E8%BE%B9%E7%95%8C-subprocess-%E5%8A%A9%E4%BD%A0%E4%B8%80%E9%94%AE%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4-en-2673710" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-08-22-%E8%B6%85%E8%B6%8Apython%E7%9A%84%E8%BE%B9%E7%95%8C-subprocess-%E5%8A%A9%E4%BD%A0%E4%B8%80%E9%94%AE%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4-en-2673710" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-08-22-%E8%B6%85%E8%B6%8Apython%E7%9A%84%E8%BE%B9%E7%95%8C-subprocess-%E5%8A%A9%E4%BD%A0%E4%B8%80%E9%94%AE%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4-en-2673710</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-08-22-%E8%B6%85%E8%B6%8Apython%E7%9A%84%E8%BE%B9%E7%95%8C-subprocess-%E5%8A%A9%E4%BD%A0%E4%B8%80%E9%94%AE%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4-en-2673710" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-08-22-%E8%B6%85%E8%B6%8Apython%E7%9A%84%E8%BE%B9%E7%95%8C-subprocess-%E5%8A%A9%E4%BD%A0%E4%B8%80%E9%94%AE%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4-zh-cn-ee00dc2" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-08-22-%E8%B6%85%E8%B6%8Apython%E7%9A%84%E8%BE%B9%E7%95%8C-subprocess-%E5%8A%A9%E4%BD%A0%E4%B8%80%E9%94%AE%E6%89%A7%E8%A1%8C%E5%A4%96%E9%83%A8%E5%91%BD%E4%BB%A4-en-2673710" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-08-21-conver-pytorch-model-to-onnx-format-zh-cn-16fa233</loc>
+    <lastmod>2023-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-08-21-conver-pytorch-model-to-onnx-format-zh-cn-16fa233" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-08-21-conver-pytorch-model-to-onnx-format-en-846cc12" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-08-21-conver-pytorch-model-to-onnx-format-en-846cc12" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-08-21-conver-pytorch-model-to-onnx-format-en-846cc12</loc>
+    <lastmod>2023-08-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-08-21-conver-pytorch-model-to-onnx-format-en-846cc12" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-08-21-conver-pytorch-model-to-onnx-format-zh-cn-16fa233" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-08-21-conver-pytorch-model-to-onnx-format-en-846cc12" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-08-02-training-llama-2-model-on-single-gpu-with-int8-quantization-and-lora-zh-cn-b5fb97c</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-08-02-training-llama-2-model-on-single-gpu-with-int8-quantization-and-lora-zh-cn-b5fb97c" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-08-02-training-llama-2-model-on-single-gpu-with-int8-quantization-and-lora-en-a0cb379" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-08-02-training-llama-2-model-on-single-gpu-with-int8-quantization-and-lora-en-a0cb379" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-08-02-training-llama-2-model-on-single-gpu-with-int8-quantization-and-lora-en-a0cb379</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-08-02-training-llama-2-model-on-single-gpu-with-int8-quantization-and-lora-en-a0cb379" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-08-02-training-llama-2-model-on-single-gpu-with-int8-quantization-and-lora-zh-cn-b5fb97c" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-08-02-training-llama-2-model-on-single-gpu-with-int8-quantization-and-lora-en-a0cb379" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-28-longnet-scaling-transformers-to-1-000-000-000-tokens-zh-cn-f9d0aad</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-28-longnet-scaling-transformers-to-1-000-000-000-tokens-zh-cn-f9d0aad" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-28-longnet-scaling-transformers-to-1-000-000-000-tokens-en-a221bcc" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-28-longnet-scaling-transformers-to-1-000-000-000-tokens-en-a221bcc" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-28-longnet-scaling-transformers-to-1-000-000-000-tokens-en-a221bcc</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-28-longnet-scaling-transformers-to-1-000-000-000-tokens-en-a221bcc" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-28-longnet-scaling-transformers-to-1-000-000-000-tokens-zh-cn-f9d0aad" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-28-longnet-scaling-transformers-to-1-000-000-000-tokens-en-a221bcc" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-27-prompt-engineering-zh-cn-1657621</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-27-prompt-engineering-zh-cn-1657621" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-27-prompt-engineering-en-2ac2955" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-27-prompt-engineering-en-2ac2955" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-27-prompt-engineering-en-2ac2955</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-27-prompt-engineering-en-2ac2955" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-27-prompt-engineering-zh-cn-1657621" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-27-prompt-engineering-en-2ac2955" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-10-coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6-zh-cn-6aadb51</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-10-coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6-zh-cn-6aadb51" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-10-coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6-en-3c2e3af" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-10-coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6-en-3c2e3af" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-10-coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6-en-3c2e3af</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-10-coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6-en-3c2e3af" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-10-coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6-zh-cn-6aadb51" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-10-coloredlogger-%E5%BD%A9%E8%89%B2%E6%89%93%E5%8D%B0%E6%97%A5%E5%BF%97%E5%88%B0%E6%8E%A7%E5%88%B6%E5%8F%B0%E5%B9%B6%E8%AE%B0%E5%BD%95%E5%88%B0%E6%96%87%E4%BB%B6-en-3c2e3af" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-09-%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95-zh-cn-c66fa2f</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-09-%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95-zh-cn-c66fa2f" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-09-%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95-en-9daf6ca" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-09-%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95-en-9daf6ca" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-09-%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95-en-9daf6ca</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-09-%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95-en-9daf6ca" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-09-%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95-zh-cn-c66fa2f" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-09-%E8%AF%A6%E8%A7%A3%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95-en-9daf6ca" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-08-hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%8F%AF%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%B6%B3%E8%BF%B9%E5%9C%B0%E5%9B%BE-zh-cn-909af85</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-08-hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%8F%AF%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%B6%B3%E8%BF%B9%E5%9C%B0%E5%9B%BE-zh-cn-909af85" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-08-hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%8F%AF%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%B6%B3%E8%BF%B9%E5%9C%B0%E5%9B%BE-en-c9640aa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-08-hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%8F%AF%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%B6%B3%E8%BF%B9%E5%9C%B0%E5%9B%BE-en-c9640aa" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-08-hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%8F%AF%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%B6%B3%E8%BF%B9%E5%9C%B0%E5%9B%BE-en-c9640aa</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-08-hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%8F%AF%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%B6%B3%E8%BF%B9%E5%9C%B0%E5%9B%BE-en-c9640aa" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-08-hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%8F%AF%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%B6%B3%E8%BF%B9%E5%9C%B0%E5%9B%BE-zh-cn-909af85" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-08-hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E5%8F%AF%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%B6%B3%E8%BF%B9%E5%9C%B0%E5%9B%BE-en-c9640aa" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-06-vs-code-remote-ssh%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98-zh-cn-f8c2e39</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-06-vs-code-remote-ssh%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98-zh-cn-f8c2e39" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-06-vs-code-remote-ssh%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98-en-14b2d42" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-06-vs-code-remote-ssh%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98-en-14b2d42" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-07-sup%E4%BD%93%E9%AA%8C-zh-cn-ffbd946</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-07-sup%E4%BD%93%E9%AA%8C-zh-cn-ffbd946" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-07-sup%E4%BD%93%E9%AA%8C-en-50e93c4" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-07-sup%E4%BD%93%E9%AA%8C-en-50e93c4" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-07-sup-experience-zh-cn-8af2e03</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-07-sup-experience-zh-cn-8af2e03" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-07-sup-experience-en-e2fd6c7" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-07-sup-experience-en-e2fd6c7" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-07-dssm-%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3-zh-cn-78d71ae</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-07-dssm-%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3-zh-cn-78d71ae" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-07-dssm-%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3-en-cf59c9b" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-07-dssm-%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3-en-cf59c9b" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-07-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3-zh-cn-da63820</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-07-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3-zh-cn-da63820" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-07-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3-en-44df0ac" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-07-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3-en-44df0ac" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-06-vs-code-remote-ssh%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98-en-14b2d42</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-06-vs-code-remote-ssh%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98-en-14b2d42" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-06-vs-code-remote-ssh%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98-zh-cn-f8c2e39" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-06-vs-code-remote-ssh%E8%BF%9E%E6%8E%A5%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98-en-14b2d42" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-07-sup%E4%BD%93%E9%AA%8C-en-50e93c4</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-07-sup%E4%BD%93%E9%AA%8C-en-50e93c4" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-07-sup%E4%BD%93%E9%AA%8C-zh-cn-ffbd946" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-07-sup%E4%BD%93%E9%AA%8C-en-50e93c4" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-07-sup-experience-en-e2fd6c7</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-07-sup-experience-en-e2fd6c7" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-07-sup-experience-zh-cn-8af2e03" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-07-sup-experience-en-e2fd6c7" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-07-dssm-%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3-en-cf59c9b</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-07-dssm-%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3-en-cf59c9b" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-07-dssm-%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3-zh-cn-78d71ae" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-07-dssm-%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3-en-cf59c9b" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-07-07-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3-en-44df0ac</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-07-07-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3-en-44df0ac" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-07-07-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3-zh-cn-da63820" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-07-07-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3-en-44df0ac" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-06-06-kubernetes%E5%9F%BA%E7%A1%80-zh-cn-c296447</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-06-06-kubernetes%E5%9F%BA%E7%A1%80-zh-cn-c296447" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-06-06-kubernetes%E5%9F%BA%E7%A1%80-en-f8343d7" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-06-06-kubernetes%E5%9F%BA%E7%A1%80-en-f8343d7" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-06-06-kubernetes%E5%9F%BA%E7%A1%80-en-f8343d7</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-06-06-kubernetes%E5%9F%BA%E7%A1%80-en-f8343d7" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-06-06-kubernetes%E5%9F%BA%E7%A1%80-zh-cn-c296447" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-06-06-kubernetes%E5%9F%BA%E7%A1%80-en-f8343d7" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-05-23-gitlog-zh-cn-4080e8c</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-05-23-gitlog-zh-cn-4080e8c" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-05-23-gitlog-en-43a61ae" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-05-23-gitlog-en-43a61ae" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-05-23-gitlog-en-43a61ae</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-05-23-gitlog-en-43a61ae" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-05-23-gitlog-zh-cn-4080e8c" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-05-23-gitlog-en-43a61ae" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-02-23-faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-zh-cn-609892f</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-02-23-faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-zh-cn-609892f" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-02-23-faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-en-be5966f" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-02-23-faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-en-be5966f" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-02-23-faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-en-be5966f</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-02-23-faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-en-be5966f" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-02-23-faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-zh-cn-609892f" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-02-23-faiss%E5%90%91%E9%87%8F%E6%9F%A5%E8%AF%A2%E7%AE%80%E4%BB%8B-en-be5966f" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-02-20-intersection-union-zh-cn-8de2b5e</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-02-20-intersection-union-zh-cn-8de2b5e" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-02-20-intersection-union-en-24021c9" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-02-20-intersection-union-en-24021c9" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-02-20-intersection-union-en-24021c9</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-02-20-intersection-union-en-24021c9" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-02-20-intersection-union-zh-cn-8de2b5e" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-02-20-intersection-union-en-24021c9" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-02-01-python-yield-zh-cn-1726cae</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-02-01-python-yield-zh-cn-1726cae" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-02-01-python-yield-en-e605989" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-02-01-python-yield-en-e605989" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-02-01-python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A-zh-cn-be617d0</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-02-01-python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A-zh-cn-be617d0" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-02-01-python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A-en-729810b" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-02-01-python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A-en-729810b" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-02-01-python-yield-en-e605989</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-02-01-python-yield-en-e605989" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-02-01-python-yield-zh-cn-1726cae" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-02-01-python-yield-en-e605989" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-02-01-python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A-en-729810b</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-02-01-python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A-en-729810b" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-02-01-python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A-zh-cn-be617d0" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-02-01-python-m-%E5%8F%82%E6%95%B0%E8%A7%A3%E9%87%8A-en-729810b" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-01-11-hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2-zh-cn-38da36d</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-01-11-hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2-zh-cn-38da36d" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-01-11-hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2-en-ce6af59" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-01-11-hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2-en-ce6af59" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2023-01-11-hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2-en-ce6af59</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2023-01-11-hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2-en-ce6af59" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2023-01-11-hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2-zh-cn-38da36d" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2023-01-11-hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%83%A8%E7%BD%B2-en-ce6af59" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2022-08-09-%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5-zh-cn-6596574</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2022-08-09-%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5-zh-cn-6596574" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2022-08-09-%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5-en-31b048a" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2022-08-09-%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5-en-31b048a" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/2022-08-09-%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5-en-31b048a</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/2022-08-09-%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5-en-31b048a" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/2022-08-09-%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5-zh-cn-6596574" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/2022-08-09-%E5%8D%97%E6%B4%8B%E7%9A%84%E6%A4%B0%E9%A3%8E%E6%B5%B7%E9%9F%B5-en-31b048a" />
+  </url>
 </urlset>

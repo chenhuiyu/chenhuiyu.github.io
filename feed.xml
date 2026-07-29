@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Huiyu Chen — Writing</title>
+    <link>https://chenhuiyu.github.io/blog</link>
+    <description>Notes on models, systems, and being human — in English and Chinese.</description>
+    <atom:link href="https://chenhuiyu.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <language>en-SG</language>
+    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>生成式推荐到底在生成什么？</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-preface-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-preface-zh</guid>
+      <pubDate>Fri, 24 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Generative Recommendation</category>
+      <description>同样叫生成式推荐，模型可能在生成文本、商品 ID、整张列表，甚至一段思考。序章先把这些概念彻底分开。</description>
+    </item>
+    <item>
+      <title>What Does Generative Recommendation Actually Generate?</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-preface-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-preface-en</guid>
+      <pubDate>Fri, 24 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Generative Recommendation</category>
+      <description>The same label can describe models that generate text, item IDs, full slates, or a reasoning trace. This prologue separates them precisely.</description>
+    </item>
+    <item>
+      <title>论文深读｜SLA2: Sparse-Linear Attention with Learnable Routing and QAT</title>
+      <link>https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-zh-cn-8797c86</guid>
+      <pubDate>Sat, 21 Feb 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>NLP Insights</category>
+      <description>按顺序只读四块：Abstract → Method Overview 图 → Contributions → 主实验表。</description>
+    </item>
+    <item>
+      <title>Paper Deep Dive | SLA2: Sparse-Linear Attention with Learnable Routing and QAT</title>
+      <link>https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43</guid>
+      <pubDate>Sat, 21 Feb 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>NLP Insights</category>
+      <description>Today we skip paper lists and do one deep dive.</description>
+    </item>
+    <item>
+      <title>基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</title>
+      <link>https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--zh-cn-0215cfe</guid>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>NLP Insights</category>
+      <description>人工智能（AI）和自然语言处理（NLP）的评估任务长期以来一直具有挑战性。传统的评估方法，例如基于匹配或嵌入的评估方法，在评估…</description>
+    </item>
+    <item>
+      <title>evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment</title>
+      <link>https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96</guid>
+      <pubDate>Fri, 20 Feb 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>NLP Insights</category>
+      <description>Evaluation tasks in artificial intelligence (AI) and natural language processing (NLP) have long been challenging. Traditional evaluation methods, such as those based on matching or embeddings, are limited in assessing c…</description>
+    </item>
+    <item>
+      <title>SeCom: 重新定义对话AI的记忆管理</title>
+      <link>https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-zh-cn-d527a07</guid>
+      <pubDate>Tue, 24 Jun 2025 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>NLP Insights</category>
+      <description>最近笔者一直在研究对话AI中的内存管理问题，特别是长期对话场景下的记忆构建与检索技术。发现了一篇令人眼前一亮的ICLR 2025论文——《SeCom: On Memory Construction and Retrieval for Personalized Conversational Agents》，由Microsoft和清华大学的研究团队联合发表。</description>
+    </item>
+    <item>
+      <title>SeCom: Redefining Memory Management in Conversational AI</title>
+      <link>https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896</guid>
+      <pubDate>Tue, 24 Jun 2025 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>NLP Insights</category>
+      <description>I’ve recently been diving into memory management for dialog-based AI, especially how to construct and retrieve memories in long-term conversations. During my exploration I came across an eye-opening ICLR 2025 paper—**”Se…</description>
+    </item>
+    <item>
+      <title>Decoder-only与Encoder-only模型Padding策略的差异</title>
+      <link>https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-zh-cn-820a5e7</guid>
+      <pubDate>Thu, 06 Mar 2025 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>NLP Insights</category>
+      <description>在大模型 (LLM) 中，padding 是用于将不同长度的序列调整为同一长度的方法，以便于批量 (batch) 处理。</description>
+    </item>
+    <item>
+      <title>Differences in Padding Strategies Between Decoder-only and Encoder-only Models</title>
+      <link>https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2025-03-06-differences-in-padding-strategies-between-decoder-only-and-encoder-only-models-en-90b08c3</guid>
+      <pubDate>Thu, 06 Mar 2025 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>NLP Insights</category>
+      <description>In Large Language Models (LLMs), padding is a method used to standardize sequence lengths for batch processing.</description>
+    </item>
+    <item>
+      <title>MoE模型的的可视化指南：揭秘 MoE 在大型语言模型中的角色</title>
+      <link>https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-zh-cn-e2ed5d7</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-zh-cn-e2ed5d7</guid>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>NLP Insights</category>
+      <description>原文地址：A Visual Guide to Mixture of Experts (MoE)</description>
+    </item>
+    <item>
+      <title>推理 LLM 的可视化指南：探索推理时计算技术与 DeepSeek-R1</title>
+      <link>https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-zh-cn-9db9902</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-zh-cn-9db9902</guid>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>NLP Insights</category>
+      <description>DeepSeek-R1、OpenAI o3-mini 和 Google Gemini 2.0 Flash Thinking 是如何通过“推理”框架将 LLM（大型语言模型, Large Language Models） 扩展到新高度的典型示例。</description>
+    </item>
+    <item>
+      <title>A visual guide to MoE models: Uncovering the role of MoE in large language models</title>
+      <link>https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-en-2a76ffb</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2025-02-11-moe%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2-en-2a76ffb</guid>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>NLP Insights</category>
+      <description>Original address: A Visual Guide to Mixture of Experts (MoE)</description>
+    </item>
+    <item>
+      <title>A visual guide to inference LLM: Exploring inference-time computing techniques with DeepSeek-R1</title>
+      <link>https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-en-ea27877</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2025-02-11-%E6%8E%A8%E7%90%86-llm-%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97-%E6%8E%A2%E7%B4%A2%E6%8E%A8%E7%90%86%E6%97%B6%E8%AE%A1%E7%AE%97%E6%8A%80%E6%9C%AF%E4%B8%8E-deepseek-r1-en-ea27877</guid>
+      <pubDate>Tue, 11 Feb 2025 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>NLP Insights</category>
+      <description>DeepSeek-R1, OpenAI o3-mini, and Google Gemini 2.0 Flash Thinking are prime examples of how LLMs (Large Language Models) can be scaled to new heights through “inference” frameworks.</description>
+    </item>
+    <item>
+      <title>追逐与倒影</title>
+      <link>https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-zh-cn-90b7ded</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-zh-cn-90b7ded</guid>
+      <pubDate>Tue, 10 Dec 2024 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Life Reflections</category>
+      <description>在清晨的第一缕光洒下之前，世间一切尚未显形。光与影的边界模糊，彷佛可以交叠，又彷佛注定分离。人们常说，朝阳是希望的象征，可它升起时，必将抛下一地影子。光和影之间，究竟是追逐还是相伴？这样的思考让我想起一则古老的寓言：一匹马在沙漠中追逐远方的绿洲，却不知道那不过是海市蜃楼，它每前进一步，绿洲也随之远去。</description>
+    </item>
+    <item>
+      <title>Chase and Reflection</title>
+      <link>https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-en-2c0d3b0</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-12-11-%E8%BF%BD%E9%80%90%E4%B8%8E%E5%80%92%E5%BD%B1-en-2c0d3b0</guid>
+      <pubDate>Tue, 10 Dec 2024 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Life Reflections</category>
+      <description>Before the first ray of light shines in the morning, nothing in the world has yet appeared. The boundaries between light and shadow are blurred, as if they can overlap, and yet they seem destined to separate. People often say that the rising sun is a symbol of hope, but when it rises, it will inevitably cast a shadow. Between light and shadow, is it a pursuit or a companionship? This kind of thinking reminds me of an old fable: a horse is chasing an oasis in the desert, but it doesn&apos;t know that it is just a mirage. Every time it takes a step forward, the oasis also disappears.</description>
+    </item>
+    <item>
+      <title>基于生成的大语言模型（LLM）评估：从生成到判断的机遇与挑战</title>
+      <link>https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-zh-cn-21ebeaa</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-zh-cn-21ebeaa</guid>
+      <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>NLP Insights</category>
+      <description>人工智能（AI）与自然语言处理（NLP）领域中的评估任务长期面临挑战。传统的评估方法（如基于匹配或嵌入的技术）在判断复杂属性时效果有限。近期大语言模型（LLM）的发展催生了“LLM-as-a-Judge”范式，利用LLM对任务进行评分、排序或选择。本论文对LLM评估方法进行了全面综述，包括其定义、分类框架、评估基准，以及未来的研究方向。</description>
+    </item>
+    <item>
+      <title>Generation-based large language model (LLM) evaluation: opportunities and challenges from generation to judgment</title>
+      <link>https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-en-5c25ed4</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-12-06-%E5%9F%BA%E4%BA%8E%E7%94%9F%E6%88%90%E7%9A%84%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B-llm-%E8%AF%84%E4%BC%B0-%E4%BB%8E%E7%94%9F%E6%88%90%E5%88%B0%E5%88%A4%E6%96%AD%E7%9A%84%E6%9C%BA%E9%81%87%E4%B8%8E%E6%8C%91%E6%88%98-en-5c25ed4</guid>
+      <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>NLP Insights</category>
+      <description>Evaluation tasks in the fields of artificial intelligence (AI) and natural language processing (NLP) have long faced challenges. Traditional assessment methods, such as matching or embedding-based techniques, have limited effectiveness in judging complex attributes. The recent development of large language models (LLM) has given rise to the &quot;LLM-as-a-Judge&quot; paradigm, which uses LLM to score, sort, or select tasks. This paper provides a comprehensive review of LLM assessment methods, including its definition, classification framework, assessment benchmarks, and future research directions.</description>
+    </item>
+    <item>
+      <title>身份与主体性的反思</title>
+      <link>https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-zh-cn-2d0236a</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-zh-cn-2d0236a</guid>
+      <pubDate>Tue, 03 Dec 2024 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Life Reflections</category>
+      <description>当我接到永居申请被拒的消息时，短暂的愣神之后，内心涌动的却并非单纯的挫败，而是一种奇异的“生存论困境”感。表面上，这似乎只是一次行政结果的体现，但其背后却深刻折射了当代全球流动性结构与主体性建构之间的多重张力。</description>
+    </item>
+    <item>
+      <title>Reflections on Identity and Subjectivity</title>
+      <link>https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-en-cd63f76</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-12-03-reflections-on-identity-and-subjectivity-en-cd63f76</guid>
+      <pubDate>Tue, 03 Dec 2024 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Life Reflections</category>
+      <description>When I received the news of my PR application being rejected, after a brief moment of shock, what arose within me was not merely frustration but a peculiar sense of “existential dilemma.” On the surface, it seemed like j…</description>
+    </item>
+    <item>
+      <title>【Leetcode Python题解】「1346. Check If N and Its Double Exist」</title>
+      <link>https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17</guid>
+      <pubDate>Sun, 01 Dec 2024 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Code Chronicles</category>
+      <description>使用哈希表可以显著优化时间复杂度。我们只需要一次遍历数组，同时用哈希表记录已经遇到的数字。</description>
+    </item>
+    <item>
+      <title>[Leetcode Python problem solution] &quot;1346. Check If N and Its Double Exist&quot;</title>
+      <link>https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-en-19191bd</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-12-02-leetcode-python%E9%A2%98%E8%A7%A3-1346-check-if-n-and-its-double-exist-en-19191bd</guid>
+      <pubDate>Sun, 01 Dec 2024 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Code Chronicles</category>
+      <description>Using a hash table can significantly optimize the time complexity. We only need to traverse the array once and use a hash table to record the numbers we have encountered.</description>
+    </item>
+    <item>
+      <title>【Leetcode Python题解】「2097. Valid Arrangement of Pairs」</title>
+      <link>https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af</guid>
+      <pubDate>Sat, 30 Nov 2024 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Code Chronicles</category>
+      <description>给定一个二维数组 pairs，其中 pairs[i] = [start, end]，我们需要重新排列这些数字对，使得相邻的两个数字对 [start1, end1] 和 [start2, end2] 满足以下条件：</description>
+    </item>
+    <item>
+      <title>Leetcode Python Solution - 2097. Valid Arrangement of Pairs</title>
+      <link>https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b</guid>
+      <pubDate>Sat, 30 Nov 2024 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Code Chronicles</category>
+      <description>In this technical blog, we’ll dive deep into Leetcode Problem 2097 — Valid Arrangement of Pairs. We will break down the solution step by step, from understanding the problem, modeling it as a graph theory problem, to imp…</description>
+    </item>
+    <item>
+      <title>LoRA, DPO, KTO 与 SFT 技术详解</title>
+      <link>https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-zh-cn-150d599</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-zh-cn-150d599</guid>
+      <pubDate>Wed, 23 Oct 2024 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>NLP Insights</category>
+      <description>本篇文档将详细介绍几种在大型语言模型（如 LLAMA3）微调和优化中的重要技术，包括 SFT（Supervised Fine-Tuning）、LoRA（Low-Rank Adaptation）、Alignment 技术、KTO（Kahneman-Tversky Optimization） 和 DPO（Direct Preference Optimization）。文中还将详细阐述每种技术的原理、具体实现方法以及相应的损失函数与优化器选择…</description>
+    </item>
+    <item>
+      <title>Detailed Explanation of LoRA, DPO, KTO, and SFT Technologies</title>
+      <link>https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-en-f151e65</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-10-23-detailed-explanation-of-lora-dpo-kto-and-sft-technologies-en-f151e65</guid>
+      <pubDate>Wed, 23 Oct 2024 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>NLP Insights</category>
+      <description>This document provides a detailed introduction to several important techniques used in fine-tuning and optimizing large language models (such as LLAMA3), including SFT (Supervised Fine-Tuning), LoRA (Low-Rank Adaptation)…</description>
+    </item>
+    <item>
+      <title>使用压缩有限状态机进行本地 LLM 的快速 JSON 解码</title>
+      <link>https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-zh-cn-af33df0</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-zh-cn-af33df0</guid>
+      <pubDate>Tue, 13 Aug 2024 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>NLP Insights</category>
+      <description>作者: Liangsheng Yin, Ying Sheng, Lianmin Zheng日期: 2024 年 2 月 5 日</description>
+    </item>
+    <item>
+      <title>Fast JSON decoding of native LLM using compressed finite state machines</title>
+      <link>https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-en-d8dc6af</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-08-13-%E4%BD%BF%E7%94%A8%E5%8E%8B%E7%BC%A9%E6%9C%89%E9%99%90%E7%8A%B6%E6%80%81%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%9C%AC%E5%9C%B0-llm-%E7%9A%84%E5%BF%AB%E9%80%9F-json-%E8%A7%A3%E7%A0%81-en-d8dc6af</guid>
+      <pubDate>Tue, 13 Aug 2024 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>NLP Insights</category>
+      <description>Author: Liangsheng Yin, Ying Sheng, Lianmin Zheng Date: February 5, 2024</description>
+    </item>
+    <item>
+      <title>使用vLLM运行微调后的Gemma-2</title>
+      <link>https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-zh-cn-c609076</guid>
+      <pubDate>Wed, 07 Aug 2024 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>NLP Insights</category>
+      <description>在这里分享一下我运行微调后的Gemma-2-2b-it模型并使用vLLM的步骤，希望对其他人有所帮助。本文将详细介绍安装过程、环境配置以及常见问题的解决方法。</description>
+    </item>
+    <item>
+      <title>Detailed Steps for Running Fine-tuned Gemma-2-2b-it with vLLM</title>
+      <link>https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-en-d317a79</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/2024-08-07-detailed-steps-for-running-fine-tuned-gemma-2-2b-it-with-vllm-en-d317a79</guid>
+      <pubDate>Wed, 07 Aug 2024 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>NLP Insights</category>
+      <description>In this post, I will share the steps to run the fine-tuned Gemma-2-2b-it model using vLLM. This guide will cover the installation process, environment configuration, and common troubleshooting tips.</description>
+    </item>
+  </channel>
+</rss>
