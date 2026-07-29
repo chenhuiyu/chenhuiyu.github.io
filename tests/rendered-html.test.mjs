@@ -41,7 +41,7 @@ test("renders development preview metadata", async () => {
   assert.match(await response.text(), developmentPreviewMeta);
 });
 
-test("renders the homepage series, latest story, and transparent traffic scopes", async () => {
+test("renders the homepage series and latest story without a public traffic dashboard", async () => {
   const response = await render("/");
   const html = await response.text();
 
@@ -55,15 +55,13 @@ test("renders the homepage series, latest story, and transparent traffic scopes"
     html,
     /href="\/blog\/generative-recommendation-20-onereason-zh"/,
   );
-  assert.match(html, /class="visitor-pulse-section"/);
-  assert.match(html, /id="busuanzi_value_site_pv"/);
-  assert.match(html, /id="busuanzi_value_site_uv"/);
-  assert.match(html, /id="vercount_value_site_pv"/);
-  assert.match(html, /id="vercount_value_site_uv"/);
-  assert.match(
-    html,
-    /src="https:\/\/busuanzi\.ibruce\.info\/busuanzi\/2\.3\/busuanzi\.pure\.mini\.js"/,
-  );
+  assert.match(html, /Generative recommendation/);
+  assert.doesNotMatch(html, /class="visitor-pulse-section"/);
+  assert.doesNotMatch(html, /busuanzi_value_site_/);
+  assert.doesNotMatch(html, /vercount_value_site_/);
+  assert.doesNotMatch(html, /busuanzi\.ibruce\.info/);
+  assert.doesNotMatch(html, /New stories arrive here automatically/);
+  assert.doesNotMatch(html, /Clear technical writing/);
   assert.match(html, /src="https:\/\/events\.vercount\.one\/js"/);
   assert.match(
     html,
