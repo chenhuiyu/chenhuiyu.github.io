@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "@/app/components/SiteHeader";
-import { SiteTrafficCounter } from "@/app/components/ViewCounter";
+import { VisitorPulse } from "@/app/components/VisitorPulse";
 import { countryOrder, travelLocations } from "@/content/travel-data";
 import { posts } from "@/lib/posts";
 import {
@@ -64,6 +64,9 @@ const seriesPrologue = posts.find(
     post.seriesOrder === 0 &&
     post.language === "zh-CN",
 );
+const seriesEditions = posts.filter(
+  (post) => post.series === "generative-recommendation",
+).length;
 
 export default function Home() {
   return (
@@ -345,7 +348,10 @@ export default function Home() {
               <strong>20</strong>
               篇论文主线
             </p>
-            <SiteTrafficCounter locale="zh-CN" />
+            <p>
+              <strong>{seriesEditions}</strong>
+              个中英版本
+            </p>
           </div>
         </div>
 
@@ -364,6 +370,8 @@ export default function Home() {
           </span>
         </a>
       </section>
+
+      <VisitorPulse />
 
       <section className="writing-section" id="writing">
         <div className="section-intro writing-intro">
