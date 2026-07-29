@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "@/app/components/SiteHeader";
 import profile from "@/content/xiaohongshu.json";
+import { RSS_ALTERNATE, SITE_SOCIAL_IMAGE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "小红书 — 乌节路陈女士",
   description: "乌节路陈女士的小红书公开笔记精选。",
+  alternates: {
+    canonical: "/xiaohongshu",
+    types: RSS_ALTERNATE,
+  },
+  openGraph: {
+    type: "website",
+    url: "/xiaohongshu",
+    title: "小红书 — 乌节路陈女士",
+    description: "乌节路陈女士的小红书公开笔记精选。",
+    locale: "zh_CN",
+    images: [SITE_SOCIAL_IMAGE],
+  },
 };
 
 export default function XiaohongshuPage() {
