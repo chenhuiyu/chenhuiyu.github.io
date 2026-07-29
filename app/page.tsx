@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "@/app/components/SiteHeader";
-import { VisitorPulse } from "@/app/components/VisitorPulse";
 import { countryOrder, travelLocations } from "@/content/travel-data";
 import { posts } from "@/lib/posts";
 import {
@@ -41,9 +40,9 @@ const focusAreas = [
   },
   {
     number: "03",
-    title: "Clear technical writing",
-    copy: "I translate papers, experiments, and hard-won debugging lessons into notes that another engineer can actually use.",
-    note: "read · question · explain",
+    title: "Generative recommendation",
+    copy: "I study how retrieval, ranking, semantic IDs, and language models converge—currently documented through a twenty-paper bilingual series.",
+    note: "rank · retrieve · generate",
   },
 ];
 
@@ -371,16 +370,10 @@ export default function Home() {
         </a>
       </section>
 
-      <VisitorPulse />
-
       <section className="writing-section" id="writing">
         <div className="section-intro writing-intro">
           <p className="section-kicker">Latest writing · 最新文章</p>
           <div>
-            <h2>New stories arrive here automatically.</h2>
-            <p className="section-summary">
-              新发布的文章会自动出现在首页；每个故事都有完整的中英双语版本。
-            </p>
             <a className="text-link text-link-primary" href="/blog">
               Browse all {storyKeys.length} stories · {posts.length} editions{" "}
               <span aria-hidden="true">→</span>
