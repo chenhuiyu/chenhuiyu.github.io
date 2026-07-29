@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">BPR toy example</title>
+  <desc id="desc">An observed and an unobserved item become a pairwise training triple.</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">一次点击怎样变成一个训练三元组 / BPR toy example</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">固定商品不变；改变的是模型如何解释“小林没有点击”。</text>
+    <rect x="80" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="160" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I01</text>
+      <text x="160" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">网球拍</text>
+      <text x="160" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">racket</text>
+<rect x="265" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="345" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I02</text>
+      <text x="345" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">吸汗带</text>
+      <text x="345" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">sweatband</text>
+<rect x="450" y="180" width="160" height="105" rx="18" fill="#ecfdf5" stroke="#10b981" stroke-width="3"/>
+      <text x="530" y="215" fill="#166534" font-size="17" font-weight="700" text-anchor="middle">I03</text>
+      <text x="530" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">攀岩鞋</text>
+      <text x="530" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">climbing shoes</text>
+<rect x="635" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="715" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I04</text>
+      <text x="715" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">粉袋</text>
+      <text x="715" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">chalk bag</text>
+<rect x="820" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="900" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I05</text>
+      <text x="900" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">羽毛球</text>
+      <text x="900" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">shuttlecock</text>
+<rect x="1005" y="180" width="160" height="105" rx="18" fill="#fff1f2" stroke="#e11d48" stroke-width="3"/>
+      <text x="1085" y="215" fill="#e11d48" font-size="17" font-weight="700" text-anchor="middle">I06</text>
+      <text x="1085" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">泳镜</text>
+      <text x="1085" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">goggles</text>
+<rect x="1190" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="1270" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I07</text>
+      <text x="1270" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">瑜伽垫</text>
+      <text x="1270" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">yoga mat</text>
+<rect x="1375" y="180" width="160" height="105" rx="18" fill="#ffffff" stroke="#c9c0b3" stroke-width="3"/>
+      <text x="1455" y="215" fill="#6f6a61" font-size="17" font-weight="700" text-anchor="middle">I08</text>
+      <text x="1455" y="248" fill="#171612" font-size="23" font-weight="650" text-anchor="middle">蛋白棒</text>
+      <text x="1455" y="273" fill="#6f6a61" font-size="14" font-weight="400" text-anchor="middle">protein bar</text>
+    <rect x="120" y="365" width="410" height="245" rx="28" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+    <text x="160" y="415" fill="#166534" font-size="20" font-weight="700" text-anchor="start">已观察 / observed</text>
+    <text x="160" y="470" fill="#171612" font-size="29" font-weight="650" text-anchor="start">小林点击了 I03 攀岩鞋</text>
+    <text x="160" y="520" fill="#166534" font-size="27" font-weight="600" text-anchor="start">(u, i) ∈ S</text>
+    <text x="160" y="566" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">这只是行为，不是五星评分</text>
+    <rect x="1070" y="365" width="410" height="245" rx="28" fill="#ffffff" stroke="#e11d48" stroke-width="2"/>
+    <text x="1110" y="415" fill="#e11d48" font-size="20" font-weight="700" text-anchor="start">未观察 / unobserved</text>
+    <text x="1110" y="470" fill="#171612" font-size="29" font-weight="650" text-anchor="start">小林没有点击 I06 泳镜</text>
+    <text x="1110" y="520" fill="#e11d48" font-size="27" font-weight="600" text-anchor="start">(u, j) ∉ S</text>
+    <text x="1110" y="566" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">可能没看见，也可能不喜欢</text>
+    <path d="M555 490 H1019" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M1015 477 L1035 490 L1015 503" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="620" y="435" width="350" height="110" rx="26" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="795" y="478" fill="#6d28d9" font-size="27" font-weight="700" text-anchor="middle">(小林, I03, I06)</text>
+    <text x="795" y="515" fill="#6f6a61" font-size="21" font-weight="500" text-anchor="middle">假设 I03 ≻ᵤ I06</text>
+    <rect x="320" y="690" width="960" height="105" rx="26" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+    <text x="800" y="735" fill="#92400e" font-size="28" font-weight="700" text-anchor="middle">关键假设：observed ≻ unobserved</text>
+    <text x="800" y="772" fill="#6f6a61" font-size="20" font-weight="400" text-anchor="middle">BPR 没有证明“没点 = 不喜欢”；它把沉默变成可学习的相对顺序。</text>
+  </g>
+</svg>

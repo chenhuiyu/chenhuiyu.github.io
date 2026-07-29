@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">同一个 I06 index，四种学习信号 / LC-Rec toy</title><desc id="desc">示意 index 〈a₄,b₂,c₁,d₇〉；每种任务连接一种语义边。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"><text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">同一个 I06 index，四种学习信号 / LC-Rec toy</text><text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">示意 index 〈a₄,b₂,c₁,d₇〉；每种任务连接一种语义边。</text><rect x="77" y="220" width="335" height="420" rx="28" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="111" y="270" fill="#1d4ed8" font-size="17" font-weight="750" text-anchor="start">01</text>
+      <text x="111" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">序列预测</text>
+      <text x="111" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">I01,I03,I05 codes</text>
+<text x="111" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">→ I06 codes</text>
+<text x="111" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">协同行为</text>
+<rect x="447" y="220" width="335" height="420" rx="28" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="481" y="270" fill="#6d28d9" font-size="17" font-weight="750" text-anchor="start">02</text>
+      <text x="481" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">互相翻译</text>
+      <text x="481" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">“防雾泳镜” → codes</text>
+<text x="481" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">codes → 标题描述</text>
+<text x="481" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">显式语言对齐</text>
+<rect x="817" y="220" width="335" height="420" rx="28" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="851" y="270" fill="#92400e" font-size="17" font-weight="750" text-anchor="start">03</text>
+      <text x="851" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">非对称预测</text>
+      <text x="851" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">history codes → title</text>
+<text x="851" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">history titles → codes</text>
+<text x="851" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">跨表示推断</text>
+<rect x="1187" y="220" width="335" height="420" rx="28" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="1221" y="270" fill="#166534" font-size="17" font-weight="750" text-anchor="start">04</text>
+      <text x="1221" y="325" fill="#171612" font-size="27" font-weight="650" text-anchor="start">意图 / 偏好</text>
+      <text x="1221" y="385" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">“准备游泳” → I06</text>
+<text x="1221" y="430" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">index history → 兴趣文本</text>
+<text x="1221" y="475" fill="#6f6a61" font-size="19" font-weight="400" text-anchor="start">推荐语义对齐</text>
+    <rect x="235" y="705" width="1130" height="100" rx="25" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <text x="800" y="765" fill="#171612" font-size="22" font-weight="650" text-anchor="middle">LC-Rec 不把 next-item loss 当作唯一老师；它用辅助任务把新 code tokens 接回语言空间。</text></g>
+</svg>

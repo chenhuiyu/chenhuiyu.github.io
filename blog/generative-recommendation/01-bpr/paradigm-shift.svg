@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">从预测数值到比较顺序 / BPR’s paradigm shift</title>
+  <desc id="desc">隐式反馈没有评分；BPR 把问题改写成“同一用户更偏好哪一个”。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">从预测数值到比较顺序 / BPR’s paradigm shift</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">隐式反馈没有评分；BPR 把问题改写成“同一用户更偏好哪一个”。</text>
+    <rect x="90" y="235" width="570" height="400" rx="30" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="135" y="295" fill="#1d4ed8" font-size="19" font-weight="700" text-anchor="start">POINTWISE · 逐点</text>
+    <text x="135" y="350" fill="#171612" font-size="35" font-weight="650" text-anchor="start">拟合一个绝对分数</text>
+    <text x="135" y="410" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">输入：(u, i)</text>
+<text x="135" y="458" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">目标：点击=1，未点=0</text>
+<text x="135" y="506" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">风险：把沉默当作明确负反馈</text>
+    <path d="M690 435 H879" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+  <path d="M875 422 L895 435 L875 448" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="705" y="360" width="170" height="70" rx="35" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="790" y="404" fill="#6d28d9" font-size="21" font-weight="700" text-anchor="middle">BPR-Opt</text>
+    <rect x="925" y="235" width="585" height="400" rx="30" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+    <text x="970" y="295" fill="#166534" font-size="19" font-weight="700" text-anchor="start">PAIRWISE · 成对</text>
+    <text x="970" y="350" fill="#171612" font-size="35" font-weight="650" text-anchor="start">学习谁排在谁前面</text>
+    <text x="970" y="410" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">输入：(u, i, j)</text>
+<text x="970" y="458" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">目标：s(u,i) &gt; s(u,j)</text>
+<text x="970" y="506" fill="#6f6a61" font-size="23" font-weight="400" text-anchor="start">输出：个性化商品顺序</text>
+    <line x1="90" y1="710" x2="1510" y2="710" stroke="#c9c0b3" stroke-width="2" stroke-dasharray="10 10"/>
+    <text x="800" y="786" fill="#92400e" font-size="25" font-weight="650" text-anchor="middle">改变的不是矩阵分解本身，而是训练目标终于与“排序”一致。</text>
+  </g>
+</svg>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">规模化不该以丢掉交叉特征为代价 / MTGR</title>
+  <desc id="desc">Meituan 发现纯 next-token 路线丢失 candidate-aware statistics，放大模型也补不回来。</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#172033" flood-opacity=".08"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#C8D2E1"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="720" fill="#FCFAF5"/>
+  <circle cx="1110" cy="70" r="160" fill="#E8F0FF" opacity=".55"/>
+  <circle cx="85" cy="675" r="145" fill="#F1EAFE" opacity=".55"/>
+  <text x="64" y="62" font-size="31" font-weight="760" fill="#172033">规模化不该以丢掉交叉特征为代价 / MTGR</text>
+  <text x="64" y="95" font-size="17" font-weight="500" fill="#667085">Meituan 发现纯 next-token 路线丢失 candidate-aware statistics，放大模型也补不回来。</text>
+  <rect x="64" y="145" width="430" height="430" rx="22" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+      <rect x="92" y="170" width="148" height="34" rx="17" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+    <text x="166" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#D97706">Pure GRM</text>
+      <text x="92" y="235" text-anchor="start" font-size="26" font-weight="760" fill="#172033"><tspan x="92" dy="0">只把行为排成序列</tspan></text>
+      <rect x="92" y="290" width="374" height="50" rx="14" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+            <circle cx="116" cy="315" r="7" fill="#D97706"/>
+            <text x="134" y="321" font-size="17" font-weight="600" fill="#172033">长历史可端到端建模</text><rect x="92" y="360" width="374" height="50" rx="14" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+            <circle cx="116" cy="385" r="7" fill="#D97706"/>
+            <text x="134" y="391" font-size="17" font-weight="600" fill="#172033">用户计算可复用</text><rect x="92" y="430" width="374" height="50" rx="14" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+            <circle cx="116" cy="455" r="7" fill="#D97706"/>
+            <text x="134" y="461" font-size="17" font-weight="600" fill="#172033">去掉候选交叉特征</text><rect x="92" y="500" width="374" height="50" rx="14" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+            <circle cx="116" cy="525" r="7" fill="#D97706"/>
+            <text x="134" y="531" font-size="17" font-weight="600" fill="#172033">scale 后仍有质量缺口</text>
+      <line x1="520" y1="360" x2="680" y2="360" stroke="#7C3AED" stroke-width="3" marker-end="url(#arrow)"/>
+      <rect x="535" y="314" width="130" height="92" rx="46" fill="#F1EAFE" stroke="#7C3AED" stroke-width="2"/>
+      <text x="600" y="348" text-anchor="middle" font-size="16" font-weight="760" fill="#7C3AED"><tspan x="600" dy="0">保留先验</tspan><tspan x="600" dy="22">重新排布</tspan></text>
+      <rect x="706" y="145" width="430" height="430" rx="22" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+      <rect x="734" y="170" width="88" height="34" rx="17" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+    <text x="778" y="193" text-anchor="middle" font-size="15" font-weight="700" fill="#2563EB">MTGR</text>
+      <text x="734" y="235" text-anchor="start" font-size="26" font-weight="760" fill="#172033"><tspan x="734" dy="0">Token 序列 + Cross features</tspan></text>
+      <rect x="734" y="290" width="374" height="50" rx="14" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+            <circle cx="758" cy="315" r="7" fill="#2563EB"/>
+            <text x="776" y="321" font-size="17" font-weight="600" fill="#172033">用户与序列 token</text><rect x="734" y="360" width="374" height="50" rx="14" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+            <circle cx="758" cy="385" r="7" fill="#2563EB"/>
+            <text x="776" y="391" font-size="17" font-weight="600" fill="#172033">候选 token 带 ctr / pv</text><rect x="734" y="430" width="374" height="50" rx="14" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+            <circle cx="758" cy="455" r="7" fill="#2563EB"/>
+            <text x="776" y="461" font-size="17" font-weight="600" fill="#172033">一个用户聚合多候选</text><rect x="734" y="500" width="374" height="50" rx="14" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+            <circle cx="758" cy="525" r="7" fill="#2563EB"/>
+            <text x="776" y="531" font-size="17" font-weight="600" fill="#172033">判别 loss 输出每项分数</text>
+  <line x1="64" y1="665" x2="1136" y2="665" stroke="#C8D2E1"/>
+         <text x="64" y="696" font-size="15" fill="#667085">工程结论不是回到旧 DLRM，而是把已验证有效的特征装进可规模化的 HSTU 表示。</text>
+</svg>

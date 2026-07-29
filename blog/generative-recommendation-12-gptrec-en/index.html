@@ -1,0 +1,324 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-G-UKqax9.css" data-rsc-css-href="/assets/index-G-UKqax9.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-DuOhKy3m.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-BxhDq--T.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>Top-K Is Not the Only Answer: A List Can Be Written Item by Item | Generative Recommendation 12: GPTRec — Huiyu Chen</title><meta name="description" content="GPTRec contrasts one-pass Top-K scoring with autoregressive Next-K list generation and quantizes SVD item coordinates into compact multi-token IDs."/><meta name="application-name" content="Huiyu Chen"/><meta name="keywords" content="Generative Recommendation,Recommender Systems,GPTRec,List Generation"/><meta name="author" content="Huiyu (Yvette) Chen"/><link rel="author" href="https://chenhuiyu.github.io"/><meta name="creator" content="Huiyu (Yvette) Chen"/><meta name="publisher" content="Huiyu Chen"/><meta name="robots" content="index, follow"/><meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/><meta property="og:title" content="Top-K Is Not the Only Answer: A List Can Be Written Item by Item | Generative Recommendation 12: GPTRec"/><meta property="og:description" content="GPTRec contrasts one-pass Top-K scoring with autoregressive Next-K list generation and quantizes SVD item coordinates into compact multi-token IDs."/><meta property="og:url" content="https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en"/><meta property="og:type" content="article"/><meta property="og:locale" content="en_SG"/><meta property="article:published_time" content="2026-07-29"/><meta property="article:modified_time" content="2026-07-29"/><meta property="article:author" content="https://chenhuiyu.github.io"/><meta property="og:image" content="https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg"/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Top-K Is Not the Only Answer: A List Can Be Written Item by Item | Generative Recommendation 12: GPTRec"/><meta name="twitter:description" content="GPTRec contrasts one-pass Top-K scoring with autoregressive Next-K list generation and quantizes SVD item coordinates into compact multi-token IDs."/><meta name="twitter:image" content="https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg"/><link rel="shortcut icon" href="https://chenhuiyu.github.io/favicon.svg"/><link rel="icon" href="https://chenhuiyu.github.io/favicon.svg"/><link rel="canonical" href="https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en"/><link rel="alternate" hrefLang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en"/><link rel="alternate" hrefLang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-zh"/><link rel="alternate" hrefLang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en"/><link rel="alternate" type="application/rss+xml" href="https://chenhuiyu.github.io/feed.xml"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"generative-recommendation-12-gptrec-en"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/generative-recommendation-12-gptrec-en","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-BxhDq--T.js" />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0tvmz3h { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0tvmz3h { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_1diim1n { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_1diim1n { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_1vhuncr { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_1vhuncr { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://chenhuiyu.github.io/#person","name":"Huiyu Chen","alternateName":"Yvette Chen","url":"https://chenhuiyu.github.io","image":"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg","jobTitle":"Machine Learning Engineer","worksFor":{"@type":"Organization","name":"Meta"},"sameAs":["https://www.linkedin.com/in/yvette-huiyu-chen"]},{"@type":"WebSite","@id":"https://chenhuiyu.github.io/#website","url":"https://chenhuiyu.github.io/","name":"Huiyu Chen","description":"Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video.","inLanguage":["en","zh-CN"],"author":{"@id":"https://chenhuiyu.github.io/#person"}}]}</script><main class="site-shell article-shell" id="top"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en#article","url":"https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en","mainEntityOfPage":{"@type":"WebPage","@id":"https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en"},"headline":"Top-K Is Not the Only Answer: A List Can Be Written Item by Item | Generative Recommendation 12: GPTRec","description":"GPTRec contrasts one-pass Top-K scoring with autoregressive Next-K list generation and quantizes SVD item coordinates into compact multi-token IDs.","datePublished":"2026-07-29","dateModified":"2026-07-29","inLanguage":"en","articleSection":"GenRec Series","keywords":"Generative Recommendation, Recommender Systems, GPTRec, List Generation","author":{"@id":"https://chenhuiyu.github.io/#person"},"publisher":{"@id":"https://chenhuiyu.github.io/#person"},"isPartOf":{"@type":"CollectionPage","@id":"https://chenhuiyu.github.io/series/generative-recommendation/en#series","name":"Generative Recommendation Through 20 Papers"}}</script><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><a class="article-series-link" href="/series/generative-recommendation/en">Generative recommendation · 12</a><div class="article-meta"><span>GenRec Series</span><time>2026-07-29</time><span>English</span><span class="view-counter view-counter-page" title="Article views"><span class="view-counter-value" id="vercount_value_page_pv">—</span><span>views</span></span></div><h1>Top-K Is Not the Only Answer: A List Can Be Written Item by Item | Generative Recommendation 12: GPTRec</h1><p class="article-deck">GPTRec contrasts one-pass Top-K scoring with autoregressive Next-K list generation and quantizes SVD item coordinates into compact multi-token IDs.</p><a class="language-switch" href="/blog/generative-recommendation-12-gptrec-zh">阅读中文版 →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#the-paper-in-30-seconds">The paper in 30 seconds</a><a class="" href="#list-conditioning-with-eight-items">List conditioning with eight items</a><a class="" href="#a-second-route-to-item-tokens-svd-quantization">A second route to item tokens: SVD quantization</a><a class="" href="#the-central-equation">The central equation</a><a class="" href="#training-and-inference">Training and inference</a><a class="toc-subitem" href="#top-k">Top-K</a><a class="toc-subitem" href="#next-k">Next-K</a><a class="" href="#what-the-experiments-establish">What the experiments establish</a><a class="" href="#where-gptrec-breaks">Where GPTRec breaks</a><a class="toc-subitem" href="#expressivity-is-not-an-objective">Expressivity is not an objective</a><a class="toc-subitem" href="#autoregressive-error-accumulation">Autoregressive error accumulation</a><a class="toc-subitem" href="#latency-grows-with-k">Latency grows with K</a><a class="toc-subitem" href="#svd-ids-have-no-content-cold-start">SVD IDs have no content cold start</a><a class="toc-subitem" href="#evidence-is-narrow">Evidence is narrow</a><a class="" href="#why-lc-rec-comes-next">Why LC-Rec comes next</a></nav></aside><div class="prose"><p>A recommender ultimately delivers a list, not one isolated item.</p>
+<p>Top-K systems score candidates independently and keep the K largest values. That is efficient, but item two never sees item one. Two near-identical shoes may both score highly; the model has no opportunity to say, “running is already covered, so I will represent the user&#39;s climbing interest next.”</p>
+<p><a target="_blank" rel="noreferrer noopener" href="https://arxiv.org/abs/2306.11114">GPTRec: Generative Sequential Recommendation with GPTRec</a> separates two questions:</p>
+<ol>
+<li>Must one product equal one token?</li>
+<li>Must a recommendation list be produced in one Top-K operation?</li>
+</ol>
+<p>Its answers are SVD-based multi-token IDs and autoregressive <strong>Next-K</strong> generation.</p>
+<h2 id="the-paper-in-30-seconds">The paper in 30 seconds</h2>
+<ol>
+<li><strong>TIGER&#39;s open problem:</strong> it generates one item&#39;s Semantic ID but does not directly model dependencies among list members.</li>
+<li><strong>GPTRec&#39;s answer:</strong> use a GPT-2-style decoder; Top-K emits independent catalog scores once, whereas Next-K learns (\prod_kP(r_k\mid H,r_{&lt;k})), letting later recommendations observe earlier choices.</li>
+<li><strong>The result:</strong> on MovieLens-1M, GPTRec-TopK reaches 0.146 NDCG@10, close to BERT4Rec&#39;s 0.152; NextK reaches 0.105. Four SVD tokens with 512 values each use only 2,048 embeddings and score 0.108.</li>
+</ol>
+<p>One fact is easy to miss:</p>
+<blockquote>
+<p>GPTRec uses the GPT-2 decoder architecture, but it does <strong>not</strong> initialize from a pretrained GPT-2 checkpoint. “GPT” here denotes autoregressive structure, not imported world knowledge.</p>
+</blockquote>
+<p><img loading="lazy" decoding="async" src="/blog/generative-recommendation/12-gptrec/paradigm-shift.svg" alt="Top-K versus Next-K"></p>
+<p><em>Figure 1. Top-K scores candidates in parallel; every Next-K decision conditions on the list prefix already generated.</em></p>
+<h2 id="list-conditioning-with-eight-items">List conditioning with eight items</h2>
+<p>Our user history remains:</p>
+<pre><code class="language-text">I01 tennis racket → I03 climbing shoes
+→ I05 badminton racket → I07 swim cap
+</code></pre>
+<p>Top-K might independently assign:</p>
+<pre><code class="language-text">I06 goggles       0.92
+I08 sports towel  0.89
+I02 tennis balls  0.87
+</code></pre>
+<p>Next-K instead generates:</p>
+<pre><code class="language-text">step 1: P(I06 | history)
+step 2: P(I08 | history, I06)
+step 3: P(I04 | history, I06, I08)
+</code></pre>
+<p>Step two can use the fact that goggles are already present; step three can cover climbing. The architecture creates a channel for list interaction. It does not automatically create diversity: if training still rewards only ordinary next-item likelihood, the model may continue copying popular or similar items.</p>
+<p><img loading="lazy" decoding="async" src="/blog/generative-recommendation/12-gptrec/toy-next-k.svg" alt="Building a list one item at a time"></p>
+<p><em>Figure 2. Next-K can express a list policy, but actual diversity requires data, objectives, or reinforcement signals that reward it.</em></p>
+<h2 id="a-second-route-to-item-tokens-svd-quantization">A second route to item tokens: SVD quantization</h2>
+<p>TIGER learns Semantic IDs from content embeddings. GPTRec proposes a direct collaborative compression based on the user–item matrix.</p>
+<p>For (M\in\mathbb R^{|U|\times|I|}), compute a truncated decomposition:</p>
+<p>[
+M\approx U\Sigma E^\top.
+]</p>
+<p>(E_i\in\mathbb R^t) is item (i)&#39;s collaborative coordinate. For each dimension:</p>
+<ol>
+<li>normalize item values to ([0,1]);</li>
+<li>add Gaussian noise with standard deviation (10^{-5}) to break boundary ties;</li>
+<li>quantize into (v) bins;</li>
+<li>offset dimension (d)&#39;s token range by (v(d-1)).</li>
+</ol>
+<p>With (t=4,v=512), every product has four tokens but the model stores only (4\times512=2048) embeddings, independent of item count:</p>
+<pre><code class="language-text">I06 goggles → 〈dim1-117, dim2-403, dim3-026, dim4-288〉
+</code></pre>
+<p>These are not content semantics. They discretize collaborative coordinates, so items consumed by similar users tend to have related patterns.</p>
+<h2 id="the-central-equation">The central equation</h2>
+<p>For history (H) and list (R=(r_1,\ldots,r_K)), Next-K factorizes:</p>
+<p>[
+P(R\mid H)
+=\prod_{k=1}^{K}
+P(r_k\mid H,r_{&lt;k}).
+]</p>
+<ul>
+<li>(r_1) sees history only;</li>
+<li>(r_2) also sees the first recommendation;</li>
+<li>(r_{&lt;k}) is the generated list prefix;</li>
+<li>order is therefore part of the distribution.</li>
+</ul>
+<p>With atomic IDs, each (r_k) is one token. With SVD IDs, it expands into (t) subtokens. The latter saves item embeddings but requires more autoregressive steps.</p>
+<p><img loading="lazy" decoding="async" src="/blog/generative-recommendation/12-gptrec/mechanism.svg" alt="GPTRec&#39;s token and list choices"></p>
+<p><em>Figure 3. Item compression and list factorization are orthogonal axes: one-token Next-K and multi-token Top-K are both possible.</em></p>
+<h2 id="training-and-inference">Training and inference</h2>
+<h3 id="top-k">Top-K</h3>
+<p>Read the final hidden state, score it against all item embeddings once, and return the largest K logits. This resembles SASRec.</p>
+<h3 id="next-k">Next-K</h3>
+<p>Append each output to the context and score the next item. A ten-item list takes roughly ten scoring passes; multi-token items require still more decoder steps.</p>
+<pre><code class="language-text">context = user_history
+for k in 1..K:
+    item = decode_one_item(context)
+    result.append(item)
+    context.append(item)
+</code></pre>
+<p>The paper&#39;s training remains based on observed next items rather than a mature list-level RL or diversity objective. <strong>Next-K is an expressive parameterization, not evidence that list utility has already been optimized.</strong></p>
+<h2 id="what-the-experiments-establish">What the experiments establish</h2>
+<p>The evidence comes from MovieLens-1M alone. Table 3 reports:</p>
+<p><img loading="lazy" decoding="async" src="/blog/generative-recommendation/12-gptrec/evidence.svg" alt="MovieLens-1M results"></p>
+<p><em>Figure 4. Top-K approaches the strongest baseline; Next-K pays a substantial accuracy cost for conditional list modeling.</em></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th align="right">NDCG@10</th>
+<th align="right">Recall@10</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BERT4Rec</td>
+<td align="right"><strong>0.152</strong></td>
+<td align="right"><strong>0.282</strong></td>
+</tr>
+<tr>
+<td>GPTRec-TopK</td>
+<td align="right">0.146</td>
+<td align="right">0.254</td>
+</tr>
+<tr>
+<td>SASRec</td>
+<td align="right">0.108</td>
+<td align="right">0.199</td>
+</tr>
+<tr>
+<td>GPTRec-NextK</td>
+<td align="right">0.105</td>
+<td align="right">0.157</td>
+</tr>
+</tbody></table>
+<p>Next-K retains roughly 72% of Top-K NDCG, summarized by the authors as about 75%, while matching SASRec&#39;s NDCG. Sequentializing the list is not free: early errors contaminate later conditions.</p>
+<p>Multi-token experiments expose a capacity–quality trade-off:</p>
+<table>
+<thead>
+<tr>
+<th>Representation</th>
+<th align="right">Embeddings</th>
+<th align="right">NDCG@10</th>
+<th align="right">Recall@10</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>One token per item</td>
+<td align="right">3,416</td>
+<td align="right">0.146</td>
+<td align="right">0.254</td>
+</tr>
+<tr>
+<td>2 tokens × 2,048 values</td>
+<td align="right">4,096</td>
+<td align="right">0.124</td>
+<td align="right">—</td>
+</tr>
+<tr>
+<td>4 tokens × 512 values</td>
+<td align="right"><strong>2,048</strong></td>
+<td align="right">0.108</td>
+<td align="right">0.182</td>
+</tr>
+</tbody></table>
+<p>The four-token version uses about 40% fewer embeddings than the 3,416 atomic item embeddings and matches SASRec NDCG. Two tokens with larger bins perform better. A prose sentence in the paper appears to call the one-token NDCG 0.253; this chapter uses Table 3&#39;s 0.146.</p>
+<h2 id="where-gptrec-breaks">Where GPTRec breaks</h2>
+<h3 id="expressivity-is-not-an-objective">Expressivity is not an objective</h3>
+<p>Next-K permits later items to depend on earlier ones, but likelihood training mainly rewards relevance. Coverage, diversity, and long-term satisfaction must still be measured and optimized.</p>
+<h3 id="autoregressive-error-accumulation">Autoregressive error accumulation</h3>
+<p>An incorrect first recommendation becomes part of step two&#39;s context. Teacher forcing shows gold prefixes in training while inference sees model prefixes.</p>
+<h3 id="latency-grows-with-k">Latency grows with K</h3>
+<p>Top-K scores once; Next-K scores K times. Multi-token IDs multiply the number of decoding steps again.</p>
+<h3 id="svd-ids-have-no-content-cold-start">SVD IDs have no content cold start</h3>
+<p>They come from interactions, so a new item has no reliable column coordinate. Recomputing SVD can also shift coordinates and quantization boundaries, creating address-version migrations.</p>
+<h3 id="evidence-is-narrow">Evidence is narrow</h3>
+<p>MovieLens-1M has only 3,416 items. It does not demonstrate industrial scaling for either multi-token output or Next-K serving.</p>
+<h2 id="why-lc-rec-comes-next">Why LC-Rec comes next</h2>
+<p>We now have two item languages:</p>
+<ul>
+<li>TIGER: content-based Semantic IDs, useful for semantics and cold start;</li>
+<li>GPTRec-SVD: collaborative tokens from the interaction matrix.</li>
+</ul>
+<p>Recommendation needs both. Textually similar products need not attract the same users, while collaboratively similar products may have unrelated names. <a href="/blog/generative-recommendation-13-lc-rec-en">LC-Rec, in the next chapter</a>, combines a pretrained LLM, Semantic IDs, and collaborative alignment tasks—and introduces uniform semantic mapping to remove ID conflicts.</p>
+<hr>
+<p><strong>Critical takeaway:</strong> GPTRec separates two questions often conflated in generative recommendation: how to tokenize an item and how to factorize a list. It demonstrates that compact tokens and Next-K are feasible, while its accuracy and latency costs show that a generative interface merely enlarges the optimization space; the list objective still has to be specified.</p>
+</div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/generative-recommendation-preface-en"><span>GenRec Series</span><h2>What Does Generative Recommendation Actually Generate?</h2><p>2026-07-24</p></a><a href="/blog/generative-recommendation-01-bpr-en"><span>GenRec Series</span><h2>Recommender Systems Began as Scoring Machines | Generative Recommendation 01: BPR</h2><p>2026-07-25</p></a><a href="/blog/generative-recommendation-02-gru4rec-en"><span>GenRec Series</span><h2>A User Is Not a Point, but a Story in Motion | Generative Recommendation 02: GRU4Rec</h2><p>2026-07-26</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script defer="" src="https://events.vercount.one/js"></script><script id="_R_">import("/assets/index-BxhDq--T.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n:HL[\"/assets/index-G-UKqax9.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/generative-recommendation-12-gptrec-en\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/generative-recommendation-12-gptrec-en\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-G-UKqax9.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-G-UKqax9.css\",\"data-rsc-css-href\":\"/assets/index-G-UKqax9.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased\",\"children\":[[\"$\",\"script\",null,{\"type\":\"application/ld+json\",\"dangerouslySetInnerHTML\":{\"__html\":\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@graph\\\":[{\\\"@type\\\":\\\"Person\\\",\\\"@id\\\":\\\"https://chenhuiyu.github.io/#person\\\",\\\"name\\\":\\\"Huiyu Chen\\\",\\\"alternateName\\\":\\\"Yvette Chen\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io\\\",\\\"image\\\":\\\"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg\\\",\\\"jobTitle\\\":\\\"Machine Learning Engineer\\\",\\\"worksFor\\\":{\\\"@type\\\":\\\"Organization\\\",\\\"name\\\":\\\"Meta\\\"},\\\"sameAs\\\":[\\\"https://www.linkedin.com/in/yvette-huiyu-chen\\\"]},{\\\"@type\\\":\\\"WebSite\\\",\\\"@id\\\":\\\"https://chenhuiyu.github.io/#website\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io/\\\",\\\"name\\\":\\\"Huiyu Chen\\\",\\\"description\\\":\\\"Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video.\\\",\\\"inLanguage\\\":[\\\"en\\\",\\\"zh-CN\\\"],\\\"author\\\":{\\\"@id\\\":\\\"https://chenhuiyu.github.io/#person\\\"}}]}\"}}],[\"$\",\"$L2\",null,{}],[\"$\",\"script\",null,{\"defer\":true,\"src\":\"https://events.vercount.one/js\"}]]}]}]],null],\"route:/blog/generative-recommendation-12-gptrec-en\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"Top-K Is Not the Only Answer: A List Can Be Written Item by Item | Generative Recommendation 12: GPTRec — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"GPTRec contrasts one-pass Top-K scoring with autoregressive Next-K list generation and quantizes SVD item coordinates into compact multi-token IDs.\"}],[\"$\",\"meta\",\"2\",{\"name\":\"application-name\",\"content\":\"Huiyu Chen\"}],[\"$\",\"meta\",\"3\",{\"name\":\"keywords\",\"content\":\"Generative Recommendation,Recommender Systems,GPTRec,List Generation\"}],[\"$\",\"meta\",\"4\",{\"name\":\"author\",\"content\":\"Huiyu (Yvette) Chen\"}],[\"$\",\"link\",\"5\",{\"rel\":\"author\",\"href\":\"https://chenhuiyu.github.io\"}],[\"$\",\"meta\",\"6\",{\"name\":\"creator\",\"content\":\"Huiyu (Yvette) Chen\"}],[\"$\",\"meta\",\"7\",{\"name\":\"publisher\",\"content\":\"Huiyu Chen\"}],[\"$\",\"meta\",\"8\",{\"name\":\"robots\",\"content\":\"index, follow\"}],[\"$\",\"meta\",\"9\",{\"name\":\"googlebot\",\"content\":\"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\"}],[\"$\",\"meta\",\"10\",{\"property\":\"og:title\",\"content\":\"Top-K Is Not the Only Answer: A List Can Be Written Item by Item | Generative Recommendation 12: GPTRec\"}],[\"$\",\"meta\",\"11\",{\"property\":\"og:description\",\"content\":\"GPTRec contrasts one-pass Top-K scoring with autoregressive Next-K list generation and quantizes SVD item coordinates into compact multi-token IDs.\"}],[\"$\",\"meta\",\"12\",{\"property\":\"og:url\",\"content\":\"https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en\"}],[\"$\",\"meta\",\"13\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"$\",\"meta\",\"14\",{\"property\":\"og:locale\",\"content\":\"en_SG\"}],[\"$\",\"meta\",\"15\",{\"property\":\"article:published_time\",\"content\":\"2026-07-29\"}],[\"$\",\"meta\",\"16\",{\"property\":\"article:modified_time\",\"content\":\"2026-07-29\"}],[\"$\",\"meta\",\"17\",{\"property\":\"article:author\",\"content\":\"https://chenhuiyu.github.io\"}],[\"$\",\"meta\",\"18\",{\"property\":\"og:image\",\"content\":\"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg\"}],[\"$\",\"meta\",\"19\",{\"name\":\"twitter:card\",\"content\":\"summary\"}],[\"$\",\"meta\",\"20\",{\"name\":\"twitter:title\",\"content\":\"Top-K Is Not the Only Answer: A List Can Be Written Item by Item | Generative Recommendation 12: GPTRec\"}],\"$L3\",\"$L4\",\"$L5\",\"$L6\",\"$L7\",\"$L8\",\"$L9\",\"$La\",\"$Lb\",\"$Lc\"],\"$Ld\"],\"$Le\"],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"2742a5dc-3806-475f-9e9c-5e2dc4db3dc5\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("f:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n10:I[\"8c0f216c4604\",[],\"Slot\",1]\n11:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n3:[\"$\",\"meta\",\"21\",{\"name\":\"twitter:description\",\"content\":\"GPTRec contrasts one-pass Top-K scoring with autoregressive Next-K list generation and quantizes SVD item coordinates into compact multi-token IDs.\"}]\n4:[\"$\",\"meta\",\"22\",{\"name\":\"twitter:image\",\"content\":\"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg\"}]\n5:[\"$\",\"link\",\"23\",{\"rel\":\"shortcut icon\",\"href\":\"https://chenhuiyu.github.io/favicon.svg\"}]\n6:[\"$\",\"link\",\"24\",{\"rel\":\"icon\",\"href\":\"https://chenhuiyu.github.io/favicon.svg\"}]\n7:[\"$\",\"link\",\"25\",{\"rel\":\"canonical\",\"href\":\"https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en\"}]\n8:[\"$\",\"link\",\"26\",{\"rel\":\"alternate\",\"hrefLang\":\"en\",\"href\":\"https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en\"}]\n9:[\"$\",\"link\",\"27\",{\"rel\":\"alternate\",\"hrefLang\":\"zh-CN\",\"href\":\"https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-zh\"}]\na:[\"$\",\"link\",\"28\",{\"rel\":\"alternate\",\"hrefLang\":\"x-default\",\"href\":\"https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en\"}]\nb:[\"$\",\"link\",\"29\",{\"rel\":\"alternate\",\"type\":\"application/rss+xml\",\"href\":\"https://chenhuiyu.github.io/feed.xml\"}]\nc:[\"$\",\"meta\",\"30\",{\"name\":\"codex-preview\",\"content\":\"development\"}]\nd:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\ne:[\"$\",\"$Lf\",null,{\"segmentMap\":{\"children\":[\"blog\",\"generative-recommendation-12-gptrec-en\"]},\"children\":[\"$\",\"$L10\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L11\",null,{\"children\":[\"$\",\"$Lf\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L10\",null,{\"id\":\"page:/blog/generative-recommendation-12-gptrec-en\"}]}]}]}]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("12:T44b,{\"@context\":\"https://schema.org\",\"@type\":\"BlogPosting\",\"@id\":\"https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en#article\",\"url\":\"https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en\"},\"headline\":\"Top-K Is Not the Only Answer: A List Can Be Written Item by Item | Generative Recommendation 12: GPTRec\",\"description\":\"GPTRec contrasts one-pass Top-K scoring with autoregressive Next-K list generation and quantizes SVD item coordinates into compact multi-token IDs.\",\"datePublished\":\"2026-07-29\",\"dateModified\":\"2026-07-29\",\"inLanguage\":\"en\",\"articleSection\":\"GenRec Series\",\"keywords\":\"Generative Recommendation, Recommender Systems, GPTRec, List Generation\",\"author\":{\"@id\":\"https://chenhuiyu.github.io/#person\"},\"publisher\":{\"@id\":\"https://chenhuiyu.github.io/#person\"},\"isPartOf\":{\"@type\":\"CollectionPage\",\"@id\":\"https://chenhuiyu.github.io/series/generative-recommendation/en#series\",\"name\":\"Generative Recommendation Through 20 Papers\"}}1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"script\",null,{\"type\":\"application/ld+json\",\"dangerouslySetInnerHTML\":{\"__html\":\"$12\"}}],[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],[\"$\",\"a\",null,{\"className\":\"article-series-link\",\"href\":\"/series/generative-recommendation/en\",\"children\":\"Generative recommendation · 12\"}],[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"GenRec Series\"}],[\"$\",\"time\",null,{\"children\":\"2026-07-29\"}],[\"$\",\"span\",null,{\"children\":\"English\"}],[\"$\",\"span\",null,{\"className\":\"view-counter view-counter-page\",\"title\":\"Article views\",\"children\":[[\"$\",\"span\",null,{\"className\":\"view-counter-value\",\"id\":\"vercount_value_page_pv\",\"suppressHydrationWarning\":true,\"children\":\"—\"}],[\"$\",\"span\",null,{\"children\":\"views\"}]]}]]}],[\"$\",\"h1\",null,{\"children\":\"Top-K Is Not the Only Answer: A List Can Be Written Item by Item | Generative Recommendation 12: GPTRec\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"GPTRec contrasts one-pass Top-K scoring with autoregressive Next-K list generation and quantizes SVD item coordinates into compact multi-token IDs.\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/generative-recommendation-12-gptrec-zh\",\"children\":\"阅读中文版 →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"the-paper-in-30-seconds-The paper in 30 seconds\",{\"className\":\"\",\"href\":\"#the-paper-in-30-seconds\",\"children\":\"The paper in 30 seconds\"}],[\"$\",\"a\",\"list-conditioning-with-eight-items-List conditioning with eight items\",{\"className\":\"\",\"href\":\"#list-conditioning-with-eight-items\",\"children\":\"List conditioning with eight items\"}],[\"$\",\"a\",\"a-second-route-to-item-tokens-svd-quantization-A second route to item tokens: SVD quantization\",{\"className\":\"\",\"href\":\"#a-second-route-to-item-tokens-svd-quantization\",\"children\":\"A second route to item tokens: SVD quantization\"}],\"$L13\",\"$L14\",\"$L15\",\"$L16\",\"$L17\",\"$L18\",\"$L19\",\"$L1a\",\"$L1b\",\"$L1c\",\"$L1d\",\"$L1e\"]}]]}],\"$L1f\"]}]]}],\"$L20\",\"$L21\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("13:[\"$\",\"a\",\"the-central-equation-The central equation\",{\"className\":\"\",\"href\":\"#the-central-equation\",\"children\":\"The central equation\"}]\n14:[\"$\",\"a\",\"training-and-inference-Training and inference\",{\"className\":\"\",\"href\":\"#training-and-inference\",\"children\":\"Training and inference\"}]\n15:[\"$\",\"a\",\"top-k-Top-K\",{\"className\":\"toc-subitem\",\"href\":\"#top-k\",\"children\":\"Top-K\"}]\n16:[\"$\",\"a\",\"next-k-Next-K\",{\"className\":\"toc-subitem\",\"href\":\"#next-k\",\"children\":\"Next-K\"}]\n17:[\"$\",\"a\",\"what-the-experiments-establish-What the experiments establish\",{\"className\":\"\",\"href\":\"#what-the-experiments-establish\",\"children\":\"What the experiments establish\"}]\n18:[\"$\",\"a\",\"where-gptrec-breaks-Where GPTRec breaks\",{\"className\":\"\",\"href\":\"#where-gptrec-breaks\",\"children\":\"Where GPTRec breaks\"}]\n19:[\"$\",\"a\",\"expressivity-is-not-an-objective-Expressivity is not an objective\",{\"className\":\"toc-subitem\",\"href\":\"#expressivity-is-not-an-objective\",\"children\":\"Expressivity is not an objective\"}]\n1a:[\"$\",\"a\",\"autoregressive-error-accumulation-Autoregressive error accumulation\",{\"className\":\"toc-subitem\",\"href\":\"#autoregressive-error-accumulation\",\"children\":\"Autoregressive error accumulation\"}]\n1b:[\"$\",\"a\",\"latency-grows-with-k-Latency grows with K\",{\"className\":\"toc-subitem\",\"href\":\"#latency-grows-with-k\",\"children\":\"Latency grows with K\"}]\n1c:[\"$\",\"a\",\"svd-ids-have-no-content-cold-start-SVD IDs have no content cold start\",{\"className\":\"toc-subitem\",\"href\":\"#svd-ids-have-no-content-cold-start\",\"children\":\"SVD IDs have no content cold start\"}]\n1d:[\"$\",\"a\",\"evidence-is-narrow-Evidence is narrow\",{\"className\":\"toc-subitem\",\"href\":\"#evidence-is-narrow\",\"children\":\"Evidence is narrow\"}]\n1e:[\"$\",\"a\",\"why-lc-rec-comes-next-Why LC-Rec comes next\",{\"className\":\"\",\"href\":\"#why-lc-rec-comes-next\",\"children\":\"Why LC-Rec comes next\"}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("22:T2844,\u003cp\u003eA recommender ultimately delivers a list, not one isolated item.\u003c/p\u003e\n\u003cp\u003eTop-K systems score candidates independently and keep the K largest values. That is efficient, but item two never sees item one. Two near-identical shoes may both score highly; the model has no opportunity to say, “running is already covered, so I will represent the user\u0026#39;s climbing interest next.”\u003c/p\u003e\n\u003cp\u003e\u003ca target=\"_blank\" rel=\"noreferrer noopener\" href=\"https://arxiv.org/abs/2306.11114\"\u003eGPTRec: Generative Sequential Recommendation with GPTRec\u003c/a\u003e separates two questions:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eMust one product equal one token?\u003c/li\u003e\n\u003cli\u003eMust a recommendation list be produced in one Top-K operation?\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eIts answers are SVD-based multi-token IDs and autoregressive \u003cstrong\u003eNext-K\u003c/strong\u003e generation.\u003c/p\u003e\n\u003ch2 id=\"the-paper-in-30-seconds\"\u003eThe paper in 30 seconds\u003c/h2\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eTIGER\u0026#39;s open problem:\u003c/strong\u003e it generates one item\u0026#39;s Semantic ID but does not directly model dependencies among list members.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eGPTRec\u0026#39;s answer:\u003c/strong\u003e use a GPT-2-style decoder; Top-K emits independent catalog scores once, whereas Next-K learns (\\prod_kP(r_k\\mid H,r_{\u0026lt;k})), letting later recommendations observe earlier choices.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eThe result:\u003c/strong\u003e on MovieLens-1M, GPTRec-TopK reaches 0.146 NDCG@10, close to BERT4Rec\u0026#39;s 0.152; NextK reaches 0.105. Four SVD tokens with 512 values each use only 2,048 embeddings and score 0.108.\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eOne fact is easy to miss:\u003c/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eGPTRec uses the GPT-2 decoder architecture, but it does \u003cstrong\u003enot\u003c/strong\u003e initialize from a pretrained GPT-2 checkpoint. “GPT” here denotes autoregressive structure, not imported world knowledge.\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003e\u003cimg loading=\"lazy\" decoding=\"async\" src=\"/blog/generative-recommendation/12-gptrec/paradigm-shift.svg\" alt=\"Top-K versus Next-K\"\u003e\u003c/p\u003e\n\u003cp\u003e\u003cem\u003eFigure 1. Top-K scores candidates in parallel; every Next-K decision conditions on the list prefix already generated.\u003c/em\u003e\u003c/p\u003e\n\u003ch2 id=\"list-conditioning-with-eight-items\"\u003eList conditioning with eight items\u003c/h2\u003e\n\u003cp\u003eOur user history remains:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-text\"\u003eI01 tennis racket → I03 climbing shoes\n→ I05 badminton racket → I07 swim cap\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eTop-K might independently assign:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-text\"\u003eI06 goggles       0.92\nI08 sports towel  0.89\nI02 tennis balls  0.87\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eNext-K instead generates:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-text\"\u003estep 1: P(I06 | history)\nstep 2: P(I08 | history, I06)\nstep 3: P(I04 | history, I06, I08)\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eStep two can use the fact that goggles are already present; step three can cover climbing. The architecture creates a channel for list interaction. It does not automatically create diversity: if training still rewards only ordinary next-item likelihood, the model may continue copying popular or similar items.\u003c/p\u003e\n\u003cp\u003e\u003cimg loading=\"lazy\" decoding=\"async\" src=\"/blog/generative-recommendation/12-gptrec/toy-next-k.svg\" alt=\"Building a list one item at a time\"\u003e\u003c/p\u003e\n\u003cp\u003e\u003cem\u003eFigure 2. Next-K can express a list policy, but actual diversity requires data, objectives, or reinforcement signals that reward it.\u003c/em\u003e\u003c/p\u003e\n\u003ch2 id=\"a-second-route-to-item-tokens-svd-quantization\"\u003eA second route to item tokens: SVD quantization\u003c/h2\u003e\n\u003cp\u003eTIGER learns Semantic IDs from content embeddings. GPTRec proposes a direct collaborative compression based on the user–item matrix.\u003c/p\u003e\n\u003cp\u003eFor (M\\in\\mathbb R^{|U|\\times|I|}), compute a truncated decomposition:\u003c/p\u003e\n\u003cp\u003e[\nM\\approx U\\Sigma E^\\top.\n]\u003c/p\u003e\n\u003cp\u003e(E_i\\in\\mathbb R^t) is item (i)\u0026#39;s collaborative coordinate. For each dimension:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003enormalize item values to ([0,1]);\u003c/li\u003e\n\u003cli\u003eadd Gaussian noise with standard deviation (10^{-5}) to break boundary ties;\u003c/li\u003e\n\u003cli\u003equantize into (v) bins;\u003c/li\u003e\n\u003cli\u003eoffset dimension (d)\u0026#39;s token range by (v(d-1)).\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eWith (t=4,v=512), every product has four tokens but the model stores only (4\\times512=2048) embeddings, independent of item count:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-text\"\u003eI06 goggles → 〈dim1-117, dim2-403, dim3-026, dim4-288〉\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eThese are not content semantics. They discretize collaborative coordinates, so items consumed by similar users tend to have related patterns.\u003c/p\u003e\n\u003ch2 id=\"the-central-equation\"\u003eThe central equation\u003c/h2\u003e\n\u003cp\u003eFor history (H) and list (R=(r_1,\\ldots,r_K)), Next-K factorizes:\u003c/p\u003e\n\u003cp\u003e[\nP(R\\mid H)\n=\\prod_{k=1}^{K}\nP(r_k\\mid H,r_{\u0026lt;k}).\n]\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e(r_1) sees history only;\u003c/li\u003e\n\u003cli\u003e(r_2) also sees the first recommendation;\u003c/li\u003e\n\u003cli\u003e(r_{\u0026lt;k}) is the generated list prefix;\u003c/li\u003e\n\u003cli\u003eorder is therefore part of the distribution.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eWith atomic IDs, each (r_k) is one token. With SVD IDs, it expands into (t) subtokens. The latter saves item embeddings but requires more autoregressive steps.\u003c/p\u003e\n\u003cp\u003e\u003cimg loading=\"lazy\" decoding=\"async\" src=\"/blog/generative-recommendation/12-gptrec/mechanism.svg\" alt=\"GPTRec\u0026#39;s token and list choices\"\u003e\u003c/p\u003e\n\u003cp\u003e\u003cem\u003eFigure 3. Item compression and list factorization are orthogonal axes: one-token Next-K and multi-token Top-K are both possible.\u003c/em\u003e\u003c/p\u003e\n\u003ch2 id=\"training-and-inference\"\u003eTraining and inference\u003c/h2\u003e\n\u003ch3 id=\"top-k\"\u003eTop-K\u003c/h3\u003e\n\u003cp\u003eRead the final hidden state, score it against all item embeddings once, and return the largest K logits. This resembles SASRec.\u003c/p\u003e\n\u003ch3 id=\"next-k\"\u003eNext-K\u003c/h3\u003e\n\u003cp\u003eAppend each output to the context and score the next item. A ten-item list takes roughly ten scoring passes; multi-token items require still more decoder steps.\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-text\"\u003econtext = user_history\nfor k in 1..K:\n    item = decode_one_item(context)\n    result.append(item)\n    context.append(item)\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eThe paper\u0026#39;s training remains based on observed next items rather than a mature list-level RL or diversity objective. \u003cstrong\u003eNext-K is an expressive parameterization, not evidence that list utility has already been optimized.\u003c/strong\u003e\u003c/p\u003e\n\u003ch2 id=\"what-the-experiments-establish\"\u003eWhat the experiments establish\u003c/h2\u003e\n\u003cp\u003eThe evidence comes from MovieLens-1M alone. Table 3 reports:\u003c/p\u003e\n\u003cp\u003e\u003cimg loading=\"lazy\" decoding=\"async\" src=\"/blog/generative-recommendation/12-gptrec/evidence.svg\" alt=\"MovieLens-1M results\"\u003e\u003c/p\u003e\n\u003cp\u003e\u003cem\u003eFigure 4. Top-K approaches the strongest baseline; Next-K pays a substantial accuracy cost for conditional list modeling.\u003c/em\u003e\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003eMethod\u003c/th\u003e\n\u003cth align=\"right\"\u003eNDCG@10\u003c/th\u003e\n\u003cth align=\"right\"\u003eRecall@10\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\u003ctr\u003e\n\u003ctd\u003eBERT4Rec\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003cstrong\u003e0.152\u003c/strong\u003e\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003cstrong\u003e0.282\u003c/strong\u003e\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eGPTRec-TopK\u003c/td\u003e\n\u003ctd align=\"right\"\u003e0.146\u003c/td\u003e\n\u003ctd align=\"right\"\u003e0.254\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eSASRec\u003c/td\u003e\n\u003ctd align=\"right\"\u003e0.108\u003c/td\u003e\n\u003ctd align=\"right\"\u003e0.199\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eGPTRec-NextK\u003c/td\u003e\n\u003ctd align=\"right\"\u003e0.105\u003c/td\u003e\n\u003ctd align=\"right\"\u003e0.157\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\u003c/table\u003e\n\u003cp\u003eNext-K retains roughly 72% of Top-K NDCG, summarized by the authors as about 75%, while matching SASRec\u0026#39;s NDCG. Sequentializing the list is not free: early errors contaminate later conditions.\u003c/p\u003e\n\u003cp\u003eMulti-token experiments expose a capacity–quality trade-off:\u003c/p\u003e\n\u003ctable\u003e\n\u003cthead\u003e\n\u003ctr\u003e\n\u003cth\u003eRepresentation\u003c/th\u003e\n\u003cth align=\"right\"\u003eEmbeddings\u003c/th\u003e\n\u003cth align=\"right\"\u003eNDCG@10\u003c/th\u003e\n\u003cth align=\"right\"\u003eRecall@10\u003c/th\u003e\n\u003c/tr\u003e\n\u003c/thead\u003e\n\u003ctbody\u003e\u003ctr\u003e\n\u003ctd\u003eOne token per item\u003c/td\u003e\n\u003ctd align=\"right\"\u003e3,416\u003c/td\u003e\n\u003ctd align=\"right\"\u003e0.146\u003c/td\u003e\n\u003ctd align=\"right\"\u003e0.254\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e2 tokens × 2,048 values\u003c/td\u003e\n\u003ctd align=\"right\"\u003e4,096\u003c/td\u003e\n\u003ctd align=\"right\"\u003e0.124\u003c/td\u003e\n\u003ctd align=\"right\"\u003e—\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003e4 tokens × 512 values\u003c/td\u003e\n\u003ctd align=\"right\"\u003e\u003cstrong\u003e2,048\u003c/strong\u003e\u003c/td\u003e\n\u003ctd align=\"right\"\u003e0.108\u003c/td\u003e\n\u003ctd align=\"right\"\u003e0.182\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/tbody\u003e\u003c/table\u003e\n\u003cp\u003eThe four-token version uses about 40% fewer embeddings than the 3,416 atomic item embeddings and matches SASRec NDCG. Two tokens with larger bins perform better. A prose sentence in the paper appears to call the one-token NDCG 0.253; this chapter uses Table 3\u0026#39;s 0.146.\u003c/p\u003e\n\u003ch2 id=\"where-gptrec-breaks\"\u003eWhere GPTRec breaks\u003c/h2\u003e\n\u003ch3 id=\"expressivity-is-not-an-objective\"\u003eExpressivity is not an objective\u003c/h3\u003e\n\u003cp\u003eNext-K permits later items to depend on earlier ones, but likelihood training mainly rewards relevance. Coverage, diversity, and long-term satisfaction must still be measured and optimized.\u003c/p\u003e\n\u003ch3 id=\"autoregressive-error-accumulation\"\u003eAutoregressive error accumulation\u003c/h3\u003e\n\u003cp\u003eAn incorrect first recommendation becomes part of step two\u0026#39;s context. Teacher forcing shows gold prefixes in training while inference sees model prefixes.\u003c/p\u003e\n\u003ch3 id=\"latency-grows-with-k\"\u003eLatency grows with K\u003c/h3\u003e\n\u003cp\u003eTop-K scores once; Next-K scores K times. Multi-token IDs multiply the number of decoding steps again.\u003c/p\u003e\n\u003ch3 id=\"svd-ids-have-no-content-cold-start\"\u003eSVD IDs have no content cold start\u003c/h3\u003e\n\u003cp\u003eThey come from interactions, so a new item has no reliable column coordinate. Recomputing SVD can also shift coordinates and quantization boundaries, creating address-version migrations.\u003c/p\u003e\n\u003ch3 id=\"evidence-is-narrow\"\u003eEvidence is narrow\u003c/h3\u003e\n\u003cp\u003eMovieLens-1M has only 3,416 items. It does not demonstrate industrial scaling for either multi-token output or Next-K serving.\u003c/p\u003e\n\u003ch2 id=\"why-lc-rec-comes-next\"\u003eWhy LC-Rec comes next\u003c/h2\u003e\n\u003cp\u003eWe now have two item languages:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eTIGER: content-based Semantic IDs, useful for semantics and cold start;\u003c/li\u003e\n\u003cli\u003eGPTRec-SVD: collaborative tokens from the interaction matrix.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eRecommendation needs both. Textually similar products need not attract the same users, while collaboratively similar products may have unrelated names. \u003ca href=\"/blog/generative-recommendation-13-lc-rec-en\"\u003eLC-Rec, in the next chapter\u003c/a\u003e, combines a pretrained LLM, Semantic IDs, and collaborative alignment tasks—and introduces uniform semantic mapping to remove ID conflicts.\u003c/p\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cstrong\u003eCritical takeaway:\u003c/strong\u003e GPTRec separates two questions often conflated in generative recommendation: how to tokenize an item and how to factorize a list. It demonstrates that compact tokens and Next-K are feasible, while its accuracy and latency costs show that a generative interface merely enlarges the optimization space; the list objective still has to be specified.\u003c/p\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1f:[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$22\"}}]\n20:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"generative-recommendation-preface-en\",{\"href\":\"/blog/generative-recommendation-preface-en\",\"children\":[[\"$\",\"span\",null,{\"children\":\"GenRec Series\"}],[\"$\",\"h2\",null,{\"children\":\"What Does Generative Recommendation Actually Generate?\"}],[\"$\",\"p\",null,{\"children\":\"2026-07-24\"}]]}],[\"$\",\"a\",\"generative-recommendation-01-bpr-en\",{\"href\":\"/blog/generative-recommendation-01-bpr-en\",\"children\":[[\"$\",\"span\",null,{\"children\":\"GenRec Series\"}],[\"$\",\"h2\",null,{\"children\":\"Recommender Systems Began as Scoring Machines | Generative Recommendation 01: BPR\"}],[\"$\",\"p\",null,{\"children\":\"2026-07-25\"}]]}],[\"$\",\"a\",\"generative-recommendation-02-gru4rec-en\",{\"href\":\"/blog/generative-recommendation-02-gru4rec-en\",\"children\":[[\"$\",\"span\",null,{\"children\":\"GenRec Series\"}],[\"$\",\"h2\",null,{\"children\":\"A User Is Not a Point, but a Story in Motion | Generative Recommendation 02: GRU4Rec\"}],[\"$\",\"p\",null,{\"children\":\"2026-07-26\"}]]}]]}]]}]\n21:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

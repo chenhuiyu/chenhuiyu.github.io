@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">MTGR 的异构 token 编码 / GLN + Dynamic Mask</title>
+  <desc id="desc">不同语义域先各自归一化，再由定制可见性规则进入 HSTU，候选位置输出判别 logits。</desc>
+  <defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#172033" flood-opacity=".08"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#C8D2E1"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="720" fill="#FCFAF5"/>
+  <circle cx="1110" cy="70" r="160" fill="#E8F0FF" opacity=".55"/>
+  <circle cx="85" cy="675" r="145" fill="#F1EAFE" opacity=".55"/>
+  <text x="64" y="62" font-size="31" font-weight="760" fill="#172033">MTGR 的异构 token 编码 / GLN + Dynamic Mask</text>
+  <text x="64" y="95" font-size="17" font-weight="500" fill="#667085">不同语义域先各自归一化，再由定制可见性规则进入 HSTU，候选位置输出判别 logits。</text>
+  
+        <rect x="64" y="165" width="194" height="350" rx="22" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+        <rect x="82" y="187" width="52" height="34" rx="17" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+    <text x="108" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#2563EB">01</text>
+        <text x="82" y="250" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="82" dy="0">Feature tokenize</tspan></text>
+        <rect x="80" y="305" width="162" height="42" rx="12" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+              <text x="161" y="332" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">User / Seq / RT</text><rect x="80" y="362" width="162" height="42" rx="12" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+              <text x="161" y="389" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">Candidate + Cross</text><rect x="80" y="419" width="162" height="42" rx="12" fill="#E8F0FF" stroke="#E8F0FF" stroke-width="2"/>
+              <text x="161" y="446" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">MLP → d_model</text><line x1="260" y1="350" x2="268" y2="350" stroke="#C8D2E1" stroke-width="3" marker-end="url(#arrow)"/>
+        <rect x="276" y="165" width="194" height="350" rx="22" fill="#FFFFFF" stroke="#7C3AED" stroke-width="2"/>
+        <rect x="294" y="187" width="52" height="34" rx="17" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+    <text x="320" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#7C3AED">02</text>
+        <text x="294" y="250" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="294" dy="0">Group-Layer Norm</tspan></text>
+        <rect x="292" y="305" width="162" height="42" rx="12" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+              <text x="373" y="332" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">每个 domain 单独 LN</text><rect x="292" y="362" width="162" height="42" rx="12" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+              <text x="373" y="389" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">对齐数值分布</text><rect x="292" y="419" width="162" height="42" rx="12" fill="#F1EAFE" stroke="#F1EAFE" stroke-width="2"/>
+              <text x="373" y="446" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">不混淆语义空间</text><line x1="472" y1="350" x2="480" y2="350" stroke="#C8D2E1" stroke-width="3" marker-end="url(#arrow)"/>
+        <rect x="488" y="165" width="194" height="350" rx="22" fill="#FFFFFF" stroke="#D97706" stroke-width="2"/>
+        <rect x="506" y="187" width="52" height="34" rx="17" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+    <text x="532" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#D97706">03</text>
+        <text x="506" y="250" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="506" dy="0">Dynamic mask</tspan></text>
+        <rect x="504" y="305" width="162" height="42" rx="12" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+              <text x="585" y="332" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">static: full visible</text><rect x="504" y="362" width="162" height="42" rx="12" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+              <text x="585" y="389" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">realtime: causal</text><rect x="504" y="419" width="162" height="42" rx="12" fill="#FFF3DA" stroke="#FFF3DA" stroke-width="2"/>
+              <text x="585" y="446" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">candidate: self-only rules</text><line x1="684" y1="350" x2="692" y2="350" stroke="#C8D2E1" stroke-width="3" marker-end="url(#arrow)"/>
+        <rect x="700" y="165" width="194" height="350" rx="22" fill="#FFFFFF" stroke="#16856B" stroke-width="2"/>
+        <rect x="718" y="187" width="52" height="34" rx="17" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+    <text x="744" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#16856B">04</text>
+        <text x="718" y="250" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="718" dy="0">HSTU encoder</tspan></text>
+        <rect x="716" y="305" width="162" height="42" rx="12" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+              <text x="797" y="332" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">SiLU attention</text><rect x="716" y="362" width="162" height="42" rx="12" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+              <text x="797" y="389" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">U gate</text><rect x="716" y="419" width="162" height="42" rx="12" fill="#E2F5EF" stroke="#E2F5EF" stroke-width="2"/>
+              <text x="797" y="446" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">15 layers at large</text><line x1="896" y1="350" x2="904" y2="350" stroke="#C8D2E1" stroke-width="3" marker-end="url(#arrow)"/>
+        <rect x="912" y="165" width="194" height="350" rx="22" fill="#FFFFFF" stroke="#C2415B" stroke-width="2"/>
+        <rect x="930" y="187" width="52" height="34" rx="17" fill="#FCE8EC" stroke="#FCE8EC" stroke-width="2"/>
+    <text x="956" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#C2415B">05</text>
+        <text x="930" y="250" text-anchor="start" font-size="21" font-weight="760" fill="#172033"><tspan x="930" dy="0">Discriminative heads</tspan></text>
+        <rect x="928" y="305" width="162" height="42" rx="12" fill="#FCE8EC" stroke="#FCE8EC" stroke-width="2"/>
+              <text x="1009" y="332" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">candidate outputs</text><rect x="928" y="362" width="162" height="42" rx="12" fill="#FCE8EC" stroke="#FCE8EC" stroke-width="2"/>
+              <text x="1009" y="389" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">CTR / CTCVR</text><rect x="928" y="419" width="162" height="42" rx="12" fill="#FCE8EC" stroke="#FCE8EC" stroke-width="2"/>
+              <text x="1009" y="446" text-anchor="middle" font-size="15" font-weight="620" fill="#172033">cross feature retained</text>
+      <rect x="190" y="545" width="820" height="78" rx="18" fill="#172033" stroke="#172033" stroke-width="2"/>
+        <text x="600" y="593" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="650" fill="#FFFFFF">D = [U, S, R, [C,I]₁, …, [C,I]ₖ]  →  logits₁…ₖ</text>
+  <line x1="64" y1="665" x2="1136" y2="665" stroke="#C8D2E1"/>
+         <text x="64" y="696" font-size="15" fill="#667085">“Generative”在 MTGR 中主要体现为用户级序列训练与计算复用；最终 ranking 仍输出判别分数。</text>
+</svg>

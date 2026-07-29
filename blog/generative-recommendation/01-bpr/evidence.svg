@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">BPR 论文真正证明了什么 / Evidence, not mythology</title>
+  <desc id="desc">论文把同一优化准则应用到 MF 与 adaptive kNN；重点是“目标函数可迁移”。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">BPR 论文真正证明了什么 / Evidence, not mythology</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">论文把同一优化准则应用到 MF 与 adaptive kNN；重点是“目标函数可迁移”。</text>
+    <rect x="90" y="230" width="440" height="390" rx="30" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="130" y="285" fill="#1d4ed8" font-size="18" font-weight="750" text-anchor="start">01</text>
+      <text x="130" y="340" fill="#171612" font-size="29" font-weight="650" text-anchor="start">目标对齐</text>
+      <text x="130" y="405" fill="#6f6a61" font-size="20" font-weight="400" text-anchor="start">直接优化 pairwise ranking</text>
+<text x="130" y="451" fill="#6f6a61" font-size="20" font-weight="400" text-anchor="start">与 AUC 的比较结构一致</text>
+<text x="130" y="497" fill="#6f6a61" font-size="20" font-weight="400" text-anchor="start">不是先回归评分再排序</text>
+<rect x="585" y="230" width="440" height="390" rx="30" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="625" y="285" fill="#6d28d9" font-size="18" font-weight="750" text-anchor="start">02</text>
+      <text x="625" y="340" fill="#171612" font-size="29" font-weight="650" text-anchor="start">学习可行</text>
+      <text x="625" y="405" fill="#6f6a61" font-size="20" font-weight="400" text-anchor="start">随机抽 (u,i,j)</text>
+<text x="625" y="451" fill="#6f6a61" font-size="20" font-weight="400" text-anchor="start">避免完整 O(|S||I|) 梯度</text>
+<text x="625" y="497" fill="#6f6a61" font-size="20" font-weight="400" text-anchor="start">bootstrap 比 user-wise 更快收敛</text>
+<rect x="1080" y="230" width="440" height="390" rx="30" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="1120" y="285" fill="#166534" font-size="18" font-weight="750" text-anchor="start">03</text>
+      <text x="1120" y="340" fill="#171612" font-size="29" font-weight="650" text-anchor="start">跨模型有效</text>
+      <text x="1120" y="405" fill="#6f6a61" font-size="20" font-weight="400" text-anchor="start">BPR-MF 与 BPR-kNN</text>
+<text x="1120" y="451" fill="#6f6a61" font-size="20" font-weight="400" text-anchor="start">在论文数据上领先对应基线</text>
+<text x="1120" y="497" fill="#6f6a61" font-size="20" font-weight="400" text-anchor="start">收益来自 criterion，不只架构</text>
+    <rect x="250" y="700" width="1100" height="105" rx="26" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+    <text x="800" y="745" fill="#92400e" font-size="23" font-weight="700" text-anchor="middle">结论边界：它证明了优化“比较”很重要，没有证明所有未点击商品都是真负样本。</text>
+    <text x="800" y="780" fill="#6f6a61" font-size="17" font-weight="400" text-anchor="middle">证据方向来自原论文 Figure 5–6；未对图中曲线做伪精确数字化。</text>
+  </g>
+</svg>

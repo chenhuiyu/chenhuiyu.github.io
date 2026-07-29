@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">对齐后的 Semantic ID 提升全目录生成 / LC-Rec Table III</title><desc id="desc">NDCG@10；与同为生成式检索的 TIGER 比较。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"><text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">对齐后的 Semantic ID 提升全目录生成 / LC-Rec Table III</text><text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">NDCG@10；与同为生成式检索的 TIGER 比较。</text><text x="90" y="212" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Instruments</text>
+      <rect x="335" y="225" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="225" width="851.18" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="246" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">TIGER</text>
+          <text x="1199.1799999999998" y="246" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0803</text>
+<rect x="335" y="267" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="267" width="981.56" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="288" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">LC-Rec</text>
+          <text x="1329.56" y="288" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0926</text>
+<text x="90" y="374" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Arts</text>
+      <rect x="335" y="387" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="387" width="745.18" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="408" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">TIGER</text>
+          <text x="1093.1799999999998" y="408" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0703</text>
+<rect x="335" y="429" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="429" width="960.3599999999999" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="450" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">LC-Rec</text>
+          <text x="1308.36" y="450" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0906</text>
+<text x="90" y="536" fill="#171612" font-size="20" font-weight="700" text-anchor="start">Games</text>
+      <rect x="335" y="549" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="549" width="531.06" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="317" y="570" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">TIGER</text>
+          <text x="879.06" y="570" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0501</text>
+<rect x="335" y="591" width="1060" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="335" y="591" width="721.8599999999999" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="317" y="612" fill="#6f6a61" font-size="16" font-weight="600" text-anchor="end">LC-Rec</text>
+          <text x="1069.86" y="612" fill="#171612" font-size="16" font-weight="700" text-anchor="start">0.0681</text>
+    <text x="1510" y="850" fill="#6f6a61" font-size="15" font-weight="500" text-anchor="end">Source: original paper tables; values redrawn</text></g>
+</svg>

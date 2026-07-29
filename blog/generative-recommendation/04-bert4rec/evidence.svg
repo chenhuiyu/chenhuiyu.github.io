@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">收益来自双向表示，也来自多位置 Cloze / CIKM 2019 Table 3</title>
+  <desc id="desc">HR@10；“1 mask”隔离双向结构，“full”再加入多 mask 训练收益。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">收益来自双向表示，也来自多位置 Cloze / CIKM 2019 Table 3</text>
+  <text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">HR@10；“1 mask”隔离双向结构，“full”再加入多 mask 训练收益。</text>
+    <text x="90" y="229" fill="#171612" font-size="21" font-weight="700" text-anchor="start">Beauty</text>
+      <rect x="310" y="243" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="243" width="371.41999999999996" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="290" y="264" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">SASRec</text>
+          <text x="695.42" y="264" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.2653</text>
+<rect x="310" y="285" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="285" width="411.5999999999999" height="28" rx="14" fill="#3b82f6" stroke="none" stroke-width="2"/>
+          <text x="290" y="306" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">BERT 1 mask</text>
+          <text x="735.5999999999999" y="306" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.294</text>
+<rect x="310" y="327" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="327" width="423.5" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="290" y="348" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">BERT full</text>
+          <text x="747.5" y="348" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.3025</text>
+<text x="90" y="404" fill="#171612" font-size="21" font-weight="700" text-anchor="start">MovieLens-1M</text>
+      <rect x="310" y="418" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="418" width="928.0600000000001" height="28" rx="14" fill="#c9c0b3" stroke="none" stroke-width="2"/>
+          <text x="290" y="439" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">SASRec</text>
+          <text x="1252.06" y="439" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.6629</text>
+<rect x="310" y="460" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="460" width="961.6599999999999" height="28" rx="14" fill="#3b82f6" stroke="none" stroke-width="2"/>
+          <text x="290" y="481" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">BERT 1 mask</text>
+          <text x="1285.6599999999999" y="481" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.6869</text>
+<rect x="310" y="502" width="1120" height="28" rx="14" fill="#eee9df" stroke="none" stroke-width="2"/>
+          <rect x="310" y="502" width="975.7999999999998" height="28" rx="14" fill="#8b5cf6" stroke="none" stroke-width="2"/>
+          <text x="290" y="523" fill="#6f6a61" font-size="17" font-weight="600" text-anchor="end">BERT full</text>
+          <text x="1299.7999999999997" y="523" fill="#171612" font-size="17" font-weight="700" text-anchor="start">0.697</text>
+    <text x="1510" y="842" fill="#6f6a61" font-size="16" font-weight="500" text-anchor="end">Source: original paper tables; values redrawn</text>
+  </g>
+</svg>

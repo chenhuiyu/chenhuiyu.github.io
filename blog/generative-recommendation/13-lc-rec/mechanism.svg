@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">LC-Rec：均衡建码，再多任务对齐 / Full-ranking generation</title><desc id="desc">LLaMA 文本 embedding 经 RQ-VAE；最后一级用 Sinkhorn-Knopp 均匀分配以消除冲突。</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"><text x="80" y="82" fill="#171612" font-size="42" font-weight="650" text-anchor="start">LC-Rec：均衡建码，再多任务对齐 / Full-ranking generation</text><text x="80" y="124" fill="#6f6a61" font-size="21" font-weight="400" text-anchor="start">LLaMA 文本 embedding 经 RQ-VAE；最后一级用 Sinkhorn-Knopp 均匀分配以消除冲突。</text><rect x="85" y="220" width="275" height="270" rx="28" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+      <text x="113" y="265" fill="#1d4ed8" font-size="17" font-weight="750" text-anchor="start">01</text>
+      <text x="113" y="317" fill="#171612" font-size="27" font-weight="650" text-anchor="start">文本表示</text>
+      <text x="113" y="365" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">title + description</text>
+<text x="113" y="404" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">LLaMA mean pool</text>
+<text x="113" y="443" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">semantic e</text>
+      <line x1="368" y1="355" x2="389" y2="355" stroke="#8b5cf6" stroke-width="5"/>
+  <path d="M383 342 L407 355 L383 368" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="415" y="220" width="275" height="270" rx="28" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+      <text x="443" y="265" fill="#6d28d9" font-size="17" font-weight="750" text-anchor="start">02</text>
+      <text x="443" y="317" fill="#171612" font-size="27" font-weight="650" text-anchor="start">均衡量化</text>
+      <text x="443" y="365" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">4×256 codebooks</text>
+<text x="443" y="404" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">RQ coarse-to-fine</text>
+<text x="443" y="443" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">USM at last level</text>
+      <line x1="698" y1="355" x2="719" y2="355" stroke="#f59e0b" stroke-width="5"/>
+  <path d="M713 342 L737 355 L713 368" fill="none" stroke="#f59e0b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="745" y="220" width="275" height="270" rx="28" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+      <text x="773" y="265" fill="#92400e" font-size="17" font-weight="750" text-anchor="start">03</text>
+      <text x="773" y="317" fill="#171612" font-size="27" font-weight="650" text-anchor="start">对齐微调</text>
+      <text x="773" y="365" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">SEQ + mutual</text>
+<text x="773" y="404" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">+ asymmetric</text>
+<text x="773" y="443" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">+ intent / preference</text>
+      <line x1="1028" y1="355" x2="1049" y2="355" stroke="#10b981" stroke-width="5"/>
+  <path d="M1043 342 L1067 355 L1043 368" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1075" y="220" width="275" height="270" rx="28" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+      <text x="1103" y="265" fill="#166534" font-size="17" font-weight="750" text-anchor="start">04</text>
+      <text x="1103" y="317" fill="#171612" font-size="27" font-weight="650" text-anchor="start">受限生成</text>
+      <text x="1103" y="365" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">beam size 20</text>
+<text x="1103" y="404" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">illegal logits = 0</text>
+<text x="1103" y="443" fill="#6f6a61" font-size="18" font-weight="400" text-anchor="start">full catalog</text>
+      
+    <rect x="130" y="565" width="1340" height="135" rx="26" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <text x="800" y="612" fill="#6f6a61" font-size="18" font-weight="650" text-anchor="middle">核心公式 / central equation</text>
+    <text x="800" y="665" fill="#171612" font-size="29" font-weight="650" text-anchor="middle">min ΣᵣΣₖ q(k|r)‖r−vₖ‖²,  subject to Σᵣ q(k|r)=|B|/K</text>
+    <rect x="230" y="750" width="1140" height="70" rx="22" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+    <text x="800" y="794" fill="#92400e" font-size="20" font-weight="650" text-anchor="middle">均衡约束让最后一层每个 code 接收近似相同数量残差，避免追加无语义 collision suffix。</text></g>
+</svg>
