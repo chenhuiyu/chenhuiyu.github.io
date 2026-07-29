@@ -64,13 +64,19 @@ story pairs, preferring the Chinese edition for each pair, so a newly published
 bilingual post appears automatically. Drafts never enter the generated index
 and therefore never appear on the homepage.
 
-View counts use the credential-free [Vercount](https://www.vercount.one/)
-client:
+Traffic has two deliberately separate scopes:
 
-- the homepage shows total site views and visitors;
-- each article shows its own page views;
-- counts are separated by hostname, so GitHub Pages and the Sites deployment
-  maintain independent totals.
+- the homepage lifetime totals use the same [Busuanzi](https://busuanzi.ibruce.info/)
+  counter as the old Hexo site, so `chenhuiyu.github.io` resumes its existing
+  same-domain history;
+- the homepage also shows post-redesign totals and each article's current-route
+  views through [Vercount](https://www.vercount.one/);
+- both services separate counts by hostname, so GitHub Pages and the Sites
+  deployment remain independent.
+
+The permanent Google Search Console verification file is
+`public/google749d44204d33a3f0.html`. Keep it at that exact root path after
+verification succeeds.
 
 Page metadata includes canonical URLs, Open Graph and Twitter cards, bilingual
 `hreflang`, and Schema.org structured data. `npm run export:static` also
