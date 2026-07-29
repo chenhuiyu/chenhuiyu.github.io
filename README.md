@@ -57,6 +57,26 @@ npm run export:static   # generate static-export/ for GitHub Pages
 
 See [content/posts/README.md](content/posts/README.md) for the full post format.
 
+## Homepage, views, and SEO
+
+The homepage reads the published post index directly. It shows the three newest
+story pairs, preferring the Chinese edition for each pair, so a newly published
+bilingual post appears automatically. Drafts never enter the generated index
+and therefore never appear on the homepage.
+
+View counts use the credential-free [Vercount](https://www.vercount.one/)
+client:
+
+- the homepage shows total site views and visitors;
+- each article shows its own page views;
+- counts are separated by hostname, so GitHub Pages and the Sites deployment
+  maintain independent totals.
+
+Page metadata includes canonical URLs, Open Graph and Twitter cards, bilingual
+`hreflang`, and Schema.org structured data. `npm run export:static` also
+regenerates `robots.txt`, `sitemap.xml`, and `feed.xml`. The canonical public
+origin is `https://chenhuiyu.github.io`.
+
 ## Publish to GitHub Pages
 
 Commit and push source changes to `source` first. When the result is ready for
@@ -94,7 +114,7 @@ content/travel.json     travel timeline and locations
 content/xiaohongshu.json curated Xiaohongshu entries
 public/                 photos, travel images, and talk materials
 scripts/build-posts.mjs Markdown compiler and bilingual validation
-scripts/export-static.mjs static GitHub Pages exporter
+scripts/export-static.mjs static Pages, sitemap, and RSS exporter
 scripts/new-post.mjs    bilingual draft generator
 scripts/publish-github-pages.sh safe master publisher
 ```
