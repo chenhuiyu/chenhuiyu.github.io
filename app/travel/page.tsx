@@ -1,12 +1,25 @@
 import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "@/app/components/SiteHeader";
 import { countryOrder, travelLocations } from "@/content/travel-data";
+import { RSS_ALTERNATE, SITE_SOCIAL_IMAGE } from "@/lib/site";
 import { TravelGlobe } from "./TravelGlobe";
 
 export const metadata: Metadata = {
   title: "Travel Globe — Huiyu Chen",
   description:
     "An interactive 3D globe and complete travel timeline of the countries, regions, cities, and places Huiyu Chen has visited.",
+  alternates: {
+    canonical: "/travel",
+    types: RSS_ALTERNATE,
+  },
+  openGraph: {
+    type: "website",
+    url: "/travel",
+    title: "Travel Globe — Huiyu Chen",
+    description:
+      "An interactive globe and travel timeline of the places Huiyu Chen has visited.",
+    images: [SITE_SOCIAL_IMAGE],
+  },
 };
 
 export default function TravelPage() {
