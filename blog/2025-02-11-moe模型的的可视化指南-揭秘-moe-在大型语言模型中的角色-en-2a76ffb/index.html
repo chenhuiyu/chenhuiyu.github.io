@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-CsZ7IyfW.css" data-rsc-css-href="/assets/index-CsZ7IyfW.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-DuOhKy3m.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-BxhDq--T.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>A visual guide to MoE models: Uncovering the role of MoE in large language models — Huiyu Chen</title><meta name="description" content="Original address: A Visual Guide to Mixture of Experts (MoE)"/><link rel="shortcut icon" href="/favicon.svg"/><link rel="icon" href="/favicon.svg"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"2025-02-11-moe模型的的可视化指南-揭秘-moe-在大型语言模型中的角色-en-2a76ffb"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/2025-02-11-moe模型的的可视化指南-揭秘-moe-在大型语言模型中的角色-en-2a76ffb","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-BxhDq--T.js" />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0e1wmqi { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0e1wmqi { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_11w2gr9 { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_11w2gr9 { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_0g1zhzc { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_0g1zhzc { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0e1wmqi __variable_geist_mono_11w2gr9 __variable_newsreader_0g1zhzc antialiased"><main class="site-shell article-shell" id="top"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><div class="article-meta"><span>LLM &amp; NLP</span><time>2025-02-11</time><span>English</span></div><h1>A visual guide to MoE models: Uncovering the role of MoE in large language models</h1><p class="article-deck">Original address: A Visual Guide to Mixture of Experts (MoE)</p><a class="language-switch" href="/blog/2025-02-11-moe模型的的可视化指南-揭秘-moe-在大型语言模型中的角色-zh-cn-e2ed5d7">阅读中文版 →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#目录">Directory</a><a class="" href="#什么是混合专家（MoE）模型？">What is a Mix of Experts (MoE) model?</a><a class="" href="#Experts">Experts</a><a class="toc-subitem" href="#Dense-Layers">Dense Layers</a><a class="toc-subitem" href="#Sparse-Layers">Sparse Layers</a><a class="toc-subitem" href="#What-does-an-Expert-Learn">What does an Expert Learn?</a><a class="toc-subitem" href="#专家的架构（Architecture-of-Experts）">Architecture of Experts</a></nav></aside><div class="prose"><h1 id="MoE-模型的的可视化指南：揭秘-MoE-在大型语言模型中的角色">A visual guide to MoE models: Uncovering the role of MoE in large language models</h1><p><strong>Original address</strong>：<a target="_blank" rel="noreferrer noopener" href="https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-mixture-of-experts">A Visual Guide to Mixture of Experts (MoE)</a></p>
+<p>📅 Author: Maarten Grootendorst</p>
+<p>📆 Date: October 7, 2024</p>
+<hr>
+<h1 id="探索语言模型：混合专家模型（MoE）可视化指南">Exploring Language Models: A Visual Guide to Mixed Expert Models (MoE)</h1><h2 id="目录">Directory</h2><ul>
+<li><a href="#moe-%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2">A visual guide to MoE models: Uncovering the role of MoE in large language models</a></li>
+<li><a href="#%E6%8E%A2%E7%B4%A2%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%B7%B7%E5%90%88%E4%B8%93%E5%AE%B6%E6%A8%A1%E5%9E%8Bmoe%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97">Exploring Language Models: A Visual Guide to Mixed Expert Models (MoE)</a><ul>
+<li><a href="#%E7%9B%AE%E5%BD%95">Directory</a></li>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B7%B7%E5%90%88%E4%B8%93%E5%AE%B6moe%E6%A8%A1%E5%9E%8B">What is a Mix of Experts (MoE) model?</a></li>
+<li><a href="#experts">Experts</a><ul>
+<li><a href="#dense-layers">Dense Layers</a></li>
+<li><a href="#sparse-layers">Sparse Layers</a></li>
+<li><a href="#what-does-an-expert-learn">What does an Expert Learn?</a></li>
+<li><a href="#%E4%B8%93%E5%AE%B6%E7%9A%84%E6%9E%B6%E6%9E%84architecture-of-experts">Architecture of Experts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>When we look at the latest releases of large language models (<strong>LLMs</strong>, Large Language Models), you often see "<strong>MoE</strong>". What does this “MoE” stand for? Why are so many LLMs using it?</p>
+<p>In this visual guide, we'll step through more than 50 visualizations to explore this key component: **Mixture of Experts (MoE)**.</p>
+
+
+<p><strong>Illustrated content</strong>: In this picture, you can see a typical <strong>MoE</strong> Two main components of the structure:<strong>Experts</strong>(expert) and <strong>Router</strong>(router or gated network). The picture shows a <strong>Router</strong>, and several juxtaposed below <strong>Experts</strong>, indicating that in <strong>LLM</strong> In the architecture, the MoE routes inputs to the appropriate experts as needed.<br><strong>Figure 1 Detailed description</strong>：</p>
+<ol>
+<li><strong>Router</strong>: Decide which expert or experts to send input (such as token) to.</li>
+<li><strong>Experts</strong>: several different submodels (usually <strong>FFNN</strong> structure), each expert may have expertise in different aspects.</li>
+<li><strong>Workflow</strong>: Input passes first <strong>Router</strong>, and then assigned to different experts for processing, and finally summarize the results.</li>
+</ol>
+<h2 id="什么是混合专家（MoE）模型？">What is a Mix of Experts (MoE) model?</h2><p><strong>Mixture of Experts (MoE)</strong> is a technique that uses many different submodels (or "<strong>experts</strong>”) to improve the quality of large language models.</p>
+<p>In MoE, there are two main components:</p>
+<ol>
+<li><strong>Experts</strong><ul>
+<li>each <strong>FFNN</strong> Each layer is no longer a separate network, but has a group of "experts" to choose from.</li>
+<li>These "experts" are often also <strong>FFNN</strong>(Feedforward Neural Network) structure.</li>
+</ul>
+</li>
+<li><strong>Router</strong> or <strong>gate network</strong><ul>
+<li>Responsible for deciding which <strong>tokens</strong> Which experts are being sent to.</li>
+</ul>
+</li>
+</ol>
+<p>In a <strong>LLM</strong> At each level, we see experts who are specialized (to some extent):</p>
+
+
+<p><strong>Illustrated content</strong>: Shown in <strong>LLM</strong> Each layer of can have multiple <strong>Experts</strong>. It highlights that these experts are able to handle different input tokens in different contexts.<br><strong>Figure 2 details</strong>：  </p>
+<ol>
+<li><strong>layer structure</strong>: The figure uses different levels (Layer 1, Layer 2, Layer 3...) to represent the multi-layer model.  </li>
+<li><strong>Experts</strong>: At each layer, there are several experts (Expert 1, Expert 2, Expert 3, Expert 4), and these experts exist in parallel.  </li>
+<li><strong>target</strong>: Emphasizes that experts are more "professional" in a specific context or specific input, and are thus selected to handle that input.</li>
+</ol>
+<p>Although MoEs do not specifically train experts in specific fields (such as psychology or biology), they may still develop certain biases at the lexical or syntactic level:</p>
+
+
+<ul>
+<li><strong>MoE experts may learn different language features</strong><ul>
+<li><strong>Expert 1</strong> Process<strong>Punctuation</strong>(Punctuation): such as <code>, . : &amp; - ?</code> Wait.</li>
+<li><strong>Expert 2</strong> Process<strong>verb</strong>(Verbs): Such as <code>said, read, miss</code> Wait.</li>
+<li><strong>Expert 3</strong> Process<strong>Connective word</strong>(Conjunctions): such as <code>the, and, if, not</code> Wait.</li>
+<li><strong>Expert 4</strong> Process<strong>visual descriptors</strong>(Visual Descriptions): Such as <code>dark, outer, yellow</code> Wait.</li>
+</ul>
+</li>
+</ul>
+<p>More specifically, their expertise is in handling specific tokens in specific contexts.</p>
+<hr>
+<p><strong>Router (gate network)</strong> Select the expert or combination of experts that best suits a given input:</p>
+
+
+<p><strong>Illustrated content</strong>: shows <strong>Router</strong> How to select appropriate experts at each layer based on input. The figure highlights the selected experts and the flow of input tokens.<br><strong>Figure 3 details</strong>：  </p>
+<ol>
+<li><strong>input</strong>: The Input at the top of the diagram represents the token or vector representation received by the model.  </li>
+<li><strong>Router</strong>: Located in the network structure, it plays a decision-making role.  </li>
+<li><strong>Expert choice</strong>: The selected expert will receive input, and the remaining experts will not be activated.  </li>
+<li><strong>output</strong>: Results from activated experts are aggregated or continue flowing to downstream layers.</li>
+</ol>
+<p>It is important to note that each expert is not the entire LLM; <strong>LLM</strong> A submodel part of the architecture.</p>
+<hr>
+<h2 id="Experts">Experts</h2><p>To understand the experts (<strong>Experts</strong>) and how they work, let’s first take a look at what the MoE hopes to replace:<strong>dense layers</strong>。</p>
+<h3 id="Dense-Layers">Dense Layers</h3><p>all <strong>Mixture of Experts (MoE)</strong> They are all based on a relatively basic function in LLM: **Feedforward Neural Network (FFNN)**.</p>
+<p>Recall that a standard <strong>decoder-only Transformer</strong> In the architecture,<strong>FFNN</strong> usually in <strong>layer normalization</strong> Applied afterwards:</p>
+
+<p><strong>Illustrated content</strong>: shows a typical <strong>decoder</strong> structure, each <strong>decoder block</strong> contains <strong>Masked Self-Attention</strong> and <strong>FFNN</strong>(There will be <strong>Layer Norm</strong>）。  </p>
+<ol>
+<li><strong>Position Embedding</strong>: Add position coding information before or at the same time as input token.  </li>
+<li><strong>Decoder Block</strong>: Contains <strong>Masked Self-Attention</strong>、<strong>Layer Norm</strong> and <strong>FFNN</strong>。  </li>
+<li><strong>FFNN</strong>: Represented by purple squares in the figure, it is a key component of this layer that further transforms the input to capture more complex relationships.</li>
+</ol>
+<p><strong>FFNN</strong> The contextual information produced by the attention mechanism can be exploited and further transformed to capture more complex relationships in the data.</p>
+<p>However, in order to learn these complex relationships,<strong>FFNN</strong> The size of will grow, usually expanding on the input (for example, the middle layer dimension will become larger):</p>
+
+<p><strong>Illustrated content</strong>: shows a <strong>FFNN</strong> structure, the input is first mapped to a higher dimension and then mapped back to the output dimension.  </p>
+<ol>
+<li><strong>input dimensions</strong>: The figure shows 512 input units.  </li>
+<li><strong>Hidden layer</strong>: Usually there is a 4x or more expansion (the example in the figure is a 4x expansion to 2048 dimensions).  </li>
+<li><strong>Output dimensions</strong>: Then map back to 512-dimensional output.</li>
+</ol>
+<h3 id="Sparse-Layers">Sparse Layers</h3><p>In a traditional Transformer,<strong>FFNN</strong> called <strong>dense model</strong>, since all its parameters (weights and biases) will be activated. In other words, all parameters of the model are involved in calculating the output.</p>
+<p>If we look carefully <strong>dense model</strong>, you can see that input will activate all parameters:</p>
+
+<p><strong>Illustrated content</strong>: shows a "dense" model, where each neuron in the input layer is connected to all neurons in the hidden layer, and all neurons in the hidden layer are connected to neurons in the output layer.<br><strong>Figure 6 details</strong>：  </p>
+<ol>
+<li><strong>Fully connected</strong>: All nodes in the graph are connected to all nodes in the next layer, indicating no sparsity.  </li>
+<li><strong>All parameters are activated</strong>: There are no "idle" or "inactive" parameters.</li>
+</ol>
+<p>In contrast,<strong>sparse models</strong>(sparse model) only activates a part of the total parameters, which is consistent with <strong>Mixture of Experts</strong> closely related.</p>
+<p>To illustrate this, we can put <strong>dense model</strong> split into parts (i.e. experts,<strong>experts</strong>), retrain it, and activate only part of it during inference:</p>
+
+
+<p><strong>Illustrated content</strong>: Split the original dense model into multiple experts (Expert 1, Expert 2, Expert 3, Expert 4). During the inference phase, only a subset of experts is selected for activation.  </p>
+<ol>
+<li><strong>Model segmentation</strong>: The original large network is split into multiple smaller "experts".  </li>
+<li><strong>sparse activation</strong>: Not all experts are activated, only some are activated under certain inputs.  </li>
+<li><strong>Benefits</strong>: With sparse activation, you can have more potential parameter capacity without significantly increasing computational cost.</li>
+</ol>
+<p>The core idea is that during training, each expert learns different information; during inference, only those experts most relevant to the current task are used.</p>
+<p>When we ask a question, we select the experts best suited for the task:</p>
+
+
+<p><strong>Illustrated content</strong>: shows an example: when the input is a number-related question like “What is 1 + 1?”, the router activates only number-related experts.  </p>
+<ol>
+<li><strong>input</strong>: A sentence or token representing an arithmetic problem.  </li>
+<li><strong>Expert choice</strong>: Only experts in the "Numbers" field are activated.  </li>
+<li><strong>output</strong>: The expert gives the result "2".</li>
+</ol>
+<h3 id="What-does-an-Expert-Learn">What does an Expert Learn?</h3><p>As mentioned earlier, experts (<strong>Experts</strong>) often learn more detailed knowledge than the entire field. One might feel that calling them “experts” might be misleading, but this is because each expert tends to specialize only in certain types of input features or contexts.</p>
+
+
+<p><strong>Illustrated content</strong>: Shows a table or comparison to illustrate that in some cases, different experts may learn different features (such as punctuation marks, verbs, numbers, etc.).  </p>
+<ol>
+<li><strong>Example Expert</strong>: Punctuation, Conjunctions, Verbs, Numbers, etc.  </li>
+<li><strong>hierarchical location</strong>: Different experts may appear in different layers of the model.  </li>
+<li><strong>allocate</strong>: Certain tokens are routed to certain experts for more efficient processing.</li>
+</ol>
+<p>in <strong>decoder</strong> In the model, there may not be such an obvious division of labor between experts. However, this does not mean that all experts are exactly the same.<br>in <strong>Mixtral 8x7B</strong> In this paper, there is a good example: each token will be marked with its preferred experts, which do not necessarily correspond to intuitive semantic fields, but show certain tendencies statistically.</p>
+
+<p>This visual example also shows that experts tend to focus on syntax rather than a specific domain. So while decoder experts don't seem to have a clear "specialism", they do seem to be consistently used on certain types of tokens.</p>
+<p>In [Figure 1], a sample code or visualization result about MoELayer is shown. The color blocks distinguish different parts and emphasize the<strong>Experts and routers</strong>relationship between. It can be seen from the color blocks:</p>
+<ul>
+<li>The experts list (represented by nn.ModuleList in the code) contains multiple sub-networks (i.e. multiple FFNN, Feed-Forward Neural Network, feed-forward neural network).</li>
+<li>The gate (gated network, also called router) is responsible for selecting which experts will be activated.</li>
+<li>Overall, it can be seen that these experts usually focus on the syntactic level of the input sentences rather than on a specific topic or domain.</li>
+</ul>
+<h3 id="专家的架构（Architecture-of-Experts）">Architecture of Experts</h3></div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43"><span>LLM &amp; NLP</span><h2>Paper Deep Dive | SLA2: Sparse-Linear Attention with Learnable Routing and QAT</h2><p>2026-02-21</p></a><a href="/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96"><span>LLM &amp; NLP</span><h2>evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment</h2><p>2026-02-20</p></a><a href="/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896"><span>LLM &amp; NLP</span><h2>SeCom: Redefining Memory Management in Conversational AI</h2><p>2025-06-24</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script id="_R_">import("/assets/index-BxhDq--T.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-CsZ7IyfW.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/2025-02-11-moe模型的的可视化指南-揭秘-moe-在大型语言模型中的角色-en-2a76ffb\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/2025-02-11-moe模型的的可视化指南-揭秘-moe-在大型语言模型中的角色-en-2a76ffb\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-CsZ7IyfW.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-CsZ7IyfW.css\",\"data-rsc-css-href\":\"/assets/index-CsZ7IyfW.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0e1wmqi __variable_geist_mono_11w2gr9 __variable_newsreader_0g1zhzc antialiased\",\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/blog/2025-02-11-moe模型的的可视化指南-揭秘-moe-在大型语言模型中的角色-en-2a76ffb\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"A visual guide to MoE models: Uncovering the role of MoE in large language models — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Original address: A Visual Guide to Mixture of Experts (MoE)\"}],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"development\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[\"blog\",\"2025-02-11-moe模型的的可视化指南-揭秘-moe-在大型语言模型中的角色-en-2a76ffb\"]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/blog/2025-02-11-moe模型的的可视化指南-揭秘-moe-在大型语言模型中的角色-en-2a76ffb\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"e10bf393-1874-42fa-acfc-6b66820cb3de\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:T35ff,\u003ch1 id=\"MoE-模型的的可视化指南：揭秘-MoE-在大型语言模型中的角色\"\u003eA visual guide to MoE models: Uncovering the role of MoE in large language models\u003c/h1\u003e\u003cp\u003e\u003cstrong\u003eOriginal address\u003c/strong\u003e：\u003ca target=\"_blank\" rel=\"noreferrer noopener\" href=\"https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-mixture-of-experts\"\u003eA Visual Guide to Mixture of Experts (MoE)\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003e📅 Author: Maarten Grootendorst\u003c/p\u003e\n\u003cp\u003e📆 Date: October 7, 2024\u003c/p\u003e\n\u003chr\u003e\n\u003ch1 id=\"探索语言模型：混合专家模型（MoE）可视化指南\"\u003eExploring Language Models: A Visual Guide to Mixed Expert Models (MoE)\u003c/h1\u003e\u003ch2 id=\"目录\"\u003eDirectory\u003c/h2\u003e\u003cul\u003e\n\u003cli\u003e\u003ca href=\"#moe-%E6%A8%A1%E5%9E%8B%E7%9A%84%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97%E6%8F%AD%E7%A7%98-moe-%E5%9C%A8%E5%A4%A7%E5%9E%8B%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E4%B8%AD%E7%9A%84%E8%A7%92%E8%89%B2\"\u003eA visual guide to MoE models: Uncovering the role of MoE in large language models\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#%E6%8E%A2%E7%B4%A2%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E6%B7%B7%E5%90%88%E4%B8%93%E5%AE%B6%E6%A8%A1%E5%9E%8Bmoe%E5%8F%AF%E8%A7%86%E5%8C%96%E6%8C%87%E5%8D%97\"\u003eExploring Language Models: A Visual Guide to Mixed Expert Models (MoE)\u003c/a\u003e\u003cul\u003e\n\u003cli\u003e\u003ca href=\"#%E7%9B%AE%E5%BD%95\"\u003eDirectory\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B7%B7%E5%90%88%E4%B8%93%E5%AE%B6moe%E6%A8%A1%E5%9E%8B\"\u003eWhat is a Mix of Experts (MoE) model?\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#experts\"\u003eExperts\u003c/a\u003e\u003cul\u003e\n\u003cli\u003e\u003ca href=\"#dense-layers\"\u003eDense Layers\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#sparse-layers\"\u003eSparse Layers\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#what-does-an-expert-learn\"\u003eWhat does an Expert Learn?\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e\u003ca href=\"#%E4%B8%93%E5%AE%B6%E7%9A%84%E6%9E%B6%E6%9E%84architecture-of-experts\"\u003eArchitecture of Experts\u003c/a\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eWhen we look at the latest releases of large language models (\u003cstrong\u003eLLMs\u003c/strong\u003e, Large Language Models), you often see \"\u003cstrong\u003eMoE\u003c/strong\u003e\". What does this “MoE” stand for? Why are so many LLMs using it?\u003c/p\u003e\n\u003cp\u003eIn this visual guide, we'll step through more than 50 visualizations to explore this key component: **Mixture of Experts (MoE)**.\u003c/p\u003e\n\n\n\u003cp\u003e\u003cstrong\u003eIllustrated content\u003c/strong\u003e: In this picture, you can see a typical \u003cstrong\u003eMoE\u003c/strong\u003e Two main components of the structure:\u003cstrong\u003eExperts\u003c/strong\u003e(expert) and \u003cstrong\u003eRouter\u003c/strong\u003e(router or gated network). The picture shows a \u003cstrong\u003eRouter\u003c/strong\u003e, and several juxtaposed below \u003cstrong\u003eExperts\u003c/strong\u003e, indicating that in \u003cstrong\u003eLLM\u003c/strong\u003e In the architecture, the MoE routes inputs to the appropriate experts as needed.\u003cbr\u003e\u003cstrong\u003eFigure 1 Detailed description\u003c/strong\u003e：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eRouter\u003c/strong\u003e: Decide which expert or experts to send input (such as token) to.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eExperts\u003c/strong\u003e: several different submodels (usually \u003cstrong\u003eFFNN\u003c/strong\u003e structure), each expert may have expertise in different aspects.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eWorkflow\u003c/strong\u003e: Input passes first \u003cstrong\u003eRouter\u003c/strong\u003e, and then assigned to different experts for processing, and finally summarize the results.\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2 id=\"什么是混合专家（MoE）模型？\"\u003eWhat is a Mix of Experts (MoE) model?\u003c/h2\u003e\u003cp\u003e\u003cstrong\u003eMixture of Experts (MoE)\u003c/strong\u003e is a technique that uses many different submodels (or \"\u003cstrong\u003eexperts\u003c/strong\u003e”) to improve the quality of large language models.\u003c/p\u003e\n\u003cp\u003eIn MoE, there are two main components:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eExperts\u003c/strong\u003e\u003cul\u003e\n\u003cli\u003eeach \u003cstrong\u003eFFNN\u003c/strong\u003e Each layer is no longer a separate network, but has a group of \"experts\" to choose from.\u003c/li\u003e\n\u003cli\u003eThese \"experts\" are often also \u003cstrong\u003eFFNN\u003c/strong\u003e(Feedforward Neural Network) structure.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eRouter\u003c/strong\u003e or \u003cstrong\u003egate network\u003c/strong\u003e\u003cul\u003e\n\u003cli\u003eResponsible for deciding which \u003cstrong\u003etokens\u003c/strong\u003e Which experts are being sent to.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eIn a \u003cstrong\u003eLLM\u003c/strong\u003e At each level, we see experts who are specialized (to some extent):\u003c/p\u003e\n\n\n\u003cp\u003e\u003cstrong\u003eIllustrated content\u003c/strong\u003e: Shown in \u003cstrong\u003eLLM\u003c/strong\u003e Each layer of can have multiple \u003cstrong\u003eExperts\u003c/strong\u003e. It highlights that these experts are able to handle different input tokens in different contexts.\u003cbr\u003e\u003cstrong\u003eFigure 2 details\u003c/strong\u003e：  \u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003elayer structure\u003c/strong\u003e: The figure uses different levels (Layer 1, Layer 2, Layer 3...) to represent the multi-layer model.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eExperts\u003c/strong\u003e: At each layer, there are several experts (Expert 1, Expert 2, Expert 3, Expert 4), and these experts exist in parallel.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003etarget\u003c/strong\u003e: Emphasizes that experts are more \"professional\" in a specific context or specific input, and are thus selected to handle that input.\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eAlthough MoEs do not specifically train experts in specific fields (such as psychology or biology), they may still develop certain biases at the lexical or syntactic level:\u003c/p\u003e\n\n\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eMoE experts may learn different language features\u003c/strong\u003e\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eExpert 1\u003c/strong\u003e Process\u003cstrong\u003ePunctuation\u003c/strong\u003e(Punctuation): such as \u003ccode\u003e, . : \u0026amp; - ?\u003c/code\u003e Wait.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eExpert 2\u003c/strong\u003e Process\u003cstrong\u003everb\u003c/strong\u003e(Verbs): Such as \u003ccode\u003esaid, read, miss\u003c/code\u003e Wait.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eExpert 3\u003c/strong\u003e Process\u003cstrong\u003eConnective word\u003c/strong\u003e(Conjunctions): such as \u003ccode\u003ethe, and, if, not\u003c/code\u003e Wait.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eExpert 4\u003c/strong\u003e Process\u003cstrong\u003evisual descriptors\u003c/strong\u003e(Visual Descriptions): Such as \u003ccode\u003edark, outer, yellow\u003c/code\u003e Wait.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eMore specifically, their expertise is in handling specific tokens in specific contexts.\u003c/p\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cstrong\u003eRouter (gate network)\u003c/strong\u003e Select the expert or combination of experts that best suits a given input:\u003c/p\u003e\n\n\n\u003cp\u003e\u003cstrong\u003eIllustrated content\u003c/strong\u003e: shows \u003cstrong\u003eRouter\u003c/strong\u003e How to select appropriate experts at each layer based on input. The figure highlights the selected experts and the flow of input tokens.\u003cbr\u003e\u003cstrong\u003eFigure 3 details\u003c/strong\u003e：  \u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003einput\u003c/strong\u003e: The Input at the top of the diagram represents the token or vector representation received by the model.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eRouter\u003c/strong\u003e: Located in the network structure, it plays a decision-making role.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eExpert choice\u003c/strong\u003e: The selected expert will receive input, and the remaining experts will not be activated.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eoutput\u003c/strong\u003e: Results from activated experts are aggregated or continue flowing to downstream layers.\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eIt is important to note that each expert is not the entire LLM; \u003cstrong\u003eLLM\u003c/strong\u003e A submodel part of the architecture.\u003c/p\u003e\n\u003chr\u003e\n\u003ch2 id=\"Experts\"\u003eExperts\u003c/h2\u003e\u003cp\u003eTo understand the experts (\u003cstrong\u003eExperts\u003c/strong\u003e) and how they work, let’s first take a look at what the MoE hopes to replace:\u003cstrong\u003edense layers\u003c/strong\u003e。\u003c/p\u003e\n\u003ch3 id=\"Dense-Layers\"\u003eDense Layers\u003c/h3\u003e\u003cp\u003eall \u003cstrong\u003eMixture of Experts (MoE)\u003c/strong\u003e They are all based on a relatively basic function in LLM: **Feedforward Neural Network (FFNN)**.\u003c/p\u003e\n\u003cp\u003eRecall that a standard \u003cstrong\u003edecoder-only Transformer\u003c/strong\u003e In the architecture,\u003cstrong\u003eFFNN\u003c/strong\u003e usually in \u003cstrong\u003elayer normalization\u003c/strong\u003e Applied afterwards:\u003c/p\u003e\n\n\u003cp\u003e\u003cstrong\u003eIllustrated content\u003c/strong\u003e: shows a typical \u003cstrong\u003edecoder\u003c/strong\u003e structure, each \u003cstrong\u003edecoder block\u003c/strong\u003e contains \u003cstrong\u003eMasked Self-Attention\u003c/strong\u003e and \u003cstrong\u003eFFNN\u003c/strong\u003e(There will be \u003cstrong\u003eLayer Norm\u003c/strong\u003e）。  \u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003ePosition Embedding\u003c/strong\u003e: Add position coding information before or at the same time as input token.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDecoder Block\u003c/strong\u003e: Contains \u003cstrong\u003eMasked Self-Attention\u003c/strong\u003e、\u003cstrong\u003eLayer Norm\u003c/strong\u003e and \u003cstrong\u003eFFNN\u003c/strong\u003e。  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eFFNN\u003c/strong\u003e: Represented by purple squares in the figure, it is a key component of this layer that further transforms the input to capture more complex relationships.\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e\u003cstrong\u003eFFNN\u003c/strong\u003e The contextual information produced by the attention mechanism can be exploited and further transformed to capture more complex relationships in the data.\u003c/p\u003e\n\u003cp\u003eHowever, in order to learn these complex relationships,\u003cstrong\u003eFFNN\u003c/strong\u003e The size of will grow, usually expanding on the input (for example, the middle layer dimension will become larger):\u003c/p\u003e\n\n\u003cp\u003e\u003cstrong\u003eIllustrated content\u003c/strong\u003e: shows a \u003cstrong\u003eFFNN\u003c/strong\u003e structure, the input is first mapped to a higher dimension and then mapped back to the output dimension.  \u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003einput dimensions\u003c/strong\u003e: The figure shows 512 input units.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eHidden layer\u003c/strong\u003e: Usually there is a 4x or more expansion (the example in the figure is a 4x expansion to 2048 dimensions).  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eOutput dimensions\u003c/strong\u003e: Then map back to 512-dimensional output.\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3 id=\"Sparse-Layers\"\u003eSparse Layers\u003c/h3\u003e\u003cp\u003eIn a traditional Transformer,\u003cstrong\u003eFFNN\u003c/strong\u003e called \u003cstrong\u003edense model\u003c/strong\u003e, since all its parameters (weights and biases) will be activated. In other words, all parameters of the model are involved in calculating the output.\u003c/p\u003e\n\u003cp\u003eIf we look carefully \u003cstrong\u003edense model\u003c/strong\u003e, you can see that input will activate all parameters:\u003c/p\u003e\n\n\u003cp\u003e\u003cstrong\u003eIllustrated content\u003c/strong\u003e: shows a \"dense\" model, where each neuron in the input layer is connected to all neurons in the hidden layer, and all neurons in the hidden layer are connected to neurons in the output layer.\u003cbr\u003e\u003cstrong\u003eFigure 6 details\u003c/strong\u003e：  \u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eFully connected\u003c/strong\u003e: All nodes in the graph are connected to all nodes in the next layer, indicating no sparsity.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eAll parameters are activated\u003c/strong\u003e: There are no \"idle\" or \"inactive\" parameters.\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eIn contrast,\u003cstrong\u003esparse models\u003c/strong\u003e(sparse model) only activates a part of the total parameters, which is consistent with \u003cstrong\u003eMixture of Experts\u003c/strong\u003e closely related.\u003c/p\u003e\n\u003cp\u003eTo illustrate this, we can put \u003cstrong\u003edense model\u003c/strong\u003e split into parts (i.e. experts,\u003cstrong\u003eexperts\u003c/strong\u003e), retrain it, and activate only part of it during inference:\u003c/p\u003e\n\n\n\u003cp\u003e\u003cstrong\u003eIllustrated content\u003c/strong\u003e: Split the original dense model into multiple experts (Expert 1, Expert 2, Expert 3, Expert 4). During the inference phase, only a subset of experts is selected for activation.  \u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eModel segmentation\u003c/strong\u003e: The original large network is split into multiple smaller \"experts\".  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003esparse activation\u003c/strong\u003e: Not all experts are activated, only some are activated under certain inputs.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eBenefits\u003c/strong\u003e: With sparse activation, you can have more potential parameter capacity without significantly increasing computational cost.\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eThe core idea is that during training, each expert learns different information; during inference, only those experts most relevant to the current task are used.\u003c/p\u003e\n\u003cp\u003eWhen we ask a question, we select the experts best suited for the task:\u003c/p\u003e\n\n\n\u003cp\u003e\u003cstrong\u003eIllustrated content\u003c/strong\u003e: shows an example: when the input is a number-related question like “What is 1 + 1?”, the router activates only number-related experts.  \u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003einput\u003c/strong\u003e: A sentence or token representing an arithmetic problem.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eExpert choice\u003c/strong\u003e: Only experts in the \"Numbers\" field are activated.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eoutput\u003c/strong\u003e: The expert gives the result \"2\".\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3 id=\"What-does-an-Expert-Learn\"\u003eWhat does an Expert Learn?\u003c/h3\u003e\u003cp\u003eAs mentioned earlier, experts (\u003cstrong\u003eExperts\u003c/strong\u003e) often learn more detailed knowledge than the entire field. One might feel that calling them “experts” might be misleading, but this is because each expert tends to specialize only in certain types of input features or contexts.\u003c/p\u003e\n\n\n\u003cp\u003e\u003cstrong\u003eIllustrated content\u003c/strong\u003e: Shows a table or comparison to illustrate that in some cases, different experts may learn different features (such as punctuation marks, verbs, numbers, etc.).  \u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eExample Expert\u003c/strong\u003e: Punctuation, Conjunctions, Verbs, Numbers, etc.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003ehierarchical location\u003c/strong\u003e: Different experts may appear in different layers of the model.  \u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eallocate\u003c/strong\u003e: Certain tokens are routed to certain experts for more efficient processing.\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003ein \u003cstrong\u003edecoder\u003c/strong\u003e In the model, there may not be such an obvious division of labor between experts. However, this does not mean that all experts are exactly the same.\u003cbr\u003ein \u003cstrong\u003eMixtral 8x7B\u003c/strong\u003e In this paper, there is a good example: each token will be marked with its preferred experts, which do not necessarily correspond to intuitive semantic fields, but show certain tendencies statistically.\u003c/p\u003e\n\n\u003cp\u003eThis visual example also shows that experts tend to focus on syntax rather than a specific domain. So while decoder experts don't seem to have a clear \"specialism\", they do seem to be consistently used on certain types of tokens.\u003c/p\u003e\n\u003cp\u003eIn [Figure 1], a sample code or visualization result about MoELayer is shown. The color blocks distinguish different parts and emphasize the\u003cstrong\u003eExperts and routers\u003c/strong\u003erelationship between. It can be seen from the color blocks:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eThe experts list (represented by nn.ModuleList in the code) contains multiple sub-networks (i.e. multiple FFNN, Feed-Forward Neural Network, feed-forward neural network).\u003c/li\u003e\n\u003cli\u003eThe gate (gated network, also called router) is responsible for selecting which experts will be activated.\u003c/li\u003e\n\u003cli\u003eOverall, it can be seen that these experts usually focus on the syntactic level of the input sentences rather than on a specific topic or domain.\u003c/li\u003e\n\u003c/ul\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("\u003ch3 id=\"专家的架构（Architecture-of-Experts）\"\u003eArchitecture of Experts\u003c/h3\u003e1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],null,[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"time\",null,{\"children\":\"2025-02-11\"}],[\"$\",\"span\",null,{\"children\":\"English\"}]]}],[\"$\",\"h1\",null,{\"children\":\"A visual guide to MoE models: Uncovering the role of MoE in large language models\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"Original address: A Visual Guide to Mixture of Experts (MoE)\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/2025-02-11-moe模型的的可视化指南-揭秘-moe-在大型语言模型中的角色-zh-cn-e2ed5d7\",\"children\":\"阅读中文版 →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"目录-Directory\",{\"className\":\"\",\"href\":\"#目录\",\"children\":\"Directory\"}],[\"$\",\"a\",\"什么是混合专家（MoE）模型？-What is a Mix of Experts (MoE) model?\",{\"className\":\"\",\"href\":\"#什么是混合专家（MoE）模型？\",\"children\":\"What is a Mix of Experts (MoE) model?\"}],[\"$\",\"a\",\"Experts-Experts\",{\"className\":\"\",\"href\":\"#Experts\",\"children\":\"Experts\"}],[\"$\",\"a\",\"Dense-Layers-Dense Layers\",{\"className\":\"toc-subitem\",\"href\":\"#Dense-Layers\",\"children\":\"Dense Layers\"}],[\"$\",\"a\",\"Sparse-Layers-Sparse Layers\",{\"className\":\"toc-subitem\",\"href\":\"#Sparse-Layers\",\"children\":\"Sparse Layers\"}],[\"$\",\"a\",\"What-does-an-Expert-Learn-What does an Expert Learn?\",{\"className\":\"toc-subitem\",\"href\":\"#What-does-an-Expert-Learn\",\"children\":\"What does an Expert Learn?\"}],[\"$\",\"a\",\"专家的架构（Architecture-of-Experts）-Architecture of Experts\",{\"className\":\"toc-subitem\",\"href\":\"#专家的架构（Architecture-of-Experts）\",\"children\":\"Architecture of Experts\"}]]}]]}],[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$6\"}}]]}]]}],\"$L7\",\"$L8\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("7:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43\",{\"href\":\"/blog/2026-02-21-paper-deep-dive-2026-02-21-en-38e9b43\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"Paper Deep Dive | SLA2: Sparse-Linear Attention with Learnable Routing and QAT\"}],[\"$\",\"p\",null,{\"children\":\"2026-02-21\"}]]}],[\"$\",\"a\",\"2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96\",{\"href\":\"/blog/2026-02-21-evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from--en-28a2d96\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"evaluation-of-generation-based-large-language-models-llms-opportunities-and-challenges-from-generation-to-judgment\"}],[\"$\",\"p\",null,{\"children\":\"2026-02-20\"}]]}],[\"$\",\"a\",\"2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896\",{\"href\":\"/blog/2025-06-24-secom-redefining-memory-management-in-conversational-ai-en-60a8896\",\"children\":[[\"$\",\"span\",null,{\"children\":\"LLM \u0026 NLP\"}],[\"$\",\"h2\",null,{\"children\":\"SeCom: Redefining Memory Management in Conversational AI\"}],[\"$\",\"p\",null,{\"children\":\"2025-06-24\"}]]}]]}]]}]\n8:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

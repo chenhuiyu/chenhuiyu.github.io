@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-CsZ7IyfW.css" data-rsc-css-href="/assets/index-CsZ7IyfW.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-DuOhKy3m.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-BxhDq--T.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>[Python Problem Solution] 2834. Find the minimum sum of a beautiful array — Huiyu Chen</title><meta name="description" content="Given two positive integers n and target, the goal is to find an array of length n that satisfies the following conditions:"/><link rel="shortcut icon" href="/favicon.svg"/><link rel="icon" href="/favicon.svg"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-BxhDq--T.js" />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0e1wmqi { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0e1wmqi { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_11w2gr9 { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_11w2gr9 { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_0g1zhzc { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_0g1zhzc { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0e1wmqi __variable_geist_mono_11w2gr9 __variable_newsreader_0g1zhzc antialiased"><main class="site-shell article-shell" id="top"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><div class="article-meta"><span>Code</span><time>2024-03-08</time><span>English</span></div><h1>[Python Problem Solution] 2834. Find the minimum sum of a beautiful array</h1><p class="article-deck">Given two positive integers n and target, the goal is to find an array of length n that satisfies the following conditions:</p><a class="language-switch" href="/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20">阅读中文版 →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#题目描述">Question description</a><a class="toc-subitem" href="#测试用例">test case</a><a class="" href="#原始思路">Original idea</a><a class="toc-subitem" href="#方案">Plan</a><a class="toc-subitem" href="#代码">code</a><a class="toc-subitem" href="#复杂度分析">Complexity analysis</a><a class="" href="#贪心优化">greedy optimization</a><a class="toc-subitem" href="#方案-1">Plan</a><a class="toc-subitem" href="#代码-1">code</a><a class="toc-subitem" href="#复杂度分析-1">Complexity analysis</a><a class="" href="#数学方法">mathematical methods</a><a class="toc-subitem" href="#方案-2">Plan</a><a class="toc-subitem" href="#实现">realize</a><a class="toc-subitem" href="#代码-2">code</a><a class="toc-subitem" href="#复杂度分析-2">Complexity analysis</a></nav></aside><div class="prose"><h1 id="2834-找出美丽数组的最小和">2834. Find the minimum sum of a beautiful array</h1><blockquote>
+<p>Problem: <a target="_blank" rel="noreferrer noopener" href="https://leetcode.cn/problems/find-the-minimum-possible-sum-of-a-beautiful-array/description/">2834. Find the minimum sum of a beautiful array</a></p>
+</blockquote>
+<h2 id="题目描述">Question description</h2><p>Given two positive integers <code>n</code> and <code>target</code>, the goal is to find a length of <code>n</code> array that satisfies the following conditions:</p>
+<ul>
+<li>An array consists of two different positive integers.</li>
+<li>There are no two different subscripts <code>i</code> and <code>j</code> make <code>nums[i] + nums[j] == target</code>。<br>Returns the smallest possible sum of a beautiful array that meets the conditions, and performs the <code>10^9 + 7</code> Take the mold.</li>
+</ul>
+<h3 id="测试用例">test case</h3><p>Example 1:</p>
+<ul>
+<li>Input: n = 2, target = 3</li>
+<li>Output: 4</li>
+</ul>
+<p>Example 2:</p>
+<ul>
+<li>Input: n = 3, target = 3</li>
+<li>Output: 8</li>
+</ul>
+<p>Example 3:</p>
+<ul>
+<li>Input: n = 1, target = 1</li>
+<li>Output: 1</li>
+</ul>
+<h2 id="原始思路">Original idea</h2><h3 id="方案">Plan</h3><p>The initial solution is to start with the smallest number and check each number one by one whether it can be added to the array, while ensuring that there are no two numbers whose sum is equal to <code>target</code>。</p>
+<ul>
+<li>from <code>1</code> Start trying to add numbers to the array one by one.</li>
+<li>For each number, check if adding it to a number already in the array gives <code>target</code>。</li>
+<li>If not, add it to the array.</li>
+<li>Continue this process until the array length reaches <code>n</code>。</li>
+</ul>
+<h3 id="代码">code</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minimumPossibleSum</span>(<span class="params">n, target</span>):</span><br><span class="line">    selected_nums = <span class="built_in">set</span>([<span class="number">1</span>])</span><br><span class="line">    total_sum = <span class="number">1</span></span><br><span class="line">    current_num = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(selected_nums) &lt; n:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>((current_num + num != target) <span class="keyword">for</span> num <span class="keyword">in</span> selected_nums):</span><br><span class="line">            selected_nums.add(current_num)</span><br><span class="line">            total_sum += current_num</span><br><span class="line">        current_num += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> total_sum % (<span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="复杂度分析">Complexity analysis</h3><ul>
+<li>Time complexity: O(n^2), because the addition of each number requires traversing the selected number set.</li>
+<li>Space complexity: O(n) for storing the selected set of numbers.</li>
+</ul>
+<h2 id="贪心优化">greedy optimization</h2><h3 id="方案-1">Plan</h3><ul>
+<li><p><strong>Optimization strategy</strong>：</p>
+<ul>
+<li><strong>Avoid the use of collections</strong>：<ul>
+<li>Introduce the "avoid" collection to store all the results obtained by adding the selected number <code>target</code> number.</li>
+<li>This allows a quick check to see if the new number will result in a sum of <code>target</code> situation.</li>
+</ul>
+</li>
+<li><strong>direct inspection</strong>：<ul>
+<li>Each time a new number is selected, only check if it is in the "avoid" set.</li>
+<li>Numbers not in the set are considered safe and can be added directly.</li>
+</ul>
+</li>
+<li><strong>Dynamic update avoid collection</strong>：<ul>
+<li>When new numbers are added to the beautiful array, the corresponding <code>target - 新数字</code> Also added to the "Avoid" collection.</li>
+<li>This ensures that any possible composition with new numbers <code>target</code> numbers will be avoided in the future.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Optimized time complexity</strong>：</p>
+<ul>
+<li>Only one set check is required per number.</li>
+<li>The time complexity is reduced to O(n), which significantly improves the algorithm efficiency.</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码-1">code</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minimumPossibleSum_optimized</span>(<span class="params">n, target</span>):</span><br><span class="line">    selected_nums = <span class="built_in">set</span>()</span><br><span class="line">    avoid_nums = <span class="built_in">set</span>()</span><br><span class="line">    total_sum = <span class="number">0</span></span><br><span class="line">    current_num = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(selected_nums) &lt; n:</span><br><span class="line">        <span class="keyword">if</span> current_num <span class="keyword">not</span> <span class="keyword">in</span> avoid_nums:</span><br><span class="line">            selected_nums.add(current_num)</span><br><span class="line">            total_sum += current_num</span><br><span class="line">            avoid_nums.add(target - current_num)</span><br><span class="line">        current_num += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> total_sum % (<span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="复杂度分析-1">Complexity analysis</h3><ul>
+<li>Time complexity: O(n) since each number only needs to be checked once.</li>
+<li>Space complexity: O(n) for storing selected numbers and avoiding collections of numbers.</li>
+</ul>
+<h2 id="数学方法">mathematical methods</h2><h3 id="方案-2">Plan</h3><p>In response to the above problems, we adopted a more efficient mathematical method to solve this problem. This method reduces the necessary amount of calculations by analyzing the mathematical nature of the problem, and is particularly suitable for processing large-scale data.</p>
+<ol>
+<li><p><strong>Problem decomposition</strong>：</p>
+<ul>
+<li>First, we break the problem into two parts. Since the numbers in the array are all unique, and the sum of two different numbers cannot be equal to <code>target</code>, we select first starting with the smallest number until we can no longer select any more numbers without violating the rules of sum.</li>
+</ul>
+</li>
+<li><p><strong>Select the first half of the number</strong>：</p>
+<ul>
+<li>in <code>1</code> Arrive <code>target-1</code> Within the range, some numbers cannot appear at the same time. For example, if <code>target</code> Yes <code>6</code>, then <code>1</code> and <code>5</code>、<code>2</code> and <code>4</code> cannot occur at the same time because their sum is equal to <code>6</code>. However,<code>3</code>(when <code>target</code> is an even number) or <code>3</code> and <code>2</code>(when <code>target</code> is an odd number) can be selected.</li>
+<li>This means we are free to choose from <code>1</code> Arrive <code>m</code> of numbers, among which <code>m = min(⌊target/2⌋, n)</code>. For this part of the numbers, we can directly use the summation formula of the arithmetic sequence to calculate their sum, that is <code>m * (m + 1) / 2</code>。</li>
+</ul>
+</li>
+<li><p><strong>Select the second half of the number</strong>：</p>
+<ul>
+<li>Once we select the former <code>m</code> numbers, the remaining number that needs to be selected is <code>n - m</code>. Since we have chosen <code>1</code> Arrive <code>m</code>, we now need to start from <code>target</code> Start selecting the remaining numbers.</li>
+<li>if <code>n</code> greater than <code>m</code>, then we will start from <code>target</code> Start continuous selection <code>n - m</code> number. The sum of these numbers can be calculated using the summation formula of an arithmetic sequence:<code>(2 * target + n - m - 1) * (n - m) / 2</code>。</li>
+</ul>
+</li>
+<li><p><strong>Calculate the sum and take the modulo</strong>：</p>
+<ul>
+<li>We add the sum of the two parts and do the <code>10^9 + 7</code> Take modulo to get the final answer.</li>
+</ul>
+</li>
+</ol>
+<h3 id="实现">realize</h3><ul>
+<li>First part sum: from <code>1</code> Arrive <code>min(target // 2, n)</code> of and.</li>
+<li>Second part and (if required): from <code>target</code> start, choose <code>n - min(target // 2, n)</code> sum of numbers.</li>
+<li>Add the sums of these two parts to get the minimum sum of a beautiful array that meets the conditions.</li>
+</ul>
+<ol>
+<li><p><strong>Select less than <code>target // 2</code> number</strong>：</p>
+<ul>
+<li>As we start from 1 and gradually increase the number until <code>target // 2</code>, these numbers cannot be added to other numbers in the array to get <code>target</code>。</li>
+<li>For example, if <code>target</code> is 10, then <code>target // 2</code> Yes 5. In this case, any two numbers between 1 and 5 will never add up to 10.</li>
+<li>Therefore, this part of the selection is safe, and since we need the minimum sum, we start from 1 and increase one by one.</li>
+</ul>
+</li>
+<li><p>**When <code>n</code> greater than <code>target // 2</code>**：</p>
+<ul>
+<li>if <code>n</code> greater than <code>target // 2</code>, which means only select less than <code>target // 2</code> There are not enough numbers to fill the array.</li>
+<li>In this case we need to keep selecting more numbers, but to avoid and for <code>target</code> The combination of we need from <code>target</code> Start choosing yourself.</li>
+<li>We continue to increase one by one until the array length reaches <code>n</code>。</li>
+</ul>
+</li>
+<li><p><strong>Calculate the sum</strong>：</p>
+<ul>
+<li>The first part is from 1 to <code>min(target // 2, n)</code> of and.</li>
+<li>The second part (if needed) is from <code>target</code> Go ahead and choose the rest <code>n - min(target // 2, n)</code> number.</li>
+<li>Finally, adding the sum of these two parts is the minimum sum we are looking for.</li>
+</ul>
+</li>
+</ol>
+<p>This is a typical example of solving problems through mathematical methods, which avoids complex programming logic and provides a more concise and efficient solution.</p>
+<h3 id="代码-2">code</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minimumPossibleSum_math_approach</span>(<span class="params">n, target</span>):</span><br><span class="line">    MOD = <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">    m = <span class="built_in">min</span>(target // <span class="number">2</span>, n)</span><br><span class="line">    first_half_sum = m * (m + <span class="number">1</span>) // <span class="number">2</span></span><br><span class="line">    remaining = n - m</span><br><span class="line">    second_half_sum = (<span class="number">2</span> * target + remaining - <span class="number">1</span>) * remaining // <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> (first_half_sum + second_half_sum) % MOD</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="复杂度分析-2">Complexity analysis</h3><ul>
+<li>Time complexity: O(1) since the result is calculated directly.</li>
+<li>Space complexity: O(1), only a fixed number of variables are used.</li>
+</ul>
+</div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-en-19191bd"><span>Code</span><h2>[Leetcode Python problem solution] &quot;1346. Check If N and Its Double Exist&quot;</h2><p>2024-12-01</p></a><a href="/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b"><span>Code</span><h2>Leetcode Python Solution - 2097. Valid Arrangement of Pairs</h2><p>2024-11-30</p></a><a href="/blog/2024-03-04-python题解-100226-在带权树网络中统计可连接服务器对数目-en-3bd098b"><span>Code</span><h2>[Python problem solution] 100226. Count the number of connectable server pairs in a weighted tree network</h2><p>2024-03-04</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script id="_R_">import("/assets/index-BxhDq--T.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-CsZ7IyfW.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-CsZ7IyfW.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-CsZ7IyfW.css\",\"data-rsc-css-href\":\"/assets/index-CsZ7IyfW.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0e1wmqi __variable_geist_mono_11w2gr9 __variable_newsreader_0g1zhzc antialiased\",\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"[Python Problem Solution] 2834. Find the minimum sum of a beautiful array — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Given two positive integers n and target, the goal is to find an array of length n that satisfies the following conditions:\"}],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"development\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[\"blog\",\"2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423\"]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"e10bf393-1874-42fa-acfc-6b66820cb3de\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:T33e0,\u003ch1 id=\"2834-找出美丽数组的最小和\"\u003e2834. Find the minimum sum of a beautiful array\u003c/h1\u003e\u003cblockquote\u003e\n\u003cp\u003eProblem: \u003ca target=\"_blank\" rel=\"noreferrer noopener\" href=\"https://leetcode.cn/problems/find-the-minimum-possible-sum-of-a-beautiful-array/description/\"\u003e2834. Find the minimum sum of a beautiful array\u003c/a\u003e\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003ch2 id=\"题目描述\"\u003eQuestion description\u003c/h2\u003e\u003cp\u003eGiven two positive integers \u003ccode\u003en\u003c/code\u003e and \u003ccode\u003etarget\u003c/code\u003e, the goal is to find a length of \u003ccode\u003en\u003c/code\u003e array that satisfies the following conditions:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eAn array consists of two different positive integers.\u003c/li\u003e\n\u003cli\u003eThere are no two different subscripts \u003ccode\u003ei\u003c/code\u003e and \u003ccode\u003ej\u003c/code\u003e make \u003ccode\u003enums[i] + nums[j] == target\u003c/code\u003e。\u003cbr\u003eReturns the smallest possible sum of a beautiful array that meets the conditions, and performs the \u003ccode\u003e10^9 + 7\u003c/code\u003e Take the mold.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"测试用例\"\u003etest case\u003c/h3\u003e\u003cp\u003eExample 1:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eInput: n = 2, target = 3\u003c/li\u003e\n\u003cli\u003eOutput: 4\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eExample 2:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eInput: n = 3, target = 3\u003c/li\u003e\n\u003cli\u003eOutput: 8\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eExample 3:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eInput: n = 1, target = 1\u003c/li\u003e\n\u003cli\u003eOutput: 1\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"原始思路\"\u003eOriginal idea\u003c/h2\u003e\u003ch3 id=\"方案\"\u003ePlan\u003c/h3\u003e\u003cp\u003eThe initial solution is to start with the smallest number and check each number one by one whether it can be added to the array, while ensuring that there are no two numbers whose sum is equal to \u003ccode\u003etarget\u003c/code\u003e。\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003efrom \u003ccode\u003e1\u003c/code\u003e Start trying to add numbers to the array one by one.\u003c/li\u003e\n\u003cli\u003eFor each number, check if adding it to a number already in the array gives \u003ccode\u003etarget\u003c/code\u003e。\u003c/li\u003e\n\u003cli\u003eIf not, add it to the array.\u003c/li\u003e\n\u003cli\u003eContinue this process until the array length reaches \u003ccode\u003en\u003c/code\u003e。\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"代码\"\u003ecode\u003c/h3\u003e\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e8\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e9\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e10\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e11\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e12\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003edef\u003c/span\u003e \u003cspan class=\"title function_\"\u003eminimumPossibleSum\u003c/span\u003e(\u003cspan class=\"params\"\u003en, target\u003c/span\u003e):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    selected_nums = \u003cspan class=\"built_in\"\u003eset\u003c/span\u003e([\u003cspan class=\"number\"\u003e1\u003c/span\u003e])\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    total_sum = \u003cspan class=\"number\"\u003e1\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    current_num = \u003cspan class=\"number\"\u003e2\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ewhile\u003c/span\u003e \u003cspan class=\"built_in\"\u003elen\u003c/span\u003e(selected_nums) \u0026lt; n:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e \u003cspan class=\"built_in\"\u003eall\u003c/span\u003e((current_num + num != target) \u003cspan class=\"keyword\"\u003efor\u003c/span\u003e num \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e selected_nums):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            selected_nums.add(current_num)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            total_sum += current_num\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        current_num += \u003cspan class=\"number\"\u003e1\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e total_sum % (\u003cspan class=\"number\"\u003e10\u003c/span\u003e**\u003cspan class=\"number\"\u003e9\u003c/span\u003e + \u003cspan class=\"number\"\u003e7\u003c/span\u003e)\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch3 id=\"复杂度分析\"\u003eComplexity analysis\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003eTime complexity: O(n^2), because the addition of each number requires traversing the selected number set.\u003c/li\u003e\n\u003cli\u003eSpace complexity: O(n) for storing the selected set of numbers.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"贪心优化\"\u003egreedy optimization\u003c/h2\u003e\u003ch3 id=\"方案-1\"\u003ePlan\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eOptimization strategy\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003eAvoid the use of collections\u003c/strong\u003e：\u003cul\u003e\n\u003cli\u003eIntroduce the \"avoid\" collection to store all the results obtained by adding the selected number \u003ccode\u003etarget\u003c/code\u003e number.\u003c/li\u003e\n\u003cli\u003eThis allows a quick check to see if the new number will result in a sum of \u003ccode\u003etarget\u003c/code\u003e situation.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003edirect inspection\u003c/strong\u003e：\u003cul\u003e\n\u003cli\u003eEach time a new number is selected, only check if it is in the \"avoid\" set.\u003c/li\u003e\n\u003cli\u003eNumbers not in the set are considered safe and can be added directly.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDynamic update avoid collection\u003c/strong\u003e：\u003cul\u003e\n\u003cli\u003eWhen new numbers are added to the beautiful array, the corresponding \u003ccode\u003etarget - 新数字\u003c/code\u003e Also added to the \"Avoid\" collection.\u003c/li\u003e\n\u003cli\u003eThis ensures that any possible composition with new numbers \u003ccode\u003etarget\u003c/code\u003e numbers will be avoided in the future.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eOptimized time complexity\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eOnly one set check is required per number.\u003c/li\u003e\n\u003cli\u003eThe time complexity is reduced to O(n), which significantly improves the algorithm efficiency.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"代码-1\"\u003ecode\u003c/h3\u003e\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e8\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e9\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e10\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e11\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e12\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e13\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e14\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003edef\u003c/span\u003e \u003cspan class=\"title function_\"\u003eminimumPossibleSum_optimized\u003c/span\u003e(\u003cspan class=\"params\"\u003en, target\u003c/span\u003e):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    selected_nums = \u003cspan class=\"built_in\"\u003eset\u003c/span\u003e()\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    avoid_nums = \u003cspan class=\"built_in\"\u003eset\u003c/span\u003e()\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    total_sum = \u003cspan class=\"number\"\u003e0\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    current_num = \u003cspan class=\"number\"\u003e1\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ewhile\u003c/span\u003e \u003cspan class=\"built_in\"\u003elen\u003c/span\u003e(selected_nums) \u0026lt; n:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e current_num \u003cspan class=\"keyword\"\u003enot\u003c/span\u003e \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e avoid_nums:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            selected_nums.add(current_num)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            total_sum += current_num\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            avoid_nums.add(target - current_num)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        current_num += \u003cspan class=\"number\"\u003e1\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e total_sum % (\u003cspan class=\"number\"\u003e10\u003c/span\u003e**\u003cspan class=\"number\"\u003e9\u003c/span\u003e + \u003cspan class=\"number\"\u003e7\u003c/span\u003e)\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch3 id=\"复杂度分析-1\"\u003eComplexity analysis\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003eTime complexity: O(n) since each number only needs to be checked once.\u003c/li\u003e\n\u003cli\u003eSpace complexity: O(n) for storing selected numbers and avoiding collections of numbers.\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"数学方法\"\u003emathematical methods\u003c/h2\u003e\u003ch3 id=\"方案-2\"\u003ePlan\u003c/h3\u003e\u003cp\u003eIn response to the above problems, we adopted a more efficient mathematical method to solve this problem. This method reduces the necessary amount of calculations by analyzing the mathematical nature of the problem, and is particularly suitable for processing large-scale data.\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eProblem decomposition\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eFirst, we break the problem into two parts. Since the numbers in the array are all unique, and the sum of two different numbers cannot be equal to \u003ccode\u003etarget\u003c/code\u003e, we select first starting with the smallest number until we can no longer select any more numbers without violating the rules of sum.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eSelect the first half of the number\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ein \u003ccode\u003e1\u003c/code\u003e Arrive \u003ccode\u003etarget-1\u003c/code\u003e Within the range, some numbers cannot appear at the same time. For example, if \u003ccode\u003etarget\u003c/code\u003e Yes \u003ccode\u003e6\u003c/code\u003e, then \u003ccode\u003e1\u003c/code\u003e and \u003ccode\u003e5\u003c/code\u003e、\u003ccode\u003e2\u003c/code\u003e and \u003ccode\u003e4\u003c/code\u003e cannot occur at the same time because their sum is equal to \u003ccode\u003e6\u003c/code\u003e. However,\u003ccode\u003e3\u003c/code\u003e(when \u003ccode\u003etarget\u003c/code\u003e is an even number) or \u003ccode\u003e3\u003c/code\u003e and \u003ccode\u003e2\u003c/code\u003e(when \u003ccode\u003etarget\u003c/code\u003e is an odd number) can be selected.\u003c/li\u003e\n\u003cli\u003eThis means we are free to choose from \u003ccode\u003e1\u003c/code\u003e Arrive \u003ccode\u003em\u003c/code\u003e of numbers, among which \u003ccode\u003em = min(⌊target/2⌋, n)\u003c/code\u003e. For this part of the numbers, we can directly use the summation formula of the arithmetic sequence to calculate their sum, that is \u003ccode\u003em * (m + 1) / 2\u003c/code\u003e。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eSelect the second half of the number\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eOnce we select the former \u003ccode\u003em\u003c/code\u003e numbers, the remaining number that needs to be selected is \u003ccode\u003en - m\u003c/code\u003e. Since we have chosen \u003ccode\u003e1\u003c/code\u003e Arrive \u003ccode\u003em\u003c/code\u003e, we now need to start from \u003ccode\u003etarget\u003c/code\u003e Start selecting the remaining numbers.\u003c/li\u003e\n\u003cli\u003eif \u003ccode\u003en\u003c/code\u003e greater than \u003ccode\u003em\u003c/code\u003e, then we will start from \u003ccode\u003etarget\u003c/code\u003e Start continuous selection \u003ccode\u003en - m\u003c/code\u003e number. The sum of these numbers can be calculated using the summation formula of an arithmetic sequence:\u003ccode\u003e(2 * target + n - m - 1) * (n - m) / 2\u003c/code\u003e。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eCalculate the sum and take the modulo\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eWe add the sum of the two parts and do the \u003ccode\u003e10^9 + 7\u003c/code\u003e Take modulo to get the final answer.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3 id=\"实现\"\u003erealize\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003eFirst part sum: from \u003ccode\u003e1\u003c/code\u003e Arrive \u003ccode\u003emin(target // 2, n)\u003c/code\u003e of and.\u003c/li\u003e\n\u003cli\u003eSecond part and (if required): from \u003ccode\u003etarget\u003c/code\u003e start, choose \u003ccode\u003en - min(target // 2, n)\u003c/code\u003e sum of numbers.\u003c/li\u003e\n\u003cli\u003eAdd the sums of these two parts to get the minimum sum of a beautiful array that meets the conditions.\u003c/li\u003e\n\u003c/ul\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eSelect less than \u003ccode\u003etarget // 2\u003c/code\u003e number\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eAs we start from 1 and gradually increase the number until \u003ccode\u003etarget // 2\u003c/code\u003e, these numbers cannot be added to other numbers in the array to get \u003ccode\u003etarget\u003c/code\u003e。\u003c/li\u003e\n\u003cli\u003eFor example, if \u003ccode\u003etarget\u003c/code\u003e is 10, then \u003ccode\u003etarget // 2\u003c/code\u003e Yes 5. In this case, any two numbers between 1 and 5 will never add up to 10.\u003c/li\u003e\n\u003cli\u003eTherefore, this part of the selection is safe, and since we need the minimum sum, we start from 1 and increase one by one.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e**When \u003ccode\u003en\u003c/code\u003e greater than \u003ccode\u003etarget // 2\u003c/code\u003e**：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eif \u003ccode\u003en\u003c/code\u003e greater than \u003ccode\u003etarget // 2\u003c/code\u003e, which means only select less than \u003ccode\u003etarget // 2\u003c/code\u003e There are not enough numbers to fill the array.\u003c/li\u003e\n\u003cli\u003eIn this case we need to keep selecting more numbers, but to avoid and for \u003ccode\u003etarget\u003c/code\u003e The combination of we need from \u003ccode\u003etarget\u003c/code\u003e Start choosing yourself.\u003c/li\u003e\n\u003cli\u003eWe continue to increase one by one until the array length reaches \u003ccode\u003en\u003c/code\u003e。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003eCalculate the sum\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eThe first part is from 1 to \u003ccode\u003emin(target // 2, n)\u003c/code\u003e of and.\u003c/li\u003e\n\u003cli\u003eThe second part (if needed) is from \u003ccode\u003etarget\u003c/code\u003e Go ahead and choose the rest \u003ccode\u003en - min(target // 2, n)\u003c/code\u003e number.\u003c/li\u003e\n\u003cli\u003eFinally, adding the sum of these two parts is the minimum sum we are looking for.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eThis is a typical example of solving problems through mathematical methods, which avoids complex programming logic and provides a more concise and efficient solution.\u003c/p\u003e\n\u003ch3 id=\"代码-2\"\u003ecode\u003c/h3\u003e\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003edef\u003c/span\u003e \u003cspan class=\"title function_\"\u003eminimumPossibleSum_math_approach\u003c/span\u003e(\u003cspan class=\"params\"\u003en, target\u003c/span\u003e):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    MOD = \u003cspan class=\"number\"\u003e10\u003c/span\u003e**\u003cspan class=\"number\"\u003e9\u003c/span\u003e + \u003cspan class=\"number\"\u003e7\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    m = \u003cspan class=\"built_in\"\u003emin\u003c/span\u003e(target // \u003cspan class=\"number\"\u003e2\u003c/span\u003e, n)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    first_half_sum = m * (m + \u003cspan class=\"number\"\u003e1\u003c/span\u003e) // \u003cspan class=\"number\"\u003e2\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    remaining = n - m\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    second_half_sum = (\u003cspan class=\"number\"\u003e2\u003c/span\u003e * target + remaining - \u003cspan class=\"number\"\u003e1\u003c/span\u003e) * remaining // \u003cspan class=\"number\"\u003e2\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e (first_half_sum + second_half_sum) % MOD\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch3 id=\"复杂度分析-2\"\u003eComplexity analysis\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003eTime complexity: O(1) since the result is calculated directly.\u003c/li\u003e\n\u003cli\u003eSpace complexity: O(1), only a fixed number of variables are used.\u003c/li\u003e\n\u003c/ul\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],null,[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"time\",null,{\"children\":\"2024-03-08\"}],[\"$\",\"span\",null,{\"children\":\"English\"}]]}],[\"$\",\"h1\",null,{\"children\":\"[Python Problem Solution] 2834. Find the minimum sum of a beautiful array\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"Given two positive integers n and target, the goal is to find an array of length n that satisfies the following conditions:\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20\",\"children\":\"阅读中文版 →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"题目描述-Question description\",{\"className\":\"\",\"href\":\"#题目描述\",\"children\":\"Question description\"}],[\"$\",\"a\",\"测试用例-test case\",{\"className\":\"toc-subitem\",\"href\":\"#测试用例\",\"children\":\"test case\"}],[\"$\",\"a\",\"原始思路-Original idea\",{\"className\":\"\",\"href\":\"#原始思路\",\"children\":\"Original idea\"}],[\"$\",\"a\",\"方案-Plan\",{\"className\":\"toc-subitem\",\"href\":\"#方案\",\"children\":\"Plan\"}],[\"$\",\"a\",\"代码-code\",{\"className\":\"toc-subitem\",\"href\":\"#代码\",\"children\":\"code\"}],[\"$\",\"a\",\"复杂度分析-Complexity analysis\",{\"className\":\"toc-subitem\",\"href\":\"#复杂度分析\",\"children\":\"Complexity analysis\"}],[\"$\",\"a\",\"贪心优化-greedy optimization\",{\"className\":\"\",\"href\":\"#贪心优化\",\"children\":\"greedy optimization\"}],[\"$\",\"a\",\"方案-1-Plan\",{\"className\":\"toc-subitem\",\"href\":\"#方案-1\",\"children\":\"Plan\"}],[\"$\",\"a\",\"代码-1-code\",{\"className\":\"toc-subitem\",\"href\":\"#代码-1\",\"children\":\"code\"}],[\"$\",\"a\",\"复杂度分析-1-Complexity analysis\",{\"className\":\"toc-subitem\",\"href\":\"#复杂度分析-1\",\"children\":\"Complexity analysis\"}],[\"$\",\"a\",\"数学方法-mathematical methods\",{\"className\":\"\",\"href\":\"#数学方法\",\"children\":\"mathematical methods\"}],[\"$\",\"a\",\"方案-2-Plan\",{\"className\":\"toc-subitem\",\"href\":\"#方案-2\",\"children\":\"Plan\"}],[\"$\",\"a\",\"实现-realize\",{\"className\":\"toc-subitem\",\"href\":\"#实现\",\"children\":\"realize\"}],[\"$\",\"a\",\"代码-2-code\",{\"className\":\"toc-subitem\",\"href\":\"#代码-2\",\"children\":\"code\"}],[\"$\",\"a\",\"复杂度分析-2-Complexity analysis\",{\"className\":\"toc-subitem\",\"href\":\"#复杂度分析-2\",\"children\":\"Complexity analysis\"}]]}]]}],[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$6\"}}]]}]]}],\"$L7\",\"$L8\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("7:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-en-19191bd\",{\"href\":\"/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-en-19191bd\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"[Leetcode Python problem solution] \\\"1346. Check If N and Its Double Exist\\\"\"}],[\"$\",\"p\",null,{\"children\":\"2024-12-01\"}]]}],[\"$\",\"a\",\"2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b\",{\"href\":\"/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"Leetcode Python Solution - 2097. Valid Arrangement of Pairs\"}],[\"$\",\"p\",null,{\"children\":\"2024-11-30\"}]]}],[\"$\",\"a\",\"2024-03-04-python题解-100226-在带权树网络中统计可连接服务器对数目-en-3bd098b\",{\"href\":\"/blog/2024-03-04-python题解-100226-在带权树网络中统计可连接服务器对数目-en-3bd098b\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"[Python problem solution] 100226. Count the number of connectable server pairs in a weighted tree network\"}],[\"$\",\"p\",null,{\"children\":\"2024-03-04\"}]]}]]}]]}]\n8:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

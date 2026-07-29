@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-CsZ7IyfW.css" data-rsc-css-href="/assets/index-CsZ7IyfW.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-DuOhKy3m.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-BxhDq--T.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>【Leetcode Python题解】「1346. Check If N and Its Double Exist」 — Huiyu Chen</title><meta name="description" content="使用哈希表可以显著优化时间复杂度。我们只需要一次遍历数组，同时用哈希表记录已经遇到的数字。"/><link rel="shortcut icon" href="/favicon.svg"/><link rel="icon" href="/favicon.svg"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-BxhDq--T.js" />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0e1wmqi { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0e1wmqi { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_11w2gr9 { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_11w2gr9 { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_0g1zhzc { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_0g1zhzc { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0e1wmqi __variable_geist_mono_11w2gr9 __variable_newsreader_0g1zhzc antialiased"><main class="site-shell article-shell" id="top"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><div class="article-meta"><span>Code</span><time>2024-12-01</time><span>中文</span></div><h1>【Leetcode Python题解】「1346. Check If N and Its Double Exist」</h1><p class="article-deck">使用哈希表可以显著优化时间复杂度。我们只需要一次遍历数组，同时用哈希表记录已经遇到的数字。</p><a class="language-switch" href="/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-en-19191bd">Read the English edition →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#题目：1346-Check-If-N-and-Its-Double-Exist">题目：1346. Check If N and Its Double Exist</a><a class="" href="#题目描述">题目描述</a><a class="toc-subitem" href="#示例">示例</a><a class="toc-subitem" href="#约束条件">约束条件</a><a class="" href="#解题思路">解题思路</a><a class="toc-subitem" href="#1-暴力解法">1. 暴力解法</a><a class="toc-subitem" href="#2-哈希表解法">2. 哈希表解法</a><a class="toc-subitem" href="#代码优化案例">代码优化案例</a><a class="toc-subitem" href="#优化要点">优化要点</a><a class="" href="#关键注意点">关键注意点</a><a class="" href="#总结">总结</a></nav></aside><div class="prose"><h2 id="题目：1346-Check-If-N-and-Its-Double-Exist">题目：<a target="_blank" rel="noreferrer noopener" href="https://leetcode.com/problems/check-if-n-and-its-double-exist/description/?envType=daily-question&amp;envId=2024-12-01">1346. Check If N and Its Double Exist</a></h2><h2 id="题目描述">题目描述</h2><p>给定一个整数数组 <code>arr</code>，检查是否存在两个不同的索引 <code>i</code> 和 <code>j</code>，满足：</p>
+<ul>
+<li><code>i != j</code></li>
+<li><code>0 &lt;= i, j &lt; arr.length</code></li>
+<li><code>arr[i] == 2 * arr[j]</code></li>
+</ul>
+<h3 id="示例">示例</h3><p><strong>示例 1:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：arr = [10,2,5,3]</span><br><span class="line">输出：true</span><br><span class="line">解释：对于 i = 0 和 j = 2，arr[i] = 10 等于 2 * 5 = 2 * arr[j]</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：arr = [3,1,7,11]</span><br><span class="line">输出：false</span><br><span class="line">解释：不存在满足条件的 i 和 j。</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="约束条件">约束条件</h3><ul>
+<li><code>2 &lt;= arr.length &lt;= 500</code></li>
+<li><code>-10³ &lt;= arr[i] &lt;= 10³</code></li>
+</ul>
+<h2 id="解题思路">解题思路</h2><p>这道题可以用多种方法解决，我们来分析两种主要的解法：暴力解法和哈希表解法。</p>
+<h3 id="1-暴力解法">1. 暴力解法</h3><p>最直观的解法是使用两层循环，遍历所有可能的数对。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">checkIfExist</span>(<span class="params">arr</span>):</span><br><span class="line">    n = <span class="built_in">len</span>(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">            <span class="keyword">if</span> i != j <span class="keyword">and</span> arr[i] == <span class="number">2</span> * arr[j]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>复杂度分析：</strong></p>
+<ul>
+<li>时间复杂度：O(n²)，其中 n 是数组长度</li>
+<li>空间复杂度：O(1)，只使用了常数额外空间</li>
+</ul>
+<h3 id="2-哈希表解法">2. 哈希表解法</h3><p>使用哈希表可以显著优化时间复杂度。我们只需要一次遍历数组，同时用哈希表记录已经遇到的数字。</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">checkIfExist</span>(<span class="params">arr</span>):</span><br><span class="line">    seen = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">for</span> num <span class="keyword">in</span> arr:</span><br><span class="line">        <span class="keyword">if</span> num * <span class="number">2</span> <span class="keyword">in</span> seen <span class="keyword">or</span> (num % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">and</span> num // <span class="number">2</span> <span class="keyword">in</span> seen):</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        seen.add(num)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>复杂度分析：</strong></p>
+<ul>
+<li>时间复杂度：O(n)，只需要遍历一次数组</li>
+<li>空间复杂度：O(n)，需要额外的哈希表空间</li>
+</ul>
+<h3 id="代码优化案例">代码优化案例</h3><p>让我们看一个初始版本的代码，以及如何优化它：</p>
+<p><strong>原始版本：</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">checkIfExist</span>(<span class="params">self, arr: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        hashmap = {}</span><br><span class="line">        <span class="keyword">for</span> i, item <span class="keyword">in</span> <span class="built_in">enumerate</span>(arr):</span><br><span class="line">            hashmap[i] = item</span><br><span class="line">            <span class="keyword">if</span> item * <span class="number">2</span> <span class="keyword">in</span> hashmap.values():</span><br><span class="line">                j = <span class="built_in">next</span>(k <span class="keyword">for</span> k, v <span class="keyword">in</span> hashmap.items() <span class="keyword">if</span> v == item * <span class="number">2</span>)</span><br><span class="line">                <span class="keyword">if</span> i != j:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">if</span> item//<span class="number">2</span> <span class="keyword">in</span> hashmap.values() <span class="keyword">and</span> item%<span class="number">2</span>==<span class="number">0</span>:</span><br><span class="line">                j = <span class="built_in">next</span>(k <span class="keyword">for</span> k, v <span class="keyword">in</span> hashmap.items() <span class="keyword">if</span> v == item//<span class="number">2</span>)</span><br><span class="line">                <span class="keyword">if</span> i != j:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>优化版本：</strong></p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">checkIfExist</span>(<span class="params">self, arr: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        seen = <span class="built_in">set</span>()</span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> arr:</span><br><span class="line">            <span class="keyword">if</span> num * <span class="number">2</span> <span class="keyword">in</span> seen <span class="keyword">or</span> (num % <span class="number">2</span> == <span class="number">0</span> <span class="keyword">and</span> num // <span class="number">2</span> <span class="keyword">in</span> seen):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            seen.add(num)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="优化要点">优化要点</h3><ol>
+<li><p><strong>数据结构选择</strong></p>
+<ul>
+<li>使用集合(set)替代字典(dict)</li>
+<li>不需要存储索引信息，只关注值的存在性</li>
+</ul>
+</li>
+<li><p><strong>代码简化</strong></p>
+<ul>
+<li>合并重复的检查逻辑</li>
+<li>移除不必要的变量和计算</li>
+<li>使用更简洁的条件判断</li>
+</ul>
+</li>
+<li><p><strong>性能提升</strong></p>
+<ul>
+<li>避免使用 <code>hashmap.values()</code> 遍历</li>
+<li>使用集合的 O(1) 查找特性</li>
+<li>减少重复计算</li>
+</ul>
+</li>
+</ol>
+<h2 id="关键注意点">关键注意点</h2><ol>
+<li><p><strong>边界情况处理</strong></p>
+<ul>
+<li>考虑数组中有 0 的情况（0 的两倍仍然是 0）</li>
+<li>注意负数的处理</li>
+<li>确保不使用同一个索引（i != j）</li>
+</ul>
+</li>
+<li><p><strong>数值检查</strong></p>
+<ul>
+<li>需要同时检查一个数的两倍和一半</li>
+<li>检查一半时要确保数字是偶数</li>
+</ul>
+</li>
+<li><p><strong>性能优化</strong></p>
+<ul>
+<li>使用恰当的数据结构（集合）</li>
+<li>避免不必要的计算和遍历</li>
+</ul>
+</li>
+</ol>
+<h2 id="总结">总结</h2><p>这道题展示了如何通过选择适当的数据结构和优化代码逻辑来提升算法的性能。从初始的暴力解法到使用哈希表，再到代码的优化，每一步都带来了显著的改进。最终的解决方案不仅运行效率高，而且代码简洁易懂。</p>
+<p>关键是要理解：</p>
+<ol>
+<li>暴力解法虽然直观，但效率低下</li>
+<li>哈希表提供了最优的时空权衡</li>
+<li>代码优化不仅是为了效率，也是为了可读性和可维护性</li>
+</ol>
+</div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af"><span>Code</span><h2>【Leetcode Python题解】「2097. Valid Arrangement of Pairs」</h2><p>2024-11-30</p></a><a href="/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20"><span>Code</span><h2>【Python题解】2834. 找出美丽数组的最小和</h2><p>2024-03-08</p></a><a href="/blog/2024-03-04-python题解-100226-在带权树网络中统计可连接服务器对数目-zh-cn-b3d6806"><span>Code</span><h2>【Python题解】100226. 在带权树网络中统计可连接服务器对数目</h2><p>2024-03-04</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script id="_R_">import("/assets/index-BxhDq--T.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-CsZ7IyfW.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-CsZ7IyfW.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-CsZ7IyfW.css\",\"data-rsc-css-href\":\"/assets/index-CsZ7IyfW.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0e1wmqi __variable_geist_mono_11w2gr9 __variable_newsreader_0g1zhzc antialiased\",\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"【Leetcode Python题解】「1346. Check If N and Its Double Exist」 — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"使用哈希表可以显著优化时间复杂度。我们只需要一次遍历数组，同时用哈希表记录已经遇到的数字。\"}],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"development\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[\"blog\",\"2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17\"]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"e10bf393-1874-42fa-acfc-6b66820cb3de\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:T2c14,\u003ch2 id=\"题目：1346-Check-If-N-and-Its-Double-Exist\"\u003e题目：\u003ca target=\"_blank\" rel=\"noreferrer noopener\" href=\"https://leetcode.com/problems/check-if-n-and-its-double-exist/description/?envType=daily-question\u0026amp;envId=2024-12-01\"\u003e1346. Check If N and Its Double Exist\u003c/a\u003e\u003c/h2\u003e\u003ch2 id=\"题目描述\"\u003e题目描述\u003c/h2\u003e\u003cp\u003e给定一个整数数组 \u003ccode\u003earr\u003c/code\u003e，检查是否存在两个不同的索引 \u003ccode\u003ei\u003c/code\u003e 和 \u003ccode\u003ej\u003c/code\u003e，满足：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003ei != j\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003e0 \u0026lt;= i, j \u0026lt; arr.length\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003earr[i] == 2 * arr[j]\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"示例\"\u003e示例\u003c/h3\u003e\u003cp\u003e\u003cstrong\u003e示例 1:\u003c/strong\u003e\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e输入：arr = [10,2,5,3]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e输出：true\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e解释：对于 i = 0 和 j = 2，arr[i] = 10 等于 2 * 5 = 2 * arr[j]\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cp\u003e\u003cstrong\u003e示例 2:\u003c/strong\u003e\u003c/p\u003e\n\u003cfigure class=\"highlight plaintext\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e输入：arr = [3,1,7,11]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e输出：false\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e解释：不存在满足条件的 i 和 j。\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch3 id=\"约束条件\"\u003e约束条件\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003e\u003ccode\u003e2 \u0026lt;= arr.length \u0026lt;= 500\u003c/code\u003e\u003c/li\u003e\n\u003cli\u003e\u003ccode\u003e-10³ \u0026lt;= arr[i] \u0026lt;= 10³\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"解题思路\"\u003e解题思路\u003c/h2\u003e\u003cp\u003e这道题可以用多种方法解决，我们来分析两种主要的解法：暴力解法和哈希表解法。\u003c/p\u003e\n\u003ch3 id=\"1-暴力解法\"\u003e1. 暴力解法\u003c/h3\u003e\u003cp\u003e最直观的解法是使用两层循环，遍历所有可能的数对。\u003c/p\u003e\n\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003edef\u003c/span\u003e \u003cspan class=\"title function_\"\u003echeckIfExist\u003c/span\u003e(\u003cspan class=\"params\"\u003earr\u003c/span\u003e):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    n = \u003cspan class=\"built_in\"\u003elen\u003c/span\u003e(arr)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003efor\u003c/span\u003e i \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e \u003cspan class=\"built_in\"\u003erange\u003c/span\u003e(n):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003efor\u003c/span\u003e j \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e \u003cspan class=\"built_in\"\u003erange\u003c/span\u003e(n):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e i != j \u003cspan class=\"keyword\"\u003eand\u003c/span\u003e arr[i] == \u003cspan class=\"number\"\u003e2\u003c/span\u003e * arr[j]:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e                \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"literal\"\u003eTrue\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"literal\"\u003eFalse\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cp\u003e\u003cstrong\u003e复杂度分析：\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e时间复杂度：O(n²)，其中 n 是数组长度\u003c/li\u003e\n\u003cli\u003e空间复杂度：O(1)，只使用了常数额外空间\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"2-哈希表解法\"\u003e2. 哈希表解法\u003c/h3\u003e\u003cp\u003e使用哈希表可以显著优化时间复杂度。我们只需要一次遍历数组，同时用哈希表记录已经遇到的数字。\u003c/p\u003e\n\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003edef\u003c/span\u003e \u003cspan class=\"title function_\"\u003echeckIfExist\u003c/span\u003e(\u003cspan class=\"params\"\u003earr\u003c/span\u003e):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    seen = \u003cspan class=\"built_in\"\u003eset\u003c/span\u003e()\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003efor\u003c/span\u003e num \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e arr:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e num * \u003cspan class=\"number\"\u003e2\u003c/span\u003e \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e seen \u003cspan class=\"keyword\"\u003eor\u003c/span\u003e (num % \u003cspan class=\"number\"\u003e2\u003c/span\u003e == \u003cspan class=\"number\"\u003e0\u003c/span\u003e \u003cspan class=\"keyword\"\u003eand\u003c/span\u003e num // \u003cspan class=\"number\"\u003e2\u003c/span\u003e \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e seen):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"literal\"\u003eTrue\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        seen.add(num)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"literal\"\u003eFalse\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cp\u003e\u003cstrong\u003e复杂度分析：\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e时间复杂度：O(n)，只需要遍历一次数组\u003c/li\u003e\n\u003cli\u003e空间复杂度：O(n)，需要额外的哈希表空间\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"代码优化案例\"\u003e代码优化案例\u003c/h3\u003e\u003cp\u003e让我们看一个初始版本的代码，以及如何优化它：\u003c/p\u003e\n\u003cp\u003e\u003cstrong\u003e原始版本：\u003c/strong\u003e\u003c/p\u003e\n\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e8\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e9\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e10\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e11\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e12\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e13\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e14\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003eclass\u003c/span\u003e \u003cspan class=\"title class_\"\u003eSolution\u003c/span\u003e:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003edef\u003c/span\u003e \u003cspan class=\"title function_\"\u003echeckIfExist\u003c/span\u003e(\u003cspan class=\"params\"\u003eself, arr: \u003cspan class=\"type\"\u003eList\u003c/span\u003e[\u003cspan class=\"built_in\"\u003eint\u003c/span\u003e]\u003c/span\u003e) -\u0026gt; \u003cspan class=\"built_in\"\u003ebool\u003c/span\u003e:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        hashmap = {}\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003efor\u003c/span\u003e i, item \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e \u003cspan class=\"built_in\"\u003eenumerate\u003c/span\u003e(arr):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            hashmap[i] = item\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e item * \u003cspan class=\"number\"\u003e2\u003c/span\u003e \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e hashmap.values():\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e                j = \u003cspan class=\"built_in\"\u003enext\u003c/span\u003e(k \u003cspan class=\"keyword\"\u003efor\u003c/span\u003e k, v \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e hashmap.items() \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e v == item * \u003cspan class=\"number\"\u003e2\u003c/span\u003e)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e                \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e i != j:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e                    \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"literal\"\u003eTrue\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e item//\u003cspan class=\"number\"\u003e2\u003c/span\u003e \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e hashmap.values() \u003cspan class=\"keyword\"\u003eand\u003c/span\u003e item%\u003cspan class=\"number\"\u003e2\u003c/span\u003e==\u003cspan class=\"number\"\u003e0\u003c/span\u003e:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e                j = \u003cspan class=\"built_in\"\u003enext\u003c/span\u003e(k \u003cspan class=\"keyword\"\u003efor\u003c/span\u003e k, v \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e hashmap.items() \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e v == item//\u003cspan class=\"number\"\u003e2\u003c/span\u003e)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e                \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e i != j:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e                    \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"literal\"\u003eTrue\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"literal\"\u003eFalse\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003cp\u003e\u003cstrong\u003e优化版本：\u003c/strong\u003e\u003c/p\u003e\n\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e8\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003eclass\u003c/span\u003e \u003cspan class=\"title class_\"\u003eSolution\u003c/span\u003e:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003edef\u003c/span\u003e \u003cspan class=\"title function_\"\u003echeckIfExist\u003c/span\u003e(\u003cspan class=\"params\"\u003eself, arr: \u003cspan class=\"type\"\u003eList\u003c/span\u003e[\u003cspan class=\"built_in\"\u003eint\u003c/span\u003e]\u003c/span\u003e) -\u0026gt; \u003cspan class=\"built_in\"\u003ebool\u003c/span\u003e:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        seen = \u003cspan class=\"built_in\"\u003eset\u003c/span\u003e()\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003efor\u003c/span\u003e num \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e arr:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e num * \u003cspan class=\"number\"\u003e2\u003c/span\u003e \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e seen \u003cspan class=\"keyword\"\u003eor\u003c/span\u003e (num % \u003cspan class=\"number\"\u003e2\u003c/span\u003e == \u003cspan class=\"number\"\u003e0\u003c/span\u003e \u003cspan class=\"keyword\"\u003eand\u003c/span\u003e num // \u003cspan class=\"number\"\u003e2\u003c/span\u003e \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e seen):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e                \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"literal\"\u003eTrue\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            seen.add(num)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e \u003cspan class=\"literal\"\u003eFalse\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch3 id=\"优化要点\"\u003e优化要点\u003c/h3\u003e\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e数据结构选择\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e使用集合(set)替代字典(dict)\u003c/li\u003e\n\u003cli\u003e不需要存储索引信息，只关注值的存在性\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e代码简化\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e合并重复的检查逻辑\u003c/li\u003e\n\u003cli\u003e移除不必要的变量和计算\u003c/li\u003e\n\u003cli\u003e使用更简洁的条件判断\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e性能提升\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e避免使用 \u003ccode\u003ehashmap.values()\u003c/code\u003e 遍历\u003c/li\u003e\n\u003cli\u003e使用集合的 O(1) 查找特性\u003c/li\u003e\n\u003cli\u003e减少重复计算\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2 id=\"关键注意点\"\u003e关键注意点\u003c/h2\u003e\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e边界情况处理\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e考虑数组中有 0 的情况（0 的两倍仍然是 0）\u003c/li\u003e\n\u003cli\u003e注意负数的处理\u003c/li\u003e\n\u003cli\u003e确保不使用同一个索引（i != j）\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e数值检查\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e需要同时检查一个数的两倍和一半\u003c/li\u003e\n\u003cli\u003e检查一半时要确保数字是偶数\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e性能优化\u003c/strong\u003e\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e使用恰当的数据结构（集合）\u003c/li\u003e\n\u003cli\u003e避免不必要的计算和遍历\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2 id=\"总结\"\u003e总结\u003c/h2\u003e\u003cp\u003e这道题展示了如何通过选择适当的数据结构和优化代码逻辑来提升算法的性能。从初始的暴力解法到使用哈希表，再到代码的优化，每一步都带来了显著的改进。最终的解决方案不仅运行效率高，而且代码简洁易懂。\u003c/p\u003e\n\u003cp\u003e关键是要理解：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e暴力解法虽然直观，但效率低下\u003c/li\u003e\n\u003cli\u003e哈希表提供了最优的时空权衡\u003c/li\u003e\n\u003cli\u003e代码优化不仅是为了效率，也是为了可读性和可维护性\u003c/li\u003e\n\u003c/ol\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],null,[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"time\",null,{\"children\":\"2024-12-01\"}],[\"$\",\"span\",null,{\"children\":\"中文\"}]]}],[\"$\",\"h1\",null,{\"children\":\"【Leetcode Python题解】「1346. Check If N and Its Double Exist」\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"使用哈希表可以显著优化时间复杂度。我们只需要一次遍历数组，同时用哈希表记录已经遇到的数字。\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-en-19191bd\",\"children\":\"Read the English edition →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"题目：1346-Check-If-N-and-Its-Double-Exist-题目：1346. Check If N and Its Double Exist\",{\"className\":\"\",\"href\":\"#题目：1346-Check-If-N-and-Its-Double-Exist\",\"children\":\"题目：1346. Check If N and Its Double Exist\"}],[\"$\",\"a\",\"题目描述-题目描述\",{\"className\":\"\",\"href\":\"#题目描述\",\"children\":\"题目描述\"}],[\"$\",\"a\",\"示例-示例\",{\"className\":\"toc-subitem\",\"href\":\"#示例\",\"children\":\"示例\"}],[\"$\",\"a\",\"约束条件-约束条件\",{\"className\":\"toc-subitem\",\"href\":\"#约束条件\",\"children\":\"约束条件\"}],[\"$\",\"a\",\"解题思路-解题思路\",{\"className\":\"\",\"href\":\"#解题思路\",\"children\":\"解题思路\"}],[\"$\",\"a\",\"1-暴力解法-1. 暴力解法\",{\"className\":\"toc-subitem\",\"href\":\"#1-暴力解法\",\"children\":\"1. 暴力解法\"}],[\"$\",\"a\",\"2-哈希表解法-2. 哈希表解法\",{\"className\":\"toc-subitem\",\"href\":\"#2-哈希表解法\",\"children\":\"2. 哈希表解法\"}],[\"$\",\"a\",\"代码优化案例-代码优化案例\",{\"className\":\"toc-subitem\",\"href\":\"#代码优化案例\",\"children\":\"代码优化案例\"}],[\"$\",\"a\",\"优化要点-优化要点\",{\"className\":\"toc-subitem\",\"href\":\"#优化要点\",\"children\":\"优化要点\"}],[\"$\",\"a\",\"关键注意点-关键注意点\",{\"className\":\"\",\"href\":\"#关键注意点\",\"children\":\"关键注意点\"}],[\"$\",\"a\",\"总结-总结\",{\"className\":\"\",\"href\":\"#总结\",\"children\":\"总结\"}]]}]]}],[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$6\"}}]]}]]}],\"$L7\",\"$L8\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("7:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af\",{\"href\":\"/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"【Leetcode Python题解】「2097. Valid Arrangement of Pairs」\"}],[\"$\",\"p\",null,{\"children\":\"2024-11-30\"}]]}],[\"$\",\"a\",\"2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20\",{\"href\":\"/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"【Python题解】2834. 找出美丽数组的最小和\"}],[\"$\",\"p\",null,{\"children\":\"2024-03-08\"}]]}],[\"$\",\"a\",\"2024-03-04-python题解-100226-在带权树网络中统计可连接服务器对数目-zh-cn-b3d6806\",{\"href\":\"/blog/2024-03-04-python题解-100226-在带权树网络中统计可连接服务器对数目-zh-cn-b3d6806\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"【Python题解】100226. 在带权树网络中统计可连接服务器对数目\"}],[\"$\",\"p\",null,{\"children\":\"2024-03-04\"}]]}]]}]]}]\n8:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

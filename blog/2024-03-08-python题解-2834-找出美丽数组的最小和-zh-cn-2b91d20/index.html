@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-CsZ7IyfW.css" data-rsc-css-href="/assets/index-CsZ7IyfW.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-DuOhKy3m.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-BxhDq--T.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>【Python题解】2834. 找出美丽数组的最小和 — Huiyu Chen</title><meta name="description" content="给定两个正整数 n 和 target，目标是找到一个长度为 n 的数组，满足以下条件："/><link rel="shortcut icon" href="/favicon.svg"/><link rel="icon" href="/favicon.svg"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-BxhDq--T.js" />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0e1wmqi { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0e1wmqi { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_11w2gr9 { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_11w2gr9 { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_0g1zhzc { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_0g1zhzc { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0e1wmqi __variable_geist_mono_11w2gr9 __variable_newsreader_0g1zhzc antialiased"><main class="site-shell article-shell" id="top"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><div class="article-meta"><span>Code</span><time>2024-03-08</time><span>中文</span></div><h1>【Python题解】2834. 找出美丽数组的最小和</h1><p class="article-deck">给定两个正整数 n 和 target，目标是找到一个长度为 n 的数组，满足以下条件：</p><a class="language-switch" href="/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423">Read the English edition →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#题目描述">题目描述</a><a class="toc-subitem" href="#测试用例">测试用例</a><a class="" href="#原始思路">原始思路</a><a class="toc-subitem" href="#方案">方案</a><a class="toc-subitem" href="#代码">代码</a><a class="toc-subitem" href="#复杂度分析">复杂度分析</a><a class="" href="#贪心优化">贪心优化</a><a class="toc-subitem" href="#方案-1">方案</a><a class="toc-subitem" href="#代码-1">代码</a><a class="toc-subitem" href="#复杂度分析-1">复杂度分析</a><a class="" href="#数学方法">数学方法</a><a class="toc-subitem" href="#方案-2">方案</a><a class="toc-subitem" href="#实现">实现</a><a class="toc-subitem" href="#代码-2">代码</a><a class="toc-subitem" href="#复杂度分析-2">复杂度分析</a></nav></aside><div class="prose"><h1 id="2834-找出美丽数组的最小和">2834. 找出美丽数组的最小和</h1><blockquote>
+<p>Problem: <a target="_blank" rel="noreferrer noopener" href="https://leetcode.cn/problems/find-the-minimum-possible-sum-of-a-beautiful-array/description/">2834. 找出美丽数组的最小和</a></p>
+</blockquote>
+<h2 id="题目描述">题目描述</h2><p>给定两个正整数 <code>n</code> 和 <code>target</code>，目标是找到一个长度为 <code>n</code> 的数组，满足以下条件：</p>
+<ul>
+<li>数组由两两不同的正整数组成。</li>
+<li>不存在两个不同下标 <code>i</code> 和 <code>j</code> 使得 <code>nums[i] + nums[j] == target</code>。<br>返回符合条件的美丽数组所可能具备的最小和，并对结果进行 <code>10^9 + 7</code> 取模。</li>
+</ul>
+<h3 id="测试用例">测试用例</h3><p>示例 1：</p>
+<ul>
+<li>输入：n = 2, target = 3</li>
+<li>输出：4</li>
+</ul>
+<p>示例 2：</p>
+<ul>
+<li>输入：n = 3, target = 3</li>
+<li>输出：8</li>
+</ul>
+<p>示例 3：</p>
+<ul>
+<li>输入：n = 1, target = 1</li>
+<li>输出：1</li>
+</ul>
+<h2 id="原始思路">原始思路</h2><h3 id="方案">方案</h3><p>初始方案是从最小的数字开始，逐个检查每个数字是否可以被添加到数组中，同时确保不会存在两个数字之和等于 <code>target</code>。</p>
+<ul>
+<li>从 <code>1</code> 开始逐个尝试添加数字到数组。</li>
+<li>对于每个数字，检查是否与数组中已有的数字相加会得到 <code>target</code>。</li>
+<li>如果不会，将其添加到数组中。</li>
+<li>继续此过程，直到数组长度达到 <code>n</code>。</li>
+</ul>
+<h3 id="代码">代码</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minimumPossibleSum</span>(<span class="params">n, target</span>):</span><br><span class="line">    selected_nums = <span class="built_in">set</span>([<span class="number">1</span>])</span><br><span class="line">    total_sum = <span class="number">1</span></span><br><span class="line">    current_num = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(selected_nums) &lt; n:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">all</span>((current_num + num != target) <span class="keyword">for</span> num <span class="keyword">in</span> selected_nums):</span><br><span class="line">            selected_nums.add(current_num)</span><br><span class="line">            total_sum += current_num</span><br><span class="line">        current_num += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> total_sum % (<span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="复杂度分析">复杂度分析</h3><ul>
+<li>时间复杂度：O(n^2)，因为每个数字的添加都需要遍历已选择的数字集合。</li>
+<li>空间复杂度：O(n)，用于存储选择的数字集合。</li>
+</ul>
+<h2 id="贪心优化">贪心优化</h2><h3 id="方案-1">方案</h3><ul>
+<li><p><strong>优化策略</strong>：</p>
+<ul>
+<li><strong>避免集合的使用</strong>：<ul>
+<li>引入“避免”集合，存储所有与已选数字相加得到 <code>target</code> 的数字。</li>
+<li>这样可以快速检查新数字是否会导致和为 <code>target</code> 的情况。</li>
+</ul>
+</li>
+<li><strong>直接检查</strong>：<ul>
+<li>每次选择一个新数字时，仅检查它是否在“避免”集合中。</li>
+<li>不在集合中的数字被认为是安全的，可以直接添加。</li>
+</ul>
+</li>
+<li><strong>动态更新避免集合</strong>：<ul>
+<li>当新数字被添加到美丽数组时，相应的 <code>target - 新数字</code> 也被添加到“避免”集合中。</li>
+<li>这确保任何可能与新数字组成 <code>target</code> 的数字在未来都会被避免。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>优化后的时间复杂度</strong>：</p>
+<ul>
+<li>每个数字只需进行一次集合检查。</li>
+<li>时间复杂度降低为 O(n)，显著提高了算法效率。</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码-1">代码</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minimumPossibleSum_optimized</span>(<span class="params">n, target</span>):</span><br><span class="line">    selected_nums = <span class="built_in">set</span>()</span><br><span class="line">    avoid_nums = <span class="built_in">set</span>()</span><br><span class="line">    total_sum = <span class="number">0</span></span><br><span class="line">    current_num = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(selected_nums) &lt; n:</span><br><span class="line">        <span class="keyword">if</span> current_num <span class="keyword">not</span> <span class="keyword">in</span> avoid_nums:</span><br><span class="line">            selected_nums.add(current_num)</span><br><span class="line">            total_sum += current_num</span><br><span class="line">            avoid_nums.add(target - current_num)</span><br><span class="line">        current_num += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> total_sum % (<span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span>)</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="复杂度分析-1">复杂度分析</h3><ul>
+<li>时间复杂度：O(n)，因为每个数字只需检查一次。</li>
+<li>空间复杂度：O(n)，用于存储选择的数字和避免数字集合。</li>
+</ul>
+<h2 id="数学方法">数学方法</h2><h3 id="方案-2">方案</h3><p>针对上述问题，我们采用了一种更高效的数学方法来解决这个问题。该方法通过分析问题的数学本质，减少了必要的计算量，特别适用于处理大规模数据。</p>
+<ol>
+<li><p><strong>问题分解</strong>：</p>
+<ul>
+<li>首先，我们将问题分解为两部分。由于数组中的数字都是唯一的，且两个不同的数字之和不能等于 <code>target</code>，我们首先从最小的数字开始选择，直到我们不能再选择更多的数字而不违反和的规则。</li>
+</ul>
+</li>
+<li><p><strong>选择前半部分的数字</strong>：</p>
+<ul>
+<li>在 <code>1</code> 到 <code>target-1</code> 的范围内，某些数字不能同时出现。例如，如果 <code>target</code> 是 <code>6</code>，则 <code>1</code> 和 <code>5</code>、<code>2</code> 和 <code>4</code> 不能同时出现，因为它们的和等于 <code>6</code>。但是，<code>3</code>（当 <code>target</code> 是偶数）或 <code>3</code> 和 <code>2</code>（当 <code>target</code> 是奇数）是可以被选择的。</li>
+<li>这意味着我们可以自由选择从 <code>1</code> 到 <code>m</code> 的数字，其中 <code>m = min(⌊target/2⌋, n)</code>。对于这部分数字，我们可以直接使用等差数列的求和公式来计算它们的总和，即 <code>m * (m + 1) / 2</code>。</li>
+</ul>
+</li>
+<li><p><strong>选择后半部分的数字</strong>：</p>
+<ul>
+<li>一旦我们选择了前 <code>m</code> 个数字，剩下需要选择的数字的数量就是 <code>n - m</code>。由于我们已经选择了 <code>1</code> 到 <code>m</code>，我们现在需要从 <code>target</code> 开始选择剩下的数字。</li>
+<li>如果 <code>n</code> 大于 <code>m</code>，那么我们将从 <code>target</code> 开始连续选择 <code>n - m</code> 个数字。这些数字的总和可以用等差数列的求和公式来计算，公式为：<code>(2 * target + n - m - 1) * (n - m) / 2</code>。</li>
+</ul>
+</li>
+<li><p><strong>计算总和并取模</strong>：</p>
+<ul>
+<li>我们将两部分的和相加，并对结果进行 <code>10^9 + 7</code> 取模，以得到最终答案。</li>
+</ul>
+</li>
+</ol>
+<h3 id="实现">实现</h3><ul>
+<li>第一部分和：从 <code>1</code> 到 <code>min(target // 2, n)</code> 的和。</li>
+<li>第二部分和（如果需要）：从 <code>target</code> 开始，选择的 <code>n - min(target // 2, n)</code> 个数字的和。</li>
+<li>将这两部分的和相加，即得到符合条件的美丽数组的最小和。</li>
+</ul>
+<ol>
+<li><p><strong>选择小于 <code>target // 2</code> 的数字</strong>：</p>
+<ul>
+<li>当我们从 1 开始逐渐增加数字，直到 <code>target // 2</code>，这些数字不可能与数组中的其他数字相加得到 <code>target</code>。</li>
+<li>例如，如果 <code>target</code> 是 10，那么 <code>target // 2</code> 是 5。在这种情况下，1 到 5 之间的任何两个数字相加都不会等于 10。</li>
+<li>因此，这部分的选择是安全的，并且由于我们需要最小和，所以我们从 1 开始逐一增加。</li>
+</ul>
+</li>
+<li><p>**当 <code>n</code> 大于 <code>target // 2</code>**：</p>
+<ul>
+<li>如果 <code>n</code> 大于 <code>target // 2</code>，这意味着仅仅选择小于 <code>target // 2</code> 的数字不足以填满数组。</li>
+<li>在这种情况下，我们需要继续选择更多的数字，但为了避免和为 <code>target</code> 的组合，我们需要从 <code>target</code> 本身开始选择。</li>
+<li>我们继续逐一增加，直到数组长度达到 <code>n</code>。</li>
+</ul>
+</li>
+<li><p><strong>计算总和</strong>：</p>
+<ul>
+<li>第一部分是从 1 到 <code>min(target // 2, n)</code> 的和。</li>
+<li>第二部分（如果需要）是从 <code>target</code> 开始，选择剩下的 <code>n - min(target // 2, n)</code> 个数字。</li>
+<li>最后，将这两部分的和加起来，就是我们要找的最小和。</li>
+</ul>
+</li>
+</ol>
+<p>这是一个通过数学方法来解决问题的典型例子，它避免了复杂的编程逻辑，提供了一种更简洁高效的解决方案。</p>
+<h3 id="代码-2">代码</h3><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">minimumPossibleSum_math_approach</span>(<span class="params">n, target</span>):</span><br><span class="line">    MOD = <span class="number">10</span>**<span class="number">9</span> + <span class="number">7</span></span><br><span class="line">    m = <span class="built_in">min</span>(target // <span class="number">2</span>, n)</span><br><span class="line">    first_half_sum = m * (m + <span class="number">1</span>) // <span class="number">2</span></span><br><span class="line">    remaining = n - m</span><br><span class="line">    second_half_sum = (<span class="number">2</span> * target + remaining - <span class="number">1</span>) * remaining // <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> (first_half_sum + second_half_sum) % MOD</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="复杂度分析-2">复杂度分析</h3><ul>
+<li>时间复杂度：O(1)，因为结果是通过直接计算得出的。</li>
+<li>空间复杂度：O(1)，只使用了固定数量的变量。</li>
+</ul>
+</div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17"><span>Code</span><h2>【Leetcode Python题解】「1346. Check If N and Its Double Exist」</h2><p>2024-12-01</p></a><a href="/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af"><span>Code</span><h2>【Leetcode Python题解】「2097. Valid Arrangement of Pairs」</h2><p>2024-11-30</p></a><a href="/blog/2024-03-04-python题解-100226-在带权树网络中统计可连接服务器对数目-zh-cn-b3d6806"><span>Code</span><h2>【Python题解】100226. 在带权树网络中统计可连接服务器对数目</h2><p>2024-03-04</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script id="_R_">import("/assets/index-BxhDq--T.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-CsZ7IyfW.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-CsZ7IyfW.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-CsZ7IyfW.css\",\"data-rsc-css-href\":\"/assets/index-CsZ7IyfW.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0e1wmqi __variable_geist_mono_11w2gr9 __variable_newsreader_0g1zhzc antialiased\",\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"【Python题解】2834. 找出美丽数组的最小和 — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"给定两个正整数 n 和 target，目标是找到一个长度为 n 的数组，满足以下条件：\"}],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"development\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[\"blog\",\"2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20\"]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-zh-cn-2b91d20\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"e10bf393-1874-42fa-acfc-6b66820cb3de\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:T3176,\u003ch1 id=\"2834-找出美丽数组的最小和\"\u003e2834. 找出美丽数组的最小和\u003c/h1\u003e\u003cblockquote\u003e\n\u003cp\u003eProblem: \u003ca target=\"_blank\" rel=\"noreferrer noopener\" href=\"https://leetcode.cn/problems/find-the-minimum-possible-sum-of-a-beautiful-array/description/\"\u003e2834. 找出美丽数组的最小和\u003c/a\u003e\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003ch2 id=\"题目描述\"\u003e题目描述\u003c/h2\u003e\u003cp\u003e给定两个正整数 \u003ccode\u003en\u003c/code\u003e 和 \u003ccode\u003etarget\u003c/code\u003e，目标是找到一个长度为 \u003ccode\u003en\u003c/code\u003e 的数组，满足以下条件：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e数组由两两不同的正整数组成。\u003c/li\u003e\n\u003cli\u003e不存在两个不同下标 \u003ccode\u003ei\u003c/code\u003e 和 \u003ccode\u003ej\u003c/code\u003e 使得 \u003ccode\u003enums[i] + nums[j] == target\u003c/code\u003e。\u003cbr\u003e返回符合条件的美丽数组所可能具备的最小和，并对结果进行 \u003ccode\u003e10^9 + 7\u003c/code\u003e 取模。\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"测试用例\"\u003e测试用例\u003c/h3\u003e\u003cp\u003e示例 1：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e输入：n = 2, target = 3\u003c/li\u003e\n\u003cli\u003e输出：4\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e示例 2：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e输入：n = 3, target = 3\u003c/li\u003e\n\u003cli\u003e输出：8\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003e示例 3：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e输入：n = 1, target = 1\u003c/li\u003e\n\u003cli\u003e输出：1\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"原始思路\"\u003e原始思路\u003c/h2\u003e\u003ch3 id=\"方案\"\u003e方案\u003c/h3\u003e\u003cp\u003e初始方案是从最小的数字开始，逐个检查每个数字是否可以被添加到数组中，同时确保不会存在两个数字之和等于 \u003ccode\u003etarget\u003c/code\u003e。\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e从 \u003ccode\u003e1\u003c/code\u003e 开始逐个尝试添加数字到数组。\u003c/li\u003e\n\u003cli\u003e对于每个数字，检查是否与数组中已有的数字相加会得到 \u003ccode\u003etarget\u003c/code\u003e。\u003c/li\u003e\n\u003cli\u003e如果不会，将其添加到数组中。\u003c/li\u003e\n\u003cli\u003e继续此过程，直到数组长度达到 \u003ccode\u003en\u003c/code\u003e。\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"代码\"\u003e代码\u003c/h3\u003e\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e8\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e9\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e10\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e11\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e12\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003edef\u003c/span\u003e \u003cspan class=\"title function_\"\u003eminimumPossibleSum\u003c/span\u003e(\u003cspan class=\"params\"\u003en, target\u003c/span\u003e):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    selected_nums = \u003cspan class=\"built_in\"\u003eset\u003c/span\u003e([\u003cspan class=\"number\"\u003e1\u003c/span\u003e])\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    total_sum = \u003cspan class=\"number\"\u003e1\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    current_num = \u003cspan class=\"number\"\u003e2\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ewhile\u003c/span\u003e \u003cspan class=\"built_in\"\u003elen\u003c/span\u003e(selected_nums) \u0026lt; n:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e \u003cspan class=\"built_in\"\u003eall\u003c/span\u003e((current_num + num != target) \u003cspan class=\"keyword\"\u003efor\u003c/span\u003e num \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e selected_nums):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            selected_nums.add(current_num)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            total_sum += current_num\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        current_num += \u003cspan class=\"number\"\u003e1\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e total_sum % (\u003cspan class=\"number\"\u003e10\u003c/span\u003e**\u003cspan class=\"number\"\u003e9\u003c/span\u003e + \u003cspan class=\"number\"\u003e7\u003c/span\u003e)\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch3 id=\"复杂度分析\"\u003e复杂度分析\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003e时间复杂度：O(n^2)，因为每个数字的添加都需要遍历已选择的数字集合。\u003c/li\u003e\n\u003cli\u003e空间复杂度：O(n)，用于存储选择的数字集合。\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"贪心优化\"\u003e贪心优化\u003c/h2\u003e\u003ch3 id=\"方案-1\"\u003e方案\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e优化策略\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003e避免集合的使用\u003c/strong\u003e：\u003cul\u003e\n\u003cli\u003e引入“避免”集合，存储所有与已选数字相加得到 \u003ccode\u003etarget\u003c/code\u003e 的数字。\u003c/li\u003e\n\u003cli\u003e这样可以快速检查新数字是否会导致和为 \u003ccode\u003etarget\u003c/code\u003e 的情况。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e直接检查\u003c/strong\u003e：\u003cul\u003e\n\u003cli\u003e每次选择一个新数字时，仅检查它是否在“避免”集合中。\u003c/li\u003e\n\u003cli\u003e不在集合中的数字被认为是安全的，可以直接添加。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003e动态更新避免集合\u003c/strong\u003e：\u003cul\u003e\n\u003cli\u003e当新数字被添加到美丽数组时，相应的 \u003ccode\u003etarget - 新数字\u003c/code\u003e 也被添加到“避免”集合中。\u003c/li\u003e\n\u003cli\u003e这确保任何可能与新数字组成 \u003ccode\u003etarget\u003c/code\u003e 的数字在未来都会被避免。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e优化后的时间复杂度\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e每个数字只需进行一次集合检查。\u003c/li\u003e\n\u003cli\u003e时间复杂度降低为 O(n)，显著提高了算法效率。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch3 id=\"代码-1\"\u003e代码\u003c/h3\u003e\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e8\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e9\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e10\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e11\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e12\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e13\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e14\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003edef\u003c/span\u003e \u003cspan class=\"title function_\"\u003eminimumPossibleSum_optimized\u003c/span\u003e(\u003cspan class=\"params\"\u003en, target\u003c/span\u003e):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    selected_nums = \u003cspan class=\"built_in\"\u003eset\u003c/span\u003e()\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    avoid_nums = \u003cspan class=\"built_in\"\u003eset\u003c/span\u003e()\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    total_sum = \u003cspan class=\"number\"\u003e0\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    current_num = \u003cspan class=\"number\"\u003e1\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ewhile\u003c/span\u003e \u003cspan class=\"built_in\"\u003elen\u003c/span\u003e(selected_nums) \u0026lt; n:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e current_num \u003cspan class=\"keyword\"\u003enot\u003c/span\u003e \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e avoid_nums:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            selected_nums.add(current_num)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            total_sum += current_num\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            avoid_nums.add(target - current_num)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        current_num += \u003cspan class=\"number\"\u003e1\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e total_sum % (\u003cspan class=\"number\"\u003e10\u003c/span\u003e**\u003cspan class=\"number\"\u003e9\u003c/span\u003e + \u003cspan class=\"number\"\u003e7\u003c/span\u003e)\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch3 id=\"复杂度分析-1\"\u003e复杂度分析\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003e时间复杂度：O(n)，因为每个数字只需检查一次。\u003c/li\u003e\n\u003cli\u003e空间复杂度：O(n)，用于存储选择的数字和避免数字集合。\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"数学方法\"\u003e数学方法\u003c/h2\u003e\u003ch3 id=\"方案-2\"\u003e方案\u003c/h3\u003e\u003cp\u003e针对上述问题，我们采用了一种更高效的数学方法来解决这个问题。该方法通过分析问题的数学本质，减少了必要的计算量，特别适用于处理大规模数据。\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e问题分解\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e首先，我们将问题分解为两部分。由于数组中的数字都是唯一的，且两个不同的数字之和不能等于 \u003ccode\u003etarget\u003c/code\u003e，我们首先从最小的数字开始选择，直到我们不能再选择更多的数字而不违反和的规则。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e选择前半部分的数字\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e在 \u003ccode\u003e1\u003c/code\u003e 到 \u003ccode\u003etarget-1\u003c/code\u003e 的范围内，某些数字不能同时出现。例如，如果 \u003ccode\u003etarget\u003c/code\u003e 是 \u003ccode\u003e6\u003c/code\u003e，则 \u003ccode\u003e1\u003c/code\u003e 和 \u003ccode\u003e5\u003c/code\u003e、\u003ccode\u003e2\u003c/code\u003e 和 \u003ccode\u003e4\u003c/code\u003e 不能同时出现，因为它们的和等于 \u003ccode\u003e6\u003c/code\u003e。但是，\u003ccode\u003e3\u003c/code\u003e（当 \u003ccode\u003etarget\u003c/code\u003e 是偶数）或 \u003ccode\u003e3\u003c/code\u003e 和 \u003ccode\u003e2\u003c/code\u003e（当 \u003ccode\u003etarget\u003c/code\u003e 是奇数）是可以被选择的。\u003c/li\u003e\n\u003cli\u003e这意味着我们可以自由选择从 \u003ccode\u003e1\u003c/code\u003e 到 \u003ccode\u003em\u003c/code\u003e 的数字，其中 \u003ccode\u003em = min(⌊target/2⌋, n)\u003c/code\u003e。对于这部分数字，我们可以直接使用等差数列的求和公式来计算它们的总和，即 \u003ccode\u003em * (m + 1) / 2\u003c/code\u003e。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e选择后半部分的数字\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e一旦我们选择了前 \u003ccode\u003em\u003c/code\u003e 个数字，剩下需要选择的数字的数量就是 \u003ccode\u003en - m\u003c/code\u003e。由于我们已经选择了 \u003ccode\u003e1\u003c/code\u003e 到 \u003ccode\u003em\u003c/code\u003e，我们现在需要从 \u003ccode\u003etarget\u003c/code\u003e 开始选择剩下的数字。\u003c/li\u003e\n\u003cli\u003e如果 \u003ccode\u003en\u003c/code\u003e 大于 \u003ccode\u003em\u003c/code\u003e，那么我们将从 \u003ccode\u003etarget\u003c/code\u003e 开始连续选择 \u003ccode\u003en - m\u003c/code\u003e 个数字。这些数字的总和可以用等差数列的求和公式来计算，公式为：\u003ccode\u003e(2 * target + n - m - 1) * (n - m) / 2\u003c/code\u003e。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e计算总和并取模\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e我们将两部分的和相加，并对结果进行 \u003ccode\u003e10^9 + 7\u003c/code\u003e 取模，以得到最终答案。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch3 id=\"实现\"\u003e实现\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003e第一部分和：从 \u003ccode\u003e1\u003c/code\u003e 到 \u003ccode\u003emin(target // 2, n)\u003c/code\u003e 的和。\u003c/li\u003e\n\u003cli\u003e第二部分和（如果需要）：从 \u003ccode\u003etarget\u003c/code\u003e 开始，选择的 \u003ccode\u003en - min(target // 2, n)\u003c/code\u003e 个数字的和。\u003c/li\u003e\n\u003cli\u003e将这两部分的和相加，即得到符合条件的美丽数组的最小和。\u003c/li\u003e\n\u003c/ul\u003e\n\u003col\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e选择小于 \u003ccode\u003etarget // 2\u003c/code\u003e 的数字\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e当我们从 1 开始逐渐增加数字，直到 \u003ccode\u003etarget // 2\u003c/code\u003e，这些数字不可能与数组中的其他数字相加得到 \u003ccode\u003etarget\u003c/code\u003e。\u003c/li\u003e\n\u003cli\u003e例如，如果 \u003ccode\u003etarget\u003c/code\u003e 是 10，那么 \u003ccode\u003etarget // 2\u003c/code\u003e 是 5。在这种情况下，1 到 5 之间的任何两个数字相加都不会等于 10。\u003c/li\u003e\n\u003cli\u003e因此，这部分的选择是安全的，并且由于我们需要最小和，所以我们从 1 开始逐一增加。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e**当 \u003ccode\u003en\u003c/code\u003e 大于 \u003ccode\u003etarget // 2\u003c/code\u003e**：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e如果 \u003ccode\u003en\u003c/code\u003e 大于 \u003ccode\u003etarget // 2\u003c/code\u003e，这意味着仅仅选择小于 \u003ccode\u003etarget // 2\u003c/code\u003e 的数字不足以填满数组。\u003c/li\u003e\n\u003cli\u003e在这种情况下，我们需要继续选择更多的数字，但为了避免和为 \u003ccode\u003etarget\u003c/code\u003e 的组合，我们需要从 \u003ccode\u003etarget\u003c/code\u003e 本身开始选择。\u003c/li\u003e\n\u003cli\u003e我们继续逐一增加，直到数组长度达到 \u003ccode\u003en\u003c/code\u003e。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003e\u003cp\u003e\u003cstrong\u003e计算总和\u003c/strong\u003e：\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003e第一部分是从 1 到 \u003ccode\u003emin(target // 2, n)\u003c/code\u003e 的和。\u003c/li\u003e\n\u003cli\u003e第二部分（如果需要）是从 \u003ccode\u003etarget\u003c/code\u003e 开始，选择剩下的 \u003ccode\u003en - min(target // 2, n)\u003c/code\u003e 个数字。\u003c/li\u003e\n\u003cli\u003e最后，将这两部分的和加起来，就是我们要找的最小和。\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e这是一个通过数学方法来解决问题的典型例子，它避免了复杂的编程逻辑，提供了一种更简洁高效的解决方案。\u003c/p\u003e\n\u003ch3 id=\"代码-2\"\u003e代码\u003c/h3\u003e\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003edef\u003c/span\u003e \u003cspan class=\"title function_\"\u003eminimumPossibleSum_math_approach\u003c/span\u003e(\u003cspan class=\"params\"\u003en, target\u003c/span\u003e):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    MOD = \u003cspan class=\"number\"\u003e10\u003c/span\u003e**\u003cspan class=\"number\"\u003e9\u003c/span\u003e + \u003cspan class=\"number\"\u003e7\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    m = \u003cspan class=\"built_in\"\u003emin\u003c/span\u003e(target // \u003cspan class=\"number\"\u003e2\u003c/span\u003e, n)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    first_half_sum = m * (m + \u003cspan class=\"number\"\u003e1\u003c/span\u003e) // \u003cspan class=\"number\"\u003e2\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    remaining = n - m\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    second_half_sum = (\u003cspan class=\"number\"\u003e2\u003c/span\u003e * target + remaining - \u003cspan class=\"number\"\u003e1\u003c/span\u003e) * remaining // \u003cspan class=\"number\"\u003e2\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e (first_half_sum + second_half_sum) % MOD\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch3 id=\"复杂度分析-2\"\u003e复杂度分析\u003c/h3\u003e\u003cul\u003e\n\u003cli\u003e时间复杂度：O(1)，因为结果是通过直接计算得出的。\u003c/li\u003e\n\u003cli\u003e空间复杂度：O(1)，只使用了固定数量的变量。\u003c/li\u003e\n\u003c/ul\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],null,[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"time\",null,{\"children\":\"2024-03-08\"}],[\"$\",\"span\",null,{\"children\":\"中文\"}]]}],[\"$\",\"h1\",null,{\"children\":\"【Python题解】2834. 找出美丽数组的最小和\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"给定两个正整数 n 和 target，目标是找到一个长度为 n 的数组，满足以下条件：\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423\",\"children\":\"Read the English edition →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"题目描述-题目描述\",{\"className\":\"\",\"href\":\"#题目描述\",\"children\":\"题目描述\"}],[\"$\",\"a\",\"测试用例-测试用例\",{\"className\":\"toc-subitem\",\"href\":\"#测试用例\",\"children\":\"测试用例\"}],[\"$\",\"a\",\"原始思路-原始思路\",{\"className\":\"\",\"href\":\"#原始思路\",\"children\":\"原始思路\"}],[\"$\",\"a\",\"方案-方案\",{\"className\":\"toc-subitem\",\"href\":\"#方案\",\"children\":\"方案\"}],[\"$\",\"a\",\"代码-代码\",{\"className\":\"toc-subitem\",\"href\":\"#代码\",\"children\":\"代码\"}],[\"$\",\"a\",\"复杂度分析-复杂度分析\",{\"className\":\"toc-subitem\",\"href\":\"#复杂度分析\",\"children\":\"复杂度分析\"}],[\"$\",\"a\",\"贪心优化-贪心优化\",{\"className\":\"\",\"href\":\"#贪心优化\",\"children\":\"贪心优化\"}],[\"$\",\"a\",\"方案-1-方案\",{\"className\":\"toc-subitem\",\"href\":\"#方案-1\",\"children\":\"方案\"}],[\"$\",\"a\",\"代码-1-代码\",{\"className\":\"toc-subitem\",\"href\":\"#代码-1\",\"children\":\"代码\"}],[\"$\",\"a\",\"复杂度分析-1-复杂度分析\",{\"className\":\"toc-subitem\",\"href\":\"#复杂度分析-1\",\"children\":\"复杂度分析\"}],[\"$\",\"a\",\"数学方法-数学方法\",{\"className\":\"\",\"href\":\"#数学方法\",\"children\":\"数学方法\"}],[\"$\",\"a\",\"方案-2-方案\",{\"className\":\"toc-subitem\",\"href\":\"#方案-2\",\"children\":\"方案\"}],[\"$\",\"a\",\"实现-实现\",{\"className\":\"toc-subitem\",\"href\":\"#实现\",\"children\":\"实现\"}],[\"$\",\"a\",\"代码-2-代码\",{\"className\":\"toc-subitem\",\"href\":\"#代码-2\",\"children\":\"代码\"}],[\"$\",\"a\",\"复杂度分析-2-复杂度分析\",{\"className\":\"toc-subitem\",\"href\":\"#复杂度分析-2\",\"children\":\"复杂度分析\"}]]}]]}],[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$6\"}}]]}]]}],\"$L7\",\"$L8\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("7:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17\",{\"href\":\"/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-zh-cn-5e6ec17\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"【Leetcode Python题解】「1346. Check If N and Its Double Exist」\"}],[\"$\",\"p\",null,{\"children\":\"2024-12-01\"}]]}],[\"$\",\"a\",\"2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af\",{\"href\":\"/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-zh-cn-8cdd3af\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"【Leetcode Python题解】「2097. Valid Arrangement of Pairs」\"}],[\"$\",\"p\",null,{\"children\":\"2024-11-30\"}]]}],[\"$\",\"a\",\"2024-03-04-python题解-100226-在带权树网络中统计可连接服务器对数目-zh-cn-b3d6806\",{\"href\":\"/blog/2024-03-04-python题解-100226-在带权树网络中统计可连接服务器对数目-zh-cn-b3d6806\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"【Python题解】100226. 在带权树网络中统计可连接服务器对数目\"}],[\"$\",\"p\",null,{\"children\":\"2024-03-04\"}]]}]]}]]}]\n8:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

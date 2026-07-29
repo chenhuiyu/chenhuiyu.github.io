@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-CsZ7IyfW.css" data-rsc-css-href="/assets/index-CsZ7IyfW.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-DuOhKy3m.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-BxhDq--T.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>[Python problem solution] 2369. Check whether the array has valid divisions — Huiyu Chen</title><meta name="description" content="Leetcode question 2369 asks us to check whether an integer array nums can be divided into one or more consecutive subarrays that meet certain conditions. Valid partition conditions include:"/><link rel="shortcut icon" href="/favicon.svg"/><link rel="icon" href="/favicon.svg"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"2024-03-01-python题解-2369-检查数组是否存在有效划分-en-46cd327"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/2024-03-01-python题解-2369-检查数组是否存在有效划分-en-46cd327","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-BxhDq--T.js" />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0e1wmqi { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0e1wmqi { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_11w2gr9 { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_11w2gr9 { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/workspace/sites/huiyu-chen-portfolio/.vinext/fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_0g1zhzc { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_0g1zhzc { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0e1wmqi __variable_geist_mono_11w2gr9 __variable_newsreader_0g1zhzc antialiased"><main class="site-shell article-shell" id="top"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><div class="article-meta"><span>Code</span><time>2024-03-01</time><span>English</span></div><h1>[Python problem solution] 2369. Check whether the array has valid divisions</h1><p class="article-deck">Leetcode question 2369 asks us to check whether an integer array nums can be divided into one or more consecutive subarrays that meet certain conditions. Valid partition conditions include:</p><a class="language-switch" href="/blog/2024-03-01-python题解-2369-检查数组是否存在有效划分-zh-cn-246ae83">阅读中文版 →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#题目概述">Question overview</a><a class="" href="#示例分析">Example analysis</a><a class="" href="#解题思路">Problem-solving ideas</a><a class="" href="#算法流程">Algorithm process</a><a class="" href="#动态规划实现">Dynamic programming implementation</a><a class="" href="#算法复杂度分析">Algorithm complexity analysis</a></nav></aside><div class="prose"><h1 id="【Python-题解】2369-检查数组的有效划分方法">[Python solution] 2369. Check the effective partitioning method of the array</h1><h2 id="题目概述">Question overview</h2><p>Leetcode question 2369 asks us to check an array of integers<code>nums</code>Whether it can be divided into one or more consecutive subarrays that meet certain conditions. Valid partition conditions include:</p>
+<ul>
+<li>A subarray consists of two equal elements, such as <code>[2, 2]</code>。</li>
+<li>A subarray consists of three equal elements, such as <code>[3, 3, 3]</code>。</li>
+<li>The subarray consists of three consecutively increasing elements, and the difference between adjacent elements is 1, such as <code>[4, 5, 6]</code>。</li>
+</ul>
+<p>Returns if there is at least one valid partition of the array<code>true</code>; Otherwise return<code>false</code>。</p>
+<h2 id="示例分析">Example analysis</h2><ul>
+<li>Example 1:<code>nums = [4, 4, 4, 5, 6]</code>can be divided into <code>[4, 4]</code> and <code>[4, 5, 6]</code>, so return<code>true</code>。</li>
+<li>Example 2:<code>nums = [1, 1, 1, 2]</code>None of the partitioning conditions are met, so return<code>false</code>。</li>
+</ul>
+<h2 id="解题思路">Problem-solving ideas</h2><p>adopt<strong>dynamic programming</strong>strategy, we define a Boolean array<code>dp</code>, among which<code>dp[i]</code>Represents the front of the array<code>i</code>Whether the elements can be divided effectively. Iterate over the array, for each position<code>i</code>, try the following three division methods:</p>
+<ol>
+<li>The subarray consists of the last two elements that are equal.</li>
+<li>The subarray consists of the last three equal elements.</li>
+<li>The subarray consists of the last three consecutively increasing elements.</li>
+</ol>
+<h2 id="算法流程">Algorithm process</h2><ol>
+<li>Initialize dp[0] to true, indicating that the empty array can be effectively divided.</li>
+<li>For each i (starting at 2), check whether the array can be partitioned into i in one of the three ways above.</li>
+<li>Ultimately, dp[n] (where n is the length of the array) gives the answer to whether the entire array can be efficiently divided.</li>
+<li>If either way is possible, then<code>dp[i]</code>set to<code>true</code>。</li>
+</ol>
+<p>Specifically<br>Initialization:</p>
+<ol>
+<li>Initialize dp[0] to true, indicating that the empty array can be effectively divided.</li>
+<li>State transition: For each element nums[i] in the array (starting from the second element), consider the following situations:<ul>
+<li>If nums[i] is equal to nums[i-1], check whether dp[i-2] is true. If so, it means that [nums[i-1], nums[i]] can form a valid partition, and set dp[i] to true.</li>
+<li>If nums[i], nums[i-1] and nums[i-2] are equal, dp[i-3] is also checked. If dp[i-3] is true, it means [nums[i-2], nums[i-1], nums[i]] can form an effective division, set dp[i] to true.</li>
+<li>If nums[i], nums[i-1] and nums[i-2] form a continuous increasing sequence (i.e. nums[i]-1 == nums[i-1] and nums[i-1]-1 == nums[i-2]), check dp[i-3]. If true, set dp[i] to true.</li>
+</ul>
+</li>
+<li>Result judgment:<ul>
+<li>Finally, the value of dp[n] is checked (where n is the length of the array nums). If dp[n] is true, it means that the entire array can be effectively divided; otherwise, it cannot.</li>
+</ul>
+</li>
+</ol>
+<h2 id="动态规划实现">Dynamic programming implementation</h2><figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">validPartition</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="built_in">bool</span>:</span><br><span class="line">        n = <span class="built_in">len</span>(nums)</span><br><span class="line">        dp = [<span class="literal">False</span>] * (n + <span class="number">1</span>)</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="literal">True</span>  <span class="comment"># 空数组视为有效划分</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, n + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> nums[i - <span class="number">1</span>] == nums[i - <span class="number">2</span>]:</span><br><span class="line">                dp[i] = dp[i] <span class="keyword">or</span> dp[i - <span class="number">2</span>]</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">2</span> <span class="keyword">and</span> nums[i - <span class="number">1</span>] == nums[i - <span class="number">2</span>] == nums[i - <span class="number">3</span>]:</span><br><span class="line">                dp[i] = dp[i] <span class="keyword">or</span> dp[i - <span class="number">3</span>]</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">2</span> <span class="keyword">and</span> nums[i - <span class="number">1</span>] - <span class="number">1</span> == nums[i - <span class="number">2</span>] <span class="keyword">and</span> nums[i - <span class="number">2</span>] - <span class="number">1</span> == nums[i - <span class="number">3</span>]:</span><br><span class="line">                dp[i] = dp[i] <span class="keyword">or</span> dp[i - <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[n]</span><br></pre></td></tr></tbody></table></figure>
+
+<h2 id="算法复杂度分析">Algorithm complexity analysis</h2><ul>
+<li><strong>time complexity</strong>:O(N), where N is an array<code>nums</code>length, the entire array needs to be traversed to fill the dynamic programming array.</li>
+<li><strong>space complexity</strong>:O(N), used to store dynamic programming arrays<code>dp</code>, record the division of each position.</li>
+</ul>
+<p>Through dynamic programming, we provide an efficient and intuitive solution that ensures optimal performance of the algorithm for similar array partitioning problems.</p>
+</div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-en-19191bd"><span>Code</span><h2>[Leetcode Python problem solution] &quot;1346. Check If N and Its Double Exist&quot;</h2><p>2024-12-01</p></a><a href="/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b"><span>Code</span><h2>Leetcode Python Solution - 2097. Valid Arrangement of Pairs</h2><p>2024-11-30</p></a><a href="/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423"><span>Code</span><h2>[Python Problem Solution] 2834. Find the minimum sum of a beautiful array</h2><p>2024-03-08</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script id="_R_">import("/assets/index-BxhDq--T.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n3:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n4:I[\"8c0f216c4604\",[],\"Slot\",1]\n5:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n:HL[\"/assets/index-CsZ7IyfW.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/2024-03-01-python题解-2369-检查数组是否存在有效划分-en-46cd327\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/2024-03-01-python题解-2369-检查数组是否存在有效划分-en-46cd327\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-CsZ7IyfW.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-CsZ7IyfW.css\",\"data-rsc-css-href\":\"/assets/index-CsZ7IyfW.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0e1wmqi __variable_geist_mono_11w2gr9 __variable_newsreader_0g1zhzc antialiased\",\"children\":[\"$\",\"$L2\",null,{}]}]}]],null],\"route:/blog/2024-03-01-python题解-2369-检查数组是否存在有效划分-en-46cd327\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"[Python problem solution] 2369. Check whether the array has valid divisions — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Leetcode question 2369 asks us to check whether an integer array nums can be divided into one or more consecutive subarrays that meet certain conditions. Valid partition conditions include:\"}],[\"$\",\"link\",\"2\",{\"rel\":\"shortcut icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"link\",\"3\",{\"rel\":\"icon\",\"href\":\"/favicon.svg\"}],[\"$\",\"meta\",\"4\",{\"name\":\"codex-preview\",\"content\":\"development\"}]],[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]],[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[\"blog\",\"2024-03-01-python题解-2369-检查数组是否存在有效划分-en-46cd327\"]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L5\",null,{\"children\":[\"$\",\"$L3\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L4\",null,{\"id\":\"page:/blog/2024-03-01-python题解-2369-检查数组是否存在有效划分-en-46cd327\"}]}]}]}]}]],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"e10bf393-1874-42fa-acfc-6b66820cb3de\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:T1b0f,\u003ch1 id=\"【Python-题解】2369-检查数组的有效划分方法\"\u003e[Python solution] 2369. Check the effective partitioning method of the array\u003c/h1\u003e\u003ch2 id=\"题目概述\"\u003eQuestion overview\u003c/h2\u003e\u003cp\u003eLeetcode question 2369 asks us to check an array of integers\u003ccode\u003enums\u003c/code\u003eWhether it can be divided into one or more consecutive subarrays that meet certain conditions. Valid partition conditions include:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eA subarray consists of two equal elements, such as \u003ccode\u003e[2, 2]\u003c/code\u003e。\u003c/li\u003e\n\u003cli\u003eA subarray consists of three equal elements, such as \u003ccode\u003e[3, 3, 3]\u003c/code\u003e。\u003c/li\u003e\n\u003cli\u003eThe subarray consists of three consecutively increasing elements, and the difference between adjacent elements is 1, such as \u003ccode\u003e[4, 5, 6]\u003c/code\u003e。\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eReturns if there is at least one valid partition of the array\u003ccode\u003etrue\u003c/code\u003e; Otherwise return\u003ccode\u003efalse\u003c/code\u003e。\u003c/p\u003e\n\u003ch2 id=\"示例分析\"\u003eExample analysis\u003c/h2\u003e\u003cul\u003e\n\u003cli\u003eExample 1:\u003ccode\u003enums = [4, 4, 4, 5, 6]\u003c/code\u003ecan be divided into \u003ccode\u003e[4, 4]\u003c/code\u003e and \u003ccode\u003e[4, 5, 6]\u003c/code\u003e, so return\u003ccode\u003etrue\u003c/code\u003e。\u003c/li\u003e\n\u003cli\u003eExample 2:\u003ccode\u003enums = [1, 1, 1, 2]\u003c/code\u003eNone of the partitioning conditions are met, so return\u003ccode\u003efalse\u003c/code\u003e。\u003c/li\u003e\n\u003c/ul\u003e\n\u003ch2 id=\"解题思路\"\u003eProblem-solving ideas\u003c/h2\u003e\u003cp\u003eadopt\u003cstrong\u003edynamic programming\u003c/strong\u003estrategy, we define a Boolean array\u003ccode\u003edp\u003c/code\u003e, among which\u003ccode\u003edp[i]\u003c/code\u003eRepresents the front of the array\u003ccode\u003ei\u003c/code\u003eWhether the elements can be divided effectively. Iterate over the array, for each position\u003ccode\u003ei\u003c/code\u003e, try the following three division methods:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eThe subarray consists of the last two elements that are equal.\u003c/li\u003e\n\u003cli\u003eThe subarray consists of the last three equal elements.\u003c/li\u003e\n\u003cli\u003eThe subarray consists of the last three consecutively increasing elements.\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2 id=\"算法流程\"\u003eAlgorithm process\u003c/h2\u003e\u003col\u003e\n\u003cli\u003eInitialize dp[0] to true, indicating that the empty array can be effectively divided.\u003c/li\u003e\n\u003cli\u003eFor each i (starting at 2), check whether the array can be partitioned into i in one of the three ways above.\u003c/li\u003e\n\u003cli\u003eUltimately, dp[n] (where n is the length of the array) gives the answer to whether the entire array can be efficiently divided.\u003c/li\u003e\n\u003cli\u003eIf either way is possible, then\u003ccode\u003edp[i]\u003c/code\u003eset to\u003ccode\u003etrue\u003c/code\u003e。\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eSpecifically\u003cbr\u003eInitialization:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003eInitialize dp[0] to true, indicating that the empty array can be effectively divided.\u003c/li\u003e\n\u003cli\u003eState transition: For each element nums[i] in the array (starting from the second element), consider the following situations:\u003cul\u003e\n\u003cli\u003eIf nums[i] is equal to nums[i-1], check whether dp[i-2] is true. If so, it means that [nums[i-1], nums[i]] can form a valid partition, and set dp[i] to true.\u003c/li\u003e\n\u003cli\u003eIf nums[i], nums[i-1] and nums[i-2] are equal, dp[i-3] is also checked. If dp[i-3] is true, it means [nums[i-2], nums[i-1], nums[i]] can form an effective division, set dp[i] to true.\u003c/li\u003e\n\u003cli\u003eIf nums[i], nums[i-1] and nums[i-2] form a continuous increasing sequence (i.e. nums[i]-1 == nums[i-1] and nums[i-1]-1 == nums[i-2]), check dp[i-3]. If true, set dp[i] to true.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003cli\u003eResult judgment:\u003cul\u003e\n\u003cli\u003eFinally, the value of dp[n] is checked (where n is the length of the array nums). If dp[n] is true, it means that the entire array can be effectively divided; otherwise, it cannot.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/li\u003e\n\u003c/ol\u003e\n\u003ch2 id=\"动态规划实现\"\u003eDynamic programming implementation\u003c/h2\u003e\u003cfigure class=\"highlight python\"\u003e\u003ctable\u003e\u003ctbody\u003e\u003ctr\u003e\u003ctd class=\"gutter\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e1\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e2\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e3\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e4\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e5\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e6\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e7\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e8\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e9\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e10\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e11\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e12\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e13\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e14\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e15\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003ctd class=\"code\"\u003e\u003cpre\u003e\u003cspan class=\"line\"\u003e\u003cspan class=\"keyword\"\u003eclass\u003c/span\u003e \u003cspan class=\"title class_\"\u003eSolution\u003c/span\u003e:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e    \u003cspan class=\"keyword\"\u003edef\u003c/span\u003e \u003cspan class=\"title function_\"\u003evalidPartition\u003c/span\u003e(\u003cspan class=\"params\"\u003eself, nums: \u003cspan class=\"type\"\u003eList\u003c/span\u003e[\u003cspan class=\"built_in\"\u003eint\u003c/span\u003e]\u003c/span\u003e) -\u0026gt; \u003cspan class=\"built_in\"\u003ebool\u003c/span\u003e:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        n = \u003cspan class=\"built_in\"\u003elen\u003c/span\u003e(nums)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        dp = [\u003cspan class=\"literal\"\u003eFalse\u003c/span\u003e] * (n + \u003cspan class=\"number\"\u003e1\u003c/span\u003e)\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        dp[\u003cspan class=\"number\"\u003e0\u003c/span\u003e] = \u003cspan class=\"literal\"\u003eTrue\u003c/span\u003e  \u003cspan class=\"comment\"\u003e# 空数组视为有效划分\u003c/span\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003efor\u003c/span\u003e i \u003cspan class=\"keyword\"\u003ein\u003c/span\u003e \u003cspan class=\"built_in\"\u003erange\u003c/span\u003e(\u003cspan class=\"number\"\u003e2\u003c/span\u003e, n + \u003cspan class=\"number\"\u003e1\u003c/span\u003e):\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e nums[i - \u003cspan class=\"number\"\u003e1\u003c/span\u003e] == nums[i - \u003cspan class=\"number\"\u003e2\u003c/span\u003e]:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e                dp[i] = dp[i] \u003cspan class=\"keyword\"\u003eor\u003c/span\u003e dp[i - \u003cspan class=\"number\"\u003e2\u003c/span\u003e]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e i \u0026gt; \u003cspan class=\"number\"\u003e2\u003c/span\u003e \u003cspan class=\"keyword\"\u003eand\u003c/span\u003e nums[i - \u003cspan class=\"number\"\u003e1\u003c/span\u003e] == nums[i - \u003cspan class=\"number\"\u003e2\u003c/span\u003e] == nums[i - \u003cspan class=\"number\"\u003e3\u003c/span\u003e]:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e                dp[i] = dp[i] \u003cspan class=\"keyword\"\u003eor\u003c/span\u003e dp[i - \u003cspan class=\"number\"\u003e3\u003c/span\u003e]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e            \u003cspan class=\"keyword\"\u003eif\u003c/span\u003e i \u0026gt; \u003cspan class=\"number\"\u003e2\u003c/span\u003e \u003cspan class=\"keyword\"\u003eand\u003c/span\u003e nums[i - \u003cspan class=\"number\"\u003e1\u003c/span\u003e] - \u003cspan class=\"number\"\u003e1\u003c/span\u003e == nums[i - \u003cspan class=\"number\"\u003e2\u003c/span\u003e] \u003cspan class=\"keyword\"\u003eand\u003c/span\u003e nums[i - \u003cspan class=\"number\"\u003e2\u003c/span\u003e] - \u003cspan class=\"number\"\u003e1\u003c/span\u003e == nums[i - \u003cspan class=\"number\"\u003e3\u003c/span\u003e]:\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e                dp[i] = dp[i] \u003cspan class=\"keyword\"\u003eor\u003c/span\u003e dp[i - \u003cspan class=\"number\"\u003e3\u003c/span\u003e]\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e\u003c/span\u003e\u003cbr\u003e\u003cspan class=\"line\"\u003e        \u003cspan class=\"keyword\"\u003ereturn\u003c/span\u003e dp[n]\u003c/span\u003e\u003cbr\u003e\u003c/pre\u003e\u003c/td\u003e\u003c/tr\u003e\u003c/tbody\u003e\u003c/table\u003e\u003c/figure\u003e\n\n\u003ch2 id=\"算法复杂度分析\"\u003eAlgorithm complexity analysis\u003c/h2\u003e\u003cul\u003e\n\u003cli\u003e\u003cstrong\u003etime complexity\u003c/strong\u003e:O(N), where N is an array\u003ccode\u003enums\u003c/code\u003elength, the entire array needs to be traversed to fill the dynamic programming array.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003espace complexity\u003c/strong\u003e:O(N), used to store dynamic programming arrays\u003ccode\u003edp\u003c/code\u003e, record the division of each position.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThrough dynamic programming, we provide an efficient and intuitive solution that ensures optimal performance of the algorithm for similar array partitioning problems.\u003c/p\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],null,[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"time\",null,{\"children\":\"2024-03-01\"}],[\"$\",\"span\",null,{\"children\":\"English\"}]]}],[\"$\",\"h1\",null,{\"children\":\"[Python problem solution] 2369. Check whether the array has valid divisions\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"Leetcode question 2369 asks us to check whether an integer array nums can be divided into one or more consecutive subarrays that meet certain conditions. Valid partition conditions include:\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/2024-03-01-python题解-2369-检查数组是否存在有效划分-zh-cn-246ae83\",\"children\":\"阅读中文版 →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"题目概述-Question overview\",{\"className\":\"\",\"href\":\"#题目概述\",\"children\":\"Question overview\"}],[\"$\",\"a\",\"示例分析-Example analysis\",{\"className\":\"\",\"href\":\"#示例分析\",\"children\":\"Example analysis\"}],[\"$\",\"a\",\"解题思路-Problem-solving ideas\",{\"className\":\"\",\"href\":\"#解题思路\",\"children\":\"Problem-solving ideas\"}],[\"$\",\"a\",\"算法流程-Algorithm process\",{\"className\":\"\",\"href\":\"#算法流程\",\"children\":\"Algorithm process\"}],[\"$\",\"a\",\"动态规划实现-Dynamic programming implementation\",{\"className\":\"\",\"href\":\"#动态规划实现\",\"children\":\"Dynamic programming implementation\"}],[\"$\",\"a\",\"算法复杂度分析-Algorithm complexity analysis\",{\"className\":\"\",\"href\":\"#算法复杂度分析\",\"children\":\"Algorithm complexity analysis\"}]]}]]}],[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$6\"}}]]}]]}],\"$L7\",\"$L8\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("7:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-en-19191bd\",{\"href\":\"/blog/2024-12-02-leetcode-python题解-1346-check-if-n-and-its-double-exist-en-19191bd\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"[Leetcode Python problem solution] \\\"1346. Check If N and Its Double Exist\\\"\"}],[\"$\",\"p\",null,{\"children\":\"2024-12-01\"}]]}],[\"$\",\"a\",\"2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b\",{\"href\":\"/blog/2024-12-01-leetcode-python-solution-2097-valid-arrangement-of-pairs-en-23dbe8b\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"Leetcode Python Solution - 2097. Valid Arrangement of Pairs\"}],[\"$\",\"p\",null,{\"children\":\"2024-11-30\"}]]}],[\"$\",\"a\",\"2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423\",{\"href\":\"/blog/2024-03-08-python题解-2834-找出美丽数组的最小和-en-4cfa423\",\"children\":[[\"$\",\"span\",null,{\"children\":\"Code\"}],[\"$\",\"h2\",null,{\"children\":\"[Python Problem Solution] 2834. Find the minimum sum of a beautiful array\"}],[\"$\",\"p\",null,{\"children\":\"2024-03-08\"}]]}]]}]]}]\n8:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Four output spaces in recommendation</title>
+  <desc id="desc">A comparison of scoring candidates, predicting the next item, generating language, and generating semantic item identifiers and a slate.</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <text x="80" y="82" fill="#171612" font-family="Inter, system-ui, sans-serif" font-size="42" font-weight="600">同一个请求，四种“生成” / One request, four output spaces</text>
+  <text x="80" y="125" fill="#6f6a61" font-family="Inter, system-ui, sans-serif" font-size="22">小林最近查看了网球与攀岩商品。系统接下来究竟输出什么？</text>
+
+  <g font-family="Inter, system-ui, sans-serif">
+    <rect x="70" y="180" width="340" height="620" rx="28" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <circle cx="120" cy="230" r="22" fill="#3b82f6"/>
+    <text x="112" y="238" fill="#ffffff" font-size="22" font-weight="700">1</text>
+    <text x="155" y="235" fill="#171612" font-size="29" font-weight="600">候选打分</text>
+    <text x="155" y="268" fill="#6f6a61" font-size="18">Candidate scoring</text>
+    <text x="105" y="330" fill="#6f6a61" font-size="18">对已召回商品逐个计算</text>
+    <g font-size="20">
+      <rect x="105" y="370" width="270" height="58" rx="12" fill="#eff6ff"/>
+      <text x="125" y="406" fill="#171612">I01 网球拍</text>
+      <text x="320" y="406" fill="#3b82f6" font-weight="700">0.61</text>
+      <rect x="105" y="444" width="270" height="58" rx="12" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+      <text x="125" y="480" fill="#171612">I03 攀岩鞋</text>
+      <text x="320" y="480" fill="#3b82f6" font-weight="700">0.92</text>
+      <rect x="105" y="518" width="270" height="58" rx="12" fill="#eff6ff"/>
+      <text x="125" y="554" fill="#171612">I08 舞鞋</text>
+      <text x="320" y="554" fill="#3b82f6" font-weight="700">0.18</text>
+    </g>
+    <path d="M155 630 H325" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+    <path d="M310 618 L328 630 L310 642" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="154" y="680" fill="#171612" font-size="24" font-weight="600">输出：排序</text>
+    <text x="154" y="713" fill="#6f6a61" font-size="18">Output: ranked candidates</text>
+
+    <rect x="440" y="180" width="340" height="620" rx="28" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <circle cx="490" cy="230" r="22" fill="#3b82f6"/>
+    <text x="482" y="238" fill="#ffffff" font-size="22" font-weight="700">2</text>
+    <text x="525" y="235" fill="#171612" font-size="29" font-weight="600">下一商品</text>
+    <text x="525" y="268" fill="#6f6a61" font-size="18">Next-item prediction</text>
+    <g>
+      <rect x="478" y="355" width="72" height="72" rx="16" fill="#dbeafe"/>
+      <text x="497" y="399" fill="#1d4ed8" font-size="25">I01</text>
+      <path d="M558 391 H590" stroke="#6f6a61" stroke-width="3"/>
+      <rect x="598" y="355" width="72" height="72" rx="16" fill="#dbeafe"/>
+      <text x="617" y="399" fill="#1d4ed8" font-size="25">I02</text>
+      <path d="M678 391 H710" stroke="#6f6a61" stroke-width="3"/>
+      <rect x="718" y="355" width="42" height="72" rx="16" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+      <text x="726" y="399" fill="#92400e" font-size="27">?</text>
+    </g>
+    <text x="476" y="490" fill="#171612" font-size="21">P(I04 | I01, I02) = 0.37</text>
+    <rect x="478" y="540" width="264" height="76" rx="16" fill="#fff7ed" stroke="#f59e0b" stroke-width="3"/>
+    <text x="518" y="587" fill="#92400e" font-size="27" font-weight="600">I04 粉袋</text>
+    <text x="484" y="680" fill="#171612" font-size="24" font-weight="600">输出：一个 Item ID</text>
+    <text x="484" y="713" fill="#6f6a61" font-size="18">Output: one catalog item</text>
+
+    <rect x="810" y="180" width="340" height="620" rx="28" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <circle cx="860" cy="230" r="22" fill="#8b5cf6"/>
+    <text x="852" y="238" fill="#ffffff" font-size="22" font-weight="700">3</text>
+    <text x="895" y="235" fill="#171612" font-size="29" font-weight="600">语言答案</text>
+    <text x="895" y="268" fill="#6f6a61" font-size="18">Language generation</text>
+    <rect x="850" y="350" width="260" height="230" rx="26" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+    <path d="M912 580 L884 624 L954 580" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2" stroke-linejoin="round"/>
+    <text x="880" y="400" fill="#171612" font-size="21">你最近在看室内运动，</text>
+    <text x="880" y="440" fill="#171612" font-size="21">可以试试这双攀岩鞋。</text>
+    <text x="880" y="495" fill="#6d28d9" font-size="18">“Try these climbing shoes…”</text>
+    <text x="854" y="680" fill="#171612" font-size="24" font-weight="600">输出：自然语言 token</text>
+    <text x="854" y="713" fill="#6f6a61" font-size="18">Output: open-vocabulary text</text>
+
+    <rect x="1180" y="180" width="340" height="620" rx="28" fill="#ffffff" stroke="#c9c0b3" stroke-width="2"/>
+    <circle cx="1230" cy="230" r="22" fill="#f59e0b"/>
+    <text x="1222" y="238" fill="#ffffff" font-size="22" font-weight="700">4</text>
+    <text x="1265" y="235" fill="#171612" font-size="29" font-weight="600">语义 ID / 列表</text>
+    <text x="1265" y="268" fill="#6f6a61" font-size="18">Semantic ID / slate</text>
+    <g font-size="18" font-weight="600">
+      <rect x="1220" y="350" width="86" height="54" rx="12" fill="#fff7ed" stroke="#f59e0b"/>
+      <text x="1237" y="384" fill="#92400e">&lt;sport&gt;</text>
+      <rect x="1318" y="350" width="92" height="54" rx="12" fill="#fff7ed" stroke="#f59e0b"/>
+      <text x="1334" y="384" fill="#92400e">&lt;climb&gt;</text>
+      <rect x="1422" y="350" width="66" height="54" rx="12" fill="#fff7ed" stroke="#f59e0b"/>
+      <text x="1435" y="384" fill="#92400e">&lt;shoe&gt;</text>
+    </g>
+    <path d="M1354 425 V475" stroke="#f59e0b" stroke-width="4"/>
+    <path d="M1342 462 L1354 480 L1366 462" fill="none" stroke="#f59e0b" stroke-width="4"/>
+    <rect x="1285" y="500" width="138" height="62" rx="14" fill="#ffedd5"/>
+    <text x="1312" y="539" fill="#92400e" font-size="24" font-weight="700">I03</text>
+    <g font-size="20" font-weight="600">
+      <rect x="1225" y="610" width="76" height="54" rx="12" fill="#dcfce7"/>
+      <text x="1244" y="645" fill="#166534">I04</text>
+      <rect x="1317" y="610" width="76" height="54" rx="12" fill="#dcfce7"/>
+      <text x="1336" y="645" fill="#166534">I05</text>
+      <rect x="1409" y="610" width="76" height="54" rx="12" fill="#dcfce7"/>
+      <text x="1428" y="645" fill="#166534">I06</text>
+    </g>
+    <text x="1224" y="713" fill="#171612" font-size="24" font-weight="600">输出：可约束的序列</text>
+    <text x="1224" y="744" fill="#6f6a61" font-size="18">Output: constrained sequence</text>
+  </g>
+  <text x="80" y="855" fill="#6f6a61" font-family="Inter, system-ui, sans-serif" font-size="20">关键差异不是“有没有神经网络”，而是输出空间、条件依赖与解码方式。</text>
+</svg>

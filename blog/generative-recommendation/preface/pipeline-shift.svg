@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">From multi-stage ranking to generative recommendation</title>
+  <desc id="desc">The traditional retrieve, rank, rerank pipeline is compared with a history-to-tokenizer-to-decoder generative pipeline.</desc>
+  <rect width="1600" height="900" fill="#faf7f0"/>
+  <g font-family="Inter, system-ui, sans-serif">
+    <text x="80" y="82" fill="#171612" font-size="42" font-weight="600">从多阶段排序到自回归生成 / Pipeline shift</text>
+    <text x="80" y="125" fill="#6f6a61" font-size="22">两种系统都可以很强；它们把复杂性放在了不同位置。</text>
+
+    <text x="90" y="220" fill="#171612" font-size="30" font-weight="600">传统推荐管线 · Retrieve → Rank → Rerank</text>
+    <rect x="90" y="265" width="300" height="150" rx="24" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="125" y="323" fill="#1d4ed8" font-size="27" font-weight="600">召回 Retrieve</text>
+    <text x="125" y="365" fill="#6f6a61" font-size="19">百万商品 → 数千候选</text>
+    <path d="M410 340 H505" stroke="#3b82f6" stroke-width="5" stroke-linecap="round"/>
+    <path d="M490 327 L510 340 L490 353" fill="none" stroke="#3b82f6" stroke-width="5"/>
+    <rect x="525" y="265" width="300" height="150" rx="24" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="560" y="323" fill="#1d4ed8" font-size="27" font-weight="600">排序 Rank</text>
+    <text x="560" y="365" fill="#6f6a61" font-size="19">逐候选计算 s(u, i)</text>
+    <path d="M845 340 H940" stroke="#3b82f6" stroke-width="5" stroke-linecap="round"/>
+    <path d="M925 327 L945 340 L925 353" fill="none" stroke="#3b82f6" stroke-width="5"/>
+    <rect x="960" y="265" width="300" height="150" rx="24" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="995" y="323" fill="#1d4ed8" font-size="27" font-weight="600">重排 Rerank</text>
+    <text x="995" y="365" fill="#6f6a61" font-size="19">多样性、规则、业务目标</text>
+    <path d="M1280 340 H1400" stroke="#3b82f6" stroke-width="5" stroke-linecap="round"/>
+    <path d="M1385 327 L1405 340 L1385 353" fill="none" stroke="#3b82f6" stroke-width="5"/>
+    <rect x="1420" y="295" width="105" height="90" rx="18" fill="#dbeafe"/>
+    <text x="1445" y="350" fill="#1d4ed8" font-size="24" font-weight="700">Top-K</text>
+
+    <line x1="80" y1="485" x2="1520" y2="485" stroke="#c9c0b3" stroke-width="2" stroke-dasharray="10 10"/>
+
+    <text x="90" y="560" fill="#171612" font-size="30" font-weight="600">生成式管线 · History → Tokens → Decode</text>
+    <rect x="90" y="610" width="300" height="150" rx="24" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="125" y="668" fill="#1d4ed8" font-size="27" font-weight="600">用户历史 History</text>
+    <text x="125" y="710" fill="#6f6a61" font-size="19">行为、上下文、请求</text>
+    <path d="M410 685 H505" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round"/>
+    <path d="M490 672 L510 685 L490 698" fill="none" stroke="#8b5cf6" stroke-width="5"/>
+    <rect x="525" y="610" width="300" height="150" rx="24" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="560" y="668" fill="#6d28d9" font-size="27" font-weight="600">表示 / Tokenizer</text>
+    <text x="560" y="710" fill="#6f6a61" font-size="19">Atomic · Text · Semantic</text>
+    <path d="M845 685 H940" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+    <path d="M925 672 L945 685 L925 698" fill="none" stroke="#f59e0b" stroke-width="5"/>
+    <rect x="960" y="610" width="300" height="150" rx="24" fill="#fff7ed" stroke="#f59e0b" stroke-width="2"/>
+    <text x="995" y="668" fill="#92400e" font-size="27" font-weight="600">自回归解码 Decoder</text>
+    <text x="995" y="710" fill="#6f6a61" font-size="19">y₁ → y₂ → … → yₜ</text>
+    <path d="M1280 685 H1400" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
+    <path d="M1385 672 L1405 685 L1385 698" fill="none" stroke="#10b981" stroke-width="5"/>
+    <rect x="1420" y="640" width="105" height="90" rx="18" fill="#dcfce7"/>
+    <text x="1438" y="681" fill="#166534" font-size="19" font-weight="700">Slate</text>
+    <text x="1438" y="708" fill="#166534" font-size="19" font-weight="700">Session</text>
+
+    <text x="90" y="825" fill="#3b82f6" font-size="20" font-weight="600">传统管线：模块化、可控、候选依赖</text>
+    <text x="635" y="825" fill="#f59e0b" font-size="20" font-weight="600">生成式管线：序列依赖、统一目标、解码约束</text>
+  </g>
+</svg>
