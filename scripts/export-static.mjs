@@ -18,6 +18,8 @@ const posts = JSON.parse(
 const authoredPosts = JSON.parse(
   await readFile(path.join(root, "content", "authored-posts.json"), "utf8"),
 );
+const allPosts = [...authoredPosts, ...posts];
+const postsBySlug = new Map(allPosts.map((post) => [post.slug, post]));
 
 const routes = [
   "/",
@@ -26,7 +28,7 @@ const routes = [
   "/xiaohongshu",
   "/series/generative-recommendation",
   "/series/generative-recommendation/en",
-  ...[...authoredPosts, ...posts].map((post) => `/blog/${post.slug}`),
+  ...allPosts.map((post) => `/blog/${post.slug}`),
 ];
 
 function routeDestination(route) {
@@ -65,6 +67,122 @@ function cleanHtml(html) {
     );
 }
 
+function escapeXml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
+
+function routeUrl(siteUrl, route) {
+  return new URL(route === "/" ? "/" : route, `${siteUrl}/`).toString();
+}
+
+function postLanguageAlternates(siteUrl, post) {
+  const alternate = post.alternateSlug
+    ? postsBySlug.get(post.alternateSlug)
+    : undefined;
+  const links = [
+    {
+      language: post.language,
+      href: routeUrl(siteUrl, `/blog/${post.slug}`),
+    },
+  ];
+
+  if (alternate) {
+    links.push({
+      language: alternate.language,
+      href: routeUrl(siteUrl, `/blog/${alternate.slug}`),
+    });
+  }
+
+  const english =
+    post.language === "en"
+      ? post
+      : alternate?.language === "en"
+        ? alternate
+        : post;
+  links.push({
+    language: "x-default",
+    href: routeUrl(siteUrl, `/blog/${english.slug}`),
+  });
+  return links;
+}
+
+function sitemapAlternates(siteUrl, route) {
+  if (route === "/series/generative-recommendation") {
+    return [
+      {
+        language: "zh-CN",
+        href: routeUrl(siteUrl, "/series/generative-recommendation"),
+      },
+      {
+        language: "en",
+        href: routeUrl(siteUrl, "/series/generative-recommendation/en"),
+      },
+      {
+        language: "x-default",
+        href: routeUrl(siteUrl, "/series/generative-recommendation/en"),
+      },
+    ];
+  }
+
+  if (route === "/series/generative-recommendation/en") {
+    return [
+      {
+        language: "en",
+        href: routeUrl(siteUrl, "/series/generative-recommendation/en"),
+      },
+      {
+        language: "zh-CN",
+        href: routeUrl(siteUrl, "/series/generative-recommendation"),
+      },
+      {
+        language: "x-default",
+        href: routeUrl(siteUrl, "/series/generative-recommendation/en"),
+      },
+    ];
+  }
+
+  if (route.startsWith("/blog/")) {
+    const post = postsBySlug.get(route.slice("/blog/".length));
+    return post ? postLanguageAlternates(siteUrl, post) : [];
+  }
+
+  return [];
+}
+
+function sitemapRouteMeta(route, latestModified, latestSeriesModified) {
+  if (route === "/") {
+    return { lastmod: latestModified, changefreq: "weekly", priority: "1.0" };
+  }
+  if (route === "/blog") {
+    return { lastmod: latestModified, changefreq: "daily", priority: "0.9" };
+  }
+  if (route.startsWith("/series/generative-recommendation")) {
+    return {
+      lastmod: latestSeriesModified,
+      changefreq: "weekly",
+      priority: "0.9",
+    };
+  }
+  if (route.startsWith("/blog/")) {
+    const post = postsBySlug.get(route.slice("/blog/".length));
+    return {
+      lastmod: post?.updated || post?.date,
+      changefreq: "monthly",
+      priority: "0.7",
+    };
+  }
+  return { changefreq: "monthly", priority: "0.6" };
+}
+
+function formatRssDate(date) {
+  return new Date(`${date}T00:00:00Z`).toUTCString();
+}
+
 async function renderRoute(route) {
   const response = await fetch(`${origin}${route}`);
   if (!response.ok) {
@@ -83,14 +201,80 @@ async function renderInBatches(batchSize = 8) {
 
 async function writeMetadata() {
   const siteUrl = "https://chenhuiyu.github.io";
+  const latestModified = allPosts
+    .map((post) => post.updated || post.date)
+    .sort()
+    .at(-1);
+  const latestSeriesModified = allPosts
+    .filter((post) => post.series === "generative-recommendation")
+    .map((post) => post.updated || post.date)
+    .sort()
+    .at(-1);
   const sitemap = [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...routes.map(
-      (route) =>
-        `  <url><loc>${siteUrl}${route === "/" ? "/" : `${route}/`}</loc></url>`,
-    ),
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    ...routes.map((route) => {
+      const meta = sitemapRouteMeta(
+        route,
+        latestModified,
+        latestSeriesModified,
+      );
+      const alternateLinks = sitemapAlternates(siteUrl, route)
+        .map(
+          ({ language, href }) =>
+            `    <xhtml:link rel="alternate" hreflang="${escapeXml(
+              language,
+            )}" href="${escapeXml(href)}" />`,
+        )
+        .join("\n");
+      return [
+        "  <url>",
+        `    <loc>${escapeXml(routeUrl(siteUrl, route))}</loc>`,
+        meta.lastmod ? `    <lastmod>${escapeXml(meta.lastmod)}</lastmod>` : "",
+        `    <changefreq>${meta.changefreq}</changefreq>`,
+        `    <priority>${meta.priority}</priority>`,
+        alternateLinks,
+        "  </url>",
+      ]
+        .filter(Boolean)
+        .join("\n");
+    }),
     "</urlset>",
+    "",
+  ].join("\n");
+  const feedPosts = [...allPosts]
+    .sort(
+      (a, b) =>
+        b.date.localeCompare(a.date) ||
+        b.language.localeCompare(a.language),
+    )
+    .slice(0, 30);
+  const feed = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">',
+    "  <channel>",
+    "    <title>Huiyu Chen — Writing</title>",
+    `    <link>${siteUrl}/blog</link>`,
+    "    <description>Notes on models, systems, and being human — in English and Chinese.</description>",
+    `    <atom:link href="${siteUrl}/feed.xml" rel="self" type="application/rss+xml" />`,
+    "    <language>en-SG</language>",
+    `    <lastBuildDate>${formatRssDate(latestModified)}</lastBuildDate>`,
+    ...feedPosts.flatMap((post) => {
+      const url = routeUrl(siteUrl, `/blog/${post.slug}`);
+      return [
+        "    <item>",
+        `      <title>${escapeXml(post.title)}</title>`,
+        `      <link>${escapeXml(url)}</link>`,
+        `      <guid isPermaLink="true">${escapeXml(url)}</guid>`,
+        `      <pubDate>${formatRssDate(post.date)}</pubDate>`,
+        `      <dc:language>${escapeXml(post.language)}</dc:language>`,
+        `      <category>${escapeXml(post.category)}</category>`,
+        `      <description>${escapeXml(post.excerpt)}</description>`,
+        "    </item>",
+      ];
+    }),
+    "  </channel>",
+    "</rss>",
     "",
   ].join("\n");
 
@@ -101,6 +285,7 @@ async function writeMetadata() {
       `User-agent: *\nAllow: /\nSitemap: ${siteUrl}/sitemap.xml\n`,
     ),
     writeFile(path.join(output, "sitemap.xml"), sitemap),
+    writeFile(path.join(output, "feed.xml"), feed),
     cp(path.join(output, "index.html"), path.join(output, "404.html")),
   ]);
 }
