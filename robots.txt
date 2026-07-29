@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://chenhuiyu.github.io/sitemap.xml
+Sitemap: https://chenhuiyu.github.io/legacy-sitemap.xml
