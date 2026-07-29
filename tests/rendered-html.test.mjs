@@ -50,6 +50,10 @@ test("renders the homepage series, automatic latest story, and site counter", as
     html,
     /href="\/blog\/generative-recommendation-preface-zh"/,
   );
+  assert.match(
+    html,
+    /href="\/blog\/generative-recommendation-20-onereason-zh"/,
+  );
   assert.match(html, /id="vercount_value_site_pv"/);
   assert.match(html, /src="https:\/\/events\.vercount\.one\/js"/);
   assert.match(

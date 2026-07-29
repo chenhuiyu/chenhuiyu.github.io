@@ -28,7 +28,21 @@ export type Post = {
 export const posts = [...(authoredPosts as Post[]), ...(rawPosts as Post[])].sort(
   (a, b) => {
     const dateOrder = b.date.localeCompare(a.date);
-    return dateOrder || b.language.localeCompare(a.language);
+    if (dateOrder) return dateOrder;
+
+    const updatedOrder = b.updated.localeCompare(a.updated);
+    if (updatedOrder) return updatedOrder;
+
+    if (a.series && a.series === b.series) {
+      const seriesOrder =
+        (b.seriesOrder ?? Number.NEGATIVE_INFINITY) -
+        (a.seriesOrder ?? Number.NEGATIVE_INFINITY);
+      if (seriesOrder) return seriesOrder;
+    }
+
+    return (
+      b.language.localeCompare(a.language) || b.slug.localeCompare(a.slug)
+    );
   },
 );
 
