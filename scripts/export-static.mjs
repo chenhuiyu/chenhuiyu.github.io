@@ -10,6 +10,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "static-export");
 const port = Number(process.env.STATIC_EXPORT_PORT ?? 4179);
 const origin = `http://127.0.0.1:${port}`;
+const siteUrl = "https://chenhuiyu.github.io";
 const hostedSlides =
   "https://huiyu-chen-portfolio.yvettechen.chatgpt.site/talks/llm-powered-chatbot-assistants-apac-dis-2026.pdf";
 const posts = JSON.parse(
@@ -20,6 +21,9 @@ const authoredPosts = JSON.parse(
 );
 const allPosts = [...authoredPosts, ...posts];
 const postsBySlug = new Map(allPosts.map((post) => [post.slug, post]));
+const legacyPosts = allPosts.filter(
+  (post) => typeof post.oldPath === "string" && post.oldPath.trim(),
+);
 
 const routes = [
   "/",
@@ -34,6 +38,35 @@ const routes = [
 function routeDestination(route) {
   if (route === "/") return path.join(output, "index.html");
   return path.join(output, route.slice(1), "index.html");
+}
+
+function legacyRouteDestination(route) {
+  const pathname = decodeURIComponent(
+    new URL(route, "https://legacy.example").pathname,
+  );
+  const relativePath = pathname.replace(/^\/+/, "").replace(/\/+$/, "");
+  const destination = path.resolve(output, relativePath, "index.html");
+  const outputPrefix = `${path.resolve(output)}${path.sep}`;
+
+  if (!relativePath || !destination.startsWith(outputPrefix)) {
+    throw new Error(`Unsafe legacy path: ${route}`);
+  }
+  return destination;
+}
+
+function validateLegacyMappings() {
+  const seen = new Set();
+
+  for (const post of legacyPosts) {
+    if (!post.oldPath.startsWith("/")) {
+      throw new Error(`Legacy path must start with "/": ${post.oldPath}`);
+    }
+    if (seen.has(post.oldPath)) {
+      throw new Error(`Duplicate legacy path: ${post.oldPath}`);
+    }
+    seen.add(post.oldPath);
+    legacyRouteDestination(post.oldPath);
+  }
 }
 
 async function waitForServer() {
@@ -199,8 +232,52 @@ async function renderInBatches(batchSize = 8) {
   }
 }
 
+async function writeLegacyRedirect(post) {
+  const destination = legacyRouteDestination(post.oldPath);
+  const targetUrl = routeUrl(siteUrl, `/blog/${post.slug}`);
+  const language = post.language === "zh-CN" ? "zh-CN" : "en";
+  const title =
+    language === "zh-CN"
+      ? `${post.title}｜文章已迁移`
+      : `${post.title} | Article moved`;
+  const message =
+    language === "zh-CN"
+      ? "文章已迁移到新地址，正在跳转。"
+      : "This article has moved. Redirecting to its new address.";
+  const linkLabel = language === "zh-CN" ? "打开新地址" : "Open the new address";
+  const html = [
+    "<!doctype html>",
+    `<html lang="${language}">`,
+    "<head>",
+    '  <meta charset="utf-8">',
+    `  <meta http-equiv="refresh" content="0; url=${escapeXml(targetUrl)}">`,
+    `  <link rel="canonical" href="${escapeXml(targetUrl)}">`,
+    `  <title>${escapeXml(title)}</title>`,
+    "</head>",
+    "<body>",
+    "  <main>",
+    `    <h1>${escapeXml(post.title)}</h1>`,
+    `    <p>${escapeXml(message)}</p>`,
+    `    <p><a href="${escapeXml(targetUrl)}">${escapeXml(linkLabel)}</a></p>`,
+    "  </main>",
+    "</body>",
+    "</html>",
+    "",
+  ].join("\n");
+
+  await mkdir(path.dirname(destination), { recursive: true });
+  await writeFile(destination, html);
+}
+
+async function writeLegacyRedirects(batchSize = 16) {
+  for (let index = 0; index < legacyPosts.length; index += batchSize) {
+    await Promise.all(
+      legacyPosts.slice(index, index + batchSize).map(writeLegacyRedirect),
+    );
+  }
+}
+
 async function writeMetadata() {
-  const siteUrl = "https://chenhuiyu.github.io";
   const latestModified = allPosts
     .map((post) => post.updated || post.date)
     .sort()
@@ -239,6 +316,19 @@ async function writeMetadata() {
         .filter(Boolean)
         .join("\n");
     }),
+    "</urlset>",
+    "",
+  ].join("\n");
+  const legacySitemap = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...legacyPosts.map((post) =>
+      [
+        "  <url>",
+        `    <loc>${escapeXml(routeUrl(siteUrl, post.oldPath))}</loc>`,
+        "  </url>",
+      ].join("\n"),
+    ),
     "</urlset>",
     "",
   ].join("\n");
@@ -282,9 +372,16 @@ async function writeMetadata() {
     writeFile(path.join(output, ".nojekyll"), ""),
     writeFile(
       path.join(output, "robots.txt"),
-      `User-agent: *\nAllow: /\nSitemap: ${siteUrl}/sitemap.xml\n`,
+      [
+        "User-agent: *",
+        "Allow: /",
+        `Sitemap: ${siteUrl}/sitemap.xml`,
+        `Sitemap: ${siteUrl}/legacy-sitemap.xml`,
+        "",
+      ].join("\n"),
     ),
     writeFile(path.join(output, "sitemap.xml"), sitemap),
+    writeFile(path.join(output, "legacy-sitemap.xml"), legacySitemap),
     writeFile(path.join(output, "feed.xml"), feed),
     cp(path.join(output, "index.html"), path.join(output, "404.html")),
   ]);
@@ -292,6 +389,7 @@ async function writeMetadata() {
 
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
+validateLegacyMappings();
 
 const server = spawn(path.join(root, "node_modules", ".bin", "vinext"), ["start"], {
   cwd: root,
@@ -316,6 +414,7 @@ try {
   await waitForServer();
   await cp(path.join(root, "dist", "client"), output, { recursive: true });
   await renderInBatches();
+  await writeLegacyRedirects();
   await writeMetadata();
   await Promise.all([
     rm(path.join(output, ".assetsignore"), { force: true }),
@@ -329,7 +428,9 @@ try {
       { force: true },
     ),
   ]);
-  console.log(`Exported ${routes.length} routes to ${output}`);
+  console.log(
+    `Exported ${routes.length} routes and ${legacyPosts.length} legacy redirects to ${output}`,
+  );
 } catch (error) {
   if (serverLog.trim()) console.error(serverLog.trim());
   throw error;
