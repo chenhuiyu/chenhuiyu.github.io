@@ -1,0 +1,146 @@
+{
+  "id": "generative-recommendation-2026",
+  "title": {
+    "zh-CN": "生成式推荐进入深水区：2026 前沿第二季",
+    "en": "Generative Recommendation in Deep Water: The 2026 Frontier"
+  },
+  "subtitle": {
+    "zh-CN": "从可学习 Semantic ID、级联推理与连续 Token，到分页推荐、广告部署和泛化审计",
+    "en": "From learnable Semantic IDs, cascaded reasoning, and continuous tokens to page generation, advertising deployment, and generalization audits"
+  },
+  "question": {
+    "zh-CN": "当模型已经会生成商品之后，ID 怎样学习、偏差怎样传播、结果怎样上线、能力又该怎样被证明？",
+    "en": "Once a model can generate items, how should IDs learn, how does bias propagate, how can the system ship, and how do we prove the capability is real?"
+  },
+  "arcs": [
+    {
+      "id": "representation",
+      "range": "01–02",
+      "label": {
+        "zh-CN": "表示与推理",
+        "en": "Representation and reasoning"
+      },
+      "description": {
+        "zh-CN": "先让推荐损失改写商品语言，再处理自回归前缀带来的级联偏差。",
+        "en": "Let recommendation loss reshape the item language, then confront cascading bias in autoregressive prefixes."
+      }
+    },
+    {
+      "id": "continuous",
+      "range": "03–04",
+      "label": {
+        "zh-CN": "连续生成与商品创造",
+        "en": "Continuous generation and item creation"
+      },
+      "description": {
+        "zh-CN": "质疑离散 SID 的必然性，并把推荐输出从已有商品扩展到新内容。",
+        "en": "Question whether discrete SIDs are necessary and extend outputs from catalog items to newly generated content."
+      }
+    },
+    {
+      "id": "systems",
+      "range": "05–07",
+      "label": {
+        "zh-CN": "工业系统与能力审计",
+        "en": "Industrial systems and capability audits"
+      },
+      "description": {
+        "zh-CN": "从整页生成、广告主链路，到拆开“记忆”和“泛化”的评估幻觉。",
+        "en": "Move from page generation and advertising pipelines to separating memorization from genuine generalization."
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "order": 1,
+      "paper": "DIGER",
+      "arc": "representation",
+      "title": {
+        "zh-CN": "Tokenizer 终于能听见推荐损失",
+        "en": "The Tokenizer Can Finally Hear Recommendation Loss"
+      },
+      "role": {
+        "zh-CN": "让 Semantic ID 可微并接受下游梯度，同时用探索与不确定性衰减避免 codebook 塌缩。",
+        "en": "Make Semantic IDs differentiable and trainable by downstream gradients while using exploration and uncertainty decay to prevent codebook collapse."
+      }
+    },
+    {
+      "order": 2,
+      "paper": "CARE",
+      "arc": "representation",
+      "title": {
+        "zh-CN": "生成越深，偏差可能越大",
+        "en": "The Deeper the Generation, the Larger the Bias Can Grow"
+      },
+      "role": {
+        "zh-CN": "把逐 token 解码解释为级联排序，用渐进历史和查询锚定的并行推理抑制前缀错误。",
+        "en": "Interpret token decoding as cascaded ranking and use progressive history plus query-anchored parallel reasoning to limit prefix errors."
+      }
+    },
+    {
+      "order": 3,
+      "paper": "ContRec",
+      "arc": "continuous",
+      "title": {
+        "zh-CN": "Semantic ID 不是唯一答案",
+        "en": "Semantic IDs Are Not the Only Answer"
+      },
+      "role": {
+        "zh-CN": "取消离散量化，用连续 Token 与扩散模型生成偏好向量，再映射回真实商品。",
+        "en": "Remove discrete quantization, generate preference vectors with continuous tokens and diffusion, then map them back to real items."
+      }
+    },
+    {
+      "order": 4,
+      "paper": "DualFashion",
+      "arc": "continuous",
+      "title": {
+        "zh-CN": "推荐系统开始生成商品",
+        "en": "The Recommender Starts Generating the Product"
+      },
+      "role": {
+        "zh-CN": "用双扩散同时生成服装图像与结构化描述，把推荐从选择库存推进到个性化设计。",
+        "en": "Use dual diffusion to generate both fashion images and structured descriptions, moving recommendation from catalog selection toward personalized design."
+      }
+    },
+    {
+      "order": 5,
+      "paper": "GenRec",
+      "arc": "systems",
+      "title": {
+        "zh-CN": "下一件商品不够，模型要生成整页",
+        "en": "One Next Item Is Not Enough: Generate the Whole Page"
+      },
+      "role": {
+        "zh-CN": "以页面为训练单位，压缩长历史，并用页面级强化学习对齐复杂偏好。",
+        "en": "Train at page level, compress long histories, and align complex preferences with page-level reinforcement learning."
+      }
+    },
+    {
+      "order": 6,
+      "paper": "GR4AD",
+      "arc": "systems",
+      "title": {
+        "zh-CN": "生成式推荐进入广告主链路",
+        "en": "Generative Recommendation Enters the Advertising Mainline"
+      },
+      "role": {
+        "zh-CN": "把商业价值写进广告 Semantic ID、列表奖励与低延迟解码，展示四亿用户规模的部署证据。",
+        "en": "Encode business value into advertising Semantic IDs, list rewards, and low-latency decoding, with deployment evidence at hundreds of millions of users."
+      }
+    },
+    {
+      "order": 7,
+      "paper": "How Well Does Generative Recommendation Generalize?",
+      "arc": "systems",
+      "title": {
+        "zh-CN": "Semantic ID 真的更会泛化吗？",
+        "en": "Do Semantic IDs Really Generalize Better?"
+      },
+      "role": {
+        "zh-CN": "把测试样本拆成记忆型与组合泛化型，揭开总体 NDCG 背后的能力错觉。",
+        "en": "Split test cases into memorization and compositional-generalization regimes to expose what aggregate NDCG can hide."
+      }
+    }
+  ]
+}
