@@ -41,19 +41,27 @@ test("renders development preview metadata", async () => {
   assert.match(await response.text(), developmentPreviewMeta);
 });
 
-test("renders the homepage series and latest story without a public traffic dashboard", async () => {
+test("renders every homepage topic and the latest story without a public traffic dashboard", async () => {
   const response = await render("/");
   const html = await response.text();
 
   assert.equal(response.status, 200);
-  assert.match(html, /class="home-series-section"/);
+  assert.match(html, /class="home-topics-section"/);
   assert.match(
     html,
-    /href="\/blog\/generative-recommendation-preface-zh"/,
+    /href="\/series\/generative-recommendation"/,
   );
   assert.match(
     html,
-    /href="\/blog\/generative-recommendation-20-onereason-zh"/,
+    /href="\/series\/generative-recommendation-2026"/,
+  );
+  assert.match(
+    html,
+    /href="\/blog\/generative-recommendation-hands-on-zh"/,
+  );
+  assert.match(
+    html,
+    /href="\/blog\/generative-recommendation-2026-07-generalization-zh"/,
   );
   assert.match(html, /Generative recommendation/);
   assert.doesNotMatch(html, /class="visitor-pulse-section"/);
@@ -67,6 +75,71 @@ test("renders the homepage series and latest story without a public traffic dash
     html,
     /<link rel="canonical" href="https:\/\/chenhuiyu\.github\.io\/"/,
   );
+});
+
+test("renders the interactive hands-on lab in both blog editions", async () => {
+  for (const slug of [
+    "generative-recommendation-hands-on-zh",
+    "generative-recommendation-hands-on-en",
+  ]) {
+    const response = await render(`/blog/${slug}`);
+    const html = await response.text();
+
+    assert.equal(response.status, 200);
+    assert.match(html, /class="generative-lab"/);
+    assert.match(html, /id="semantic-id"/);
+    assert.match(html, /id="constrained-decoding"/);
+    assert.match(html, /id="browser-python"/);
+    assert.match(html, /Run Python|运行 Python/);
+    assert.match(
+      html,
+      /href="\/notebooks\/generative-recommendation-hands-on\.ipynb"/,
+    );
+    assert.match(
+      html,
+      /colab\.research\.google\.com\/github\/chenhuiyu\/chenhuiyu\.github\.io\/blob\/source/,
+    );
+  }
+});
+
+test("ships an executed, series-linked companion notebook", async () => {
+  const notebook = JSON.parse(
+    await readFile(
+      new URL(
+        "../public/notebooks/generative-recommendation-hands-on.ipynb",
+        import.meta.url,
+      ),
+      "utf8",
+    ),
+  );
+  const codeCells = notebook.cells.filter(
+    (cell) => cell.cell_type === "code",
+  );
+  const errorOutputs = codeCells.flatMap((cell) =>
+    cell.outputs.filter((output) => output.output_type === "error"),
+  );
+  const markdown = notebook.cells
+    .filter((cell) => cell.cell_type === "markdown")
+    .flatMap((cell) => cell.source)
+    .join("");
+
+  assert.equal(notebook.nbformat, 4);
+  assert.equal(codeCells.length, 11);
+  assert.ok(codeCells.every((cell) => cell.execution_count !== null));
+  assert.equal(errorOutputs.length, 0);
+  assert.match(markdown, /generative-recommendation-01-bpr-zh/);
+  assert.match(markdown, /generative-recommendation-11-tiger-zh/);
+  assert.match(markdown, /generative-recommendation-17-onerec-zh/);
+});
+
+test("renders the 2026 frontier series", async () => {
+  const response = await render("/series/generative-recommendation-2026");
+  const html = await response.text();
+
+  assert.equal(response.status, 200);
+  assert.match(html, /生成式推荐进入深水区/);
+  assert.match(html, /DIGER/);
+  assert.match(html, /GR4AD/);
 });
 
 test("keeps the Google Search Console verification file at the site root", async () => {
