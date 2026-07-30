@@ -32,6 +32,8 @@ const routes = [
   "/xiaohongshu",
   "/series/generative-recommendation",
   "/series/generative-recommendation/en",
+  "/series/generative-recommendation-2026",
+  "/series/generative-recommendation-2026/en",
   ...allPosts.map((post) => `/blog/${post.slug}`),
 ];
 
@@ -145,36 +147,23 @@ function postLanguageAlternates(siteUrl, post) {
 }
 
 function sitemapAlternates(siteUrl, route) {
-  if (route === "/series/generative-recommendation") {
-    return [
-      {
-        language: "zh-CN",
-        href: routeUrl(siteUrl, "/series/generative-recommendation"),
-      },
-      {
-        language: "en",
-        href: routeUrl(siteUrl, "/series/generative-recommendation/en"),
-      },
-      {
-        language: "x-default",
-        href: routeUrl(siteUrl, "/series/generative-recommendation/en"),
-      },
-    ];
-  }
-
-  if (route === "/series/generative-recommendation/en") {
+  const seriesRoot = route.endsWith("/en") ? route.slice(0, -3) : route;
+  if (
+    seriesRoot === "/series/generative-recommendation" ||
+    seriesRoot === "/series/generative-recommendation-2026"
+  ) {
     return [
       {
         language: "en",
-        href: routeUrl(siteUrl, "/series/generative-recommendation/en"),
+        href: routeUrl(siteUrl, `${seriesRoot}/en`),
       },
       {
         language: "zh-CN",
-        href: routeUrl(siteUrl, "/series/generative-recommendation"),
+        href: routeUrl(siteUrl, seriesRoot),
       },
       {
         language: "x-default",
-        href: routeUrl(siteUrl, "/series/generative-recommendation/en"),
+        href: routeUrl(siteUrl, `${seriesRoot}/en`),
       },
     ];
   }
@@ -283,7 +272,7 @@ async function writeMetadata() {
     .sort()
     .at(-1);
   const latestSeriesModified = allPosts
-    .filter((post) => post.series === "generative-recommendation")
+    .filter((post) => post.series?.startsWith("generative-recommendation"))
     .map((post) => post.updated || post.date)
     .sort()
     .at(-1);
