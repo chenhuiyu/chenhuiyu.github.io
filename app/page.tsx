@@ -8,6 +8,7 @@ import {
   SITE_SOCIAL_IMAGE,
   SITE_TITLE,
 } from "@/lib/site";
+import { homeTopics } from "@/lib/topics";
 
 export const metadata: Metadata = {
   title: SITE_TITLE,
@@ -56,16 +57,6 @@ const latestStories = storyKeys
   )
   .filter((post) => post !== undefined)
   .slice(0, 3);
-
-const seriesPrologue = posts.find(
-  (post) =>
-    post.series === "generative-recommendation" &&
-    post.seriesOrder === 0 &&
-    post.language === "zh-CN",
-);
-const seriesEditions = posts.filter(
-  (post) => post.series === "generative-recommendation",
-).length;
 
 export default function Home() {
   return (
@@ -313,61 +304,54 @@ export default function Home() {
         </article>
       </section>
 
-      <section className="home-series-section" id="generative-recommendation">
-        <div className="home-series-copy">
-          <p className="section-kicker">Featured series · 重点专题</p>
-          <h2>
-            二十篇论文，看懂生成式推荐的
-            <span>前世今生。</span>
-          </h2>
-          <p className="home-series-lede">
-            从 BPR 的打分器，到 OneReason
-            的推荐推理。每篇论文都回答上一篇留下的问题，把排序、序列建模、语言任务、Semantic
-            ID 与推理串成一条能跟下来的故事线。
-          </p>
-          <div className="home-series-actions">
-            <a
-              className="text-link text-link-primary"
-              href="/series/generative-recommendation"
-            >
-              打开完整路线图 <span aria-hidden="true">→</span>
-            </a>
-            {seriesPrologue ? (
-              <a className="text-link" href={`/blog/${seriesPrologue.slug}`}>
-                从序章开始 <span aria-hidden="true">↗︎</span>
-              </a>
-            ) : null}
-          </div>
-          <div className="home-series-status">
-            <p>
-              <strong>00</strong>
-              序章已发布
-            </p>
-            <p>
-              <strong>20</strong>
-              篇论文主线
-            </p>
-            <p>
-              <strong>{seriesEditions}</strong>
-              个中英版本
+      <section className="home-topics-section" id="topics">
+        <div className="section-intro topics-intro">
+          <p className="section-kicker">Topics · 专题入口</p>
+          <div>
+            <h2>Follow a question, not just a feed.</h2>
+            <p className="section-summary">
+              长专题、前沿增刊和可以直接动手的实验，都从这里进入。
+              每个专题有自己的路线，不会被最新文章流冲走。
             </p>
           </div>
         </div>
 
-        <a
-          className="home-series-visual"
-          href="/series/generative-recommendation"
-          aria-label="查看二十篇生成式推荐论文路线图"
-        >
-          <img
-            alt="从排序、序列推荐到生成式推荐与推理的二十篇论文路线图"
-            src="/blog/generative-recommendation/preface/series-roadmap.svg"
-          />
-          <span>
-            一张图看懂主线
-            <small aria-hidden="true">↗︎</small>
-          </span>
-        </a>
+        <div className="topic-card-grid">
+          {homeTopics.map((topic, index) => (
+            <a
+              className={`topic-card topic-card-${topic.theme}`}
+              href={topic.href}
+              key={topic.id}
+            >
+              <div className="topic-card-topline">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <p>{topic.eyebrow}</p>
+              </div>
+
+              <div className="topic-path" aria-hidden="true">
+                {topic.labels.map((label, labelIndex) => (
+                  <div key={label}>
+                    <span>{label}</span>
+                    {labelIndex < topic.labels.length - 1 ? <i>→</i> : null}
+                  </div>
+                ))}
+              </div>
+
+              <h3>{topic.title}</h3>
+              <p className="topic-card-copy">{topic.description}</p>
+
+              <div className="topic-card-footer">
+                <span>
+                  <strong>{topic.storyCount}</strong> {topic.unit}
+                </span>
+                <span>
+                  <strong>{topic.editionCount}</strong> 中英版本
+                </span>
+                <small aria-hidden="true">进入专题 ↗︎</small>
+              </div>
+            </a>
+          ))}
+        </div>
       </section>
 
       <section className="writing-section" id="writing">

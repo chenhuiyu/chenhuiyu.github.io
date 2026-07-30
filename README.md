@@ -64,6 +64,27 @@ story pairs, preferring the Chinese edition for each pair, so a newly published
 bilingual post appears automatically. Drafts never enter the generated index
 and therefore never appear on the homepage.
 
+Homepage topic cards are defined in `lib/topics.ts`. Add one topic definition
+there when a new editorial series, season, or interactive lab should receive a
+permanent homepage entrance. Counts are derived from the published post index.
+
+The generative-recommendation hands-on article is a special bilingual post pair
+that mounts `app/components/GenerativeRecommendationLab.tsx`. Its editable
+Python runs in a Web Worker using the self-hosted Pyodide core under
+`public/vendor/pyodide/`. After changing the pinned Pyodide version, run
+`npm run vendor:pyodide`. The runtime files are generated during builds and are
+not committed to the source branch.
+
+The detailed Jupyter / Colab companion lives at
+`public/notebooks/generative-recommendation-hands-on.ipynb`. It is an executed
+reader-facing artifact generated from
+`scripts/build-generative-recommendation-notebook.py`; rebuild and validate it
+with:
+
+```bash
+npm run notebook:build
+```
+
 Google Search performance belongs in Search Console: clicks, impressions, CTR,
 and average position are private reporting metrics and are intentionally not
 rendered as public homepage counters. Individual article pages retain their
@@ -125,6 +146,9 @@ scripts/build-posts.mjs Markdown compiler and bilingual validation
 scripts/export-static.mjs static Pages, sitemap, and RSS exporter
 scripts/new-post.mjs    bilingual draft generator
 scripts/publish-github-pages.sh safe master publisher
+scripts/vendor-pyodide.mjs refresh the browser Python runtime
+scripts/build-generative-recommendation-notebook.py build and execute the full notebook
+lib/topics.ts           permanent homepage topic cards
 ```
 
 Generated files such as `static-export/`, `dist/`, and `node_modules/` are

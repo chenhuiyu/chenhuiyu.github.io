@@ -53,6 +53,12 @@ const pageCopy = {
     roadmapTitle: "每一篇都由上一篇未解决的问题推出来。",
     upcoming: "写作中",
     read: "阅读本篇",
+    labKicker: "Companion lab · 动手实验",
+    labTitle: "读完论文，再亲手生成一次 Semantic ID。",
+    labText:
+      "从 BPR 商品向量、残差量化到 beam search 与 Trie 约束；既能在页面里即时改 Python，也能进入完整 Jupyter / Colab Notebook。",
+    labAction: "打开交互教程与 Notebook",
+    labSteps: ["BPR", "Semantic ID", "Decode", "Evaluate"],
     methodKicker: "统一阅读方法",
     methodTitle: "零基础能进入，工程师能复现，读论文的人能质疑。",
     layers: [
@@ -101,6 +107,12 @@ const pageCopy = {
     roadmapTitle: "Every paper is motivated by what the previous one could not solve.",
     upcoming: "In progress",
     read: "Read this episode",
+    labKicker: "Companion lab · hands-on",
+    labTitle: "After the papers, generate a Semantic ID yourself.",
+    labText:
+      "Move from BPR item vectors and residual quantization to beam search and Trie constraints. Edit Python on the page or run the complete Jupyter / Colab notebook.",
+    labAction: "Open the tutorial and notebook",
+    labSteps: ["BPR", "Semantic ID", "Decode", "Evaluate"],
     methodKicker: "One reading protocol",
     methodTitle:
       "Approachable to beginners, reproducible for engineers, and debatable for paper readers.",
@@ -144,6 +156,11 @@ export function SeriesPage({ locale }: { locale: Locale }) {
       .map((post) => [post.seriesOrder as number, post]),
   );
   const prologue = publishedByOrder.get(0);
+  const labPost = posts.find(
+    (post) =>
+      post.pairKey === "generative-recommendation-hands-on" &&
+      post.language === locale,
+  );
   const seriesPath =
     locale === "zh-CN"
       ? "/series/generative-recommendation"
@@ -331,6 +348,27 @@ export function SeriesPage({ locale }: { locale: Locale }) {
           ))}
         </div>
       </section>
+
+      {labPost ? (
+        <a className="series-lab-callout" href={`/blog/${labPost.slug}`}>
+          <div className="series-lab-copy">
+            <p className="section-kicker">{copy.labKicker}</p>
+            <h2>{copy.labTitle}</h2>
+            <span>{copy.labText}</span>
+          </div>
+          <div className="series-lab-path" aria-hidden="true">
+            {copy.labSteps.map((step, index) => (
+              <div key={step}>
+                <span>{step}</span>
+                {index < copy.labSteps.length - 1 ? <i>→</i> : null}
+              </div>
+            ))}
+          </div>
+          <strong>
+            {copy.labAction} <span aria-hidden="true">↗︎</span>
+          </strong>
+        </a>
+      ) : null}
 
       <section className="series-method" aria-labelledby="series-method-title">
         <div className="series-section-heading">
