@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-G-UKqax9.css" data-rsc-css-href="/assets/index-G-UKqax9.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-CyVRiEFh.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-an4w6qT7.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-DjPHiq1u.js" crossorigin=""/><title>The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion — Huiyu Chen</title><meta name="description" content="DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design."/><meta name="application-name" content="Huiyu Chen"/><meta name="keywords" content="Generative Recommendation,Recommender Systems,DualFashion,Multimodal"/><meta name="author" content="Huiyu (Yvette) Chen"/><link rel="author" href="https://chenhuiyu.github.io"/><meta name="creator" content="Huiyu (Yvette) Chen"/><meta name="publisher" content="Huiyu Chen"/><meta name="robots" content="index, follow"/><meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/><meta property="og:title" content="The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion"/><meta property="og:description" content="DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design."/><meta property="og:url" content="https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en"/><meta property="og:type" content="article"/><meta property="og:locale" content="en_SG"/><meta property="article:published_time" content="2026-07-30"/><meta property="article:modified_time" content="2026-07-30"/><meta property="article:author" content="https://chenhuiyu.github.io"/><meta property="og:image" content="https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg"/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion"/><meta name="twitter:description" content="DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design."/><meta name="twitter:image" content="https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg"/><link rel="shortcut icon" href="https://chenhuiyu.github.io/favicon.svg"/><link rel="icon" href="https://chenhuiyu.github.io/favicon.svg"/><link rel="canonical" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en"/><link rel="alternate" hrefLang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en"/><link rel="alternate" hrefLang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-zh"/><link rel="alternate" hrefLang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en"/><link rel="alternate" type="application/rss+xml" href="https://chenhuiyu.github.io/feed.xml"/><script>self.__VINEXT_RSC_PARAMS__={"slug":"generative-recommendation-2026-04-dualfashion-en"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/blog/generative-recommendation-2026-04-dualfashion-en","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-an4w6qT7.js" />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0tvmz3h { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0tvmz3h { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_1diim1n { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_1diim1n { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_1vhuncr { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_1vhuncr { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://chenhuiyu.github.io/#person","name":"Huiyu Chen","alternateName":"Yvette Chen","url":"https://chenhuiyu.github.io","image":"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg","jobTitle":"Machine Learning Engineer","worksFor":{"@type":"Organization","name":"Meta"},"sameAs":["https://www.linkedin.com/in/yvette-huiyu-chen"]},{"@type":"WebSite","@id":"https://chenhuiyu.github.io/#website","url":"https://chenhuiyu.github.io/","name":"Huiyu Chen","description":"Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video.","inLanguage":["en","zh-CN"],"author":{"@id":"https://chenhuiyu.github.io/#person"}}]}</script><main class="site-shell article-shell" id="top"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en#article","url":"https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en","mainEntityOfPage":{"@type":"WebPage","@id":"https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en"},"headline":"The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion","description":"DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design.","datePublished":"2026-07-30","dateModified":"2026-07-30","inLanguage":"en","articleSection":"GenRec Series","keywords":"Generative Recommendation, Recommender Systems, DualFashion, Multimodal","author":{"@id":"https://chenhuiyu.github.io/#person"},"publisher":{"@id":"https://chenhuiyu.github.io/#person"},"isPartOf":{"@id":"https://chenhuiyu.github.io/#website"}}</script><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><article class="article-layout"><header class="article-header"><a class="back-link" href="/blog">← All writing</a><div class="article-meta"><span>GenRec Series</span><time>2026-07-30</time><span>English</span><span class="view-counter view-counter-page" title="Article views"><span class="view-counter-value" id="vercount_value_page_pv">—</span><span>views</span></span></div><h1>The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion</h1><p class="article-deck">DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design.</p><a class="language-switch" href="/blog/generative-recommendation-2026-04-dualfashion-zh">阅读中文版 →</a></header><div class="article-body-grid"><aside class="article-toc" aria-label="Table of contents"><p>On this page</p><nav><a class="" href="#understand-the-paper-in-30-seconds">Understand the paper in 30 seconds</a><a class="" href="#a-missing-outfit-item-makes-the-task-concrete">A missing outfit item makes the task concrete</a><a class="" href="#how-the-two-diffusion-branches-cooperate">How the two diffusion branches cooperate</a><a class="" href="#why-structured-captions-matter">Why structured captions matter</a><a class="" href="#why-the-metrics-should-not-be-collapsed">Why the metrics should not be collapsed</a><a class="" href="#where-it-fails">Where it fails</a></nav></aside><div class="prose"><p><a href="/blog/generative-recommendation-2026-03-contrec-en">ContRec</a> still maps its generated vector back to an existing catalog. <a target="_blank" rel="noreferrer noopener" href="https://arxiv.org/abs/2605.17357">DualFashion</a> crosses that boundary:</p>
+<blockquote>
+<p>If the catalog does not contain what the user wants, can the recommender draw it?</p>
+</blockquote>
+<p>Recommendation now becomes part of product design. DualFashion generates a fashion image and a structured text description together. That forces us to distinguish three different claims: the output looks suitable, the description is coherent, and the product can actually be sold.</p>
+<h2 id="understand-the-paper-in-30-seconds">Understand the paper in 30 seconds</h2>
+<ol>
+<li><strong>The old problem</strong>: many generative fashion recommenders output only images, while visual histories also contain background, pose, and photography noise.</li>
+<li><strong>DualFashion&#39;s answer</strong>: one diffusion branch generates the garment image, another generates structured attributes, and the branches condition each other.</li>
+<li><strong>The hard boundary</strong>: visual quality and compatibility do not prove manufacturability, inventory, pricing, safety, or copyright clearance.</li>
+</ol>
+<p><img loading="lazy" decoding="async" src="/blog/generative-recommendation-2026/04-dualfashion/mechanism.svg" alt="DualFashion couples image and text diffusion"></p>
+<h2 id="a-missing-outfit-item-makes-the-task-concrete">A missing outfit item makes the task concrete</h2>
+<p>Suppose a user history contains:</p>
+<pre><code class="language-text">white tennis skirt → black climbing trousers → blue swimsuit
+</code></pre>
+<p>The system must complete an outfit around a light-gray sports jacket. A catalog recommender retrieves an existing pair of trousers. DualFashion may generate:</p>
+<ul>
+<li>an image of navy, straight-fit, quick-dry trousers;</li>
+<li>a structured caption such as <code>category=trousers, color=navy, fit=straight, fabric=quick-dry</code>.</li>
+</ul>
+<p>The text branch is not decoration. It turns the image into inspectable attributes and discourages the image model from optimizing only for fashion-photography aesthetics.</p>
+<h2 id="how-the-two-diffusion-branches-cooperate">How the two diffusion branches cooperate</h2>
+<p>Let user history be (h_u), image latent be (x_0), and text representation be (z_0). The branches denoise in parallel:</p>
+<p>[
+\hat\epsilon_x=f_\theta(x_t,t,h_u,z_t),
+\qquad
+\hat\epsilon_z=g_\phi(z_t,t,h_u,x_t).
+]</p>
+<p>A simplified objective is:</p>
+<p>[
+\mathcal L=
+\mathcal L_{\text{image}}
++\lambda\mathcal L_{\text{text}}
++\mu\mathcal L_{\text{align}}.
+]</p>
+<p>The image branch reads text state, and the text branch reads image state. Their alignment objective asks the generated picture and description to agree on category, color, style, and other attributes.</p>
+<h2 id="why-structured-captions-matter">Why structured captions matter</h2>
+<p>Free-form prose can sound convincing while remaining impossible to audit. Structured captions create finite fields that support:</p>
+<ul>
+<li>attribute coverage;</li>
+<li>image-text consistency;</li>
+<li>compatibility and personalization;</li>
+<li>diversity and duplication checks;</li>
+<li>evidence tracing back to user history.</li>
+</ul>
+<p>The paper studies tasks such as personalized fill-in-the-blank and generative outfit recommendation on fashion datasets including iFashion and Polyvore-U.</p>
+<p>This is closer to recommendation than a single CLIP score, but it still does not close the commercial loop. CLIP can say an item looks appropriate; a factory may still be unable to produce it.</p>
+<h2 id="why-the-metrics-should-not-be-collapsed">Why the metrics should not be collapsed</h2>
+<p>DualFashion combines recommendation and generation:</p>
+<ol>
+<li><strong>Recommendation quality</strong>: user fit and outfit compatibility.</li>
+<li><strong>Generation quality</strong>: image realism, diversity, and textual accuracy.</li>
+</ol>
+<p>Metrics such as IS, LPIPS, compatibility, personalization, CLIP alignment, and attribute entropy measure different things. One model may create more attractive images that fit the user less. Another may personalize strongly while copying training designs.</p>
+<p>A stronger evaluation would also check near-duplicates, intellectual-property risk, blind user preference between catalog and generated options, and whether a generated design can move into production.</p>
+<h2 id="where-it-fails">Where it fails</h2>
+<p>DualFashion leaves the hardest product constraints outside the model:</p>
+<ul>
+<li>manufacturability and fabric behavior;</li>
+<li>sizing, cost, and supply-chain feasibility;</li>
+<li>brand and design rights;</li>
+<li>whether the caption faithfully describes the image;</li>
+<li>whether users want to buy rather than merely look.</li>
+</ul>
+<p>Once a recommender generates the product, offline ranking accuracy is no longer the main metric. The system needs a chain from preference to design, review, production, and feedback.</p>
+<p>The next paper, <a href="/blog/generative-recommendation-2026-05-genrec-en">GenRec</a>, returns to large-scale online recommendation, but the output has also changed: the model generates a complete page rather than one next item.</p>
+<p><a href="/blog/generative-recommendation-2026-03-contrec-en">Previous: ContRec</a> · <a href="/series/generative-recommendation-2026/en">Back to the Season 2 roadmap</a></p>
+</div></div></article><section class="related-section"><p class="section-kicker">Keep reading · 继续阅读</p><div class="related-grid"><a href="/blog/generative-recommendation-2026-01-diger-en"><span>GenRec Series</span><h2>The Tokenizer Can Finally Hear Recommendation Loss | Generative Recommendation 2026·01: DIGER</h2><p>2026-07-30</p></a><a href="/blog/generative-recommendation-2026-02-care-en"><span>GenRec Series</span><h2>The Deeper the Generation, the Larger the Bias Can Grow | Generative Recommendation 2026·02: CARE</h2><p>2026-07-30</p></a><a href="/blog/generative-recommendation-2026-03-contrec-en"><span>GenRec Series</span><h2>Semantic IDs Are Not the Only Answer | Generative Recommendation 2026·03: ContRec</h2><p>2026-07-30</p></a></div></section><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script defer="" src="https://events.vercount.one/js"></script><script id="_R_">import("/assets/index-an4w6qT7.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n:HL[\"/assets/index-G-UKqax9.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/blog/generative-recommendation-2026-04-dualfashion-en\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/blog/generative-recommendation-2026-04-dualfashion-en\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-G-UKqax9.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-G-UKqax9.css\",\"data-rsc-css-href\":\"/assets/index-G-UKqax9.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased\",\"children\":[[\"$\",\"script\",null,{\"type\":\"application/ld+json\",\"dangerouslySetInnerHTML\":{\"__html\":\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@graph\\\":[{\\\"@type\\\":\\\"Person\\\",\\\"@id\\\":\\\"https://chenhuiyu.github.io/#person\\\",\\\"name\\\":\\\"Huiyu Chen\\\",\\\"alternateName\\\":\\\"Yvette Chen\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io\\\",\\\"image\\\":\\\"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg\\\",\\\"jobTitle\\\":\\\"Machine Learning Engineer\\\",\\\"worksFor\\\":{\\\"@type\\\":\\\"Organization\\\",\\\"name\\\":\\\"Meta\\\"},\\\"sameAs\\\":[\\\"https://www.linkedin.com/in/yvette-huiyu-chen\\\"]},{\\\"@type\\\":\\\"WebSite\\\",\\\"@id\\\":\\\"https://chenhuiyu.github.io/#website\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io/\\\",\\\"name\\\":\\\"Huiyu Chen\\\",\\\"description\\\":\\\"Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video.\\\",\\\"inLanguage\\\":[\\\"en\\\",\\\"zh-CN\\\"],\\\"author\\\":{\\\"@id\\\":\\\"https://chenhuiyu.github.io/#person\\\"}}]}\"}}],[\"$\",\"$L2\",null,{}],[\"$\",\"script\",null,{\"defer\":true,\"src\":\"https://events.vercount.one/js\"}]]}]}]],null],\"route:/blog/generative-recommendation-2026-04-dualfashion-en\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design.\"}],[\"$\",\"meta\",\"2\",{\"name\":\"application-name\",\"content\":\"Huiyu Chen\"}],[\"$\",\"meta\",\"3\",{\"name\":\"keywords\",\"content\":\"Generative Recommendation,Recommender Systems,DualFashion,Multimodal\"}],[\"$\",\"meta\",\"4\",{\"name\":\"author\",\"content\":\"Huiyu (Yvette) Chen\"}],[\"$\",\"link\",\"5\",{\"rel\":\"author\",\"href\":\"https://chenhuiyu.github.io\"}],[\"$\",\"meta\",\"6\",{\"name\":\"creator\",\"content\":\"Huiyu (Yvette) Chen\"}],[\"$\",\"meta\",\"7\",{\"name\":\"publisher\",\"content\":\"Huiyu Chen\"}],[\"$\",\"meta\",\"8\",{\"name\":\"robots\",\"content\":\"index, follow\"}],[\"$\",\"meta\",\"9\",{\"name\":\"googlebot\",\"content\":\"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\"}],[\"$\",\"meta\",\"10\",{\"property\":\"og:title\",\"content\":\"The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion\"}],[\"$\",\"meta\",\"11\",{\"property\":\"og:description\",\"content\":\"DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design.\"}],[\"$\",\"meta\",\"12\",{\"property\":\"og:url\",\"content\":\"https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en\"}],[\"$\",\"meta\",\"13\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"$\",\"meta\",\"14\",{\"property\":\"og:locale\",\"content\":\"en_SG\"}],[\"$\",\"meta\",\"15\",{\"property\":\"article:published_time\",\"content\":\"2026-07-30\"}],[\"$\",\"meta\",\"16\",{\"property\":\"article:modified_time\",\"content\":\"2026-07-30\"}],[\"$\",\"meta\",\"17\",{\"property\":\"article:author\",\"content\":\"https://chenhuiyu.github.io\"}],[\"$\",\"meta\",\"18\",{\"property\":\"og:image\",\"content\":\"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg\"}],[\"$\",\"meta\",\"19\",{\"name\":\"twitter:card\",\"content\":\"summary\"}],[\"$\",\"meta\",\"20\",{\"name\":\"twitter:title\",\"content\":\"The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion\"}],\"$L3\",\"$L4\",\"$L5\",\"$L6\",\"$L7\",\"$L8\",\"$L9\",\"$La\",\"$Lb\",\"$Lc\"],\"$Ld\"],\"$Le\"],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:899uc81f9pksk\",\"deploymentVersion\":\"34319a48-6d2b-4933-b0a2-128b605c231d\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("f:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n10:I[\"8c0f216c4604\",[],\"Slot\",1]\n11:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n3:[\"$\",\"meta\",\"21\",{\"name\":\"twitter:description\",\"content\":\"DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design.\"}]\n4:[\"$\",\"meta\",\"22\",{\"name\":\"twitter:image\",\"content\":\"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg\"}]\n5:[\"$\",\"link\",\"23\",{\"rel\":\"shortcut icon\",\"href\":\"https://chenhuiyu.github.io/favicon.svg\"}]\n6:[\"$\",\"link\",\"24\",{\"rel\":\"icon\",\"href\":\"https://chenhuiyu.github.io/favicon.svg\"}]\n7:[\"$\",\"link\",\"25\",{\"rel\":\"canonical\",\"href\":\"https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en\"}]\n8:[\"$\",\"link\",\"26\",{\"rel\":\"alternate\",\"hrefLang\":\"en\",\"href\":\"https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en\"}]\n9:[\"$\",\"link\",\"27\",{\"rel\":\"alternate\",\"hrefLang\":\"zh-CN\",\"href\":\"https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-zh\"}]\na:[\"$\",\"link\",\"28\",{\"rel\":\"alternate\",\"hrefLang\":\"x-default\",\"href\":\"https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en\"}]\nb:[\"$\",\"link\",\"29\",{\"rel\":\"alternate\",\"type\":\"application/rss+xml\",\"href\":\"https://chenhuiyu.github.io/feed.xml\"}]\nc:[\"$\",\"meta\",\"30\",{\"name\":\"codex-preview\",\"content\":\"development\"}]\nd:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\ne:[\"$\",\"$Lf\",null,{\"segmentMap\":{\"children\":[\"blog\",\"generative-recommendation-2026-04-dualfashion-en\"]},\"children\":[\"$\",\"$L10\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L11\",null,{\"children\":[\"$\",\"$Lf\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L10\",null,{\"id\":\"page:/blog/generative-recommendation-2026-04-dualfashion-en\"}]}]}]}]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"main\",null,{\"className\":\"site-shell article-shell\",\"id\":\"top\",\"children\":[[\"$\",\"script\",null,{\"type\":\"application/ld+json\",\"dangerouslySetInnerHTML\":{\"__html\":\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"BlogPosting\\\",\\\"@id\\\":\\\"https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en#article\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en\\\",\\\"mainEntityOfPage\\\":{\\\"@type\\\":\\\"WebPage\\\",\\\"@id\\\":\\\"https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en\\\"},\\\"headline\\\":\\\"The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion\\\",\\\"description\\\":\\\"DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design.\\\",\\\"datePublished\\\":\\\"2026-07-30\\\",\\\"dateModified\\\":\\\"2026-07-30\\\",\\\"inLanguage\\\":\\\"en\\\",\\\"articleSection\\\":\\\"GenRec Series\\\",\\\"keywords\\\":\\\"Generative Recommendation, Recommender Systems, DualFashion, Multimodal\\\",\\\"author\\\":{\\\"@id\\\":\\\"https://chenhuiyu.github.io/#person\\\"},\\\"publisher\\\":{\\\"@id\\\":\\\"https://chenhuiyu.github.io/#person\\\"},\\\"isPartOf\\\":{\\\"@id\\\":\\\"https://chenhuiyu.github.io/#website\\\"}}\"}}],[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"article\",null,{\"className\":\"article-layout\",\"children\":[[\"$\",\"header\",null,{\"className\":\"article-header\",\"children\":[[\"$\",\"a\",null,{\"className\":\"back-link\",\"href\":\"/blog\",\"children\":\"← All writing\"}],null,[\"$\",\"div\",null,{\"className\":\"article-meta\",\"children\":[[\"$\",\"span\",null,{\"children\":\"GenRec Series\"}],[\"$\",\"time\",null,{\"children\":\"2026-07-30\"}],[\"$\",\"span\",null,{\"children\":\"English\"}],[\"$\",\"span\",null,{\"className\":\"view-counter view-counter-page\",\"title\":\"Article views\",\"children\":[[\"$\",\"span\",null,{\"className\":\"view-counter-value\",\"id\":\"vercount_value_page_pv\",\"suppressHydrationWarning\":true,\"children\":\"—\"}],[\"$\",\"span\",null,{\"children\":\"views\"}]]}]]}],[\"$\",\"h1\",null,{\"children\":\"The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion\"}],[\"$\",\"p\",null,{\"className\":\"article-deck\",\"children\":\"DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design.\"}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/blog/generative-recommendation-2026-04-dualfashion-zh\",\"children\":\"阅读中文版 →\"}]]}],[\"$\",\"div\",null,{\"className\":\"article-body-grid\",\"children\":[[\"$\",\"aside\",null,{\"className\":\"article-toc\",\"aria-label\":\"Table of contents\",\"children\":[[\"$\",\"p\",null,{\"children\":\"On this page\"}],[\"$\",\"nav\",null,{\"children\":[[\"$\",\"a\",\"understand-the-paper-in-30-seconds-Understand the paper in 30 seconds\",{\"className\":\"\",\"href\":\"#understand-the-paper-in-30-seconds\",\"children\":\"Understand the paper in 30 seconds\"}],[\"$\",\"a\",\"a-missing-outfit-item-makes-the-task-concrete-A missing outfit item makes the task concrete\",{\"className\":\"\",\"href\":\"#a-missing-outfit-item-makes-the-task-concrete\",\"children\":\"A missing outfit item makes the task concrete\"}],[\"$\",\"a\",\"how-the-two-diffusion-branches-cooperate-How the two diffusion branches cooperate\",{\"className\":\"\",\"href\":\"#how-the-two-diffusion-branches-cooperate\",\"children\":\"How the two diffusion branches cooperate\"}],\"$L12\",\"$L13\",\"$L14\"]}]]}],\"$L15\"]}]]}],\"$L16\",\"$L17\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("12:[\"$\",\"a\",\"why-structured-captions-matter-Why structured captions matter\",{\"className\":\"\",\"href\":\"#why-structured-captions-matter\",\"children\":\"Why structured captions matter\"}]\n13:[\"$\",\"a\",\"why-the-metrics-should-not-be-collapsed-Why the metrics should not be collapsed\",{\"className\":\"\",\"href\":\"#why-the-metrics-should-not-be-collapsed\",\"children\":\"Why the metrics should not be collapsed\"}]\n14:[\"$\",\"a\",\"where-it-fails-Where it fails\",{\"className\":\"\",\"href\":\"#where-it-fails\",\"children\":\"Where it fails\"}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("18:T157e,\u003cp\u003e\u003ca href=\"/blog/generative-recommendation-2026-03-contrec-en\"\u003eContRec\u003c/a\u003e still maps its generated vector back to an existing catalog. \u003ca target=\"_blank\" rel=\"noreferrer noopener\" href=\"https://arxiv.org/abs/2605.17357\"\u003eDualFashion\u003c/a\u003e crosses that boundary:\u003c/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003eIf the catalog does not contain what the user wants, can the recommender draw it?\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003eRecommendation now becomes part of product design. DualFashion generates a fashion image and a structured text description together. That forces us to distinguish three different claims: the output looks suitable, the description is coherent, and the product can actually be sold.\u003c/p\u003e\n\u003ch2 id=\"understand-the-paper-in-30-seconds\"\u003eUnderstand the paper in 30 seconds\u003c/h2\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eThe old problem\u003c/strong\u003e: many generative fashion recommenders output only images, while visual histories also contain background, pose, and photography noise.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eDualFashion\u0026#39;s answer\u003c/strong\u003e: one diffusion branch generates the garment image, another generates structured attributes, and the branches condition each other.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eThe hard boundary\u003c/strong\u003e: visual quality and compatibility do not prove manufacturability, inventory, pricing, safety, or copyright clearance.\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003e\u003cimg loading=\"lazy\" decoding=\"async\" src=\"/blog/generative-recommendation-2026/04-dualfashion/mechanism.svg\" alt=\"DualFashion couples image and text diffusion\"\u003e\u003c/p\u003e\n\u003ch2 id=\"a-missing-outfit-item-makes-the-task-concrete\"\u003eA missing outfit item makes the task concrete\u003c/h2\u003e\n\u003cp\u003eSuppose a user history contains:\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-text\"\u003ewhite tennis skirt → black climbing trousers → blue swimsuit\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eThe system must complete an outfit around a light-gray sports jacket. A catalog recommender retrieves an existing pair of trousers. DualFashion may generate:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003ean image of navy, straight-fit, quick-dry trousers;\u003c/li\u003e\n\u003cli\u003ea structured caption such as \u003ccode\u003ecategory=trousers, color=navy, fit=straight, fabric=quick-dry\u003c/code\u003e.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe text branch is not decoration. It turns the image into inspectable attributes and discourages the image model from optimizing only for fashion-photography aesthetics.\u003c/p\u003e\n\u003ch2 id=\"how-the-two-diffusion-branches-cooperate\"\u003eHow the two diffusion branches cooperate\u003c/h2\u003e\n\u003cp\u003eLet user history be (h_u), image latent be (x_0), and text representation be (z_0). The branches denoise in parallel:\u003c/p\u003e\n\u003cp\u003e[\n\\hat\\epsilon_x=f_\\theta(x_t,t,h_u,z_t),\n\\qquad\n\\hat\\epsilon_z=g_\\phi(z_t,t,h_u,x_t).\n]\u003c/p\u003e\n\u003cp\u003eA simplified objective is:\u003c/p\u003e\n\u003cp\u003e[\n\\mathcal L=\n\\mathcal L_{\\text{image}}\n+\\lambda\\mathcal L_{\\text{text}}\n+\\mu\\mathcal L_{\\text{align}}.\n]\u003c/p\u003e\n\u003cp\u003eThe image branch reads text state, and the text branch reads image state. Their alignment objective asks the generated picture and description to agree on category, color, style, and other attributes.\u003c/p\u003e\n\u003ch2 id=\"why-structured-captions-matter\"\u003eWhy structured captions matter\u003c/h2\u003e\n\u003cp\u003eFree-form prose can sound convincing while remaining impossible to audit. Structured captions create finite fields that support:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003eattribute coverage;\u003c/li\u003e\n\u003cli\u003eimage-text consistency;\u003c/li\u003e\n\u003cli\u003ecompatibility and personalization;\u003c/li\u003e\n\u003cli\u003ediversity and duplication checks;\u003c/li\u003e\n\u003cli\u003eevidence tracing back to user history.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eThe paper studies tasks such as personalized fill-in-the-blank and generative outfit recommendation on fashion datasets including iFashion and Polyvore-U.\u003c/p\u003e\n\u003cp\u003eThis is closer to recommendation than a single CLIP score, but it still does not close the commercial loop. CLIP can say an item looks appropriate; a factory may still be unable to produce it.\u003c/p\u003e\n\u003ch2 id=\"why-the-metrics-should-not-be-collapsed\"\u003eWhy the metrics should not be collapsed\u003c/h2\u003e\n\u003cp\u003eDualFashion combines recommendation and generation:\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003cstrong\u003eRecommendation quality\u003c/strong\u003e: user fit and outfit compatibility.\u003c/li\u003e\n\u003cli\u003e\u003cstrong\u003eGeneration quality\u003c/strong\u003e: image realism, diversity, and textual accuracy.\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eMetrics such as IS, LPIPS, compatibility, personalization, CLIP alignment, and attribute entropy measure different things. One model may create more attractive images that fit the user less. Another may personalize strongly while copying training designs.\u003c/p\u003e\n\u003cp\u003eA stronger evaluation would also check near-duplicates, intellectual-property risk, blind user preference between catalog and generated options, and whether a generated design can move into production.\u003c/p\u003e\n\u003ch2 id=\"where-it-fails\"\u003eWhere it fails\u003c/h2\u003e\n\u003cp\u003eDualFashion leaves the hardest product constraints outside the model:\u003c/p\u003e\n\u003cul\u003e\n\u003cli\u003emanufacturability and fabric behavior;\u003c/li\u003e\n\u003cli\u003esizing, cost, and supply-chain feasibility;\u003c/li\u003e\n\u003cli\u003ebrand and design rights;\u003c/li\u003e\n\u003cli\u003ewhether the caption faithfully describes the image;\u003c/li\u003e\n\u003cli\u003ewhether users want to buy rather than merely look.\u003c/li\u003e\n\u003c/ul\u003e\n\u003cp\u003eOnce a recommender generates the product, offline ranking accuracy is no longer the main metric. The system needs a chain from preference to design, review, production, and feedback.\u003c/p\u003e\n\u003cp\u003eThe next paper, \u003ca href=\"/blog/generative-recommendation-2026-05-genrec-en\"\u003eGenRec\u003c/a\u003e, returns to large-scale online recommendation, but the output has also changed: the model generates a complete page rather than one next item.\u003c/p\u003e\n\u003cp\u003e\u003ca href=\"/blog/generative-recommendation-2026-03-contrec-en\"\u003ePrevious: ContRec\u003c/a\u003e · \u003ca href=\"/series/generative-recommendation-2026/en\"\u003eBack to the Season 2 roadmap\u003c/a\u003e\u003c/p\u003e\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("15:[\"$\",\"div\",null,{\"className\":\"prose\",\"dangerouslySetInnerHTML\":{\"__html\":\"$18\"}}]\n16:[\"$\",\"section\",null,{\"className\":\"related-section\",\"children\":[[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":\"Keep reading · 继续阅读\"}],[\"$\",\"div\",null,{\"className\":\"related-grid\",\"children\":[[\"$\",\"a\",\"generative-recommendation-2026-01-diger-en\",{\"href\":\"/blog/generative-recommendation-2026-01-diger-en\",\"children\":[[\"$\",\"span\",null,{\"children\":\"GenRec Series\"}],[\"$\",\"h2\",null,{\"children\":\"The Tokenizer Can Finally Hear Recommendation Loss | Generative Recommendation 2026·01: DIGER\"}],[\"$\",\"p\",null,{\"children\":\"2026-07-30\"}]]}],[\"$\",\"a\",\"generative-recommendation-2026-02-care-en\",{\"href\":\"/blog/generative-recommendation-2026-02-care-en\",\"children\":[[\"$\",\"span\",null,{\"children\":\"GenRec Series\"}],[\"$\",\"h2\",null,{\"children\":\"The Deeper the Generation, the Larger the Bias Can Grow | Generative Recommendation 2026·02: CARE\"}],[\"$\",\"p\",null,{\"children\":\"2026-07-30\"}]]}],[\"$\",\"a\",\"generative-recommendation-2026-03-contrec-en\",{\"href\":\"/blog/generative-recommendation-2026-03-contrec-en\",\"children\":[[\"$\",\"span\",null,{\"children\":\"GenRec Series\"}],[\"$\",\"h2\",null,{\"children\":\"Semantic IDs Are Not the Only Answer | Generative Recommendation 2026·03: ContRec\"}],[\"$\",\"p\",null,{\"children\":\"2026-07-30\"}]]}]]}]]}]\n17:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

@@ -6,7 +6,133 @@
     <description>Notes on models, systems, and being human — in English and Chinese.</description>
     <atom:link href="https://chenhuiyu.github.io/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-SG</language>
-    <lastBuildDate>Wed, 29 Jul 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 30 Jul 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Tokenizer 终于能听见推荐损失｜生成式推荐 2026·01：DIGER</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-zh</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Generative Recommendation</category>
+      <description>DIGER 让 Semantic ID 在推荐训练中保持可微，用 Gumbel 探索和不确定性衰减缓解 codebook 塌缩。</description>
+    </item>
+    <item>
+      <title>生成越深，偏差可能越大｜生成式推荐 2026·02：CARE</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-zh</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Generative Recommendation</category>
+      <description>CARE 把自回归 Semantic ID 解码解释成级联排序，用渐进历史和查询锚定的并行推理控制前缀偏差。</description>
+    </item>
+    <item>
+      <title>Semantic ID 不是唯一答案｜生成式推荐 2026·03：ContRec</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-zh</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Generative Recommendation</category>
+      <description>ContRec 放弃离散 Semantic ID，以连续 Token 和扩散模型生成偏好向量，再检索真实商品。</description>
+    </item>
+    <item>
+      <title>推荐系统开始生成商品｜生成式推荐 2026·04：DualFashion</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-zh</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Generative Recommendation</category>
+      <description>DualFashion 用图像与文本双扩散生成个性化服装和结构化描述，把推荐推进到商品设计。</description>
+    </item>
+    <item>
+      <title>下一件商品不够，模型要生成整页｜生成式推荐 2026·05：GenRec</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-zh</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Generative Recommendation</category>
+      <description>GenRec 以页面为训练和生成单位，用 Token Merger 压缩长历史，并以 GRPO-SR 对齐页面级偏好。</description>
+    </item>
+    <item>
+      <title>生成式推荐进入广告主链路｜生成式推荐 2026·06：GR4AD</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-zh</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Generative Recommendation</category>
+      <description>GR4AD 将业务感知的广告 SID、列表级强化学习与低延迟解码整合到四亿用户规模的广告系统。</description>
+    </item>
+    <item>
+      <title>Semantic ID 真的更会泛化吗？｜生成式推荐 2026·07</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-zh</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Generative Recommendation</category>
+      <description>这篇泛化审计把测试样本拆成记忆型与组合泛化型，揭示 Atomic ID 与 Semantic ID 的互补能力。</description>
+    </item>
+    <item>
+      <title>The Tokenizer Can Finally Hear Recommendation Loss | Generative Recommendation 2026·01: DIGER</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-en</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Generative Recommendation</category>
+      <description>DIGER keeps Semantic IDs differentiable during recommendation training and uses Gumbel exploration plus uncertainty decay to prevent codebook collapse.</description>
+    </item>
+    <item>
+      <title>The Deeper the Generation, the Larger the Bias Can Grow | Generative Recommendation 2026·02: CARE</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-en</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Generative Recommendation</category>
+      <description>CARE interprets autoregressive Semantic ID decoding as cascaded ranking and controls prefix bias with progressive histories and query-anchored parallel reasoning.</description>
+    </item>
+    <item>
+      <title>Semantic IDs Are Not the Only Answer | Generative Recommendation 2026·03: ContRec</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-en</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Generative Recommendation</category>
+      <description>ContRec abandons discrete Semantic IDs, generates a continuous preference vector with diffusion, and retrieves a real catalog item afterward.</description>
+    </item>
+    <item>
+      <title>The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Generative Recommendation</category>
+      <description>DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design.</description>
+    </item>
+    <item>
+      <title>One Next Item Is Not Enough: Generate the Whole Page | Generative Recommendation 2026·05: GenRec</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-en</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Generative Recommendation</category>
+      <description>GenRec trains and generates at page level, compresses long histories with Token Merger, and aligns page preferences through GRPO-SR.</description>
+    </item>
+    <item>
+      <title>Generative Recommendation Enters the Advertising Mainline | Generative Recommendation 2026·06: GR4AD</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-en</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Generative Recommendation</category>
+      <description>GR4AD combines business-aware advertising SIDs, list-level reinforcement learning, and low-latency decoding at a scale of hundreds of millions of users.</description>
+    </item>
+    <item>
+      <title>Do Semantic IDs Really Generalize Better? | Generative Recommendation 2026·07</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-en</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Generative Recommendation</category>
+      <description>This generalization audit separates memorization from compositional cases and reveals complementary strengths of Atomic IDs and Semantic IDs.</description>
+    </item>
     <item>
       <title>所有推荐任务都能改写成一句话吗？｜生成式推荐 05：P5</title>
       <link>https://chenhuiyu.github.io/blog/generative-recommendation-05-p5-zh</link>
@@ -150,132 +276,6 @@
       <dc:language>zh-CN</dc:language>
       <category>Generative Recommendation</category>
       <description>OneReason 将推荐推理拆成 item perception 与 preference cognition，用四层任务、专才再统一的强化学习和快慢系统，回答“为什么 thinking mode 真的有效”。</description>
-    </item>
-    <item>
-      <title>Can Every Recommendation Task Become a Sentence? | Generative Recommendation 05: P5</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-05-p5-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-05-p5-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>P5 rewrites rating, next-item prediction, explanation, review understanding, and direct recommendation as text-to-text: one model and one loss, with personalized prompts defining the task.</description>
-    </item>
-    <item>
-      <title>One Model for Retrieval, Ranking, Explanation, and Creation | Generative Recommendation 06: M6-Rec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-06-m6-rec-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-06-m6-rec-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>M6-Rec brings unified recommendation into a production stack: retrieval, CTR ranking, explanation, dialogue, and content creation share a language foundation, while option tuning, late interaction, and distillation control cost.</description>
-    </item>
-    <item>
-      <title>A General LLM Does Not Naturally Understand “Like” | Generative Recommendation 07: TALLRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-07-tallrec-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-07-tallrec-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>TALLRec aligns LLaMA with preference prediction using a small number of recommendation instructions and LoRA—and uses near-random zero-shot performance to show that language knowledge is not recommendation knowledge.</description>
-    </item>
-    <item>
-      <title>Fitting in Context Is Not the Same as Being Understood | Generative Recommendation 08: ReLLa</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-08-rella-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-08-rella-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>ReLLa finds that LLMs fail to benefit from longer behavior sequences far below their context limit, then raises signal-to-noise with target-conditioned behavior retrieval (SUBR) and mixed-sample tuning (ReiT).</description>
-    </item>
-    <item>
-      <title>How Can World Knowledge and Collaborative Behavior Merge? | Generative Recommendation 09: LLaRA</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-09-llara-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-09-llara-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>LLaRA projects a sequential recommender’s Item ID embedding into a behavioral token, concatenates it with title tokens, and uses curriculum learning so the LLM can exploit both world knowledge and collaborative patterns.</description>
-    </item>
-    <item>
-      <title>What If Retrieval Generated IDs Instead of Looking Them Up? | Generative Recommendation 10: DSI</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-10-dsi-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-10-dsi-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>DSI writes documents into model parameters and trains one Transformer on document-to-ID and query-to-ID mappings, turning retrieval into conditional ID generation.</description>
-    </item>
-    <item>
-      <title>Give Every Item a Semantic Address | Generative Recommendation 11: TIGER</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-11-tiger-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-11-tiger-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>TIGER compresses item content into coarse-to-fine Semantic IDs with an RQ-VAE, then trains T5 to generate the next item&apos;s address token by token.</description>
-    </item>
-    <item>
-      <title>Top-K Is Not the Only Answer: A List Can Be Written Item by Item | Generative Recommendation 12: GPTRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>GPTRec contrasts one-pass Top-K scoring with autoregressive Next-K list generation and quantizes SVD item coordinates into compact multi-token IDs.</description>
-    </item>
-    <item>
-      <title>Semantically Similar Does Not Mean Liked by the Same People | Generative Recommendation 13: LC-Rec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-13-lc-rec-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-13-lc-rec-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>LC-Rec connects LLaMA to a catalog through Semantic IDs, then uses explicit and implicit translation tasks to align language and collaborative semantics.</description>
-    </item>
-    <item>
-      <title>A Good ID Must Understand Content, Co-occurrence, and Balance | Generative Recommendation 14: LETTER</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-14-letter-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-14-letter-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>LETTER writes hierarchical semantics, collaborative alignment, and code diversity into one tokenizer objective, then adds ranking-guided generation.</description>
-    </item>
-    <item>
-      <title>The Tokenizer Should Not Be Merely Offline Preprocessing | Generative Recommendation 15: ETEGRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-15-etegrec-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-15-etegrec-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>ETEGRec connects the tokenizer and generator with sequence–item and preference–semantic alignment, then alternates optimization so item IDs and user states co-evolve.</description>
-    </item>
-    <item>
-      <title>Do Recommender Models Have Scaling Laws? | Generative Recommendation 16: HSTU</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-16-hstu-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-16-hstu-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>HSTU reformulates industrial recommendation as sequential transduction over user actions and tackles long-sequence scaling across attention, sampling, kernels, and serving.</description>
-    </item>
-    <item>
-      <title>Can One Model Retrieve and Rank in a Single Pass? | Generative Recommendation 17: OneRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-17-onerec-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-17-onerec-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>OneRec combines balanced Semantic IDs, session-wise generation, Sparse MoE, and iterative DPO to replace Kuaishou&apos;s retrieve–prerank–rank funnel with one list generator.</description>
-    </item>
-    <item>
-      <title>Should We Really Throw Away Every Traditional Cross Feature? | Generative Recommendation 18: MTGR</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-18-mtgr-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-18-mtgr-en</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>MTGR preserves DLRM candidate crosses, aggregates many candidates into one HSTU user sequence, and uses GLN plus dynamic masks to combine scale, quality, and causal safety.</description>
     </item>
   </channel>
 </rss>

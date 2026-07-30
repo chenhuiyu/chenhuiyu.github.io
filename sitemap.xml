@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://chenhuiyu.github.io/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-07-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://chenhuiyu.github.io/blog</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-07-30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -39,6 +39,132 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/series/generative-recommendation/en" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/series/generative-recommendation" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/series/generative-recommendation/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-zh</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-zh</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-zh</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-zh</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-zh</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-zh</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-zh</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-en</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-en</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-en</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-en</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-en</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-en</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-en" />
   </url>
   <url>
     <loc>https://chenhuiyu.github.io/blog/generative-recommendation-05-p5-zh</loc>
