@@ -71,6 +71,15 @@
       <description>这篇泛化审计把测试样本拆成记忆型与组合泛化型，揭示 Atomic ID 与 Semantic ID 的互补能力。</description>
     </item>
     <item>
+      <title>从商品向量到合法 Semantic ID｜生成式推荐 Hands-on Lab</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-hands-on-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-hands-on-zh</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Generative Recommendation</category>
+      <description>一个可以亲手操作的生成式推荐实验：观察残差量化如何得到 Semantic ID，调节解码参数，对比 Trie 约束，并在浏览器内真实运行 Python。</description>
+    </item>
+    <item>
       <title>The Tokenizer Can Finally Hear Recommendation Loss | Generative Recommendation 2026·01: DIGER</title>
       <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-en</link>
       <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-en</guid>
@@ -132,6 +141,15 @@
       <dc:language>en</dc:language>
       <category>Generative Recommendation</category>
       <description>This generalization audit separates memorization from compositional cases and reveals complementary strengths of Atomic IDs and Semantic IDs.</description>
+    </item>
+    <item>
+      <title>From Item Vectors to Valid Semantic IDs | A Generative Recommendation Hands-on Lab</title>
+      <link>https://chenhuiyu.github.io/blog/generative-recommendation-hands-on-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-hands-on-en</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>Generative Recommendation</category>
+      <description>An interactive generative-recommendation lab: inspect residual quantization, tune decoding, compare Trie constraints, and run editable Python in the browser.</description>
     </item>
     <item>
       <title>所有推荐任务都能改写成一句话吗？｜生成式推荐 05：P5</title>
@@ -258,24 +276,6 @@
       <dc:language>zh-CN</dc:language>
       <category>Generative Recommendation</category>
       <description>MTGR 保留 DLRM 的候选交叉特征，把同一用户的多候选聚合成一个 HSTU 序列，并用 GLN 与动态遮罩兼顾规模化、效果与因果安全。</description>
-    </item>
-    <item>
-      <title>推荐也需要先想后答吗？｜生成式推荐 19：OneRec-Think</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-19-onerec-think-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-19-onerec-think-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>OneRec-Think 先将商品 code 对齐到语言空间，再用推荐 CoT 与 Rollout-Beam GRPO 激活推理，并以 Think-Ahead 把慢思考拆到离线。</description>
-    </item>
-    <item>
-      <title>会写思维链，不等于会推理｜生成式推荐 20：OneReason</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-20-onereason-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-20-onereason-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>OneReason 将推荐推理拆成 item perception 与 preference cognition，用四层任务、专才再统一的强化学习和快慢系统，回答“为什么 thinking mode 真的有效”。</description>
     </item>
   </channel>
 </rss>

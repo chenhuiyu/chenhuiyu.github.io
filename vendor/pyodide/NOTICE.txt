@@ -1,0 +1,7 @@
+Pyodide 0.29.3 runtime files
+
+The files in this directory are generated from the pinned `pyodide` npm
+package so the interactive tutorial can run without a third-party CDN.
+
+Pyodide is licensed under MPL-2.0. Source and license:
+https://github.com/pyodide/pyodide
