@@ -25,6 +25,17 @@ Never implement features or blog edits directly on `master`.
 - Do not hand-edit files in `static-export/` or `master`.
 - Do not maintain a hard-coded homepage article list. The homepage derives the
   newest published story pairs from `lib/posts.ts`.
+- Permanent homepage topic cards live in `lib/topics.ts`. Add a topic there
+  when creating a new series, season, or interactive lab.
+- The hands-on generative-recommendation article mounts a client-side lab from
+  `app/components/GenerativeRecommendationLab.tsx`. Preserve the Web Worker and
+  self-hosted Pyodide build step. Runtime files under `public/vendor/pyodide/`
+  are generated and ignored; use `npm run vendor:pyodide` after upgrading the
+  pinned package.
+- The full companion notebook is generated and executed by
+  `scripts/build-generative-recommendation-notebook.py`. Run
+  `npm run notebook:build` after changing its curriculum or code; do not
+  hand-edit the generated `.ipynb`.
 - Keep canonical URLs on `https://chenhuiyu.github.io`; update page metadata,
   structured data, RSS, and sitemap behavior together when routes change.
 - Preserve the Vercount element IDs. They are filled by the shared deferred
