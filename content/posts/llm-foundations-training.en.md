@@ -15,6 +15,42 @@ draft: false
 
 ![From pretraining to alignment: what is optimized?](/learning/llm-foundations-training-en.svg)
 
+## A complete explanation from first principles
+
+### Turn a prediction into a learning signal
+
+A model begins as adjustable numerical parameters. Given a context, it predicts probabilities for the next token. The actual next token supplies a label. If the correct class receives probability 0.7, its negative log-likelihood is about 0.357; at probability 0.1, the loss is about 2.303. Assigning less probability to the observed target receives a larger penalty.
+
+Loss is an optimization objective, not a general intelligence score. Better prediction can support useful capabilities without guaranteeing factual correctness or agreement with every user's preferences.
+
+### Derive the gradient you will use repeatedly
+
+Let z be logits, p their softmax probabilities, and y a one-hot target. Cross-entropy has logit gradient `p-y`. If the correct class currently receives probability 0.7, its gradient is -0.3, so gradient descent increases its logit. Incorrect classes receive positive gradients proportional to their predicted probabilities. The chain rule carries this signal back into earlier parameters.
+
+The browser notebook explicitly implements this expression while training a bigram language model. Its loss curve comes from actual parameter updates, not a saved animation. The model only learns neighboring-character relationships, but that small setting makes learning rate, epochs and objective behavior easy to inspect.
+
+### Shift the supervision correctly
+
+A sequence such as “I love cats” supplies predictions for “love cats EOS.” Multiple positions can be supervised in one forward pass, while a causal mask prevents future information from leaking into each prediction. Some model APIs shift labels internally. Others expect the caller to prepare shifted tensors. Shifting twice silently changes the task.
+
+During SFT, system and user text often serve as conditions while assistant tokens receive the primary loss. Training on user tokens as targets changes the objective. Ignoring a label position removes its loss contribution; it does not automatically prevent other positions from attending to that input.
+
+### Batch size is also a weighting decision
+
+A batch averages information from several examples before updating parameters. Gradient accumulation splits a larger effective batch into memory-sized microbatches and delays the optimizer step. If each microbatch first averages over its own token count, then averaging those losses equally gives different token weights when lengths differ substantially. Decide whether the desired objective averages over examples or valid tokens, and implement that denominator consistently.
+
+Large learning rates can cause oscillation or divergence; small ones can make progress slow. Falling training loss is insufficient evidence of improvement. A rising validation loss may indicate overfitting, while data leakage can make both curves look deceptively good. The split protocol belongs to the training method.
+
+### Separate training stages from parameter-update methods
+
+Pretraining and SFT describe data and objective stages. LoRA describes how selected parameters are updated: a low-rank increment modifies a frozen weight matrix. It can therefore be used during SFT. For a `[4096,4096]` matrix, rank eight requires 65,536 low-rank parameters rather than 16,777,216 full-matrix parameters. Fewer trainable parameters do not eliminate the base model's forward computation or weight storage.
+
+DPO uses preferred and rejected responses for the same prompt, comparing policy and reference-model log probabilities. It is not simply ordinary SFT on the preferred response. Nor does preference optimization guarantee coverage of every domain. Comparisons must control data, compute budget and evaluation rules before attributing gains to the algorithm.
+
+### Make an experiment reproducible
+
+Record the tokenizer, configuration, seed, dataset version, split, optimizer and learning-rate schedule. Evaluate task quality, language and length slices, formatting failures and concrete error cases alongside average loss. Being able to explain exactly how labels produced a reported loss is more valuable than merely recognizing the names of training methods.
+
 ## Parallel training, sequential generation
 
 The autoregressive factorization is $p(x)=\prod_t p(x_t\mid x_{<t})$. Training already has the full sequence. A causal mask prevents future access, allowing many next-token losses in one forward pass. At generation time future tokens do not yet exist, so decoding proceeds sequentially.

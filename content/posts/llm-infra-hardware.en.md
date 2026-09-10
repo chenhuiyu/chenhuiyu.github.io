@@ -15,6 +15,44 @@ draft: false
 
 ![GPU, TPU and kernels: why FLOPs do not explain speed](/learning/llm-infra-hardware-en.svg)
 
+## A complete explanation from first principles
+
+### Accelerators need both arithmetic and a supply of data
+
+CPUs handle complex control and low-latency serial work well. GPUs devote many execution resources to regular parallel computation. Registers, on-chip shared storage and device memory have different capacities and access costs. Data reuse can matter as much as operation count.
+
+TPUs also specialize in tensor computation, but their compilation, execution and memory organization should not be reduced to CUDA's thread model. Common questions are how matrix units receive data, how on-chip capacity limits tiling and how devices communicate. Consult vendor material for generation-specific specifications.
+
+### Use arithmetic intensity to choose a direction
+
+Arithmetic intensity measures FLOPs per transferred byte. A simplified roofline bound is `min(peak compute, memory bandwidth*arithmetic intensity)`. For a hypothetical 100-TFLOP/s device with effective bandwidth one TB/s, a kernel at ten FLOPs/byte has a bandwidth ceiling of ten TFLOP/s.
+
+These are illustrative values, not measured hardware results. Match precision and sparsity assumptions between operation counts and peaks. Launch overhead, dependencies and communication can keep execution well below even this simplified bound.
+
+### Tiling increases reuse within limited storage
+
+In matrix multiplication, an element of A participates in several products with B. Repeatedly fetching it from external memory wastes bandwidth. A tile holds nearby pieces in faster storage and reuses them.
+
+Larger tiles can exhaust registers or shared memory, reduce concurrent residency or cause spills. Optimization balances reuse and resource occupancy. High occupancy by itself does not guarantee efficient accesses or high performance.
+
+### Fusion can eliminate intermediate traffic
+
+Separate bias, activation and scaling kernels may repeatedly write and read intermediate tensors. A fused kernel can keep local values within one execution, reducing traffic and launch count.
+
+Fusion can also increase register pressure or prevent use of a well-optimized library operation. Compare the complete subgraph, including numerical correctness, rather than declaring victory from a lower kernel count.
+
+### Input precision and accumulation precision are different
+
+Low-precision inputs do not require equally low-precision accumulation. Long reductions can magnify numerical error, so implementations may use distinct input, accumulator and output formats. BF16 and FP16 occupy two bytes but allocate exponent range and precision differently.
+
+Validate small shapes, boundary sizes, non-divisible dimensions and extreme values against a reference before timing. Set tolerances appropriate to the datatype and task, then warm up and synchronize appropriately. A fast incorrect kernel is not an optimization.
+
+### Build a reference-to-measurement learning loop
+
+Start with correct vector operations, reductions and matrix multiplication in a high-level implementation. Study how access patterns, tiles and fusion change execution. GPU work benefits from both system traces and kernel counters; TPU work also requires understanding compiled graphs, shapes, layouts and sharding.
+
+The notebook's Python loops illustrate operation growth and timing noise, not GPU-kernel performance. Doubling a square matrix side multiplies ordinary cubic work by about eight; observed time also reflects interpreter and device conditions. Explaining that gap is part of learning performance engineering.
+
 ## Follow data through memory
 
 GPU execution involves threads/warps, SM resources, registers, shared memory and HBM. Tensor Cores accelerate suitable matrix operations rather than replacing all general computation. TPUs combine matrix, vector/scalar resources and on-chip memory under compiler-driven execution. Generations differ; “GPUs are flexible, TPUs only multiply matrices” is not an adequate model.

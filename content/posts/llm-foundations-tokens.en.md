@@ -15,6 +15,46 @@ draft: false
 
 ![How does text become a tensor?](/learning/llm-foundations-tokens-en.svg)
 
+## A complete explanation from first principles
+
+### Separate pieces of text, integer IDs and vectors
+
+A computer stores encoded bytes, while a neural network computes with numbers. A tokenizer establishes the interface between them. It segments the input into vocabulary-supported pieces, maps those pieces to integer IDs, and passes the IDs to an embedding lookup. These are three different objects. ID 100 is not more important than ID 20; the numbers are addresses in a table, not semantic measurements.
+
+A vector is a list of numbers. A matrix is a table of numbers. A tensor allows additional axes. When you encounter a shape such as `[2,5,8]`, label its axes before doing arithmetic: it might mean two examples, five padded positions per example, and eight features per position. Shapes describe organization, not the values stored inside.
+
+### Work through an embedding lookup
+
+Consider a vocabulary `['<pad>', 'cat', 'sits', 'mat']` and an embedding table with four rows and three columns. Under this deliberately simple tokenizer, “cat sits” becomes `[1,2]`. Selecting rows 1 and 2 produces a `[2,3]` matrix. Adding the batch axis for one example gives `[1,2,3]`.
+
+```python
+vocab = {'<pad>': 0, 'cat': 1, 'sits': 2, 'mat': 3}
+E = [[0,0,0], [0.2,0.5,-0.1], [0.8,-0.2,0.3], [-0.1,0.4,0.9]]
+ids = [vocab[word] for word in ['cat','sits']]
+x = [E[i] for i in ids]
+print(ids, x)
+```
+
+This uses only standard Python and can run in the embedded notebook. Real tables are larger, but the indexing relationship is identical. Embeddings are learned parameters, not hand-written definitions. An ID initially selects the same row wherever it occurs; later contextual layers can give that token different representations in different sentences.
+
+### Why tokenizers use pieces smaller than words
+
+Whitespace splitting handles some English examples but fails for languages without spaces, spelling variations, source code and unfamiliar words. Subword tokenization trades vocabulary size against sequence length. Common fragments receive their own IDs; uncommon strings can be assembled from smaller pieces. BPE builds a vocabulary by repeatedly merging smaller units according to corpus statistics. Real implementations also have preprocessing, byte handling and special-token rules.
+
+A character is therefore not guaranteed to equal a token. Token IDs from one model cannot generally be fed to another model. The tokenizer and the weight checkpoint form an interface contract. A tokenizer may encode one language less compactly than another, affecting context budgets and computation, without that observation alone establishing the model's language capability.
+
+### Padding and truncation can hide semantic mistakes
+
+A batch containing sequences of length three and five is often stored as `[2,5]`. The two added positions in the shorter example are storage padding. An attention mask excludes inappropriate positions from reading; a loss mask excludes positions from supervision. Those jobs are different. A valid attention mask does not automatically guarantee that padding has been removed from the loss.
+
+Truncation discards positions beyond a configured limit. A program can produce perfectly valid tensors after silently removing the only sentence containing the answer. During debugging, inspect the input string, IDs, decoded tokens, mask and retained length together. Successful execution is weaker evidence than semantic correctness.
+
+### Connect the representation to the experiment
+
+The first browser-notebook cell intentionally builds a character vocabulary so every mapping remains visible. Change the text and rerun it. If the vocabulary changes, downstream parameter tables must be rebuilt as well. This is a teaching tokenizer, not a replacement for the pretrained tokenizer used in the model I/O chapter.
+
+Finally, a vocabulary of 10,000 entries with a hidden dimension of 256 has 2,560,000 embedding parameters. That count does not depend on the current prompt length. Longer prompts create larger intermediate tensors and more computation; they do not dynamically add rows to the learned vocabulary table.
+
 ## Start with one sentence
 
 A language model does not directly receive “The cat is sleeping.” A tokenizer maps the string into integer IDs, and an embedding table maps each ID to a vector. A token can be a word, subword, byte fragment or special symbol. Character counts and word counts are not interchangeable with token counts. Tokenization is discrete preprocessing; embeddings are learned parameters.

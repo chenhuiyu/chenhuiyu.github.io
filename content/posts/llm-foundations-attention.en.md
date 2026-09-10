@@ -15,6 +15,48 @@ draft: false
 
 ![Compute attention: Q, K, V and the causal mask](/learning/llm-foundations-attention-en.svg)
 
+## A complete explanation from first principles
+
+### Why positions need to exchange information
+
+Imagine a network that transforms each token independently and never lets positions communicate. Resolving a pronoun or relating a verb to a distant subject would be difficult because the necessary context is elsewhere. Attention supplies a learned reading operation: a position issues a query, scores visible positions and aggregates the information they carry. It makes contextual dependence expressible; it does not guarantee correct reasoning.
+
+Q, K and V are not three separate input sentences. They are projections of the input representation through three parameter matrices. If `X` has shape `[T,d_model]` and `W_Q` has shape `[d_model,d_k]`, then `X @ W_Q` has shape `[T,d_k]`. Keys share the query dimension to support dot products. Values may have a different feature dimension because they carry the content being aggregated.
+
+### Calculate one attention row by hand
+
+Let the query be `[1,0]`, the keys `[1,0]` and `[0,1]`, and the values `[10,0]` and `[0,20]`. The dot products are `[1,0]`. Dividing by the square root of two gives approximately `[0.707,0]`. Exponentiating produces `[2.028,1]`; normalization gives weights `[0.670,0.330]`. The weighted value sum is approximately `[6.70,6.60]`.
+
+```python
+import math
+scores = [1/math.sqrt(2), 0.0]
+z = [math.exp(s-max(scores)) for s in scores]
+a = [v/sum(z) for v in z]
+values = [[10,0], [0,20]]
+out = [sum(a[j]*values[j][d] for j in range(2)) for d in range(2)]
+print('weights =', a, 'output =', out)
+```
+
+Change the first value to `[100,0]`. The weights remain unchanged, while the output changes. This separates two questions: where to read, and what information is retrieved. An attention output is neither a key nor the weight vector itself.
+
+### Causality is an information boundary
+
+In autoregressive training, a position predicts a future token without reading that answer. With four positions, the first query has one legal key, the second has two, and the final query has four. Illegal scores are replaced by negative infinity before softmax, so their exponentials become zero.
+
+A subtle implementation problem arises if every key in a row is masked. Softmax over all negative infinities is numerically undefined. The implementation must ensure a valid key exists or explicitly handle fully masked rows. Combining padding and causal masks is a common source of this problem. Libraries also differ in whether a Boolean `True` means allowed or blocked; check the specific API rather than assuming a universal convention.
+
+### Heads and sequence length
+
+Multiple heads use different learned projections to read in different representation subspaces. A model width of 512 with eight heads often uses a key dimension of 64 per head. Outputs are concatenated along the feature axis and projected back to the model width. A head is not guaranteed to specialize in grammar or sentiment; any such interpretation needs evidence.
+
+The dense score matrix contains `T*T` elements. Increasing sequence length from 1,024 to 4,096 multiplies its size by sixteen. This explains one source of long-context pressure. It does not prove that end-to-end serving becomes sixteen times slower: batching, memory traffic and kernel choices also affect runtime.
+
+### Read heatmaps as measurements, not explanations
+
+Each row is a query's distribution over key columns. Verify axis direction, masks and row sums before interpreting a bright square. High weight is not the same as causal importance. Value magnitudes, output projections, residual paths and subsequent layers all influence the eventual prediction. Replacement or ablation experiments can test influence, but those interventions may also move inputs away from the training distribution.
+
+The notebook plots actual computed weights. Before running it, predict what happens when every legal score receives the same constant or when temperature increases. Comparing a written prediction with the output is a better test of understanding than recognizing the visual pattern after it appears.
+
 ## A weighted lookup
 
 A query describes what a position seeks, a key describes how a position can be matched, and a value contains the information to aggregate. This is a role analogy, not a claim that individual dimensions have human-readable meanings. Different learned projections usually produce all three from the input.

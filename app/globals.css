@@ -6408,3 +6408,27 @@ a.series-episode:hover {
 /* Keep the extra learning entry readable on narrow screens. */
 .nav-links{gap:clamp(18px,2.8vw,44px);flex-wrap:wrap}
 @media(max-width:760px){.site-header{grid-template-columns:1fr;gap:8px;padding:16px 0}.nav-links{gap:18px}.nav-links a{font-size:.9rem}.site-header .status-note{display:none}}
+
+/* Inline executable notebooks follow the article's existing editorial theme. */
+.embedded-notebook { margin: 3rem 0; padding: clamp(1rem,3vw,2rem); border: 1px solid var(--line, #d5cbbf); border-radius: 12px; background: var(--paper, #faf8f4); min-width: 0; }
+.embedded-notebook button, .embedded-notebook a { font-size: .95rem; }
+.embedded-notebook button { padding: .55rem .85rem; border: 1px solid #b9ada1; border-radius: 5px; cursor: pointer; }
+.embedded-notebook button[aria-pressed="true"] { background: #302920; color: #fff; }
+.embedded-notebook button:disabled { opacity: .5; cursor: wait; }
+.embedded-notebook button:focus-visible,.embedded-notebook textarea:focus-visible { outline: 3px solid #b35029; outline-offset: 3px; }
+.nb-note { padding: 1rem; border-left: 3px solid #b35029; font-size: 1rem; line-height: 1.75; }
+.nb-toolbar { margin: 1.5rem 0 .5rem; }
+.nb-markdown p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.nb-cell { margin: 1.3rem 0 2rem; border: 1px solid #c9bfb4; border-radius: 7px; overflow: hidden; }
+.nb-cell-header { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.7rem 1rem; font-family:monospace; }
+.nb-cell .python-editor { display:block; width:100%; min-height:8rem; max-height:36rem; border-radius:0; margin:0; font-size:.9rem; line-height:1.6; tab-size:4; }
+.nb-output { padding: 1rem; border-top: 1px solid #c9bfb4; }
+.nb-error { border-left: 4px solid #ae3325; }
+.nb-output pre,.nb-original pre { max-height:28rem; overflow:auto; font-size:.9rem; white-space:pre-wrap; overflow-wrap:anywhere; }
+.nb-plot { margin:1rem 0; }
+.nb-plot svg { width:100%; height:auto; }
+.nb-plot text { font-size:14px; fill:currentColor; }
+.nb-plot figcaption { font-weight:600; }
+.nb-original { margin:1rem 0; padding:1rem; border:1px solid #c9bfb4; }
+.nb-original img { width:100%; height:auto; }
+.embedded-notebook summary { cursor:pointer; font-size:1rem; }

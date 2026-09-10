@@ -15,6 +15,40 @@ draft: false
 
 ![HSTU tensor by tensor: SiLU aggregation, temporal bias and gating](/learning/hstu-block-en.svg)
 
+## A complete explanation from first principles
+
+### Begin with the block's function
+
+HSTU means Hierarchical Sequential Transduction Unit. Treat it first as a function that transforms behavior-sequence representations, then inspect projections, aggregation, normalization and gating. Replacing Transformer softmax with another function alone does not reproduce the full design.
+
+Efficient implementations may use ragged storage rather than dense `[B,T,d]`. This chapter uses a fixed-length sequence for inspection. Logical tensor relationships and physical storage are separate layers of understanding.
+
+### Follow the U, V, Q and K branches
+
+Learned projections produce branches with different roles: Q/K form position-matching scores, V supplies aggregated content and U participates in gating. An implementation may obtain them through one larger projection followed by slicing, while retaining distinct parameter subspaces.
+
+A schematic flow forms biased QK scores, applies a SiLU-like transformation and valid-position constraints, aggregates V, normalizes, multiplies by a U-related branch, projects and adds a residual. Exact scales, normalization and layouts belong to the paper and implementation; the browser example explicitly omits components.
+
+### SiLU aggregation coefficients are not probabilities
+
+SiLU is `x*sigmoid(x)`. At -1 it is approximately -0.269, at zero it is zero, and at one it is approximately 0.731. Unlike softmax, it does not produce nonnegative row-normalized coefficients.
+
+With values `[1,0]` and `[0,1]`, those coefficients yield `[-0.269,0.731]`, outside their convex-combination line segment. Negative coefficients can subtract feature directions, but do not directly mean dislike for an item. Gating and output projections further change the representation.
+
+### Do not copy softmax masking mechanically
+
+Softmax commonly masks illegal scores with negative infinity before normalization. Directly applying SiLU to negative infinity can involve infinity multiplied by zero and produce NaN. A valid implementation can zero illegal aggregation coefficients after the nonlinearity or use another verified treatment.
+
+Distinguish history, padding, prediction and candidate positions. A triangular-looking mask is not a full correctness test. Change future inputs and verify that earlier outputs remain unchanged.
+
+### Relative time adds information content similarity lacks
+
+Two interactions with the same item can have different relevance when one happened a minute ago and the other a month ago. Relative-time or position biases make such distinctions expressible without declaring all old behavior useless.
+
+Units, bucketing and truncation matter. Training in seconds but serving milliseconds can place events in different bias regions. Input-contract errors may be less visible than formula errors.
+
+The experiments check signed coefficients, the effect of changing temporal bias on actual aggregates, and causal/padding boundaries. The browser notebook fixes embeddings and parts of the aggregator, then trains a scoring head. The full PyTorch notebook offers a more complete but still educational HSTU-inspired block with end-to-end training. Neither claims to reproduce an entire production recommendation system. Explicit omissions make each experiment's evidence easier to interpret.
+
 ## Similar shape, different aggregation
 
 Standard attention softmax-normalizes scores across each row. HSTU includes pointwise activated aggregation: transform biased scores with a function such as SiLU, aggregate V, then normalize and gate. Without sequence-wise softmax, the weight matrix is not a probability distribution.

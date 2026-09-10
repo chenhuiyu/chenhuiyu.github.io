@@ -185,3 +185,31 @@ Do not regenerate without `--execute` when intending to retain executed outputs.
 Generated model plots in `public/learning/*-actual.png` are captured from notebooks;
 conceptual SVG diagrams are authored separately. Route changes must also update
 `scripts/export-static.mjs` so GitHub Pages and the sitemap include them.
+
+## Embedded notebooks
+
+Every learning article mounts `EmbeddedNotebook.tsx`. Its browser edition loads a
+real `.ipynb` and runs editable cells in a persistent, self-hosted Pyodide worker.
+Cells share Python variables; Run all stops at the first error. Stop/restart
+terminates the worker, and previous outputs are marked stale after code edits.
+Core cells have a 90-second limit; the optional model-download cell has a three-minute limit. No server kernel, API key, or GPU is required.
+
+Generate the eight bilingual browser editions with:
+
+```bash
+python scripts/build-browser-notebooks.py
+node --test tests/notebook-worker.test.mjs
+```
+
+The tests execute all 16 distinct cells using actual Pyodide WebAssembly in Node
+workers, including state continuity, error recovery and a fresh kernel. They are
+not browser UI tests. `display_plot` renders computed data on the blog; downloaded
+notebooks use a standard-Python fallback that prints the plot data.
+
+The browser curricula deliberately use standard-library numerical experiments:
+character bigram training, resource accounting, a linear reconstruction baseline,
+and a fixed HSTU-style aggregator with a trained scoring head. These are not
+pretrained PyTorch models. The second tab embeds the complete original PyTorch
+notebooks and their saved CPU outputs; executing those full dependencies still
+requires Colab/local Jupyter. The existing MiniLM page runs real pretrained ONNX
+inference in the browser. The foundations notebook can also call that same model worker through an asynchronous `browser_models.embed` bridge from editable Python. This optional cell is excluded from Run all core cells and downloads weights only when explicitly run. Bridge request/response and error handling have separate protocol tests; these do not claim a browser UI test.

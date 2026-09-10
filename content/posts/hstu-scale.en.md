@@ -15,6 +15,50 @@ draft: false
 
 ![Scaling HSTU: ragged execution, candidate amortization and content features](/learning/hstu-scale-en.svg)
 
+## A complete explanation from first principles
+
+### Scale exposes uneven lengths and repeated work
+
+Histories range from a few events to thousands. Padding every sequence to the longest history wastes positions. Separately, many candidates for one user share nearly the same historical computation. Ragged execution and candidate amortization address these different redundancies.
+
+Removing padding does not automatically turn quadratic attention into linear attention. Valid positions still follow the model's connectivity and kernel design.
+
+### Calculate offsets for a packed batch
+
+Lengths two, five and one use fifteen positions in a padded batch but only eight valid positions. Ragged storage concatenates values and records offsets `[0,2,7,8]`. The third sequence is `values[7:8]`.
+
+```python
+sequences = [[1,2],[3,4,5,6,7],[8]]
+values, offsets = [], [0]
+for sequence in sequences:
+    values.extend(sequence)
+    offsets.append(len(values))
+print(values, offsets)
+assert all(values[offsets[i]:offsets[i+1]] == s for i,s in enumerate(sequences))
+```
+
+This validates storage only. Attention must preserve user boundaries rather than treating concatenated values as one history. Empty sequences, very long histories and offset datatypes need additional handling.
+
+### Shared computation depends on candidate dependence
+
+If history representation h is candidate-independent, compute it once and score many candidates in a batch. If candidates interact with history early in the network, the reusable region is smaller. Analyze the actual candidate arrangement and attention masks rather than assuming every ranker can cache one universal user vector.
+
+Separate history encoding, candidate-conditioned work, final scoring and communication. Even perfect reuse of an eighty-percent historical component leaves candidate-dependent work that grows with candidate count. Memory access and batching also affect realized gains.
+
+### Content features provide a cold-start information path
+
+New items may lack interactions while already having titles, images or videos. A content encoder supplies semantic features that can be projected, concatenated or gated together with ID embeddings. That gives the model evidence about new items, but similar content does not guarantee similar click or purchase behavior.
+
+Price, availability, popularity and user intent also matter. A CLIP vector is not automatically calibrated for a recommendation objective. Compare ID-only, content-only and fused variants, separating new-item and established-item results.
+
+### Feature versions form a production interface
+
+Encoder revision, preprocessing and normalization must remain compatible between training and serving. Changing encoders for only part of a catalog can mix incompatible spaces even when vector dimensions match. Record revisions, generation times and schemas, and plan recomputation and transitions.
+
+Training features should also reflect what was available at the historical decision time. Content understanding, sequence modeling and retrieval systems jointly own this interface; it is more than an anonymous float array.
+
+Evaluate efficiency through valid-token throughput, memory, padding, candidates and latency; quality through temporal splits and cold-start ranking; reliability through empty histories, removed items, missing features and version transitions. The browser exercises validate small-scale offsets and scoring logic. Actual ragged kernels and distributed throughput require hardware measurements. Establish user boundaries and candidate dependencies before claiming an acceleration.
+
 ## Variable length is a central systems issue
 
 For lengths `[10,100,1000]`, padding to 1000 allocates 3000 token positions but only 1110 are valid. Potential dense-attention pair work is $3\times1000^2$, compared with $10^2+100^2+1000^2$ for per-sequence work. This ratio is not a promised kernel speedup.

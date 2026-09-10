@@ -15,6 +15,40 @@ draft: false
 
 ![XProf / Nsight: find the bottleneck in a timeline](/learning/llm-infra-profiling-en.svg)
 
+## A complete explanation from first principles
+
+### Profiling should produce a falsifiable explanation
+
+Low GPU utilization does not by itself justify a faster GPU. The device might wait for data, another rank, CPU submissions or synchronization. A profiler separates observable events so you can identify computation and waiting on the critical path.
+
+First specify the slow quantity: first token, inter-token gap, training step, data loading or checkpoint saving. The capture window must correspond to that question. One screenshot cannot answer every performance question.
+
+### Distinguish timelines from kernel counters
+
+Nsight Systems helps relate CPU activity, GPU work, transfers and communication. Nsight Compute focuses on individual CUDA-kernel behavior. XProf provides execution and performance views for supported TPU/accelerator workloads, with available views depending on the environment.
+
+Find the expensive region before examining its detailed counters. Halving a kernel that occupies one percent of runtime rarely transforms user experience. A small synchronization point, however, may block all subsequent work.
+
+### Calculate overlap instead of adding every bar
+
+Suppose a step has twenty milliseconds of preparation, sixty of GPU compute and thirty of communication. Fully serial execution totals 110 milliseconds. If twenty milliseconds of communication overlap computation, the total may be ninety. Summing every timeline event double-counts overlapping intervals.
+
+Shortening an operation completely hidden beneath other work may leave total runtime unchanged. Prioritize exposed critical-path time rather than cumulative category duration alone.
+
+### Asynchronous execution complicates timing
+
+A GPU call may return after enqueueing work. A CPU timer around that call can therefore measure submission rather than completion. Synchronization or device events establish clearer boundaries, but added synchronization can change overlap. Inspect both controlled microbenchmarks and the actual execution path.
+
+The first iteration may include compilation, allocation, initialization and cache population. Warm up when reporting steady state; retain those costs when studying cold start. Both are valid experiments if their meanings remain explicit.
+
+### Turn symptoms into a controlled next experiment
+
+Long idle gaps suggest checking data loading, tokenization, scheduling or synchronization. Unequal rank arrival at a collective suggests load imbalance, varying sequence lengths or a straggler. High bandwidth use with low arithmetic utilization suggests reducing traffic or improving reuse.
+
+These are hypotheses, not automatic conclusions from trace shapes. Change one major variable at a time and preserve comparable workloads and before/after captures.
+
+Record the problem, baseline, hypothesis, intervention, correctness check, measured change and side effects. For example, investigate whether long prefill worsens decode-tail gaps by varying chunk size and checking both TTFT and ITL. That record is more useful than “twenty percent faster.” Profiling itself adds overhead, so confirm gains with a less intrusive benchmark. The browser notebook demonstrates repeated CPU timing; it does not simulate a real Nsight or XProf hardware capture.
+
 ## First ask why the accelerator is idle
 
 Nsight Systems examines CPU, CUDA and communication timelines. Nsight Compute investigates individual kernels. XProf provides accelerator analysis and traces, especially useful in XLA/JAX/TPU workflows. They operate at different levels. A low-utilization kernel alone cannot explain end-to-end latency.

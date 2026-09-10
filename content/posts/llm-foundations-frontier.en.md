@@ -15,6 +15,42 @@ draft: false
 
 ![Toward the frontier: MoE, long context and verified reasoning](/learning/llm-foundations-frontier-en.svg)
 
+## A complete explanation from first principles
+
+### Read new methods as resource-allocation choices
+
+Before asking which acronym is newest, identify the constraint it addresses: parameter capacity, per-token compute, KV storage, communication, context length or insufficient search on difficult tasks. Methods targeting different constraints cannot be fairly compared through an unlabeled ranking.
+
+This chapter is a guide to mechanisms rather than a claim that any checkpoint remains permanently state of the art. Framework support changes; separating total parameters, activated parameters, runtime memory and measured quality remains useful.
+
+### MoE separates capacity from activated computation
+
+A mixture-of-experts layer contains several expert networks and a router that selects a small subset for each token. With eight experts and two selected per token, capacity includes eight expert parameter sets while expert computation mainly uses two. Shared layers, routing and merging still cost resources, so the whole model does not necessarily become exactly four times cheaper.
+
+If many tokens choose one expert, load becomes uneven. Training needs load management, and distributed expert parallelism sends tokens to the devices holding their experts and returns the results. Experts are not necessarily interpretable specialists, nor are they simply independent chatbots voting on an answer.
+
+### Context extension and KV compression solve different problems
+
+Longer inputs increase attention work and KV storage. Sliding-window attention limits direct connections and changes the attention graph. FlashAttention primarily changes memory access and intermediate storage while retaining the mathematical target of standard attention. These are different interventions.
+
+MLA uses a lower-dimensional latent representation for parts of the KV information, together with structured projections. This differs from GQA's reduction in KV heads. Real benefits depend on the architecture, cache layout and supported inference kernels. A theoretical compression ratio is not automatically an end-to-end speedup because projections, reconstruction and other work remain.
+
+### Additional inference computation needs a selection mechanism
+
+A simple strategy generates several candidates and uses a verifier to select one. Code tests and checkable mathematical constraints can provide external feedback. Merely producing a longer response does not supply that feedback.
+
+If each candidate independently succeeds with probability p, the chance that at least one of n candidates succeeds is `1-(1-p)^n`. With p=0.2 and n=5, this is approximately 0.672. It is not a promise of final accuracy: real samples are correlated, and the system must identify the successful candidate. A weak verifier can discard the benefit; incomplete tests and compute limits add further constraints.
+
+### Evaluate quality and budget together
+
+Hold the question set fixed and record correctness, mean and tail latency, generated tokens, candidate count, verification cost and error types. Compare one long answer with several short candidates under a comparable token budget. A gain on easily verified programming tasks does not automatically transfer to open-ended factual questions.
+
+Generated reasoning text also need not faithfully expose the model's internal decision process. Verifiable outputs, intermediate checkable objects and intervention experiments offer stronger evidence than treating a generated self-description as a mechanistic trace.
+
+### Reproduce a small claim before scaling up
+
+For each paper, write down the baseline, the modified operation, the additional cost and the experiments supporting the claim. Then implement a bounded comparison, such as top-one versus best-of-four on a small task or MHA versus GQA KV accounting. A successful local reproduction makes it easier to distinguish algorithmic behavior from environment and distributed-system failures when moving to larger experiments.
+
 ## The frontier reallocates bottlenecks
 
 “SOTA” is not a permanent winner. Tasks, budgets and software versions change. A more durable reading method asks what decreases, where the cost moves and what experiment could refute the claimed benefit. Record training compute, activated parameters, total parameters, context length and measured throughput separately.
