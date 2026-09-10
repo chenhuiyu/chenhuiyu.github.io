@@ -2,15 +2,105 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://chenhuiyu.github.io/</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://chenhuiyu.github.io/blog</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/learn</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/learn/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/learn" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/learn/en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/learn/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/learn" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/learn/llm-foundations</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/learn/llm-foundations/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/learn/llm-foundations" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/llm-foundations/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/learn/llm-foundations/en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/learn/llm-foundations/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/learn/llm-foundations" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/llm-foundations/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/learn/llm-infra</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/learn/llm-infra/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/learn/llm-infra" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/llm-infra/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/learn/llm-infra/en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/learn/llm-infra/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/learn/llm-infra" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/llm-infra/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/learn/multimodal</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/learn/multimodal/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/learn/multimodal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/multimodal/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/learn/multimodal/en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/learn/multimodal/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/learn/multimodal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/multimodal/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/learn/hstu</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/learn/hstu/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/learn/hstu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/hstu/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/learn/hstu/en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/learn/hstu/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/learn/hstu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/hstu/en" />
   </url>
   <url>
     <loc>https://chenhuiyu.github.io/travel</loc>
@@ -57,6 +147,456 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/series/generative-recommendation-2026/en" />
     <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/series/generative-recommendation-2026" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/series/generative-recommendation-2026/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/hstu-block-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/hstu-block-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/hstu-block-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/hstu-block-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/hstu-scale-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/hstu-scale-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/hstu-scale-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/hstu-scale-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/hstu-sequence-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/hstu-sequence-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/hstu-sequence-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/hstu-sequence-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/hstu-training-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/hstu-training-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/hstu-training-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/hstu-training-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-attention-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-attention-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-attention-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-attention-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-decoding-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-decoding-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-decoding-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-decoding-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-frontier-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-frontier-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-frontier-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-frontier-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-model-io-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-model-io-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-model-io-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-model-io-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-tokens-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-tokens-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-tokens-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-tokens-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-training-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-training-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-training-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-training-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-transformer-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-transformer-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-transformer-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-transformer-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-deepspeed-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-deepspeed-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-deepspeed-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-deepspeed-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-hardware-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-hardware-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-hardware-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-hardware-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-megatron-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-megatron-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-megatron-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-megatron-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-profiling-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-profiling-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-profiling-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-profiling-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-serving-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-serving-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-serving-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-serving-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-sglang-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-sglang-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-sglang-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-sglang-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-tensorrt-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-tensorrt-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-tensorrt-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-tensorrt-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-vllm-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-vllm-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-vllm-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-vllm-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/multimodal-clip-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/multimodal-clip-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/multimodal-clip-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/multimodal-clip-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/multimodal-patches-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/multimodal-patches-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/multimodal-patches-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/multimodal-patches-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/multimodal-reconstruction-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/multimodal-reconstruction-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/multimodal-reconstruction-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/multimodal-reconstruction-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/multimodal-video-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/multimodal-video-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/multimodal-video-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/multimodal-video-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/multimodal-vlm-zh</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/multimodal-vlm-zh" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/multimodal-vlm-en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/multimodal-vlm-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/hstu-block-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/hstu-block-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/hstu-block-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/hstu-block-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/hstu-scale-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/hstu-scale-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/hstu-scale-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/hstu-scale-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/hstu-sequence-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/hstu-sequence-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/hstu-sequence-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/hstu-sequence-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/hstu-training-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/hstu-training-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/hstu-training-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/hstu-training-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-attention-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-attention-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-attention-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-attention-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-decoding-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-decoding-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-decoding-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-decoding-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-frontier-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-frontier-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-frontier-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-frontier-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-model-io-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-model-io-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-model-io-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-model-io-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-tokens-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-tokens-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-tokens-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-tokens-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-training-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-training-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-training-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-training-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-foundations-transformer-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-foundations-transformer-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-foundations-transformer-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-foundations-transformer-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-deepspeed-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-deepspeed-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-deepspeed-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-deepspeed-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-hardware-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-hardware-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-hardware-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-hardware-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-megatron-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-megatron-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-megatron-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-megatron-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-profiling-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-profiling-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-profiling-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-profiling-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-serving-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-serving-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-serving-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-serving-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-sglang-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-sglang-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-sglang-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-sglang-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-tensorrt-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-tensorrt-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-tensorrt-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-tensorrt-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/llm-infra-vllm-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/llm-infra-vllm-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/llm-infra-vllm-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/llm-infra-vllm-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/multimodal-clip-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/multimodal-clip-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/multimodal-clip-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/multimodal-clip-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/multimodal-patches-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/multimodal-patches-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/multimodal-patches-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/multimodal-patches-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/multimodal-reconstruction-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/multimodal-reconstruction-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/multimodal-reconstruction-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/multimodal-reconstruction-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/multimodal-video-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/multimodal-video-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/multimodal-video-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/multimodal-video-en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/blog/multimodal-vlm-en</loc>
+    <lastmod>2026-09-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/blog/multimodal-vlm-en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/blog/multimodal-vlm-zh" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/blog/multimodal-vlm-en" />
   </url>
   <url>
     <loc>https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-zh</loc>

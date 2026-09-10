@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-DEia3i-1.css" data-rsc-css-href="/assets/index-DEia3i-1.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-jEU-4L5r.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-D1YeXuRZ.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-CXnKph_e.js" crossorigin=""/><title>大模型：从第一个 token 开始 — Huiyu Chen</title><meta name="description" content="从张量、注意力和训练目标，到真实模型输入输出、检索、MoE 与推理时计算。"/><meta name="application-name" content="Huiyu Chen"/><meta name="keywords" content="Huiyu Chen,Yvette Chen,machine learning engineer,multimodal LLM,large language models,generative recommendation,recommender systems,NLP"/><meta name="author" content="Huiyu (Yvette) Chen"/><link rel="author" href="https://chenhuiyu.github.io"/><meta name="creator" content="Huiyu (Yvette) Chen"/><meta name="publisher" content="Huiyu Chen"/><meta name="robots" content="index, follow"/><meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/><meta property="og:title" content="大模型：从第一个 token 开始"/><meta property="og:description" content="从张量、注意力和训练目标，到真实模型输入输出、检索、MoE 与推理时计算。"/><meta property="og:url" content="https://chenhuiyu.github.io/learn/llm-foundations"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Huiyu Chen — Machine Learning Engineer at Meta"/><meta name="twitter:description" content="Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video."/><meta name="twitter:image" content="https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg"/><link rel="shortcut icon" href="https://chenhuiyu.github.io/favicon.svg"/><link rel="icon" href="https://chenhuiyu.github.io/favicon.svg"/><link rel="canonical" href="https://chenhuiyu.github.io/learn/llm-foundations"/><link rel="alternate" hrefLang="zh-CN" href="https://chenhuiyu.github.io/learn/llm-foundations"/><link rel="alternate" hrefLang="en" href="https://chenhuiyu.github.io/learn/llm-foundations/en"/><link rel="alternate" hrefLang="x-default" href="https://chenhuiyu.github.io/learn/llm-foundations/en"/><link rel="alternate" type="application/rss+xml" href="https://chenhuiyu.github.io/feed.xml"/><script>self.__VINEXT_RSC_PARAMS__={"track":"llm-foundations"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/learn/llm-foundations","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-D1YeXuRZ.js" />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0tvmz3h { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0tvmz3h { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_1diim1n { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_1diim1n { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_1vhuncr { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_1vhuncr { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://chenhuiyu.github.io/#person","name":"Huiyu Chen","alternateName":"Yvette Chen","url":"https://chenhuiyu.github.io","image":"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg","jobTitle":"Machine Learning Engineer","worksFor":{"@type":"Organization","name":"Meta"},"sameAs":["https://www.linkedin.com/in/yvette-huiyu-chen"]},{"@type":"WebSite","@id":"https://chenhuiyu.github.io/#website","url":"https://chenhuiyu.github.io/","name":"Huiyu Chen","description":"Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video.","inLanguage":["en","zh-CN"],"author":{"@id":"https://chenhuiyu.github.io/#person"}}]}</script><main class="site-shell learning-shell" id="top" lang="zh-CN"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/learn">Learn · 学习</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"大模型：从第一个 token 开始","url":"https://chenhuiyu.github.io/learn/llm-foundations","inLanguage":"zh-CN","hasPart":[{"@type":"Article","name":"文字怎样变成模型能读的张量？","url":"https://chenhuiyu.github.io/blog/llm-foundations-tokens-zh"},{"@type":"Article","name":"亲手算一遍 Attention：Q、K、V 与因果遮罩","url":"https://chenhuiyu.github.io/blog/llm-foundations-attention-zh"},{"@type":"Article","name":"Transformer 不只有 Attention：残差、归一化、FFN 与位置","url":"https://chenhuiyu.github.io/blog/llm-foundations-transformer-zh"},{"@type":"Article","name":"从预训练到对齐：模型到底在优化什么？","url":"https://chenhuiyu.github.io/blog/llm-foundations-training-zh"},{"@type":"Article","name":"从 logits 到一句话：采样、KV cache 与停止条件","url":"https://chenhuiyu.github.io/blog/llm-foundations-decoding-zh"},{"@type":"Article","name":"真实模型实验：token、hidden states、attention 与 embedding","url":"https://chenhuiyu.github.io/blog/llm-foundations-model-io-zh"},{"@type":"Article","name":"Embedding、RAG 与评估：会检索不等于会回答","url":"https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-zh"},{"@type":"Article","name":"走向前沿：MoE、长上下文、推理时计算与验证","url":"https://chenhuiyu.github.io/blog/llm-foundations-frontier-zh"}]}</script><header class="learning-intro"><a href="/learn">← <!-- -->全部学习路线</a><a class="language-switch" href="/learn/llm-foundations/en">Read in English →</a><p class="section-kicker">PATH <!-- -->01<!-- --> · <!-- -->8<!-- --> <!-- -->章</p><h1>大模型：从第一个 token 开始</h1><p>从张量、注意力和训练目标，到真实模型输入输出、检索、MoE 与推理时计算。</p></header><div class="learning-course"><aside><h2>学习方式</h2><p>先预测输出，再改参数观察，最后打开代码验证。每章结尾有练习和答案。</p><a href="https://colab.research.google.com/github/chenhuiyu/chenhuiyu.github.io/blob/source/public/notebooks/llm-model-io-zh-CN.ipynb" target="_blank" rel="noreferrer">在 Colab 打开实验 ↗</a><a download="" href="/notebooks/llm-model-io-zh-CN.ipynb">下载 Notebook ↓</a><p>Notebook 的环境要求和执行状态见首个单元。</p></aside><ol class="learning-chapters"><li><a href="/blog/llm-foundations-tokens-zh"><span>01</span><div><h2>文字怎样变成模型能读的张量？</h2><p>从词表索引、embedding 查表和 padding 入手，建立 B、T、D、V 四个维度的直觉。</p></div><span aria-hidden="true">↗</span></a></li><li><a href="/blog/llm-foundations-attention-zh"><span>02</span><div><h2>亲手算一遍 Attention：Q、K、V 与因果遮罩</h2><p>用四个 token 看懂打分、归一化和加权聚合，理解为什么遮罩必须放在 softmax 之前。</p></div><span aria-hidden="true">↗</span></a></li><li><a href="/blog/llm-foundations-transformer-zh"><span>03</span><div><h2>Transformer 不只有 Attention：残差、归一化、FFN 与位置</h2><p>沿着一个 decoder block 的数据流，辨认哪些运算混合 token，哪些只变换特征。</p></div><span aria-hidden="true">↗</span></a></li><li><a href="/blog/llm-foundations-training-zh"><span>04</span><div><h2>从预训练到对齐：模型到底在优化什么？</h2><p>区分 next-token loss、SFT、LoRA 和偏好优化，动手检查 shifted labels 与有效监督位置。</p></div><span aria-hidden="true">↗</span></a></li><li><a href="/blog/llm-foundations-decoding-zh"><span>05</span><div><h2>从 logits 到一句话：采样、KV cache 与停止条件</h2><p>亲手计算 softmax、温度与 top-p，分清生成策略和模型分布，也理解缓存如何避免重复计算。</p></div><span aria-hidden="true">↗</span></a></li><li><a href="/blog/llm-foundations-model-io-zh"><span>06</span><div><h2>真实模型实验：token、hidden states、attention 与 embedding</h2><p>浏览器加载 MiniLM，Notebook 加载 GPT-2；用实际张量理解 encoder、decoder 和 pooling 的差别。</p></div><span aria-hidden="true">↗</span></a></li><li><a href="/blog/llm-foundations-rag-eval-zh"><span>07</span><div><h2>Embedding、RAG 与评估：会检索不等于会回答</h2><p>把检索召回、重排、上下文构造和答案归因分开测量，用失败类型推动系统改进。</p></div><span aria-hidden="true">↗</span></a></li><li><a href="/blog/llm-foundations-frontier-zh"><span>08</span><div><h2>走向前沿：MoE、长上下文、推理时计算与验证</h2><p>用计算、内存、通信和验证四个问题理解前沿设计，避免只背模型名和排行榜。</p></div><span aria-hidden="true">↗</span></a></li></ol></div><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script defer="" src="https://events.vercount.one/js"></script><script id="_R_">import("/assets/index-D1YeXuRZ.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n:HL[\"/assets/index-DEia3i-1.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/learn/llm-foundations\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/learn/llm-foundations\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-DEia3i-1.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-DEia3i-1.css\",\"data-rsc-css-href\":\"/assets/index-DEia3i-1.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased\",\"children\":[[\"$\",\"script\",null,{\"type\":\"application/ld+json\",\"dangerouslySetInnerHTML\":{\"__html\":\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@graph\\\":[{\\\"@type\\\":\\\"Person\\\",\\\"@id\\\":\\\"https://chenhuiyu.github.io/#person\\\",\\\"name\\\":\\\"Huiyu Chen\\\",\\\"alternateName\\\":\\\"Yvette Chen\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io\\\",\\\"image\\\":\\\"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg\\\",\\\"jobTitle\\\":\\\"Machine Learning Engineer\\\",\\\"worksFor\\\":{\\\"@type\\\":\\\"Organization\\\",\\\"name\\\":\\\"Meta\\\"},\\\"sameAs\\\":[\\\"https://www.linkedin.com/in/yvette-huiyu-chen\\\"]},{\\\"@type\\\":\\\"WebSite\\\",\\\"@id\\\":\\\"https://chenhuiyu.github.io/#website\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io/\\\",\\\"name\\\":\\\"Huiyu Chen\\\",\\\"description\\\":\\\"Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video.\\\",\\\"inLanguage\\\":[\\\"en\\\",\\\"zh-CN\\\"],\\\"author\\\":{\\\"@id\\\":\\\"https://chenhuiyu.github.io/#person\\\"}}]}\"}}],[\"$\",\"$L2\",null,{}],[\"$\",\"script\",null,{\"defer\":true,\"src\":\"https://events.vercount.one/js\"}]]}]}]],null],\"route:/learn/llm-foundations\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"大模型：从第一个 token 开始 — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"从张量、注意力和训练目标，到真实模型输入输出、检索、MoE 与推理时计算。\"}],[\"$\",\"meta\",\"2\",{\"name\":\"application-name\",\"content\":\"Huiyu Chen\"}],[\"$\",\"meta\",\"3\",{\"name\":\"keywords\",\"content\":\"Huiyu Chen,Yvette Chen,machine learning engineer,multimodal LLM,large language models,generative recommendation,recommender systems,NLP\"}],[\"$\",\"meta\",\"4\",{\"name\":\"author\",\"content\":\"Huiyu (Yvette) Chen\"}],[\"$\",\"link\",\"5\",{\"rel\":\"author\",\"href\":\"https://chenhuiyu.github.io\"}],[\"$\",\"meta\",\"6\",{\"name\":\"creator\",\"content\":\"Huiyu (Yvette) Chen\"}],[\"$\",\"meta\",\"7\",{\"name\":\"publisher\",\"content\":\"Huiyu Chen\"}],[\"$\",\"meta\",\"8\",{\"name\":\"robots\",\"content\":\"index, follow\"}],[\"$\",\"meta\",\"9\",{\"name\":\"googlebot\",\"content\":\"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\"}],[\"$\",\"meta\",\"10\",{\"property\":\"og:title\",\"content\":\"大模型：从第一个 token 开始\"}],[\"$\",\"meta\",\"11\",{\"property\":\"og:description\",\"content\":\"从张量、注意力和训练目标，到真实模型输入输出、检索、MoE 与推理时计算。\"}],[\"$\",\"meta\",\"12\",{\"property\":\"og:url\",\"content\":\"https://chenhuiyu.github.io/learn/llm-foundations\"}],[\"$\",\"meta\",\"13\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"14\",{\"name\":\"twitter:card\",\"content\":\"summary\"}],[\"$\",\"meta\",\"15\",{\"name\":\"twitter:title\",\"content\":\"Huiyu Chen — Machine Learning Engineer at Meta\"}],[\"$\",\"meta\",\"16\",{\"name\":\"twitter:description\",\"content\":\"Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video.\"}],[\"$\",\"meta\",\"17\",{\"name\":\"twitter:image\",\"content\":\"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg\"}],[\"$\",\"link\",\"18\",{\"rel\":\"shortcut icon\",\"href\":\"https://chenhuiyu.github.io/favicon.svg\"}],[\"$\",\"link\",\"19\",{\"rel\":\"icon\",\"href\":\"https://chenhuiyu.github.io/favicon.svg\"}],[\"$\",\"link\",\"20\",{\"rel\":\"canonical\",\"href\":\"https://chenhuiyu.github.io/learn/llm-foundations\"}],[\"$\",\"link\",\"21\",{\"rel\":\"alternate\",\"hrefLang\":\"zh-CN\",\"href\":\"https://chenhuiyu.github.io/learn/llm-foundations\"}],[\"$\",\"link\",\"22\",{\"rel\":\"alternate\",\"hrefLang\":\"en\",\"href\":\"https://chenhuiyu.github.io/learn/llm-foundations/en\"}],[\"$\",\"link\",\"23\",{\"rel\":\"alternate\",\"hrefLang\":\"x-default\",\"href\":\"https://chenhuiyu.github.io/learn/llm-foundations/en\"}],[\"$\",\"link\",\"24\",{\"rel\":\"alternate\",\"type\":\"application/rss+xml\",\"href\":\"https://chenhuiyu.github.io/feed.xml\"}],\"$L3\"],\"$L4\"],\"$L5\"],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:138w8wcsx3mfc\",\"deploymentVersion\":\"13610467-8765-4e90-a383-7e0fcc46207f\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("6:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n7:I[\"8c0f216c4604\",[],\"Slot\",1]\n8:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n3:[\"$\",\"meta\",\"25\",{\"name\":\"codex-preview\",\"content\":\"development\"}]\n4:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n5:[\"$\",\"$L6\",null,{\"segmentMap\":{\"children\":[\"learn\",\"llm-foundations\"]},\"children\":[\"$\",\"$L7\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$L8\",null,{\"children\":[\"$\",\"$L6\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L7\",null,{\"id\":\"page:/learn/llm-foundations\"}]}]}]}]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("9:T5a9,{\"@context\":\"https://schema.org\",\"@type\":\"CollectionPage\",\"name\":\"大模型：从第一个 token 开始\",\"url\":\"https://chenhuiyu.github.io/learn/llm-foundations\",\"inLanguage\":\"zh-CN\",\"hasPart\":[{\"@type\":\"Article\",\"name\":\"文字怎样变成模型能读的张量？\",\"url\":\"https://chenhuiyu.github.io/blog/llm-foundations-tokens-zh\"},{\"@type\":\"Article\",\"name\":\"亲手算一遍 Attention：Q、K、V 与因果遮罩\",\"url\":\"https://chenhuiyu.github.io/blog/llm-foundations-attention-zh\"},{\"@type\":\"Article\",\"name\":\"Transformer 不只有 Attention：残差、归一化、FFN 与位置\",\"url\":\"https://chenhuiyu.github.io/blog/llm-foundations-transformer-zh\"},{\"@type\":\"Article\",\"name\":\"从预训练到对齐：模型到底在优化什么？\",\"url\":\"https://chenhuiyu.github.io/blog/llm-foundations-training-zh\"},{\"@type\":\"Article\",\"name\":\"从 logits 到一句话：采样、KV cache 与停止条件\",\"url\":\"https://chenhuiyu.github.io/blog/llm-foundations-decoding-zh\"},{\"@type\":\"Article\",\"name\":\"真实模型实验：token、hidden states、attention 与 embedding\",\"url\":\"https://chenhuiyu.github.io/blog/llm-foundations-model-io-zh\"},{\"@type\":\"Article\",\"name\":\"Embedding、RAG 与评估：会检索不等于会回答\",\"url\":\"https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-zh\"},{\"@type\":\"Article\",\"name\":\"走向前沿：MoE、长上下文、推理时计算与验证\",\"url\":\"https://chenhuiyu.github.io/blog/llm-foundations-frontier-zh\"}]}1:[\"$\",\"main\",null,{\"className\":\"site-shell learning-shell\",\"id\":\"top\",\"lang\":\"zh-CN\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/learn\",\"children\":\"Learn · 学习\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"script\",null,{\"type\":\"application/ld+json\",\"dangerouslySetInnerHTML\":{\"__html\":\"$9\"}}],[\"$\",\"header\",null,{\"className\":\"learning-intro\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/learn\",\"children\":[\"← \",\"全部学习路线\"]}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/learn/llm-foundations/en\",\"children\":\"Read in English →\"}],[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":[\"PATH \",\"01\",\" · \",8,\" \",\"章\"]}],[\"$\",\"h1\",null,{\"children\":\"大模型：从第一个 token 开始\"}],[\"$\",\"p\",null,{\"children\":\"从张量、注意力和训练目标，到真实模型输入输出、检索、MoE 与推理时计算。\"}]]}],[\"$\",\"div\",null,{\"className\":\"learning-course\",\"children\":[[\"$\",\"aside\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"学习方式\"}],[\"$\",\"p\",null,{\"children\":\"先预测输出，再改参数观察，最后打开代码验证。每章结尾有练习和答案。\"}],[\"$\",\"a\",null,{\"href\":\"https://colab.research.google.com/github/chenhuiyu/chenhuiyu.github.io/blob/source/public/notebooks/llm-model-io-zh-CN.ipynb\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"在 Colab 打开实验 ↗\"}],[\"$\",\"a\",null,{\"download\":true,\"href\":\"/notebooks/llm-model-io-zh-CN.ipynb\",\"children\":\"下载 Notebook ↓\"}],[\"$\",\"p\",null,{\"children\":\"Notebook 的环境要求和执行状态见首个单元。\"}]]}],[\"$\",\"ol\",null,{\"className\":\"learning-chapters\",\"children\":[[\"$\",\"li\",\"llm-foundations-tokens-zh\",{\"children\":[\"$\",\"a\",null,{\"href\":\"/blog/llm-foundations-tokens-zh\",\"children\":[[\"$\",\"span\",null,{\"children\":\"01\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"文字怎样变成模型能读的张量？\"}],[\"$\",\"p\",null,{\"children\":\"从词表索引、embedding 查表和 padding 入手，建立 B、T、D、V 四个维度的直觉。\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]}],[\"$\",\"li\",\"llm-foundations-attention-zh\",{\"children\":[\"$\",\"a\",null,{\"href\":\"/blog/llm-foundations-attention-zh\",\"children\":[[\"$\",\"span\",null,{\"children\":\"02\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"亲手算一遍 Attention：Q、K、V 与因果遮罩\"}],[\"$\",\"p\",null,{\"children\":\"用四个 token 看懂打分、归一化和加权聚合，理解为什么遮罩必须放在 softmax 之前。\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]}],[\"$\",\"li\",\"llm-foundations-transformer-zh\",{\"children\":\"$La\"}],\"$Lb\",\"$Lc\",\"$Ld\",\"$Le\",\"$Lf\"]}]]}],\"$L10\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("a:[\"$\",\"a\",null,{\"href\":\"/blog/llm-foundations-transformer-zh\",\"children\":[[\"$\",\"span\",null,{\"children\":\"03\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"Transformer 不只有 Attention：残差、归一化、FFN 与位置\"}],[\"$\",\"p\",null,{\"children\":\"沿着一个 decoder block 的数据流，辨认哪些运算混合 token，哪些只变换特征。\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]\nb:[\"$\",\"li\",\"llm-foundations-training-zh\",{\"children\":[\"$\",\"a\",null,{\"href\":\"/blog/llm-foundations-training-zh\",\"children\":[[\"$\",\"span\",null,{\"children\":\"04\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"从预训练到对齐：模型到底在优化什么？\"}],[\"$\",\"p\",null,{\"children\":\"区分 next-token loss、SFT、LoRA 和偏好优化，动手检查 shifted labels 与有效监督位置。\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]}]\nc:[\"$\",\"li\",\"llm-foundations-decoding-zh\",{\"children\":[\"$\",\"a\",null,{\"href\":\"/blog/llm-foundations-decoding-zh\",\"children\":[[\"$\",\"span\",null,{\"children\":\"05\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"从 logits 到一句话：采样、KV cache 与停止条件\"}],[\"$\",\"p\",null,{\"children\":\"亲手计算 softmax、温度与 top-p，分清生成策略和模型分布，也理解缓存如何避免重复计算。\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]}]\nd:[\"$\",\"li\",\"llm-foundations-model-io-zh\",{\"children\":[\"$\",\"a\",null,{\"href\":\"/blog/llm-foundations-model-io-zh\",\"children\":[[\"$\",\"span\",null,{\"children\":\"06\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"真实模型实验：token、hidden states、attention 与 embedding\"}],[\"$\",\"p\",null,{\"children\":\"浏览器加载 MiniLM，Notebook 加载 GPT-2；用实际张量理解 encoder、decoder 和 pooling 的差别。\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("e:[\"$\",\"li\",\"llm-foundations-rag-eval-zh\",{\"children\":[\"$\",\"a\",null,{\"href\":\"/blog/llm-foundations-rag-eval-zh\",\"children\":[[\"$\",\"span\",null,{\"children\":\"07\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"Embedding、RAG 与评估：会检索不等于会回答\"}],[\"$\",\"p\",null,{\"children\":\"把检索召回、重排、上下文构造和答案归因分开测量，用失败类型推动系统改进。\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]}]\nf:[\"$\",\"li\",\"llm-foundations-frontier-zh\",{\"children\":[\"$\",\"a\",null,{\"href\":\"/blog/llm-foundations-frontier-zh\",\"children\":[[\"$\",\"span\",null,{\"children\":\"08\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"走向前沿：MoE、长上下文、推理时计算与验证\"}],[\"$\",\"p\",null,{\"children\":\"用计算、内存、通信和验证四个问题理解前沿设计，避免只背模型名和排行榜。\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]}]\n10:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

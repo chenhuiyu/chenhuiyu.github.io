@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/index-DEia3i-1.css" data-rsc-css-href="/assets/index-DEia3i-1.css" data-precedence="vite-rsc/importer-resources"/><link rel="modulepreload" href="/assets/layout-segment-context-jEU-4L5r.js" crossorigin=""/><link rel="modulepreload" href="/assets/rolldown-runtime-S-ySWqyJ.js" crossorigin=""/><link rel="modulepreload" href="/assets/index-D1YeXuRZ.js" crossorigin=""/><link rel="modulepreload" href="/assets/framework-CXnKph_e.js" crossorigin=""/><title>HSTU, from actions to generative recommendation — Huiyu Chen</title><meta name="description" content="Trace HSTU tensor by tensor, train a tiny sequential recommender, then examine ragged execution, candidate scoring and evaluation."/><meta name="application-name" content="Huiyu Chen"/><meta name="keywords" content="Huiyu Chen,Yvette Chen,machine learning engineer,multimodal LLM,large language models,generative recommendation,recommender systems,NLP"/><meta name="author" content="Huiyu (Yvette) Chen"/><link rel="author" href="https://chenhuiyu.github.io"/><meta name="creator" content="Huiyu (Yvette) Chen"/><meta name="publisher" content="Huiyu Chen"/><meta name="robots" content="index, follow"/><meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/><meta property="og:title" content="HSTU, from actions to generative recommendation"/><meta property="og:description" content="Trace HSTU tensor by tensor, train a tiny sequential recommender, then examine ragged execution, candidate scoring and evaluation."/><meta property="og:url" content="https://chenhuiyu.github.io/learn/hstu/en"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Huiyu Chen — Machine Learning Engineer at Meta"/><meta name="twitter:description" content="Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video."/><meta name="twitter:image" content="https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg"/><link rel="shortcut icon" href="https://chenhuiyu.github.io/favicon.svg"/><link rel="icon" href="https://chenhuiyu.github.io/favicon.svg"/><link rel="canonical" href="https://chenhuiyu.github.io/learn/hstu/en"/><link rel="alternate" hrefLang="zh-CN" href="https://chenhuiyu.github.io/learn/hstu"/><link rel="alternate" hrefLang="en" href="https://chenhuiyu.github.io/learn/hstu/en"/><link rel="alternate" hrefLang="x-default" href="https://chenhuiyu.github.io/learn/hstu/en"/><link rel="alternate" type="application/rss+xml" href="https://chenhuiyu.github.io/feed.xml"/><script>self.__VINEXT_RSC_PARAMS__={"track":"hstu"}</script><script>self.__VINEXT_RSC_NAV__={"pathname":"/learn/hstu/en","searchParams":[]}</script><link rel="modulepreload" href="/assets/index-D1YeXuRZ.js" />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2" as="font" type="font/woff2" crossorigin />
+<style data-vinext-fonts>/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-ff2310f5.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-875ccdd4.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-52306abf.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-001175b1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-8ac0455e797f/geist-98bbbccb.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_0tvmz3h { font-family: 'Geist', sans-serif; }
+
+.__variable_geist_0tvmz3h { --font-geist-sans: 'Geist', sans-serif; }
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-f6b33328.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44e03052.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* symbols2 */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-0638449e.woff2) format('woff2');
+  unicode-range: U+2000-2001, U+2004-2008, U+200A, U+23B8-23BD, U+2500-259F;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-971fb274.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-44745446.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/geist-mono-00e989178794/geist-mono-013b2f2f.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_geist_mono_1diim1n { font-family: 'Geist Mono', sans-serif; }
+
+.__variable_geist_mono_1diim1n { --font-geist-mono: 'Geist Mono', sans-serif; }
+
+/* vietnamese */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-cdecad9c.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-a239d8f4.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(/assets/_vinext_fonts/newsreader-94c054835b7e/newsreader-2415edd0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.__font_newsreader_1vhuncr { font-family: 'Newsreader', sans-serif; }
+
+.__variable_newsreader_1vhuncr { --font-serif: 'Newsreader', sans-serif; }
+</style>
+</head><body class="__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://chenhuiyu.github.io/#person","name":"Huiyu Chen","alternateName":"Yvette Chen","url":"https://chenhuiyu.github.io","image":"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg","jobTitle":"Machine Learning Engineer","worksFor":{"@type":"Organization","name":"Meta"},"sameAs":["https://www.linkedin.com/in/yvette-huiyu-chen"]},{"@type":"WebSite","@id":"https://chenhuiyu.github.io/#website","url":"https://chenhuiyu.github.io/","name":"Huiyu Chen","description":"Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video.","inLanguage":["en","zh-CN"],"author":{"@id":"https://chenhuiyu.github.io/#person"}}]}</script><main class="site-shell learning-shell" id="top" lang="en"><header class="site-header" aria-label="Main navigation"><a class="brand" href="/" aria-label="Huiyu Chen, home">Huiyu Chen<span class="brand-spark" aria-hidden="true">✦</span></a><nav class="nav-links" aria-label="Primary"><a href="/#focus">Focus</a><a href="/blog">Blog</a><a href="/learn">Learn · 学习</a><a href="/travel">Travel</a><a href="/xiaohongshu">小红书</a><a href="https://www.linkedin.com/in/yvette-huiyu-chen" target="_blank" rel="noreferrer">LinkedIn</a></nav><p class="status-note"><span class="status-dot" aria-hidden="true"></span>Meta · Multimodal LLMs</p></header><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"HSTU, from actions to generative recommendation","url":"https://chenhuiyu.github.io/learn/hstu/en","inLanguage":"en","hasPart":[{"@type":"Article","name":"HSTU starts with a question: which sequence are we predicting?","url":"https://chenhuiyu.github.io/blog/hstu-sequence-en"},{"@type":"Article","name":"HSTU tensor by tensor: SiLU aggregation, temporal bias and gating","url":"https://chenhuiyu.github.io/blog/hstu-block-en"},{"@type":"Article","name":"Train a tiny HSTU-inspired recommender: data, loss and top-k","url":"https://chenhuiyu.github.io/blog/hstu-training-en"},{"@type":"Article","name":"Scaling HSTU: ragged execution, candidate amortization and content features","url":"https://chenhuiyu.github.io/blog/hstu-scale-en"}]}</script><header class="learning-intro"><a href="/learn/en">← <!-- -->All learning paths</a><a class="language-switch" href="/learn/hstu">阅读中文版 →</a><p class="section-kicker">PATH <!-- -->04<!-- --> · <!-- -->4<!-- --> <!-- -->CHAPTERS</p><h1>HSTU, from actions to generative recommendation</h1><p>Trace HSTU tensor by tensor, train a tiny sequential recommender, then examine ragged execution, candidate scoring and evaluation.</p></header><div class="learning-course"><aside><h2>How to learn</h2><p>Predict the output, change a parameter, then check the code. Every chapter includes an exercise and its answer.</p><a href="https://colab.research.google.com/github/chenhuiyu/chenhuiyu.github.io/blob/source/public/notebooks/hstu-from-scratch-en.ipynb" target="_blank" rel="noreferrer">Open companion in Colab ↗</a><a download="" href="/notebooks/hstu-from-scratch-en.ipynb">Download notebook ↓</a><p>Environment requirements and execution status are in the first cell.</p></aside><ol class="learning-chapters"><li><a href="/blog/hstu-sequence-en"><span>01</span><div><h2>HSTU starts with a question: which sequence are we predicting?</h2><p>Separate content, actions, targets and candidates; understand sequential transduction and leakage boundaries.</p></div><span aria-hidden="true">↗</span></a></li><li><a href="/blog/hstu-block-en"><span>02</span><div><h2>HSTU tensor by tensor: SiLU aggregation, temporal bias and gating</h2><p>Compare softmax attention with pointwise aggregation and trace U/Q/K/V, normalization and residual paths.</p></div><span aria-hidden="true">↗</span></a></li><li><a href="/blog/hstu-training-en"><span>03</span><div><h2>Train a tiny HSTU-inspired recommender: data, loss and top-k</h2><p>Train executable PyTorch teaching code and verify causality, padding, gradients and recommendation outputs.</p></div><span aria-hidden="true">↗</span></a></li><li><a href="/blog/hstu-scale-en"><span>04</span><div><h2>Scaling HSTU: ragged execution, candidate amortization and content features</h2><p>Separate variable-length waste, candidate-dependent work and content embeddings to connect recommendation with multimodal understanding.</p></div><span aria-hidden="true">↗</span></a></li></ol></div><footer class="site-footer"><div><p class="footer-name">Huiyu Chen</p><p>Building thoughtful multimodal AI in Singapore.</p></div><p class="footer-evolving"><span class="mini-fish" aria-hidden="true"></span>黑头呆鱼，还在进化中 ♡</p><a href="#top">Back to top ↑</a></footer></main><script defer="" src="https://events.vercount.one/js"></script><script id="_R_">import("/assets/index-D1YeXuRZ.js")</script></body></html><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("2:I[\"8c0f216c4604\",[],\"Children\",1]\n:HL[\"/assets/index-DEia3i-1.css\",\"style\"]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("0:{\"__route\":\"route:/learn/hstu/en\",\"__interceptionContext\":null,\"__layoutIds\":[\"layout:/\"],\"__rootLayout\":\"/\",\"page:/learn/hstu/en\":\"$L1\",\"layout:/\":[[[[\"$\",\"link\",\"css:/assets/index-DEia3i-1.css\",{\"rel\":\"stylesheet\",\"precedence\":\"vite-rsc/importer-resources\",\"href\":\"/assets/index-DEia3i-1.css\",\"data-rsc-css-href\":\"/assets/index-DEia3i-1.css\"}],\"$undefined\"],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"__variable_geist_0tvmz3h __variable_geist_mono_1diim1n __variable_newsreader_1vhuncr antialiased\",\"children\":[[\"$\",\"script\",null,{\"type\":\"application/ld+json\",\"dangerouslySetInnerHTML\":{\"__html\":\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@graph\\\":[{\\\"@type\\\":\\\"Person\\\",\\\"@id\\\":\\\"https://chenhuiyu.github.io/#person\\\",\\\"name\\\":\\\"Huiyu Chen\\\",\\\"alternateName\\\":\\\"Yvette Chen\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io\\\",\\\"image\\\":\\\"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg\\\",\\\"jobTitle\\\":\\\"Machine Learning Engineer\\\",\\\"worksFor\\\":{\\\"@type\\\":\\\"Organization\\\",\\\"name\\\":\\\"Meta\\\"},\\\"sameAs\\\":[\\\"https://www.linkedin.com/in/yvette-huiyu-chen\\\"]},{\\\"@type\\\":\\\"WebSite\\\",\\\"@id\\\":\\\"https://chenhuiyu.github.io/#website\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io/\\\",\\\"name\\\":\\\"Huiyu Chen\\\",\\\"description\\\":\\\"Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video.\\\",\\\"inLanguage\\\":[\\\"en\\\",\\\"zh-CN\\\"],\\\"author\\\":{\\\"@id\\\":\\\"https://chenhuiyu.github.io/#person\\\"}}]}\"}}],[\"$\",\"$L2\",null,{}],[\"$\",\"script\",null,{\"defer\":true,\"src\":\"https://events.vercount.one/js\"}]]}]}]],null],\"route:/learn/hstu/en\":[[[\"$\",\"meta\",null,{\"charSet\":\"utf-8\"}],[[\"$\",\"title\",\"0\",{\"children\":\"HSTU, from actions to generative recommendation — Huiyu Chen\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Trace HSTU tensor by tensor, train a tiny sequential recommender, then examine ragged execution, candidate scoring and evaluation.\"}],[\"$\",\"meta\",\"2\",{\"name\":\"application-name\",\"content\":\"Huiyu Chen\"}],[\"$\",\"meta\",\"3\",{\"name\":\"keywords\",\"content\":\"Huiyu Chen,Yvette Chen,machine learning engineer,multimodal LLM,large language models,generative recommendation,recommender systems,NLP\"}],[\"$\",\"meta\",\"4\",{\"name\":\"author\",\"content\":\"Huiyu (Yvette) Chen\"}],[\"$\",\"link\",\"5\",{\"rel\":\"author\",\"href\":\"https://chenhuiyu.github.io\"}],[\"$\",\"meta\",\"6\",{\"name\":\"creator\",\"content\":\"Huiyu (Yvette) Chen\"}],[\"$\",\"meta\",\"7\",{\"name\":\"publisher\",\"content\":\"Huiyu Chen\"}],[\"$\",\"meta\",\"8\",{\"name\":\"robots\",\"content\":\"index, follow\"}],[\"$\",\"meta\",\"9\",{\"name\":\"googlebot\",\"content\":\"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\"}],[\"$\",\"meta\",\"10\",{\"property\":\"og:title\",\"content\":\"HSTU, from actions to generative recommendation\"}],[\"$\",\"meta\",\"11\",{\"property\":\"og:description\",\"content\":\"Trace HSTU tensor by tensor, train a tiny sequential recommender, then examine ragged execution, candidate scoring and evaluation.\"}],[\"$\",\"meta\",\"12\",{\"property\":\"og:url\",\"content\":\"https://chenhuiyu.github.io/learn/hstu/en\"}],[\"$\",\"meta\",\"13\",{\"property\":\"og:type\",\"content\":\"website\"}],[\"$\",\"meta\",\"14\",{\"name\":\"twitter:card\",\"content\":\"summary\"}],[\"$\",\"meta\",\"15\",{\"name\":\"twitter:title\",\"content\":\"Huiyu Chen — Machine Learning Engineer at Meta\"}],[\"$\",\"meta\",\"16\",{\"name\":\"twitter:description\",\"content\":\"Huiyu (Yvette) Chen is a Machine Learning Engineer at Meta working on multimodal content-understanding LLMs across language, images, and video.\"}],[\"$\",\"meta\",\"17\",{\"name\":\"twitter:image\",\"content\":\"https://chenhuiyu.github.io/photos/profile/yvette-portrait.jpeg\"}],[\"$\",\"link\",\"18\",{\"rel\":\"shortcut icon\",\"href\":\"https://chenhuiyu.github.io/favicon.svg\"}],[\"$\",\"link\",\"19\",{\"rel\":\"icon\",\"href\":\"https://chenhuiyu.github.io/favicon.svg\"}],[\"$\",\"link\",\"20\",{\"rel\":\"canonical\",\"href\":\"https://chenhuiyu.github.io/learn/hstu/en\"}],[\"$\",\"link\",\"21\",{\"rel\":\"alternate\",\"hrefLang\":\"zh-CN\",\"href\":\"https://chenhuiyu.github.io/learn/hstu\"}],[\"$\",\"link\",\"22\",{\"rel\":\"alternate\",\"hrefLang\":\"en\",\"href\":\"https://chenhuiyu.github.io/learn/hstu/en\"}],\"$L3\",\"$L4\",\"$L5\"],\"$L6\"],\"$L7\"],\"__layoutFlags\":{\"layout:/\":\"s\"},\"__artifactCompatibility\":{\"schemaVersion\":1,\"graphVersion\":\"app-route-graph:1jgbnyo1fucodg\",\"deploymentVersion\":\"13610467-8765-4e90-a383-7e0fcc46207f\",\"appElementsSchemaVersion\":1,\"rscPayloadSchemaVersion\":1,\"rootBoundaryId\":\"/\",\"renderEpoch\":null}}\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("8:I[\"15c18cfaeeff\",[],\"LayoutSegmentProvider\",1]\n9:I[\"8c0f216c4604\",[],\"Slot\",1]\na:I[\"593f344dc510\",[],\"RedirectBoundary\",1]\n3:[\"$\",\"link\",\"23\",{\"rel\":\"alternate\",\"hrefLang\":\"x-default\",\"href\":\"https://chenhuiyu.github.io/learn/hstu/en\"}]\n4:[\"$\",\"link\",\"24\",{\"rel\":\"alternate\",\"type\":\"application/rss+xml\",\"href\":\"https://chenhuiyu.github.io/feed.xml\"}]\n5:[\"$\",\"meta\",\"25\",{\"name\":\"codex-preview\",\"content\":\"development\"}]\n6:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n7:[\"$\",\"$L8\",null,{\"segmentMap\":{\"children\":[\"learn\",\"hstu\",\"en\"]},\"children\":[\"$\",\"$L9\",null,{\"id\":\"layout:/\",\"parallelSlots\":\"$undefined\",\"children\":[\"$\",\"$La\",null,{\"children\":[\"$\",\"$L8\",null,{\"segmentMap\":{\"children\":[]},\"children\":[\"$\",\"$L9\",null,{\"id\":\"page:/learn/hstu/en\"}]}]}]}]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("1:[\"$\",\"main\",null,{\"className\":\"site-shell learning-shell\",\"id\":\"top\",\"lang\":\"en\",\"children\":[[\"$\",\"header\",null,{\"className\":\"site-header\",\"aria-label\":\"Main navigation\",\"children\":[[\"$\",\"a\",null,{\"className\":\"brand\",\"href\":\"/\",\"aria-label\":\"Huiyu Chen, home\",\"children\":[\"Huiyu Chen\",[\"$\",\"span\",null,{\"className\":\"brand-spark\",\"aria-hidden\":\"true\",\"children\":\"✦\"}]]}],[\"$\",\"nav\",null,{\"className\":\"nav-links\",\"aria-label\":\"Primary\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/#focus\",\"children\":\"Focus\"}],[\"$\",\"a\",null,{\"href\":\"/blog\",\"children\":\"Blog\"}],[\"$\",\"a\",null,{\"href\":\"/learn\",\"children\":\"Learn · 学习\"}],[\"$\",\"a\",null,{\"href\":\"/travel\",\"children\":\"Travel\"}],[\"$\",\"a\",null,{\"href\":\"/xiaohongshu\",\"children\":\"小红书\"}],[\"$\",\"a\",null,{\"href\":\"https://www.linkedin.com/in/yvette-huiyu-chen\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"LinkedIn\"}]]}],[\"$\",\"p\",null,{\"className\":\"status-note\",\"children\":[[\"$\",\"span\",null,{\"className\":\"status-dot\",\"aria-hidden\":\"true\"}],\"Meta · Multimodal LLMs\"]}]]}],[\"$\",\"script\",null,{\"type\":\"application/ld+json\",\"dangerouslySetInnerHTML\":{\"__html\":\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"CollectionPage\\\",\\\"name\\\":\\\"HSTU, from actions to generative recommendation\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io/learn/hstu/en\\\",\\\"inLanguage\\\":\\\"en\\\",\\\"hasPart\\\":[{\\\"@type\\\":\\\"Article\\\",\\\"name\\\":\\\"HSTU starts with a question: which sequence are we predicting?\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io/blog/hstu-sequence-en\\\"},{\\\"@type\\\":\\\"Article\\\",\\\"name\\\":\\\"HSTU tensor by tensor: SiLU aggregation, temporal bias and gating\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io/blog/hstu-block-en\\\"},{\\\"@type\\\":\\\"Article\\\",\\\"name\\\":\\\"Train a tiny HSTU-inspired recommender: data, loss and top-k\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io/blog/hstu-training-en\\\"},{\\\"@type\\\":\\\"Article\\\",\\\"name\\\":\\\"Scaling HSTU: ragged execution, candidate amortization and content features\\\",\\\"url\\\":\\\"https://chenhuiyu.github.io/blog/hstu-scale-en\\\"}]}\"}}],[\"$\",\"header\",null,{\"className\":\"learning-intro\",\"children\":[[\"$\",\"a\",null,{\"href\":\"/learn/en\",\"children\":[\"← \",\"All learning paths\"]}],[\"$\",\"a\",null,{\"className\":\"language-switch\",\"href\":\"/learn/hstu\",\"children\":\"阅读中文版 →\"}],[\"$\",\"p\",null,{\"className\":\"section-kicker\",\"children\":[\"PATH \",\"04\",\" · \",4,\" \",\"CHAPTERS\"]}],[\"$\",\"h1\",null,{\"children\":\"HSTU, from actions to generative recommendation\"}],[\"$\",\"p\",null,{\"children\":\"Trace HSTU tensor by tensor, train a tiny sequential recommender, then examine ragged execution, candidate scoring and evaluation.\"}]]}],[\"$\",\"div\",null,{\"className\":\"learning-course\",\"children\":[[\"$\",\"aside\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"How to learn\"}],[\"$\",\"p\",null,{\"children\":\"Predict the output, change a parameter, then check the code. Every chapter includes an exercise and its answer.\"}],[\"$\",\"a\",null,{\"href\":\"https://colab.research.google.com/github/chenhuiyu/chenhuiyu.github.io/blob/source/public/notebooks/hstu-from-scratch-en.ipynb\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"children\":\"Open companion in Colab ↗\"}],[\"$\",\"a\",null,{\"download\":true,\"href\":\"/notebooks/hstu-from-scratch-en.ipynb\",\"children\":\"Download notebook ↓\"}],[\"$\",\"p\",null,{\"children\":\"Environment requirements and execution status are in the first cell.\"}]]}],[\"$\",\"ol\",null,{\"className\":\"learning-chapters\",\"children\":[[\"$\",\"li\",\"hstu-sequence-en\",{\"children\":[\"$\",\"a\",null,{\"href\":\"/blog/hstu-sequence-en\",\"children\":[[\"$\",\"span\",null,{\"children\":\"01\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"HSTU starts with a question: which sequence are we predicting?\"}],[\"$\",\"p\",null,{\"children\":\"Separate content, actions, targets and candidates; understand sequential transduction and leakage boundaries.\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]}],[\"$\",\"li\",\"hstu-block-en\",{\"children\":[\"$\",\"a\",null,{\"href\":\"/blog/hstu-block-en\",\"children\":[[\"$\",\"span\",null,{\"children\":\"02\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"HSTU tensor by tensor: SiLU aggregation, temporal bias and gating\"}],[\"$\",\"p\",null,{\"children\":\"Compare softmax attention with pointwise aggregation and trace U/Q/K/V, normalization and residual paths.\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]}],\"$Lb\",\"$Lc\"]}]]}],\"$Ld\"]}]\n")</script><script>self.__VINEXT_RSC_CHUNKS__=self.__VINEXT_RSC_CHUNKS__||[];self.__VINEXT_RSC_CHUNKS__.push("b:[\"$\",\"li\",\"hstu-training-en\",{\"children\":[\"$\",\"a\",null,{\"href\":\"/blog/hstu-training-en\",\"children\":[[\"$\",\"span\",null,{\"children\":\"03\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"Train a tiny HSTU-inspired recommender: data, loss and top-k\"}],[\"$\",\"p\",null,{\"children\":\"Train executable PyTorch teaching code and verify causality, padding, gradients and recommendation outputs.\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]}]\nc:[\"$\",\"li\",\"hstu-scale-en\",{\"children\":[\"$\",\"a\",null,{\"href\":\"/blog/hstu-scale-en\",\"children\":[[\"$\",\"span\",null,{\"children\":\"04\"}],[\"$\",\"div\",null,{\"children\":[[\"$\",\"h2\",null,{\"children\":\"Scaling HSTU: ragged execution, candidate amortization and content features\"}],[\"$\",\"p\",null,{\"children\":\"Separate variable-length waste, candidate-dependent work and content embeddings to connect recommendation with multimodal understanding.\"}]]}],[\"$\",\"span\",null,{\"aria-hidden\":\"true\",\"children\":\"↗\"}]]}]}]\nd:[\"$\",\"footer\",null,{\"className\":\"site-footer\",\"children\":[[\"$\",\"div\",null,{\"children\":[[\"$\",\"p\",null,{\"className\":\"footer-name\",\"children\":\"Huiyu Chen\"}],[\"$\",\"p\",null,{\"children\":\"Building thoughtful multimodal AI in Singapore.\"}]]}],[\"$\",\"p\",null,{\"className\":\"footer-evolving\",\"children\":[[\"$\",\"span\",null,{\"className\":\"mini-fish\",\"aria-hidden\":\"true\"}],\"黑头呆鱼，还在进化中 ♡\"]}],[\"$\",\"a\",null,{\"href\":\"#top\",\"children\":\"Back to top ↑\"}]]}]\n")</script><script>self.__VINEXT_RSC_DONE__=true</script>

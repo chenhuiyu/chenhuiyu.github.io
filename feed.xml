@@ -6,276 +6,276 @@
     <description>Notes on models, systems, and being human — in English and Chinese.</description>
     <atom:link href="https://chenhuiyu.github.io/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-SG</language>
-    <lastBuildDate>Thu, 30 Jul 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 10 Sep 2026 00:00:00 GMT</lastBuildDate>
     <item>
-      <title>Tokenizer 终于能听见推荐损失｜生成式推荐 2026·01：DIGER</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-zh</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>逐张量拆解 HSTU：SiLU 聚合、时间偏置与门控</title>
+      <link>https://chenhuiyu.github.io/blog/hstu-block-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/hstu-block-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>DIGER 让 Semantic ID 在推荐训练中保持可微，用 Gumbel 探索和不确定性衰减缓解 codebook 塌缩。</description>
+      <category>HSTU</category>
+      <description>比较 softmax attention 与 pointwise aggregation，辨认 U/Q/K/V、norm 与 residual 的各自作用。</description>
     </item>
     <item>
-      <title>生成越深，偏差可能越大｜生成式推荐 2026·02：CARE</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-zh</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>HSTU 规模化：Ragged、候选摊销与多模态内容表示</title>
+      <link>https://chenhuiyu.github.io/blog/hstu-scale-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/hstu-scale-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>CARE 把自回归 Semantic ID 解码解释成级联排序，用渐进历史和查询锚定的并行推理控制前缀偏差。</description>
+      <category>HSTU</category>
+      <description>把长短序列浪费、候选相关计算和内容 embedding 分开分析，连接推荐与多模态理解。</description>
     </item>
     <item>
-      <title>Semantic ID 不是唯一答案｜生成式推荐 2026·03：ContRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-zh</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>HSTU 的起点：推荐是在预测什么序列？</title>
+      <link>https://chenhuiyu.github.io/blog/hstu-sequence-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/hstu-sequence-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>ContRec 放弃离散 Semantic ID，以连续 Token 和扩散模型生成偏好向量，再检索真实商品。</description>
+      <category>HSTU</category>
+      <description>区分内容、行为、目标与候选，理解 sequential transduction 和数据泄漏的边界。</description>
     </item>
     <item>
-      <title>推荐系统开始生成商品｜生成式推荐 2026·04：DualFashion</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-zh</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>训练一个微型 HSTU 推荐器：数据、Loss 与 Top-k</title>
+      <link>https://chenhuiyu.github.io/blog/hstu-training-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/hstu-training-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>DualFashion 用图像与文本双扩散生成个性化服装和结构化描述，把推荐推进到商品设计。</description>
+      <category>HSTU</category>
+      <description>从零训练可执行的 PyTorch 教学模型，检查因果性、padding、梯度与推荐输出。</description>
     </item>
     <item>
-      <title>下一件商品不够，模型要生成整页｜生成式推荐 2026·05：GenRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-zh</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>亲手算一遍 Attention：Q、K、V 与因果遮罩</title>
+      <link>https://chenhuiyu.github.io/blog/llm-foundations-attention-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-foundations-attention-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>GenRec 以页面为训练和生成单位，用 Token Merger 压缩长历史，并以 GRPO-SR 对齐页面级偏好。</description>
+      <category>LLM Foundations</category>
+      <description>用四个 token 看懂打分、归一化和加权聚合，理解为什么遮罩必须放在 softmax 之前。</description>
     </item>
     <item>
-      <title>生成式推荐进入广告主链路｜生成式推荐 2026·06：GR4AD</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-zh</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>从 logits 到一句话：采样、KV cache 与停止条件</title>
+      <link>https://chenhuiyu.github.io/blog/llm-foundations-decoding-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-foundations-decoding-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>GR4AD 将业务感知的广告 SID、列表级强化学习与低延迟解码整合到四亿用户规模的广告系统。</description>
+      <category>LLM Foundations</category>
+      <description>亲手计算 softmax、温度与 top-p，分清生成策略和模型分布，也理解缓存如何避免重复计算。</description>
     </item>
     <item>
-      <title>Semantic ID 真的更会泛化吗？｜生成式推荐 2026·07</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-zh</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>走向前沿：MoE、长上下文、推理时计算与验证</title>
+      <link>https://chenhuiyu.github.io/blog/llm-foundations-frontier-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-foundations-frontier-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>这篇泛化审计把测试样本拆成记忆型与组合泛化型，揭示 Atomic ID 与 Semantic ID 的互补能力。</description>
+      <category>LLM Foundations</category>
+      <description>用计算、内存、通信和验证四个问题理解前沿设计，避免只背模型名和排行榜。</description>
     </item>
     <item>
-      <title>从商品向量到合法 Semantic ID｜生成式推荐 Hands-on Lab</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-hands-on-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-hands-on-zh</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>真实模型实验：token、hidden states、attention 与 embedding</title>
+      <link>https://chenhuiyu.github.io/blog/llm-foundations-model-io-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-foundations-model-io-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>一个可以亲手操作的生成式推荐实验：观察残差量化如何得到 Semantic ID，调节解码参数，对比 Trie 约束，并在浏览器内真实运行 Python。</description>
+      <category>LLM Foundations</category>
+      <description>浏览器加载 MiniLM，Notebook 加载 GPT-2；用实际张量理解 encoder、decoder 和 pooling 的差别。</description>
     </item>
     <item>
-      <title>The Tokenizer Can Finally Hear Recommendation Loss | Generative Recommendation 2026·01: DIGER</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-01-diger-en</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>Embedding、RAG 与评估：会检索不等于会回答</title>
+      <link>https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-foundations-rag-eval-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Foundations</category>
+      <description>把检索召回、重排、上下文构造和答案归因分开测量，用失败类型推动系统改进。</description>
+    </item>
+    <item>
+      <title>文字怎样变成模型能读的张量？</title>
+      <link>https://chenhuiyu.github.io/blog/llm-foundations-tokens-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-foundations-tokens-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Foundations</category>
+      <description>从词表索引、embedding 查表和 padding 入手，建立 B、T、D、V 四个维度的直觉。</description>
+    </item>
+    <item>
+      <title>从预训练到对齐：模型到底在优化什么？</title>
+      <link>https://chenhuiyu.github.io/blog/llm-foundations-training-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-foundations-training-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Foundations</category>
+      <description>区分 next-token loss、SFT、LoRA 和偏好优化，动手检查 shifted labels 与有效监督位置。</description>
+    </item>
+    <item>
+      <title>Transformer 不只有 Attention：残差、归一化、FFN 与位置</title>
+      <link>https://chenhuiyu.github.io/blog/llm-foundations-transformer-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-foundations-transformer-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Foundations</category>
+      <description>沿着一个 decoder block 的数据流，辨认哪些运算混合 token，哪些只变换特征。</description>
+    </item>
+    <item>
+      <title>DeepSpeed ZeRO：把训练状态逐层拆账</title>
+      <link>https://chenhuiyu.github.io/blog/llm-infra-deepspeed-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-infra-deepspeed-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Infrastructure</category>
+      <description>从 Adam 的权重、梯度与优化器状态出发，算清 ZeRO-1/2/3 的收益与通信代价。</description>
+    </item>
+    <item>
+      <title>GPU、TPU 与 Kernel：为什么 FLOPs 解释不了速度？</title>
+      <link>https://chenhuiyu.github.io/blog/llm-infra-hardware-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-infra-hardware-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Infrastructure</category>
+      <description>用 Roofline 理解 HBM、片上存储、矩阵单元、tiling 与 fusion，再看 Triton/Pallas 的作用。</description>
+    </item>
+    <item>
+      <title>Megatron-LM：TP、PP、DP 与序列分片究竟切哪里？</title>
+      <link>https://chenhuiyu.github.io/blog/llm-infra-megatron-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-infra-megatron-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Infrastructure</category>
+      <description>通过一层矩阵乘拆开 tensor parallelism，计算通信量，并理解 pipeline bubble 与 context parallelism。</description>
+    </item>
+    <item>
+      <title>XProf / Nsight：从时间线找到真正瓶颈</title>
+      <link>https://chenhuiyu.github.io/blog/llm-infra-profiling-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-infra-profiling-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Infrastructure</category>
+      <description>先看端到端时间线，再深入慢 kernel，用 warm-up、同步和对照实验避免性能测量陷阱。</description>
+    </item>
+    <item>
+      <title>推理为什么慢：Prefill、Decode、KV cache 与排队</title>
+      <link>https://chenhuiyu.github.io/blog/llm-infra-serving-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-infra-serving-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Infrastructure</category>
+      <description>先建立延迟与显存账本，再讨论 continuous batching、分页和 prefill/decode 分离。</description>
+    </item>
+    <item>
+      <title>SGLang：共享前缀、结构化生成与 PD 分离</title>
+      <link>https://chenhuiyu.github.io/blog/llm-infra-sglang-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-infra-sglang-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Infrastructure</category>
+      <description>从重复系统提示出发理解 RadixAttention，再计算把 KV 跨机器传输的代价。</description>
+    </item>
+    <item>
+      <title>TensorRT-LLM：硬件感知优化与量化的账本</title>
+      <link>https://chenhuiyu.github.io/blog/llm-infra-tensorrt-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-infra-tensorrt-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Infrastructure</category>
+      <description>理解 fusion、量化、kernel 选择与运行时调度，并学会在相同质量条件下衡量收益。</description>
+    </item>
+    <item>
+      <title>vLLM：从 PagedAttention 到可测量的服务</title>
+      <link>https://chenhuiyu.github.io/blog/llm-infra-vllm-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-infra-vllm-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Infrastructure</category>
+      <description>把 scheduler、KV block manager、model runner 和 API 服务串起来，设计一个公平的吞吐实验。</description>
+    </item>
+    <item>
+      <title>CLIP：让图像和文字在同一空间相遇</title>
+      <link>https://chenhuiyu.github.io/blog/multimodal-clip-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/multimodal-clip-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Multimodal Understanding</category>
+      <description>亲手构造 B×B 相似度矩阵，理解对比学习、负样本、温度和零样本分类的局限。</description>
+    </item>
+    <item>
+      <title>图像怎样变成 token：Patch、位置与分辨率</title>
+      <link>https://chenhuiyu.github.io/blog/multimodal-patches-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/multimodal-patches-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Multimodal Understanding</category>
+      <description>从 RGB 张量到 ViT patch embedding，计算视觉 token 数，理解缩放与裁剪可能丢失的内容。</description>
+    </item>
+    <item>
+      <title>Reconstruction：遮住图像后，模型究竟学什么？</title>
+      <link>https://chenhuiyu.github.io/blog/multimodal-reconstruction-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/multimodal-reconstruction-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Multimodal Understanding</category>
+      <description>区分像素重建与语义预测，拆解 MAE 的 visible-only encoder、轻量 decoder 和 masked loss。</description>
+    </item>
+    <item>
+      <title>视频内容理解：采样、时间定位、音频与评估</title>
+      <link>https://chenhuiyu.github.io/blog/multimodal-video-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/multimodal-video-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Multimodal Understanding</category>
+      <description>把视频当成时间上的证据，计算帧与 token 预算，并诊断静态捷径、字幕泄漏和事件遗漏。</description>
+    </item>
+    <item>
+      <title>视觉语言模型：从 CLIP 特征到能回答问题的 LLM</title>
+      <link>https://chenhuiyu.github.io/blog/multimodal-vlm-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/multimodal-vlm-zh</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>Multimodal Understanding</category>
+      <description>理解 vision encoder、projector 与 decoder 的接口，分清对齐训练、指令训练和视觉 grounding。</description>
+    </item>
+    <item>
+      <title>HSTU tensor by tensor: SiLU aggregation, temporal bias and gating</title>
+      <link>https://chenhuiyu.github.io/blog/hstu-block-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/hstu-block-en</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>DIGER keeps Semantic IDs differentiable during recommendation training and uses Gumbel exploration plus uncertainty decay to prevent codebook collapse.</description>
+      <category>HSTU</category>
+      <description>Compare softmax attention with pointwise aggregation and trace U/Q/K/V, normalization and residual paths.</description>
     </item>
     <item>
-      <title>The Deeper the Generation, the Larger the Bias Can Grow | Generative Recommendation 2026·02: CARE</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-02-care-en</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>Scaling HSTU: ragged execution, candidate amortization and content features</title>
+      <link>https://chenhuiyu.github.io/blog/hstu-scale-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/hstu-scale-en</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>CARE interprets autoregressive Semantic ID decoding as cascaded ranking and controls prefix bias with progressive histories and query-anchored parallel reasoning.</description>
+      <category>HSTU</category>
+      <description>Separate variable-length waste, candidate-dependent work and content embeddings to connect recommendation with multimodal understanding.</description>
     </item>
     <item>
-      <title>Semantic IDs Are Not the Only Answer | Generative Recommendation 2026·03: ContRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-03-contrec-en</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>HSTU starts with a question: which sequence are we predicting?</title>
+      <link>https://chenhuiyu.github.io/blog/hstu-sequence-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/hstu-sequence-en</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>ContRec abandons discrete Semantic IDs, generates a continuous preference vector with diffusion, and retrieves a real catalog item afterward.</description>
+      <category>HSTU</category>
+      <description>Separate content, actions, targets and candidates; understand sequential transduction and leakage boundaries.</description>
     </item>
     <item>
-      <title>The Recommender Starts Generating the Product | Generative Recommendation 2026·04: DualFashion</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-04-dualfashion-en</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>Train a tiny HSTU-inspired recommender: data, loss and top-k</title>
+      <link>https://chenhuiyu.github.io/blog/hstu-training-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/hstu-training-en</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>DualFashion uses image and text diffusion to generate a personalized fashion item plus a structured description, moving recommendation toward product design.</description>
+      <category>HSTU</category>
+      <description>Train executable PyTorch teaching code and verify causality, padding, gradients and recommendation outputs.</description>
     </item>
     <item>
-      <title>One Next Item Is Not Enough: Generate the Whole Page | Generative Recommendation 2026·05: GenRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-05-genrec-en</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <title>Compute attention: Q, K, V and the causal mask</title>
+      <link>https://chenhuiyu.github.io/blog/llm-foundations-attention-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-foundations-attention-en</guid>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
       <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>GenRec trains and generates at page level, compresses long histories with Token Merger, and aligns page preferences through GRPO-SR.</description>
-    </item>
-    <item>
-      <title>Generative Recommendation Enters the Advertising Mainline | Generative Recommendation 2026·06: GR4AD</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-06-gr4ad-en</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>GR4AD combines business-aware advertising SIDs, list-level reinforcement learning, and low-latency decoding at a scale of hundreds of millions of users.</description>
-    </item>
-    <item>
-      <title>Do Semantic IDs Really Generalize Better? | Generative Recommendation 2026·07</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-2026-07-generalization-en</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>This generalization audit separates memorization from compositional cases and reveals complementary strengths of Atomic IDs and Semantic IDs.</description>
-    </item>
-    <item>
-      <title>From Item Vectors to Valid Semantic IDs | A Generative Recommendation Hands-on Lab</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-hands-on-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-hands-on-en</guid>
-      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>Generative Recommendation</category>
-      <description>An interactive generative-recommendation lab: inspect residual quantization, tune decoding, compare Trie constraints, and run editable Python in the browser.</description>
-    </item>
-    <item>
-      <title>所有推荐任务都能改写成一句话吗？｜生成式推荐 05：P5</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-05-p5-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-05-p5-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>P5 把评分、下一项推荐、解释、评论理解与直接推荐统一成 text-to-text：同一个模型、同一种损失，只改变 personalized prompt。</description>
-    </item>
-    <item>
-      <title>一个模型承包召回、排序、解释和创作｜生成式推荐 06：M6-Rec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-06-m6-rec-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-06-m6-rec-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>M6-Rec 把统一推荐推进到真实工业链路：召回、CTR、解释、对话和内容创作共享语言底座，再用 option tuning、late interaction 与蒸馏控制成本。</description>
-    </item>
-    <item>
-      <title>通用 LLM 并不天然懂“喜欢”｜生成式推荐 07：TALLRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-07-tallrec-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-07-tallrec-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>TALLRec 用少量 recommendation instruction 与 LoRA 把 LLaMA 对齐到偏好预测，并用接近随机的零样本表现证明：语言知识不等于推荐知识。</description>
-    </item>
-    <item>
-      <title>上下文放得下，不等于模型看得懂｜生成式推荐 08：ReLLa</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-08-rella-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-08-rella-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>ReLLa 发现 LLM 在远未用满 context window 时就无法利用更长行为序列，并用目标相关行为检索 SUBR 与混合样本微调 ReiT 提高信噪比。</description>
-    </item>
-    <item>
-      <title>世界知识与协同行为怎样合体？｜生成式推荐 09：LLaRA</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-09-llara-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-09-llara-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>LLaRA 把传统序列推荐器的 Item ID embedding 投影成行为 token，与商品标题 token 拼接，并通过 curriculum learning 让 LLM 同时利用世界知识与协同规律。</description>
-    </item>
-    <item>
-      <title>如果检索不再查索引，而是直接生成 ID｜生成式推荐 10：DSI</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-10-dsi-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-10-dsi-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>DSI 把文档写进模型参数，让同一个 Transformer 同时学习 document→ID 与 query→ID；检索从向量近邻搜索变成了受条件约束的 ID 生成。</description>
-    </item>
-    <item>
-      <title>给每件商品一个语义地址｜生成式推荐 11：TIGER</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-11-tiger-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-11-tiger-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>TIGER 用 RQ-VAE 把商品内容压缩成粗到细的 Semantic ID，再让 T5 逐 token 生成下一件商品，为生成式推荐建立了经典范式。</description>
-    </item>
-    <item>
-      <title>Top-K 不是唯一答案，列表也可以逐件写｜生成式推荐 12：GPTRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-12-gptrec-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>GPTRec 对比一次打分的 Top-K 与逐件生成的 Next-K，并用 SVD 量化把每件商品表示成多个紧凑 token。</description>
-    </item>
-    <item>
-      <title>语义相似，不等于被同一群人喜欢｜生成式推荐 13：LC-Rec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-13-lc-rec-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-13-lc-rec-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>LC-Rec 用 Semantic ID 连接 LLaMA 与商品目录，再通过显式、隐式对齐任务把语言语义和协同语义写进同一模型。</description>
-    </item>
-    <item>
-      <title>好 ID 要懂内容、共现与均衡｜生成式推荐 14：LETTER</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-14-letter-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-14-letter-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>LETTER 把层次语义、协同对齐与码本多样性写进同一个 tokenizer 目标，并用 ranking-guided generation 改善生成排序。</description>
-    </item>
-    <item>
-      <title>Tokenizer 不该只是离线预处理｜生成式推荐 15：ETEGRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-15-etegrec-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-15-etegrec-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>ETEGRec 用序列—商品与偏好—语义两类对齐损失连接 tokenizer 和生成器，再通过交替优化让商品 ID 与用户表示共同演化。</description>
-    </item>
-    <item>
-      <title>推荐模型也存在 Scaling Law 吗？｜生成式推荐 16：HSTU</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-16-hstu-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-16-hstu-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>HSTU 把工业推荐重写为用户行为的 sequential transduction，并从注意力、采样、内核和服务四层解决长序列规模化。</description>
-    </item>
-    <item>
-      <title>召回和排序，能否由一个模型一次完成？｜生成式推荐 17：OneRec</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-17-onerec-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-17-onerec-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>OneRec 用 Balanced Semantic ID、Session-wise Generation、Sparse MoE 与迭代 DPO，把快手的召回—粗排—精排漏斗改写为一次列表生成。</description>
-    </item>
-    <item>
-      <title>传统交叉特征真的应该全部扔掉吗？｜生成式推荐 18：MTGR</title>
-      <link>https://chenhuiyu.github.io/blog/generative-recommendation-18-mtgr-zh</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/generative-recommendation-18-mtgr-zh</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <dc:language>zh-CN</dc:language>
-      <category>Generative Recommendation</category>
-      <description>MTGR 保留 DLRM 的候选交叉特征，把同一用户的多候选聚合成一个 HSTU 序列，并用 GLN 与动态遮罩兼顾规模化、效果与因果安全。</description>
+      <category>LLM Foundations</category>
+      <description>Use four tokens to understand scores, normalization and aggregation, and why masking precedes softmax.</description>
     </item>
   </channel>
 </rss>
