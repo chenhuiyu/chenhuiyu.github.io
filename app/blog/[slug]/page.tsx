@@ -1,3 +1,7 @@
+import { getTrack } from "@/lib/learning/tracks";
+import { ConceptLab } from "@/app/components/learning/ConceptLab";
+import { ModelInspector } from "@/app/components/learning/ModelInspector";
+import { PythonLab } from "@/app/components/learning/PythonLab";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { GenerativeRecommendationLab } from "@/app/components/GenerativeRecommendationLab";
@@ -135,12 +139,26 @@ export default async function PostPage({ params }: PageProps) {
   if (!post) notFound();
 
   const related = getRelatedPosts(post);
+  const learningTrack = getTrack(post.series ?? '');
+  const learningChapters = learningTrack ? posts.filter(p=>p.series===post.series&&p.language===post.language).sort((a,b)=>(a.seriesOrder??0)-(b.seriesOrder??0)) : [];
+  const chapterIndex = learningChapters.findIndex(p=>p.slug===post.slug);
+  const conceptKind: Record<string,string> = {'llm-foundations-attention':'attention','llm-infra-serving':'infra','multimodal-reconstruction':'patches','hstu-block':'hstu'};
+  const hasModelLab=post.pairKey==='llm-foundations-model-io';
+  const hasPythonLab=['llm-foundations-decoding','llm-infra-deepspeed','multimodal-clip','hstu-training'].includes(post.pairKey);
+  const extraToc = [
+    ...(conceptKind[post.pairKey]?[{id:'interactive-lab',text:post.language==='en'?'Interactive experiment':'交互实验',level:'h2' as const}]:[]),
+    ...(hasModelLab?[{id:'model-inspector',text:post.language==='en'?'Real model inspector':'真实模型实验',level:'h2' as const}]:[]),
+    ...(hasPythonLab?[{id:'editable-python',text:post.language==='en'?'Run Python':'运行 Python',level:'h2' as const}]:[]),
+  ];
   const isGenerativeLab =
     post.pairKey === "generative-recommendation-hands-on";
   const articleToc = isGenerativeLab
     ? [...post.toc, ...GENERATIVE_LAB_TOC[post.language]]
-    : post.toc;
-  const seriesCollection =
+    : [...post.toc, ...extraToc];
+  const seriesCollection = learningTrack ? {
+    href: `/learn/${learningTrack.id}${post.language==='en'?'/en':''}`,
+    name: learningTrack.title[post.language],
+  } :
     post.series === "generative-recommendation"
       ? {
           href:
@@ -206,7 +224,7 @@ export default async function PostPage({ params }: PageProps) {
       />
       <SiteHeader />
 
-      <article className="article-layout">
+      <article className="article-layout" lang={post.language}>
         <header className="article-header">
           <a className="back-link" href="/blog">
             ← All writing
@@ -216,7 +234,7 @@ export default async function PostPage({ params }: PageProps) {
               className="article-series-link"
               href={seriesCollection.href}
             >
-              {isGenerativeLab
+              {learningTrack ? `${learningTrack.title[post.language]} · ${String(post.seriesOrder).padStart(2,"0")}` : isGenerativeLab
                 ? post.language === "zh-CN"
                   ? "生成式推荐 · HANDS-ON LAB"
                   : "Generative recommendation · HANDS-ON LAB"
@@ -265,6 +283,14 @@ export default async function PostPage({ params }: PageProps) {
 
           <div className={`prose${isGenerativeLab ? " lab-prose" : ""}`}>
             <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            {conceptKind[post.pairKey] && <ConceptLab kind={conceptKind[post.pairKey]} locale={post.language}/>}
+            {hasModelLab && <ModelInspector locale={post.language}/>}
+            {hasPythonLab && <PythonLab track={post.series!} locale={post.language}/>}
+            {learningTrack && <>
+              <section className="learning-notebook"><strong>{post.language==='en'?'Companion notebook':'配套完整 Notebook'}</strong><p>{post.language==='en'?'Inspect tensors, run experiments, and check the stated environment and execution status in the first cell.':'逐格检查张量、运行实验；环境要求与执行状态见首个单元。'}</p><a target="_blank" rel="noreferrer" href={`https://colab.research.google.com/github/chenhuiyu/chenhuiyu.github.io/blob/source/public/notebooks/${learningTrack.notebook}-${post.language}.ipynb`}>{post.language==='en'?'Open in Colab ↗':'在 Colab 打开 ↗'}</a><a download href={`/notebooks/${learningTrack.notebook}-${post.language}.ipynb`}>{post.language==='en'?'Download notebook':'下载 Notebook'}</a></section>
+              <nav className="learning-prev-next" aria-label={post.language==='en'?'Chapter navigation':'章节导航'}>{learningChapters[chapterIndex-1]?<a href={'/blog/'+learningChapters[chapterIndex-1].slug}>← {learningChapters[chapterIndex-1].title}</a>:<span/>}{learningChapters[chapterIndex+1]&&<a href={'/blog/'+learningChapters[chapterIndex+1].slug}>{learningChapters[chapterIndex+1].title} →</a>}</nav>
+            </>}
+
             {isGenerativeLab ? (
               <>
                 <section className="lab-notebook-card" id="full-notebook">

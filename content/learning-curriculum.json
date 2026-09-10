@@ -1,0 +1,177 @@
+[
+  {
+    "track": "llm-foundations",
+    "order": 1,
+    "key": "llm-foundations-tokens",
+    "zh": "文字怎样变成模型能读的张量？",
+    "en": "How does text become a tensor?"
+  },
+  {
+    "track": "llm-foundations",
+    "order": 2,
+    "key": "llm-foundations-attention",
+    "zh": "亲手算一遍 Attention：Q、K、V 与因果遮罩",
+    "en": "Compute attention: Q, K, V and the causal mask"
+  },
+  {
+    "track": "llm-foundations",
+    "order": 3,
+    "key": "llm-foundations-transformer",
+    "zh": "Transformer 不只有 Attention：残差、归一化、FFN 与位置",
+    "en": "Beyond attention: residuals, normalization, FFNs and position"
+  },
+  {
+    "track": "llm-foundations",
+    "order": 4,
+    "key": "llm-foundations-training",
+    "zh": "从预训练到对齐：模型到底在优化什么？",
+    "en": "From pretraining to alignment: what is optimized?"
+  },
+  {
+    "track": "llm-foundations",
+    "order": 5,
+    "key": "llm-foundations-decoding",
+    "zh": "从 logits 到一句话：采样、KV cache 与停止条件",
+    "en": "From logits to text: sampling, KV cache and stopping"
+  },
+  {
+    "track": "llm-foundations",
+    "order": 6,
+    "key": "llm-foundations-model-io",
+    "zh": "真实模型实验：token、hidden states、attention 与 embedding",
+    "en": "A real-model lab: tokens, hidden states, attention and embeddings"
+  },
+  {
+    "track": "llm-foundations",
+    "order": 7,
+    "key": "llm-foundations-rag-eval",
+    "zh": "Embedding、RAG 与评估：会检索不等于会回答",
+    "en": "Embeddings, RAG and evaluation: retrieval is not an answer"
+  },
+  {
+    "track": "llm-foundations",
+    "order": 8,
+    "key": "llm-foundations-frontier",
+    "zh": "走向前沿：MoE、长上下文、推理时计算与验证",
+    "en": "Toward the frontier: MoE, long context and verified reasoning"
+  },
+  {
+    "track": "llm-infra",
+    "order": 1,
+    "key": "llm-infra-serving",
+    "zh": "推理为什么慢：Prefill、Decode、KV cache 与排队",
+    "en": "Why serving is slow: prefill, decode, KV cache and queues"
+  },
+  {
+    "track": "llm-infra",
+    "order": 2,
+    "key": "llm-infra-vllm",
+    "zh": "vLLM：从 PagedAttention 到可测量的服务",
+    "en": "vLLM: from PagedAttention to measurable serving"
+  },
+  {
+    "track": "llm-infra",
+    "order": 3,
+    "key": "llm-infra-sglang",
+    "zh": "SGLang：共享前缀、结构化生成与 PD 分离",
+    "en": "SGLang: shared prefixes, structured generation and PD separation"
+  },
+  {
+    "track": "llm-infra",
+    "order": 4,
+    "key": "llm-infra-tensorrt",
+    "zh": "TensorRT-LLM：硬件感知优化与量化的账本",
+    "en": "TensorRT-LLM: hardware-aware optimization and quantization"
+  },
+  {
+    "track": "llm-infra",
+    "order": 5,
+    "key": "llm-infra-megatron",
+    "zh": "Megatron-LM：TP、PP、DP 与序列分片究竟切哪里？",
+    "en": "Megatron-LM: what do TP, PP, DP and sequence sharding split?"
+  },
+  {
+    "track": "llm-infra",
+    "order": 6,
+    "key": "llm-infra-deepspeed",
+    "zh": "DeepSpeed ZeRO：把训练状态逐层拆账",
+    "en": "DeepSpeed ZeRO: account for every training state"
+  },
+  {
+    "track": "llm-infra",
+    "order": 7,
+    "key": "llm-infra-hardware",
+    "zh": "GPU、TPU 与 Kernel：为什么 FLOPs 解释不了速度？",
+    "en": "GPU, TPU and kernels: why FLOPs do not explain speed"
+  },
+  {
+    "track": "llm-infra",
+    "order": 8,
+    "key": "llm-infra-profiling",
+    "zh": "XProf / Nsight：从时间线找到真正瓶颈",
+    "en": "XProf / Nsight: find the bottleneck in a timeline"
+  },
+  {
+    "track": "multimodal",
+    "order": 1,
+    "key": "multimodal-patches",
+    "zh": "图像怎样变成 token：Patch、位置与分辨率",
+    "en": "How images become tokens: patches, positions and resolution"
+  },
+  {
+    "track": "multimodal",
+    "order": 2,
+    "key": "multimodal-clip",
+    "zh": "CLIP：让图像和文字在同一空间相遇",
+    "en": "CLIP: bring images and text into a shared space"
+  },
+  {
+    "track": "multimodal",
+    "order": 3,
+    "key": "multimodal-reconstruction",
+    "zh": "Reconstruction：遮住图像后，模型究竟学什么？",
+    "en": "Reconstruction: what does a model learn from hidden patches?"
+  },
+  {
+    "track": "multimodal",
+    "order": 4,
+    "key": "multimodal-vlm",
+    "zh": "视觉语言模型：从 CLIP 特征到能回答问题的 LLM",
+    "en": "Vision-language models: from visual features to answers"
+  },
+  {
+    "track": "multimodal",
+    "order": 5,
+    "key": "multimodal-video",
+    "zh": "视频内容理解：采样、时间定位、音频与评估",
+    "en": "Video understanding: sampling, temporal grounding, audio and evaluation"
+  },
+  {
+    "track": "hstu",
+    "order": 1,
+    "key": "hstu-sequence",
+    "zh": "HSTU 的起点：推荐是在预测什么序列？",
+    "en": "HSTU starts with a question: which sequence are we predicting?"
+  },
+  {
+    "track": "hstu",
+    "order": 2,
+    "key": "hstu-block",
+    "zh": "逐张量拆解 HSTU：SiLU 聚合、时间偏置与门控",
+    "en": "HSTU tensor by tensor: SiLU aggregation, temporal bias and gating"
+  },
+  {
+    "track": "hstu",
+    "order": 3,
+    "key": "hstu-training",
+    "zh": "训练一个微型 HSTU 推荐器：数据、Loss 与 Top-k",
+    "en": "Train a tiny HSTU-inspired recommender: data, loss and top-k"
+  },
+  {
+    "track": "hstu",
+    "order": 4,
+    "key": "hstu-scale",
+    "zh": "HSTU 规模化：Ragged、候选摊销与多模态内容表示",
+    "en": "Scaling HSTU: ragged execution, candidate amortization and content features"
+  }
+]

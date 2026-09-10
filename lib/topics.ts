@@ -15,6 +15,10 @@ type TopicDefinition = {
 };
 
 const topicDefinitions: TopicDefinition[] = [
+  {"id": "llm-foundations", "eyebrow": "MODEL LEARNING · 双语学习路线", "title": "从第一个 token 学懂大模型", "description": "从张量和 Attention，到训练、模型输入输出、RAG 与前沿推理；真实模型与可编辑 Python 陪你动手。", "href": "/learn/llm-foundations", "labels": ["Tensors", "Attention", "Model I/O"], "theme": "ink", "seriesId": "llm-foundations", "unit": "章"},
+  {"id": "llm-infra", "eyebrow": "MODEL LEARNING · 双语学习路线", "title": "LLM Infra：从显存到吞吐", "description": "五大训练/推理框架、GPU/TPU、kernel、分片与 profiling，把性能问题变成可验证的实验。", "href": "/learn/llm-infra", "labels": ["vLLM", "Megatron", "XProf"], "theme": "sand", "seriesId": "llm-infra", "unit": "章"},
+  {"id": "multimodal", "eyebrow": "MODEL LEARNING · 双语学习路线", "title": "多模态内容理解", "description": "从图像 patch、CLIP 和 masked reconstruction，到 VLM、视频采样与时间定位。", "href": "/learn/multimodal", "labels": ["CLIP", "MAE", "Video"], "theme": "sage", "seriesId": "multimodal", "unit": "章"},
+  {"id": "hstu", "eyebrow": "MODEL LEARNING · 双语学习路线", "title": "HSTU：从行为到推荐", "description": "数据、逐张量推导、微型训练与规模化；连接多模态内容表示和序列推荐。", "href": "/learn/hstu", "labels": ["Actions", "HSTU", "Train"], "theme": "ink", "seriesId": "hstu", "unit": "章"},
   {
     id: "generative-recommendation",
     eyebrow: "FOUNDATION SERIES · 基础主线",

@@ -153,3 +153,35 @@ lib/topics.ts           permanent homepage topic cards
 
 Generated files such as `static-export/`, `dist/`, and `node_modules/` are
 ignored. Never edit generated HTML as source.
+
+## Model learning studio (2026-09)
+
+`/learn` and `/learn/en` connect four bilingual paths: LLM foundations (8 chapters),
+LLM infrastructure (8), multimodal understanding (5), and HSTU (4). All 50 editions
+are editable Markdown in `content/posts/`; `content/learning-curriculum.json` records
+chapter ordering and `lib/learning/tracks.ts` defines route metadata.
+
+Numerical React experiments live in `app/components/learning/`. Their deterministic
+math is tested by `node --test tests/learning.test.mjs`. Editable Python uses the
+existing self-hosted Pyodide worker. The MiniLM inspector downloads Transformers.js
+3.8.1 from jsDelivr and q8 ONNX weights from Hugging Face only after a reader clicks
+Run. It needs those domains reachable and runs inference locally in a worker.
+
+Four complete notebooks are generated in both languages by:
+
+```bash
+python -m pip install nbformat matplotlib torch transformers==4.57.1 pillow
+python scripts/build-learning-notebooks.py --execute
+```
+
+`--only llm-model-io`, `infra-benchmark`, `multimodal-inspection`, or
+`hstu-from-scratch` selects one notebook. The generator executes code in its own
+process, captures real stdout and matplotlib figures, then shares identical code
+outputs between the paired editions. Published notebooks were executed on CPU;
+CUDA/TPU execution is not claimed. Pretrained notebooks download model weights;
+HSTU and infrastructure examples do not require external weights.
+
+Do not regenerate without `--execute` when intending to retain executed outputs.
+Generated model plots in `public/learning/*-actual.png` are captured from notebooks;
+conceptual SVG diagrams are authored separately. Route changes must also update
+`scripts/export-static.mjs` so GitHub Pages and the sitemap include them.

@@ -42,3 +42,6 @@ next-env.d.ts
 /outputs/
 /work/
 /public/vendor/pyodide/
+
+/tsconfig.tsbuildinfo
+/infra-benchmark-results.json

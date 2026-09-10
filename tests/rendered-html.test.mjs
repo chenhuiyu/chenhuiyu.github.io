@@ -59,10 +59,11 @@ test("renders every homepage topic and the latest story without a public traffic
     html,
     /href="\/blog\/generative-recommendation-hands-on-zh"/,
   );
-  assert.match(
-    html,
-    /href="\/blog\/generative-recommendation-2026-07-generalization-zh"/,
-  );
+  const authored = JSON.parse(await readFile(new URL('../content/authored-posts.json',import.meta.url),'utf8'));
+  const newest = authored.filter(p=>p.language==='zh-CN').sort((a,b)=>b.date.localeCompare(a.date))[0];
+  assert.ok(html.includes(newest.date));
+  assert.match(html, /href="\/learn\/llm-foundations"/);
+  assert.match(html, /href="\/learn\/llm-infra"/);
   assert.match(html, /Generative recommendation/);
   assert.doesNotMatch(html, /class="visitor-pulse-section"/);
   assert.doesNotMatch(html, /busuanzi_value_site_/);

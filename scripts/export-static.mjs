@@ -28,6 +28,9 @@ const legacyPosts = allPosts.filter(
 const routes = [
   "/",
   "/blog",
+  "/learn",
+  "/learn/en",
+  ...["llm-foundations","llm-infra","multimodal","hstu"].flatMap(id=>[`/learn/${id}`,`/learn/${id}/en`]),
   "/travel",
   "/xiaohongshu",
   "/series/generative-recommendation",
@@ -149,6 +152,7 @@ function postLanguageAlternates(siteUrl, post) {
 function sitemapAlternates(siteUrl, route) {
   const seriesRoot = route.endsWith("/en") ? route.slice(0, -3) : route;
   if (
+    seriesRoot === "/learn" || seriesRoot.startsWith("/learn/") ||
     seriesRoot === "/series/generative-recommendation" ||
     seriesRoot === "/series/generative-recommendation-2026"
   ) {
@@ -183,6 +187,7 @@ function sitemapRouteMeta(route, latestModified, latestSeriesModified) {
   if (route === "/blog") {
     return { lastmod: latestModified, changefreq: "daily", priority: "0.9" };
   }
+  if (route.startsWith("/learn")) return {lastmod: latestModified, changefreq:"weekly", priority:"0.9"};
   if (route.startsWith("/series/generative-recommendation")) {
     return {
       lastmod: latestSeriesModified,
