@@ -1,3 +1,4 @@
+import { SensoryStudio } from "@/app/components/SensoryStudio";
 import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "@/app/components/SiteHeader";
 import { countryOrder, travelLocations } from "@/content/travel-data";
@@ -60,7 +61,7 @@ const latestStories = storyKeys
 
 export default function Home() {
   return (
-    <main className="site-shell" id="top">
+    <main className="site-shell art-home" id="top">
       <SiteHeader />
 
       <section className="hero personal-hero">
@@ -92,6 +93,7 @@ export default function Home() {
             >
               Meet me on LinkedIn <span aria-hidden="true">→</span>
             </a>
+            <a className="text-link" href="#sensory-studio">Play with light · 感官实验室 ↘</a>
             <a className="text-link" href="/blog">
               Explore the blog <span aria-hidden="true">→</span>
             </a>
@@ -142,6 +144,8 @@ export default function Home() {
           </figure>
         </div>
       </section>
+
+      <SensoryStudio />
 
       <section className="now-strip" aria-label="Professional introduction">
         <p className="section-kicker">Now · 现在</p>
