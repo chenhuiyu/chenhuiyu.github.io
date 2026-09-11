@@ -213,3 +213,50 @@ pretrained PyTorch models. The second tab embeds the complete original PyTorch
 notebooks and their saved CPU outputs; executing those full dependencies still
 requires Colab/local Jupyter. The existing MiniLM page runs real pretrained ONNX
 inference in the browser. The foundations notebook can also call that same model worker through an asynchronous `browser_models.embed` bridge from editable Python. This optional cell is excluded from Run all core cells and downloads weights only when explicitly run. Bridge request/response and error handling have separate protocol tests; these do not claim a browser UI test.
+
+## Transformer observatory
+
+`/lab/transformer` and `/lab/transformer/en` host an isolated bilingual experiment.
+The permanent homepage entrance is defined in `lib/topics.ts`; existing learning
+articles and notebooks are unchanged. These are experiment routes, not RSS posts.
+Both routes carry canonical metadata, Schema.org LearningResource data and sitemap
+language alternates.
+
+`public/models/recall/weights.json` contains all 27,456 learned parameters of
+Recall-32: 2 pre-norm causal blocks, 4 heads, width 32, learned position embeddings,
+GELU MLPs, and a 15-token output vocabulary. Input examples contain 2–4 distinct
+colour/animal assignments and end in the queried colour, without a final equals
+sign. This is a controlled associative-recall model, not a natural-language LLM.
+There is **explicit auxiliary attention supervision** for L1H1 (animal → colour)
+and L2H1 (query → answer animal), plus a training-only colour probe on first-block
+animal/query representations; do not describe these as spontaneously emergent
+circuits. The complete training objective and fresh random validation results
+are in `public/models/recall/model-card.json` and displayed on the page.
+
+Reproduce training and independent numerical fixtures on CPU:
+
+```bash
+python -m pip install torch==2.14.0
+python scripts/train-recall-transformer.py
+node --test tests/observatory.test.mjs
+```
+
+The committed artifact was generated with PyTorch 2.14.0+cpu, seed 42. Exact bitwise
+reproduction across PyTorch/platform versions is not guaranteed. Training is not
+part of website builds; hosting needs no Python, model API, remote inference
+service or GPU. Weights are fetched from this site's origin only on the experiment
+page. The main homepage does not load the experiment bundle or weights.
+
+`lib/observatory/model.ts` performs the full forward computation in JavaScript.
+The three orthographically projected 3D planes display actual residual activations;
+paths show the selected attention row. They are diagrams of model tensors, not
+hardware execution traces. Dragging rotates the projection; a range control
+provides keyboard/touch rotation, and reduced-motion settings disable path motion.
+All eight independent head ablations recompute downstream layers. Exported JSON
+contains the current input, intervention and tensor trace. Share links encode only
+the prompt and deliberately open with the intact model.
+
+Numerical tests compare every activation, attention weight and final probability
+against independently generated PyTorch fixtures, including all eight interventions.
+They also check causal invariance, masked zeros, input boundaries and recall accuracy.
+These tests do not constitute browser UI testing.

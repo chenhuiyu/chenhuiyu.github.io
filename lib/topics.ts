@@ -12,9 +12,11 @@ type TopicDefinition = {
   pairKey?: string;
   excludePairKeys?: string[];
   unit: string;
+  standalone?: boolean;
 };
 
 const topicDefinitions: TopicDefinition[] = [
+  {id: "transformer-observatory", eyebrow: "MODEL OBSERVATORY · 交互实验", title: "打开 Transformer 的黑箱", description: "旋转真实激活的三维矩阵，追踪注意力，切断一个头，观察模型会忘记什么。一个可检查、可干预的微型 Transformer。", href: "/lab/transformer", labels: ["3D tensors", "Attention", "Ablation"], theme: "ink", standalone: true, unit: "个实验"},
   {"id": "llm-foundations", "eyebrow": "MODEL LEARNING · 双语学习路线", "title": "从第一个 token 学懂大模型", "description": "从张量和 Attention，到训练、模型输入输出、RAG 与前沿推理；真实模型与可编辑 Python 陪你动手。", "href": "/learn/llm-foundations", "labels": ["Tensors", "Attention", "Model I/O"], "theme": "ink", "seriesId": "llm-foundations", "unit": "章"},
   {"id": "llm-infra", "eyebrow": "MODEL LEARNING · 双语学习路线", "title": "LLM Infra：从显存到吞吐", "description": "五大训练/推理框架、GPU/TPU、kernel、分片与 profiling，把性能问题变成可验证的实验。", "href": "/learn/llm-infra", "labels": ["vLLM", "Megatron", "XProf"], "theme": "sand", "seriesId": "llm-infra", "unit": "章"},
   {"id": "multimodal", "eyebrow": "MODEL LEARNING · 双语学习路线", "title": "多模态内容理解", "description": "从图像 patch、CLIP 和 masked reconstruction，到 VLM、视频采样与时间定位。", "href": "/learn/multimodal", "labels": ["CLIP", "MAE", "Video"], "theme": "sage", "seriesId": "multimodal", "unit": "章"},
@@ -60,6 +62,7 @@ const topicDefinitions: TopicDefinition[] = [
 
 export const homeTopics = topicDefinitions.map((topic) => {
   const topicPosts = posts.filter((post) => {
+    if (topic.standalone) return false;
     if (topic.pairKey) return post.pairKey === topic.pairKey;
     if (post.series !== topic.seriesId) return false;
     return !topic.excludePairKeys?.includes(post.pairKey);
@@ -68,7 +71,7 @@ export const homeTopics = topicDefinitions.map((topic) => {
 
   return {
     ...topic,
-    storyCount,
-    editionCount: topicPosts.length,
+    storyCount: topic.standalone ? 1 : storyCount,
+    editionCount: topic.standalone ? 2 : topicPosts.length,
   };
 });

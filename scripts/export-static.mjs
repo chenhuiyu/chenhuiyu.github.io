@@ -30,6 +30,8 @@ const routes = [
   "/blog",
   "/learn",
   "/learn/en",
+  "/lab/transformer",
+  "/lab/transformer/en",
   ...["llm-foundations","llm-infra","multimodal","hstu"].flatMap(id=>[`/learn/${id}`,`/learn/${id}/en`]),
   "/travel",
   "/xiaohongshu",
@@ -152,6 +154,7 @@ function postLanguageAlternates(siteUrl, post) {
 function sitemapAlternates(siteUrl, route) {
   const seriesRoot = route.endsWith("/en") ? route.slice(0, -3) : route;
   if (
+    seriesRoot === "/lab/transformer" ||
     seriesRoot === "/learn" || seriesRoot.startsWith("/learn/") ||
     seriesRoot === "/series/generative-recommendation" ||
     seriesRoot === "/series/generative-recommendation-2026"

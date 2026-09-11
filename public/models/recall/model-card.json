@@ -1,0 +1,36 @@
+{
+  "name": "Recall-32",
+  "seed": 42,
+  "steps": 4000,
+  "batchSize": 64,
+  "dimension": 32,
+  "heads": 4,
+  "layers": 2,
+  "context": 32,
+  "vocab": [
+    "<bos>",
+    "=",
+    ";",
+    "red",
+    "blue",
+    "green",
+    "gold",
+    "pink",
+    "cyan",
+    "fox",
+    "owl",
+    "cat",
+    "elk",
+    "bee",
+    "yak"
+  ],
+  "parameters": 27456,
+  "validation": {
+    "2": 1.0,
+    "3": 1.0,
+    "4": 1.0
+  },
+  "auxiliarySupervision": "Layer 1 head 1 is supervised to attend from each animal to its colour; layer 2 head 1 is supervised to attend from the query to the correct animal. A training-only colour probe aligns first-block animal and query representations. Objective: colour-probe cross-entropy + answer cross-entropy + 0.15 language-model cross-entropy + 0.5 times each attention loss. This is a guided teaching model, not an emergent-circuit claim.",
+  "training": "Synthetic key-value recall; 2\u20134 unique colour/animal bindings. Fresh random validation: 1024 examples per length.",
+  "torchVersion": "2.14.0+cpu"
+}
