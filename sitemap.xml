@@ -31,6 +31,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/en" />
   </url>
   <url>
+    <loc>https://chenhuiyu.github.io/lab/transformer</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/lab/transformer/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/lab/transformer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/lab/transformer/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/lab/transformer/en</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/lab/transformer/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/lab/transformer" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/lab/transformer/en" />
+  </url>
+  <url>
     <loc>https://chenhuiyu.github.io/learn/llm-foundations</loc>
     <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
