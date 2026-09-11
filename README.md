@@ -213,20 +213,3 @@ pretrained PyTorch models. The second tab embeds the complete original PyTorch
 notebooks and their saved CPU outputs; executing those full dependencies still
 requires Colab/local Jupyter. The existing MiniLM page runs real pretrained ONNX
 inference in the browser. The foundations notebook can also call that same model worker through an asynchronous `browser_models.embed` bridge from editable Python. This optional cell is excluded from Run all core cells and downloads weights only when explicitly run. Bridge request/response and error handling have separate protocol tests; these do not claim a browser UI test.
-
-## Sensory studio (homepage)
-
-`app/components/SensoryStudio.tsx` adds a locally rendered Canvas light field,
-pointer/touch/keyboard interaction, opt-in DeviceOrientation control, and an
-opt-in camera pointillist mirror. No images are uploaded, no microphone is
-requested and no face detection is performed. Camera tracks stop on close,
-unmount, a hidden document or when the artwork scrolls out of view. Late media
-permission responses are cancelled safely. Orientation permissions are requested
-only on the reader's click, with a no-data timeout and pointer fallback.
-
-Animation is capped at 25 fps, pixel ratio at 2, and suspended offscreen/in hidden
-tabs. Reduced-motion preferences disable autonomous animation; the manual
-controls remain available. Pause stops painting without releasing a camera;
-the separately labeled Close camera button releases it. PNG export is local.
-Physical camera/sensor behavior still depends on the reader's browser, hardware
-and permissions. No hardware/browser interaction QA was performed in this edit.

@@ -6432,37 +6432,3 @@ a.series-episode:hover {
 .nb-original { margin:1rem 0; padding:1rem; border:1px solid #c9bfb4; }
 .nb-original img { width:100%; height:auto; }
 .embedded-notebook summary { cursor:pointer; font-size:1rem; }
-
-/* A quiet editorial exterior, with one immersive, opt-in sensory artwork. */
-.art-home .personal-hero { padding-top: clamp(48px,7vw,110px); padding-bottom: clamp(48px,7vw,110px); }
-.art-home .hero-copy h1 { font-size:clamp(2.8rem,4.8vw,5.5rem); line-height:1.08; letter-spacing:-.045em; }
-.art-home .hero-description { max-width:48ch; line-height:1.85; }
-.art-home .hero-actions { flex-wrap:wrap; }
-.art-home .hero-portrait { box-shadow:20px 28px 70px #3a251719; }
-.art-home .focus-card { border-top:2px solid var(--ink); transition:background .2s; }
-.art-home .focus-card:hover { background:#fff9; }
-.sensory-studio { margin:1rem 0 6rem; padding:clamp(22px,4vw,56px); background:#0c1018; color:#f3efe8; border-radius:3px; position:relative; box-shadow:0 25px 70px #10141b1a; }
-.sensory-heading { display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; padding-bottom:1.5rem; border-bottom:1px solid #ffffff2b; }
-.sensory-heading .section-kicker { margin:0; color:#bacbd6; font-size:.875rem; }
-.sensory-edition { color:#99acb8; font: .8rem monospace; letter-spacing:.08em; }
-.sensory-intro { display:flex; justify-content:space-between; gap:2rem; align-items:end; padding:2.5rem 0 1.5rem; }
-.sensory-intro h2 { margin:0; font-family:var(--font-serif),Georgia,serif; font-size:clamp(2rem,4vw,4rem); font-weight:400; line-height:1.14; letter-spacing:-.035em; }
-.sensory-intro h2 em { color:#aedcd9; font-weight:400; }
-.sensory-intro p { font-size:1rem; line-height:1.9; color:#d9ddd9; margin:0; }
-.sensory-intro p span { color:#9dafbd; font-size:.9rem; }
-.sensory-stage { position:relative; height:clamp(290px,42vw,560px); margin:1rem -1rem; overflow:hidden; background:radial-gradient(ellipse at center,#163a40,#0c1018 70%); }
-.sensory-stage canvas { width:100%; height:100%; display:block; touch-action:pan-y; outline-offset:-4px; }
-.sensory-video { position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }
-.sensory-caption { position:absolute; top:1rem; left:1.4rem; right:1.4rem; display:flex; justify-content:space-between; gap:1rem; pointer-events:none; color:#b2c5d1; font-size:.8rem; font-family:monospace; }
-.sensory-controls { display:flex; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; padding-top:1.5rem; border-top:1px solid #ffffff2b; }
-.sensory-tools { display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; }
-.sensory-tools button { min-height:44px; border:1px solid #778b98; background:transparent; padding:.7rem .95rem; border-radius:40px; color:#e2eced; cursor:pointer; font-size:.9rem; transition:background .2s,color .2s; }
-.sensory-tools button:first-child,.sensory-tools button[aria-pressed=true] { background:#cae5de; color:#142824; border-color:#cae5de; }
-.sensory-tools button:hover { background:#e4f5ee; color:#142824; }
-.sensory-studio :focus-visible { outline:2px solid #f4d595; outline-offset:4px; }
-.sensory-palette { display:flex; gap:.6rem; align-items:center; font-size:.875rem; color:#afc1ca; flex-wrap:wrap; }
-.sensory-palette select { font-size:.9rem; color:#e9eeeb; background:#17242c; padding:.7rem; border:1px solid #667c88; border-radius:4px; }
-.sensory-status { font-size:.95rem; min-height:1.8rem; line-height:1.7; color:#d8e8e5; margin:1.3rem 0 .6rem; }
-.sensory-privacy { max-width:95ch; font-size:.875rem; color:#9cadbb; line-height:1.8; margin:0; }
-@media (max-width:700px) { .sensory-intro { align-items:start; flex-direction:column; gap:1.2rem; } .sensory-studio { margin:1rem -8px 3rem; } .sensory-tools button { flex:1 1 40%; } .sensory-controls { gap:1rem; } .sensory-caption { font-size:.75rem; } }
-@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .art-home *, .art-home *::before, .art-home *::after { animation:none!important; transition:none!important; } }
