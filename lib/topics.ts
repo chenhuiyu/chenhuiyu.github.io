@@ -16,6 +16,7 @@ type TopicDefinition = {
 };
 
 const topicDefinitions: TopicDefinition[] = [
+  {id: "reconstruction-lab", eyebrow: "THE MISSING PIECE · 交互实验", title: "重建像素，还是理解内容？", description: "遮住笔画，看模型重建；比较识别概率，在潜空间里拖动生成中间态。把 reconstruction、表示学习和内容理解连起来。", href: "/lab/reconstruction", labels: ["Mask", "Reconstruct", "Understand"], theme: "ink", standalone: true, unit: "个实验"},
   {id: "transformer-observatory", eyebrow: "MODEL OBSERVATORY · 交互实验", title: "打开 Transformer 的黑箱", description: "旋转真实激活的三维矩阵，追踪注意力，切断一个头，观察模型会忘记什么。一个可检查、可干预的微型 Transformer。", href: "/lab/transformer", labels: ["3D tensors", "Attention", "Ablation"], theme: "ink", standalone: true, unit: "个实验"},
   {"id": "llm-foundations", "eyebrow": "MODEL LEARNING · 双语学习路线", "title": "从第一个 token 学懂大模型", "description": "从张量和 Attention，到训练、模型输入输出、RAG 与前沿推理；真实模型与可编辑 Python 陪你动手。", "href": "/learn/llm-foundations", "labels": ["Tensors", "Attention", "Model I/O"], "theme": "ink", "seriesId": "llm-foundations", "unit": "章"},
   {"id": "llm-infra", "eyebrow": "MODEL LEARNING · 双语学习路线", "title": "LLM Infra：从显存到吞吐", "description": "五大训练/推理框架、GPU/TPU、kernel、分片与 profiling，把性能问题变成可验证的实验。", "href": "/learn/llm-infra", "labels": ["vLLM", "Megatron", "XProf"], "theme": "sand", "seriesId": "llm-infra", "unit": "章"},

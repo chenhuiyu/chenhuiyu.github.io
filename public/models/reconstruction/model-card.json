@@ -1,0 +1,24 @@
+{
+  "name": "Reconstruct-24",
+  "seed": 73,
+  "pixels": 64,
+  "patchSize": 2,
+  "patches": 16,
+  "latent": 24,
+  "steps": 3500,
+  "probeSteps": 1600,
+  "parameters": 18712,
+  "probeParameters": 250,
+  "metrics": {
+    "testCount": 360,
+    "trainCount": 1437,
+    "cleanProbeAccuracy": 0.9194444417953491,
+    "halfMaskedProbeAccuracy": 0.8416666388511658,
+    "halfMaskedMSE": 0.0331709124147892,
+    "meanFillMSE": 0.07220678776502609
+  },
+  "architecture": "MLP 80\u219296 ReLU\u219224 tanh\u219296 ReLU\u219264 sigmoid; binary visibility concatenated to masked pixels. This is a masked autoencoder, NOT the ViT MAE architecture.",
+  "training": "AE sees no class labels. Mean masked-pixel MSE + 0.1 mean visible-pixel MSE, random 0\u201313 of 16 patches masked. Frozen encoder; linear classifier subsequently trained using digit labels, on alternating clean and masked training inputs. Test split untouched by optimization.",
+  "dataset": "UCI Optical Recognition of Handwritten Digits, sklearn load_digits; 1,797 images, grayscale 8\u00d78. Seeded stratified 80/20 image split, not writer-disjoint.",
+  "torchVersion": "2.14.0+cpu"
+}

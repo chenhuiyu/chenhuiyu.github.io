@@ -260,3 +260,47 @@ Numerical tests compare every activation, attention weight and final probability
 against independently generated PyTorch fixtures, including all eight interventions.
 They also check causal invariance, masked zeros, input boundaries and recall accuracy.
 These tests do not constitute browser UI testing.
+
+## Reconstruction lab
+
+`/lab/reconstruction` and `/lab/reconstruction/en` connect masked pixel prediction,
+representation learning, and digit recognition. The homepage topic and Transformer
+observatory link to this experiment; it links to the existing bilingual multimodal
+reconstruction chapter. Experiment routes receive metadata and sitemap alternates;
+RSS remains reserved for articles.
+
+The self-hosted `public/models/reconstruction/model.json` includes learned MLP
+weights, a frozen-encoder linear classification probe, PCA fitted on training
+representations, 180 test-set PCA points and 20 held-out gallery images. Data is
+sklearn's bundled UCI Optical Recognition of Handwritten Digits dataset (8×8),
+not MNIST or natural-image data. The experiment is a masked autoencoder, **not**
+the ViT MAE architecture. No digit labels enter autoencoder training; a separate
+linear probe is subsequently trained using labels without modifying the encoder.
+
+```bash
+python -m pip install torch scikit-learn numpy
+python scripts/train-reconstruction.py
+node --test tests/reconstruction.test.mjs
+```
+
+The committed model uses seed 73, 1,437 training images and 360 test images in a
+stratified image-level split (not writer-disjoint). Reconstruction trains for
+3,500 steps using masked MSE + 0.1 visible MSE, with 0–13 masked 2×2 patches.
+The probe trains for 1,600 steps on alternating intact/masked training examples.
+The model card records the PyTorch runtime and evaluation details. Training
+is not needed for static publication. Image targets and class labels do not enter
+inference: only visible pixels and 16 visibility indicators reach the encoder.
+Tests explicitly verify this by changing hidden targets without changing outputs.
+
+The interface supports patch brushing, keyboard patch toggles, editing/drawing
+original pixels, a reconstruction comparison slider, masked-only error maps,
+intact-versus-masked class probabilities, actual latent interpolation through the
+decoder, a lossy PCA projection, and exporting computed tensors. Fully masked
+inputs expose learned priors and are outside the training mask range. Zero masked
+pixels yield undefined masked MSE, displayed as a dash. The displayed composite
+preserves visible pixels; the latent interpolation view decodes all pixels.
+
+Tests compare JavaScript with independently executed PyTorch/sklearn fixtures,
+including encoder states, decoder pixels, class probabilities, PCA coordinates,
+mask boundaries, target leakage and nonlinear interpolation. These are numerical
+checks, not browser UI tests.
