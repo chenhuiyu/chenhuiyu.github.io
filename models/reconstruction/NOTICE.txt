@@ -1,0 +1,14 @@
+Dataset attribution
+Alpaydin, E. & Kaynak, C. (1998). Optical Recognition of Handwritten Digits [Dataset].
+UCI Machine Learning Repository. https://doi.org/10.24432/C50P49
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+This experiment uses the 1,797-image optdigits.tes subset distributed by
+scikit-learn's load_digits. Original intensities 0–16 are normalized to 0–1.
+The subset is split into new stratified training/test partitions (seed 73),
+not the original UCI writer-disjoint training/test protocol. The gallery
+contains 20 images from this experiment's test partition. Interactive masks,
+hand-edited pixels, model reconstructions, embeddings and visualizations are
+transformations made for this educational experiment by Huiyu Chen's blog.
+No endorsement by the dataset creators is implied.
