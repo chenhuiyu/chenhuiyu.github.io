@@ -12,6 +12,7 @@ export function SiteHeader() {
         <a href="/#focus">Focus</a>
         <a href="/blog">Blog</a>
         <a href="/learn">Learn · 学习</a>
+        <a href="/interview">Practice · 刷题</a>
         <a href="/travel">Travel</a>
         <a href="/xiaohongshu">小红书</a>
         <a

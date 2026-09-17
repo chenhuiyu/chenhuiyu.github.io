@@ -304,3 +304,30 @@ Tests compare JavaScript with independently executed PyTorch/sklearn fixtures,
 including encoder states, decoder pixels, class probabilities, PCA coordinates,
 mask boundaries, target leakage and nonlinear interpolation. These are numerical
 checks, not browser UI tests.
+
+## Bilingual LLM interview practice
+
+`/interview` and `/interview/en` contain 60 original problems: 48 multiple-choice
+and 12 executable Python problems across 12 topics. The bank lives in
+`lib/interview/`; each problem includes both languages, an explanation and a
+follow-up question. Code problems include a precise contract, starter code,
+reference implementation, complexity and public tests. These are educational
+exercises, not company interview leaks or an exhaustive certification syllabus.
+
+Filters cover topic, difficulty, type and practice status. Bookmarks, attempts and
+code drafts are saved only in the current browser. There is no account, cloud
+sync or leaderboard. Deep links use `#q=049` with stable question IDs.
+
+`public/workers/interview-worker.mjs` executes real Python using the existing
+self-hosted Pyodide runtime, with a fresh submission namespace. Run examples
+checks two cases; Submit checks all cases. Floating-point comparisons use 1e-6
+tolerance. Exceptions, output and mismatches are visible. Stop terminates the
+worker; loading is limited to 90 seconds and execution to 10 seconds. Changed
+code invalidates displayed results. Infrastructure errors do not grade attempts.
+The browser runner has no GPU/PyTorch environment, hidden tests or anti-cheat
+guarantees; reference answers are intentionally inspectable. Never paste secrets
+or untrusted code into the editor.
+
+Run `node --test tests/interview.test.mjs` after editing the bank. Tests validate
+schema/bilingual coverage and execute all reference solutions and starters in the
+actual Pyodide worker, plus syntax recovery and submission namespace isolation.

@@ -16,6 +16,7 @@ type TopicDefinition = {
 };
 
 const topicDefinitions: TopicDefinition[] = [
+  {id: "llm-interview", eyebrow: "LLM PRACTICE · 双语刷题", title: "把理解写成答案", description: "60 道原创双语面试练习，覆盖 12 个方向。选择、写代码、运行测试，再从详细解析中理解为什么。支持难度筛选、收藏和本地进度。", href: "/interview", labels: ["60 problems", "Python", "Solutions"], theme: "sage", standalone: true, unit: "个题库"},
   {id: "reconstruction-lab", eyebrow: "THE MISSING PIECE · 交互实验", title: "重建像素，还是理解内容？", description: "遮住笔画，看模型重建；比较识别概率，在潜空间里拖动生成中间态。把 reconstruction、表示学习和内容理解连起来。", href: "/lab/reconstruction", labels: ["Mask", "Reconstruct", "Understand"], theme: "ink", standalone: true, unit: "个实验"},
   {id: "transformer-observatory", eyebrow: "MODEL OBSERVATORY · 交互实验", title: "打开 Transformer 的黑箱", description: "旋转真实激活的三维矩阵，追踪注意力，切断一个头，观察模型会忘记什么。一个可检查、可干预的微型 Transformer。", href: "/lab/transformer", labels: ["3D tensors", "Attention", "Ablation"], theme: "ink", standalone: true, unit: "个实验"},
   {"id": "llm-foundations", "eyebrow": "MODEL LEARNING · 双语学习路线", "title": "从第一个 token 学懂大模型", "description": "从张量和 Attention，到训练、模型输入输出、RAG 与前沿推理；真实模型与可编辑 Python 陪你动手。", "href": "/learn/llm-foundations", "labels": ["Tensors", "Attention", "Model I/O"], "theme": "ink", "seriesId": "llm-foundations", "unit": "章"},

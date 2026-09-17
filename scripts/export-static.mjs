@@ -30,6 +30,8 @@ const routes = [
   "/blog",
   "/learn",
   "/learn/en",
+  "/interview",
+  "/interview/en",
   "/lab/reconstruction",
   "/lab/reconstruction/en",
   "/lab/transformer",
@@ -156,6 +158,7 @@ function postLanguageAlternates(siteUrl, post) {
 function sitemapAlternates(siteUrl, route) {
   const seriesRoot = route.endsWith("/en") ? route.slice(0, -3) : route;
   if (
+    seriesRoot === "/interview" ||
     seriesRoot === "/lab/reconstruction" ||
     seriesRoot === "/lab/transformer" ||
     seriesRoot === "/learn" || seriesRoot.startsWith("/learn/") ||
