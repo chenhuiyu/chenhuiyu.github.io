@@ -31,6 +31,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/learn/en" />
   </url>
   <url>
+    <loc>https://chenhuiyu.github.io/interview</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/interview/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/interview" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/interview/en" />
+  </url>
+  <url>
+    <loc>https://chenhuiyu.github.io/interview/en</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://chenhuiyu.github.io/interview/en" />
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://chenhuiyu.github.io/interview" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://chenhuiyu.github.io/interview/en" />
+  </url>
+  <url>
     <loc>https://chenhuiyu.github.io/lab/reconstruction</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
