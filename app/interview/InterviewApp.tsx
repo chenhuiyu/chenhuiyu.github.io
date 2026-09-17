@@ -61,7 +61,7 @@ function Workspace({q,en,record,onGrade,onViewed}:{q:Question;en:boolean;record?
  const gradeRef=useRef(onGrade);useEffect(()=>{gradeRef.current=onGrade},[onGrade]);
  useEffect(()=>{if(q.kind==='code')try{const saved=localStorage.getItem(`huiyu-interview-code-${q.id}`);if(saved!==null){setCode(saved.slice(0,50000));codeRef.current=saved.slice(0,50000)}}catch{setDraftError(true)}setHydrated(true);return()=>{if(q.kind==='code')try{localStorage.setItem(`huiyu-interview-code-${q.id}`,codeRef.current)}catch{}worker.current?.terminate();if(timer.current)clearTimeout(timer.current)}},[q.id,q.kind]);
  useEffect(()=>{if(!hydrated||q.kind!=='code')return;const delay=setTimeout(()=>{try{localStorage.setItem(`huiyu-interview-code-${q.id}`,code)}catch{setDraftError(true)}},300);return()=>clearTimeout(delay)},[code,hydrated,q.id,q.kind]);
- function edit(value:string){setCode(value);codeRef.current=value}
+ function edit(value:string){setCode(value);codeRef.current=value;try{localStorage.setItem(`huiyu-interview-code-${q.id}`,value)}catch{setDraftError(true)}}
  function end(){if(timer.current)clearTimeout(timer.current);busy.current=false;setPhase('idle')}
  function stop(message:string){worker.current?.terminate();worker.current=null;runId.current++;end();setNotice(message)}
  function arm(ms:number){if(timer.current)clearTimeout(timer.current);timer.current=setTimeout(()=>stop(t('执行超时，已停止。检查无限循环或先重试加载。','Timed out and stopped. Check for infinite loops or retry loading.')),ms)}
