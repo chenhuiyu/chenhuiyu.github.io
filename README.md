@@ -307,14 +307,26 @@ checks, not browser UI tests.
 
 ## Bilingual LLM interview practice
 
-`/interview` and `/interview/en` contain 60 original problems: 48 multiple-choice
-and 12 executable Python problems across 12 topics. The bank lives in
+`/interview` and `/interview/en` contain 1,000 bilingual exercises: 232 choice
+questions (including binary claim checks), 32 executable Python problems and
+736 written, self-assessed exercises across 12 topics. The bank lives in
 `lib/interview/`; each problem includes both languages, an explanation and a
 follow-up question. Code problems include a precise contract, starter code,
 reference implementation, complexity and public tests. These are educational
 exercises, not company interview leaks or an exhaustive certification syllabus.
 
-Filters cover topic, difficulty, type and practice status. Bookmarks, attempts and
+The original 60 stable IDs are preserved. The expansion contains 184 authored
+subjects with five related angles each: claim, mechanism, misconception,
+experiment and tradeoff (920 exercises), plus 20 new coding exercises. These are
+not 920 independent concepts. Written answers use reference points and a manual
+checklist, not automated semantic grading; viewing an answer does not mark it
+mastered. Course, paper and official-document references are catalogued in
+`lib/interview/sources.ts`. They are further-reading references, not claims that
+the exercises were copied from these sources or appeared at a specific employer.
+No paid forum questions or unverified company interview reports are reproduced.
+
+Filters cover topic, difficulty, type, practice status, reference and study angle.
+The list renders 40 exercises per page. Bookmarks, attempts, written answers and
 code drafts are saved only in the current browser. There is no account, cloud
 sync or leaderboard. Deep links use `#q=049` with stable question IDs.
 

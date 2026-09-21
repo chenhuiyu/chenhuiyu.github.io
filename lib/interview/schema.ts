@@ -2,10 +2,11 @@ export type Localized = { zh: string; en: string };
 export type Difficulty = 'easy' | 'medium' | 'hard';
 export type Case = { expression: string; expected?: unknown; raises?: string };
 export type Question = {
-  id: string; topic: string; difficulty: Difficulty; kind: 'choice' | 'code';
+  id: string; topic: string; difficulty: Difficulty; kind: 'choice' | 'code' | 'written';
   title: Localized; prompt: Localized; explanation: Localized; followup: Localized;
   options?: Localized[]; answer?: number;
   starter?: string; solution?: string; tests?: Case[]; complexity?: Localized;
+  concept?: Localized; sourceIds?: string[]; rubric?: Localized[]; angle?: string;
 };
 export const b = (zh: string, en: string): Localized => ({ zh, en });
 export function choice(id: number, topic: string, difficulty: Difficulty, title: Localized, prompt: Localized, options: Localized[], explanation: Localized, followup: Localized): Question {

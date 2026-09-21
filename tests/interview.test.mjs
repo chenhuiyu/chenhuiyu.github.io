@@ -14,12 +14,19 @@ function load(name){
  return mod.exports;
 }
 const {questions,topics}=load('bank');
-test('60 bilingual problems, exactly four choices and one runnable problem per topic',()=>{
- assert.equal(questions.length,60);assert.equal(new Set(questions.map(q=>q.id)).size,60);
- for(const topic of topics){const qs=questions.filter(q=>q.topic===topic.id);assert.equal(qs.length,5);assert.equal(qs.filter(q=>q.kind==='code').length,1)}
- for(const q of questions){for(const field of ['title','prompt','explanation','followup']){assert.ok(q[field].zh.length>5);assert.ok(q[field].en.length>5)}
+test('1,000 bilingual problems, stable IDs and declared coverage',()=>{
+ assert.equal(questions.length,1000);assert.equal(new Set(questions.map(q=>q.id)).size,1000);
+ assert.equal(new Set(questions.map(q=>q.title.en)).size,1000);
+ assert.equal(new Set(questions.map(q=>q.prompt.en)).size,1000);
+ assert.deepEqual(questions.map(q=>q.id),Array.from({length:1000},(_,i)=>String(i+1).padStart(3,'0')));
+ assert.equal(questions.filter(q=>q.kind==='choice').length,232);assert.equal(questions.filter(q=>q.kind==='code').length,32);assert.equal(questions.filter(q=>q.kind==='written').length,736);
+ const {curriculum}=load('curriculum');assert.equal(curriculum.length,184);
+ assert.equal(new Set(curriculum.map(u=>u.name.en)).size,184);
+ for(const topic of topics){const qs=questions.filter(q=>q.topic===topic.id);assert.ok(qs.length>=60);assert.ok(qs.some(q=>q.kind==='code'))}
+ for(const q of questions){for(const field of ['title','prompt','explanation','followup']){assert.ok(q[field].zh.length>(field==='title'?1:5),`${q.id} ${field} zh`);assert.ok(q[field].en.length>5,`${q.id} ${field} en`)}
  assert.ok(['easy','medium','hard'].includes(q.difficulty));
- if(q.kind==='choice'){assert.equal(q.options.length,4);assert.ok(q.answer>=0&&q.answer<4)}else{assert.ok(q.tests.length>=5);assert.ok(q.solution);assert.ok(q.starter)}}
+ if(q.kind==='choice'){assert.ok([2,4].includes(q.options.length));assert.ok(q.answer>=0&&q.answer<q.options.length)}else if(q.kind==='code'){assert.ok(q.tests.length>=5);assert.ok(q.solution);assert.ok(q.starter)}else{assert.ok(q.rubric.length>=2);assert.ok(q.rubric.every(p=>p.zh&&p.en));assert.ok(q.sourceIds.length)}
+ for(const id of q.sourceIds??[])assert.ok(load('sources').sources[id],`Unknown source ${id}`)}
 });
 test('Actual browser Python runner: all reference solutions pass; all starters fail; exceptions recover', {timeout:180000},async()=>{
  const url=new URL('../public/workers/interview-worker.mjs',import.meta.url).href;
