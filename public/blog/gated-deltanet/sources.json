@@ -1,0 +1,50 @@
+{
+  "paper": "Gated Delta Networks: Improving Mamba2 with Delta Rule",
+  "authors": [
+    "Songlin Yang",
+    "Jan Kautz",
+    "Ali Hatamizadeh"
+  ],
+  "version": "arXiv:2412.06464v3 (2025-03-06)",
+  "url": "https://arxiv.org/html/2412.06464v3",
+  "checked": "2026-11-02",
+  "illustrations": "Original schematics and worked arithmetic; not measured model activations.",
+  "evidence": {
+    "provenance": "Author-reported values; not independently reproduced.",
+    "setup": "1.3B parameters; 100B FineWeb-Edu tokens; training length 4K; hybrid SWA window 2K.",
+    "reasoning": "Table 3 Avg.; eight accuracy-based commonsense tasks, excluding perplexity columns.",
+    "retrieval": "Table 4 Avg.; six retrieval tasks, inputs truncated to 2K tokens.",
+    "values": [
+      {
+        "name": "Mamba2",
+        "reasoning": 54.89,
+        "retrieval": 29.8
+      },
+      {
+        "name": "DeltaNet",
+        "reasoning": 52.14,
+        "retrieval": 26.2
+      },
+      {
+        "name": "Gated DeltaNet",
+        "reasoning": 55.32,
+        "retrieval": 30.6
+      },
+      {
+        "name": "Transformer++",
+        "reasoning": 52.25,
+        "retrieval": 37
+      },
+      {
+        "name": "Gated DeltaNet-H1",
+        "reasoning": 56.4,
+        "retrieval": 39
+      },
+      {
+        "name": "Gated DeltaNet-H2",
+        "reasoning": 56.18,
+        "retrieval": 40.1
+      }
+    ]
+  }
+}
