@@ -344,6 +344,22 @@ Run `node --test tests/interview.test.mjs` after editing the bank. Tests validat
 schema/bilingual coverage and execute all reference solutions and starters in the
 actual Pyodide worker, plus syntax recovery and submission namespace isolation.
 
+## Gated DeltaNet visual paper guide (2026-11-02)
+
+The bilingual `gated-deltanet-visual-guide` post pair reads the ICLR 2025 paper,
+using arXiv:2412.06464v3 (2025-03-06). Six original figure designs are localized
+into twelve SVGs under `public/blog/gated-deltanet/`. Rebuild them without graphics
+dependencies or model training:
+
+```bash
+node scripts/generate-gated-deltanet-figures.mjs
+```
+
+`sources.json` records the author-reported Table 3 / Table 4 values and their
+experimental setup. Colored state diagrams are schematics; the two-dimensional
+worked example is arithmetic from the stated recurrence. Neither is a trained
+model trace or a new benchmark reproduction.
+
 ## KV-cache continuation experiment (2026-11-02)
 
 The ninth infrastructure chapter (`llm-infra-kv-cache`) implements a two-layer,
