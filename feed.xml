@@ -6,7 +6,25 @@
     <description>Notes on models, systems, and being human — in English and Chinese.</description>
     <atom:link href="https://chenhuiyu.github.io/feed.xml" rel="self" type="application/rss+xml" />
     <language>en-SG</language>
-    <lastBuildDate>Thu, 10 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 02 Nov 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>KV cache 从零实现：两层 Decoder、位置偏移与正确性验证</title>
+      <link>https://chenhuiyu.github.io/blog/llm-infra-kv-cache-zh</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-infra-kv-cache-zh</guid>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <dc:language>zh-CN</dc:language>
+      <category>LLM Infrastructure</category>
+      <description>从每层 K/V 的 shape 出发，亲手实现两层 Decoder；用逐位置 logits、错误 mask 对照和可复现 CPU 实验理解缓存省下了什么。</description>
+    </item>
+    <item>
+      <title>KV cache from scratch: a two-layer decoder, positions and correctness</title>
+      <link>https://chenhuiyu.github.io/blog/llm-infra-kv-cache-en</link>
+      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-infra-kv-cache-en</guid>
+      <pubDate>Mon, 02 Nov 2026 00:00:00 GMT</pubDate>
+      <dc:language>en</dc:language>
+      <category>LLM Infrastructure</category>
+      <description>Build a two-layer decoder, align layer caches and absolute positions, then verify every logit before measuring fixed-token continuation on CPU.</description>
+    </item>
     <item>
       <title>逐张量拆解 HSTU：SiLU 聚合、时间偏置与门控</title>
       <link>https://chenhuiyu.github.io/blog/hstu-block-zh</link>
@@ -258,24 +276,6 @@
       <dc:language>en</dc:language>
       <category>HSTU</category>
       <description>Separate content, actions, targets and candidates; understand sequential transduction and leakage boundaries.</description>
-    </item>
-    <item>
-      <title>Train a tiny HSTU-inspired recommender: data, loss and top-k</title>
-      <link>https://chenhuiyu.github.io/blog/hstu-training-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/hstu-training-en</guid>
-      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>HSTU</category>
-      <description>Train executable PyTorch teaching code and verify causality, padding, gradients and recommendation outputs.</description>
-    </item>
-    <item>
-      <title>Compute attention: Q, K, V and the causal mask</title>
-      <link>https://chenhuiyu.github.io/blog/llm-foundations-attention-en</link>
-      <guid isPermaLink="true">https://chenhuiyu.github.io/blog/llm-foundations-attention-en</guid>
-      <pubDate>Thu, 10 Sep 2026 00:00:00 GMT</pubDate>
-      <dc:language>en</dc:language>
-      <category>LLM Foundations</category>
-      <description>Use four tokens to understand scores, normalization and aggregation, and why masking precedes softmax.</description>
     </item>
   </channel>
 </rss>

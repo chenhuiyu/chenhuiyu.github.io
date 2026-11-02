@@ -1,0 +1,408 @@
+{
+  "scope": "Untrained two-layer decoder, synthetic fixed-token continuation; CPU microbenchmark only",
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.15.0+cpu",
+    "numpy": "2.3.5",
+    "device": "cpu",
+    "dtype": "float32",
+    "threads": 1,
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "cpu": "AMD EPYC 9V74 80-Core Processor",
+    "logical_cpus": 9,
+    "executed_at_utc": "2026-11-02T14:46:48.920368+00:00",
+    "seed": 42
+  },
+  "model": {
+    "vocab": 97,
+    "layers": 2,
+    "width": 64,
+    "heads": 4,
+    "head_dim": 16,
+    "max_positions": 512,
+    "parameters": 145280,
+    "trained": false,
+    "position_encoding": "learned absolute"
+  },
+  "protocol": {
+    "warmups": 3,
+    "repeats": 15,
+    "timer": "perf_counter_ns",
+    "continuation_prefill_included": false,
+    "cache": "immutable dynamic torch.cat",
+    "gradients": "torch.inference_mode",
+    "path_order": "rotated each repeat",
+    "inputs": "predetermined tokens, no sampling or EOS",
+    "memory": "logical final K/V payload only"
+  },
+  "correctness": [
+    {
+      "dtype": "torch.float32",
+      "batch": 1,
+      "chunk": 1,
+      "max_abs_logit_error": 8.344650268554688e-07
+    },
+    {
+      "dtype": "torch.float32",
+      "batch": 1,
+      "chunk": 2,
+      "max_abs_logit_error": 5.960464477539062e-07
+    },
+    {
+      "dtype": "torch.float32",
+      "batch": 1,
+      "chunk": 5,
+      "max_abs_logit_error": 4.76837158203125e-07
+    },
+    {
+      "dtype": "torch.float32",
+      "batch": 2,
+      "chunk": 1,
+      "max_abs_logit_error": 7.152557373046875e-07
+    },
+    {
+      "dtype": "torch.float32",
+      "batch": 2,
+      "chunk": 2,
+      "max_abs_logit_error": 4.76837158203125e-07
+    },
+    {
+      "dtype": "torch.float32",
+      "batch": 2,
+      "chunk": 5,
+      "max_abs_logit_error": 4.76837158203125e-07
+    },
+    {
+      "dtype": "torch.float64",
+      "batch": 1,
+      "chunk": 1,
+      "max_abs_logit_error": 1.1102230246251565e-15
+    },
+    {
+      "dtype": "torch.float64",
+      "batch": 1,
+      "chunk": 2,
+      "max_abs_logit_error": 1.1102230246251565e-15
+    },
+    {
+      "dtype": "torch.float64",
+      "batch": 1,
+      "chunk": 5,
+      "max_abs_logit_error": 1.5543122344752192e-15
+    },
+    {
+      "dtype": "torch.float64",
+      "batch": 2,
+      "chunk": 1,
+      "max_abs_logit_error": 1.1102230246251565e-15
+    },
+    {
+      "dtype": "torch.float64",
+      "batch": 2,
+      "chunk": 2,
+      "max_abs_logit_error": 8.881784197001252e-16
+    },
+    {
+      "dtype": "torch.float64",
+      "batch": 2,
+      "chunk": 5,
+      "max_abs_logit_error": 1.1102230246251565e-15
+    }
+  ],
+  "position_errors_fp32_batch2_chunk1": [
+    0.0,
+    3.5762786865234375e-07,
+    3.5762786865234375e-07,
+    4.76837158203125e-07,
+    4.172325134277344e-07,
+    3.5762786865234375e-07,
+    4.76837158203125e-07,
+    3.5762786865234375e-07,
+    4.76837158203125e-07,
+    4.76837158203125e-07,
+    3.5762786865234375e-07,
+    4.76837158203125e-07,
+    3.5762786865234375e-07,
+    3.5762786865234375e-07,
+    7.152557373046875e-07,
+    4.76837158203125e-07,
+    3.5762786865234375e-07,
+    4.76837158203125e-07,
+    4.76837158203125e-07,
+    4.76837158203125e-07,
+    4.76837158203125e-07,
+    3.5762786865234375e-07,
+    5.960464477539062e-07,
+    7.152557373046875e-07
+  ],
+  "negative_controls": {
+    "reset_positions": 1.8941389322280884,
+    "unshifted_mask": 0.3938286304473877
+  },
+  "timings": [
+    {
+      "prompt_tokens": 16,
+      "appended_tokens": 16,
+      "cache_payload_bytes": 32768,
+      "samples_ms": {
+        "prefill": [
+          0.378008,
+          0.342194,
+          0.345519,
+          0.677768,
+          0.706271,
+          0.742785,
+          0.617337,
+          0.642685,
+          0.431538,
+          1.15863,
+          0.756466,
+          0.341854,
+          0.498439,
+          0.565539,
+          0.549055
+        ],
+        "full": [
+          7.209025,
+          6.256976,
+          9.857031,
+          11.075421,
+          11.625548,
+          11.365767,
+          11.442171,
+          11.377505,
+          9.279604,
+          11.18118,
+          10.998736,
+          11.420408,
+          9.443721,
+          9.954678,
+          9.32324
+        ],
+        "cached": [
+          4.415641,
+          4.730634,
+          5.066458,
+          8.395547,
+          8.164139,
+          8.323558,
+          8.330568,
+          9.501017,
+          9.09003,
+          5.934392,
+          7.047232,
+          5.127469,
+          7.314643,
+          7.348324,
+          7.285841
+        ]
+      },
+      "full_projected_positions_per_layer": 392,
+      "cached_projected_positions_per_layer": 16,
+      "prefill_p50_ms": 0.565539,
+      "prefill_p95_ms": 0.8771151999999995,
+      "full_p50_ms": 10.998736,
+      "full_p95_ms": 11.4971841,
+      "cached_p50_ms": 7.314643,
+      "cached_p95_ms": 9.2133261
+    },
+    {
+      "prompt_tokens": 64,
+      "appended_tokens": 16,
+      "cache_payload_bytes": 81920,
+      "samples_ms": {
+        "prefill": [
+          0.847562,
+          0.900552,
+          1.010888,
+          1.009386,
+          1.057728,
+          1.007923,
+          0.957458,
+          1.020643,
+          0.834403,
+          0.824378,
+          1.048835,
+          1.122685,
+          1.07251,
+          1.006021,
+          1.046471
+        ],
+        "full": [
+          14.322357,
+          15.012623,
+          18.543114,
+          18.109573,
+          18.235542,
+          16.978144,
+          17.167339,
+          17.421139,
+          14.645962,
+          15.549209,
+          16.757082,
+          19.164608,
+          18.428221,
+          18.092788,
+          18.12738
+        ],
+        "cached": [
+          6.65317,
+          6.626361,
+          6.915724,
+          8.886073,
+          9.414316,
+          8.319462,
+          8.151791,
+          6.708924,
+          6.059729,
+          7.153091,
+          8.41799,
+          8.647315,
+          9.644892,
+          9.389419,
+          8.343488
+        ]
+      },
+      "full_projected_positions_per_layer": 1160,
+      "cached_projected_positions_per_layer": 16,
+      "prefill_p50_ms": 1.009386,
+      "prefill_p95_ms": 1.0875625,
+      "full_p50_ms": 17.421139,
+      "full_p95_ms": 18.7295622,
+      "cached_p50_ms": 8.319462,
+      "cached_p95_ms": 9.4834888
+    },
+    {
+      "prompt_tokens": 128,
+      "appended_tokens": 16,
+      "cache_payload_bytes": 147456,
+      "samples_ms": {
+        "prefill": [
+          1.68105,
+          1.712838,
+          1.70831,
+          1.50839,
+          1.549091,
+          1.927752,
+          1.859759,
+          1.179375,
+          1.552126,
+          1.596874,
+          1.975003,
+          1.500268,
+          1.703033,
+          1.889093,
+          1.843595
+        ],
+        "full": [
+          45.095896,
+          31.679859,
+          29.987292,
+          29.273538,
+          31.823585,
+          30.070958,
+          26.064618,
+          18.91002,
+          25.874111,
+          26.888488,
+          25.179006,
+          63.899441,
+          24.851201,
+          28.421796,
+          31.124042
+        ],
+        "cached": [
+          9.590905,
+          9.122109,
+          8.410178,
+          8.924912,
+          7.675101,
+          8.388254,
+          4.734856,
+          4.809779,
+          7.169535,
+          6.53787,
+          7.725897,
+          7.868963,
+          5.664074,
+          7.831908,
+          8.225951
+        ]
+      },
+      "full_projected_positions_per_layer": 2184,
+      "cached_projected_positions_per_layer": 16,
+      "prefill_p50_ms": 1.703033,
+      "prefill_p95_ms": 1.9419273,
+      "full_p50_ms": 29.273538,
+      "full_p95_ms": 50.73695949999998,
+      "cached_p50_ms": 7.831908,
+      "cached_p95_ms": 9.2627478
+    },
+    {
+      "prompt_tokens": 256,
+      "appended_tokens": 16,
+      "cache_payload_bytes": 278528,
+      "samples_ms": {
+        "prefill": [
+          3.110922,
+          4.353953,
+          4.649308,
+          3.994151,
+          4.348986,
+          7.0766,
+          3.87338,
+          3.658271,
+          3.922874,
+          3.961492,
+          5.852022,
+          3.724401,
+          5.484605,
+          4.276807,
+          4.49139
+        ],
+        "full": [
+          54.837693,
+          63.45395,
+          75.98794,
+          65.770442,
+          87.263395,
+          77.570696,
+          73.8486,
+          61.851329,
+          67.762785,
+          57.616565,
+          68.45694,
+          67.230719,
+          64.235272,
+          70.829386,
+          61.98518
+        ],
+        "cached": [
+          8.671291,
+          10.301704,
+          8.845553,
+          10.299631,
+          10.317878,
+          10.556218,
+          8.108604,
+          7.995914,
+          9.765878,
+          12.054322,
+          9.39792,
+          7.168258,
+          8.415735,
+          8.714195,
+          8.545592
+        ]
+      },
+      "full_projected_positions_per_layer": 4232,
+      "cached_projected_positions_per_layer": 16,
+      "prefill_p50_ms": 4.276807,
+      "prefill_p95_ms": 6.219395399999999,
+      "full_p50_ms": 67.230719,
+      "full_p95_ms": 80.47850569999999,
+      "cached_p50_ms": 8.845553,
+      "cached_p95_ms": 11.005649199999999
+    }
+  ]
+}
