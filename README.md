@@ -157,7 +157,7 @@ ignored. Never edit generated HTML as source.
 ## Model learning studio (2026-09)
 
 `/learn` and `/learn/en` connect four bilingual paths: LLM foundations (8 chapters),
-LLM infrastructure (8), multimodal understanding (5), and HSTU (4). All 50 editions
+LLM infrastructure (9), multimodal understanding (5), and HSTU (4). All 52 editions
 are editable Markdown in `content/posts/`; `content/learning-curriculum.json` records
 chapter ordering and `lib/learning/tracks.ts` defines route metadata.
 
@@ -201,7 +201,7 @@ python scripts/build-browser-notebooks.py
 node --test tests/notebook-worker.test.mjs
 ```
 
-The tests execute all 16 distinct cells using actual Pyodide WebAssembly in Node
+The tests execute all 18 distinct cells using actual Pyodide WebAssembly in Node
 workers, including state continuity, error recovery and a fresh kernel. They are
 not browser UI tests. `display_plot` renders computed data on the blog; downloaded
 notebooks use a standard-Python fallback that prints the plot data.
@@ -343,3 +343,28 @@ or untrusted code into the editor.
 Run `node --test tests/interview.test.mjs` after editing the bank. Tests validate
 schema/bilingual coverage and execute all reference solutions and starters in the
 actual Pyodide worker, plus syntax recovery and submission namespace isolation.
+
+## KV-cache continuation experiment (2026-11-02)
+
+The ninth infrastructure chapter (`llm-infra-kv-cache`) implements a two-layer,
+untrained MHA decoder with learned absolute positions. The full infrastructure
+notebook includes FP32/FP64 per-position logit and per-layer K/V comparisons,
+chunk sizes 1/2/5, batch sizes 1/2, causality and immutable-cache checks, plus
+negative controls for reset positions and unshifted masks. Browser sections 5–6
+provide editable visibility and single-head-cache experiments.
+
+Regenerate both executed full editions and their article figures with:
+
+```bash
+python -m pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
+python -m pip install nbformat numpy matplotlib
+python scripts/build-learning-notebooks.py --only infra-benchmark --execute
+python scripts/build-browser-notebooks.py
+```
+
+`public/learning/kv-cache-results.json` retains the environment, all raw CPU timing
+samples and correctness results. Continuation timing excludes separately measured
+prefill and consumes 16 fixed tokens; logical cache bytes exclude allocator peaks.
+The three `kv-cache-*.png` figures are extracted from actual notebook outputs.
+A new measurement changes timing values: update the bilingual article tables from
+the result JSON when regenerating. No pretrained weights are required for Infra.

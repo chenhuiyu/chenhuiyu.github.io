@@ -1,7 +1,7 @@
 ---
 title: "推理为什么慢：Prefill、Decode、KV cache 与排队"
 date: "2026-09-10"
-updated: "2026-09-10"
+updated: "2026-11-02"
 category: "LLM Infrastructure"
 language: "zh-CN"
 tags: ["llm-infra", "Hands-on", "Model Learning"]
@@ -74,6 +74,10 @@ Continuous batching 在迭代边界接纳新请求、移除已结束请求，减
 **问题：** 提高并发后 tokens/s 上升，但 p95 TTFT 翻倍，是不是优化成功？
 
 <details><summary>展开答案</summary>要看服务目标。可能提高了设备利用率但恶化排队。应比较满足既定延迟和错误率约束的 goodput，而不是只有裸吞吐。</details>
+
+## 继续动手：从零实现 KV cache
+
+新增的[两层 Decoder 实验](/blog/llm-infra-kv-cache-zh)把本章的预算与计时方法落到可执行代码：逐位置比较 logits、检查每层 K/V、制造位置与 mask 错误，再分开测量 prefill 与固定 token 续算。浏览器版可直接修改 mask，完整 PyTorch Notebook 保存了 CPU 实际输出。
 
 ## 原始资料与继续阅读
 

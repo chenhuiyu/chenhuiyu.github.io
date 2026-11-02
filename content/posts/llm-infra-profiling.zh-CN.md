@@ -1,7 +1,7 @@
 ---
 title: "XProf / Nsight：从时间线找到真正瓶颈"
 date: "2026-09-10"
-updated: "2026-09-10"
+updated: "2026-11-02"
 category: "LLM Infrastructure"
 language: "zh-CN"
 tags: ["llm-infra", "Hands-on", "Model Learning"]
@@ -88,6 +88,10 @@ TPU/JAX 要注意首次 compilation、异步 dispatch，以及 `block_until_read
 ![编写时 CPU 实测 matmul 时间，20 次测量的 p50/p95；不是 GPU 或 TPU 基准。](/learning/llm-infra-profiling-actual.png)
 
 编写时 CPU 实测 matmul 时间，20 次测量的 p50/p95；不是 GPU 或 TPU 基准。
+
+## 继续动手：从零实现 KV cache
+
+新增的[两层 Decoder 实验](/blog/llm-infra-kv-cache-zh)把本章的预算与计时方法落到可执行代码：逐位置比较 logits、检查每层 K/V、制造位置与 mask 错误，再分开测量 prefill 与固定 token 续算。浏览器版可直接修改 mask，完整 PyTorch Notebook 保存了 CPU 实际输出。
 
 ## 原始资料与继续阅读
 

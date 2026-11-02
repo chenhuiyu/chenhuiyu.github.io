@@ -26,7 +26,7 @@ test('masked reconstruction ignores visible errors',()=>{
 test('every curriculum chapter has complete bilingual text and local diagrams',async()=>{
  const curriculum=JSON.parse(await readFile(new URL('../content/learning-curriculum.json',import.meta.url),'utf8'));
  const posts=JSON.parse(await readFile(new URL('../content/authored-posts.json',import.meta.url),'utf8'));
- assert.equal(curriculum.length,25);
+ assert.equal(curriculum.length,26);
  for(const lesson of curriculum){
   const pair=posts.filter(p=>p.pairKey===lesson.key);assert.equal(pair.length,2,lesson.key);
   assert.deepEqual(new Set(pair.map(p=>p.language)),new Set(['en','zh-CN']));

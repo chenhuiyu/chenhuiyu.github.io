@@ -112,6 +112,13 @@
     "en": "XProf / Nsight: find the bottleneck in a timeline"
   },
   {
+    "track": "llm-infra",
+    "order": 9,
+    "key": "llm-infra-kv-cache",
+    "zh": "KV cache 从零实现：两层 Decoder、位置偏移与正确性验证",
+    "en": "KV cache from scratch: a two-layer decoder, positions and correctness"
+  },
+  {
     "track": "multimodal",
     "order": 1,
     "key": "multimodal-patches",

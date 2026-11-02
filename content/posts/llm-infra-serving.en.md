@@ -1,7 +1,7 @@
 ---
 title: "Why serving is slow: prefill, decode, KV cache and queues"
 date: "2026-09-10"
-updated: "2026-09-10"
+updated: "2026-11-02"
 category: "LLM Infrastructure"
 language: "en"
 tags: ["llm-infra", "Hands-on", "Model Learning"]
@@ -70,6 +70,10 @@ Run the notebook's actual matmul benchmark after warm-up, then compare serving c
 **Question:** Tokens/s increases but p95 TTFT doubles. Is the optimization successful?
 
 <details><summary>Answer</summary>That depends on the service objective. Device utilization may improve while queueing worsens. Compare goodput satisfying latency and error constraints, not raw throughput alone.</details>
+
+## Continue with a KV-cache implementation
+
+The new [two-layer decoder experiment](/blog/llm-infra-kv-cache-en) turns the budgets and timing method into executable code: compare every logit and layer cache, break positions and masks, then time prefill and fixed-token continuation separately. Edit masks in the browser and inspect saved CPU outputs in the full PyTorch notebook.
 
 ## Primary sources and further reading
 

@@ -1,7 +1,7 @@
 ---
 title: "XProf / Nsight: find the bottleneck in a timeline"
 date: "2026-09-10"
-updated: "2026-09-10"
+updated: "2026-11-02"
 category: "LLM Infrastructure"
 language: "en"
 tags: ["llm-infra", "Hands-on", "Model Learning"]
@@ -84,6 +84,10 @@ For TPU/JAX, account for compilation, asynchronous dispatch and `block_until_rea
 ![CPU matmul timings measured during authoring, p50/p95 over 20 repeats. These are not GPU or TPU benchmarks.](/learning/llm-infra-profiling-actual.png)
 
 CPU matmul timings measured during authoring, p50/p95 over 20 repeats. These are not GPU or TPU benchmarks.
+
+## Continue with a KV-cache implementation
+
+The new [two-layer decoder experiment](/blog/llm-infra-kv-cache-en) turns the budgets and timing method into executable code: compare every logit and layer cache, break positions and masks, then time prefill and fixed-token continuation separately. Edit masks in the browser and inspect saved CPU outputs in the full PyTorch notebook.
 
 ## Primary sources and further reading
 

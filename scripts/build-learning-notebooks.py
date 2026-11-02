@@ -15,6 +15,16 @@ print({'python':sys.version.split()[0], 'torch':torch.__version__, 'transformers
 torch.manual_seed(7); np.random.seed(7)
 torch.set_num_threads(min(4, torch.get_num_threads()))
 '''
+INFRA_SETUP='''import sys, subprocess, importlib.util
+requirements = {'torch': 'torch>=2.6,<3', 'numpy': 'numpy', 'matplotlib': 'matplotlib'}
+missing = [package for module, package in requirements.items() if importlib.util.find_spec(module) is None]
+if missing:
+    subprocess.check_call([sys.executable, '-m', 'pip', 'install', *missing])
+import torch, numpy as np, matplotlib.pyplot as plt
+print({'python': sys.version.split()[0], 'torch': torch.__version__, 'numpy': np.__version__, 'cuda': torch.cuda.is_available()})
+torch.manual_seed(7); np.random.seed(7)
+torch.set_num_threads(min(4, torch.get_num_threads()))
+'''
 BOOKS={}
 def book(name,zt,et,zintro,eintro,cells):BOOKS[name]=(zt,et,zintro,eintro,cells)
 def section(zh,en,code):return (zh,en,code)
@@ -78,8 +88,8 @@ print('greedy:',tokenizer.decode(greedy[0],skip_special_tokens=True))
 print('sample:',tokenizer.decode(sampled[0],skip_special_tokens=True))
 ''')])
 book('infra-benchmark','Infra：理论预算与真实计时','Infrastructure: budgets and actual timings',
-'CPU 可运行全部默认实验；CUDA 可用时自动改用 GPU。CPU 时间不代表 GPU/TPU 性能。Notebook 验证 TP 数学分解、ZeRO 状态预算和实际 matmul 时间；不是五大框架的端到端 benchmark。框架启动与 profiling 见配套章节。',
-'All default experiments run on CPU, selecting CUDA when available. CPU timings do not represent GPU/TPU performance. This notebook verifies TP algebra, ZeRO state accounting and actual matmul timing, not end-to-end benchmarks of five frameworks. See the chapters for serving/profiling workflows.',[
+'无需模型权重。前半验证 TP、ZeRO 和 matmul（CUDA 可用时 matmul 会选择 GPU）；第 5–9 节固定 CPU FP32，逐步实现两层 Decoder 的 KV cache，检查 FP32/FP64 正确性、错误对照和续算计时。GPU/TPU 与框架性能不在该 KV 实验的结论范围内。',
+'No model weights required. The first half verifies TP, ZeRO and matmul (matmul selects CUDA when available). Sections 5–9 fix CPU FP32, implement a two-layer decoder KV cache, check FP32/FP64 equivalence and negative controls, then time continuation. The KV experiment makes no GPU/TPU or serving-framework performance claims.',[
 section('## 1 · 显存账本\n改并发和长度。GiB 用 2³⁰，GB 用 10⁹；两者不要混用。','## 1 · Memory accounting\nChange concurrency and length. GiB uses 2³⁰; GB uses 10⁹.', '''B,T,L,Hkv,Dh,bytes_per_element=4,4096,32,8,128,2
 kv=2*B*T*L*Hkv*Dh*bytes_per_element
 print('KV GiB:',kv/2**30)
@@ -131,6 +141,231 @@ section('## 4 · 保存可复查的结果\n这个 JSON 包含环境与实测值�
 report={'device':DEVICE,'dtype':str(DTYPE),'torch':torch.__version__,'threads':torch.get_num_threads(),'results':results}
 with open('infra-benchmark-results.json','w') as f: json.dump(report,f,indent=2)
 print(json.dumps(report,indent=2))
+'''),
+section('## 5 · 从零实现两层 Decoder\n固定 seed、CPU FP32、两层 pre-norm、4 个 MHA heads、learned positions，无 dropout。模型未训练，只检验计算一致性。每层独立缓存投影后的 K/V；动态拼接保持旧 cache 不变。',
+'## 5 · Build a two-layer decoder\nFixed seed, CPU FP32, two pre-norm blocks, four MHA heads, learned positions and no dropout. Untrained weights test computational equivalence, not language quality. Each layer caches its own projected K/V; concatenation leaves the old cache unchanged.', '''import math
+import torch.nn as nn
+import torch.nn.functional as F
+torch.manual_seed(42)
+torch.set_num_threads(1)
+
+class CacheBlock(nn.Module):
+    def __init__(self, width=64, heads=4):
+        super().__init__()
+        self.heads, self.head_dim = heads, width // heads
+        assert width % heads == 0
+        self.ln1, self.ln2 = nn.LayerNorm(width), nn.LayerNorm(width)
+        self.qkv, self.out = nn.Linear(width, 3*width), nn.Linear(width, width)
+        self.ff = nn.Sequential(nn.Linear(width, 4*width), nn.GELU(), nn.Linear(4*width, width))
+
+    def forward(self, x, past=None, offset_mask=True):
+        b, n, d = x.shape
+        q, k, v = self.qkv(self.ln1(x)).chunk(3, dim=-1)
+        q, k, v = [t.reshape(b, n, self.heads, self.head_dim).transpose(1, 2) for t in (q, k, v)]
+        past_len = 0 if past is None else past[0].shape[-2]
+        if past is not None:
+            k = torch.cat((past[0], k), dim=-2)
+            v = torch.cat((past[1], v), dim=-2)
+        # Local query i corresponds to absolute position past_len + i.
+        query_pos = torch.arange(n) + (past_len if offset_mask else 0)
+        key_pos = torch.arange(k.shape[-2])
+        allowed = key_pos[None, :] <= query_pos[:, None]
+        scores = (q @ k.transpose(-2, -1)) / math.sqrt(self.head_dim)
+        weights = scores.masked_fill(~allowed, -torch.inf).softmax(dim=-1)
+        context = (weights @ v).transpose(1, 2).reshape(b, n, d)
+        x = x + self.out(context)
+        x = x + self.ff(self.ln2(x))
+        return x, (k, v)
+
+class CacheDecoder(nn.Module):
+    def __init__(self, vocab=97, width=64, heads=4, layers=2, max_positions=512):
+        super().__init__()
+        self.token = nn.Embedding(vocab, width)
+        self.position = nn.Embedding(max_positions, width)
+        self.blocks = nn.ModuleList([CacheBlock(width, heads) for _ in range(layers)])
+        self.norm, self.head = nn.LayerNorm(width), nn.Linear(width, vocab, bias=False)
+
+    def forward(self, ids, cache=None, use_cache=True, reset_positions=False, offset_mask=True):
+        past_len = 0 if cache is None else cache[0][0].shape[-2]
+        if cache is not None:
+            assert len(cache) == len(self.blocks)
+            assert all(k.shape[-2] == past_len == v.shape[-2] for k, v in cache)
+        start = 0 if reset_positions else past_len
+        positions = torch.arange(start, start + ids.shape[1])
+        x = self.token(ids) + self.position(positions)[None, :, :]
+        updated = []
+        for layer, block in enumerate(self.blocks):
+            x, kv = block(x, None if cache is None else cache[layer], offset_mask=offset_mask)
+            if use_cache:
+                updated.append(kv)
+        return self.head(self.norm(x)), tuple(updated)
+
+decoder = CacheDecoder().cpu().float().eval()
+fixed_ids = torch.randint(0, 97, (2, 288))
+print('parameters:', sum(p.numel() for p in decoder.parameters()))
+with torch.inference_mode():
+    prefill_logits, prefix_cache = decoder(fixed_ids[:, :5])
+print('prefill logits:', tuple(prefill_logits.shape))
+print('per-layer K/V:', [(tuple(k.shape), tuple(v.shape)) for k, v in prefix_cache])
+'''),
+section('## 6 · 逐位置比较 logits 与每层 K/V\n对 batch=1/2、chunk=1/2/5 和 FP32/FP64 分别检查全部 24 个位置。断言检查全部词表 logits，而不是只比较 argmax；同时检查因果性、cache 长度和旧 cache 未被原地修改。',
+'## 6 · Compare every logit and layer cache\nCheck all 24 positions for batch sizes 1/2, chunks 1/2/5 and FP32/FP64. Assert every vocabulary logit, not only argmax; also check causality, cache length and that old caches are not mutated.', '''from copy import deepcopy
+correctness = []
+with torch.inference_mode():
+    for dtype, atol in [(torch.float32, 1e-5), (torch.float64, 1e-10)]:
+        checked = deepcopy(decoder).to(dtype=dtype)
+        for batch in [1, 2]:
+            tokens = fixed_ids[:batch, :24]
+            full, full_cache = checked(tokens)
+            changed = tokens.clone()
+            changed[:, -1] = (changed[:, -1] + 1) % 97
+            alternate, _ = checked(changed, use_cache=False)
+            torch.testing.assert_close(full[:, :-1], alternate[:, :-1], atol=atol, rtol=atol)
+            for chunk in [1, 2, 5]:
+                cache, outputs, errors = None, [], []
+                for start in range(0, tokens.shape[1], chunk):
+                    end = min(start + chunk, tokens.shape[1])
+                    old = None if cache is None else tuple((k.clone(), v.clone()) for k, v in cache)
+                    logits, new_cache = checked(tokens[:, start:end], cache)
+                    reference, reference_cache = checked(tokens[:, :end])
+                    torch.testing.assert_close(logits, reference[:, start:end], atol=atol, rtol=atol)
+                    for layer, (k, v) in enumerate(new_cache):
+                        assert k.shape == v.shape == (batch, 4, end, 16)
+                        for value, target in zip((k, v), reference_cache[layer]):
+                            torch.testing.assert_close(value, target, atol=atol, rtol=atol)
+                        if old is not None:
+                            assert torch.equal(cache[layer][0], old[layer][0])
+                            assert torch.equal(cache[layer][1], old[layer][1])
+                    outputs.append(logits)
+                    errors.extend((logits-reference[:, start:end]).abs().amax(dim=(0, 2)).tolist())
+                    cache = new_cache
+                torch.testing.assert_close(torch.cat(outputs, dim=1), full, atol=atol, rtol=atol)
+                row = {'dtype': str(dtype), 'batch': batch, 'chunk': chunk, 'max_abs_logit_error': max(errors)}
+                correctness.append(row)
+                print(row)
+                if dtype == torch.float32 and batch == 2 and chunk == 1:
+                    position_errors = errors
+plt.figure(figsize=(8, 3.6))
+plt.plot(range(1, 25), position_errors, marker='o')
+plt.xlabel('Consumed prefix length'); plt.ylabel('Max absolute logit error')
+plt.title('CPU FP32: full recompute vs token-by-token cache (B=2)')
+plt.grid(alpha=.25); plt.tight_layout(); plt.show()
+'''),
+section('## 7 · 故意写错位置与 mask\ncache 长度为 4，当前 chunk 为 2：query 的绝对位置是 4、5。将位置重置为 0，或使用左上角三角 mask，都会改变输出；反例必须明显偏离正确参考。',
+'## 7 · Deliberately break positions and masks\nWith four cached tokens and two new tokens, query positions are 4 and 5. Resetting positions to zero or using an upper-left triangle changes outputs; negative controls must visibly disagree with the reference.', '''with torch.inference_mode():
+    tokens = fixed_ids[:1, :6]
+    reference, _ = decoder(tokens, use_cache=False)
+    _, cache = decoder(tokens[:, :4])
+    negative_controls = {}
+    for name, options in [('reset_positions', {'reset_positions': True}), ('unshifted_mask', {'offset_mask': False})]:
+        wrong, _ = decoder(tokens[:, 4:], cache, **options)
+        error = (wrong-reference[:, 4:]).abs().max().item()
+        assert error > 1e-3
+        negative_controls[name] = error
+        print(name, 'max absolute logit error:', error)
+past_len, new_len = 4, 2
+keys = torch.arange(past_len + new_len)
+correct_mask = keys[None, :] <= (past_len + torch.arange(new_len))[:, None]
+wrong_mask = keys[None, :] <= torch.arange(new_len)[:, None]
+fig, axes = plt.subplots(1, 2, figsize=(9, 2.7))
+for ax, mask, title in zip(axes, [correct_mask, wrong_mask], ['Correct: key <= past + query', 'Broken: key <= local query']):
+    ax.imshow(mask.numpy(), cmap='Blues', vmin=0, vmax=1, aspect='auto')
+    ax.set(xticks=range(6), yticks=range(2), yticklabels=[4, 5], xlabel='Key absolute position', ylabel='Query absolute position', title=title)
+    for i in range(2):
+        for j in range(6):
+            ax.text(j, i, int(mask[i, j]), ha='center', va='center', color='white' if mask[i, j] else 'black')
+plt.tight_layout(); plt.show()
+'''),
+section('## 8 · 固定 token 流，分开 prefill 与续算计时\nCPU FP32、单线程；每种路径预热 3 次、重复 15 次，交替测量完整重算和缓存。Decode 窗口都消费相同的 16 个预定 token，输出每步全部 logits；prefix prefill 单独计时，cache 创建后复用且不原地修改。动态 cat、分配和 Python 开销包含在内。此窗口不是客户端 TTFT/ITL。',
+'## 8 · Time prefill and continuation separately\nCPU FP32, one thread, three warm-ups and 15 repeats per path. Alternate recompute/cached measurement order. Both continuation windows consume the same 16 predetermined tokens and output all logits at each step. Time prefix prefill separately; reuse an immutable prefix cache. Include dynamic cat, allocation and Python overhead. This window is not client TTFT/ITL.', '''import time, platform, os
+NEW_TOKENS, REPEATS, WARMUPS = 16, 15, 3
+kv_timings = []
+
+def timed_ms(fn):
+    start = time.perf_counter_ns()
+    fn()
+    return (time.perf_counter_ns() - start) / 1e6
+
+with torch.inference_mode():
+    for prompt in [16, 64, 128, 256]:
+        stream = fixed_ids[:1, :prompt + NEW_TOKENS]
+        _, seed_cache = decoder(stream[:, :prompt])
+
+        def prefill():
+            return decoder(stream[:, :prompt])
+
+        def full_continuation():
+            rows = []
+            for j in range(NEW_TOKENS):
+                logits, _ = decoder(stream[:, :prompt+j+1], use_cache=False)
+                rows.append(logits[:, -1:])
+            return torch.cat(rows, dim=1)
+
+        def cached_continuation():
+            cache, rows = seed_cache, []
+            for j in range(NEW_TOKENS):
+                logits, cache = decoder(stream[:, prompt+j:prompt+j+1], cache)
+                rows.append(logits)
+            return torch.cat(rows, dim=1), cache
+
+        cached_logits, final_cache = cached_continuation()
+        torch.testing.assert_close(cached_logits, full_continuation(), atol=1e-5, rtol=1e-5)
+        for _ in range(WARMUPS):
+            prefill(); full_continuation(); cached_continuation()
+        samples = {'prefill': [], 'full': [], 'cached': []}
+        functions = {'prefill': prefill, 'full': full_continuation, 'cached': cached_continuation}
+        for repeat in range(REPEATS):
+            # Rotate all three paths so no path is always measured first.
+            order = ['prefill', 'full', 'cached']
+            order = order[repeat % 3:] + order[:repeat % 3]
+            for path in order:
+                samples[path].append(timed_ms(functions[path]))
+        actual_bytes = sum(t.numel()*t.element_size() for pair in final_cache for t in pair)
+        expected_bytes = 2 * 1 * (prompt+NEW_TOKENS) * 2 * 4 * 16 * 4
+        assert actual_bytes == expected_bytes
+        row = {'prompt_tokens': prompt, 'appended_tokens': NEW_TOKENS, 'cache_payload_bytes': actual_bytes,
+               'samples_ms': samples, 'full_projected_positions_per_layer': sum(prompt+j+1 for j in range(NEW_TOKENS)),
+               'cached_projected_positions_per_layer': NEW_TOKENS}
+        for path in samples:
+            row[path+'_p50_ms'] = float(np.median(samples[path]))
+            row[path+'_p95_ms'] = float(np.percentile(samples[path], 95))
+        kv_timings.append(row)
+        print({k: v for k, v in row.items() if k != 'samples_ms'})
+fig, axes = plt.subplots(1, 2, figsize=(10, 3.8))
+for path, label in [('full', 'Recompute full prefix'), ('cached', 'Reuse layer KV')]:
+    axes[0].plot([r['prompt_tokens'] for r in kv_timings], [r[path+'_p50_ms'] for r in kv_timings], marker='o', label=label)
+axes[0].set(xlabel='Prompt tokens', ylabel='16-token continuation p50 (ms)', title='CPU FP32, one thread; prefill excluded')
+axes[0].legend(); axes[0].grid(alpha=.25)
+axes[1].plot([r['prompt_tokens']+NEW_TOKENS for r in kv_timings], [r['cache_payload_bytes']/1024 for r in kv_timings], marker='o')
+axes[1].set(xlabel='Cached tokens after continuation', ylabel='Logical tensor payload (KiB)', title='K + V, two layers; allocator peak excluded')
+axes[1].grid(alpha=.25); plt.tight_layout(); plt.show()
+'''),
+section('## 9 · 保存环境、原始样本与正确性结果\n结果文件包含全部 15 次样本，p95 是小样本经验分位数。逻辑 tensor 字节数不等于进程峰值或设备峰值。模型未训练、无 padding/GQA/RoPE/采样；这里只验证 MHA 与 learned positions 的缓存机制。',
+'## 9 · Save environment, raw samples and correctness\nKeep all 15 samples; p95 is a small-sample empirical quantile. Logical tensor bytes are not process or device peak memory. The untrained model uses MHA and learned positions, without padding, GQA, RoPE or sampling.', '''from datetime import datetime, timezone
+from pathlib import Path
+cpu_name = platform.processor()
+if Path('/proc/cpuinfo').is_file():
+    cpu_name = next((line.split(':', 1)[1].strip() for line in Path('/proc/cpuinfo').read_text().splitlines() if line.startswith('model name')), cpu_name)
+kv_cache_report = {
+    'scope': 'Untrained two-layer decoder, synthetic fixed-token continuation; CPU microbenchmark only',
+    'environment': {'python': sys.version.split()[0], 'torch': torch.__version__, 'numpy': np.__version__,
+                    'device': 'cpu', 'dtype': 'float32', 'threads': torch.get_num_threads(),
+                    'platform': platform.platform(), 'cpu': cpu_name, 'logical_cpus': os.cpu_count(),
+                    'executed_at_utc': datetime.now(timezone.utc).isoformat(), 'seed': 42},
+    'model': {'vocab': 97, 'layers': 2, 'width': 64, 'heads': 4, 'head_dim': 16, 'max_positions': 512,
+              'parameters': sum(p.numel() for p in decoder.parameters()), 'trained': False, 'position_encoding': 'learned absolute'},
+    'protocol': {'warmups': WARMUPS, 'repeats': REPEATS, 'timer': 'perf_counter_ns',
+                 'continuation_prefill_included': False, 'cache': 'immutable dynamic torch.cat',
+                 'gradients': 'torch.inference_mode', 'path_order': 'rotated each repeat',
+                 'inputs': 'predetermined tokens, no sampling or EOS', 'memory': 'logical final K/V payload only'},
+    'correctness': correctness, 'position_errors_fp32_batch2_chunk1': position_errors,
+    'negative_controls': negative_controls, 'timings': kv_timings,
+}
+report['kv_cache'] = kv_cache_report
+with open('infra-benchmark-results.json', 'w') as f:
+    json.dump(report, f, indent=2)
+print(json.dumps(kv_cache_report['environment'], indent=2))
+print('Saved raw samples and checks to infra-benchmark-results.json')
 ''')])
 book('multimodal-inspection','多模态：CLIP 与 MAE 的真实模型实验','Multimodal: actual CLIP and MAE experiments',
 'CPU 可运行；首次下载两套模型权重，合计超过 1 GB，建议至少 4 GB 空闲内存。默认使用明确标注的合成色块图，无外部图片版权问题；改 IMAGE_PATH 使用自己的图片。依赖 transformers 4.57.1。合成图上的分数不代表现实图像质量。',
@@ -282,7 +517,7 @@ assert not (top==0).any()
 def create(name,locale):
     zt,et,zi,ei,cells=BOOKS[name];zh=locale=='zh-CN'
     nb=nbf.v4.new_notebook();nb.metadata={'kernelspec':{'display_name':'Python 3','language':'python','name':'python3'},'language_info':{'name':'python'},'learning_lab':{'execution_status':'not executed','source':'scripts/build-learning-notebooks.py'}}
-    nb.cells=[nbf.v4.new_markdown_cell('# '+(zt if zh else et)+'\n\n'+(zi if zh else ei)+'\n\n'+('执行状态：尚未运行。使用「全部运行」生成实际结果。' if zh else 'Execution status: not yet run. Run all cells to obtain actual results.')),nbf.v4.new_code_cell(SETUP)]
+    nb.cells=[nbf.v4.new_markdown_cell('# '+(zt if zh else et)+'\n\n'+(zi if zh else ei)+'\n\n'+('执行状态：尚未运行。使用「全部运行」生成实际结果。' if zh else 'Execution status: not yet run. Run all cells to obtain actual results.')),nbf.v4.new_code_cell(INFRA_SETUP if name == 'infra-benchmark' else SETUP)]
     for z,e,code in cells:nb.cells += [nbf.v4.new_markdown_cell(z if zh else e),nbf.v4.new_code_cell(code)]
     nb.cells.append(nbf.v4.new_markdown_cell(('## 下一步\n改变一个参数，先预测结果，再重跑。记录环境、seed、输入与失败情况；不要把教学实验外推成生产结论。' if zh else '## Next experiment\nChange one parameter, predict the result and rerun. Record the environment, seed, inputs and failures. Do not extrapolate teaching results into production conclusions.')))
     return nb
@@ -311,6 +546,12 @@ if __name__=='__main__':
                     exec(compile(cell.source,f'{name}-cell-{count}','exec'),namespace)
                 if stdout.getvalue():cell.outputs.append(nbf.v4.new_output('stream',name='stdout',text=stdout.getvalue()))
                 if stderr.getvalue():cell.outputs.append(nbf.v4.new_output('stream',name='stderr',text=stderr.getvalue()))
+            if name == 'infra-benchmark':
+                # Derive article figures from the executed notebook, never by hand.
+                figures = [o for c in en.cells for o in c.get('outputs', []) if 'image/png' in o.get('data', {})]
+                for output, filename in zip(figures[-3:], ['kv-cache-correctness.png', 'kv-cache-mask.png', 'kv-cache-cpu-timing.png']):
+                    (ROOT/'public/learning'/filename).write_bytes(base64.b64decode(output.data['image/png']))
+                (ROOT/'public/learning/kv-cache-results.json').write_text(json.dumps(namespace['kv_cache_report'], indent=2)+'\n')
             for a,b in zip(en.cells,zh.cells):
                 if a.cell_type=='code':b.outputs=copy.deepcopy(a.outputs);b.execution_count=a.execution_count
             for nb,locale in [(en,'en'),(zh,'zh-CN')]:

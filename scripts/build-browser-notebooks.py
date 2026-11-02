@@ -102,7 +102,45 @@ for _ in range(12):
     times.append((time.perf_counter()-start)*1000)
 print("shape:",(n,n),"checksum:",sum(map(sum,out)))
 print("median ms:",statistics.median(times),"max ms:",max(times))
-display_plot(list(range(1,13)),times,"Measured Python matmul","repeat","ms")''')])
+display_plot(list(range(1,13)),times,"Measured Python matmul","repeat","ms")'''),
+('5 · cache 后的 mask 要从哪里开始','5 · Where does the cached mask start?',
+'旧 cache 有 4 个 token，新 chunk 有 2 个。先预测每个 query 能看哪些 key，再改 past_length/new_length 重跑。这里构造的是绝对位置的可见性，不含 padding。',
+'Four cached tokens and two new tokens: predict the visible keys before running. Edit past_length/new_length. This constructs absolute-position visibility without padding.', '''past_length, new_length = 4, 2
+assert past_length >= 0 and new_length > 0
+allowed = [[int(k <= past_length+q) for k in range(past_length+new_length)] for q in range(new_length)]
+wrong = [[int(k <= q) for k in range(past_length+new_length)] for q in range(new_length)]
+for q, (correct_row, wrong_row) in enumerate(zip(allowed, wrong)):
+    print("absolute query",past_length+q,"correct:",correct_row,"unshifted:",wrong_row)
+assert all(sum(row) == past_length+q+1 for q,row in enumerate(allowed))
+display_plot(list(range(past_length,past_length+new_length)),[sum(row) for row in allowed],"Visible keys per new query","absolute query position","visible keys")'''),
+('6 · 真正重用 K/V，再与完整重算比较','6 · Reuse K/V and compare with recomputation',
+'标准库实现单头注意力，投影使用固定标量、softmax 稳定化。逐 token 的输出必须与完整因果计算相等。它隔离 attention 机制；完整两层 Decoder、位置 embedding、FP32/FP64 与 CPU 计时在另一个标签。',
+'Standard-library single-head attention with fixed scalar projections and stable softmax. Token-by-token outputs must match full causal computation. This isolates attention; the other tab contains the two-layer decoder, position embeddings, FP32/FP64 checks and CPU timings.', '''import math
+vectors = [[math.sin(i+j*.7) for j in range(4)] for i in range(8)]
+def project(vector, scale):
+    return [scale*x for x in vector]
+def read_query(q, keys, values):
+    scores = [sum(x*y for x,y in zip(q,k))/len(q)**.5 for k in keys]
+    unnormalized = [math.exp(s-max(scores)) for s in scores]
+    weights = [s/sum(unnormalized) for s in unnormalized]
+    return [sum(a*v[d] for a,v in zip(weights,values)) for d in range(len(q))]
+full = []
+for i,x in enumerate(vectors):
+    full.append(read_query(project(x,.7),[project(v,1.1) for v in vectors[:i+1]],[project(v,.9) for v in vectors[:i+1]]))
+keys, values, cached = [], [], []
+for x in vectors:
+    keys.append(project(x,1.1))
+    values.append(project(x,.9))
+    cached.append(read_query(project(x,.7),keys,values))
+errors = [max(abs(a-b) for a,b in zip(expected,actual)) for expected,actual in zip(full,cached)]
+assert max(errors) < 1e-12
+wrong_output = read_query(project(vectors[-1],.7),keys[:1],values[:1])
+wrong_error = max(abs(a-b) for a,b in zip(full[-1],wrong_output))
+assert wrong_error > 1e-3
+print("cached K/V shape:",(len(keys),len(keys[0])))
+print("max correct error:",max(errors),"unshifted-mask error:",wrong_error)
+print("At query length 1, a top-left triangle can expose only key 0.")
+display_plot(list(range(1,len(vectors)+1)),errors,"Full vs cached attention error","consumed tokens","max absolute error")''')])
 book('multimodal-inspection','图像分块、对比学习与可训练重建基线','Image patches, contrastive learning and a trainable reconstruction baseline',[
 ('1 · 像素与可逆分块','1 · Pixels and reversible patches','用合成灰度图把维度压到能手算。修改 patch，检查整除关系。','Use synthetic grayscale pixels small enough to inspect. Change patch size and check divisibility.', '''import math, random
 side, patch = 8, 2
@@ -237,4 +275,4 @@ display_plot(list(range(32)), vector[:32], "Real MiniLM embedding (first 32 dime
   # Stable cell ids make this a valid nbformat 4.5 notebook.
   for i,c in enumerate(cells): c['id']=f'cell-{i}'
   (ROOT/'public/notebooks'/f'{key}-browser-{locale}.ipynb').write_text(json.dumps(nb,ensure_ascii=False,indent=2)+'\n')
-print('Generated 8 browser notebooks, 16 standard-library cells + 1 optional pretrained-model cell.')
+print('Generated 8 browser notebooks, 18 standard-library cells + 1 optional pretrained-model cell.')
